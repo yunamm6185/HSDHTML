@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1.1 不等式 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 7.1.1</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <h2>7.1 认识不等式</h2>
+    <div class="chapter-intro">★ 理解不等式的概念，能从实际问题中抽象出不等式。</div>
+    <div class="lesson-title">7.1.1 不等式</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解不等式的概念</div>
+            <div class="target-item"><span>✔</span>能用不等式表示不等关系</div>
+            <div class="target-item"><span>✔</span>会判断一个数是否是不等式的解</div>
+        </div>
+    </div>
+
+    <!-- 引入：买票问题 -->
+    <div class="intro-block">
+        <p>某班27名学生去参观艺术展，票价每张50元；一次购票满30张，每张票可优惠10元。方案一：购买27张票；方案二：购买30张票。怎么买票划算？这里涉及数学上的不等式！</p>
+    </div>
+
+    <!-- 探索与表格 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>如果买30张票划算，那么应有 $1200 < 50x$，即 $50x > 1200$。现在的问题是：$x$ 取哪些数值时，上式成立？</p>
+        <p>将结果填入下表：</p>
+        <table>
+            <tr><th>$x$</th><th>$50x$</th><th>比较$50x$与$1200$的大小</th><th>$50x > 1200$是否成立</th></tr>
+            <tr><td>21</td><td>1050</td><td>$50x < 1200$</td><td>不成立</td></tr>
+            <tr><td>22</td><td>1100</td><td>$50x < 1200$</td><td>不成立</td></tr>
+            <tr><td>23</td><td>1150</td><td>$50x < 1200$</td><td>不成立</td></tr>
+            <tr><td>24</td><td>1200</td><td>$50x = 1200$</td><td>不成立</td></tr>
+            <tr><td>25</td><td>1250</td><td>$50x > 1200$</td><td>成立</td></tr>
+            <tr><td>26</td><td>1300</td><td>$50x > 1200$</td><td>成立</td></tr>
+            <tr><td>27</td><td>1350</td><td>$50x > 1200$</td><td>成立</td></tr>
+            <tr><td>28</td><td>1400</td><td>$50x > 1200$</td><td>成立</td></tr>
+            <tr><td>29</td><td>1450</td><td>$50x > 1200$</td><td>成立</td></tr>
+        </table>
+        <p>由上表可见，当 $x = 25,26,27,\dots$ 时，$50x > 1200$ 成立。也就是说，少于30人时，至少要有25人参观艺术展，买30张票反而划算。</p>
+    </div>
+
+    <!-- 概括：不等式定义 -->
+    <div class="highlight">
+        <p><strong>不等式：</strong> 用不等号“<”“>”“≤”“≥”表示不等关系的式子叫做不等式。例如 $1200<1350$，$x<30$，$50x<1200$，$50x>1200$ 等都是不等式。</p>
+        <p>“≤”读作“小于或等于”，即“不大于”；“≥”读作“大于或等于”，即“不小于”。</p>
+    </div>
+
+    <!-- 例（课本例） -->
+    <div class="example-box">
+        <h4>例 用不等式表示下列关系，并分别写出两个满足不等式的值：</h4>
+        <p>(1) $x$ 的一半小于 $-1$；</p>
+        <p>(2) $y$ 与 $4$ 的和大于 $0.5$；</p>
+        <p>(3) $a$ 是负数；</p>
+        <p>(4) $b$ 是非负数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx')">📌 显示解答</button>
+        <div id="ansEx" class="answer-box">
+            <p>(1) $\frac{1}{2}x < -1$，如 $x=-3,-4$。</p>
+            <p>(2) $y+4 > 0.5$，如 $y=0,1$。</p>
+            <p>(3) $a < 0$，如 $a=-3,-4$。</p>
+            <p>(4) $b \geq 0$，如 $b=0,2$。</p>
+        </div>
+    </div>
+
+    <!-- 练习（仅保留第1题） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 用不等式表示：</p>
+            <p>(1) $x$ 的3倍大于5；</p>
+            <p>(2) $y$ 与2的差小于-1；</p>
+            <p>(3) $x$ 的2倍大于 $x$；</p>
+            <p>(4) $y$ 的 $\frac12$ 与3的差是负数；</p>
+            <p>(5) $a$ 是正数；</p>
+            <p>(6) $b$ 不是正数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 参考答案</button>
+            <div id="ex1" class="answer-box">
+                <p>(1) $3x>5$</p>
+                <p>(2) $y-2 < -1$</p>
+                <p>(3) $2x > x$</p>
+                <p>(4) $\frac12 y - 3 < 0$</p>
+                <p>(5) $a>0$</p>
+                <p>(6) $b \le 0$（或 $b$ 不是正数即 $b\le0$）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：不等号的由来（精简版） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 不等号的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>1631年，英国数学家哈里奥特创造了符号“>”和“<”，分别表示“大于”和“小于”。在此之前，人们用单词表示不等关系。由于这些符号简便直观，最终被广泛接受并沿用至今。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从实际问题中抽象出不等关系。<br>
+        <strong>符号意识：</strong> 用不等式符号表示数量关系。<br>
+        <strong>模型思想：</strong> 不等式是刻画现实世界不等关系的数学模型。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">不等式：用不等号连接而成的数学式子</div>
+            <div class="summary-item">常见不等号：$<, >, \le, \ge$</div>
+            <div class="summary-item">能使不等式成立的未知数的值叫做不等式的解</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题7.1 A组第1、2题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 不等关系无处不在，不等式是描述它们的数学语言 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第7章 7.1.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

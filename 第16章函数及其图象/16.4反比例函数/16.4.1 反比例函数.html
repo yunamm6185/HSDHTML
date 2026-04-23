@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.4.1 反比例函数 | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 反比例交互 */
+        .inv-demo{text-align:center;background:#f0fdff;border-radius:1.5rem;padding:1.5rem;margin:1.2rem 0;border:2px solid #a7d8e0;}
+        #invCanvas{width:100%;max-width:480px;height:400px;border-radius:12px;background:white;border:2px solid #a7d8e0;}
+        .slider-row{display:flex;align-items:center;justify-content:center;gap:1rem;margin:.8rem 0;flex-wrap:wrap;}
+        input[type=range]{width:200px;height:8px;-webkit-appearance:none;background:#b2ebf2;border-radius:4px;outline:none;}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#f59e0b,#d97706);cursor:pointer;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.4.1 反比例函数</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解反比例函数的概念和表达式特征</div>
+            <div class="target-item"><span>2</span>能判断一个函数是否为反比例函数</div>
+            <div class="target-item"><span>3</span>理解反比例关系与正比例关系的区别</div>
+            <div class="target-item"><span>4</span>能用待定系数法求反比例函数的表达式</div>
+        </div>
+    </div>
+
+    <!-- 引入：反比例关系 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">⚖️ <strong>前面我们学习了"正比例"——两个量同增同减。但生活中还有一种常见的关系：一个量增大时另一个量反而减小，它们的<strong>乘积保持不变</strong>。</strong></p>
+        <p>例如：路程固定时，速度越快所需时间越短；矩形面积固定时，长越长宽就越短……这种<strong>"此消彼长"</strong>的关系就是<strong>反比例关系</strong>！</p>
+    </div>
+
+    <!-- 问题引入 -->
+    <div class="explore-card">
+        <h4>问题情境 — 行程问题中的反比关系</h4>
+        <p>小明家离学校 $12$ km。设他从家到学校的平均速度为 $x$ km/h，所需时间为 $t$ h。</p>
+        <button class="interact-btn" onclick="toggleAnswer('q1')">💡 分析数量关系</button>
+        <div id="q1" class="answer-box">
+            <p>根据公式：路程 = 速度 × 时间</p>
+            <p>即 $x \cdot t = 12$（定值）</p>
+            <p>∴ $$t = \frac{12}{x}$$</p>
+            <p>可以看出：<strong>速度越大（$x$ 越大），时间越短（$t$ 越小）</strong></p>
+            <p>这就是典型的<strong>反比例关系</strong>——$t$ 与 $x$ 成反比例。</p>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>问题情境 — 矩形面积问题</h4>
+        <p>某矩形的面积为 $24$ cm²，一边长为 $x$ cm，另一边长为 $y$ cm。</p>
+        <p>$y$ 与 $x$ 的关系式是什么？当 $x = 3$ 时 $y =$？当 $x = 8$ 时 $y =$？</p>
+        <button class="interact-btn" onclick="toggleAnswer('q2')">💡 解答</button>
+        <div id="q2" class="answer-box">
+            <p>由矩形面积公式：$xy = 24$ → $\displaystyle y = \frac{24}{x}$</p>
+            <p>当 $x = 3$ 时：$y = \dfrac{24}{3} =$ <strong>8 cm</strong></p>
+            <p>当 $x = 8$ 时：$y = \dfrac{24}{8} =$ <strong>3 cm</strong></p>
+            <p>可见：$x$ 从 3 增加到 8（变大），$y$ 从 8 减少到 3（变小）——<strong>反方向变化</strong>！</p>
+        </div>
+    </div>
+
+    <!-- 核心定义 -->
+    <div class="section-title">📌 反比例函数的定义</div>
+
+    <div class="fact-card">
+        <h4>📌 反比例函数</h4>
+        <div class="theorem-box">
+            <p><strong>定义：</strong>形如 $\displaystyle y = \frac{k}{x}$（或 $y = kx^{-1}$）（$k$ 为常数，$k \neq 0$）的函数叫做<strong>反比例函数</strong>。其中 $k$ 叫做<strong>比例系数</strong>。</p>
+            <p style="margin-top:.5rem;"><strong>自变量的取值范围：</strong>$x \neq 0$（因为分母不能为零！）</p>
+        </div>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>⚡ 反比例函数的关键特征：</strong></p>
+            <ol style="padding-left:1.5rem;line-height:1.9;">
+                <li>表达式形式为 $\displaystyle y = \frac{k}{x}$（$k \neq 0$）</li>
+                <li>自变量 $x$ 在<strong>分母位置</strong>且次数为 1</li>
+                <li>$x$ 和 $y$ 的<strong>乘积为定值 $k$</strong>（即 $xy = k$）</li>
+                <li>自变量取值范围：<strong>$x \neq 0$</strong></li>
+                <li>因变量取值范围：<strong>$y \neq 0$</strong></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 判断练习 -->
+    <div class="fact-card">
+        <h4>📌 判断：哪些是反比例函数？</h4>
+        <table style="max-width:650px;">
+            <tr><th>函数</th><td>$y=\dfrac{-5}{x}$</td><td>$y=\dfrac{x}{3}$</td><td>$y=\dfrac{2}{x-1}$</td><td>$y=-\dfrac{1}{2x}$</td><td>$xy=6$</td></tr>
+            <tr><th>是否反比例</th>
+                <td style="color:#059669;">✅ 是 ($k=-5$)</td>
+                <td style="color:#ef4444;">❌ 否 (正比例)</td>
+                <td style="color:#ef4444;">❌ 否</td>
+                <td style="color:#059669;">✅ 是 ($k=-\frac12$)</td>
+                <td style="color:#059669;">✅ 是 ($y=\frac{6}{x}$)</td>
+            </tr>
+        </table>
+        <button class="interact-btn" onclick="toggleAnswer('judgeTip')">💡 判断技巧</button>
+        <div id="judgeTip" class="answer-box">
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>$y=\frac{k}{x}$</strong> → 反比例 ✅（标准形式）</li>
+                <li><strong>$y=kx$</strong> → 正比例 ❌（不是反比例！）</li>
+                <li><strong>$y=\frac{k}{x+a}$ 或 $y=\frac{k}{x}+b$</strong> → 不是标准的反比例函数（这是变形后的形式）</li>
+                <li><strong>$xy=k$</strong> → 可以改写为 $y=\frac{k}{x}$，是反比例 ✅</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 动态演示 -->
+    <div class="inv-demo">
+        <h4 style="color:#0e7490;margin-bottom:.8rem;">🎮 动态探究 — 反比例函数 $y=\frac{k}{x}$</h4>
+        <canvas id="invCanvas"></canvas>
+        <div class="slider-row">
+            <span style="font-weight:700;color:#0e7490;width:80px;text-align:right;">比例系数 $k$：</span>
+            <input type="range" id="sliderK" min="-8" max="8" step="0.5" value="6">
+            <span id="valK" style="font-weight:700;color:#f59e0b;width:35px;">6</span>
+        </div>
+        <p id="formulaText" style="font-size:1.3rem;font-weight:700;color:#0f766e;">$y = \dfrac{6}{x}$</p>
+        <div style="display:flex;justify-content:center;gap:.8rem;margin-top:.5rem;flex-wrap:wrap;">
+            <button class="interact-btn" onclick="setInvPreset(6)">k=6 (一、三象限)</button>
+            <button class="interact-btn" onclick="setInvPreset(-6)">k=-6 (二、四象限)</button>
+            <button class="interact-btn" onclick="setInvPreset(2)">k=2 较平缓</button>
+            <button class="interact-btn" onclick="setInvPreset(1)">k=1 标准双曲线</button>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 求反比例函数表达式</h4>
+        <p>已知反比例函数 $y = \dfrac{k}{x}$ 经过点 $(2, -3)$：</p>
+        <p>(1) 求该反比例函数的表达式 &nbsp;&nbsp; (2) 点 $( -1, 6)$ 是否在图象上？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> 将点 $(2, -3)$ 代入 $y = \dfrac{k}{x}$：</p>
+            <p>$-3 = \dfrac{k}{2}$ → $k = -6$</p>
+            <p>∴ 表达式为 $\boxed{y = \dfrac{-6}{x}}$</p>
+            <p><strong>(2)</strong> 验证点 $(-1, 6)$：右边 $= \dfrac{-6}{-1} = 6$ = 左边 ✓</p>
+            <p>∴ 点 $(-1, 6)$ <strong>在该反比例函数图象上</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 实际应用 — 工程问题</h4>
+        <p>一项工程需要完成 120 个零件。设每天完成 $x$ 个零件，需要 $y$ 天完成。</p>
+        <p>(1) 写出 $y$ 关于 $x$ 的函数关系式 &nbsp;&nbsp; (2) 若每天多完成 10 个零件，可提前几天完成？（原计划每天做 20 个）</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 由题意：总工作量 = 每天完成数 × 天数</p>
+            <p>$xy = 120$ → $\displaystyle y = \frac{120}{x}$（$x > 0$ 且为整数）</p>
+            <p><strong>(2)</strong> 原计划：$x = 20$ 个/天<br>$\rightarrow y = \dfrac{120}{20} = 6$ 天</p>
+            <p>实际：$x' = 20 + 10 = 30$ 个/天<br>$\rightarrow y' = \dfrac{120}{30} = 4$ 天</p>
+            <p>可提前：$6 - 4 =$ <strong>2 天</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 综合判断</h4>
+        <p>若 $y = (m^2 - 4)x^{m^2 - m - 3}$ 是反比例函数，则 $m =$ ______</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p>要使该函数成为反比例函数，需满足：</p>
+            <ol style="padding-left:1.5rem;line-height:2;">
+                <li><strong>指数 = -1</strong>：$m^2 - m - 3 = -1$</li>
+                <li>→ $m^2 - m - 2 = 0$</li>
+                <li>→ $(m-2)(m+1) = 0$</li>
+                <li>→ $m = 2$ 或 $m = -1$</li>
+                <li><strong>系数 ≠ 0</strong>：$m^2 - 4 \neq 0$ → $m \neq \pm 2$</li>
+            </ol>
+            <p>综合两条件：排除 $m=2$ → ∴ $m = \boldsymbol{-1}$</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 当 $k$ 取何值时，$y = (k+1)x^{k^2+k-1}$ 是反比例函数？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>条件：① 指数 $= -1$：$k^2+k-1 = -1$ → $k(k+1)=0$ → $k=0$ 或 $k=-1$</p>
+            <p>② 系数 $\neq 0$：$k+1 \neq 0$ → $k \neq -1$</p>
+            <p>∴ $k = 0$</p>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 已知 $y$ 与 $x-1$ 成反比例，且当 $x=2$ 时 $y=4$。求 $y$ 与 $x$ 的函数关系式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p>"$y$ 与 $x-1$ 成反比例" → 设 $\displaystyle y = \frac{k}{x-1}$</p>
+            <p>代入 $(2, 4)$：$\displaystyle 4 = \frac{k}{2-1} = k$ → $k = 4$</p>
+            <p>∴ $\displaystyle y = \frac{4}{x-1}$（其中 $x \neq 1$）</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>反比例函数</strong>：$y = \dfrac{k}{x}$（$k \neq 0$），也可写成 $y = kx^{-1}$ 或 $xy = k$</li>
+            <li><strong>核心特征</strong>：$x$ 在分母上，$x$ 与 $y$ 的乘积是定值 $k$</li>
+            <li><strong>取值范围</strong>：$x \neq 0$，$y \neq 0$</li>
+            <li><strong>待定系数法</strong>：只需 1 个条件即可确定 $k$ 值</li>
+            <li>注意区分：<strong>正比例 $y=kx$</strong> vs <strong>反比例 $y=\frac{k}{x}$</strong>——前者同向变化，后者反向变化</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+// 反比例函数动态绘制
+(function(){
+    var cv=document.getElementById('invCanvas'),cx=cv.getContext('2d');var K=6;
+    function resize(){var r=cv.parentElement.getBoundingClientRect();var s=Math.min(r.width,480);cv.width=s*(window.devicePixelRatio||1);cv.height=400*(window.devicePixelRatio||1);cx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);draw(s);}
+    function draw(size){
+        var W=size,H=400,padL=45,padR=30,padT=30,padB=45,cW=W-padL-padR,cH=H-padT-padB;
+        cx.clearRect(0,0,W,H);
+        // 网格
+        cx.strokeStyle='#f0f9ff';cx.lineWidth=1;
+        for(var i=-6;i<=6;i++){var px=padL+(i+6)/12*cW;if(i!==0){ctx.beginPath();ctx.moveTo(px,padT);ctx.lineTo(px,H-padB).ctx.stroke();cx.fillStyle='#94a3b8';cx.font='10px';cx.textAlign='center';if(i!==0)cx.fillText(i,px,H-padB+14);}}
+        for(var i=-5;i<=5;i++){var py=padT+cH-(i+5)/10*cH;if(i!==0){cx.strokeStyle='#f0f9ff';ctx.beginPath();ctx.moveTo(padL,py);ctx.lineTo(W-padR,py).ctx.stroke();cx.textAlign='right';cx.fillText(i,padL-6,py+4);}}
+        // 轴
+        var yAx=padT+cH-5/10*cH,xAx=padL+6/12*cW;
+        cx.strokeStyle='#334155';cx.lineWidth=2;
+        ctx.beginPath();ctx.moveTo(padL,yAx);ctx.lineTo(W-padR+10,yAx).ctx.stroke();
+        ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx,H-padB).ctx.stroke();
+        cx.fillStyle='#334155';
+        ctx.beginPath();ctx.moveTo(W-padR+10,yAx);ctx.lineTo(W-padR,yAx-4);ctx.lineTo(W-padR,yAx+4).ctx.fill();
+        ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx-4,padT);ctx.lineTo(xAx+4,padT).ctx.fill();
+        cx.font='11px';cx.fillStyle='#64748b';
+        cx.fillText('O',padL-14,yAx+14);
+        cx.fillStyle='#0e7490';cx.font='bold 13px';cx.textAlign='center';
+        cx.fillText('x',W-padR+14,yAx+14);cx.save();cx.translate(xAx+14,H/2);cx.rotate(-Math.PI/2);cx.fillText('y',0,0);cx.restore();
+        if(K===0)return;
+        // 双曲线
+        var color=K>0?'#10b981':'#ef4444';
+        cx.strokeStyle=color;cx.lineWidth=2.5;cxCap='round';cx.beginPath();
+        // 第一支
+        var started=false;for(var px=padL+1;px<=W-padR;px+=1){
+            var x=(px-padL)/(cW)*(12)-6;if(Math.abs(x)<.08)continue;
+            var y=K/x,py=padT+cH-(y+5)/10*cH;
+            if(py<padT-30||py>H-padB+30){if(started){cx.stroke();started=false;}continue;}
+            if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+        }cx.stroke();
+        // 数据点
+        [1,2,3,4,-1,-2,-3,-4].forEach(function(xi){var yi=K/xi,xj=padL+(xi+6)/12*cW,yj=padT+cH-(yi+5)/10*cH;if(yj>=padT && yj<=H-padB){ctx.beginPath();ctx.arc(xj,yj,4,0,Math.PI*2);cx.fillStyle=color;cx.fill();}});
+        // k的值标注
+        cx.fillStyle=color;cx.font='bold 12px';
+        if(K>0)cx.fillText('k='+K+' > 0: 一、三象限',W/2,22);
+        else cx.fillText('k='+K+' < 0: 二、四象限',W/2,22);
+    }
+    var sk=document.getElementById('sliderK');
+    sk.addEventListener('input',function(){K=parseFloat(this.value);document.getElementById('valK').textContent=K;
+        document.getElementById('formulaText').innerHTML='$y = \\dfrac{'+K+'}{x}$';
+        if(window.MathJax) MathJax.typesetPromise([document.getElementById('formulaText')]).catch(function(){});
+        draw(cv.width/(window.devicePixelRatio||1));});
+    window.setInvPreset=function(k){sk.value=k;K=k;document.getElementById('valK').textContent=k;
+        document.getElementById('formulaText').innerHTML='$y = \\dfrac{'+k+'}{x}$';
+        if(window.MathJax)MathJax.typesetPromise([document.getElementById('formulaText')]).catch(function(){});
+        draw(cv.width/(window.devicePixelRatio||1));};
+    window.addEventListener('resize',resize);resize();
+})();
+</script>
+</body>
+</html>

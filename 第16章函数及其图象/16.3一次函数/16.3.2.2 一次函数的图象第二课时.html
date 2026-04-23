@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.2 一次函数的图象(第二课时) | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 四象限分析 */
+        .quad-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;}
+        .quad-cell{padding:1rem;border-radius:12px;text-align:center;font-weight:700;}
+        .q-up{background:#dcfce7;border:2px solid #86efac;}
+        .q-down{background:#fee2e2;border:2px solid #fca5a5;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.2 一次函数的图象（第二课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握一次函数 $y=kx+b$ 图象经过的象限规律</div>
+            <div class="target-item"><span>2</span>理解 $k$、$b$ 对直线位置的共同影响</div>
+            <div class="target-item"><span>3</span>能根据 $k$、$b$ 的符号确定直线的位置特征</div>
+            <div class="target-item"><span>4</span>能解决与一次函数图象相关的综合问题</div>
+        </div>
+    </div>
+
+    <div class="section-title">📊 一次函数 $y = kx + b$ 的位置特征</div>
+
+    <div class="fact-card">
+        <h4>📌 $k$ 和 $b$ 共同决定直线的位置</h4>
+        <p>对于一次函数 $y = kx + b$（$k \neq 0$），参数 $k$ 和 $b$ 的不同符号组合决定了直线经过哪些象限：</p>
+        <table style="margin-top:.8rem;">
+            <tr><th>条件</th><th>$k$ 的意义</th><th>$b$ 的意义</th><th>直线经过象限</th></tr>
+            <tr><td>$k > 0, b > 0$</td><td>上升 ↗</td><td>y轴正半轴交点 ↑</td><td>一、二、三</td></tr>
+            <tr><td>$k > 0, b < 0$</td><td>上升 ↗</td><td>y轴负半轴交点 ↓</td><td>一、三、四</td></tr>
+            <tr><td>$k < 0, b > 0$</td><td>下降 ↘</td><td>y轴正半轴交点 ↑</td><td>一、二、四</td></tr>
+            <tr><td>$k < 0, b < 0$</td><td>下降 ↘</td><td>y轴负半轴交点 ↓</td><td>二、三、四</td></tr>
+        </table>
+    </div>
+
+    <div class="explore-card">
+        <h4>探究活动 — 四种情况的对比</h4>
+        <p>观察以下四种情况的一次函数图象：</p>
+        <div class="quad-grid">
+            <div class="quad-cell q-up"><strong>$k > 0$, $b > 0$</strong><br><br>$y = x + 2$<br><br>过 一、二、三 象限<br>↗ 从左下到右上<br>截距在 y 轴上方</div>
+            <div class="quad-cell q-down"><strong>$k > 0$, $b < 0$</strong><br><br>$y = x - 2$<br><br>过 一、三、四 象限<br>↗ 从左下到右上<br>截距在 y 轴下方</div>
+            <div class="quad-cell q-down"><strong>$k < 0$, $b > 0$</strong><br><br>$y = -x + 2$<br><br>过 一、二、四 象限<br>↘ 从左上到右下<br>截距在 y 轴上方</div>
+            <div class="quad-cell q-up"><strong>$k < 0$, $b < 0$</strong><br><br>$y = -x - 2$<br><br>过 二、三、四 象限<br>↘ 从左上到右下<br>截距在 y 轴下方</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('quadRule')">💡 记忆口诀</button>
+        <div id="quadRule" class="answer-box">
+            <p><strong>记忆口诀：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>k 定方向，b 定起点</strong></li>
+                <li>$k > 0$ → 右上走（增）；$k < 0$ → 右下走（减）</li>
+                <li>$b > 0$ → 过 y 轴正半轴；$b < 0$ → 过 y 轴负半轴</li>
+                <li><strong>"一"象限始终有！</strong>（除了 $k<0,b\leq0$ 且截距很大的极端情况）→ 实际上：$k>0$ 时必过一、三；$k<0$ 时必过二、四；再加上 $b$ 决定是否过相邻象限</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 判断直线经过哪些象限</h4>
+        <p>判断下列各函数的图象分别经过哪些象限：</p>
+        <p>(1) $y = 3x + 1$ &nbsp;&nbsp;&nbsp; (2) $y = -\frac{1}{2}x + 3$ &nbsp;&nbsp;&nbsp; (3) $y = 2x - 5$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> $y = 3x+1$：∵ $k=3 > 0$, $b=1 > 0$ → 经过<strong>第一、二、三象限</strong></p>
+            <p><strong>(2)</strong> $y = -\frac12x+3$：∵ $k=-\frac12 < 0$, $b=3 > 0$ → 经过<strong>第一、二、四象限</strong></p>
+            <p><strong>(3)</strong> $y = 2x-5$：∵ $k=2 > 0$, $b=-5 < 0$ → 经过<strong>第一、三、四象限</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 根据象限求参数范围</h4>
+        <p>已知一次函数 $y = (m-2)x + m+1$：</p>
+        <p>(1) 若图象经过第一、三、四象限，则 $m$ 的取值范围是？</p>
+        <p>(2) 若图象不经过第二象限，则 $m$ 的取值范围是？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong>先识别参数：
+            <br>&nbsp;&nbsp;$k = m-2$
+            <br>&nbsp;&nbsp;$b = m+1$
+            </p>
+            <p><strong>(1)</strong> 经过第一、三、四象限 → $k > 0$ 且 $b < 0$</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>$m-2 > 0$ → $m > 2$</li>
+                <li>$m+1 < 0$ → $m < -1$</li>
+            </ul>
+            <p>两个条件不能同时满足！∴ <strong>此题无解</strong>（这样的 $m$ 不存在）</p>
+            <div class="warn-box" style="margin-top:.5rem;">
+                ⚠️ 注意：不是所有组合都可能有解！做题时要检验条件的相容性。
+            </div>
+            <p><strong>(2)</strong> 不经过第二象限 → 即经过一、三、四象限或只过一、三象限（$b=0$时）</p>
+            <p>需要 $k \geq 0$ 且 $b \leq 0$：</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>$m-2 \geq 0$ → $m \geq 2$</li>
+                <li>$m+1 \leq 0$ → $m \leq -1$</li>
+            </ul>
+            <p>同样无解！说明这个函数形式决定了它不可能同时满足这两个条件。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 平移问题 — 直线的平移变换</h4>
+        <p>将直线 $y = 2x - 1$ 向上平移 3 个单位后得到的直线是什么？向左平移 2 个单位呢？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>向上平移 3 个单位：</strong>截距增加 3 → $y = 2x - 1 + 3 =$ $\boxed{y = 2x + 2}$</p>
+            <p><strong>向左平移 2 个单位：</strong>将 $x$ 换成 $(x+2)$ → $y = 2(x+2) - 1 = 2x + 4 - 1 =$ $\boxed{y = 2x + 3}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 直线平移规律（"上加下减，左加右减"）：</strong></p>
+                <ul style="padding-left:1.5rem;line-height:1.9;">
+                    <li><strong>上下平移</strong>：改变 $b$ 的值（上加 $n$ 则 $b+n$，下减 $n$ 则 $b-n$）</li>
+                    <li><strong>左右平移</strong>：将 $x$ 替换为 $(x \mp n)$（左加 $n$ 为 $x+n$，右减 $n$ 为 $x-n$）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 已知直线 $y = kx + b$ 经过点 $A(0, 2)$ 和 $B(3, 0)$：</p>
+        <p>&nbsp;&nbsp;(1) 求 $k$ 和 $b$ 的值 &nbsp;&nbsp; (2) 判断该直线经过哪些象限</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p><strong>(1)</strong> ∵ 过 $A(0,2)$ → 当 $x=0$ 时 $y=2$ → $b = 2$</p>
+            <p>∵ 过 $B(3,0)$ → $3k + 2 = 0$ → $k = -\frac{2}{3}$</p>
+            <p><strong>(2)</strong> $k = -\frac23 < 0$, $b = 2 > 0$ → 经过<strong>第一、二、四象限</strong></p>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 把直线 $y = -x + 4$ 沿 $y$ 轴向下平移 2 个单位后所得的直线解析式为 ______。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p>向下平移 2 个单位 → 戝距 $b$ 减 2：<br>原式 $b = 4$，新 $b = 4 - 2 = 2$<br>∴ 所得直线为 $\boxed{y = -x + 2}$</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li>$k$ 和 $b$ 共同决定一次函数图象的位置和走向</li>
+            <li>$k > 0$ → 递增（↗）；$k < 0$ → 递减（↘）</li>
+            <li>$b > 0$ → 与 y 轴正半轴相交；$b < 0$ → 与 y 轴负半轴相交</li>
+            <li>四种组合对应四种不同的象限分布</li>
+            <li>直线平移："上加下减"改 $b$，"左加右减"换 $x$</li>
+        </ul>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

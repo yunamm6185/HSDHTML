@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.4 数学活动 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:#fef3c7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(180,120,0,0.15);padding:2rem 2.5rem;border:1px solid #fde68a;}
+        
+        /* ===== 头部信息 ===== */
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #f59e0b;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#92400e;}
+        h1{font-size:2.4rem;color:#78350f;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#f59e0b;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#78350f;background:linear-gradient(135deg,#fef3c7,#fde68a);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #fbbf24;margin:1.2rem 0 1.8rem;font-weight:700;}
+        
+        /* ===== 学习目标卡片 ===== */
+        .learning-targets{background:linear-gradient(145deg,#fff8dc,#fffbec);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #fcd34d;box-shadow:0 5px 0 #fbbf24;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #d97706;padding-left:1rem;color:#78350f;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #fcd34d;border:1px solid #fde68a;}
+        .target-item span{background:#d97706;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        
+        /* ===== 情境导入卡片（橙黄色系） ===== */
+        .intro-card{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:2rem;padding:1.8rem 2rem;margin:1.4rem 0;border-left:8px solid #f59e0b;position:relative;overflow:hidden;}
+        .intro-card::after{content:'✨';position:absolute;top:-10px;right:20px;font-size:4rem;opacity:.12;}
+        .intro-scene{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap;align-items:center;}
+        .scene-text{flex:1;min-width:300px;}
+        .scene-text p{margin:.6rem 0;}
+        
+        /* ===== 探究卡片（探索色系） ===== */
+        .explore-card{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #0ea5e9;position:relative;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#0369a1;}
+        .explore-card h4::before{content:"🔬 ";font-size:1.3rem;}
+        
+        /* ===== Canvas交互区域（核心） ===== */
+        .canvas-container{background:white;border-radius:1.5rem;padding:1.2rem;margin:1rem 0;box-shadow:0 6px 24px rgba(245,158,11,0.12),inset 0 2px 8px rgba(0,0,0,0.04);border:2px solid #fde68a;}
+        .canvas-wrapper{text-align:center;position:relative;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:0 auto;background:linear-gradient(135deg,#fafaf9,#f5f5f4);}
+        .canvas-hint{text-align:center;color:#a16207;font-size:.85rem;margin-top:.5rem;font-style:italic;}
+        
+        /* ===== 滑块控制区 ===== */
+        .slider-control{background:linear-gradient(135deg,#fefce8,#fef9c3);border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border:2px dashed #facc15;}
+        .slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;font-weight:600;color:#854d0e;}
+        input[type=range]{width:100%;height:10px;-webkit-appearance:none;background:linear-gradient(to right,#22c55e,#facc15,#ef4444);border-radius:5px;outline:none;cursor:pointer;margin:.5rem 0;}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(217,119,6,0.4);border:3px solid white;}
+        .slider-value{font-size:1.3rem;color:#d97706;font-weight:800;text-align:center;margin-top:.3rem;}
+        
+        /* ===== 阶段按钮组 ===== */
+        .stage-btn-group{display:flex;gap:.6rem;justify-content:center;margin:.8rem 0;flex-wrap:wrap;}
+        .stage-btn{background:linear-gradient(135deg,#ffffff,#f9fafb);border:2px solid #d97706;color:#92400e;padding:.45rem 1.2rem;border-radius:25px;font-weight:700;cursor:pointer;transition:all .2s;font-size:.92rem;box-shadow:0 3px 0 #d97706;}
+        .stage-btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #d97706;background:linear-gradient(135deg,#fef3c7,#fde68a);}
+        .stage-btn.active{background:linear-gradient(135deg,#d97706,#b45309);color:white;border-color:#b45309;box-shadow:0 3px 0 #92400e;}
+        .stage-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #92400e;}
+        
+        /* ===== 状态信息面板 ===== */
+        .status-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1rem 0;}
+        .status-card{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:1rem;padding:.8rem 1rem;border-left:4px solid #3b82f6;text-align:center;}
+        .status-card.invariant{border-left-color:#16a34a;background:linear-gradient(135deg,#f0fdf4,#dcfce7);}
+        .status-card.variable{border-left-color:#dc2626;background:linear-gradient(135deg,#fef2f2,#fee2e2);}
+        .status-card .label{font-size:.82rem;color:#64748b;font-weight:600;}
+        .status-card .value{font-size:1.15rem;font-weight:800;color:#1e293b;margin-top:.2rem;}
+        .status-card.invariant .value{color:#15803d;}
+        .status-card.variable .value{color:#dc2626;}
+        
+        /* ===== 定义/概念卡片 ===== */
+        .fact-card{background:linear-gradient(135deg,#fff8e1,#fffbec);border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#c0392b;}
+        .highlight{background:#fff3cd;padding:.8rem 1.2rem;border-radius:1rem;margin:.5rem 0;border:2px dashed #f0b34b;font-size:1.08rem;}
+        
+        /* ===== 问题引导卡片 ===== */
+        .question-card{background:linear-gradient(135deg,#fdf4ff,#fae8ff);border-left:8px solid #c026d3;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .question-card h4{color:#86198f;font-size:1.35rem;margin-bottom:.6rem;}
+        .question-item{background:white;border-radius:12px;padding:.8rem 1.2rem;margin:.6rem 0;box-shadow:0 2px 8px rgba(192,38,211,0.08);border:1px solid #f5d0fe;cursor:pointer;transition:all .2s;}
+        .question-item:hover{transform:translateX(5px);box-shadow:0 4px 14px rgba(192,38,211,0.15);}
+        .question-num{display:inline-block;background:#c026d3;color:white;width:26px;height:26px;border-radius:50%;text-align:center;line-height:26px;font-weight:bold;font-size:.85rem;margin-right:.5rem;}
+        .answer-reveal{display:none;margin-top:.6rem;padding:.7rem 1rem;background:#f3e8ff;border-radius:10px;border-left:4px solid #a21caf;color:#581c87;line-height:1.7;font-size:.95rem;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .show-answer{display:block!important;animation:fadeIn .4s ease;}
+        
+        /* ===== 章节标题 ===== */
+        .section-title{font-size:1.6rem;color:#78350f;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #f59e0b;}
+        
+        /* ===== 表格样式 ===== */
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th,td{padding:12px 14px;text-align:center;border:1px solid #fcd34d;}
+        th{background:linear-gradient(135deg,#d97706,#f59e0b);color:white;font-weight:700;font-size:1.02rem;}
+        tr:nth-child(even){background:#fffbeb;}
+        tr:hover{background:#fef3c7;}
+        td:first-child{background:#fef9c3;font-weight:700;text-align:left;color:#854d0e;width:110px;}
+        
+        /* ===== 小结区域 ===== */
+        .summary-section{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:6px solid #d97706;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        
+        /* ===== 数学思想 ===== */
+        .math-idea{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-left:8px solid #7c3aed;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .math-idea h4{color:#5b21b6;font-size:1.3rem;margin-bottom:.5rem;}
+        .idea-list{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem;}
+        .idea-tag{background:white;border:2px solid #a78bfa;color:#5b21b6;padding:.35rem .9rem;border-radius:20px;font-weight:700;font-size:.88rem;}
+        
+        /* ===== 作业框 ===== */
+        .homework-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .hw-icon{font-size:2rem;}
+        .hw-text{flex:1;}
+        .hw-text p{margin:.3rem 0;}
+        
+        /* ===== 页脚 ===== */
+        .footer-note{text-align:right;color:#92400e;border-top:2px solid #fcd34d;padding-top:.8rem;margin-top:1.5rem;}
+        
+        /* ===== 动画演示区增强 ===== */
+        .anim-header{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:.8rem;}
+        .shape-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:white;padding:.35rem 1.2rem;border-radius:20px;font-weight:800;font-size:1.05rem;display:inline-flex;align-items:center;gap:.4rem;box-shadow:0 3px 10px rgba(217,119,6,0.3);}
+        .shape-badge .emoji{font-size:1.3rem;}
+        
+        /* ===== 命名讨论框 ===== */
+        .naming-discuss{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:1.5rem;padding:1.2rem 1.5rem;margin:1rem 0;border:2px dashed #f472b6;}
+        .naming-item{background:white;border-radius:12px;padding:.8rem 1.2rem;margin:.6rem 0;}
+        .naming-item strong{color:#be185d;}
+        
+        /* ===== 响应式 ===== */
+        @media(max-width:768px){
+            body{padding:.5rem;font-size:16px;}
+            .textbook{padding:1rem;border-radius:1.5rem;}
+            h1{font-size:1.8rem;}
+            .lesson-title{font-size:1.5rem;}
+            .stage-btn{padding:.35rem .8rem;font-size:.82rem;}
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <!-- 头部信息 -->
+    <div class="header-meta">
+        <span>华师版·八年级下册</span>
+        <span>第18章 · 矩形、菱形与正方形 · 18.4</span>
+    </div>
+    <h1>第18章 矩形、菱形与正方形</h1>
+    <div class="lesson-title">🧩 18.4 数学活动 —— 探索图形变化中的不变量</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>通过<strong>动态变换</strong>体验"运动变化中的不变量"这一重要数学思想</div>
+            <div class="target-item"><span>2</span>观察顶点移动过程中，哪些几何性质<strong>始终保持不变</strong>，哪些发生了变化</div>
+            <div class="target-item"><span>3</span>认识<strong>筝形（Kite）</strong>等特殊四边形，理解其特征和命名</div>
+            <div class="target-item"><span>4</span>培养用<strong>分类思想</strong>和<strong>函数观点</strong>分析几何问题的能力</div>
+        </div>
+    </div>
+
+    <!-- 一、情境引入 -->
+    <div class="section-title">一、情境引入——从菱形出发的奇妙之旅 🚀</div>
+
+    <div class="intro-card">
+        <p style="font-size:1.2rem;">📐 <strong>一个有趣的实验：</strong></p>
+        <div class="scene-text">
+            <p><strong>已知条件：</strong>菱形 $ABCD$ 是一组邻边相等的平行四边形。</p>
+            <p><strong>操作方法：</strong>将顶点 $A$ 看作<strong>动点</strong>，让它沿着对角线 $BD$ 从 $B$ 点逐渐向 $D$ 点移动。</p>
+            <p><strong>观察目标：</strong>在 $A$ 移动的整个过程中，图形会怎样变化？哪些性质变了？哪些始终没变？</p>
+            <p style="color:#d97706;font-weight:700;margin-top:.8rem;background:#fffbeb;padding:.8rem 1rem;border-radius:12px;">
+                💡 <strong>核心问题：</strong>数学中有一句名言——<br>"万变不离其宗"。在图形的变化中，总有一些量是<strong>不变的</strong>！
+            </p>
+        </div>
+    </div>
+
+    <!-- 二、核心交互探索（Canvas动画）-->
+    <div class="section-title">二、核心交互探索 —— 动手试一试 ✨</div>
+
+    <div class="explore-card">
+        <h4>动态演示：顶点 A 在对角线 BD 上移动</h4>
+        <div class="canvas-container">
+            <!-- 图形名称徽章 -->
+            <div class="anim-header">
+                <div class="shape-badge" id="shapeBadge">
+                    <span class="emoji" id="badgeEmoji">💎</span>
+                    <span id="badgeName">菱形 ABCD</span>
+                </div>
+                <span id="stageLabel" style="color:#d97706;font-weight:700;">图① · 初始状态</span>
+            </div>
+            
+            <div class="canvas-wrapper">
+                <canvas id="mainCanvas" width="650" height="450"></canvas>
+            </div>
+            
+            <p class="canvas-hint">👆 拖动下方滑块或点击阶段按钮，观察图形的实时变化</p>
+            
+            <!-- 阶段切换按钮 -->
+            <div class="stage-btn-group">
+                <button class="stage-btn active" data-stage="0" onclick="setStage(0)">🔷 图① 菱形 (0%)</button>
+                <button class="stage-btn" data-stage="33" onclick="setStage(33)">🪁 图② 筝形 (33%)</button>
+                <button class="stage-btn" data-stage="66" onclick="setStage(66)">⚡ 图③ 变化中 (66%)</button>
+                <button class="stage-btn" data-stage="100" onclick="setStage(100)">🔺 图④ 三角形 (100%)</button>
+                <button class="stage-btn" style="border-color:#7c3aed;" onclick="autoPlay()">▶️ 自动播放</button>
+            </div>
+            
+            <!-- 滑块控制 -->
+            <div class="slider-control">
+                <div class="slider-label">
+                    <span>📍 B 点 (起点)</span>
+                    <strong>拖动滑块控制顶点 A 的位置</strong>
+                    <span>D 点 (终点)</span>
+                </div>
+                <input type="range" id="posSlider" min="0" max="100" value="0" step="0.5" oninput="onSliderChange(this.value)">
+                <div class="slider-value" id="sliderValueDisplay">位置：0% （图① · 菱形）</div>
+            </div>
+            
+            <!-- 实时状态面板 -->
+            <div class="status-panel">
+                <div class="status-card invariant">
+                    <div class="label">📏 不变量：AB = AD</div>
+                    <div class="value" id="valAB_AD">相等</div>
+                </div>
+                <div class="status-card invariant">
+                    <div class="label">📐 不变量：BC = CD</div>
+                    <div class="value" id="valBC_CD">相等</div>
+                </div>
+                <div class="status-card variable">
+                    <div class="label">🔄 变量：∠BAD</div>
+                    <div class="value" id="valAngleA">60°</div>
+                </div>
+                <div class="status-card variable">
+                    <div class="label">🔄 变量：∠ABC</div>
+                    <div class="value" id="valAngleB">120°</div>
+                </div>
+                <div class="status-card">
+                    <div class="label">📍 A点距B的距离</div>
+                    <div class="value" id="valDistAB">0%</div>
+                </div>
+                <div class="status-card">
+                    <div class="label">📊 当前对称性</div>
+                    <div class="value" id="valSymmetry">中心+轴对称</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三、探究活动——不变量的发现 -->
+    <div class="section-title">三、探究活动 —— 寻找变化中的不变量 🔍</div>
+
+    <div class="question-card">
+        <h4>🤔 思考与探究</h4>
+        <p>请结合上面的动画演示，依次思考以下问题（点击展开答案）：</p>
+        
+        <div class="question-item" onclick="toggleAnswer(this)">
+            <span class="question-num">1</span>
+            <strong>当 A 点沿 BD 移动时，边 AB 和边 AD 的长度关系如何？</strong>
+            <div class="answer-reveal">
+                <strong>答案：</strong>$\because A$ 始终在对角线 $BD$ 上移动，而 $AB = AD$（菱形的定义性质），且 $A$ 到 $B$ 和到 $D$ 的距离始终满足 $AB = AD$。<br>
+                <span style="color:#15803d;font-weight:700;">✅ 结论：$AB = AD$ 始终保持不变！这是最重要的不变量之一。</span>
+            </div>
+        </div>
+        
+        <div class="question-item" onclick="toggleAnswer(this)">
+            <span class="question-num">2</span>
+            <strong>边 BC 和边 CD 的长度是否发生变化？</strong>
+            <div class="answer-reveal">
+                <strong>答案：</strong>$BC$ 和 $CD$ 是固定不变的边（$B$、$C$、$D$ 三点位置固定）。<br>
+                $\because$ 原始菱形中 $BC = CD$，且这两个端点没有移动<br>
+                <span style="color:#15803d;font-weight:700;">✅ 结论：$BC = CD$ 也始终保持不变！这是第二个不变量。</span>
+            </div>
+        </div>
+        
+        <div class="question-item" onclick="toggleAnswer(this)">
+            <span class="question-num">3</span>
+            <strong>四个内角的大小在变化吗？哪个角的变化最明显？</strong>
+            <div class="answer-reveal">
+                <strong>答案：</strong>随着 $A$ 点向 $D$ 移动：
+                <ul style="margin:.3rem 0 0 1.2rem;">
+                    <li>$\angle BAD$ 从锐角 → 0°（逐渐变小）</li>
+                    <li>$\angle ABC$ 从钝角 → 逐渐变大</li>
+                    <li>$\angle ADC$ 和 $\angle BCD$ 也在持续变化</li>
+                </ul>
+                <span style="color:#dc2626;font-weight:700;">❌ 结论：所有内角都在变化！角度是变化的量。</span>
+            </div>
+        </div>
+        
+        <div class="question-item" onclick="toggleAnswer(this)">
+            <span class="question-num">4</span>
+            <strong>图形的对称性有什么变化规律？</strong>
+            <div class="answer-reveal">
+                <strong>答案：</strong>
+                <ul style="margin:.3rem 0 0 1.2rem;">
+                    <li><strong>图①（菱形）：</strong>既是中心对称图形，又是轴对称图形（两条对称轴）</li>
+                    <li><strong>图②、图③（筝形/一般四边形）：</strong>只有轴对称（一条对称轴为对角线 $BD$ 所在直线），不再是中心对称</li>
+                    <li><strong>图④（等腰三角形）：</strong>轴对称（一条对称轴），不是中心对称</li>
+                </ul>
+                <span style="color:#dc2626;font-weight:700;">⚠️ 结论：对称性也在变化！中心对称性丢失了，但轴对称性保留了一段时间。</span>
+            </div>
+        </div>
+        
+        <div class="question-item" onclick="toggleAnswer(this)">
+            <span class="question-num">5</span>
+            <strong>总结一下：在整个变化过程中，不变的量和变化的量分别有哪些？</strong>
+            <div class="answer-reveal">
+                <table style="font-size:.9rem;margin:.5rem 0;">
+                    <tr><th>类别</th><th>具体内容</th></tr>
+                    <tr><td style="color:#15803d;font-weight:700;">不变量</td><td>$AB=AD$, $BC=CD$, $BD$ 为公共边, $C$ 到 $BD$ 距离不变</td></tr>
+                    <tr><td style="color:#dc2626;font-weight:700;">变化量</td><td>四个内角大小, 图形名称/类型, 对称性的种类和数量, 面积大小</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四、图形命名讨论 -->
+    <div class="section-title">四、图形命名讨论 —— 这些图形叫什么？ 🏷️</div>
+
+    <div class="naming-discuss">
+        <h4 style="color:#be185d;margin-bottom:.8rem;">💬 各阶段的图形命名</h4>
+        
+        <div class="naming-item">
+            <p><strong>🔷 图① —— 菱形 (Rhombus)</strong></p>
+            <p>这是我们熟悉的：<strong>邻边相等的平行四边形</strong>。它具有两组对边平行、四条边都相等的特征。</p>
+        </div>
+        
+        <div class="naming-item">
+            <p><strong>🪁 图② —— 筝形 / 风筝形 (Kite)</strong></p>
+            <p><strong>定义：</strong>有两组邻边分别相等的四边形叫做<strong>筝形</strong>（也叫风车形、风筝形）。</p>
+            <p>在我们的图中：$AB = AD$ 且 $CB = CD$，恰好符合筝形的定义！</p>
+            <p style="background:#fdf2f8;padding:.5rem .8rem;border-radius:8px;margin-top:.4rem;color:#be185d;">
+                💡 <strong>生活中的例子：</strong>风筝、某些装饰品、传统建筑中的窗花图案
+            </p>
+        </div>
+        
+        <div class="naming-item">
+            <p><strong>⚡ 图③ —— 一般筝形（退化过程中的形态）</strong></p>
+            <p>A点继续靠近D点，图形变得更"扁"，但仍然满足 $AB = AD$ 且 $CB = CD$，还是筝形的一种特殊姿态。</p>
+        </div>
+        
+        <div class="naming-item">
+            <p><strong>🔺 图④ —— 等腰三角形 (Isosceles Triangle)</strong></p>
+            <p>当 $A$ 与 $D$ 重合时，原来的四边形退化为<strong>等腰三角形 $BCD$</strong>（因为 $BC = CD$）。</p>
+            <p style="background:#fdf2f8;padding:.5rem .8rem;border-radius:8px;margin-top:.4rem;color:#be185d;">
+                ⚠️ <strong>注意：</strong>这是图形的<strong>退化</strong>情形，从四边形变成了三角形！
+            </p>
+        </div>
+    </div>
+
+    <!-- 五、总结表格 -->
+    <div class="section-title">五、总结对比表 📊</div>
+
+    <div class="fact-card">
+        <h4>📋 各阶段图形性质对比</h4>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>性质</th>
+                    <th>图① (菱形)</th>
+                    <th>图② (筝形/Kite)</th>
+                    <th>图③ (扁筝形)</th>
+                    <th>图④ (等腰△)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>图形名称</td>
+                    <td>菱形 ABCD</td>
+                    <td>筝形 ABCD</td>
+                    <td>一般筝形</td>
+                    <td>等腰△ BCD</td>
+                </tr>
+                <tr>
+                    <td>边的关系</td>
+                    <td>四条边都相等</td>
+                    <td>$AB=AD$, $BC=CD$</td>
+                    <td>$AB=AD$, $BC=CD$</td>
+                    <td>$BC=CD$</td>
+                </tr>
+                <tr style="background:#f0fdf4;">
+                    <td><strong>不变量 ✅</strong></td>
+                    <td>$AB=AD$, $BC=CD$</td>
+                    <td>$AB=AD$, $BC=CD$</td>
+                    <td>$AB=AD$, $BC=CD$</td>
+                    <td>$BC=CD$</td>
+                </tr>
+                <tr>
+                    <td>对边是否平行</td>
+                    <td>✅ 两组平行</td>
+                    <td>❌ 不平行</td>
+                    <td>❌ 不平行</td>
+                    <td>—</td>
+                </tr>
+                <tr style="background:#fef2f2;">
+                    <td><strong>变量 ❌</strong></td>
+                    <td>—</td>
+                    <td>对边不再平行</td>
+                    <td>角度持续变化</td>
+                    <td>变为三边形</td>
+                </tr>
+                <tr>
+                    <td>∠BAD 大小</td>
+                    <td>≈ 60°~120°</td>
+                    <td>较小 (如 ~40°)</td>
+                    <td>很小 (~15°)</td>
+                    <td>0° (重合)</td>
+                </tr>
+                <tr>
+                    <td>对称性</td>
+                    <td>中心 + 轴对称</td>
+                    <td>仅轴对称(BD)</td>
+                    <td>仅轴对称(BD)</td>
+                    <td>轴对称</td>
+                </tr>
+                <tr>
+                    <td>面积趋势</td>
+                    <td>较大</td>
+                    <td>中等</td>
+                    <td>较小</td>
+                    <td>最小</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="highlight" style="margin-top:1rem;">
+            <strong>🌟 核心发现：</strong>在顶点 $A$ 沿对角线 $BD$ 移动的全过程中，
+            <span style="color:#15803d;font-weight:800;">$AB = AD$ 且 $BC = CD$ 这两组邻边相等的关系始终保持不变！</span>
+            这就是本活动的核心结论——<strong>"变中的不变"</strong>。
+        </div>
+    </div>
+
+    <!-- 六、课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#78350f;margin-bottom:.8rem;font-size:1.4rem;">📝 课堂小结</h3>
+        <ol style="margin-left:1.5rem;line-height:2;">
+            <li><strong>运动变化的视角：</strong>将定点看作动点，观察图形的整体演变过程，是研究几何的重要方法。</li>
+            <li><strong>不变量的发现：</strong>在 $A \to D$ 的移动中，$AB=AD$ 和 $BC=CD$ 始终成立。这两组"邻边相等"是贯穿始终的不变关系。</li>
+            <li><strong>新图形的认识：</strong>认识了<strong>筝形（Kite）</strong>——有两组邻边分别相等的四边形，它是介于菱形和等腰三角形之间的过渡形态。</li>
+            <li><strong>分类的思想：</strong>同一变化过程产生了不同类型的图形（菱形→筝形→等腰三角形），体现了图形之间的联系与区别。</li>
+            <li><strong>函数的思想：</strong>A点的位置可以看作自变量，图形的性质（角度、面积等）可以看作因变量——这是函数思想的体现。</li>
+        </ol>
+    </div>
+
+    <!-- 七、数学思想方法 -->
+    <div class="math-idea">
+        <h4>💡 本节课涉及的数学思想方法</h4>
+        <div class="idea-list">
+            <span class="idea-tag">🔄 运动变化思想</span>
+            <span class="idea-tag">📌 不变量思想</span>
+            <span class="idea-tag">🗂️ 分类思想</span>
+            <span class="idea-tag">📈 函数思想</span>
+            <span class="idea-tag">🔗 化归思想</span>
+            <span class="idea-tag">🎯 特殊→一般→特殊</span>
+        </div>
+        <p style="margin-top:.8rem;color:#5b21b6;line-height:1.8;">
+            <strong>💭 思考：</strong>如果让 $A$ 点沿着别的路径（比如以 $B$ 为圆心的圆弧）移动，又会产生什么有趣的图形变化呢？
+            不变量还会是这些吗？留给你课后去探索！
+        </p>
+    </div>
+
+    <!-- 八、作业布置 -->
+    <div class="homework-box">
+        <div class="hw-icon">📝</div>
+        <div class="hw-text">
+            <p><strong>课后作业</strong></p>
+            <p>1. 回顾动画演示，用自己的语言描述"不变量"的含义，并举出生活中类似的例子。</p>
+            <p>2. 如果把菱形换成矩形，让一个顶点沿对角线移动，不变量会有哪些不同？画图说明。</p>
+            <p>3. 查阅资料：了解"筝形"的其他性质（如对角线的垂直关系、面积公式等）。</p>
+            <p>4. 【拓展】思考：能否设计一种新的"动点路径"，使得某个你指定的量成为不变量？</p>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <p>华师版·八年级下册 | 第18章 矩形、菱形与正方形 | 18.4 数学活动</p>
+        <p style="font-size:.85rem;color:#b45309;margin-top:.3rem;">✨ 动态交互课件 · 探索图形变化中的不变量</p>
+    </div>
+</div>
+
+<!-- ==================== JavaScript 核心代码 ==================== -->
+<script>
+// ========== 全局配置 ==========
+const canvas = document.getElementById('mainCanvas');
+const ctx = canvas.getContext('2d');
+let currentPos = 0; // A点在BD上的位置百分比 (0=B, 100=D)
+let isAnimating = false;
+let animId = null;
+
+// 菱形参数
+const CX = 325;      // 画布中心X
+const CY = 200;      // 画布中心Y（图形偏上）
+const SIDE_LEN = 140;// 菱形半对角线长度
+
+// 计算原始菱形顶点（A在上方）
+// B左下, C右, D右上
+function getOriginalPoints() {
+    // 设菱形对角线交于原点O
+    const O = {x: CX, y: CY};
+    // BD水平放置，AC竖直放置
+    // B在左，D在右；A在上，C在下
+    const angle = Math.PI * 60 / 180; // 60度夹角使菱形好看
+    
+    return {
+        O: O,
+        B: { x: CX - SIDE_LEN, y: CY },
+        D: { x: CX + SIDE_LEN, y: CY },
+        A_orig: { x: CX, y: CY - SIDE_LEN }, // 原始A点
+        C: { x: CX, y: CY + SIDE_LEN }
+    };
+}
+
+// ========== 绘制函数 ==========
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const pts = getOriginalPoints();
+    
+    // 计算当前A点的位置（在BD上插值）
+    const t = currentPos / 100;
+    const Ax = pts.B.x + t * (pts.D.x - pts.B.x);
+    const Ay = pts.B.y + t * (pts.D.y - pts.B.y);
+    const A_current = { x: Ax, y: Ay };
+    
+    // 绘制背景网格
+    drawGrid();
+    
+    // 绘制辅助线 - 对角线BD（虚线）
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(pts.B.x, pts.B.y);
+    ctx.lineTo(pts.D.x, pts.D.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 绘制轨迹线（A的移动路径）
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.3)';
+    ctx.lineWidth = 8;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(pts.B.x, pts.B.y);
+    ctx.lineTo(pts.D.x, pts.D.y);
+    ctx.stroke();
+    
+    // 绘制主多边形（填充 + 描边）
+    if (currentPos >= 99.5) {
+        // 图④ - 等腰三角形 BCD
+        drawPolygon([pts.B, pts.C, pts.D], '#fecaca', '#dc2626', true);
+    } else {
+        // 图①②③ - 四边形 ABCD
+        const fillColor = getStageColor(currentPos);
+        drawPolygon([pts.B, pts.C, pts.D, A_current], fillColor.bg, fillColor.border, false);
+    }
+    
+    // 绘制顶点和标签
+    drawPoint(pts.B, 'B', '#2563eb', -20, 12);
+    drawPoint(pts.C, 'C', '#16a34a', 12, 18);
+    drawPoint(pts.D, 'D', '#7c3aed', 20, 12);
+    
+    // A点特殊标记（动点效果）
+    if (currentPos >= 99.5) {
+        drawPoint(pts.D, 'A(D)', '#dc2626', 25, -8, true);
+    } else {
+        drawPoint(A_current, 'A', '#dc2626', 0, -18, true);
+    }
+    
+    // 绘制边长标注
+    drawLengthLabel(A_current, pts.B, 'AB', -25, -10);
+    drawLengthLabel(A_current, pts.D, 'AD', 25, -10);
+    drawLengthLabel(pts.C, pts.B, 'CB', -25, 18);
+    drawLengthLabel(pts.C, pts.D, 'CD', 25, 18);
+    
+    // 更新状态面板
+    updateStatusPanel(A_current, pts);
+}
+
+// 绘制背景网格
+function drawGrid() {
+    ctx.strokeStyle = 'rgba(200,200,200,0.2)';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i <= canvas.width; i += 40) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+    }
+    for (let j = 0; j <= canvas.height; j += 40) {
+        ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(canvas.width, j); ctx.stroke();
+    }
+}
+
+// 绘制多边形
+function drawPolygon(points, fillCol, strokeCol, isTriangle) {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+    }
+    ctx.closePath();
+    ctx.fillStyle = fillCol;
+    ctx.fill();
+    ctx.strokeStyle = strokeCol;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+}
+
+// 绘制顶点
+function drawPoint(pt, label, color, offsetX, offsetY, isMoving = false) {
+    // 外圈光晕（动点特效）
+    if (isMoving) {
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 16, 0, Math.PI * 2);
+        ctx.fillStyle = color + '25';
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 10, 0, Math.PI * 2);
+        ctx.fillStyle = color + '40';
+        ctx.fill();
+    }
+    
+    // 主圆点
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, isMoving ? 8 : 6, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // 标签文字
+    ctx.font = 'bold 17px "Segoe UI","PingFang SC",sans-serif';
+    ctx.fillStyle = '#1e293b';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, pt.x + offsetX, pt.y + offsetY);
+}
+
+// 边长标注
+function drawLengthLabel(p1, p2, text, offX, offY) {
+    const mx = (p1.x + p2.x) / 2 + offX;
+    const my = (p1.y + p2.y) / 2 + offY;
+    ctx.font = 'bold 14px "Segoe UI","PingFang SC",sans-serif';
+    ctx.fillStyle = '#64748b';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, mx, my);
+}
+
+// 根据位置获取颜色
+function getStageColor(pos) {
+    if (pos < 20) return { bg: 'rgba(167, 243, 208, 0.4)', border: '#059669' };   // 绿-菱形
+    if (pos < 55) return { bg: 'rgba(186, 230, 253, 0.45)', border: '#0284c7' };  // 蓝-筝形
+    return { bg: 'rgba(254, 215, 170, 0.5)', border: '#ea580c' };               // 橙-过渡
+}
+
+// ========== UI更新函数 ==========
+function updateStatusPanel(A_pt, pts) {
+    // 计算角度
+    const vAB = { x: pts.B.x - A_pt.x, y: pts.B.y - A_pt.y };
+    const vAD = { x: pts.D.x - A_pt.x, y: pts.D.y - A_pt.y };
+    const vBA = { x: A_pt.x - pts.B.x, y: A_pt.y - pts.B.y };
+    const vBC = { x: pts.C.x - pts.B.x, y: pts.C.y - pts.B.y };
+    
+    const angleA = Math.abs(Math.atan2(vAD.y, vAD.x) - Math.atan2(vAB.y, vAB.x)) * 180 / Math.PI;
+    const angleB = Math.abs(Math.atan2(vBA.y, vBA.x) - Math.atan2(vBC.y, vBC.x)) * 180 / Math.PI;
+    
+    document.getElementById('valAngleA').textContent = Math.max(0, angleA).toFixed(1) + '°';
+    document.getElementById('valAngleB').textContent = Math.min(180, angleB).toFixed(1) + '°';
+    document.getElementById('valDistAB').textContent = currentPos.toFixed(1) + '%';
+    
+    // 对称性判断
+    let symText = '';
+    let shapeInfo = '';
+    let emoji = '';
+    
+    if (currentPos < 5) {
+        symText = '中心+轴对称';
+        shapeInfo = '图① · 菱形';
+        emoji = '💎';
+    } else if (currentPos < 95) {
+        symText = '仅轴对称(BD)';
+        shapeInfo = currentPos < 50 ? '图② · 筝形' : '图③ · 扁筝形';
+        emoji = currentPos < 50 ? '🪁' : '⚡';
+    } else {
+        symText = '轴对称(1条)';
+        shapeInfo = '图④ · 等腰△';
+        emoji = '🔺';
+    }
+    
+    document.getElementById('valSymmetry').textContent = symText;
+    document.getElementById('stageLabel').textContent = shapeInfo;
+    document.getElementById('sliderValueDisplay').textContent = `位置：${currentPos.toFixed(0)}% （${shapeInfo}）`;
+    
+    document.getElementById('badgeEmoji').textContent = emoji;
+    const names = ['菱形 ABCD', '筝形 ABCD', '一般筝形', '等腰△ BCD'];
+    const idx = currentPos < 30 ? 0 : (currentPos < 65 ? 1 : (currentPos < 97 ? 2 : 3));
+    document.getElementById('badgeName').textContent = names[idx];
+    
+    // 更新按钮激活状态
+    document.querySelectorAll('.stage-btn[data-stage]').forEach(btn => {
+        const stage = parseFloat(btn.dataset.stage);
+        btn.classList.toggle('active', Math.abs(currentPos - stage) < 5 || (stage === 100 && currentPos > 95));
+    });
+}
+
+// ========== 事件处理 ==========
+function onSliderChange(val) {
+    stopAutoPlay();
+    currentPos = parseFloat(val);
+    draw();
+}
+
+function setStage(stageVal) {
+    stopAutoPlay();
+    currentPos = stageVal;
+    document.getElementById('posSlider').value = stageVal;
+    draw();
+}
+
+function toggleAnswer(el) {
+    const ans = el.querySelector('.answer-reveal');
+    ans.classList.toggle('show-answer');
+}
+
+// 自动播放
+function autoPlay() {
+    if (isAnimating) { stopAutoPlay(); return; }
+    isAnimating = true;
+    currentPos = 0;
+    
+    function animate() {
+        currentPos += 0.4;
+        if (currentPos > 100) {
+            currentPos = 100;
+            stopAutoPlay();
+            return;
+        }
+        document.getElementById('posSlider').value = currentPos;
+        draw();
+        animId = requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+function stopAutoPlay() {
+    isAnimating = false;
+    if (animId) cancelAnimationFrame(animId);
+    animId = null;
+}
+
+// ========== 初始化 ==========
+window.onload = function() {
+    draw();
+};
+
+// 响应式调整
+window.addEventListener('resize', () => {
+    draw();
+});
+</script>
+</body>
+</html>

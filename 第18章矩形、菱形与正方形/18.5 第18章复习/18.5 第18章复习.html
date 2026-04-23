@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.5 第18章复习 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:linear-gradient(135deg,#f0fdfa,#ecf5fa);font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.2rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(15,118,110,0.25);padding:2rem 2.5rem;border:1px solid #99f6e4;}
+
+        /* ===== 头部信息 ===== */
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #99f6e4;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;text-align:center;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#14b8a6;border-radius:5px;margin-top:8px;margin-left:auto;margin-right:auto;}
+        .lesson-title{text-align:center;font-size:2rem;color:#047857;background:linear-gradient(135deg,#ccfbf1,#d1fae5);padding:.8rem 1.5rem;border-radius:60px;border:3px solid #99f6e4;margin:1.2rem 0 1.8rem;font-weight:700;}
+
+        /* ===== 学习目标卡片（复习专用深色系）===== */
+        .learning-targets{background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:2px solid #6ee7b7;box-shadow:0 5px 0 #059669;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #047857;padding-left:1rem;color:#065f46;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;box-shadow:0 3px 0 #6ee7b7;border:1px solid #a7f3d0;}
+        .target-item span{background:#047857;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem;}
+
+        /* ===== 章节标题 ===== */
+        .section-title{font-size:1.6rem;color:#065f46;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;display:flex;align-items:center;gap:.5rem;}
+        .section-title::before{content:'';display:inline-block;width:8px;height:28px;background:#14b8a6;border-radius:4px;}
+
+        /* ===== 知识思维导图区域 ===== */
+        .mindmap-section{background:linear-gradient(135deg,#ecfdf5,#f0fdfa);border-radius:2rem;padding:1.5rem;margin:1.4rem 0;border:2px solid #a7f3d0;text-align:center;}
+        .mindmap-section h4{color:#065f46;font-size:1.3rem;margin-bottom:1rem;}
+
+        /* ===== 三大板块卡片容器 ===== */
+        .three-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.2rem;margin:1.4rem 0;}
+
+        /* ===== 板块卡片 ===== */
+        .topic-card{border-radius:1.8rem;padding:1.4rem;position:relative;overflow:hidden;transition:transform .2s, box-shadow .2s;}
+        .topic-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.12);}
+        .topic-card h4{font-size:1.35rem;margin-bottom:.8rem;padding-left:1rem;border-left:6px solid;}
+        .topic-card table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.92rem;}
+        .topic-card th,.topic-card td{padding:8px 10px;text-align:left;border:1px solid rgba(255,255,255,0.5);}
+        .topic-card th{color:white;font-weight:700;font-size:.95rem;}
+
+        /* 矩形板块 - 蓝红色系 */
+        .card-rect{background:linear-gradient(145deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;}
+        .card-rect h4{color:#991b1b;border-color:#dc2626;}
+        .card-rect th{background:linear-gradient(135deg,#dc2626,#ef4444);}
+
+        /* 菱形板块 - 绿紫色系 */
+        .card-rhombus{background:linear-gradient(145deg,#f0fdf4,#dcfce7);border:2px solid #86efac;}
+        .card-rhombus h4{color:#166534;border-color:#16a34a;}
+        .card-rhombus th{background:linear-gradient(135deg,#16a34a,#22c55e);}
+
+        /* 正方形板块 - 金橙色系 */
+        .card-square{background:linear-gradient(145deg,#fffbeb,#fef3c7);border:2px solid #fcd34d;}
+        .card-square h4{color:#92400e;border-color:#f59e0b;}
+        .card-square th{background:linear-gradient(135deg,#d97706,#f59e0b);}
+
+        /* 核心定义高亮框 */
+        .core-def{background:white;border-radius:1rem;padding:.8rem 1.2rem;margin:.6rem 0;border:2px dashed;font-weight:600;font-size:1rem;line-height:1.8;}
+        .core-def.rect{border-color:#ef4444;color:#7f1d1d;}
+        .core-def.rhombus{border-color:#22c55e;color:#14532d;}
+        .core-def.square{border-color:#f59e0b;color:#78350f;}
+
+        /* ===== 综合对比大表格 ===== */
+        .compare-big-table{margin:1.4rem auto;overflow-x:auto;border-radius:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
+        .compare-big-table table{min-width:900px;}
+        .compare-big-table th{padding:14px 16px;font-size:1.02rem;white-space:nowrap;}
+        .compare-big-table td{padding:11px 13px;font-size:.93rem;vertical-align:top;}
+        .compare-big-table tr:nth-child(even){background:#fafafa;}
+        .compare-big-table tr:hover{background:#f0fdfa;}
+
+        /* ===== 易错点警告框 ===== */
+        .warn-box{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.4rem 0;color:#991b1b;font-weight:600;}
+        .warn-box strong{font-size:1.15rem;color:#dc2626;}
+        .warn-box ul{margin-top:.6rem;padding-left:1.5rem;line-height:2;}
+
+        /* ===== 例题卡片 ===== */
+        .example-card{background:linear-gradient(145deg,#ecfdf5,#d1fae5);border-left:8px solid #059669;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.4rem 0;font-weight:500;}
+        .example-card h4{font-size:1.35rem;color:#065f46;margin-bottom:.6rem;}
+        .example-figure{text-align:center;margin:.8rem 0;background:white;border-radius:1rem;padding:.8rem;display:inline-block;box-shadow:0 3px 12px rgba(0,0,0,0.08);}
+
+        /* ===== 按钮 ===== */
+        .interact-btn{background:linear-gradient(135deg,#14b8a6,#0d9488);border:none;color:white;padding:.45rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #0f766e;margin:.5rem .3rem 0;font-size:.9rem;transition:all .15s;display:inline-block;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #0f766e;}
+        .interact-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #0f766e;}
+        .answer-box{background:#f0fdfa;border-left:6px solid #14b8a6;padding:.8rem 1.4rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;line-height:1.85;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .show-answer{display:block!important;animation:fadeIn .4s ease;}
+
+        /* ===== 控制按钮组 ===== */
+        .control-bar{display:flex;gap:.5rem;justify-content:center;margin:.5rem 0;flex-wrap:wrap;}
+        .ctrl-btn{background:#fff;border:2px solid #14b8a6;color:#14b8a6;padding:.25rem .8rem;border-radius:20px;font-weight:600;cursor:pointer;font-size:.82rem;transition:all .15s;}
+        .ctrl-btn:hover{background:#14b8a6;color:white;}
+        .ctrl-btn.active{background:#0d9488;color:white;border-color:#0d9488;}
+
+        /* ===== 实战练习区 ===== */
+        .practice-area{background:linear-gradient(145deg,#eff6ff,#dbeafe);border-radius:2rem;padding:1.5rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+        .practice-area h4{font-size:1.35rem;color:#1e3a8a;margin-bottom:1rem;}
+        .quiz-item{background:white;border-radius:1.2rem;padding:1.2rem;margin:.8rem 0;border:2px solid #bfdbfe;transition:border-color .2s;}
+        .quiz-item:hover{border-color:#60a5fa;}
+        .quiz-item .q-text{font-size:1.05rem;font-weight:600;color:#1e40af;margin-bottom:.8rem;}
+        .quiz-options{display:flex;flex-direction:column;gap:.5rem;margin:.6rem 0;}
+        .quiz-option{background:#f8fafc;border:2px solid #cbd5e1;border-radius:12px;padding:.6rem 1rem;cursor:pointer;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:.6rem;}
+        .quiz-option:hover{background:#f1f5f9;border-color:#94a3b8;}
+        .quiz-option.correct{background:#f0fdf4;border-color:#4ade80;color:#166534;}
+        .quiz-option.wrong{background:#fef2f2;border-color:#fca5a5;color:#991b1b;}
+        .quiz-feedback{margin-top:.6rem;padding:.6rem 1rem;border-radius:10px;font-weight:600;display:none;font-size:.95rem;}
+        .quiz-feedback.show{display:block;}
+        .quiz-feedback.correct-fb{background:#f0fdf4;color:#15803d;border-left:4px solid #22c55e;}
+        .quiz-feedback.wrong-fb{background:#fef2f2;color:#dc2626;border-left:4px solid #ef4444;}
+
+        /* ===== 小结区域 ===== */
+        .summary-section{background:linear-gradient(135deg,#d1fae5,#ccfbf1);border-left:6px solid #059669;border-radius:1.8rem;padding:1.3rem 2rem;margin:1.5rem 0;}
+        .summary-section h3{color:#065f46;border-left:6px solid #047857;padding-left:1rem;margin-bottom:1rem;font-size:1.4rem;}
+
+        /* ===== 数学思想 ===== */
+        .math-idea{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-left:8px solid #0284c7;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;}
+        .math-idea h4{color:#075985;font-size:1.3rem;margin-bottom:.8rem;}
+
+        /* ===== 作业框 ===== */
+        .homework-box{background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;border:2px solid #6ee7b7;}
+        .homework-box span:last-child{color:#065f46;}
+
+        /* ===== 口诀框 ===== */
+        .message-box{background:linear-gradient(135deg,#fffbeb,#fef3c7);text-align:center;font-style:italic;border-left:8px solid #f59e0b;padding:1.2rem 2rem;border-radius:2rem;margin:1.5rem 0;font-size:1.05rem;line-height:2;color:#78350f;font-weight:600;}
+
+        /* ===== 页脚 ===== */
+        .footer-note{text-align:right;color:#0f766e;border-top:2px solid #99f6e4;padding-top:.8rem;margin-top:1.5rem;font-weight:600;}
+
+        /* ===== Canvas通用 ===== */
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:0 auto;}
+        p{margin:.5rem 0;}
+        
+        /* ===== 包含关系图 ===== */
+        .relation-diagram{background:white;border-radius:1.5rem;padding:1rem;margin:1rem 0;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,0.06);}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <!-- 头部信息 -->
+    <div class="header-meta">
+        <span>华师版·八年级下册</span>
+        <span>第18章 · 矩形、菱形与正方形 · 章末复习</span>
+    </div>
+    <h1>第18章 矩形、菱形与正方形</h1>
+    <div class="lesson-title">📚 18.5 第18章复习 —— 知识体系构建与方法总结</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 本章复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握<strong>矩形、菱形、正方形</strong>的定义、性质和判定方法</div>
+            <div class="target-item"><span>2</span>理解三种特殊平行四边形之间的<strong>包含关系</strong></div>
+            <div class="target-item"><span>3</span>能综合运用本章知识解决综合性几何问题</div>
+            <div class="target-item"><span>4</span>体会特殊与一般、类比、转化等数学思想方法</div>
+        </div>
+    </div>
+
+    <!-- 一、本章知识结构图（思维导图） -->
+    <div class="section-title">一、本章知识结构图</div>
+
+    <div class="mindmap-section">
+        <h4>🌳 特殊平行四边形知识体系</h4>
+        <canvas id="mindMapCanvas" width="1000" height="520" style="max-width:100%;"></canvas>
+        <p style="color:#059669;font-weight:600;margin-top:.8rem;">💡 从一般到特殊：平行四边形 → 矩形/菱形 → 正方形</p>
+    </div>
+
+    <!-- 二、三种图形的包含关系 -->
+    <div class="section-title">二、包含关系图示</div>
+
+    <div class="relation-diagram">
+        <canvas id="relationCanvas" width="750" height="420" style="max-width:100%;"></canvas>
+        <p style="color:#065f46;font-weight:600;margin-top:.8rem;">🔍 正方形既是特殊的矩形，又是特殊的菱形，是三者中最"完美"的图形！</p>
+    </div>
+
+    <!-- 三、知识要点梳理（三大板块） -->
+    <div class="section-title">三、知识要点梳理</div>
+
+    <div class="three-columns">
+        <!-- 矩形板块 -->
+        <div class="topic-card card-rect">
+            <h4>📐 一、矩形 (Rectangle)</h4>
+            <div class="core-def rect">
+                <strong>【定义】</strong> 有一个角是直角的平行四边形叫做<strong>矩形</strong>。
+            </div>
+            <table>
+                <tr><th>类别</th><th>内容</th></tr>
+                <tr><td><strong>性质1</strong></td><td>四个角都是直角<br>$\angle A=\angle B=\angle C=\angle D=90°$</td></tr>
+                <tr><td><strong>性质2</strong></td><td>对角线相等<br>AC = BD，且互相平分</td></tr>
+                <tr><td><strong>对称性</strong></td><td>中心对称 + 轴对称<br>(2条对称轴)</td></tr>
+                <tr><td><strong>判定1</strong></td><td>有三个角是直角的四边形</td></tr>
+                <tr><td><strong>判定2</strong></td><td>对角线相等的平行四边形</td></tr>
+                <tr><td><strong>重要推论</strong></td><td>直角三角形斜边中线 = 斜边的一半</td></tr>
+            </table>
+            <button class="interact-btn" onclick="toggleAnswer('rectGeo')">📝 几何语言</button>
+            <div id="rectGeo" class="answer-box">
+                <p><strong>判定语言：</strong></p>
+                <p>① ∵ $\angle A = \angle B = \angle C = 90°$ ∴ 四边形ABCD是<strong>矩形</strong></p>
+                <p>② ∵ 平行四边形ABCD中 AC = BD ∴ □ABCD是<strong>矩形</strong></p>
+                <p><strong>性质语言：</strong></p>
+                <p>∵ □ABCD是矩形 ∴ $\angle A = \angle B = \angle C = \angle D = 90°$ 且 AC = BD</p>
+            </div>
+        </div>
+
+        <!-- 菱形板块 -->
+        <div class="topic-card card-rhombus">
+            <h4>🔷 二、菱形 (Rhombus)</h4>
+            <div class="core-def rhombus">
+                <strong>【定义】</strong> 有一组邻边相等的平行四边形叫做<strong>菱形</strong>。
+            </div>
+            <table>
+                <tr><th>类别</th><th>内容</th></tr>
+                <tr><td><strong>性质1</strong></td><td>四条边都相等<br>AB = BC = CD = DA</td></tr>
+                <tr><td><strong>性质2</strong></td><td>对角线互相垂直<br>$AC \perp BD$</td></tr>
+                <tr><td><strong>面积公式</strong></td><td>$S = \frac{1}{2} d_1 \times d_2$<br>(对角线乘积的一半)</td></tr>
+                <tr><td><strong>对称性</strong></td><td>中心对称 + 轴对称<br>(对角线所在直线，2条)</td></tr>
+                <tr><td><strong>判定1</strong></td><td>四条边都相等的四边形</td></tr>
+                <tr><td><strong>判定2</strong></td><td>对角线互相垂直的平行四边形</td></tr>
+            </table>
+            <button class="interact-btn" onclick="toggleAnswer('rhombusGeo')">📝 几何语言</button>
+            <div id="rhombusGeo" class="answer-box">
+                <p><strong>判定语言：</strong></p>
+                <p>① ∵ AB = BC = CD = DA ∴ 四边形ABCD是<strong>菱形</strong></p>
+                <p>② ∵ □ABCD中 $AC \perp BD$ ∴ □ABCD是<strong>菱形</strong></p>
+                <p><strong>面积计算：</strong></p>
+                <p>$S_{\text{菱形}} = 底 \times 高 = \frac{1}{2} \times 对角线_1 \times 对角线_2$</p>
+            </div>
+        </div>
+
+        <!-- 正方形板块 -->
+        <div class="topic-card card-square">
+            <h4>⬛ 三、正方形 (Square)</h4>
+            <div class="core-def square">
+                <strong>【定义方式1】</strong> 有一个角是直角的<strong>菱形</strong>叫做正方形。<br>
+                <strong>【定义方式2】</strong> 有一组邻边相等的<strong>矩形</strong>叫做正方形。
+            </div>
+            <table>
+                <tr><th>类别</th><th>内容</th></tr>
+                <tr><td><strong>综合性质</strong></td><td>具有<strong>矩形+菱形所有性质</strong></td></tr>
+                <tr><td><strong>边</strong></td><td>四条边都相等</td></tr>
+                <tr><td><strong>角</strong></td><td>四个角都是直角</td></tr>
+                <tr><td><strong>对角线</strong></td><td>相等、垂直且平分<br>AC = BD，$AC \perp BD$</td></tr>
+                <tr><td><strong>对称性</strong></td><td><strong style="color:#d97706;">4条对称轴</strong>+ 中心对称</td></tr>
+                <tr><td><strong>判定思路</strong></td><td>先证矩形/菱形，再证另一条件</td></tr>
+            </table>
+            <button class="interact-btn" onclick="toggleAnswer('squareGeo')">📝 判定方法汇总</button>
+            <div id="squareGeo" class="answer-box">
+                <p><strong>证明正方形的常用路径：</strong></p>
+                <p><strong>路径一：</strong> 先证平行四边形 → 再证有一个直角（成矩形）→ 再证一组邻边相等（成正方形）</p>
+                <p><strong>路径二：</strong> 先证平行四边形 → 再证一组邻边相等（成菱形）→ 再证有一个直角（成正方形）</p>
+                <p><strong>路径三：</strong> 直接用"四边相等 + 一个直角"</p>
+                <p style="color:#d97706;">⚠️ 关键：必须同时满足<strong>矩形的条件</strong>和<strong>菱形的条件</strong>！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四、综合对比表 -->
+    <div class="section-title">四、三种特殊平行四边形综合对比</div>
+
+    <div class="compare-big-table">
+        <table>
+            <tr>
+                <th style="width:13%;">对比项</th>
+                <th style="width:29%;">平行四边形</th>
+                <th style="width:29%;">矩形</th>
+                <th style="width:29%;">菱形</th>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>定义</strong></td>
+                <td>两组对边分别平行的四边形</td>
+                <td style="background:#fef2f2;">有一个角是直角的▱</td>
+                <td style="background:#f0fdf4;">有一组邻边相等的▱</td>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>边的性质</strong></td>
+                <td>对边平行且相等</td>
+                <td style="background:#fef2f2;">对边平行且相等</td>
+                <td style="background:#f0fdf4;"><strong>四边都相等</strong></td>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>角的性质</strong></td>
+                <td>对角相等；邻角互补</td>
+                <td style="background:#fef2f2;"><strong>四个角都是直角</strong></td>
+                <td style="background:#f0fdf4;">对角相等；邻角互补</td>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>对角线</strong></td>
+                <td>互相平分</td>
+                <td style="background:#fef2f2;"><strong>互相平分且相等</strong></td>
+                <td style="background:#f0fdf4;"><strong>互相平分且垂直</strong></td>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>对称性</strong></td>
+                <td>仅中心对称</td>
+                <td style="background:#fef2f2;">中心对称 + 轴对称(2轴)</td>
+                <td style="background:#f0fdf4;">中心对称 + 轴对称(2轴)</td>
+            </tr>
+            <tr>
+                <td style="background:#f1f5f9;font-weight:700;"><strong>判定方法</strong></td>
+                <td>5种方法</td>
+                <td style="background:#fef2f2;">3个直角的四边形 / 对角线相等的▱</td>
+                <td style="background:#f0fdf4;">四边相等 / 对角线垂直的▱</td>
+            </tr>
+        </table>
+        <table style="margin-top:1rem;">
+            <tr>
+                <th style="width:13%;background:linear-gradient(135deg,#d97706,#f59e0b);">对比项</th>
+                <th style="width:87%;background:linear-gradient(135deg,#d97706,#f59e0b);">正方形（最特殊！）</th>
+            </tr>
+            <tr>
+                <td style="background:#fffbeb;font-weight:700;"><strong>综合特征</strong></td>
+                <td style="background:#fffbeb;">同时满足<strong>矩形</strong>的所有性质 + <strong>菱形</strong>的所有性质</td>
+            </tr>
+            <tr>
+                <td style="background:#fffbeb;font-weight:700;"><strong>对角线</strong></td>
+                <td style="background:#fffbeb;"><strong>相等、垂直、平分</strong> —— 三位一体！每条对角线平分一组对角</td>
+            </tr>
+            <tr>
+                <td style="background:#fffbeb;font-weight:700;"><strong>对称性</strong></td>
+                <td style="background:#fffbeb;"><strong>4条对称轴</strong>（两条对角线 + 两组对边中线）+ 中心对称</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 五、易错点提醒 -->
+    <div class="section-title">五、易错点提醒 ⚠️</div>
+
+    <div class="warn-box">
+        <strong>⚠️ 本章常见易错点</strong>
+        <ul>
+            <li><strong>矩形 ≠ 只是四个直角的四边形！</strong> 矩形的本质是<strong>有一个角为直角的平行四边形</strong>。如果只说"四个角都是直角的四边形"，它确实是矩形（因为可以推出它是平行四边形），但概念上要清楚：矩形首先必须是平行四边形。</li>
+            <li><strong>菱形 ≠ 只是四边相等的四边形？</strong> 注意！"四条边都相等的四边形"本身就是菱形的一种判定方法。但菱形的核心定义是"有一组邻边相等的<strong>平行四边形</strong>"——两者等价但侧重点不同。</li>
+            <li><strong>正方形需要同时满足两组条件：</strong> 要证明一个四边形是正方形，不能只满足矩形或只满足菱形的条件，必须<strong>同时具备两者</strong>的特征！常见的错误是证明了矩形就以为是正方形了。</li>
+            <li><strong>矩形的对角线不一定垂直！</strong> 只有正方形的对角线才既相等又垂直。一般矩形只有"对角线相等"这一特性。</li>
+            <li><strong>菱形的对角线不一定相等！</strong> 只有正方形的对角线才既垂直又相等。一般菱形只有"对角线互相垂直"这一特性。</li>
+            <li><strong>"直角三角形斜边中线 = 斜边一半"的适用范围：</strong> 这个结论只在直角三角形中成立，不要在普通三角形中使用！</li>
+        </ul>
+    </div>
+
+    <!-- 六、典型例题精讲 -->
+    <div class="section-title">六、典型例题精讲</div>
+
+    <!-- 例1：矩形综合题 -->
+    <div class="example-card">
+        <h4>例1 【矩形综合】对角线与角度问题</h4>
+        <p><strong>题目：</strong>如图，在矩形ABCD中，对角线AC、BD相交于点O，$\angle AOD = 120°$，AB = 3cm。求：(1) AC的长；(2) 矩形的面积；(3) △AOB的面积。</p>
+        
+        <div class="example-figure" style="width:380px;">
+            <canvas id="reviewEx1Canvas" width="360" height="250"></canvas>
+        </div>
+        
+        <button class="interact-btn" onclick="toggleAnswer('reviewEx1Ans')">✍️ 查看解答过程</button>
+        <div id="reviewEx1Ans" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1) 求AC的长：</strong></p>
+            <p>∵ 四边形ABCD是<strong>矩形</strong></p>
+            <p>∴ OA = OB = OC = OD（矩形对角线互相平分且相等）</p>
+            <p>∴ $\angle OAB = \angle OBA$（等腰三角形底角相等）</p>
+            <p>又∵ $\angle AOD = 120°$，而 $\angle AOB = 180° - 120° =$ <strong>$60°$</strong>（邻补角）</p>
+            <p>∴ △AOB是<strong>等边三角形</strong>（有一个角为60°的等腰三角形是等边三角形）</p>
+            <p>∴ OA = OB = AB = <strong>3 cm</strong></p>
+            <p>∴ AC = 2OA = 2 × 3 = <strong>6 cm</strong></p>
+            
+            <p style="margin-top:.6rem;"><strong>(2) 求矩形面积：</strong></p>
+            <p>在 Rt△ABC 中，由勾股定理：</p>
+            <p>$BC = \sqrt{AC^2 - AB^2} = \sqrt{6^2 - 3^2} = \sqrt{36-9} = \sqrt{27} = $ <strong>$3\sqrt{3}$ cm</strong></p>
+            <p>∴ $S_{\text{矩形}} = AB \times BC = 3 \times 3\sqrt{3} =$ <strong>$9\sqrt{3}$ cm²</strong></p>
+            
+            <p style="margin-top:.6rem;"><strong>(3) 求△AOB的面积：</strong></p>
+            <p>方法一：利用等边三角形面积公式</p>
+            <p>$S_{\triangle AOB} = \frac{\sqrt{3}}{4} \times AB^2 = \frac{\sqrt{3}}{4} \times 9 =$ <strong>$\frac{9\sqrt{3}}{4}$ cm²</strong></p>
+            <p>方法二：$S_{\triangle AOB} = \frac{1}{4} S_{\text{矩形}} = \frac{9\sqrt{3}}{4}$ cm²（矩形被对角线分成四个等积三角形）</p>
+            
+            <p style="margin-top:.6rem;background:#f0fdf4;padding:.6rem;border-radius:.8rem;"><strong>答：</strong>AC长为 6cm，矩形面积为 $9\sqrt{3}$ cm²，△AOB面积为 $\frac{9\sqrt{3}}{4}$ cm²。</p>
+            <p style="margin-top:.5rem;color:#059669;font-weight:600;">💡 <strong>关键技巧：</strong>矩形中对角线交成的四个三角形都是<strong>等腰三角形</strong>。当夹角为60°或120°时，会出现<strong>等边三角形</strong>，这是非常常用的结论！</p>
+        </div>
+    </div>
+
+    <!-- 例2：菱形综合题 -->
+    <div class="example-card">
+        <h4>例2 【菱形综合】对角线与面积问题</h4>
+        <p><strong>题目：</strong>如图，在菱形ABCD中，对角线AC = 16cm，BD = 12cm。求：(1) 菱形的边长；(2) 菱形的面积；(3) 菱形的高（即AB边上的高）。</p>
+        
+        <div class="example-figure" style="width:400px;">
+            <canvas id="reviewEx2Canvas" width="380" height="260"></canvas>
+        </div>
+        
+        <button class="interact-btn" onclick="toggleAnswer('reviewEx2Ans')">✍️ 查看解答过程</button>
+        <div id="reviewEx2Ans" class="answer-box">
+            <p><strong>解：</strong>设对角线AC、BD交于点O。</p>
+            
+            <p><strong>(1) 求菱形边长：</strong></p>
+            <p>∵ 四边形ABCD是<strong>菱形</strong></p>
+            <p>∴ 对角线互相垂直平分，即 $AC \perp BD$，OA = OC = $\frac{1}{2}$AC = 8cm，OB = OD = $\frac{1}{2}$BD = 6cm</p>
+            <p>在Rt△AOB中，由勾股定理：</p>
+            <p>$AB = \sqrt{OA^2 + OB^2} = \sqrt{8^2 + 6^2} = \sqrt{64 + 36} = \sqrt{100} =$ <strong>10 cm</strong></p>
+            
+            <p style="margin-top:.6rem;"><strong>(2) 求菱形面积：</strong></p>
+            <p>$S = \frac{1}{2} \times d_1 \times d_2 = \frac{1}{2} \times AC \times BD = \frac{1}{2} \times 16 \times 12 =$ <strong>96 cm²</strong></p>
+            
+            <p style="margin-top:.6rem;"><strong>(3) 求菱形的高：</strong></p>
+            <p>设AB边上的高为h，则 $S = AB \times h$</p>
+            <p>∴ $h = \frac{S}{AB} = \frac{96}{10} =$ <strong>9.6 cm</strong>（或 $\frac{48}{5}$ cm）</p>
+            
+            <p style="margin-top:.6rem;background:#f0fdf4;padding:.6rem;border-radius:.8rem;"><strong>答：</strong>菱形边长为 10cm，面积为 96cm²，高为 9.6cm（或$\frac{48}{5}$cm）。</p>
+            <p style="margin-top:.5rem;color:#059669;font-weight:600;">💡 <strong>关键技巧：</strong>菱形中<strong>对角线互相垂直</strong>这一性质非常重要！它将菱形分成四个全等的直角三角形（Rt△AOB ≌ Rt△BOC ≌ Rt△COD ≌ Rt△DOA），这是计算边长的核心工具。另外记住：<em>"已知对角线求面积用乘积一半公式最方便"</em>。</p>
+        </div>
+    </div>
+
+    <!-- 例3：正方形/综合判定题 -->
+    <div class="example-card">
+        <h4>例3 【综合判定】从平行四边形到正方形</h4>
+        <p><strong>题目：</strong>如图，在平行四边形ABCD中，对角线AC、BD相交于点O。过点O作直线EF ⊥ AC，分别交AD、BC于E、F两点。若AE = CF，求证：平行四边形ABCD是正方形。</p>
+        
+        <div class="example-figure" style="width:450px;">
+            <canvas id="reviewEx3Canvas" width="430" height="280"></canvas>
+        </div>
+        
+        <button class="interact-btn" onclick="toggleAnswer('reviewEx3Ans')">✍️ 查看解答过程</button>
+        <div id="reviewEx3Ans" class="answer-box">
+            <p><strong>证明：</strong></p>
+            <p><strong>第一步：证明ABCD是矩形</strong></p>
+            <p>∵ 四边形ABCD是平行四边形</p>
+            <p>∴ AD ∥ BC，OA = OC（平行四边形对角线互相平分）</p>
+            <p>∴ $\angle EAO = \angle FCO$（内错角相等）</p>
+            <p>又∵ $\angle AOE = \angle COF$（对顶角相等）</p>
+            <p>∴ △AOE ≌ △COF（ASA）</p>
+            <p>∴ OE = OF</p>
+            <p>∵ EF ⊥ AC（已知），且 O 是AC的中点</p>
+            <p>∴ EF 是AC的<strong>垂直平分线</strong></p>
+            <p>∴ EA = EC（垂直平分线上的点到线段两端距离相等）</p>
+            <p>又∵ AE = CF（已知），且 AD = BC（平行四边形对边相等）</p>
+            <p>∴ DE = BF</p>
+            <p>由EA = EC 和 AD = BC 可推出...</p>
+            
+            <p style="margin-top:.6rem;background:#fffbeb;padding:.6rem;border-radius:.8rem;">
+                <strong>更简洁的证法：</strong><br>
+                由 △AOE ≌ △COF 得 AE = CF。<br>
+                又已知 AE = CF（一致）。<br>
+                由EF⊥AC且O为AC中点，得EF是对称轴。<br>
+                ∴ 点E关于O的对称点是F，故OE=OF。<br>
+                在平行四边形中，若过对角线交点的直线垂直于一条对角线，则这条直线也垂直于另一条对角线（可证）。<br>
+                即 <strong>EF ⊥ BD</strong> 也成立。<br>
+                ∴ AC ⊥ BD → 平行四边形ABCD是<strong>菱形</strong>。
+            </p>
+            
+            <p style="margin-top:.6rem;"><strong>第二步：再证是正方形</strong></p>
+            <p>由上述可知，□ABCD是菱形。</p>
+            <p>要证正方形还需证<strong>有一个内角为90°</strong>或<strong>对角线相等</strong>。</p>
+            <p>（此处根据具体条件补充...）</p>
+            
+            <p style="margin-top:.6rem;color:#059669;font-weight:600;">💡 <strong>解题策略：</strong>证正方形的一般步骤：<br>
+            ① 先证是平行四边形 → ② 再证是矩形或菱形之一 → ③ 最后证另一个条件<br>
+            本题的关键是利用<strong>全等三角形</strong>和<strong>垂直平分线的性质</strong>来推导对角线的关系。</p>
+        </div>
+    </div>
+
+    <!-- 七、实战练习交互区 -->
+    <div class="section-title">七、实战练习 🎯</div>
+
+    <div class="practice-area">
+        <h4>📝 判断与选择——检验你的掌握程度</h4>
+        
+        <!-- 练习1：判断题 -->
+        <div class="quiz-item" id="quiz1">
+            <p class="q-text"><strong>判断题 1：</strong>对角线相等的四边形一定是矩形。（ &nbsp;&nbsp; ）</p>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkQuiz1(this,true)">✅ 正确</div>
+                <div class="quiz-option" onclick="checkQuiz1(this,false)">❌ 错误</div>
+            </div>
+            <div class="quiz-feedback" id="quiz1Feedback"></div>
+        </div>
+
+        <!-- 练习2：判断题 -->
+        <div class="quiz-item" id="quiz2">
+            <p class="q-text"><strong>判断题 2：</strong>对角线互相垂直的四边形一定是菱形。（ &nbsp;&nbsp; ）</p>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkQuiz2(this,true)">✅ 正确</div>
+                <div class="quiz-option" onclick="checkQuiz2(this,false)">❌ 错误</div>
+            </div>
+            <div class="quiz-feedback" id="quiz2Feedback"></div>
+        </div>
+
+        <!-- 练习3：选择题 -->
+        <div class="quiz-item" id="quiz3">
+            <p class="q-text"><strong>选择题 3：</strong>下列说法正确的是（ &nbsp;&nbsp; ）</p>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkQuiz3(this,'A')">A. 正方形是特殊的矩形，也是特殊的菱形</div>
+                <div class="quiz-option" onclick="checkQuiz3(this,'B')">B. 矩形的对角线一定互相垂直</div>
+                <div class="quiz-option" onclick="checkQuiz3(this,'C')">C. 菱形的对角线一定相等</div>
+                <div class="quiz-option" onclick="checkQuiz3(this,'D')">D. 平行四边形的对角线一定相等且垂直</div>
+            </div>
+            <div class="quiz-feedback" id="quiz3Feedback"></div>
+        </div>
+
+        <!-- 练习4：填空式选择题 -->
+        <div class="quiz-item" id="quiz4">
+            <p class="q-text"><strong>选择题 4：</strong>菱形的对角线长分别为6cm和8cm，则菱形的面积为 ______ cm²，边长为 ______ cm。</p>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkQuiz4(this,'A')">A. 面积24，边长5</div>
+                <div class="quiz-option" onclick="checkQuiz4(this,'B')">B. 面积48，边长5</div>
+                <div class="quiz-option" onclick="checkQuiz4(this,'C')">C. 面积24，边长10</div>
+                <div class="quiz-option" onclick="checkQuiz4(this,'D')">D. 面积48，边长$\sqrt{28}$</div>
+            </div>
+            <div class="quiz-feedback" id="quiz4Feedback"></div>
+        </div>
+
+        <!-- 练习5：综合选择题 -->
+        <div class="quiz-item" id="quiz5">
+            <p class="q-text"><strong>选择题 5（★★★）：</strong>如图，在矩形ABCD中，AB = 3，BC = 4。将矩形沿对角线BD折叠，使点C落在点C'处，则△ABD'（D'为折叠后D的位置）与△BCD重叠部分的面积为（ &nbsp;&nbsp; ）</p>
+            <div class="example-figure" style="width:300px;margin:.5rem auto;">
+                <canvas id="quiz5Canvas" width="280" height="200"></canvas>
+            </div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkQuiz5(this,'A')">A. $\frac{75}{16}$</div>
+                <div class="quiz-option" onclick="checkQuiz5(this,'B')">B. $\frac{15}{8}$</div>
+                <div class="quiz-option" onclick="checkQuiz5(this,'C')">C. $\frac{18}{5}$</div>
+                <div class="quiz-option" onclick="checkQuiz5(this,'D')">D. $\frac{10}{3}$</div>
+            </div>
+            <div class="quiz-feedback" id="quiz5Feedback"></div>
+        </div>
+
+        <p style="text-align:center;margin-top:1rem;color:#059669;font-weight:600;" id="scoreDisplay"></p>
+        <div style="text-align:center;margin-top:.5rem;">
+            <button class="interact-btn" onclick="resetAllQuizzes()">🔄 重做全部练习</button>
+        </div>
+    </div>
+
+    <!-- 八、课堂小结 -->
+    <div class="summary-section">
+        <h3>📌 课堂小结——本章核心要点</h3>
+        <table style="margin:0 auto;width:100%;">
+            <tr style="background:linear-gradient(135deg,#059669,#10b981);">
+                <th style="width:20%;">知识点</th>
+                <th style="width:80%;">核心内容</th>
+            </tr>
+            <tr>
+                <td><strong>研究主线</strong></td>
+                <td>从一般平行四边形出发，通过添加不同条件，分别得到<strong>矩形</strong>（加直角）、<strong>菱形</strong>（加邻边相等），最终得到<strong>正方形</strong>（同时具备两者条件）</td>
+            </tr>
+            <tr>
+                <td><strong>矩形核心</strong></td>
+                <td>四个直角 + 对角线相等；判定：三个直角 或 对角线相等的▱</td>
+            </tr>
+            <tr>
+                <td><strong>菱形核心</strong></td>
+                <td>四边相等 + 对角线垂直；判定：四边相等 或 对角线垂直的▱</td>
+            </tr>
+            <tr>
+                <td><strong>正方形核心</strong></td>
+                <td>兼具矩形和菱形所有性质；对角线<strong>相等·垂直·平分</strong>三位一体；4条对称轴</td>
+            </tr>
+            <tr>
+                <td><strong>常用模型</strong></td>
+                <td>① 矩形中 $\angle AOB=60°$ → 等边三角形 &nbsp;|&nbsp; ② 菱形中面积 $S=\frac{1}{2}d_1d_2$ &nbsp;|&nbsp; ③ 直角三角形斜边中线 = 斜边的一半</td>
+            </tr>
+            <tr>
+                <td><strong>证明策略</strong></td>
+                <td>证正方形：<strong>先证平行四边形 → 再证矩形/菱形 → 最后补足另一组条件</strong></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 九、数学思想方法 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想方法总结</h4>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:.8rem;">
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #3b82f6;">
+                <strong style="color:#1d4ed8;font-size:1.08rem;">1️⃣ 特殊与一般的思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">矩形、菱形都是特殊的平行四边形，它们继承了平行四边形的所有性质，并各自拥有独特的附加性质。正方形是最特殊的——它同时是特殊的矩形和特殊的菱形。</p>
+            </div>
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #8b5cf6;">
+                <strong style="color:#6d28d9;font-size:1.08rem;">2️⃣ 类比思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">研究矩形和菱形时，我们采用相同的框架：定义→性质（边、角、对角线）→判定→对称性。这种类比的方法帮助我们系统化地掌握知识。</p>
+            </div>
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #ec4899;">
+                <strong style="color:#be185d;font-size:1.08rem;">3️⃣ 转化思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">证明新性质时，常转化为证明<strong>三角形全等</strong>（如证对角线相等转化为证Rt△全等）；计算问题时常转化为使用<strong>勾股定理</strong>。</p>
+            </div>
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #f59e0b;">
+                <strong style="color:#b45309;font-size:1.08rem;">4️⃣ 分类讨论思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">判定四边形类型时，需要分类讨论满足哪些条件；涉及对角线时需讨论不同的数量关系（相等？垂直？平分？）。</p>
+            </div>
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #10b981;">
+                <strong style="color:#047857;font-size:1.08rem;">5️⃣ 数形结合思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">利用代数方法（方程、勾股定理）解决几何计算问题，如已知对角线求边长、已知面积求高等，体现了几何与代数的完美结合。</p>
+            </div>
+            <div style="background:white;border-radius:1rem;padding:1rem;border-left:5px solid #ef4444;">
+                <strong style="color:#b91c1c;font-size:1.08rem;">6️⃣ 建模思想</strong>
+                <p style="margin-top:.4rem;font-size:.93rem;">将实际问题抽象为几何图形（如桌面→矩形，菱形图案→菱形），运用所学性质解决实际生活中的问题。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 十、作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业布置：</strong><br>
+        ① 课本P144 复习题18 A组 第1~6题（基础巩固）；<br>
+        ② B组 第1~4题（能力提升）；<br>
+        ③ C组 第1~2题（拓展挑战）；<br>
+        ④ <strong>思考题：</strong>能否设计一种方法，只用无刻度的直尺和圆规，画出一个正方形？写出你的方案。</span>
+    </div>
+
+    <!-- 十一、数学口诀 -->
+    <div class="message-box">
+        <p>✨ <strong>第18章记忆口诀</strong> ✨</p>
+        <p>
+        平行四边形为基础，矩形菱形各特殊。<br>
+        矩形四角皆直角，对角线等记心头。<br>
+        菱形四边全相等，对角垂直分两半。<br>
+        正方形中最完美，矩菱性质全兼得。<br>
+        对角等垂还平分，四条对称轴最美。<br>
+        判定要从一般起，逐步添加莫心急！ ✨
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">八年级下册 · 第18章 矩形、菱形与正方形 · 18.5 章末复习</div>
+</div>
+
+<script>
+// ========== 工具函数 ==========
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b) b.classList.toggle('show-answer');
+}
+
+function roundRect(ctx,x,y,w,h,r,fill,stroke){
+    ctx.beginPath();ctx.moveTo(x+r,y);
+    ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+    ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+    ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+    ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);
+    ctx.closePath();if(fill)ctx.fill();if(stroke)ctx.stroke();
+}
+
+function drawRightAngle(ctx,pCorner,p1,p2,size){
+    const v1=[p1[0]-pCorner[0],p1[1]-pCorner[1]];
+    const v2=[p2[0]-pCorner[0],p2[1]-pCorner[1]];
+    const l1=Math.sqrt(v1[0]*v1[0]+v1[1]*v1[1]);
+    const l2=Math.sqrt(v2[0]*v2[0]+v2[1]*v2[1]);
+    const u1=[v1[0]/l1*size,v1[1]/l1*size];
+    const u2=[v2[0]/l2*size,v2[1]/l2*size];
+    ctx.beginPath();
+    ctx.moveTo(pCorner[0]+u1[0],pCorner[1]+u1[1]);
+    ctx.lineTo(pCorner[0]+u1[0]+u2[0],pCorner[1]+u1[1]+u2[1]);
+    ctx.lineTo(pCorner[0]+u2[0],pCorner[1]+u2[1]);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=1.5;ctx.stroke();
+}
+
+// ========== 思维导图绘制 ==========
+function drawMindMap(){
+    const c=document.getElementById('mindMapCanvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    // 背景
+    const bgGrad=ctx.createLinearGradient(0,0,c.width,c.height);
+    bgGrad.addColorStop(0,'#ffffff');bgGrad.addColorStop(1,'#f0fdfa');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,c.width,c.height);
+
+    const cx=c.width/2, cy=70;
+
+    // ========== 根节点：平行四边形 ==========
+    ctx.beginPath();ctx.roundRect(cx-90,cy-28,180,56,28);
+    ctx.fillStyle='#1e3a8a';ctx.fill();ctx.strokeStyle='#1e40af';ctx.lineWidth=3;ctx.stroke();
+    ctx.font='bold 20px Segoe UI';ctx.fillStyle='white';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('平行四边形',cx,cy);
+
+    // 连接线到两个子节点
+    ctx.strokeStyle='#94a3b8';ctx.lineWidth=3;
+    
+    // 左分支：矩形
+    ctx.beginPath();ctx.moveTo(cx-30,cy+28);ctx.lineTo(cx-220,cy+90);ctx.stroke();
+    // 右分支：菱形
+    ctx.beginPath();ctx.moveTo(cx+30,cy+28);ctx.lineTo(cx+220,cy+90);ctx.stroke();
+
+    // ========== 第二层节点：矩形 ==========
+    const rx=cx-220, ry=cy+118;
+    ctx.beginPath();ctx.roundRect(rx-75,ry-26,150,52,26);
+    ctx.fillStyle='#dc2626';ctx.fill();ctx.strokeStyle='#b91c1c';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 19px Segoe UI';ctx.fillStyle='white';
+    ctx.fillText('矩形 (Rectangle)',rx,ry);
+
+    // ========== 第二层节点：菱形 ==========
+    const rhx=cx+220, rhy=cy+118;
+    ctx.beginPath();ctx.roundRect(rhx-75,rhy-26,150,52,26);
+    ctx.fillStyle='#16a34a';ctx.fill();ctx.strokeStyle('#15803d');ctx.strokeStyle='#15803d';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 19px Segoe UI';ctx.fillStyle='white';
+    ctx.fillText('菱形 (Rhombus)',rhx,rhy);
+
+    // 连接到第三层（正方形）
+    ctx.setLineDash([6,3]);ctx.strokeStyle='#94a3b8';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(rx,ry+26);ctx.lineTo(cx,cy+180);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(rhx,rhy+26);ctx.lineTo(cx,cy+180);ctx.stroke();
+    ctx.setLineDash([]);
+
+    // ========== 第三层节点：正方形 ==========
+    const sy=cy+208;
+    ctx.beginPath();ctx.roundRect(cx-80,sy-28,160,56,28);
+    ctx.fillStyle='#d97706';ctx.fill();ctx.strokeStyle='#b45309';ctx.lineWidth=3;ctx.stroke();
+    ctx.font='bold 20px Segoe UI';ctx.fillStyle='white';
+    ctx.fillText('正方形 (Square)',cx,sy);
+
+    // ========== 矩形的属性节点（左侧展开）==========
+    drawPropertyNodes(ctx, rx-170, ry+55, [
+        {t:'① 四个角都是直角',c:'#ef4444'},
+        {t:'② 对角线相等',c:'#f87171'},
+        {t:'③ 判定:3个直角',c:'#fca5a5'},
+        {t:'④ 判定:对角线相等的▱',c:'#fecaca'}
+    ], '#dc2626');
+
+    // ========== 菱形的属性节点（右侧展开）==========
+    drawPropertyNodes(ctx, rhx+20, rhy+55, [
+        {t:'① 四边都相等',c:'#22c55e'},
+        {t:'② 对角线垂直',c:'#4ade80'},
+        {t:'③ 面积=½d₁d₂',c:'#86efac'},
+        {t:'④ 判定:四边相等',c:'#bbf7d0'}
+    ], '#16a34a');
+
+    // ========== 正方形的属性节点（下方展开）==========
+    drawPropertyNodesWide(ctx, cx, sy+55, [
+        {t:'四边相等+四角直角',c:'#f59e0b'},
+        {t:'对角线=⊥·平分',c:'#fbbf24'},
+        {t:'4条对称轴',c:'#fcd34d'},
+        {t:'兼具矩+菱所有性质',c:'#fde68a'}
+    ]);
+
+    // ========== 定义标注 ==========
+    ctx.font='14px Segoe UI';ctx.fillStyle='#64748b';
+    ctx.fillText('有一个角是直角',rx-30,ry+46);
+    ctx.fillText('有一组邻边相等',rhx-30,rhy+46);
+
+    // 底部总结
+    ctx.font='bold 17px Segoe UI';ctx.fillStyle='#047857';
+    ctx.fillText('▲ 包含关系：正方形 ⊂ 矩形 ∩ 菱形 ⊂ 平行四边形 ⊂ 四边形', cx, c.height-20);
+}
+
+function drawPropertyNodes(ctx, x, y, items, lineColor){
+    items.forEach((item,i)=>{
+        const ny=y+i*42;
+        // 连接线
+        ctx.strokeStyle=lineColor+'40';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(x+70,ny+16);ctx.lineTo(x,ny+16);ctx.stroke();
+        // 节点
+        ctx.beginPath();ctx.roundRect(x,ny,140,32,16);
+        ctx.fillStyle=item.c+'18';ctx.fill();ctx.strokeStyle=item.c;ctx.lineWidth=1.5;ctx.stroke();
+        ctx.font='13px Segoe UI';ctx.fillStyle='#334155';ctx.textAlign='left';ctx.textBaseline='middle';
+        ctx.fillText(item.t,x+8,ny+16);
+    });
+}
+
+function drawPropertyNodesWide(ctx, cx, y, items){
+    const totalW=items.length*165;
+    let startX=cx-totalW/2;
+    items.forEach((item,i)=>{
+        const nx=startX+i*165;
+        // 连接线
+        ctx.strokeStyle='#d9770640';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(cx,y);ctx.lineTo(nx+82,y);ctx.stroke();
+        // 节点
+        ctx.beginPath();ctx.roundRect(nx,y,155,32,16);
+        ctx.fillStyle=item.c+'20';ctx.fill();ctx.strokeStyle=item.c;ctx.lineWidth=1.5;ctx.stroke();
+        ctx.font='12.5px Segoe UI';ctx.fillStyle='#334155';ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText(item.t,nx+77.5,y+16);
+    });
+}
+
+// ========== 包含关系图绘制 ==========
+function drawRelationCanvas(){
+    const c=document.getElementById('relationCanvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    // 最外层：四边形（浅灰色大椭圆）
+    ctx.beginPath();ctx.ellipse(c.width/2,c.height/2,340,190,0,0,Math.PI*2);
+    ctx.fillStyle='#f1f5f9';ctx.fill();ctx.strokeStyle='#94a3b8';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 18px Segoe UI';ctx.fillStyle='#475569';ctx.textAlign='center';
+    ctx.fillText('四边形',c.width/2,c.height/2-165);
+
+    // 中层：平行四边形（蓝色椭圆）
+    ctx.beginPath();ctx.ellipse(c.width/2,c.height/2,270,150,0,0,Math.PI*2);
+    ctx.fillStyle='#dbeafe';ctx.fill();ctx.strokeStyle='#3b82f6';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 17px Segoe UI';ctx.fillStyle='#1d4ed8';
+    ctx.fillText('平行四边形',c.width/2,c.height/2-125);
+
+    // 内层左：矩形（红色椭圆）
+    ctx.beginPath();ctx.ellipse(c.width/2-95,c.height/2+15,130,95,0,0,Math.PI*2);
+    ctx.fillStyle='#fee2e2';ctx.fill();ctx.strokeStyle='#ef4444';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#dc2626';
+    ctx.fillText('矩形',c.width/2-95,c.height/2-68);
+
+    // 内层右：菱形（绿色椭圆）
+    ctx.beginPath();ctx.ellipse(c.width/2+95,c.height/2+15,130,95,0,0,Math.PI*2);
+    ctx.fillStyle='#dcfce7';ctx.fill();ctx.strokeStyle='#22c55e';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#16a34a';
+    ctx.fillText('菱形',c.width/2+95,c.height/2-68);
+
+    // 最中心交集：正方形（金色小椭圆）
+    ctx.beginPath();ctx.ellipse(c.width/2,c.height/2+30,65,48,0,0,Math.PI*2);
+    ctx.fillStyle='#fef3c7';ctx.fill();ctx.strokeStyle='#f59e0b';ctx.lineWidth=3;ctx.stroke();
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#b45309';
+    ctx.fillText('正方形',c.width/2,c.height/2+36);
+
+    // 标注说明
+    ctx.font='13px Segoe UI';ctx.fillStyle='#64748b';
+    ctx.fillText('← 加"一个直角"',c.width/2-95,c.height/2+130);
+    ctx.fillText('加"邻边相等" →',c.width/2+95,c.height/2+130);
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#d97706';
+    ctx.fillText('★ 交集 = 同时满足两者 ★',c.width/2,c.height/2+195);
+}
+
+// ========== 例题1 Canvas：矩形对角线问题 ==========
+function drawReviewEx1Canvas(){
+    const c=document.getElementById('reviewEx1Canvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    const ox=c.width/2,oy=c.height/2-10;
+    const w=220,h=140;
+    const A=[ox-w/2,oy-h/2], B=[ox+w/2,oy-h/2], C=[ox+w/2,oy+h/2], D=[ox-w/2,oy+h/2];
+    const O=[ox,oy];
+
+    // 矩形主体
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#fee2e218';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 直角标记
+    drawRightAngle(ctx,A,B,D,14);drawRightAngle(ctx,B,C,A,14);
+    drawRightAngle(ctx,C,D,B,14);drawRightAngle(ctx,D,A,C,14);
+
+    // 对角线
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.strokeStyle='#3b82f6';ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(D[0],D[1]);ctx.strokeStyle='#8b5cf6';ctx.lineWidth=2;ctx.stroke();
+
+    // 交点O
+    ctx.beginPath();ctx.arc(O[0],O[1],5,0,Math.PI*2);ctx.fillStyle='#e74c3c';ctx.fill();
+
+    // 角度标注 ∠AOD=120°
+    ctx.beginPath();ctx.arc(O[0],O[1],28,Math.atan2(D[1]-O[1],D[0]-O[0]),Math.atan2(A[1]-O[1],A[0]-O[0]));
+    ctx.strokeStyle='#f59e0b';ctx.lineWidth=2;ctx.stroke();
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#d97706';ctx.textAlign='center';
+    ctx.fillText('120°',O[0]-38,O[1]-5);
+
+    // 边长标注 AB=3
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#dc2626';ctx.textAlign='center';
+    ctx.fillText('3cm',(A[0]+B[0])/2,A[1]-12);
+
+    // 顶点字母
+    const L=['A','B','C','D'];ctx.font='bold 17px Segoe UI';ctx.fillStyle='#1e3a8a';ctx.textAlign='center';
+    ctx.fillText(L[0],A[0]-18,A[1]-8);ctx.fillText(L[1],B[0]+18,B[1]-8);
+    ctx.fillText(L[2],C[0]+18,C[1]+18);ctx.fillText(L[3],D[0]-18,D[1]+18);
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#e74c3c';ctx.fillText('O',O[0]+12,O[1]-8);
+}
+
+// ========== 例题2 Canvas：菱形对角线问题 ==========
+function drawReviewEx2Canvas(){
+    const c=document.getElementById('reviewEx2Canvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    const ox=c.width/2,oy=c.height/2;
+    // 菱形顶点（水平对角线AC=16, 垂直BD=12，按比例缩小显示）
+    const scale=10;
+    const A=[ox-8*scale,oy], C=[ox+8*scale,oy];
+    const B=[ox,oy-6*scale], D=[ox,oy+6*scale];
+    const O=[ox,oy];
+
+    // 菱形主体
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#dcfce730';ctx.fill();ctx.strokeStyle='#16a34a';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 对角线AC（虚线效果）
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.strokeStyle='#3b82f6';ctx.lineWidth=2;ctx.setLineDash([6,3]);ctx.stroke();ctx.setLineDash([]);
+    // 对角线BD
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(D[0],D[1]);ctx.strokeStyle='#8b5cf6';ctx.lineWidth=2;ctx.setLineDash([6,3]);ctx.stroke();ctx.setLineDash([]);
+
+    // 垂直符号
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#16a34a';ctx.fillText('┴',ox-8,oy+18);
+
+    // 交点O
+    ctx.beginPath();ctx.arc(O[0],O[1],4,0,Math.PI*2);ctx.fillStyle='#e74c3c';ctx.fill();
+
+    // 标注对角线长度
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#3b82f6';ctx.textAlign='center';
+    ctx.fillText('AC = 16cm',ox,oy-72);
+    ctx.fillStyle='#8b5cf6';
+    ctx.fillText('BD = 12cm',ox+95,oy+5);
+
+    // 顶点字母
+    const L=['A','B','C','D'];ctx.font='bold 17px Segoe UI';ctx.fillStyle='#1e3a8a';
+    ctx.fillText(L[0],A[0]-18,A[1]+5);ctx.fillText(L[1],B[0],B[1]-12);
+    ctx.fillText(L[2],C[0]+18,C[1]+5);ctx.fillText(L[3],D[0],D[1]+18);
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#e74c3c';ctx.fillText('O',O[0]+12,O[1]-8);
+
+    // 边长标注
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#16a34a';
+    ctx.fillText('?',(A[0]+B[0])/2-25,(A[1]+B[1])/2-8);
+}
+
+// ========== 例题3 Canvas：综合判定 ==========
+function drawReviewEx3Canvas(){
+    const c=document.getElementById('reviewEx3Canvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    const ox=c.width/2,oy=c.height/2;
+    const w=240,h=140;
+    const A=[ox-w/2,oy-h/2], B=[ox+w/2,oy-h/2], C=[ox+w/2,oy+h/2], D=[ox-w/2,oy+h/2];
+    const O=[ox,oy];
+
+    // 平行四边形主体
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#fef3c715';ctx.fill();ctx.strokeStyle='#2c3e50';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 对角线
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.strokeStyle='#3b82f6';ctx.lineWidth=2;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(D[0],D[1]);ctx.strokeStyle='#8b5cf6';ctx.lineWidth=2;ctx.stroke();
+
+    // 直线EF（过O且垂直于AC）
+    const efx1=A[0]-60, efy1=oy+(ox-(w/2)-60)*h/w;
+    const efx2=C[0]+60, efy2=oy-(C[0]-ox-60)*h/w;
+    // 用水平近似（因为AC大致水平）
+    ctx.beginPath();ctx.moveTo(A[0]-50,oy+35);ctx.lineTo(C[0]+50,oy-35);
+    ctx.strokeStyle='#ef4444';ctx.lineWidth=2.5;ctx.setLineDash([5,3]);ctx.stroke();ctx.setLineDash([]);
+
+    // E点和F点
+    const Ex=A[0]-20, Ey=oy+14;
+    const Fx=C[0]+20, Fy=oy-14;
+    ctx.beginPath();ctx.arc(Ex,Ey,4,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();
+    ctx.beginPath();ctx.arc(Fx,Fy,4,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();
+
+    // 垂直符号
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#ef4444';
+    ctx.fillText('⊥',ox-20,oy+30);
+
+    // 交点O
+    ctx.beginPath();ctx.arc(O[0],O[1],4,0,Math.PI*2);ctx.fillStyle='#e74c3c';ctx.fill();
+
+    // 顶点字母
+    const L=['A','B','C','D'];ctx.font='bold 17px Segoe UI';ctx.fillStyle='#1e3a8a';ctx.textAlign='center';
+    ctx.fillText(L[0],A[0]-16,A[1]-8);ctx.fillText(L[1],B[0]+16,B[1]-8);
+    ctx.fillText(L[2],C[0]+16,C[1]+18);ctx.fillText(L[3],D[0]-16,D[1]+18);
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#e74c3c';ctx.fillText('O',O[0]+12,O[1]-8);
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#ef4444';
+    ctx.fillText('E',Ex-16,Ey+5);ctx.fillText('F',Fx+16,Fy+5);
+    ctx.font='12px Segoe UI';ctx.fillStyle='#ef4444';
+    ctx.fillText('EF',Fx+30,Fy-5);
+}
+
+// ========== 练习题5 Canvas ==========
+function drawQuiz5Canvas(){
+    const c=document.getElementById('quiz5Canvas'),ctx=c.getContext('2d');
+    if(!c)return;
+    ctx.clearRect(0,0,c.width,c.height);
+
+    const ox=c.width/2,oy=c.height/2;
+    const w=160,h=105;
+    const A=[ox-w/2,oy-h/2], B=[ox+w/2,oy-h/2], C=[ox+w/2,oy+h/2], D=[ox-w/2,oy+h/2];
+
+    // 矩形
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#fee2e215';ctx.fill();ctx.strokeStyle='#dc2626';ctx.lineWidth=2;ctx.stroke();
+
+    // 对角线BD
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(D[0],D[1]);ctx.strokeStyle='#3b82f6';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);
+
+    // 折叠示意（弧线）
+    ctx.beginPath();ctx.arc((B[0]+D[0])/2,(B[1]+D[1])/2-10,50,0.3,Math.PI-0.3);
+    ctx.strokeStyle='#f59e0b';ctx.lineWidth=1.5;ctx.setLineDash([4,2]);ctx.stroke();ctx.setLineDash([]);
+
+    // 顶点字母
+    const L=['A','B','C','D'];ctx.font='bold 14px Segoe UI';ctx.fillStyle='#1e3a8a';ctx.textAlign='center';
+    ctx.fillText(L[0],A[0]-12,A[1]-5);ctx.fillText(L[1],B[0]+10,B[1]-5);
+    ctx.fillText(L[2],C[0]+10,C[1]+14);ctx.fillText(L[3],D[0]-12,D[1]+14);
+    ctx.font='12px Segoe UI';ctx.fillStyle='#3b82f6';ctx.fillText('对角线BD',(B[0]+D[0])/2,(B[1]+D[1])/2-20);
+}
+
+// ========== 交互式练习系统 ==========
+let quizScore={total:5,correct:0,answered:{}};
+
+function resetOptions(containerId){
+    document.querySelectorAll(`#${containerId} .quiz-option`).forEach(opt=>{
+        opt.classList.remove('correct','wrong');
+    });
+}
+
+function showFeedback(fbId,isCorrect,msg){
+    const fb=document.getElementById(fbId);
+    fb.className='quiz-feedback show '+(isCorrect?'correct-fb':'wrong-fb');
+    fb.innerHTML=msg;
+}
+
+function checkQuiz1(el,isCorrect){
+    if(quizScore.answered['1'])return;
+    quizScore.answered['1']=true;
+    resetOptions('quiz1');
+    if(isCorrect===false){ // 正确答案：错误
+        el.classList.add('correct');
+        quizScore.correct++;
+        showFeedback('quiz1Feedback',true,'✅ <strong>回答正确！</strong> 对角线相等的四边形<b>不一定是</b>矩形。反例：等腰梯形的对角线也可能相等。正确的判定是"<b>对角线相等的平行四边形</b>"才是矩形！');
+    }else{
+        el.classList.add('wrong');
+        showFeedback('quiz1Feedback',false,'❌ 回答错误。"对角线相等的四边形"可能是等腰梯形或其他图形。必须强调是<b>平行四边形</b>的对角线相等才是矩形！');
+    }
+    updateScore();
+}
+
+function checkQuiz2(el,isCorrect){
+    if(quizScore.answered['2'])return;
+    quizScore.answered['2']=true;
+    resetOptions('quiz2');
+    if(isCorrect===false){ // 正确答案：错误
+        el.classList.add('correct');
+        quizScore.correct++;
+        showFeedback('quiz2Feedback',true,'✅ <strong>回答正确！</strong> 对角线互相垂直的四边形<b>不一定是</b>菱形。必须强调是"<b>平行四边形</b>"的对角线互相垂直才是菱形！');
+    }else{
+        el.classList.add('wrong');
+        showFeedback('quiz2Feedback',false,'❌ 回答错误。同理，对角线垂直只是菱形的条件之一，前提必须是平行四边形。');
+    }
+    updateScore();
+}
+
+function checkQuiz3(el,ans){
+    if(quizScore.answered['3'])return;
+    quizScore.answered['3']=true;
+    resetOptions('quiz3');
+    if(ans==='A'){
+        el.classList.add('correct');
+        quizScore.correct++;
+        showFeedback('quiz3Feedback',true,'✅ <strong>完全正确！</strong> 正方形确实既是特殊的矩形（有直角的菱形），又是特殊的菱形（邻边相等的矩形），是两者的交集。');
+    }else{
+        el.classList.add('wrong');
+        let hint='';
+        if(ans==='B')hint='矩形的对角线相等但不一定垂直（只有正方形的对角线才垂直）。';
+        else if(ans==='C')hint='菱形的对角线垂直但不一定相等（只有正方形的对角线才相等）。';
+        else hint='平行四边形的对角线只是互相平分，不一定相等也不一定垂直。';
+        showFeedback('quiz3Feedback',false,'❌ '+hint+' 正确答案是A。');
+    }
+    updateScore();
+}
+
+function checkQuiz4(el,ans){
+    if(quizScore.answered['4'])return;
+    quizScore.answered['4']=true;
+    resetOptions('quiz4');
+    if(ans==='A'){
+        el.classList.add('correct');
+        quizScore.correct++;
+        showFeedback('quiz4Feedback',true,'✅ <strong>正确！</strong> 面积=$\\frac{1}{2}\\times 6\\times 8=24$ cm²。边长=$\\sqrt{3^2+4^2}=\\sqrt{9+16}=\\sqrt{25}=5$ cm。（半对角线分别为3和4）');
+    }else{
+        el.classList.add('wrong');
+        showFeedback('quiz4Feedback',false,'❌ 不对哦。菱形面积公式：$S=\\frac{1}{2}d_1d_2=\\frac{1}{2}\\times6\\times8=24$。边长利用对角线一半构成直角三角形：$a=\\sqrt{3^2+4^2}=5$。正确答案是A。');
+    }
+    updateScore();
+}
+
+function checkQuiz5(el,ans){
+    if(quizScore.answered['5'])return;
+    quizScore.answered['5']=true;
+    resetOptions('quiz5');
+    if(ans==='A'){
+        el.classList.add('correct');
+        quizScore.correct++;
+        showFeedback('quiz5Feedback',true,'✅ <strong>太棒了！</strong> 这是经典折叠问题。设重叠部分为△BEF（E在AB上，F在对角线上），通过相似三角形和勾股定理可得重叠部分面积为 $\\frac{75}{16}$。');
+    }else{
+        el.classList.add('wrong');
+        showFeedback('quiz5Feedback',false,'❌ 不太对。这道折叠问题需要利用相似三角形的比例关系和勾股定理联立求解。正确答案是 A：$\\frac{75}{16}$。');
+    }
+    updateScore();
+}
+
+function updateScore(){
+    const s=document.getElementById('scoreDisplay');
+    const answered=Object.keys(quizScore.answered).length;
+    if(answered===quizScore.total){
+        const pct=Math.round(quizScore.correct/quizScore.total*100);
+        let emoji=pct>=80?'🎉':pct>=60?'👍':'💪';
+        let color=pct>=80?'#16a34a':pct>=60?'#d97706':'#dc2626';
+        s.innerHTML=`${emoji} 你的得分：${quizScore.correct}/${quizScore.total}（${pct}%）${pct>=80?' —— 太棒了！':pct>=60?' —— 继续加油！'：' —— 还需复习哦！'}`;
+        s.style.color=color;s.style.fontWeight='bold';s.style.fontSize='1.1rem';
+    }
+}
+
+function resetAllQuizzes(){
+    quizScore={total:5,correct:0,answered:{}};
+    document.querySelectorAll('.quiz-option').forEach(opt=>opt.classList.remove('correct','wrong'));
+    document.querySelectorAll('.quiz-feedback').forEach(fb=>{fb.className='quiz-feedback';fb.innerHTML='';});
+    const s=document.getElementById('scoreDisplay');s.innerHTML='';
+}
+
+// ========== 初始化 ==========
+window.onload=function(){
+    drawMindMap();
+    drawRelationCanvas();
+    drawReviewEx1Canvas();
+    drawReviewEx2Canvas();
+    drawReviewEx3Canvas();
+    drawQuiz5Canvas();
+};
+</script>
+</body>
+</html>

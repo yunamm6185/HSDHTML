@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第28课时 单项式 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background-color: #e1eff9;
+        }
+        /* 术语高亮 - 用于系数和次数 */
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+        /* 强调语句 - 用于“单独一个数或一个字母也是单项式” */
+        .term-emphasis {
+            background-color: #b8d9e0;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.3 整式</h2>
+    <div class="lesson-title">第1课时 单项式</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解单项式的概念，能识别单项式</div>
+            <div class="target-item"><span>✔</span>能确定单项式的系数和次数</div>
+            <div class="target-item"><span>✔</span>掌握单项式书写规范（系数为1或-1时的省略、带分数化假分数）</div>
+            <div class="target-item"><span>✔</span>体会数学抽象与符号意识</div>
+        </div>
+    </div>
+
+    <!-- 回忆（课本P96）列代数式，引出单项式 -->
+    <h3>📝 回忆</h3>
+    <div class="think-box">
+        <p>列代数式：</p>
+        <p>(1) 若正方形的边长为 \(a\)，则这个正方形的面积为 <span style="display:inline-block; width:60px; border-bottom:1px solid #000;"></span>；</p>
+        <p>(2) 若三角形的一边长为 \(a\)，这边上的高为 \(h\)，则这个三角形的面积为 <span style="display:inline-block; width:60px; border-bottom:1px solid #000;"></span>；</p>
+        <p>(3) 若 \(m\) 表示一个有理数，则它的相反数是 <span style="display:inline-block; width:40px; border-bottom:1px solid #000;"></span>；</p>
+        <p>(4) 小馨每月从零花钱中拿出 \(x\) 元钱捐给希望工程，一年下来小馨共捐款 <span style="display:inline-block; width:60px; border-bottom:1px solid #000;"></span> 元。</p>
+        <button class="interact-btn" onclick="toggleAnswer('recall')">显示答案</button>
+        <div id="answerRecall" class="answer-box">
+            <div class="answer-line">(1) \(a^2\)</div>
+            <div class="answer-line">(2) \(\frac{1}{2}ah\)</div>
+            <div class="answer-line">(3) \(-m\)</div>
+            <div class="answer-line">(4) \(12x\)</div>
+        </div>
+    </div>
+
+    <!-- 概括：单项式的定义 -->
+    <div class="rule-box">
+        <div class="title">📌 单项式</div>
+        <p>上面所列出的代数式都是由数与字母的乘积组成的。像这样，<strong>由数与字母的乘积组成的代数式叫做单项式（monomial）</strong>。例如，\(a^2\)、\(\frac{1}{2}ah\)、\(-m\)、\(12x\) 等都是单项式。<span class="term-emphasis">单独一个数或一个字母也是单项式。</span></p>
+    </div>
+
+    <!-- 单项式的系数和次数 -->
+    <h3>📐 单项式的系数和次数</h3>
+    <div class="rule-box">
+        <p><span class="term-highlight">单项式的系数</span>：单项式中的数字因数叫做这个单项式的系数。例如，\(\frac{1}{2}ah\) 的系数是 \(\frac{1}{2}\)；特别地，\(a^2 = 1 \cdot a^2\)，\(-m = (-1) \cdot m\)，所以 \(a^2\) 的系数是1，\(-m\) 的系数是-1。</p>
+        <p><span class="term-highlight">单项式的次数</span>：一个单项式中，所有字母的指数的和叫做这个单项式的次数。例如，\(\frac{1}{2}ah\) 的次数是2（\(a\)和\(h\)的指数都是1），\(\frac{5}{4}x^2yz\) 的次数是4（\(x\)指数2，\(y\)指数1，\(z\)指数1），\(-m\) 的次数是1。</p>
+    </div>
+
+    <!-- 注意点 -->
+    <div class="tip-box">
+        <p><strong>📌 注意：</strong></p>
+        <ul style="margin-left:2rem;">
+            <li>当一个单项式的系数是1或-1时，“1”通常省略不写，例如 \(a^2\) 和 \(-m\)。</li>
+            <li>单项式的系数是带分数时，通常写成假分数的形式，例如 \(\frac{5}{4}x^2y\) 不要写成 \(1\frac{1}{4}x^2y\)。</li>
+        </ul>
+    </div>
+
+    <!-- 例1（课本P97） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex1">
+        <p><strong>例1</strong> 判断下列各代数式是不是单项式，如果不是，请说明理由；如果是，请指出它们的系数和次数：</p>
+        <p>(1) \(x + 1\)； (2) \(-\frac{3}{2}a^2b\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            <div class="answer-line">(1) \(x + 1\) 不是单项式，因为代数式中出现了加法运算。</div>
+            <div class="answer-line">(2) \(-\frac{3}{2}a^2b\) 是单项式，它的系数是 \(-\frac{3}{2}\)，次数是3（\(a\)的指数2，\(b\)的指数1，和为3）。</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P97） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 判断下列代数式是不是单项式：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(a\)； (2) \(-\frac{1}{2}\)； (3) \(x + \frac{1}{2}\)； (4) \(\frac{x}{3}\)； (5) \(xy\)。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) 是（单独一个字母）</div>
+                <div class="answer-line">(2) 是（单独一个数）</div>
+                <div class="answer-line">(3) 不是（含有加法运算）</div>
+                <div class="answer-line">(4) 是（\(\frac{x}{3} = \frac{1}{3}x\)，是数与字母的乘积）</div>
+                <div class="answer-line">(5) 是（字母与字母的乘积）</div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 说出下列单项式的系数和次数：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(5a^2\)； (2) \(mn\)； (3) \(-\frac{7}{2}ab^2c\)； (4) \(-\frac{2x^2y}{3}\)。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) 系数 \(5\)，次数 \(2\)</div>
+                <div class="answer-line">(2) 系数 \(1\)（省略），次数 \(2\)（\(m,n\)指数各1）</div>
+                <div class="answer-line">(3) 系数 \(-\frac{7}{2}\)，次数 \(4\)（\(a\)指数1，\(b\)指数2，\(c\)指数1，和=4）</div>
+                <div class="answer-line">(4) 系数 \(-\frac{2}{3}\)，次数 \(3\)（\(x\)指数2，\(y\)指数1，和=3）</div>
+            </div>
+        </div>
+
+        <!-- 第3题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>3.</strong> 判断下列说法是否正确，如果不正确，请说明理由：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p3')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) 单项式 \(m\) 既没有系数，也没有次数；</div>
+            <div class="sub-question">(2) 单项式 \(5\times 10^5 t\) 的系数是5。</div>
+            <div id="answerP3" class="answer-box">
+                <div class="answer-line">(1) 不正确。单项式 \(m\) 的系数是1（省略），次数是1。</div>
+                <div class="answer-line">(2) 不正确。系数应为 \(5\times10^5\)，因为系数是数字因数，包括乘方形式。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：单项式与生活（拓展核心素养） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 从具体到抽象——再谈符号意识</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>单项式是最简单的代数式。从具体数字到用字母表示，再到数与字母的乘积，体现了数学的抽象过程。例如，正方形面积 \(a^2\) 概括了所有边长为 \(a\) 的正方形面积；\(-m\) 表示了任意数的相反数。这种符号化表达，正是<strong>符号意识</strong>的体现——用符号表示数、数量关系和变化规律。</p>
+            <p>在以后的学习中，我们将用单项式描述更复杂的数量关系，如物理学中的公式、几何中的面积体积等。学好单项式，是开启整式大门的钥匙。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 数学抽象 · 符号意识</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">单项式：由数与字母的乘积组成的代数式（单独一个数或字母也是单项式）。</div>
+                <div class="summary-item">单项式的系数：单项式中的数字因数（注意系数为1或-1时的省略）。</div>
+                <div class="summary-item">单项式的次数：单项式中所有字母的指数之和（系数中的指数不计入次数）。</div>
+                <div class="summary-item">书写规范：系数是带分数时要化为假分数。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P97练习第1、2、3题；习题2.3 A组第1题（填表），第2题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 数与字母乘积为单项，系数次数细分辨 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第28课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

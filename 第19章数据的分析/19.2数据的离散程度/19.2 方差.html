@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>19.2 方差 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}
+        tr:nth-child(even) td{background:#f0fdff;}
+        tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:1rem auto;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .formula-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.2rem 0;text-align:center;font-size:1.2rem;font-weight:700;color:#92400e;}
+        .data-table{width:100%;margin:1rem 0;border-collapse:collapse;font-size:1rem;}
+        .data-table th{background:linear-gradient(135deg,#f59e0b,#d97706);color:white;padding:.8rem;font-size:1.05rem;}
+        .data-table td{padding:.7rem;text-align:center;border:1px solid #fcd34d;}
+        .data-table tr:nth-child(odd){background:#fffbeb;}
+        .data-table tr:nth-child(even){background:#fef3c7;}
+        .data-table tr:hover{background:#fde68a;}
+        .input-group{display:flex;align-items:center;gap:.8rem;margin:.8rem 0;flex-wrap:wrap;}
+        .input-group label{font-weight:700;color:#0e7490;min-width:120px;}
+        .input-group input[type="text"]{flex:1;min-width:200px;padding:.6rem 1rem;border:2px solid #14b8a6;border-radius:12px;font-size:1rem;background:#f0fdff;}
+        .input-group input[type="text"]:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,0.2);}
+        .input-group button{padding:.6rem 1.5rem;background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border:none;border-radius:30px;font-weight:700;font-size:.95rem;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;transition:all .15s;}
+        .input-group button:hover{transform:translateY(-2px);}
+        .input-group button:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .result-display{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1rem 0;border:2px solid #14b8a6;}
+        .result-display h5{font-size:1.2rem;color:#0e7490;margin-bottom:.8rem;}
+        .result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem;}
+        .result-item{background:white;border-radius:12px;padding:1rem;text-align:center;border:2px solid #80deea;}
+        .result-item .label{font-size:.9rem;color:#0e7490;margin-bottom:.3rem;}
+        .result-item .value{font-size:1.5rem;font-weight:700;color:#0ea5e9;}
+        .slider-container{margin:1rem 0;padding:1rem;background:#f0fdff;border-radius:12px;border:2px solid #b2ebf2;}
+        .slider-container label{display:block;font-weight:700;color:#0e7490;margin-bottom:.5rem;}
+        .slider-container input[type="range"]{width:100%;margin:.5rem 0;}
+        .slider-value{display:inline-block;background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.3rem 1rem;border-radius:20px;font-weight:700;}
+        .homework-box{background:linear-gradient(135deg,#e0f7fa,#b2ebf2);border-left:8px solid #0891b2;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;font-weight:600;display:flex;align-items:center;gap:1rem;font-size:1.1rem;}
+        .message-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.2rem 2rem;margin:1.5rem 0;text-align:center;font-size:1.15rem;color:#92400e;border:2px solid #f59e0b;}
+        .footer-note{text-align:center;color:#0e7490;font-size:.9rem;margin-top:2rem;padding-top:1rem;border-top:2px solid #14b8a6;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.2 方差</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解方差的意义和作用</div>
+            <div class="target-item"><span>2</span>掌握方差的计算方法</div>
+            <div class="target-item"><span>3</span>会用方差比较两组数据的波动大小</div>
+            <div class="target-item"><span>4</span>理解标准差的概念</div>
+            <div class="target-item"><span>5</span>了解极差、方差、标准差的区别与联系</div>
+        </div>
+    </div>
+
+    <!-- 问题引入 -->
+    <div class="section-title">📊 情境导入</div>
+    
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🌍 <strong>两地的气温比较</strong></p>
+        <p>表19.2.1显示的是2001年4月9日8时至20时天津和新加坡两地的气温。如何对两地在这个时间段内的气温进行比较呢？</p>
+    </div>
+
+    <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+            <tr>
+                <th colspan="9">表19.2.1 天津和新加坡的气温（单位：°C）</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>8时</th>
+                <th>10时</th>
+                <th>12时</th>
+                <th>14时</th>
+                <th>16时</th>
+                <th>18时</th>
+                <th>19时</th>
+                <th>20时</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>天津</strong></td>
+                <td>11</td>
+                <td>14</td>
+                <td>19</td>
+                <td>21</td>
+                <td>20</td>
+                <td>17</td>
+                <td>15</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td><strong>新加坡</strong></td>
+                <td>25</td>
+                <td>26</td>
+                <td>28</td>
+                <td>27</td>
+                <td>26</td>
+                <td>26</td>
+                <td>26</td>
+                <td>26</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="explore-card">
+        <p>从表19.2.1可以看出，天津与新加坡的气温相比，有4个时刻的气温相对高些，有4个时刻的气温相对低些。</p>
+        <p style="margin-top:.8rem;"><strong>比较两地气温的高低，求平均气温是一种常用的方法。</strong></p>
+        <p style="margin-top:.8rem;">经计算可知，这两地的平均气温相等，都是<strong>18.625°C</strong>。这能否说明两地的气温情况总体上没有什么差异呢？</p>
+    </div>
+
+    <!-- 气温波动对比Canvas -->
+    <div class="explore-card">
+        <h4>直观感受 — 气温波动对比</h4>
+        <p>观察图中的气温变化，你感觉它们有没有差异呢？</p>
+        <canvas id="tempVariance" width="800" height="400"></canvas>
+        <button class="interact-btn" onclick="toggleAnswer('tempAnswer')">💡 图表解读</button>
+        <div id="tempAnswer" class="answer-box">
+            <p>🔍 <strong>观察要点：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li>天津的气温波动范围比较大，从11°C到21°C，相差10°C</li>
+                <li>新加坡的气温波动范围比较小，从25°C到28°C，相差仅3°C</li>
+                <li>虽然两地平均气温相同，但波动程度明显不同！</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 概括总结 -->
+    <div class="fact-card">
+        <h4>📌 概括</h4>
+        <div class="theorem-box">
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li>比较两组数据时，通常可以先画图，直观地感受一下两组数据的整体特点</li>
+                <li>即便两组数据的平均数相等，它们还可能在数据的波动大小上表现出差异</li>
+                <li>因此，不能只限于比较平均数。数据波动小，则平均数更具有代表性</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 问题2：成绩稳定性 -->
+    <div class="section-title">📊 成绩稳定性的比较</div>
+
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🏃 <strong>问题</strong></p>
+        <p>小明和小兵两人参加体育项目训练，近期的5次测试成绩如表19.2.2所示。谁的成绩较为稳定？为什么？</p>
+    </div>
+
+    <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+            <tr>
+                <th colspan="6">表19.2.2</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>第1次</th>
+                <th>第2次</th>
+                <th>第3次</th>
+                <th>第4次</th>
+                <th>第5次</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>小明</strong></td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>8</td>
+                <td>8</td>
+            </tr>
+            <tr>
+                <td><strong>小兵</strong></td>
+                <td>6</td>
+                <td>9</td>
+                <td>7</td>
+                <td>10</td>
+                <td>6</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 成绩稳定性Canvas -->
+    <div class="explore-card">
+        <h4>成绩稳定性对比</h4>
+        <canvas id="scoreStable" width="800" height="400"></canvas>
+        <button class="interact-btn" onclick="toggleAnswer('scoreAnswer')">💡 分析结论</button>
+        <div id="scoreAnswer" class="answer-box">
+            <p>🔍 <strong>分析要点：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li>两人测试成绩的平均数都是8分</li>
+                <li>成绩的最大值与最小值也都相差4分</li>
+                <li>但从图可以看出，相比之下，小明的成绩大部分集中在其平均数附近</li>
+                <li>而小兵的成绩与其平均数的离散程度略大</li>
+                <li><strong>结论：小明的成绩比较稳定</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 思考：如何衡量离散程度 -->
+    <div class="fact-card">
+        <h4>💭 思考：如何衡量离散程度？</h4>
+        <p>我们已经看出，小兵的测试成绩与其平均数的偏差与小明相比略大。那么如何加以说明呢？</p>
+        <p style="margin-top:.8rem;"><strong>可以直接将各数据与其平均数的差进行累加吗？</strong></p>
+    </div>
+
+    <!-- 离差平方和 -->
+    <div class="section-title">📐 离差平方和</div>
+
+    <div class="example-card">
+        <h4>尝试计算</h4>
+        <p>在下面的表格中，填写每次成绩与平均成绩的差：</p>
+        <table class="data-table" style="margin-top:1rem;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>第1次</th>
+                    <th>第2次</th>
+                    <th>第3次</th>
+                    <th>第4次</th>
+                    <th>第5次</th>
+                    <th>求和</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>小明成绩</strong></td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>8</td>
+                    <td>8</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>每次成绩-平均成绩</strong></td>
+                    <td>7-8=<span style="color:#dc2626;">-1</span></td>
+                    <td>8-8=<span style="color:#0ea5e9;">0</span></td>
+                    <td>9-8=<span style="color:#059669;">+1</span></td>
+                    <td>8-8=<span style="color:#0ea5e9;">0</span></td>
+                    <td>8-8=<span style="color:#0ea5e9;">0</span></td>
+                    <td><strong>0</strong></td>
+                </tr>
+                <tr style="background:#d1fae5;">
+                    <td><strong>小兵成绩</strong></td>
+                    <td>6</td>
+                    <td>9</td>
+                    <td>7</td>
+                    <td>10</td>
+                    <td>6</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td><strong>每次成绩-平均成绩</strong></td>
+                    <td>6-8=<span style="color:#dc2626;">-2</span></td>
+                    <td>9-8=<span style="color:#059669;">+1</span></td>
+                    <td>7-8=<span style="color:#dc2626;">-1</span></td>
+                    <td>10-8=<span style="color:#059669;">+2</span></td>
+                    <td>6-8=<span style="color:#dc2626;">-2</span></td>
+                    <td><strong>0</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top:1rem;"><strong>发现：两组数据偏差求和的结果都是0！</strong></p>
+        <p style="margin-top:.5rem;">事实上，一组数据中的每个数与这组数据平均数的差相加之和始终等于0。</p>
+    </div>
+
+    <div class="warn-box">
+        <p>⚠️ <strong>既然直接求和不行，那么用什么办法可以从整体上反映各个数据远离平均数的情况呢？</strong></p>
+    </div>
+
+    <div class="fact-card">
+        <h4>💡 解决方案：平方后再求和</h4>
+        <div class="theorem-box">
+            <p>我们可以用<strong>"先平均，再求差，然后平方，最后求和"</strong>所得到的结果反映一组数据与其平均数的离散程度。</p>
+            <p style="margin-top:1rem;"><strong>这个结果称为这组数据的离差平方和。</strong></p>
+        </div>
+    </div>
+
+    <!-- 方差计算Canvas -->
+    <div class="explore-card">
+        <h4>离差平方和的计算</h4>
+        <canvas id="varianceCalc" width="800" height="450"></canvas>
+        <button class="interact-btn" onclick="animateVariance()">▶️ 演示计算过程</button>
+    </div>
+
+    <!-- 方差定义 -->
+    <div class="section-title">📐 方差的定义</div>
+
+    <div class="fact-card">
+        <h4>📌 方差的定义</h4>
+        <div class="theorem-box">
+            <p>在计算一组数据的离差平方和时，随着数据个数的增多，和通常也会增大。</p>
+            <p style="margin-top:.8rem;">因此，当两组数据所含数据的个数不同时，直接比较离差平方和显得不公平，还需要<strong>平均化</strong>。</p>
+            <p style="margin-top:.8rem;">这样得到的结果称为<strong>方差</strong>，通常记为 $s^2$。我们通常用方差来衡量一组数据偏离其平均数的情况。</p>
+        </div>
+    </div>
+
+    <div class="formula-box">
+        <p><strong>方差公式：</strong></p>
+        <p style="font-size:1.4rem;margin-top:1rem;">$$s^2 = \frac{1}{n}\left[(x_1-\bar{x})^2 + (x_2-\bar{x})^2 + \cdots + (x_n-\bar{x})^2\right]$$</p>
+        <p style="margin-top:.8rem;">简记为：$$s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$$</p>
+    </div>
+
+    <!-- 方差计算示例 -->
+    <div class="example-card">
+        <h4>📝 计算小明和小兵成绩的方差</h4>
+        <div class="highlight-box">
+            <p><strong>小明5次测试成绩的方差：</strong></p>
+            <p style="margin-top:.5rem;">$s^2 = \frac{1}{5}\left[(7-8)^2 + (8-8)^2 + (9-8)^2 + (8-8)^2 + (8-8)^2\right]$</p>
+            <p style="margin-top:.5rem;">$= \frac{1}{5}\left[1 + 0 + 1 + 0 + 0\right] = \frac{2}{5} = \textbf{0.4}$</p>
+        </div>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>小兵5次测试成绩的方差：</strong></p>
+            <p style="margin-top:.5rem;">$s^2 = \frac{1}{5}\left[(6-8)^2 + (9-8)^2 + (7-8)^2 + (10-8)^2 + (6-8)^2\right]$</p>
+            <p style="margin-top:.5rem;">$= \frac{1}{5}\left[4 + 1 + 1 + 4 + 4\right] = \frac{14}{5} = \textbf{2.8}$</p>
+        </div>
+        <p style="margin-top:1rem;font-size:1.1rem;"><strong>结论：小明的成绩比较稳定（方差0.4 < 2.8）</strong></p>
+    </div>
+
+    <!-- 标准差 -->
+    <div class="section-title">📐 标准差</div>
+
+    <div class="fact-card">
+        <h4>📌 标准差</h4>
+        <div class="theorem-box">
+            <p>方差的算术平方根称为<strong>标准差</strong>，通常记为 $s$。</p>
+            <p style="margin-top:1rem;font-size:1.2rem;text-align:center;"><strong>$$s = \sqrt{s^2} = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2}$$</strong></p>
+            <p style="margin-top:1rem;">标准差也是用来衡量一组数据波动大小的量，它的单位和原数据的单位相同。</p>
+        </div>
+    </div>
+
+    <!-- 极差vs方差 -->
+    <div class="section-title">📊 极差、方差、标准差的比较</div>
+
+    <div class="explore-card">
+        <h4>三种度量方式的对比</h4>
+        <canvas id="rangeVar" width="800" height="400"></canvas>
+        <button class="interact-btn" onclick="toggleAnswer('compareAnswer')">💡 详细比较</button>
+        <div id="compareAnswer" class="answer-box">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>度量方式</th>
+                        <th>计算方法</th>
+                        <th>特点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>极差</strong></td>
+                        <td>最大值 - 最小值</td>
+                        <td>只考虑两端数据，简单但不够全面</td>
+                    </tr>
+                    <tr>
+                        <td><strong>方差</strong></td>
+                        <td>$\frac{1}{n}\sum(x_i-\bar{x})^2$</td>
+                        <td>考虑所有数据的偏离程度，较全面</td>
+                    </tr>
+                    <tr>
+                        <td><strong>标准差</strong></td>
+                        <td>$\sqrt{方差}$</td>
+                        <td>单位与原数据一致，实际应用更方便</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 方差的意义 -->
+    <div class="summary-box">
+        <h4>🎯 方差的意义</h4>
+        <ul>
+            <li><strong>方差越大</strong>，数据的波动越大，越不稳定</li>
+            <li><strong>方差越小</strong>，数据的波动越小，越稳定</li>
+            <li><strong>方差为0</strong>，说明所有数据都相等，没有波动</li>
+            <li>方差和标准差都是用来描述数据离散程度的统计量</li>
+        </ul>
+    </div>
+
+    <!-- 交互计算器 -->
+    <div class="section-title">🧮 互动计算器</div>
+
+    <div class="explore-card">
+        <h4>方差计算器</h4>
+        <p>输入一组数据（用逗号或空格分隔），自动计算平均数、极差、方差和标准差：</p>
+        <div class="input-group" style="margin-top:1rem;">
+            <label>数据输入：</label>
+            <input type="text" id="dataInput" placeholder="例如：7, 8, 9, 8, 8 或 7 8 9 8 8" value="7, 8, 9, 8, 8">
+            <button onclick="calculateVariance()">计算</button>
+        </div>
+        <div class="result-display" id="resultDisplay" style="display:none;">
+            <h5>📊 计算结果</h5>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="label">平均数 $\bar{x}$</div>
+                    <div class="value" id="resultMean">-</div>
+                </div>
+                <div class="result-item">
+                    <div class="label">极差</div>
+                    <div class="value" id="resultRange">-</div>
+                </div>
+                <div class="result-item">
+                    <div class="label">方差 $s^2$</div>
+                    <div class="value" id="resultVariance">-</div>
+                </div>
+                <div class="result-item">
+                    <div class="label">标准差 $s$</div>
+                    <div class="value" id="resultStd">-</div>
+                </div>
+            </div>
+            <div style="margin-top:1rem;">
+                <strong>计算过程：</strong>
+                <div id="calcProcess" style="background:white;padding:1rem;border-radius:12px;margin-top:.5rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 滑块调节 -->
+    <div class="explore-card">
+        <h4>探索：改变数据观察方差变化</h4>
+        <div class="slider-container">
+            <label>调节第3个数据的值（原始值：9）：</label>
+            <input type="range" id="dataSlider" min="5" max="15" value="9" step="0.5" oninput="updateSliderData()">
+            <div style="margin-top:.5rem;">
+                当前值：<span class="slider-value" id="sliderValue">9</span>
+            </div>
+        </div>
+        <div class="result-display">
+            <h5>📊 实时计算结果</h5>
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="label">平均数</div>
+                    <div class="value" id="sliderMean">8</div>
+                </div>
+                <div class="result-item">
+                    <div class="label">方差</div>
+                    <div class="value" id="sliderVariance">0.4</div>
+                </div>
+            </div>
+            <div id="sliderChart" style="margin-top:1rem;">
+                <canvas id="sliderCanvas" width="700" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">✍️ 练习</div>
+
+    <div class="example-card">
+        <h4>练习1：比较方差</h4>
+        <p>比较下列两组数据的方差：</p>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>A组：</strong>5, 5, 5, 5, 5, 5, 5, 5</p>
+            <p><strong>B组：</strong>2, 3, 5, 6, 4, 7, 5, 8</p>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('practice1Answer')">查看答案</button>
+        <div id="practice1Answer" class="answer-box">
+            <p><strong>A组：</strong>所有数据都相等，方差 = 0</p>
+            <p style="margin-top:.5rem;"><strong>B组：</strong></p>
+            <p>平均数 = (2+3+5+6+4+7+5+8)÷8 = 5</p>
+            <p>方差 = [(2-5)²+(3-5)²+(5-5)²+(6-5)²+(4-5)²+(7-5)²+(5-5)²+(8-5)²]÷8</p>
+            <p>= [9+4+0+1+1+4+0+9]÷8 = 28÷8 = 3.5</p>
+            <p style="margin-top:.8rem;"><strong>结论：A组的方差 < B组的方差</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>练习2：计算气温的方差</h4>
+        <p>算一算，第20页问题1中哪个城市该时段气温的离散程度较大？与你从图19.2.1中直观看出的结果一致吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('practice2Answer')">查看答案</button>
+        <div id="practice2Answer" class="answer-box">
+            <p><strong>天津气温方差：</strong></p>
+            <p>平均数 = 18.625</p>
+            <p>方差 = [(11-18.625)²+(14-18.625)²+...+(14-18.625)²]÷8 ≈ 11.7</p>
+            <p style="margin-top:.8rem;"><strong>新加坡气温方差：</strong></p>
+            <p>平均数 = 18.625</p>
+            <p>方差 = [(25-18.625)²+(26-18.625)²+...+(26-18.625)²]÷8 ≈ 0.7</p>
+            <p style="margin-top:.8rem;"><strong>结论：天津的方差（11.7）> 新加坡的方差（0.7）</strong></p>
+            <p>天津气温的离散程度较大，与直观看出的结果一致。</p>
+        </div>
+    </div>
+
+    <!-- 阅读材料 -->
+    <div class="section-title">📖 阅读材料</div>
+
+    <div class="fact-card">
+        <h4>"早穿皮袄午穿纱"</h4>
+        <p>"早穿皮袄午穿纱"是一句地方民谣，它形象地在我们面前描绘出一幅奇特的景象：早上寒冷得穿上又厚又重的皮袄，中午却炎热得只穿又薄又轻的纱衣。</p>
+        <p style="margin-top:.8rem;">为什么会出现这种现象？那是因为在我国的西北地区一日之间气温变化较大，有时午后最高气温达到35°C以上，但清晨最低气温却只有十几度。</p>
+        <p style="margin-top:.8rem;">下表是我国西北和南方一些城市某日的最高气温和最低气温情况。看看西北这些城市该日最高气温与最低气温相差多大，再与南方对比一下，你将不难理解为什么"早穿皮袄午穿纱"这句民谣在我国西北地区广为流传。</p>
+    </div>
+
+    <table class="data-table" style="margin:1.5rem 0;">
+        <thead>
+            <tr>
+                <th colspan="4">2020年6月12日我国部分地区的天气情况（单位：°C）</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>最高气温</th>
+                <th>最低气温</th>
+                <th>最高气温与最低气温之差</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>乌鲁木齐</strong></td>
+                <td>33</td>
+                <td>19</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td><strong>吐鲁番</strong></td>
+                <td>42</td>
+                <td>28</td>
+                <td>14</td>
+            </tr>
+            <tr>
+                <td><strong>银川</strong></td>
+                <td>33</td>
+                <td>18</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td><strong>兰州</strong></td>
+                <td>29</td>
+                <td>14</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td><strong>敦煌</strong></td>
+                <td>35</td>
+                <td>18</td>
+                <td>17</td>
+            </tr>
+            <tr style="background:#d1fae5;">
+                <td><strong>南宁</strong></td>
+                <td>33</td>
+                <td>25</td>
+                <td>8</td>
+            </tr>
+            <tr style="background:#d1fae5;">
+                <td><strong>福州</strong></td>
+                <td>33</td>
+                <td>25</td>
+                <td>8</td>
+            </tr>
+            <tr style="background:#d1fae5;">
+                <td><strong>昆明</strong></td>
+                <td>28</td>
+                <td>19</td>
+                <td>9</td>
+            </tr>
+            <tr style="background:#d1fae5;">
+                <td><strong>海口</strong></td>
+                <td>35</td>
+                <td>26</td>
+                <td>9</td>
+            </tr>
+            <tr style="background:#d1fae5;">
+                <td><strong>广州</strong></td>
+                <td>33</td>
+                <td>26</td>
+                <td>7</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📝 课堂小结</h4>
+        <ol>
+            <li><strong>方差</strong>是用来衡量一组数据偏离其平均数的程度的统计量</li>
+            <li><strong>方差公式：</strong>$s^2 = \frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$</li>
+            <li><strong>方差的意义：</strong>
+                <ul>
+                    <li>方差越大，数据波动越大，越不稳定</li>
+                    <li>方差越小，数据波动越小，越稳定</li>
+                </ul>
+            </li>
+            <li><strong>标准差</strong>是方差的算术平方根，单位与原数据相同</li>
+            <li>比较两组数据的波动程度，可以用<strong>方差</strong>或<strong>标准差</strong></li>
+        </ol>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P124 练习19.5 第1~3题；记录一周的气温变化，计算方差；思考：方差越大说明数据越不稳定，生活中有哪些应用？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 方差大小看波动，偏差平方求平均；稳定性、离散度，数据分析显真功！✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第19章 19.2 方差</div>
+
+</div>
+
+<script>
+// 切换答案显示
+function toggleAnswer(id) {
+    const box = document.getElementById(id);
+    if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'block';
+    } else {
+        box.style.display = 'none';
+    }
+}
+
+// 1. 气温波动对比Canvas
+function drawTempVariance() {
+    const canvas = document.getElementById('tempVariance');
+    const ctx = canvas.getContext('2d');
+    
+    // 数据
+    const times = ['8时', '10时', '12时', '14时', '16时', '18时', '19时', '20时'];
+    const tianjin = [11, 14, 19, 21, 20, 17, 15, 14];
+    const singapore = [25, 26, 28, 27, 26, 26, 26, 26];
+    const avgTemp = 18.625;
+    
+    // 清空画布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制背景
+    ctx.fillStyle = '#f0fdff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 坐标系参数
+    const padding = { top: 50, right: 80, bottom: 60, left: 60 };
+    const chartWidth = canvas.width - padding.left - padding.right;
+    const chartHeight = canvas.height - padding.top - padding.bottom;
+    
+    // 绘制网格
+    ctx.strokeStyle = '#e0f7fa';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 8; i++) {
+        const y = padding.top + (chartHeight / 8) * i;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(canvas.width - padding.right, y);
+        ctx.stroke();
+    }
+    
+    // 绘制坐标轴
+    ctx.strokeStyle = '#0e7490';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, padding.top);
+    ctx.lineTo(padding.left, canvas.height - padding.bottom);
+    ctx.lineTo(canvas.width - padding.right, canvas.height - padding.bottom);
+    ctx.stroke();
+    
+    // Y轴刻度（气温）
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'right';
+    const minTemp = 10, maxTemp = 30;
+    for (let i = 0; i <= 8; i++) {
+        const temp = minTemp + (maxTemp - minTemp) / 8 * i;
+        const y = canvas.height - padding.bottom - (temp - minTemp) / (maxTemp - minTemp) * chartHeight;
+        ctx.fillText(temp.toFixed(0) + '°C', padding.left - 10, y + 4);
+    }
+    
+    // X轴刻度（时间）
+    ctx.textAlign = 'center';
+    times.forEach((time, i) => {
+        const x = padding.left + (chartWidth / (times.length - 1)) * i;
+        ctx.fillText(time, x, canvas.height - padding.bottom + 25);
+    });
+    
+    // 绘制平均气温线
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 5]);
+    const avgY = canvas.height - padding.bottom - (avgTemp - minTemp) / (maxTemp - minTemp) * chartHeight;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, avgY);
+    ctx.lineTo(canvas.width - padding.right, avgY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 标注平均气温
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('平均: ' + avgTemp.toFixed(1) + '°C', canvas.width - padding.right + 10, avgY + 4);
+    
+    // 绘制天津气温折线
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    tianjin.forEach((temp, i) => {
+        const x = padding.left + (chartWidth / (times.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (temp - minTemp) / (maxTemp - minTemp) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // 绘制天津数据点
+    ctx.fillStyle = '#0ea5e9';
+    tianjin.forEach((temp, i) => {
+        const x = padding.left + (chartWidth / (times.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (temp - minTemp) / (maxTemp - minTemp) * chartHeight;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    
+    // 绘制新加坡气温折线
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    singapore.forEach((temp, i) => {
+        const x = padding.left + (chartWidth / (times.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (temp - minTemp) / (maxTemp - minTemp) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // 绘制新加坡数据点
+    ctx.fillStyle = '#10b981';
+    singapore.forEach((temp, i) => {
+        const x = padding.left + (chartWidth / (times.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (temp - minTemp) / (maxTemp - minTemp) * chartHeight;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    
+    // 图例
+    ctx.fillStyle = '#0ea5e9';
+    ctx.fillRect(canvas.width - padding.right + 10, padding.top, 20, 3);
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('天津', canvas.width - padding.right + 35, padding.top + 5);
+    
+    ctx.fillStyle = '#10b981';
+    ctx.fillRect(canvas.width - padding.right + 10, padding.top + 25, 20, 3);
+    ctx.fillStyle = '#0e7490';
+    ctx.fillText('新加坡', canvas.width - padding.right + 35, padding.top + 30);
+    
+    // 标题
+    ctx.fillStyle = '#0f766e';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('天津 vs 新加坡 气温对比', canvas.width / 2, 30);
+    
+    // 波动范围标注
+    ctx.fillStyle = '#0ea5e9';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('波动: 11-21°C (差10°C)', canvas.width - padding.right + 10, padding.top + 60);
+    
+    ctx.fillStyle = '#10b981';
+    ctx.fillText('波动: 25-28°C (差3°C)', canvas.width - padding.right + 10, padding.top + 80);
+}
+
+// 2. 成绩稳定性Canvas
+function drawScoreStable() {
+    const canvas = document.getElementById('scoreStable');
+    const ctx = canvas.getContext('2d');
+    
+    // 数据
+    const tests = ['第1次', '第2次', '第3次', '第4次', '第5次'];
+    const xiaoming = [7, 8, 9, 8, 8];
+    const xiaobing = [6, 9, 7, 10, 6];
+    const avgScore = 8;
+    
+    // 清空画布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制背景
+    ctx.fillStyle = '#f0fdf4';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 坐标系参数
+    const padding = { top: 50, right: 120, bottom: 60, left: 60 };
+    const chartWidth = canvas.width - padding.left - padding.right;
+    const chartHeight = canvas.height - padding.top - padding.bottom;
+    
+    // 绘制网格
+    ctx.strokeStyle = '#d1fae5';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+        const y = padding.top + (chartHeight / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(canvas.width - padding.right, y);
+        ctx.stroke();
+    }
+    
+    // 绘制坐标轴
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, padding.top);
+    ctx.lineTo(padding.left, canvas.height - padding.bottom);
+    ctx.lineTo(canvas.width - padding.right, canvas.height - padding.bottom);
+    ctx.stroke();
+    
+    // Y轴刻度（分数）
+    ctx.fillStyle = '#059669';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'right';
+    const minScore = 5, maxScore = 11;
+    for (let i = 0; i <= 6; i++) {
+        const score = minScore + i;
+        const y = canvas.height - padding.bottom - (score - minScore) / (maxScore - minScore) * chartHeight;
+        ctx.fillText(score + '分', padding.left - 10, y + 4);
+    }
+    
+    // X轴刻度（测试次数）
+    ctx.textAlign = 'center';
+    tests.forEach((test, i) => {
+        const x = padding.left + (chartWidth / (tests.length - 1)) * i;
+        ctx.fillText(test, x, canvas.height - padding.bottom + 25);
+    });
+    
+    // 绘制平均分线
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 5]);
+    const avgY = canvas.height - padding.bottom - (avgScore - minScore) / (maxScore - minScore) * chartHeight;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, avgY);
+    ctx.lineTo(canvas.width - padding.right, avgY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 标注平均分
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 14px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('平均: 8分', canvas.width - padding.right + 10, avgY + 4);
+    
+    // 绘制小明成绩折线
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    xiaoming.forEach((score, i) => {
+        const x = padding.left + (chartWidth / (tests.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (score - minScore) / (maxScore - minScore) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // 绘制小明数据点
+    ctx.fillStyle = '#0ea5e9';
+    xiaoming.forEach((score, i) => {
+        const x = padding.left + (chartWidth / (tests.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (score - minScore) / (maxScore - minScore) * chartHeight;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    
+    // 绘制小兵成绩折线
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    xiaobing.forEach((score, i) => {
+        const x = padding.left + (chartWidth / (tests.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (score - minScore) / (maxScore - minScore) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // 绘制小兵数据点
+    ctx.fillStyle = '#dc2626';
+    xiaobing.forEach((score, i) => {
+        const x = padding.left + (chartWidth / (tests.length - 1)) * i;
+        const y = canvas.height - padding.bottom - (score - minScore) / (maxScore - minScore) * chartHeight;
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    
+    // 图例
+    ctx.fillStyle = '#0ea5e9';
+    ctx.fillRect(canvas.width - padding.right + 10, padding.top, 20, 3);
+    ctx.fillStyle = '#059669';
+    ctx.font = 'bold 13px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('小明 (方差=0.4)', canvas.width - padding.right + 35, padding.top + 5);
+    
+    ctx.fillStyle = '#dc2626';
+    ctx.fillRect(canvas.width - padding.right + 10, padding.top + 25, 20, 3);
+    ctx.fillStyle = '#059669';
+    ctx.fillText('小兵 (方差=2.8)', canvas.width - padding.right + 35, padding.top + 30);
+    
+    // 标题
+    ctx.fillStyle = '#0f766e';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('成绩稳定性对比', canvas.width / 2, 30);
+}
+
+// 3. 方差计算Canvas
+let varianceAnimationStep = 0;
+let varianceAnimationId = null;
+
+function drawVarianceCalc() {
+    const canvas = document.getElementById('varianceCalc');
+    const ctx = canvas.getContext('2d');
+    
+    // 数据
+    const data = [7, 8, 9, 8, 8];
+    const avg = 8;
+    const deviations = [-1, 0, 1, 0, 0];
+    const squared = [1, 0, 1, 0, 0];
+    
+    // 清空画布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制背景
+    ctx.fillStyle = '#fffbeb';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制步骤说明
+    ctx.fillStyle = '#92400e';
+    ctx.font = 'bold 16px Arial';
+    ctx.textAlign = 'left';
+    
+    const stepY = [40, 120, 200, 280, 360];
+    
+    // 步骤1：原始数据
+    ctx.fillStyle = '#0e7490';
+    ctx.fillText('步骤1：原始数据', 20, stepY[0]);
+    ctx.fillStyle = '#1a3a4a';
+    ctx.font = '14px Arial';
+    data.forEach((val, i) => {
+        const x = 200 + i * 100;
+        ctx.fillStyle = '#0ea5e9';
+        ctx.fillRect(x - 25, stepY[0] + 10, 50, 30);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x, stepY[0] + 30);
+    });
+    
+    // 步骤2：计算偏差
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 16px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('步骤2：偏差 (x - x̄)', 20, stepY[1]);
+    ctx.font = '14px Arial';
+    deviations.forEach((val, i) => {
+        const x = 200 + i * 100;
+        ctx.fillStyle = val < 0 ? '#dc2626' : (val > 0 ? '#059669' : '#6b7280');
+        ctx.fillRect(x - 25, stepY[1] + 10, 50, 30);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(val >= 0 ? '+' + val : val, x, stepY[1] + 30);
+    });
+    
+    // 步骤3：偏差平方
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 16px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('步骤3：偏差平方', 20, stepY[2]);
+    ctx.font = '14px Arial';
+    squared.forEach((val, i) => {
+        const x = 200 + i * 100;
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillRect(x - 25, stepY[2] + 10, 50, 30);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x, stepY[2] + 30);
+    });
+    
+    // 步骤4：求和
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 16px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('步骤4：求和', 20, stepY[3]);
+    const sum = squared.reduce((a, b) => a + b, 0);
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 20px Arial';
+    ctx.fillText('离差平方和 = 1 + 0 + 1 + 0 + 0 = ' + sum, 200, stepY[3] + 20);
+    
+    // 步骤5：计算方差
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 16px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('步骤5：求平均', 20, stepY[4]);
+    const variance = sum / data.length;
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold 20px Arial';
+    ctx.fillText('方差 s² = ' + sum + ' ÷ 5 = ' + variance, 200, stepY[4] + 20);
+}
+
+function animateVariance() {
+    drawVarianceCalc();
+}
+
+// 4. 极差vs方差Canvas
+function drawRangeVar() {
+    const canvas = document.getElementById('rangeVar');
+    const ctx = canvas.getContext('2d');
+    
+    // 清空画布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制背景
+    ctx.fillStyle = '#f0fdff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 示例数据
+    const data1 = [5, 5, 5, 5, 5, 5, 5, 5]; // 极差=0，方差=0
+    const data2 = [2, 3, 5, 6, 4, 7, 5, 8]; // 极差=6，方差=3.5
+    const data3 = [1, 9, 1, 9, 1, 9, 1, 9]; // 极差=8，方差=16
+    
+    const datasets = [
+        { data: data1, label: 'A组', color: '#0ea5e9', range: 0, variance: 0 },
+        { data: data2, label: 'B组', color: '#10b981', range: 6, variance: 3.5 },
+        { data: data3, label: 'C组', color: '#dc2626', range: 8, variance: 16 }
+    ];
+    
+    const boxWidth = 220;
+    const boxHeight = 300;
+    const startX = 50;
+    const startY = 60;
+    const gap = 30;
+    
+    datasets.forEach((dataset, idx) => {
+        const x = startX + idx * (boxWidth + gap);
+        const y = startY;
+        
+        // 绘制卡片背景
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = dataset.color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(x, y, boxWidth, boxHeight, 15);
+        ctx.fill();
+        ctx.stroke();
+        
+        // 标题
+        ctx.fillStyle = dataset.color;
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(dataset.label, x + boxWidth/2, y + 30);
+        
+        // 绘制数据点
+        const dataY = y + 60;
+        const dataStartX = x + 30;
+        const dotGap = (boxWidth - 60) / (dataset.data.length - 1);
+        
+        ctx.strokeStyle = dataset.color;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        dataset.data.forEach((val, i) => {
+            const dotX = dataStartX + i * dotGap;
+            const dotY = dataY + (10 - val) * 15;
+            if (i === 0) ctx.moveTo(dotX, dotY);
+            else ctx.lineTo(dotX, dotY);
+        });
+        ctx.stroke();
+        
+        ctx.fillStyle = dataset.color;
+        dataset.data.forEach((val, i) => {
+            const dotX = dataStartX + i * dotGap;
+            const dotY = dataY + (10 - val) * 15;
+            ctx.beginPath();
+            ctx.arc(dotX, dotY, 4, 0, Math.PI * 2);
+            ctx.fill();
+        });
+        
+        // 统计量
+        ctx.fillStyle = '#1a3a4a';
+        ctx.font = 'bold 14px Arial';
+        ctx.textAlign = 'left';
+        ctx.fillText('极差: ' + dataset.range, x + 20, y + 200);
+        ctx.fillText('方差: ' + dataset.variance, x + 20, y + 225);
+        
+        // 说明
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '12px Arial';
+        if (idx === 0) {
+            ctx.fillText('数据完全相同', x + 20, y + 255);
+            ctx.fillText('极差和方差都为0', x + 20, y + 275);
+        } else if (idx === 1) {
+            ctx.fillText('数据中等波动', x + 20, y + 255);
+            ctx.fillText('方差适中', x + 20, y + 275);
+        } else {
+            ctx.fillText('数据极端波动', x + 20, y + 255);
+            ctx.fillText('方差最大', x + 20, y + 275);
+        }
+    });
+    
+    // 标题
+    ctx.fillStyle = '#0f766e';
+    ctx.font = 'bold 20px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('极差 vs 方差：不同度量方式的对比', canvas.width / 2, 30);
+}
+
+// 方差计算器
+function calculateVariance() {
+    const input = document.getElementById('dataInput').value;
+    const data = input.split(/[,\s]+/).map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    
+    if (data.length === 0) {
+        alert('请输入有效数据！');
+        return;
+    }
+    
+    // 计算平均数
+    const mean = data.reduce((a, b) => a + b, 0) / data.length;
+    
+    // 计算极差
+    const range = Math.max(...data) - Math.min(...data);
+    
+    // 计算方差
+    const variance = data.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / data.length;
+    
+    // 计算标准差
+    const std = Math.sqrt(variance);
+    
+    // 显示结果
+    document.getElementById('resultMean').textContent = mean.toFixed(4);
+    document.getElementById('resultRange').textContent = range.toFixed(4);
+    document.getElementById('resultVariance').textContent = variance.toFixed(4);
+    document.getElementById('resultStd').textContent = std.toFixed(4);
+    
+    // 显示计算过程
+    let process = '<strong>数据：</strong>' + data.join(', ') + '<br>';
+    process += '<strong>平均数：</strong>x̄ = (' + data.join(' + ') + ') ÷ ' + data.length + ' = ' + mean.toFixed(4) + '<br>';
+    process += '<strong>偏差：</strong>' + data.map(x => (x - mean).toFixed(2)).join(', ') + '<br>';
+    process += '<strong>偏差平方：</strong>' + data.map(x => Math.pow(x - mean, 2).toFixed(4)).join(', ') + '<br>';
+    process += '<strong>方差：</strong>s² = (' + data.map(x => Math.pow(x - mean, 2).toFixed(4)).join(' + ') + ') ÷ ' + data.length + ' = ' + variance.toFixed(4);
+    
+    document.getElementById('calcProcess').innerHTML = process;
+    document.getElementById('resultDisplay').style.display = 'block';
+}
+
+// 滑块调节
+function updateSliderData() {
+    const slider = document.getElementById('dataSlider');
+    const value = parseFloat(slider.value);
+    document.getElementById('sliderValue').textContent = value;
+    
+    // 更新数据
+    const data = [7, 8, value, 8, 8];
+    
+    // 计算平均数
+    const mean = data.reduce((a, b) => a + b, 0) / data.length;
+    
+    // 计算方差
+    const variance = data.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / data.length;
+    
+    // 显示结果
+    document.getElementById('sliderMean').textContent = mean.toFixed(2);
+    document.getElementById('sliderVariance').textContent = variance.toFixed(4);
+    
+    // 绘制实时图表
+    drawSliderChart(data, mean);
+}
+
+function drawSliderChart(data, mean) {
+    const canvas = document.getElementById('sliderCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // 背景
+    ctx.fillStyle = '#f0fdf4';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 坐标系参数
+    const padding = { top: 30, right: 40, bottom: 40, left: 50 };
+    const chartWidth = canvas.width - padding.left - padding.right;
+    const chartHeight = canvas.height - padding.top - padding.bottom;
+    
+    // 绘制平均线
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([8, 4]);
+    const avgY = padding.top + chartHeight - (mean - 5) / 10 * chartHeight;
+    ctx.beginPath();
+    ctx.moveTo(padding.left, avgY);
+    ctx.lineTo(canvas.width - padding.right, avgY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 绘制数据点和连线
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    data.forEach((val, i) => {
+        const x = padding.left + (chartWidth / (data.length - 1)) * i;
+        const y = padding.top + chartHeight - (val - 5) / 10 * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    ctx.fillStyle = '#0ea5e9';
+    data.forEach((val, i) => {
+        const x = padding.left + (chartWidth / (data.length - 1)) * i;
+        const y = padding.top + chartHeight - (val - 5) / 10 * chartHeight;
+        ctx.beginPath();
+        ctx.arc(x, y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // 标注数值
+        ctx.fillStyle = '#0e7490';
+        ctx.font = 'bold 12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x, y - 10);
+        ctx.fillStyle = '#0ea5e9';
+    });
+    
+    // Y轴刻度
+    ctx.fillStyle = '#0e7490';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'right';
+    for (let i = 5; i <= 15; i += 2) {
+        const y = padding.top + chartHeight - (i - 5) / 10 * chartHeight;
+        ctx.fillText(i, padding.left - 10, y + 4);
+    }
+    
+    // X轴标签
+    ctx.textAlign = 'center';
+    for (let i = 0; i < 5; i++) {
+        const x = padding.left + (chartWidth / 4) * i;
+        ctx.fillText('第' + (i+1) + '次', x, canvas.height - 10);
+    }
+}
+
+// 页面加载时初始化
+window.onload = function() {
+    drawTempVariance();
+    drawScoreStable();
+    drawVarianceCalc();
+    drawRangeVar();
+    drawSliderChart([7, 8, 9, 8, 8], 8);
+};
+</script>
+
+</body>
+</html>

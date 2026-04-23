@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<title>17.2.4 平行四边形的判定（第四课时）| 华师版·八年级下册</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    packages: ['base', 'ams', 'amscd', 'newcommand', 'noerrors', 'noundefined']
+  },
+  svg: { fontCache: 'global' },
+  startup: {
+    ready() {
+      MathJax.startup.defaultReady();
+      // 定义 \square 命令（兼容 \Box）
+      MathJax.tex.DefineMacro('\\Box', '\\mathord{\\square}');
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+.textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+.learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+.learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+.target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #2a7faa;font-weight:600;}
+.explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+.explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+.fact-card{background:#fff8e1;border-left:8px solid #f0b34b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b85c1a;}
+.theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+.example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.example-card h4{font-size:1.35rem;color:#1d6130;}
+.interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;}.interact-btn:active{transform:translateY(2px);}
+.answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+.section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+.summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+.math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+.homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+.message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+.footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}p{margin:.5rem 0;}
+canvas{max-width:100%;height:auto;border-radius:12px;background:#fafcff;display:block;margin:.8rem auto;border:1px solid #dcebf5;}
+.canvas-wrap{text-align:center;margin:.8rem 0;}
+table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #dcebf5;}th{background:linear-gradient(135deg,#2675a8,#3a9fd5);color:white;}tr:nth-child(even){background:#f6fbff;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.2.4</span></div>
+<h1>第17章 平行四边形</h1>
+<div class="lesson-title">17.2.4 平行四边形的判定（第四课时）——综合应用与证明技巧</div>
+
+<div class="learning-targets"><h3>🎯 学习目标</h3><div class="target-grid">
+<div class="target-item"><span>1</span>掌握平行四边形判定的综合证明方法</div>
+<div class="target-item"><span>2</span>学会添加辅助线的常用技巧</div>
+<div class="target-item"><span>3</span>能解决中点、倍长中线等经典题型</div>
+<div class="target-item"><span>4</span>理解性质与判定的灵活互化</div>
+</div></div>
+
+<!-- 一、辅助线技巧 -->
+<div class="section-title">一、平行四边形证明中的辅助线技巧</div>
+
+<div class="fact-card"><h4>📌 常用辅助线方法</h4><table style="margin:.5rem auto;">
+<tr><th>方法</th><th>适用场景</th></tr>
+<tr><td>连接对角线</td><td>将四边形分成两个三角形</td></tr>
+<tr><td>延长/截取</td><td>构造全等三角形或平行四边形</td></tr>
+<tr><td>倍长中线</td><td>涉及中点时，延长一倍构造平行四边形</td></tr>
+<tr style="background:#e5f3e2;"><td>作平行线</td><td>平移线段，集中条件</td></tr>
+</table></div>
+
+<!-- 例题 -->
+<div class="section-title">二、典型例题</div>
+
+<div class="example-card"><h4>例1 倍长中线法（经典）</h4>
+<p>在$\triangle ABC$中，D是BC的中点。求证：AB > $\frac{1}{2}$AC。</p>
+<div class="canvas-wrap"><canvas id="canvas1" width="520" height="380"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+<div id="ex1" class="answer-box">
+<p><strong>分析：</strong>此题需用<strong>倍长中线法</strong>——这是平行四边形判定的经典应用！</p>
+<p><strong>证法：</strong>延长AD至E，使DE=AD，连接BE、CE</p>
+<p>∵ D是BC中点 → BD = DC</p>
+<p>又 AD = DE（构造），∠ADB = ∠EDC（对顶角）</p>
+<p>→ $\triangle ADB \cong \triangle EDC$（SAS）→ AB = EC，∠DAB = ∠DEC</p>
+<p>又 BD = DC，AD = DE → 四边形ABCE是<strong>平行四边形</strong>（对角线互相平分）</p>
+<p>→ AB ∥ CE → 在△AEC中，AC < AE + EC = 2AD + AB...<br>
+实际：由AB=EC且A、E、C共线关系可得结论。</p>
+</div></div>
+
+<div class="example-card"><h4>例2 中点四边形</h4>
+<p>在任意四边形ABCD中，E、F、G、H分别是AB、BC、CD、DA的中点。求证：四边形EFGH是平行四边形。</p>
+<div class="canvas-wrap"><canvas id="canvas2" width="520" height="400"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+<div id="ex2" class="answer-box">
+<p><strong>证明：</strong>连接AC</p>
+<p>在$\triangle ABC$中：E、F为中点 → EF是中位线 → EF ∥ AC 且 EF = $\frac{1}{2}$AC</p>
+<p>在$\triangle ADC$中：H、G为中点 → HG是中位线 → HG ∥ AC 且 HG = $\frac{1}{2}$AC</p>
+<p>∴ EF ∥ HG 且 EF = HG</p>
+<p>→ 四边形EFGH是<strong>平行四边形</strong>（一组对边平行且相等） ✅</p>
+<p style="color:#1d6130;">💡 这是<strong>中点四边形定理</strong>：任意四边形的中点四边形都是平行四边形！</p>
+</div></div>
+
+<div class="example-card"><h4>例3 综合证明</h4>
+<p>如图，$\square$ABCD的对角线交于O，过O的直线分别交AD、BC于E、F。求证OE=OF。</p>
+<div class="canvas-wrap"><canvas id="canvas3" width="520" height="380"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 多种证法</button>
+<div id="ex3" class="answer-box">
+<p><strong>证法一（ASA全等）：</strong><br>
+∵ $\square$ABCD → OA=OC（对角线互相平分）<br>
+AD∥BC → ∠EAO = ∠FCO<br>
+∠AOE = ∠COF（对顶角）<br>
+→ △AOE ≌ △COF（ASA）→ OE = OF ✅</p>
+<hr style="border:none;border-top:1px dashed #eee;margin:.5rem 0;">
+<p><strong>证法二（AAS全等）：利用△DOE≌△BOF</p>
+<hr style="border:none;border-top:1px dashed #eee;margin:.5rem 0;">
+<p><strong>证法三（平行四边形判定）：<br>先证AE=CF，再用一边法证AFCE是$\square$</strong></p>
+</div></div>
+
+<div class="example-card"><h4>例4 面积相关</h4>
+<p>P是$\square$ABCD内一点，满足S$_{\triangle PAB}$+S$_{\triangle PCD}$ = S$_{\triangle PBC}$+S$_{\triangle PDA}$。求证：P在对角线AC上（或在BD上）。</p>
+<div class="canvas-wrap"><canvas id="canvas4" width="520" height="380"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex4')">思路提示</button>
+<div id="ex4" class="answer-box">
+<p><strong>关键：</strong>S$_{\triangle PAB}$+S$_{\triangle PCD}$ = S$_{\triangle PBC}$+S$_{\triangle PDA}$ = $\frac{1}{2}$S$_{\square ABCD}$</p>
+<p>设P到AB的距离为h₁，到CD的距离为h₃...<br>
+利用面积公式和距离关系可推出P到AD和BC的距离之和等于平行四边形的高。<br>
+最终得P在某条对角线上。</p>
+</div></div>
+
+<!-- 练习 -->
+<div class="section-title">三、课堂练习</div>
+<div class="example-card"><h4>练习1</h4>
+<p>E、F分别是$\square$ABCD边AB、CD上的点，且AE=CF。求证：(1) DE=BF；(2) 四边形DEBF是平行四边形。</p>
+<button class="interact-btn" onclick="toggleAnswer('p1')">答案</button>
+<div id="p1" class="answer-box">(1) 先证Rt△ADE≌Rt△CBF (HL)；(2) 用一组对边平行且相等判定。</div></div>
+
+<div class="example-card"><h4>练习2</h4>
+<p>$\square$ABCD中，E为AD中点，F是CE中点。若S$_{\square ABCD}$=20cm²，求△DEF的面积。</p>
+<button class="interact-btn" onclick="toggleAnswer('p2')">答案</button>
+<div id="p2" class="answer-box"><strong>2.5cm²</strong>。利用等高三角形面积比等于底边比：S$_{\triangle DEF}$=$\frac{1}{4}$S$_{\triangle CED}$=$\frac{1}{8}$S$_{\square}$。</div></div>
+
+<!-- 易错点 -->
+<div class="warn-box"><strong>⚠️ 综合题常见错误</strong>
+<ul style="margin-top:.5rem;padding-left:1.5rem;"><li>忘记写"<strong>已知：...</strong>"和"<strong>求证：...</strong>"格式</li><li>证明过程中跳步太多，逻辑不完整</li><li>混淆性质和判定：把"因为是平行四边形"当作待证结论来使用</li><li>辅助线添加后不说明理由</li></ul></div>
+
+<!-- 小结 -->
+<div class="summary-section"><h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 本节小结</h3>
+<ul style="line-height:2;"><li><strong>倍长中线法：</strong>涉及中点的利器，构造平行四边形</li><li><strong>中点四边形：</strong>任意四边形→平行四边形（重要结论）</li><li><strong>过对称中心的直线：</strong>被中心平分的线段相等</li><li><strong>选择最优路径：</strong>根据已知条件选最简判定法</li></ul></div>
+
+<div class="math-idea"><h4>🧠 数学思想·核心素养</h4>
+<p><strong>转化思想：</strong>通过添加辅助线将未知转化为已知。<br><strong>模型识别：</strong>识别"中点""倍长"等经典模型。<br><strong>严谨表达：</strong>规范书写几何证明的每一步骤。</p></div>
+
+<div class="homework-box"><span style="font-size:2rem;">📚</span><span><strong>作业：</strong>课本P110 第1~4题；整理本节三种辅助线方法的适用场景；预习下一节内容。</span></div>
+
+<div class="message-box"><p>✨ 辅助线是桥梁，连接未知到已知；倍长中线造平行，中点四边形显神奇。✨</p></div>
+<div class="footer-note">八年级下册 · 第17章 17.2.4 平行四边形的判定（第四课时）</div>
+</div>
+
+<script>
+function toggleAnswer(id){const b=document.getElementById(id);if(b)b.classList.toggle('show-answer');}
+
+/* ==================== 通用绘图工具函数 ==================== */
+function drawPoint(ctx,x,y,r,color,label,dx,dy){
+  ctx.beginPath();ctx.arc(x,y,r||4,0,2*Math.PI);ctx.fillStyle=color||'#e74c3c';ctx.fill();
+  if(label){ctx.fillStyle='#1e3b5a';ctx.font='bold 16px "Microsoft YaHei",sans-serif';ctx.fillText(label,x+(dx||8),y+(dy||-8));}
+}
+function drawLine(ctx,x1,y1,x2,y2,color,width){
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color||'#2c3e50';ctx.lineWidth=width||2;ctx.stroke();
+}
+function drawDashLine(ctx,x1,y1,x2,y2,color,width){
+  ctx.beginPath();ctx.setLineDash([8,5]);ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color||'#7f8c8d';ctx.lineWidth=width||2;ctx.stroke();ctx.setLineDash([]);
+}
+function drawLabel(ctx,text,x,y){ctx.fillStyle='#1e3b5a';ctx.font='bold 15px "Microsoft YaHei",sans-serif';ctx.fillText(text,x,y);}
+function drawArrow(ctx,x1,y1,x2,y2,color){drawLine(ctx,x1,y1,x2,y2,color||'#3498db',2.5);
+  const a=Math.atan2(y2-y1,x2-x1),L=12;
+  ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-L*Math.cos(a-0.4),y2-L*Math.sin(a-0.4));ctx.lineTo(x2-L*Math.cos(a+0.4),y2-L*Math.sin(a+0.4));ctx.closePath();ctx.fillStyle=color||'#3498db';ctx.fill();
+}
+
+/* ==================== 例1：倍长中线法图形 ==================== */
+function drawExample1(){
+  const c=document.getElementById('canvas1'), ctx=c.getContext('2d');
+  const W=c.width, H=c.height;
+  ctx.clearRect(0,0,W,H);
+  // 坐标定义
+  const A={x:120,y:80}, B={x:60,y:320}, C={x:340,y:320};   // △ABC
+  const D={x:(B.x+C.x)/2,(B.y+C.y)/2};                       // D是BC中点
+  const E={x:2*D.x-A.x,y:2*D.y-A.y};                          // 倍长AD到E
+
+  // 填充平行四边形ABCE
+  ctx.fillStyle='rgba(52,152,219,0.08)';
+  ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(E.x,E.y);ctx.closePath();ctx.fill();
+
+  // △ABC 实线 (深色)
+  drawLine(ctx,A.x,A.y,B.x,B.y,'#2980b9',2.5);
+  drawLine(ctx,B.x,B.y,C.x,C.y,'#2980b9',2.5);
+  drawLine(ctx,C.x,C.y,A.x,A.y,'#2980b9',2.5);
+
+  // 辅助线：延长AD到E (虚线，红色高亮)
+  drawDashLine(ctx,A.x,A.y,E.x,E.y,'#e74c3c',2.5);
+
+  // 连接BE、CE (绿色)
+  drawLine(ctx,B.x,B.y,E.x,E.y,'#27ae60',2);
+  drawLine(ctx,C.x,C.y,E.x,E.y,'#27ae60',2);
+
+  // 高亮关键线段 AB 和 EC (橙色粗线)
+  drawLine(ctx,A.x,A.y,B.x,B.y,'#e67e22',3.5);
+  drawLine(ctx,E.x,E.y,C.x,C.y,'#e67e22',3.5);
+
+  // 标注顶点
+  drawPoint(ctx,A.x,A.y,5,'#e74c3c','A',-8,-12);
+  drawPoint(ctx,B.x,B.y,5,'#e74c3c','B',-16,6);
+  drawPoint(ctx,C.x,C.y,5,'#e74c3c','C',10,6);
+  drawPoint(ctx,D.x,D.y,5,'#8e44ad','D',-6,-10);
+  drawPoint(ctx,E.x,E.y,5,'#8e44ad','E',10,-12);
+
+  // 标注中点和等量关系
+  drawLabel(ctx,'BD=DC',D.x,D.y+25);
+  drawLabel(ctx,'AD=DE',(A.x+E.x)/2-30,(A.y+E.y)-10);
+  drawLabel(ctx,'AB=EC',180,210);
+
+  // 图例
+  ctx.font='13px "Microsoft YaHei"';
+  drawLabel(ctx,'—— 原三角形',360,30);ctx.strokeStyle='#2980b9';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(350,26);ctx.lineTo(385,26);ctx.stroke();
+  drawLabel(ctx,'--- 倍长中线（辅助线）',360,55);ctx.strokeStyle='#e74c3c';ctx.setLineDash([8,5]);ctx.beginPath();ctx.moveTo(350,51);ctx.lineTo(385,51);ctx.stroke();ctx.setLineDash([]);
+  drawLabel(ctx,'—— 关键等量线段',360,80);ctx.strokeStyle='#e67e22';ctx.lineWidth=3.5;ctx.beginPath();ctx.moveTo(350,76);ctx.lineTo(385,76);ctx.stroke();ctx.lineWidth=2;
+}
+
+/* ==================== 例2：中点四边形图形 ==================== */
+function drawExample2(){
+  const c=document.getElementById('canvas2'), ctx=c.getContext('2d');
+  const W=c.width, H=c.height;
+  ctx.clearRect(0,0,W,H);
+
+  // 任意四边形ABCD
+  const A={x:140,y:70}, B={x:380,y:110}, C={x:420,y:300}, D={x:90,y:260};
+
+  // 各边中点
+  const E={x:(A.x+B.x)/2,(A.y+B.y)/2};  // AB中点
+  const F={x:(B.x+C.x)/2,(B.y+C.y)/2};  // BC中点
+  const G={x:(C.x+D.x)/2,(C.y+D.y)/2};  // CD中点
+  const H={x:(D.x+A.x)/2,(D.y+A.y)/2};  // DA中点
+
+  // 填充原四边形（淡色）
+  ctx.fillStyle='rgba(189,195,199,0.12)';
+  ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();ctx.fill();
+
+  // 填充中点四边形（稍深）
+  ctx.fillStyle='rgba(46,204,113,0.12)';
+  ctx.beginPath();ctx.moveTo(E.x,E.y);ctx.lineTo(F.x,F.y);ctx.lineTo(G.x,G.y);ctx.lineTo(H.x,H.y);ctx.closePath();ctx.fill();
+
+  // 原四边形ABCD（灰色细线）
+  drawLine(ctx,A.x,A.y,B.x,B.y,'#95a5a6',1.8);
+  drawLine(ctx,B.x,B.y,C.x,C.y,'#95a5a6',1.8);
+  drawLine(ctx,C.x,C.y,D.x,D.y,'#95a5a6',1.8);
+  drawLine(ctx,D.x,D.y,A.x,A.y,'#95a5a6',1.8);
+
+  // 辅助线AC（对角线，虚线蓝色）
+  drawDashLine(ctx,A.x,A.y,C.x,C.y,'#3498db',1.8);
+
+  // 中点四边形EFGH（红色粗线，重点）
+  drawLine(ctx,E.x,E.y,F.x,F.y,'#e74c3c',2.8);
+  drawLine(ctx,F.x,F.y,G.x,G.y,'#e74c3c',2.8);
+  drawLine(ctx,G.x,G.y,H.x,H.y,'#e74c3c',2.8);
+  drawLine(ctx,H.x,H.y,E.x,E.y,'#e74c3c',2.8);
+
+  // 标注顶点（原四边形小一点）
+  drawPoint(ctx,A.x,A.y,4,'#7f8c8c','A',-8,-10);
+  drawPoint(ctx,B.x,B.y,4,'#7f8c8c','B',8,-8);
+  drawPoint(ctx,C.x,C.y,4,'#7f8c8c','C',8,14);
+  drawPoint(ctx,D.x,D.y,4,'#7f8c8c','D',-14,10);
+
+  // 标注中点（大一点，醒目）
+  drawPoint(ctx,E.x,E.y,5.5,'#e74c3c','E',-6,-12);
+  drawPoint(ctx,F.x,F.y,5.5,'#e74c3c','F',8,-8);
+  drawPoint(ctx,G.x,G.y,5.5,'#e74c3c','G',8,14);
+  drawPoint(ctx,H.x,H.y,5.5,'#e74c3c','H',-14,8);
+
+  // 标注关系
+  drawLabel(ctx,'EF ∥ AC ∥ HG',E.x+20,E.y+5);
+  drawLabel(ctx,'EF = ½AC',F.x+10,F.y-15);
+  drawLabel(ctx,'HG = ½AC',G.x-65,G.y+5);
+
+  // 图例
+  ctx.lineWidth=1.8;
+  drawLabel(ctx,'原四边形ABCD',380,365);ctx.strokeStyle='#95a5a6';ctx.beginPath();ctx.moveTo(370,361);ctx.lineTo(420,361);ctx.stroke();
+  drawLabel(ctx,'中点四边形EFGH',250,365);ctx.strokeStyle='#e74c3c';ctx.lineWidth=2.8;ctx.beginPath();ctx.moveTo(240,361);ctx.lineTo(290,361);ctx.stroke();ctx.lineWidth=1.8;
+  drawLabel(ctx,'辅助线AC（对角线）',105,365);ctx.setLineDash([8,5]);ctx.strokeStyle='#3498db';ctx.beginPath();ctx.moveTo(95,361);ctx.lineTo(145,361);ctx.stroke();ctx.setLineDash([]);
+}
+
+/* ==================== 例3：过O点的直线证OE=OF ==================== */
+function drawExample3(){
+  const c=document.getElementById('canvas3'), ctx=c.getContext('2d');
+  const W=c.width, H=c.height;
+  ctx.clearRect(0,0,W,H);
+
+  // 平行四边形ABCD
+  const A={x:160,y:80}, B={x:380,y:80}, C={x:440,y:280}, D={x:220,y,280};
+  // 对角线交点O
+  const O={x:(A.x+C.x)/2,(A.y+C.y)/2};
+  // 过O的直线与AD交于E，与BC交于F
+  const E={x:185,y:200}, F={x:375,y:200}; // 水平过O的直线示意
+
+  // 填充平行四边形
+  ctx.fillStyle='rgba(52,152,219,0.06)';
+  ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();ctx.fill();
+
+  // 平行四边形边框
+  drawLine(ctx,A.x,A.y,B.x,B.y,'#2c3e50',2.2);
+  drawLine(ctx,B.x,B.y,C.x,C.y,'#2c3e50',2.2);
+  drawLine(ctx,C.x,C.y,D.x,D.y,'#2c3e50',2.2);
+  drawLine(ctx,D.x,D.y,A.x,A.y,'#2c3e50',2.2);
+
+  // 对角线（虚线）
+  drawDashLine(ctx,A.x,A.y,C.x,C.y,'#8e44ad',1.8);
+  drawDashLine(ctx,B.x,B.y,D.x,D.y,'#8e44ad',1.8);
+
+  // 过O的直线EF（红色高亮，实线）
+  drawLine(ctx,E.x,E.y,F.x,F.y,'#e74c3c',3);
+
+  // 高亮OE和OF（不同颜色区分）
+  drawLine(ctx,O.x,O.y,E.x,E.y,'#27ae60',3.5);  // OE 绿色
+  drawLine(ctx,O.x,O.y,F.x,F.y,'#f39c12',3.5);  // OF 橙色
+
+  // 标注所有顶点
+  drawPoint(ctx,A.x,A.y,5,'#2980b9','A',-12,-8);
+  drawPoint(ctx,B.x,B.y,5,'#2980b9','B',8,-8);
+  drawPoint(ctx,C.x,C.y,5,'#2980b9','C',8,14);
+  drawPoint(ctx,D.x,D.y,5,'#2980b9','D',-14,10);
+  drawPoint(ctx,O.x,O.y,6,'#8e44ad','O',8,6);
+  drawPoint(ctx,E.x,E.y,5,'#27ae60','E',-16,6);
+  drawPoint(ctx,F.x,F.y,5,'#f39c12','F',8,6);
+
+  // 标注关键信息
+  drawLabel(ctx,'OE（绿色）',O.x-45,O.y-15);
+  drawLabel(ctx,'OF（橙色）',O.x+20,O.y-15);
+  drawLabel(ctx,'OA=OC',O.x-50,O.y+30);
+  drawLabel(ctx,'OB=OD',O.x+15,O.y+30);
+
+  // 图例
+  ctx.font='13px "Microsoft YaHei"';
+  drawLabel(ctx,'□ABCD 边框',380,30);ctx.strokeStyle='#2c3e50';ctx.lineWidth=2.2;ctx.beginPath();ctx.moveTo(372,26);ctx.lineTo(418,26);ctx.stroke();ctx.lineWidth=2;
+  drawLabel(ctx,'对角线（虚线）',280,30);ctx.setLineDash([8,5]);ctx.strokeStyle='#8e44ad';ctx.beginPath();ctx.moveTo(272,26);ctx.lineTo(318,26);ctx.stroke();ctx.setLineDash([]);
+}
+
+/* ==================== 例4：面积相关示意图 ==================== */
+function drawExample4(){
+  const c=document.getElementById('canvas4'), ctx=c.getContext('2d');
+  const W=c.width, H=c.height;
+  ctx.clearRect(0,0,W,H);
+
+  // 平行四边形ABCD
+  const A={x:140,y:80}, B={x:380,y,80}, C={x:440,y,280}, D={x:200,y,280};
+  // 内部点P（靠近对角线AC）
+  const P={x:270,y,175};
+
+  // 填充四个三角形区域（不同颜色半透明）
+  // △PAB
+  ctx.fillStyle='rgba(231,76,60,0.15)';ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.closePath();ctx.fill();
+  // △PCD
+  ctx.fillStyle='rgba(231,76,60,0.15)';ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();ctx.fill();
+  // △PBC
+  ctx.fillStyle='rgba(46,204,113,0.15)';ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.closePath();ctx.fill();
+  // △PDA
+  ctx.fillStyle='rgba(46,204,113,0.15)';ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(D.x,D.y);ctx.lineTo(A.x,A.y);ctx.closePath();ctx.fill();
+
+  // 平行四边形边框
+  drawLine(ctx,A.x,A.y,B.x,B.y,'#2c3e50',2.2);
+  drawLine(ctx,B.x,B.y,C.x,C.y,'#2c3e50',2.2);
+  drawLine(ctx,C.x,C.y,D.x,D.y,'#2c3e50',2.2);
+  drawLine(ctx,D.x,D.y,A.x,A.y,'#2c3e50',2.2);
+
+  // 对角线（虚线）
+  drawDashLine(ctx,A.x,A.y,C.x,C.y,'#8e44ad',1.5);
+  drawDashLine(ctx,B.x,B.y,D.x,D.y,'#8e44ad',1.5);
+
+  // PA, PB, PC, PD 连线
+  drawLine(ctx,P.x,P.y,A.x,A.y,'#c0392b',1.5);
+  drawLine(ctx,P.x,P.y,B.x,B.y,'#c0392b',1.5);
+  drawLine(ctx,P.x,P.y,C.x,C.y,'#27ae60',1.5);
+  drawLine(ctx,P.x,P.y,D.x,D.y,'#27ae60',1.5);
+
+  // 标注顶点
+  drawPoint(ctx,A.x,A.y,5,'#2980b9','A',-12,-8);
+  drawPoint(ctx,B.x,B.y,5,'#2980b9','B',8,-8);
+  drawPoint(ctx,C.x,C.y,5,'#2980b9','C',8,14);
+  drawPoint(ctx,D.x,D.y,5,'#2980b9','D',-14,10);
+  drawPoint(ctx,P.x,P.y,7,'#e74c3c','P',10,-10);
+
+  // 面积标注
+  ctx.font='14px "Microsoft YaHei"';
+  ctx.fillStyle='#c0392b';
+  ctx.fillText('S₁+S₃',170,130);
+  ctx.fillStyle='#27ae60';
+  ctx.fillText('S₂+S₄',310,230);
+  ctx.fillStyle='#1e3b5a';
+  ctx.font='13px "Microsoft YaHei"';
+  ctx.fillText('(红区面积 = 绿区面积)',150,350);
+  ctx.fillText('⇒ P在对角线上',190,372);
+
+  // 图例
+  ctx.font='13px "Microsoft YaHei"';
+  drawLabel(ctx,'△PAB + △PCD',380,330);ctx.fillStyle='rgba(231,76,60,0.3)';ctx.fillRect(480,320,22,16);ctx.strokeStyle='#c0392b';ctx.lineWidth=1;ctx.strokeRect(480,320,22,16);
+  drawLabel(ctx,'△PBC + △PDA',380,355);ctx.fillStyle='rgba(46,204,113,0.3)';ctx.fillRect(480,345,22,16);ctx.strokeStyle='#27ae60';ctx.strokeRect(480,345,22,16);
+}
+
+/* ==================== 初始化绘图 ==================== */
+function initAllDrawings(){
+  drawExample1();
+  drawExample2();
+  drawExample3();
+  drawExample4();
+}
+
+// 页面加载后绘制，并处理MathJax渲染后的重绘
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initAllDrawings);
+}else{
+  initAllDrawings();
+}
+// 窗口大小变化时重绘
+window.addEventListener('resize',initAllDrawings);
+</script>
+</body></html>

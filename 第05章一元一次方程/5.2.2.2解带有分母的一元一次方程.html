@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.2 解一元一次方程（第二课时） | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .think-box {
+            background: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #f4b84b;
+        }
+        .think-box h4 { font-size: 1.5rem; color: #8a6d3b; margin-bottom: 0.8rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 8px solid #30829b;
+        }
+        .summary-box h4 { font-size: 1.5rem; color: #0f5669; margin-bottom: 0.8rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.2.2 解一元一次方程</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 掌握解一元一次方程的基本步骤，能解带括号、带分母的方程，并能解决实际问题。</div>
+    <div class="lesson-title">5.2.2 解一元一次方程</div>
+    <div class="sub-title">第二课时 解带有分母的一元一次方程</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解去分母解一元一次方程的方法</div>
+            <div class="target-item"><span>✔</span>掌握去分母、去括号、移项、合并、系数化为1的完整步骤</div>
+            <div class="target-item"><span>✔</span>注意去分母时不能漏乘不含分母的项</div>
+        </div>
+    </div>
+
+    <!-- 例5（带分母的方程） -->
+    <div class="example-box">
+        <h4>例5 解方程：$\dfrac{x - 3}{2} - \dfrac{2x + 1}{3} = 1$</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex5')">📌 显示解答</button>
+        <div id="ex5" class="answer-box">
+            <p>解：</p>
+            \[
+            \begin{aligned}
+            \frac{x - 3}{2} - \frac{2x + 1}{3} &= 1 \\
+            \text{去分母（两边乘以6），得} & \\
+            3(x - 3) - 2(2x + 1) &= 6 \\
+            \text{去括号，得} & \\
+            3x - 9 - 4x - 2 &= 6 \\
+            \text{合并同类项，得} & \\
+            -x - 11 &= 6 \\
+            \text{移项，得} & \\
+            -x &= 6 + 11 \\
+            -x &= 17 \\
+            \text{系数化为1，得} & \\
+            x &= -17
+            \end{aligned}
+            \]
+            <p>注意：去分母时，常数项1也要乘以6，不能漏乘。</p>
+        </div>
+    </div>
+
+    <!-- 思考：解一元一次方程的步骤总结 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>回顾以上各例题的解答过程，总结一下：解一元一次方程通常有哪些步骤？各步骤进行的是怎样的变形？如何根据方程的特点灵活运用方程的变形规则？</p>
+        <button class="interact-btn" onclick="toggleAnswer('think')">💡 参考思路</button>
+        <div id="think" class="answer-box">
+            <p><strong>一般步骤：</strong></p>
+            <ol>
+                <li><strong>去分母</strong>（方程两边乘以各分母的最小公倍数，将分数系数化为整数系数）；</li>
+                <li><strong>去括号</strong>（运用分配律，注意括号前是负号时各项要变号）；</li>
+                <li><strong>移项</strong>（将含未知数的项移到方程一边，常数项移到另一边，移项要变号）；</li>
+                <li><strong>合并同类项</strong>（将方程化为 $ax = b$ 的形式）；</li>
+                <li><strong>系数化为1</strong>（两边除以未知数的系数，得到 $x = \frac{b}{a}$）。</li>
+            </ol>
+            <p>根据方程特点，可以灵活调整步骤顺序，例如没有分母的方程就不需要去分母，没有括号就不需要去括号。关键是始终依据方程的变形规则，保持解不变。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本第13页练习2） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <ol>
+            <li>解下列方程：
+                <br>(1) $\dfrac{5x - 1}{8} = \dfrac{7}{4}$
+                <br>(2) $\dfrac{4 - x}{3} = \dfrac{x - 3}{5} - 1$
+            </li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 参考答案</button>
+        <div id="prac2" class="answer-box">
+            <p>(1) $x = 3$；(2) $x = 7$。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📌 课堂小结</h4>
+        <div class="summary-item">去分母的依据是等式性质2，注意不要漏乘不含分母的项</div>
+        <div class="summary-item">解一元一次方程的步骤：去分母、去括号、移项、合并、系数化为1</div>
+        <div class="summary-item">根据方程特点可灵活调整步骤，但每一步变形必须保证解不变</div>
+        <div class="summary-item">检验解是否为原方程的解，养成良好习惯</div>
+    </div>
+
+    <!-- 读一读：古代分数运算 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 古代中国的分数运算</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》中已有系统的分数运算法则，包括约分、通分、分数加减乘除等。例如“合分术”就是分数加法，“减分术”是分数减法。古人处理分数问题的技巧为后来解带分母的方程奠定了基础。去分母的方法实际上就是利用等式的性质，两边同时乘以分母的最小公倍数，这与古代通分思想一脉相承。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 通过去分母将分数系数方程转化为整数系数方程。<br>
+        <strong>运算能力：</strong> 熟练进行分数运算和整式运算。<br>
+        <strong>严谨性：</strong> 去分母时注意不漏乘、括号前是负号时要变号。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.2.2 第2题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 去分母，化繁为简；每一步都要小心谨慎。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.2.2 第二课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

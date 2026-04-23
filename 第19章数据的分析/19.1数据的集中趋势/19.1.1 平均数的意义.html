@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>19.1.1 平均数的意义 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    bar: ["\\overline{#1}", 1]
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-bottom: 25px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .intro-card h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-card p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 20px;
+            margin: 20px 0 15px 0;
+        }
+
+        .example-card {
+            border-left: 5px solid #2675a8;
+        }
+
+        .example-title {
+            background: linear-gradient(135deg, #2675a8, #3a8b4f);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .problem {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f0b34b;
+        }
+
+        .solution {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #3a8b4f;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .canvas-caption {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .key-point {
+            background: #fff3cd;
+            border-left: 5px solid #f0ad4e;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .key-point::before {
+            content: "🔑 ";
+            font-weight: bold;
+        }
+
+        .practice-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .practice-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .control-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .data-table tr:hover {
+            background: #e9ecef;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #a8e6cf 0%, #88d8b0 100%);
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 10px 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #3a8b4f;
+        }
+
+        .think-bubble {
+            background: #e3f2fd;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            border-left: 4px solid #2196f3;
+        }
+
+        .think-bubble::before {
+            content: "💭 ";
+            font-size: 24px;
+        }
+
+        .interactive-panel {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            padding: 8px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .result-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: .8rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 19.1.1 平均数的意义</h1>
+
+        <!-- 情境导入 -->
+        <div class="card intro-card">
+            <h2>🌟 情境导入</h2>
+            <p>解决一些与不确定现象有关的问题，常常离不开收集和分析数据。数据是我们思考的基础。那么，有了一组数据以后，怎样表达和概括这组数据呢？能否找到某些指标作为这组数据的代表呢？</p>
+            <br>
+            <p>我们在小学阶段已经学过的<strong>平均数</strong>，就经常被用来作为一组数据的代表。</p>
+        </div>
+
+        <!-- 定义与公式 -->
+        <div class="card">
+            <h2>📖 平均数的定义</h2>
+            <p>一般地，对于$n$个数据$x_1, x_2, \cdots, x_n$，我们把</p>
+            <div class="formula-box">
+                $\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n} = \frac{1}{n}\sum_{i=1}^{n}x_i$
+            </div>
+            <p>叫做这$n$个数的<strong>算术平均数</strong>，简称<strong>平均数</strong>，记作$\bar{x}$（读作"x bar"）。</p>
+            
+            <div class="key-point">
+                <strong>平均数的意义：</strong>平均数反映了一组数据的集中趋势，是这组数据的"平均水平"的代表值。
+            </div>
+        </div>
+
+        <!-- 例题1 -->
+        <div class="card example-card">
+            <div class="example-title">例1：植树竞赛活动</div>
+            
+            <div class="problem">
+                <p><strong>问题：</strong>植树节到了，某单位组织职工开展植树竞赛活动，根据植树量统计了相应的职工人数，结果如图所示。</p>
+                <p>请根据图中信息计算：</p>
+                <p>(1) 总共有多少人参加了本次活动？</p>
+                <p>(2) 总共植树多少棵？</p>
+                <p>(3) 平均每人植树多少棵？</p>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="treeBar" width="600" height="350"></canvas>
+                <p class="canvas-caption">图1：参加活动者植树量统计图</p>
+            </div>
+
+            <div class="solution">
+                <p><strong>解：</strong></p>
+                <p>(1) 参加本次活动的总人数是：</p>
+                <p style="margin-left: 20px;">$4 + 11 + 8 + 7 + 5 = 35$（人）</p>
+                
+                <p>(2) 总共植树：</p>
+                <p style="margin-left: 20px;">$4 \times 4 + 5 \times 11 + 6 \times 8 + 7 \times 7 + 8 \times 5 = 16 + 55 + 48 + 49 + 40 = 208$（棵）</p>
+                
+                <p>(3) 平均每人植树：</p>
+                <p style="margin-left: 20px;">$\bar{x} = \frac{208}{35} \approx 5.94$（棵）</p>
+            </div>
+
+            <div class="think-bubble">
+                <p><strong>思考：</strong>植树总量、植树量的平均数和植树的人数这三者之间有数量关系吗？你能解释"平均每人植树约6棵"的含义吗？</p>
+            </div>
+        </div>
+
+        <!-- 例题2 -->
+        <div class="card example-card">
+            <div class="example-title">例2：八年级各班人数分布</div>
+            
+            <div class="problem">
+                <p><strong>问题：</strong>小文所在的八(3)班共有学生40人，图2是该校八年级各班学生人数占全校八年级学生总人数的分布情况。</p>
+                <p>(1) 请计算该校八年级平均每班学生人数；</p>
+                <p>(2) 请计算各班学生人数，并绘制条形统计图。</p>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="pieChart" width="500" height="400"></canvas>
+                <p class="canvas-caption">图2：某校八年级各班学生人数占全校八年级学生总人数的分布图</p>
+            </div>
+
+            <div class="solution">
+                <p><strong>解：</strong></p>
+                <p>该校八年级学生总人数为：</p>
+                <p style="margin-left: 20px;">$40 \div 20\% = 200$（人）</p>
+                
+                <p>所以平均每班学生人数为：</p>
+                <p style="margin-left: 20px;">$200 \div 5 = 40$（人）</p>
+                
+                <p>各班学生人数：</p>
+                <ul style="margin-left: 40px;">
+                    <li>八(1)班：$200 \times 20\% = 40$（人）</li>
+                    <li>八(2)班：$200 \times 22\% = 44$（人）</li>
+                    <li>八(3)班：$200 \times 24\% = 48$（人）</li>
+                    <li>八(4)班：$200 \times 16\% = 32$（人）</li>
+                    <li>八(5)班：$200 \times 18\% = 36$（人）</li>
+                </ul>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="barChart" width="650" height="400"></canvas>
+                <p class="canvas-caption">图3：某校八年级各班学生人数统计图</p>
+            </div>
+
+            <div class="think-bubble">
+                <p><strong>思考：</strong>如图3，在你所绘制的条形统计图中画出一条代表平均人数（40人）的水平线。图中代表各班人数的五个条形，有的高于这条水平线，有的低于这条水平线。想一想，水平线上方超出部分与下方不足部分在数量上有什么关系？</p>
+            </div>
+        </div>
+
+        <!-- 交互式计算器 -->
+        <div class="card">
+            <h2>🧮 平均数计算器</h2>
+            <div class="interactive-panel">
+                <p>请输入数据（用逗号分隔）：</p>
+                <input type="text" id="dataInput" placeholder="例如：85, 92, 78, 90, 88" style="width: 300px; padding: 10px; font-size: 16px; border: 2px solid #667eea; border-radius: 5px;">
+                <button class="btn" onclick="calculateMean()">计算平均数</button>
+                <div id="calcResult" class="result-display" style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- 平均数的性质 -->
+        <div class="card">
+            <h2>📚 平均数的性质</h2>
+            
+            <div class="key-point">
+                <strong>性质1：</strong>一组数据的平均数是这组数据的"平衡点"。比平均数大的数据的偏差之和等于比平均数小的数据的偏差之和（符号相反）。
+            </div>
+            
+            <p>即：$\sum_{i=1}^{n}(x_i - \bar{x}) = 0$</p>
+            
+            <div class="key-point">
+                <strong>性质2：</strong>平均数受极端值（特别大或特别小的数据）影响较大。
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="balanceDemo" width="600" height="250"></canvas>
+                <p class="canvas-caption">平均数的"平衡点"示意</p>
+            </div>
+        </div>
+
+        <!-- 练习 -->
+        <div class="card practice-card">
+            <h2>✏️ 课堂练习</h2>
+            
+            <div class="practice-item">
+                <p><strong>练习1：</strong>甲、乙两所学校号召学生向希望小学捐赠图书。已知甲校50名学生平均每人捐书5本，乙校学生比甲校少10人。如果要达到相同的捐书总量，那么乙校学生平均每人要捐书多少本？</p>
+                <div class="solution" id="practice1Answer" style="display: none;">
+                    <p><strong>解：</strong></p>
+                    <p>甲校捐书总量：$50 \times 5 = 250$（本）</p>
+                    <p>乙校学生人数：$50 - 10 = 40$（人）</p>
+                    <p>乙校平均每人捐书：$250 \div 40 = 6.25$（本）</p>
+                </div>
+                <button class="btn" onclick="toggleAnswer('practice1Answer')">显示答案</button>
+            </div>
+
+            <div class="practice-item">
+                <p><strong>练习2：</strong>某省统计数据显示，2023年下半年平均每月进出口总额为200亿元。如图所示，前5个月的进出口总额分别为180、195、210、185、200亿元，求第6个月的进出口总额。</p>
+                <div class="solution" id="practice2Answer" style="display: none;">
+                    <p><strong>解：</strong></p>
+                    <p>下半年进出口总额：$200 \times 6 = 1200$（亿元）</p>
+                    <p>前5个月总额：$180 + 195 + 210 + 185 + 200 = 970$（亿元）</p>
+                    <p>第6个月：$1200 - 970 = 230$（亿元）</p>
+                </div>
+                <button class="btn" onclick="toggleAnswer('practice2Answer')">显示答案</button>
+            </div>
+        </div>
+
+        <!-- 课堂小结 -->
+        <div class="card summary-card">
+            <h2>📝 课堂小结</h2>
+            <ul class="summary-list">
+                <li><strong>平均数的定义：</strong>$\bar{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}$</li>
+                <li><strong>平均数的意义：</strong>反映一组数据的集中趋势，代表"平均水平"</li>
+                <li><strong>平均数的特点：</strong>
+                    <ul>
+                        <li>利用了所有数据的信息</li>
+                        <li>受极端值影响较大</li>
+                        <li>是数据的"平衡点"</li>
+                    </ul>
+                </li>
+                <li><strong>三个量的关系：</strong>总量 = 平均数 × 个数</li>
+            </ul>
+
+            <div class="homework-box">
+                <span style="font-size:2rem;">📚</span>
+                <span><strong>作业：</strong>课本P108 练习19.1 第1~3题；收集班级同学的身高数据，计算平均身高；思考：平均数能否代表这组数据的一般水平？</span>
+            </div>
+
+            <div class="message-box">
+                <p>✨ 平均数，看整体，求和除数记心间；代表水平需谨慎，极端值影响要看穿！✨</p>
+            </div>
+            <div class="footer-note">八年级下册 · 第19章 19.1.1 平均数的意义</div>
+        </div>
+    </div>
+
+    <script>
+        // ========== 例1：植树量条形图 ==========
+        function drawTreeBar() {
+            const canvas = document.getElementById('treeBar');
+            const ctx = canvas.getContext('2d');
+            
+            // 数据
+            const data = [
+                {trees: 4, people: 4},
+                {trees: 5, people: 11},
+                {trees: 6, people: 8},
+                {trees: 7, people: 7},
+                {trees: 8, people: 5}
+            ];
+            
+            const padding = 60;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+            const barWidth = 60;
+            const gap = (chartWidth - barWidth * 5) / 6;
+            
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制坐标轴
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+            
+            // Y轴刻度
+            const maxY = 12;
+            ctx.fillStyle = '#666';
+            ctx.font = '14px Microsoft YaHei';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= maxY; i += 2) {
+                const y = canvas.height - padding - (i / maxY) * chartHeight;
+                ctx.fillText(i.toString(), padding - 10, y + 5);
+                
+                // 网格线
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+            }
+            
+            // Y轴标签
+            ctx.save();
+            ctx.translate(20, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#333';
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillText('人数', 0, 0);
+            ctx.restore();
+            
+            // 绘制条形
+            const colors = ['#e74c3c', '#f39c12', '#27ae60', '#3498db', '#9b59b6'];
+            
+            data.forEach((item, index) => {
+                const x = padding + gap + index * (barWidth + gap);
+                const barHeight = (item.people / maxY) * chartHeight;
+                const y = canvas.height - padding - barHeight;
+                
+                // 条形
+                ctx.fillStyle = colors[index];
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // 条形边框
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x, y, barWidth, barHeight);
+                
+                // 数值标注
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 16px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.fillText(item.people.toString(), x + barWidth / 2, y - 10);
+                
+                // X轴标签
+                ctx.font = '14px Microsoft YaHei';
+                ctx.fillText(item.trees + '棵', x + barWidth / 2, canvas.height - padding + 25);
+            });
+            
+            // X轴标题
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('植树量', canvas.width / 2, canvas.height - 15);
+            
+            // 图表标题
+            ctx.font = 'bold 18px Microsoft YaHei';
+            ctx.fillText('参加活动者植树量统计图', canvas.width / 2, 30);
+        }
+
+        // ========== 例2：扇形统计图 ==========
+        function drawPieChart() {
+            const canvas = document.getElementById('pieChart');
+            const ctx = canvas.getContext('2d');
+            
+            const data = [
+                {label: '八(1)班', percent: 20, color: '#e74c3c'},
+                {label: '八(2)班', percent: 22, color: '#f39c12'},
+                {label: '八(3)班', percent: 24, color: '#27ae60'},
+                {label: '八(4)班', percent: 16, color: '#3498db'},
+                {label: '八(5)班', percent: 18, color: '#9b59b6'}
+            ];
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2 - 20;
+            const radius = 140;
+            
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制扇形
+            let startAngle = -Math.PI / 2; // 从12点钟方向开始
+            
+            data.forEach(item => {
+                const sliceAngle = (item.percent / 100) * 2 * Math.PI;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+                ctx.closePath();
+                ctx.fillStyle = item.color;
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 百分比标注
+                const midAngle = startAngle + sliceAngle / 2;
+                const labelX = centerX + Math.cos(midAngle) * (radius * 0.65);
+                const labelY = centerY + Math.sin(midAngle) * (radius * 0.65);
+                
+                ctx.fillStyle = '#fff';
+                ctx.font = 'bold 16px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(item.percent + '%', labelX, labelY);
+                
+                startAngle += sliceAngle;
+            });
+            
+            // 图例
+            const legendY = canvas.height - 50;
+            const legendSpacing = 100;
+            const startX = (canvas.width - (data.length * legendSpacing)) / 2 + 40;
+            
+            data.forEach((item, index) => {
+                const x = startX + index * legendSpacing;
+                
+                // 图例色块
+                ctx.fillStyle = item.color;
+                ctx.fillRect(x, legendY, 20, 20);
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(x, legendY, 20, 20);
+                
+                // 图例文字
+                ctx.fillStyle = '#333';
+                ctx.font = '14px Microsoft YaHei';
+                ctx.textAlign = 'left';
+                ctx.fillText(item.label, x + 25, legendY + 15);
+            });
+        }
+
+        // ========== 例2：条形统计图 ==========
+        function drawBarChart() {
+            const canvas = document.getElementById('barChart');
+            const ctx = canvas.getContext('2d');
+            
+            const data = [
+                {label: '八(1)班', value: 40},
+                {label: '八(2)班', value: 44},
+                {label: '八(3)班', value: 48},
+                {label: '八(4)班', value: 32},
+                {label: '八(5)班', value: 36}
+            ];
+            
+            const mean = 40; // 平均数
+            const padding = 70;
+            const chartWidth = canvas.width - padding * 2;
+            const chartHeight = canvas.height - padding * 2;
+            const barWidth = 70;
+            const gap = (chartWidth - barWidth * 5) / 6;
+            
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制坐标轴
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+            
+            // Y轴刻度
+            const maxY = 60;
+            ctx.fillStyle = '#666';
+            ctx.font = '14px Microsoft YaHei';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= maxY; i += 10) {
+                const y = canvas.height - padding - (i / maxY) * chartHeight;
+                ctx.fillText(i.toString(), padding - 10, y + 5);
+                
+                // 网格线
+                ctx.strokeStyle = '#e0e0e0';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(padding, y);
+                ctx.lineTo(canvas.width - padding, y);
+                ctx.stroke();
+            }
+            
+            // Y轴标签
+            ctx.save();
+            ctx.translate(20, canvas.height / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#333';
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillText('人数', 0, 0);
+            ctx.restore();
+            
+            // 绘制条形
+            data.forEach((item, index) => {
+                const x = padding + gap + index * (barWidth + gap);
+                const barHeight = (item.value / maxY) * chartHeight;
+                const y = canvas.height - padding - barHeight;
+                
+                // 根据是否高于平均数选择颜色
+                const color = item.value > mean ? '#e74c3c' : (item.value < mean ? '#3498db' : '#f39c12');
+                
+                // 条形
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, barWidth, barHeight);
+                
+                // 条形边框
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x, y, barWidth, barHeight);
+                
+                // 数值标注
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 16px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.fillText(item.value.toString(), x + barWidth / 2, y - 10);
+                
+                // X轴标签
+                ctx.font = '14px Microsoft YaHei';
+                ctx.fillText(item.label, x + barWidth / 2, canvas.height - padding + 25);
+            });
+            
+            // 绘制平均数线
+            const meanY = canvas.height - padding - (mean / maxY) * chartHeight;
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 3;
+            ctx.setLineDash([10, 5]);
+            ctx.beginPath();
+            ctx.moveTo(padding, meanY);
+            ctx.lineTo(canvas.width - padding, meanY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // 平均数标注
+            ctx.fillStyle = '#e74c3c';
+            ctx.font = 'bold 14px Microsoft YaHei';
+            ctx.textAlign = 'left';
+            ctx.fillText('平均数: 40人', canvas.width - padding - 100, meanY - 10);
+            
+            // X轴标题
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            ctx.fillText('班级', canvas.width / 2, canvas.height - 15);
+            
+            // 图表标题
+            ctx.font = 'bold 18px Microsoft YaHei';
+            ctx.fillText('某校八年级各班学生人数统计图', canvas.width / 2, 30);
+        }
+
+        // ========== 平衡点演示 ==========
+        function drawBalanceDemo() {
+            const canvas = document.getElementById('balanceDemo');
+            const ctx = canvas.getContext('2d');
+            
+            // 示例数据
+            const data = [3, 5, 7, 9, 11];
+            const mean = 7; // 平均数
+            
+            const padding = 40;
+            const chartHeight = 150;
+            const baseY = canvas.height - 60;
+            const centerX = canvas.width / 2;
+            
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制杠杆
+            ctx.strokeStyle = '#8b4513';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.moveTo(padding, baseY);
+            ctx.lineTo(canvas.width - padding, baseY);
+            ctx.stroke();
+            
+            // 绘制支点
+            ctx.fillStyle = '#666';
+            ctx.beginPath();
+            ctx.moveTo(centerX, baseY);
+            ctx.lineTo(centerX - 15, baseY + 30);
+            ctx.lineTo(centerX + 15, baseY + 30);
+            ctx.closePath();
+            ctx.fill();
+            
+            // 支点标注
+            ctx.fillStyle = '#e74c3c';
+            ctx.font = 'bold 14px Microsoft YaHei';
+            ctx.textAlign = 'center';
+            ctx.fillText('平均数=' + mean, centerX, baseY + 45);
+            
+            // 绘制数据点（砝码）
+            const spacing = (canvas.width - padding * 2) / (data.length + 1);
+            const scale = 5; // 高度缩放
+            
+            data.forEach((value, index) => {
+                const x = padding + spacing * (index + 1);
+                const deviation = value - mean;
+                const barHeight = Math.abs(deviation) * scale;
+                
+                // 砝码
+                ctx.fillStyle = deviation > 0 ? '#e74c3c' : '#3498db';
+                if (deviation === 0) ctx.fillStyle = '#f39c12';
+                
+                const startY = deviation > 0 ? baseY - barHeight - 30 : baseY + 10;
+                ctx.fillRect(x - 15, startY, 30, barHeight + 20);
+                
+                // 数值标注
+                ctx.fillStyle = '#333';
+                ctx.font = 'bold 14px Microsoft YaHei';
+                ctx.textAlign = 'center';
+                ctx.fillText(value.toString(), x, startY - 5);
+                
+                // 偏差标注
+                if (deviation !== 0) {
+                    ctx.fillStyle = deviation > 0 ? '#e74c3c' : '#3498db';
+                    ctx.font = '12px Microsoft YaHei';
+                    ctx.fillText((deviation > 0 ? '+' : '') + deviation, x, startY + barHeight + 35);
+                }
+            });
+            
+            // 说明文字
+            ctx.fillStyle = '#666';
+            ctx.font = '14px Microsoft YaHei';
+            ctx.textAlign = 'center';
+            ctx.fillText('红色：高于平均数（+偏差）  蓝色：低于平均数（-偏差）', canvas.width / 2, 25);
+            ctx.fillText('正偏差之和 = |负偏差之和| = 8，杠杆平衡！', canvas.width / 2, canvas.height - 10);
+        }
+
+        // ========== 交互功能 ==========
+        function calculateMean() {
+            const input = document.getElementById('dataInput').value;
+            const data = input.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
+            
+            if (data.length === 0) {
+                alert('请输入有效的数据！');
+                return;
+            }
+            
+            const sum = data.reduce((a, b) => a + b, 0);
+            const mean = sum / data.length;
+            
+            const resultDiv = document.getElementById('calcResult');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <p>数据：${data.join(', ')}</p>
+                <p>个数：${data.length}</p>
+                <p>总和：${sum}</p>
+                <p style="font-size: 24px; font-weight: bold;">平均数 = ${mean.toFixed(2)}</p>
+            `;
+        }
+
+        function toggleAnswer(id) {
+            const answerDiv = document.getElementById(id);
+            answerDiv.style.display = answerDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // ========== 页面加载 ==========
+        window.onload = function() {
+            drawTreeBar();
+            drawPieChart();
+            drawBarChart();
+            drawBalanceDemo();
+        };
+    </script>
+</body>
+</html>

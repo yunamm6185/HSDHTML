@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第17课时 有理数的乘方（1） | 华师版·七上 第1章 有理数</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+        .explore-box {
+            background: #e3f2fd;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #5f9dc9;
+            box-shadow: 0 6px 0 #3f7ba3;
+        }
+        /* 简洁双栏卡片 */
+        .power-card {
+            background: linear-gradient(145deg, #ffffff, #f8fcff);
+            border-radius: 40px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #b1d4e8;
+            box-shadow: 0 10px 20px rgba(0,60,100,0.1);
+        }
+        .power-main {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0f4a6f;
+            margin-bottom: 1.5rem;
+        }
+        .power-detail {
+            display: flex;
+            justify-content: space-around;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .power-detail-item {
+            flex: 1;
+            text-align: center;
+            background: #edf7fc;
+            border-radius: 30px;
+            padding: 1rem;
+            border: 1px solid #b9d6ef;
+        }
+        .power-detail-item .term {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2675a8;
+            margin-bottom: 0.5rem;
+        }
+        .power-detail-item .def {
+            font-size: 1.1rem;
+            color: #1e4b68;
+        }
+        .power-note {
+            text-align: center;
+            font-size: 1.2rem;
+            background: #fff9c4;
+            padding: 0.8rem;
+            border-radius: 40px;
+            border: 1px solid #f5c542;
+            color: #0a3e5f;
+        }
+        .power-example {
+            background: #edf7fc;
+            border-radius: 30px;
+            padding: 1rem 2rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        .law-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 1px solid #d0e3f0;
+            box-shadow: 0 4px 0 #c0d6e6;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .law-card .law-title {
+            font-weight: 700;
+            color: #0f4a6f;
+            background: #d9eaf5;
+            border-radius: 40px;
+            padding: 0.3rem 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .grid-4 .item {
+            white-space: nowrap;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.5rem 0 0.5rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box * {
+            margin: 0;
+            padding: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.1rem;
+        }
+        .sci-note {
+            background: #e8eaf6;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #3f51b5;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。</div>
+    <h2>1.11 有理数的乘方</h2>
+    <div class="lesson-title">第1课时 乘方的意义</div>
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数乘方的意义</div>
+            <div class="target-item"><span>✔</span>能识别底数、指数、幂</div>
+            <div class="target-item"><span>✔</span>掌握有理数乘方的符号法则</div>
+            <div class="target-item"><span>✔</span>能进行简单的乘方运算</div>
+        </div>
+    </div>
+
+    <!-- 探索引入：正方形面积、正方体体积（教材标准） -->
+    <h3>📐 探索：从平方、立方到乘方</h3>
+    <div class="explore-box">
+        <p>我们学过：正方形的面积 = 边长 × 边长，记作 \(a^2\)，读作 <strong>a 的平方</strong>（或 a 的 2 次方）。</p>
+        <p style="text-align:center; font-size:1.3rem;">\(a \cdot a = a^2\)</p>
+        
+        <p>正方体的体积 = 棱长 × 棱长 × 棱长，记作 \(a^3\)，读作 <strong>a 的立方</strong>（或 a 的 3 次方）。</p>
+        <p style="text-align:center; font-size:1.3rem;">\(a \cdot a \cdot a = a^3\)</p>
+        
+        <p><strong>思考：</strong> \(a \cdot a \cdot a \cdot a\) 可以怎样记？\(a \cdot a \cdot a \cdot a \cdot a\) 呢？</p>
+        <p>4个a相乘记作 \(a^4\)，读作 a 的4次方；5个a相乘记作 \(a^5\)，读作 a 的5次方。</p>
+        
+        <p>一般地，<strong>n个相同的因数a相乘</strong>：</p>
+        <p style="text-align:center; font-size:1.5rem;">\(\underbrace{a \cdot a \cdot a \cdots a}_{n\text{个}} = a^n\)</p>
+        <p>这种求几个相同因数的积的运算，叫做<strong>乘方</strong>。</p>
+    </div>
+
+    <!-- 乘方的定义 —— 简洁双栏卡片 -->
+    <h3>📐 乘方的意义</h3>
+    <div class="power-card">
+        <div class="power-main">
+            \(a^n\)
+        </div>
+        <div class="power-detail">
+            <div class="power-detail-item">
+                <div class="term">底数 \(a\)</div>
+                <div class="def">相同的因数</div>
+            </div>
+            <div class="power-detail-item">
+                <div class="term">指数 \(n\)</div>
+                <div class="def">因数的个数</div>
+            </div>
+        </div>
+        <div class="power-note">
+            \(a^n\) 读作“\(a\) 的 \(n\) 次方”，结果叫做幂。
+        </div>
+    </div>
+    <div class="power-example">
+        <p>例如：\(2\times2\times2\times2 = 2^4\)，读作“2的4次方”或“2的4次幂”。</p>
+        <p>\((-2)\times(-2)\times(-2)\times(-2) = (-2)^4\)，读作“-2的4次方”。</p>
+    </div>
+    <div class="tip-box">
+        <strong>📌 注意：</strong> 一个数可以看作这个数本身的1次方，指数1通常省略不写。例如 \(5 = 5^1\)。
+    </div>
+
+    <!-- 例题1 -->
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 填空：</p>
+        <p>(1) 在 \((-5)^4\) 中，底数是____，指数是____，读作__________，表示____个____相乘。</p>
+        <p>(2) 在 \(-\left(\dfrac{2}{3}\right)^5\) 中，底数是____，指数是____，读作__________。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            (1) 底数是 \(-5\)，指数是 \(4\)，读作 \(-5\) 的 \(4\) 次方，表示 \(4\) 个 \(-5\) 相乘。<br>
+            (2) 底数是 \(\dfrac{2}{3}\)，指数是 \(5\)，读作 \(\dfrac{2}{3}\) 的 \(5\) 次方的相反数。
+        </div>
+    </div>
+
+    <!-- 例题2 -->
+    <div class="example-box" id="example2">
+        <p><strong>例2</strong> 计算：</p>
+        <p>(1) \((-2)^3\)； (2) \((-2)^4\)； (3) \((-2)^5\)； (4) \(3^4\)； (5) \(0^5\)。</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示(1)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示(2)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示(3)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(5)">显示(4)(5)答案</button>
+        </div>
+        <div id="exampleAnswer2" class="answer-box">(1) \((-2)^3 = -8\)</div>
+        <div id="exampleAnswer3" class="answer-box">(2) \((-2)^4 = 16\)</div>
+        <div id="exampleAnswer4" class="answer-box">(3) \((-2)^5 = -32\)</div>
+        <div id="exampleAnswer5" class="answer-box">(4) \(3^4 = 81\)<br>(5) \(0^5 = 0\)</div>
+    </div>
+
+    <!-- 探索规律 -->
+    <h3>🔍 探索：乘方的符号规律</h3>
+    <div class="explore-box">
+        <p>观察例2的结果，你发现负数的幂的正负有什么规律？</p>
+        <ul style="margin-left:2rem;">
+            <li>\((-2)^3 = -8\)（奇次幂）</li>
+            <li>\((-2)^4 = 16\)（偶次幂）</li>
+            <li>\((-2)^5 = -32\)（奇次幂）</li>
+        </ul>
+    </div>
+    <div style="background:#fbe9d2; border-left:6px solid #e67e22; padding:0.8rem 1.5rem; margin:1rem 0; font-weight:bold; font-size:1.2rem;">
+        <p>✅ 正数的任何次幂都是正数；</p>
+        <p>✅ 负数的奇次幂是负数，负数的偶次幂是正数；</p>
+        <p>✅ 0的任何正整数次幂都是0。</p>
+    </div>
+
+    <!-- 易错辨析 -->
+    <div style="background:#d6f0e6; border-radius:28px; padding:1rem 2rem; margin:1rem 0; border:2px solid #2e8b6c;">
+        <p><strong>想一想：</strong> \((-2)^4\) 与 \(-2^4\) 的意义相同吗？结果相同吗？</p>
+        <p>\((-2)^4\) 表示4个-2相乘，结果是16；\(-2^4\) 表示4个2相乘的相反数，结果是-16。<br>
+        <span style="color:#b13e3e; font-weight:600;">它们意义不同，结果也不同！</span></p>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises">
+        <h3>练习</h3>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. \((-4)^5\) 读作什么？其中底数是什么？指数是什么？\((-4)^5\) 是正数还是负数？</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box">读作“-4的5次方”，底数是-4，指数是5，它是负数。</div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div class="exercise-text">
+                <div class="grid-4">
+                    <div class="item">(1) \(10^3\)</div>
+                    <div class="item">(2) \(10^5\)</div>
+                    <div class="item">(3) \((-1)^3\)</div>
+                    <div class="item">(4) \((-1)^{10}\)</div>
+                    <div class="item">(5) \((-0.1)^3\)</div>
+                    <div class="item">(6) \(\left(-\dfrac{3}{2}\right)^4\)</div>
+                    <div class="item">(7) \((-2)^3 \times (-2)^2\)</div>
+                    <div class="item">(8) \(\left(-\dfrac{1}{2}\right)^3 \times \left(-\dfrac{1}{2}\right)^5\)</div>
+                </div>
+            </div>
+            <div id="answer1" class="answer-box">
+                (1) 1000 (2) 100000 (3) -1 (4) 1<br>
+                (5) -0.001 (6) \(\dfrac{81}{16}\) (7) \((-8)\times4=-32\) (8) \(\left(-\dfrac{1}{8}\right)\times\left(-\dfrac{1}{32}\right)=\dfrac{1}{256}\)
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 3的平方是什么？-3的平方是什么？平方得9的数有几个？有没有平方得-9的有理数？</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div id="answer2" class="answer-box">3的平方是9，-3的平方是9，平方得9的数有两个（3和-3），没有平方得-9的有理数。</div>
+        </div>
+    </div>
+
+    <!-- 读一读：棋盘上的麦粒（增强版） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 棋盘上的麦粒</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>传说古印度舍罕王打算重赏国际象棋的发明人——宰相西萨·班·达依尔。宰相要求：在棋盘的第1个格子里放1粒麦子，第2个格子里放2粒，第3个格子里放4粒，依此类推，每个格子放的麦粒数是前一个格子的2倍，直到放满64个格子。国王起初以为这很容易，但很快发现，即使拿出全国的粮食也兑现不了这个承诺。</p>
+            <p>第64格需要 \(2^{63}\) 粒，总麦粒数为：</p>
+            <p style="text-align:center; font-size:1.3rem;">\(1 + 2 + 2^2 + \cdots + 2^{63} = 2^{64} - 1\)</p>
+            <p style="text-align:center; font-size:1.3rem;">\(= 18\,446\,744\,073\,709\,551\,615\)（约 \(1.84 \times 10^{19}\) 粒）</p>
+            <p>这些麦子究竟有多少？我们来算一算：</p>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>重量</strong>：按每粒麦子约0.05克计算，总重量约为 \(9.2 \times 10^{14}\) 千克，即约 <strong>9200亿吨</strong>！</li>
+                <li><strong>体积</strong>：若每立方米仓库可存放约1500万粒，这些麦子的体积约 <strong>12000亿立方米</strong>。</li>
+                <li><strong>对比</strong>：假如造一个高4米、宽10米的仓库存放这些麦子，仓库的长度大约需要0.3亿千米，相当于地球到太阳距离的 \(\frac{1}{5}\)，或绕地球赤道750圈。</li>
+                <li><strong>时间</strong>：要生产这么多麦子，全世界需要一千多年。</li>
+            </ul>
+            <p>一个小小的2，经过64次乘方，竟然产生如此巨大的数字！这就是乘方的惊人力量。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">乘方：求n个相同因数的积的运算</div>
+                <div class="summary-item">\(a^n\)中，a叫底数，n叫指数，结果叫幂</div>
+                <div class="summary-item">正数的任何次幂都是正数</div>
+                <div class="summary-item">负数的奇次幂是负数，偶次幂是正数</div>
+                <div class="summary-item">0的任何正整数次幂都是0</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P55 练习第1、2题；习题1.11 A组第1、2题。</span>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 相同因数相乘，乘方运算简便 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第17课时</div>
+</div>
+<script>
+    function toggleAnswer(index) {
+        document.getElementById('answer'+index).classList.toggle('show-answer');
+    }
+    function toggleExampleAnswer(num) {
+        document.getElementById('exampleAnswer'+num).classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var toggle = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        toggle.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

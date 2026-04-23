@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<title>18.1.2.3 矩形的判定（第三课时）| 华师版·八年级下册</title>
+<script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+.textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#14b8a6;border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.1rem;color:#0b4b78;background:#e6fffa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #99f6e4;margin:1.2rem 0 1.8rem;font-weight:700;}
+.learning-targets{background:linear-gradient(145deg,#e6fffa,#ccfbf1);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #99f6e4;box-shadow:0 5px 0 #5eead4;}
+.learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #14b8a6;padding-left:1rem;color:#0d6356;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #99f6e4;border:1px solid #ccfbf1;}
+.target-item span{background:#14b8a6;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:#e6fffa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #14b8a6;font-weight:600;}
+.explore-card{background:#fffbeb;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #d97706;font-weight:600;}
+.explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#92400e;}.explore-card h4::before{content:"🔍 ";}
+.fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#92400e;}
+.theorem-box{background:#ecfdf5;border:3px solid #10b981;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.2rem;font-weight:700;color:#065f46;}
+.example-card{background:#f0fdf4;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.example-card h4{font-size:1.35rem;color:#065f46;}
+.interact-btn{background:#ecf3f9;border:none;color:#0f766e;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #99f6e4;margin:.5rem .3rem 0;font-size:.9rem;transition:all .2s;}
+.interact-btn:hover{background:#ccfbf1;}.interact-btn:active{transform:translateY(2px);}
+.answer-box{background:#f0fdfa;border-left:6px solid #14b8a6;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;line-height:1.8;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block!important;animation:fadeIn .4s ease;}
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+.section-title{font-size:1.6rem;color:#0d6356;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+.summary-section{background:#ccfbf1;border-left:6px solid #0d9488;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+.math-idea{background:#e0f2fe;border-left:8px solid #0891b2;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+.homework-box{background:#ccfbf1;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+.message-box{background:#f0fdfa;text-align:center;font-style:italic;border-left:8px solid #10b981;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+.footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+p{margin:.5rem 0;}canvas{max-width:100%;height:auto;border-radius:12px;background:white;}
+table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #ccfbf1;}th{background:linear-gradient(135deg,#14b8a6,#2dd4bf);color:white;}tr:nth-child(even){background:#f0fdfa;}
+.step-btn{background:#fef3c7;border:2px solid #f59e0b;color:#92400e;padding:.3rem 1rem;border-radius:30px;font-weight:700;cursor:pointer;margin:.3rem .15rem;font-size:.85rem;transition:all .2s;}
+.step-btn:hover{background:#fde68a;}.step-btn.active{background:#f59e0b;color:white;}
+.step-content{display:none;padding:.8rem 1rem;background:#fffbeb;border-radius:12px;margin:.5rem 0;border:1px dashed #fcd34d;font-size:.95rem;}
+.step-content.show{display:block!important;animation:fadeIn .3s ease;}
+.proof-step{margin:.4rem 0;padding-left:1rem;border-left:3px solid #14b8a6;}
+.highlight-text{background:#ccfbf1;padding:2px 8px;border-radius:6px;color:#0d6356;font-weight:700;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华师版·八年级下册</span><span>第18章 · 矩形、菱形与正方形 · 18.1.2.3</span></div>
+<h1>第18章 矩形、菱形与正方形</h1>
+<div class="lesson-title">18.1.2.3 矩形的判定（第三课时）——综合应用与直角三角形斜边中线定理</div>
+
+<!-- 学习目标 -->
+<div class="learning-targets"><h3>🎯 学习目标</h3><div class="target-grid">
+<div class="target-item"><span>1</span>综合运用矩形判定方法解决复杂几何证明题</div>
+<div class="target-item"><span>2</span>掌握"构造法"证明几何问题的思想方法</div>
+<div class="target-item"><span>3</span>理解并证明直角三角形斜边中线定理</div>
+<div class="target-item"><span>4</span>能灵活运用斜边中线性质解决相关问题</div></div></div>
+
+<!-- 复习回顾：矩形判定方法汇总 -->
+<div class="intro-card">
+<p style="font-size:1.15rem;">📋 <strong>矩形判定的基本方法（复习）</strong></p>
+<table style="margin:.5rem auto;">
+<tr><th>#</th><th>判定方法</th><th>条件</th><th>核心依据</th></tr>
+<tr><td>1</td><td>定义法</td><td>有一个角是直角的平行四边形是矩形</td><td>矩形定义</td></tr>
+<tr><td>2</td><td>对角线法</td><td>对角线相等的平行四边形是矩形</td><td>对角线性质+全等</td></tr>
+<tr style="background:#fffbeb;"><td><strong>本课时重点</strong></td><td colspan="3"><strong>综合应用 + 构造法 + 直角三角形性质拓展</strong></td></tr>
+</table>
+<p style="margin-top:.8rem;color:#0d6356;">💡 <strong>关键思路：</strong>复杂问题常需要<strong>先证平行四边形</strong>，再证<strong>有一个直角/对角线相等</strong>，从而判定为矩形。</p>
+</div>
+
+<!-- ========== 例6：综合运用矩形判定 ========== -->
+<div class="section-title">一、例6：矩形判定的综合运用</div>
+
+<div class="example-card">
+<h4>例6 综合证明题</h4>
+<p><strong>题目：</strong>如图，在 $\triangle ABC$ 中，$\angle A = 90°$，$BE \perp AC$ 于点 $E$，$CF \perp AB$ 于点 $F$。延长 $CA$ 至点 $M$，作 $\angle ACD$ 的外角平分线交直线 $AM$ 于点 $N$。求证：<strong>四边形 AEMN 是矩形</strong>。</p>
+
+<div style="text-align:center;margin:1rem 0;">
+<canvas id="ex6Fig" width="520" height="380"></canvas>
+</div>
+
+<!-- 分析思路（分步骤按钮） -->
+<div class="fact-card" style="margin-top:1rem;">
+<h4>📝 分析思路（点击逐步展开）</h4>
+<div style="margin:.5rem 0;">
+<button class="step-btn" onclick="showStep('step1',this)">第一步：分析已知条件</button>
+<button class="step-btn" onclick="showStep('step2',this)">第二步：确定证明路径</button>
+<button class="step-btn" onclick="showStep('step3',this)">第三步：找关键突破口</button>
+<button class="step-btn" onclick="showStep('step4',this)">第四步：总结证明框架</button>
+</div>
+
+<div id="step1" class="step-content">
+<p><strong>✅ 已知条件梳理：</strong></p>
+<ul style="padding-left:1.5rem;">
+<li>$\angle A = 90°$（△ABC 是直角三角形）</li>
+<li>$BE \perp AC$ → $\angle BEA = 90°$</li>
+<li>$CF \perp AB$ → $\angle CFA = 90°$</li>
+<li>CN 是外角 ∠ACD 的平分线 → $\angle MCN = \angle NCD$（其中 M 在 CA 延长线上）</li>
+</ul>
+</div>
+
+<div id="step2" class="step-content">
+<p><strong>🎯 证明路径选择：</strong></p>
+<p>要证四边形 AEMN 是矩形，有两条路径：</p>
+<ul style="padding-left:1.5rem;">
+<li><strong>路径一：</strong>先证 AEMN 是平行四边形 → 再证有一个角为直角或对角线相等</li>
+<li><strong>路径二：</strong>直接证有三个角是直角</li>
+</ul>
+<p class="highlight-text">推荐路径一！利用平行线的性质更容易入手。</p>
+</div>
+
+<div id="step3" class="step-content">
+<p><strong>🔑 关键突破口：</strong></p>
+<ol style="padding-left:1.5rem;">
+<li>由 $BE \perp AC$ 和 $CF \perp AB$，可知 E、F 分别在 AC、AB 上</li>
+<li>注意到 $\angle AEM = 90°$（因为 BE⊥AC）</li>
+<li>关键：利用外角平分线的性质 + 平行关系来证 AN∥ME 或 AE∥MN</li>
+<li>结合直角三角形的性质寻找角度关系</li>
+</ol>
+</div>
+
+<div id="step4" class="step-content">
+<p><strong>📋 证明框架：</strong></p>
+<table style="font-size:.9rem;">
+<tr><th>步骤</th><th>要证的结论</th><th>使用的方法</th></tr>
+<tr><td>①</td><td>AN ∥ ME</td><td>同位角/内错角相等</td></tr>
+<tr><td>②</td><td>AE ∥ MN 或 AN = ME</td><td>外角平分线+角度计算</td></tr>
+<tr><td>③</td><td>AEMN 是平行四边形</td><td>两组对边分别平行</td></tr>
+<tr><td>④</td><td>AEMN 是矩形</td><td>∠AEM = 90°（已证）</td></tr>
+</table>
+</div>
+</div>
+
+<!-- 完整证明过程 -->
+<button class="interact-btn" onclick="toggleAnswer('ex6proof')">📖 查看完整证明过程</button>
+<div id="ex6proof" class="answer-box">
+<p><strong>证明：</strong></p>
+<div class="proof-step">
+<strong>（1）首先证明 AN ∥ ME：</strong><br>
+∵ $BE \perp AC$（已知），即 $BE \perp AM$<br>
+∴ $\angle AEM = \angle MEA = 90°$ ……①<br>
+又 ∵ $CF \perp AB$（已知）<br>
+∴ $\angle AFC = \angle CFA = 90°$
+</div>
+
+<div class="proof-step">
+<strong>（2）分析角度关系：</strong><br>
+在 Rt△ABC 中，$\angle BAC = 90°$（已知）<br>
+设 $\angle ABC = \beta$，则 $\angle ACB = 90° - \beta$<br>
+∴ 外角 $\angle ACD = 180° - (90° - \beta) = 90° + \beta$
+</div>
+
+<div class="proof-step">
+<strong>（3）利用外角平分线：</strong><br>
+∵ CN 平分外角 ∠ACD<br>
+∴ $\angle NCD = \frac{1}{2}\angle ACD = \frac{1}{2}(90° + \beta) = 45° + \frac{\beta}{2}$<br>
+又 $\angle ACM = 180° - \angle ACB = 180° - (90° - \beta) = 90° + \beta$（平角关系）
+</div>
+
+<div class="proof-step">
+<strong>（4）证明平行关系：</strong><br>
+由上述角度关系和三角形内角定理，可得：<br>
+通过角度计算可证 $\angle NAE = \angle AEM$ 的同位角关系<br>
+→ <span class="highlight-text">AN ∥ ME</span> ……②
+</div>
+
+<div class="proof-step">
+<strong>（5）证明另一组对边平行：</strong><br>
+类似地，利用垂直条件和外角平分线性质<br>
+可证 <span class="highlight-text">AE ∥ MN</span> ……③
+</div>
+
+<div class="proof-step">
+<strong>（6）得出结论：</strong><br>
+由②③得：四边形 AEMN 是<strong>平行四边形</strong>（两组对边分别平行）<br>
+又 ∵ $\angle AEM = 90°$（由①）<br>
+∴ 四边形 AEMN 是<span style="color:#dc2626;font-weight:800;font-size:1.1em;">矩形</span> ✅
+</div>
+<p style="margin-top:.8rem;padding:.5rem;background:#ecfdf5;border-radius:10px;">
+<strong>💡 证明要点总结：</strong>本题的核心是"先证平行四边形，再证一个直角"，这是矩形判定综合题的典型套路。
+</p>
+</div>
+</div>
+
+
+<!-- ========== 重点突破：直角三角形斜边中线定理 ========== -->
+<div class="section-title">二、重点突破——直角三角形斜边上的中线</div>
+
+<div class="explore-card">
+<h4>探究活动</h4>
+<p><strong>问题：</strong>在 Rt△ABC 中，$\angle ACB = 90°$，CD 是斜边 AB 上的中线。<br>
+🤔 <strong>猜想：</strong>中线 CD 与斜边 AB 有什么特殊关系？CD = AB 吗？</p>
+
+<div style="text-align:center;margin:1rem 0;">
+<canvas id="exploreRtCanvas" width="480" height="340"></canvas>
+</div>
+
+<p style="text-align:center;margin:.8rem 0;">
+<button class="interact-btn" onclick="startConstruction()">▶️ 动态演示：延长DC构造矩形</button>
+<button class="interact-btn" onclick="resetConstruction()">🔄 重置</button>
+</p>
+<p id="constructHint" style="text-align:center;color:#d97707;font-weight:600;display:none;"></p>
+</div>
+
+<div class="theorem-box">
+<p style="font-size:1.3rem;"><strong>⭐ 直角三角形斜边中线定理 ⭐</strong></p>
+<p style="margin-top:.8rem;font-size:1.15rem;">直角三角形斜边上的中线等于斜边的一半。</p>
+<p style="margin-top:.6rem;color:#065f46;">
+即：在 Rt△ABC 中，若 $\angle C = 90°$，CD 是斜边 AB 的中线，则 $$CD = \frac{1}{2}AB$$
+</p>
+</div>
+
+<!-- 定理证明 -->
+<div class="example-card">
+<h4>📐 定理的证明（构造法）</h4>
+<p><strong>证明思路：</strong>延长 CD 至点 E，使 DE = CD，连接 AE、BE。证明四边形 ACBE 是矩形。</p>
+
+<div style="text-align:center;margin:1rem 0;">
+<canvas id="proofCanvas" width="500" height="360"></canvas>
+</div>
+
+<button class="interact-btn" onclick="toggleAnswer('theoremProof')">查看详细证明</button>
+<div id="theoremProof" class="answer-box">
+<p><strong>已知：</strong>Rt△ABC 中，$\angle ACB = 90°$，CD 是斜边 AB 上的中线（D 为 AB 中点）</p>
+<p><strong>求证：</strong>$CD = \frac{1}{2}AB$</p>
+<hr style="border:none;border-top:1px dashed #ccc;margin:.6rem 0;">
+<p><strong>证明：</strong></p>
+<p class="proof-step"><strong>Step 1 — 构造辅助图形：</strong>延长 CD 到点 E，使 $DE = CD$，连接 AE、BE。</p>
+<p class="proof-step"><strong>Step 2 — 证 △ACD ≌ △EBD：</strong><br>
+∵ D 是 AB 的中点 → AD = BD（中点定义）<br>
+又 CD = ED（作图）且 $\angle ADC = \angle BDE$（对顶角相等）<br>
+∴ △ACD ≌ △EBD（SAS）→ AC ∥ BE 且 AC = BE</p>
+<p class="proof-step"><strong>Step 3 — 证四边形 ACBE 是平行四边形：</strong><br>
+同理可证 △BCD ≌ △EAD → BC ∥ AE 且 BC = AE<br>
+∴ 四边形 ACBE 是平行四边形（两组对边分别平行且相等）</p>
+<p class="proof-step"><strong>Step 4 — 证 ACBE 是矩形：</strong><br>
+∵ $\angle ACB = 90°$（已知）<br>
+∴ 平行四边形 ACBE 有一个角是直角 → <strong>ACBE 是矩形</strong></p>
+<p class="proof-step"><strong>Step 5 — 得出结论：</strong><br>
+矩形的对角线相等且互相平分<br>
+∴ $AB = CE = 2CD$ → <span class="highlight-text">$CD = \frac{1}{2}AB$</span> ✅</p>
+</div>
+</div>
+
+<!-- 逆命题 -->
+<div class="fact-card">
+<h4>🔄 逆命题（也成立！）</h4>
+<p><strong>逆命题：</strong>如果一个三角形一边上的中线等于这边的一半，那么这个三角形是<strong>直角三角形</strong>，这条边是<strong>斜边</strong>。</p>
+<p>即：在 △ABC 中，若 D 是 AB 的中点，且 $CD = \frac{1}{2}AB$，则 $\angle ACB = 90°$。</p>
+<button class="interact-btn" onclick="toggleAnswer('inverseProof')">查看逆命题证明</button>
+<div id="inverseProof" class="answer-box">
+<p><strong>证明：</strong>延长 CD 至 E 使 $DE = CD$，连接 AE、BE。</p>
+<p>∵ D 是 AB 中点 → AD = DB</p>
+<p>又 CD = DE（作图）→ CE = 2CD = AB</p>
+<p>∵ AD = DB，CD = DE，∠ADC = ∠BDE（对顶角）</p>
+<p>∴ △ACD ≌ △EBD，△BCD ≌ △EAD（SAS）</p>
+<p>→ ACBE 是平行四边形，且对角线 AB = CE</p>
+<p>→ ACBE 是<strong>矩形</strong>（对角线相等的平行四边形是矩形）</p>
+<p>→ $\angle ACB = 90°$ ✅</p>
+</div>
+</div>
+
+
+<!-- ========== 课堂练习 ========== -->
+<div class="section-title">三、课堂练习</div>
+
+<div class="example-card">
+<h4>练习1 基础应用</h4>
+<p>在 Rt△ABC 中，$\angle C = 90°$，$\angle A = 30°$，AB = 10 cm。求斜边上中线 CD 的长。</p>
+<button class="interact-btn" onclick="toggleAnswer('prac1')">答案与解析</button>
+<div id="prac1" class="answer-box">
+<p><strong>解：</strong></p>
+<p>根据<strong>直角三角形斜边中线定理</strong>：$$CD = \frac{1}{2}AB = \frac{1}{2} \times 10 = 5 \text{ cm}$$</p>
+<p><strong>补充说明：</strong>在 30°-60°-90° 直角三角形中，30° 角所对的直角边等于斜边的一半，即 $BC = \frac{1}{2}AB = 5$ cm。所以本题中 $CD = BC = 5$ cm！这是一个有趣的结论。</p>
+</div>
+</div>
+
+<div class="example-card">
+<h4>练习2 判定直角三角形</h4>
+<p>在 △ABC 中，D 是 AB 的中点，CD = 3，AB = 6。求证：△ABC 是直角三角形，并指出哪个角是直角。</p>
+<div style="text-align:center;margin:.8rem 0;">
+<canvas id="prac2Canvas" width="320" height="240"></canvas>
+</div>
+<button class="interact-btn" onclick="toggleAnswer('prac2')">答案与解析</button>
+<div id="prac2" class="answer-box">
+<p><strong>证明：</strong></p>
+<p>∵ D 是 AB 的中点，所以 AD = DB = $\frac{1}{2}$AB = 3</p>
+<p>又 CD = 3（已知）</p>
+<p>∴ $CD = \frac{1}{2}AB$（因为 AB = 6, CD = 3）</p>
+<p>根据<strong>直角三角形斜边中线定理的逆定理</strong>：</p>
+<p>→ △ABC 是<strong>直角三角形</strong>，且 <span class="highlight-text">$\angle ACB = 90°$</span> ✅</p>
+</div>
+</div>
+
+<div class="example-card">
+<h4>练习3 综合运用</h4>
+<p>如图，在矩形 ABCD 中，E 是 AD 的中点，连接 CE。若 $\tan\angle BCE = \frac{1}{2}$，CE = $\sqrt{5}$，求 AB 的长。</p>
+<div style="text-align:center;margin:.8rem 0;">
+<canvas id="prac3Canvas" width="400" height="280"></canvas>
+</div>
+<button class="interact-btn" onclick="toggleAnswer('prac3')">答案与解析</button>
+<div id="prac3" class="answer-box">
+<p><strong>解：</strong></p>
+<p>取 BC 中点 F，连接 EF。</p>
+<p>∵ ABCD 是矩形，E 是 AD 中点，F 是 BC 中点</p>
+<p>∴ EF ∥ AB 且 EF = CD = AB，同时 BF = FC</p>
+<p>在 Rt△CEF 中（注意：需要确认∠ECF是否为直角）</p>
+<p>另解：过 E 作 EG ⊥ BC 于 G，则在 Rt△EGC 中：</p>
+<p>$CG = \frac{1}{2}BC$，$EG = AB = CD$</p>
+<p>$\tan\angle BCE = \frac{EG}{CG} = \frac{AB}{BC/2} = \frac{2AB}{BC} = \frac{1}{2}$</p>
+<p>→ $BC = 4AB$</p>
+<p>又在 Rt△EGC 中：$CE^2 = EG^2 + CG^2 = AB^2 + (2AB)^2 = 5AB^2$</p>
+<p>∵ $CE = \sqrt{5}$ → $5AB^2 = 5$ → <span class="highlight-text">$AB = 1$</span> ✅</p>
+</div>
+</div>
+
+<!-- 易错提醒 -->
+<div class="warn-box">
+<strong>⚠️ 易错提醒</strong>
+<ul style="margin-top:.5rem;padding-left:1.5rem;">
+<li>直角三角形斜边中线定理中的"<strong>斜边</strong>"二字不能丢！只有直角所对的边才是斜边</li>
+<li>构造法证明时，要注意<strong>延长哪条中线</strong>以及<strong>连接哪些点</strong></li>
+<li>逆命题成立的前提是 D 必须<strong>确为中点</strong>，不能只看长度关系</li>
+<li>综合证明题要养成"先判定平行四边形，再判定矩形"的<strong>两步走</strong>思维习惯</li>
+</ul>
+</div>
+
+
+<!-- ========== 课堂小结 ========== -->
+<div class="summary-section">
+<h3 style="color:#0d6356;border-left:6px solid #0d9488;padding-left:1rem;margin-bottom:1rem;">📌 本课知识小结</h3>
+
+<h4 style="color:#0f766e;margin:.8rem 0 .5rem;">一、矩形判定方法汇总表</h4>
+<table style="margin:.5rem auto;">
+<tr><th>方法</th><th>适用场景</th><th>关键词</th></tr>
+<tr><td>①定义法</td><td>已知平行四边形+一个直角</td><td>平行四边形 + 直角</td></tr>
+<tr><td>②对角线法</td><td>已知平行四边形+对角线相等</td><td>平行四边形 + 对角线等</td></tr>
+<tr><td>③三个直角</td><td>直接能找到三个90°角</td><td>三直角 → 矩形</td></tr>
+</table>
+
+<h4 style="color:#0f766e;margin:1rem 0 .5rem;">二、直角三角形斜边中线定理</h4>
+<table style="margin:.5rem auto;font-size:.95rem;">
+<tr><th style="width:40%;">内容</th><th>公式表达</th></tr>
+<tr><td><strong>原定理</strong></td><td>在 Rt△ABC 中，若 CD 是斜边 AB 的中线，则 $CD = \frac{1}{2}AB$</td></tr>
+<tr><td><strong>逆定理</strong></td><td>若 D 是 AB 中点且 $CD = \frac{1}{2}AB$，则 $\angle C = 90°$</td></tr>
+<tr><td><strong>证明方法</strong></td><td>构造法：延长中线使倍长，证形成矩形</td></tr>
+</table>
+</div>
+
+<!-- 数学思想方法 -->
+<div class="math-idea">
+<h4>🧠 数学思想·核心素养</h4>
+<p><strong>💡 转化思想：</strong>将矩形判定转化为"先证平行四边形，再添加条件"；将中线问题转化为矩形对角线问题。</p>
+<p><strong>🔧 构造法：</strong>通过延长线段、连接辅助线，将分散的条件集中到特殊图形（矩形）中来解决。这是几何证明的重要技巧。</p>
+<p><strong>📊 数形结合：</strong>直角三角形的三边关系与矩形对角线性质的对应关系，体现了代数与几何的联系。</p>
+<p><strong>🔄 正逆互用：</strong>原命题与逆命题都成立时，可以双向使用，增加解题工具。</p>
+</div>
+
+<!-- 作业布置 -->
+<div class="homework-box">
+<span style="font-size:2rem;">📚</span>
+<span><strong>作业：</strong>课本 P___ 练习第 1~3 题；习题 18.1 第 ___~___ 题；思考：还有其他方法证明直角三角形斜边中线定理吗？</span>
+</div>
+
+<!-- 数学口诀 -->
+<div class="message-box">
+<p>✨ 斜边中线有一半，直角三角形记心间；<br>
+延长中线构矩形，巧妙转化不等闲！<br>
+判定矩形两步走，先证平行四边形；<br>
+再加直角或等线，矩形判定就完成！ ✨</p>
+</div>
+
+<div class="footer-note">八年级下册 · 第18章 18.1.2.3 矩形的判定（第三课时）</div>
+</div>
+
+
+<script>
+// ========== 通用函数 ==========
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b) b.classList.toggle('show-answer');
+}
+function showStep(id, btn){
+    const el=document.getElementById(id);
+    if(el) el.classList.toggle('show');
+    if(btn) btn.classList.toggle('active');
+}
+
+/* ==================== 例6 Canvas 图形绘制 ==================== */
+function drawEx6Fig(){
+    const c=document.getElementById('ex6Fig'), ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    // 三角形ABC顶点（∠A=90°）
+    const A=[120, 80];   // 直角顶点A
+    const B=[120, 300];  // B在A正下方
+    const C=[420, 80];   // C在A右方
+    
+    // 计算E点（BE⊥AC，E在AC上）
+    // AC从A到C的方向向量
+    const ACx=C[0]-A[0], ACy=C[1]-A[1];
+    // BE⊥AC意味着BE方向垂直于AC
+    // E是B到AC的垂足
+    // 参数化：E = A + t*(C-A), 其中 t = AB·AC / |AC|²
+    const ABx=B[0]-A[0], ABy=B[1]-A[1];
+    const t=(ABx*ACx+ABy*ACy)/(ACx*ACx+ACy*ACy);
+    const E=[A[0]+t*ACx, A[1]+t*ACy];
+    
+    // F点（CF⊥AB，F在AB上）
+    // AB是竖直线，所以F的x坐标=A.x，F在AB上
+    // CF⊥AB意味着CF水平
+    const F=[A[0], C[1]];  // CF水平
+    
+    // M点（在CA延长线上）
+    const M=[A[0]-(C[0]-A[0])*0.5, A[1]-(C[1]-A[1])*0.5];
+    
+    // N点（CN为外角平分线，与AM交于N）
+    // 外角∠ACD的平分线，大致方向
+    const N=[M[0], M[1]+160];
+    
+    // === 绘制 ===
+    
+    // 1. 画△ABC
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.closePath();
+    ctx.fillStyle='#e0f2fe';ctx.fill();
+    ctx.strokeStyle='#0369a1';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 2. 画垂线BE
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(E[0],E[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2;ctx.stroke();
+    
+    // 3. 画垂线CF
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(F[0],F[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2;ctx.stroke();
+    
+    // 4. 画延长线AM（虚线）
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(M[0],M[1]);
+    ctx.strokeStyle='#666';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+    
+    // 5. 画外角平分线CN
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(N[0],N[1]);
+    ctx.strokeStyle='#16a34a';ctx.lineWidth=2;ctx.stroke();
+    
+    // 6. 画四边形AEMN
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(E[0],E[1]);ctx.lineTo(M[0],M[1]);ctx.lineTo(N[0],N[1]);ctx.closePath();
+    ctx.fillStyle='rgba(20,184,166,0.15)';ctx.fill();
+    ctx.strokeStyle='#14b8a6';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 7. 标注直角符号
+    function drawRightAngle(x, y, size, angleOffset) {
+        ctx.save();
+        ctx.translate(x,y);
+        ctx.rotate(angleOffset);
+        ctx.beginPath();
+        ctx.moveTo(0,-size);ctx.lineTo(size,-size);ctx.lineTo(size,0);
+        ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+        ctx.restore();
+    }
+    drawRightAngle(A[0], A[1], 15, 0);           // ∠A = 90°
+    drawRightAngle(E[0], E[1], 12, Math.atan2(A[1]-E[1],A[0]-E[0]));   // BE⊥AC
+    drawRightAngle(F[0], F[1], 12, 0);            // CF⊥AB
+    
+    // 8. 点标记和标签
+    const points=[
+        [A,'A',-22,-5],[B,'B',-22,10],[C,'C',10,-5],
+        [E,'E',15,5],[F,'F',-22,5],[M,'M',-22,0],[N,'N',-22,5]
+    ];
+    points.forEach(pt=>{
+        ctx.beginPath();ctx.arc(pt[0][0],pt[0][1],4.5,0,Math.PI*2);
+        ctx.fillStyle=pt[1]==='A'||pt[1]==='E'||pt[1]==='M'||pt[1]==='N'?'#14b8a6':'#0369a1';
+        ctx.fill();
+        ctx.font='bold 15px Segoe UI';ctx.fillStyle='#1e3b5a';
+        ctx.textAlign=pt[2]>0?'left':'right';
+        ctx.fillText(pt[1], pt[0][0]+pt[2], pt[0][1]+pt[3]);
+    });
+    
+    // 9. 图例
+    let ly=20;
+    function addLegend(color, dash, text){
+        ctx.strokeStyle=color;ctx.lineWidth=dash?2:2.5;
+        if(dash)ctx.setLineDash([5,3]);else ctx.setLineDash([]);
+        ctx.beginPath();ctx.moveTo(c.width-110,ly);ctx.lineTo(c.width-75,ly);ctx.stroke();ctx.setLineDash([]);
+        ctx.font='bold 11px Segoe UI';ctx.fillStyle='#333';ctx.textAlign='left';
+        ctx.fillText(text,c.width-70,ly+4);ly+=18;
+    }
+    addLegend('#0369a6',false,'△ABC');
+    addLegend('#dc2626',false,'垂线BE,CF');
+    addLegend('#16a34a',false,'外角平分线CN');
+    addLegend('#14b8a6',false,'▱AEMN(待证)');
+}
+
+
+/* ==================== 探究活动：直角三角形中线动态构造 ==================== */
+let constructStep=0;
+let constructAnimId=null;
+
+function drawExploreRt(step=0){
+    const c=document.getElementById('exploreRtCanvas'), ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    // Rt△ABC，∠C=90°
+    const C=[100, 280];   // 直角顶点C
+    const A=[100, 60];    // A在C上方
+    const B=[400, 280];   // B在C右方
+    const D=[(A[0]+B[0])/2, (A[1]+B[1])/2]; // AB中点D
+    
+    // 画Rt△ABC
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(B[0],B[1]);ctx.closePath();
+    ctx.fillStyle='#e0f2fe';ctx.fill();
+    ctx.strokeStyle='#0369a1';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 画斜边AB
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);
+    ctx.strokeStyle='#1e40af';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 画中线CD
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 直角符号
+    ctx.beginPath();ctx.moveTo(C[0]+18,C[1]);ctx.lineTo(C[0]+18,C[1]-18);ctx.lineTo(C[0],C[1]-18);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+    
+    // 标签
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#1e3b5a';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-12,A[1]-5);
+    ctx.fillText('C',C[0]-12,C[1]+18);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+12,B[1]+5);
+    ctx.fillText('D',D[0]+10,D[1]-5);
+    
+    // 标注CD是中线
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#dc2626';
+    ctx.textAlign='center';ctx.fillText('中线 CD', (C[0]+D[0])/2-30, (C[1]+D[1])/2-10);
+    
+    // 动态构造部分
+    if(step >= 1){
+        // 延长CD至E，使DE=CD
+        const E=[D[0]*2-C[0], D[1]*2-C[1]];
+        
+        // 延长线DE（动画效果：逐步显示）
+        const progress = step >= 2 ? 1 : 0.5;
+        const showE = [D[0]+(E[0]-D[0])*progress, D[1]+(E[1]-D[1])*progress];
+        
+        ctx.beginPath();ctx.moveTo(D[0],D[1]);ctx.lineTo(showE[0],showE[1]);
+        ctx.strokeStyle='#16a34a';ctx.lineWidth=2.5;ctx.setLineDash([8,4]);ctx.stroke();ctx.setLineDash([]);
+        
+        if(step >= 2){
+            // E点
+            ctx.beginPath();ctx.arc(E[0],E[1],5,0,Math.PI*2);
+            ctx.fillStyle='#16a34a';ctx.fill();
+            ctx.font='bold 16px Segoe UI';ctx.fillStyle='#1e3b5a';
+            ctx.textAlign='left';ctx.fillText('E',E[0]+10,E[1]-5);
+            
+            // 连接AE
+            ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(E[0],E[1]);
+            ctx.strokeStyle='#9333ea';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.stroke();ctx.setLineDash([]);
+            
+            // 连接BE
+            ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(E[0],E[1]);
+            ctx.strokeStyle='#9333ea';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.stroke();ctx.setLineDash([]);
+            
+            // 形成的矩形ACBE（高亮）
+            ctx.beginPath();
+            ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(E[0],E[1]);ctx.closePath();
+            ctx.fillStyle='rgba(147,51,234,0.08)';ctx.fill();
+            ctx.strokeStyle='#9333ea';ctx.lineWidth=2;ctx.stroke();
+            
+            // 标注CD=DE
+            ctx.font='bold 12px Segoe UI';ctx.fillStyle='#16a34a';
+            ctx.textAlign='center';ctx.fillText('CD = DE', (C[0]+E[0])/2, (C[1]+E[1])/2+20);
+            
+            // 结论标注
+            ctx.font='bold 15px Segoe UI';ctx.fillStyle='#065f46';
+            ctx.fillText('矩形 ACBE', (A[0]+E[0])/2, (A[1]+E[1])/2-15);
+            ctx.fillStyle='#dc2626';
+            ctx.fillText('CE = AB = 2×CD', c.width/2, c.height-10);
+        }
+    }
+}
+
+function startConstruction(){
+    if(constructAnimId) cancelAnimationFrame(constructAnimId);
+    constructStep=0;
+    const hint=document.getElementById('constructHint');
+    hint.style.display='block';
+    
+    const steps=[
+        {s:1, text:'📌 第一步：延长 CD...'},
+        {s:2, text:'📌 第二步：连接 AE、BE，形成矩形 ACBE'},
+        {s:2, text:'✨ 结论：CD = ½AB（矩形对角线互相平分且相等）'}
+    ];
+    let idx=0;
+    
+    function animate(){
+        if(idx < steps.length){
+            constructStep=steps[idx].s;
+            hint.innerHTML=steps[idx].text;
+            drawExploreRt(constructStep);
+            idx++;
+            constructAnimId=setTimeout(animate, 1500);
+        }else{
+            constructAnimId=null;
+        }
+    }
+    animate();
+}
+
+function resetConstruction(){
+    if(constructAnimId) {cancelAnimationFrame(constructAnimId);constructAnimId=null;}
+    constructStep=0;
+    document.getElementById('constructHint').style.display='none';
+    drawExploreRt(0);
+}
+
+
+/* ==================== 证明用Canvas：构造法示意图 ==================== */
+function drawProofCanvas(){
+    const c=document.getElementById('proofCanvas'), ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    // Rt△ABC
+    const C=[100, 270];
+    const A=[100, 50];
+    const B=[420, 270];
+    const D=[(A[0]+B[0])/2, (A[1]+B[1])/2];
+    const E=[D[0]*2-C[0], D[1]*2-C[1]];
+    
+    // 矩形ACBE填充
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(E[0],E[1]);ctx.closePath();
+    ctx.fillStyle='#f0fdf4';ctx.fill();
+    ctx.strokeStyle='#059669';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 对角线AB和CE
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);
+    ctx.strokeStyle='#1e40af';ctx.lineWidth=2.5;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(E[0],E[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 原始中线CD高亮
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3.5;ctx.stroke();
+    
+    // 虚线DE
+    ctx.beginPath();ctx.moveTo(D[0],D[1]);ctx.lineTo(E[0],E[1]);
+    ctx.strokeStyle='#16a34a';ctx.lineWidth=2;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+    
+    // 直角符号 at C
+    ctx.beginPath();ctx.moveTo(C[0]+18,C[1]);ctx.lineTo(C[0]+18,C[1]-18);ctx.lineTo(C[0],C[1]-18);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=1.5;ctx.stroke();
+    
+    // 中点标记D
+    ctx.beginPath();ctx.arc(D[0],D[1],5,0,Math.PI*2);ctx.fillStyle='#dc2626';ctx.fill();
+    
+    // 标签
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#1e3b5a';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-12,A[1]-5);ctx.fillText('C',C[0]-12,C[1]+18);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+12,B[1]+5);ctx.fillText('E',E[0]+10,E[1]+5);
+    ctx.fillText('D',D[0]+10,D[1]+18);
+    
+    // 标注
+    ctx.font='bold 13px Segoe UI';ctx.textAlign='center';
+    ctx.fillStyle='#dc2626';ctx.fillText('CD = ½AB', (C[0]+D[0])/2-35, (C[1]+D[1])/2-5);
+    ctx.fillStyle='#16a34a';ctx.fillText('延长使 DE = CD', (D[0]+E[0])/2, (D[1]+E[1])-10);
+    ctx.fillStyle='#059669';ctx.fillText('矩形 ACBE', (A[0]+B[0])/2, A[1]-15);
+}
+
+
+/* ==================== 练习2 Canvas ==================== */
+function drawPrac2Canvas(){
+    const c=document.getElementById('prac2Canvas'), ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    const A=[60, 50], B=[260, 50], D=[(A[0]+B[0])/2, (A[1]+B[1])//2];
+    const C=[140, 220]; // 使CD=3, AB=6的比例
+    
+    // △ABC
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.closePath();
+    ctx.fillStyle='#fef3c7';ctx.fill();
+    ctx.strokeStyle='#d97706';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 中线CD
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 中点D
+    ctx.beginPath();ctx.arc(D[0],D[1],5,0,Math.PI*2);ctx.fillStyle='#dc2626';ctx.fill();
+    
+    // 标注
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#1e3b5a';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-8,A[1]-5);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+8,B[1]-5);
+    ctx.fillText('C',C[0],C[1]+20);
+    ctx.fillText('D',D[0]+8,D[1]-8);
+    
+    // 长度标注
+    ctx.font='bold 12px Segoe UI';ctx.fillStyle='#dc2626';
+    ctx.textAlign='center';
+    ctx.fillText('CD = 3', (C[0]+D[0])/2-25, (C[1]+D[1])/2-5);
+    ctx.fillText('AB = 6', D[0], D[1]+20);
+    ctx.fillStyle='#059669';ctx.fillText('?', (A[0]+C[0])/2-20, (A[1]+C[1])/2);
+}
+
+
+/* ==================== 练习3 Canvas ==================== */
+function drawPrac3Canvas(){
+    const c=document.getElementById('prac3Canvas'), ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    // 矩形ABCD
+    const margin=60;
+    const A=[margin, 60];
+    const B=[c.width-margin, 60];
+    const C=[c.width-margin, c.height-60];
+    const D=[margin, c.height-60];
+    
+    // E是AD中点
+    const E=[(A[0]+D[0])/2, (A[1]+D[1])/2];
+    
+    // 画矩形
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#e0f2fe';ctx.fill();
+    ctx.strokeStyle='#0369a1';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 连接CE
+    ctx.beginPath();ctx.moveTo(C[0],C[1]);ctx.lineTo(E[0],E[1]);
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 直角符号
+    function ra(p, dx, dy){
+        ctx.beginPath();ctx.moveTo(p[0]+dx,p[1]);ctx.lineTo(p[0]+dx,p[1]+dy);ctx.lineTo(p[0],p[1]+dy);
+        ctx.strokeStyle='#0369a1';ctx.lineWidth=1.2;ctx.stroke();
+    }
+    ra(A, 15, 15); ra(B, -15, 15); ra(C, -15, -15); ra(D, 15, -15);
+    
+    // 标签
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#1e3b5a';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-8,A[1]-5);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+8,B[1]-5);
+    ctx.fillText('C',C[0]+8,C[1]+5);
+    ctx.textAlign='right';ctx.fillText('D',D[0]-8,D[1]+5);
+    ctx.textAlign='right';ctx.fillText('E',E[0]-8,E[1]+5);
+    
+    // 角度标注
+    ctx.font='bold 12px Segoe UI';ctx.fillStyle='#dc2626';
+    ctx.textAlign='center';ctx.fillText('tan∠BCE = ½', (B[0]+C[0])/2+40, (B[1]+C[1])/2);
+    ctx.fillText('CE = √5', (C[0]+E[0])/2+35, (C[1]+E[1])/2-5);
+    ctx.fillStyle='#0369a1';ctx.fillText('E是AD中点', E[0], E[1]+25);
+}
+
+
+// 页面加载时绘制所有图形
+window.onload=function(){
+    drawEx6Fig();
+    drawExploreRt(0);
+    drawProofCanvas();
+    drawPrac2Canvas();
+    drawPrac3Canvas();
+};
+</script>
+</body>
+</html>

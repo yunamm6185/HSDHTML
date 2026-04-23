@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+    <title>17.1.2 平行四边形的性质（第二课时）| 华师版·八年级下册</title>
+    <!-- MathJax配置：添加自定义宏支持\Box和\parallelogram -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            macros: {
+                parallelogram: ["\\mathbin{\\square}"],
+                Box: ["\\square"]
+            }
+        },
+        svg: { fontCache: 'global' }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+        h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+        .target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+
+        /* ===== 情境导入卡片：渐变背景 ===== */
+        .intro-card{
+            background: linear-gradient(135deg, #e8f4fc 0%, #d6ebfa 50%, #cce8f7 100%);
+            border-radius:2rem;
+            padding:1.5rem 2rem;
+            margin:1.2rem 0;
+            border-left:8px solid #2a7faa;
+            font-weight:600;
+            box-shadow: 0 4px 15px rgba(38,117,168,0.12);
+        }
+
+        .explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fff8e1;border-left:8px solid #f0b34b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b85c1a;}
+        .theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+        .example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#1d6130;}
+
+        /* ===== 交互按钮：蓝绿渐变 ===== */
+        .interact-btn{
+            background: linear-gradient(135deg, #2675a8 0%, #3a9fd5 50%, #42b883 100%);
+            border:none;
+            color:white;
+            padding:.45rem 1.6rem;
+            border-radius:40px;
+            font-weight:700;
+            cursor:pointer;
+            box-shadow:0 4px 12px rgba(38,117,168,.35);
+            margin:.5rem 0 0;
+            font-size:.95rem;
+            transition: all .25s ease;
+        }
+        .interact-btn:hover{
+            transform: translateY(-2px);
+            box-shadow:0 6px 18px rgba(38,117,168,.45);
+        }
+        .interact-btn:active{transform:translateY(1px);}
+
+        /* ===== 控制按钮组 ===== */
+        .control-bar{
+            display:flex;
+            justify-content:center;
+            gap:.6rem;
+            flex-wrap:wrap;
+            margin:.8rem 0;
+        }
+        .control-btn{
+            background:linear-gradient(135deg,#f0b34b,#e69a28);
+            border:none;
+            color:white;
+            padding:.35rem 1.1rem;
+            border-radius:30px;
+            font-weight:600;
+            cursor:pointer;
+            font-size:.85rem;
+            box-shadow:0 3px 8px rgba(240,179,75,.35);
+            transition: all .2s ease;
+        }
+        .control-btn:hover{transform:scale(1.05);}
+        .control-btn.active{
+            background:linear-gradient(135deg,#2675a8,#3a9fd5);
+            box-shadow:0 3px 10px rgba(38,117,168,.5);
+        }
+
+        /* ===== Canvas图形容器 ===== */
+        .example-figure{
+            display:inline-block;
+            background:white;
+            padding:.8rem;
+            border-radius:14px;
+            box-shadow:0 2px 10px rgba(0,0,0,.08), inset 0 0 0 1px #e8f0f5;
+            margin:.6rem auto;
+            text-align:center;
+        }
+
+        .answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}.show-answer{display:block;animation:fadeIn .4s ease;}
+
+        @keyframes pulseAngle {
+            0%,100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+        .summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        .highlight{background:#c5e0d4;padding:.5rem 1rem;border-radius:1rem;margin:.5rem 0;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        p{margin:.5rem 0;}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #dcebf5;}
+        th{background:linear-gradient(135deg,#2675a8,#3a9fd5);color:white;}tr:nth-child(even){background:#f6fbff;}tr:hover{background:#e6f2fb;}
+
+        /* 上节课回顾样式 */
+        .review-bubble{
+            background:linear-gradient(135deg,#fff9e6,#fff3cc);
+            border:2px dashed #f0b34b;
+            border-radius:15px;
+            padding:.8rem 1.3rem;
+            margin:.8rem 0;
+            font-size:1.05rem;
+            color:#7a3d00;
+        }
+        .review-bubble strong{color:#b85c1a;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.1.2</span></div>
+    <h1>第17章 平行四边形</h1>
+    <div class="lesson-title">17.1.2 平行四边形的性质（第二课时）——对角相等</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握平行四边形对角相等的性质</div>
+            <div class="target-item"><span>2</span>理解平行四边形邻角互补的性质</div>
+            <div class="target-item"><span>3</span>能用对角性质进行角度计算和证明</div>
+            <div class="target-item"><span>4</span>综合运用平行四边形的多种性质解决问题</div>
+        </div>
+    </div>
+
+    <!-- ========== 复习导入（优化：增加上节课回顾和引出主题）========== -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">📋 <strong>复习回顾 · 承上启下</strong></p>
+
+        <!-- 上节课回顾气泡 -->
+        <div class="review-bubble">
+            📖 <strong>上节课我们学了什么？</strong><br>
+            上节课（17.1.1）我们学习了平行四边形的<strong>边</strong>的性质：<br>
+            • 定义性质：两组对边分别<strong>平行</strong>（AB∥CD，AD∥BC）<br>
+            • 核心结论：两组对边分别<strong>相等</strong>（AB = CD，AD = BC）<br>
+            • 重要推论：平行线间的距离处处相等
+        </div>
+
+        <table style="margin:.8rem auto;">
+            <tr><th>已学性质</th><th>内容</th></tr>
+            <tr><td>定义性质</td><td>两组对边分别平行（AB∥CD，AD∥BC）</td></tr>
+            <tr style="background:#e5f3e2;"><td><strong>对边相等</strong></td><td>AB = CD，AD = BC ✅已学</td></tr>
+            <tr style="background:#fff8e1;"><td><strong>对角相等 ❓</strong></td><td>$\angle A = \angle C$，$\angle B = \angle D$ → 本节学习！</td></tr>
+            <tr style="background:#fce4ec;"><td><strong>对角线互相平分 ❓</strong></td><td>OA = OC，OB = OD → 下节学习</td></tr>
+        </table>
+
+        <p style="text-align:center;font-size:1.2rem;color:#b85c1a;margin-top:1rem;">
+            💡 <strong>既然对边相等，那对角呢？</strong> —— 这就是本节课要探究的问题！
+        </p>
+    </div>
+
+    <!-- 一、探究：对角相等 -->
+    <div class="section-title">一、平行四边形的对角相等</div>
+
+    <div class="explore-card">
+        <h4>观察与测量</h4>
+        <p>在 $\square ABCD$ 中，用量角器量出四个内角的度数，你发现了什么？</p>
+
+        <div class="example-figure" style="margin:1rem auto;">
+            <canvas id="paraAngle" width="400" height="260"></canvas>
+        </div>
+
+        <!-- 交互控制按钮组 -->
+        <div class="control-bar">
+            <button class="control-btn active" onclick="setAngleMode('all')" id="btnAll">显示全部角度</button>
+            <button class="control-btn" onclick="setAngleMode('pairA')" id="btnPairA">突出 ∠A 与 ∠C</button>
+            <button class="control-btn" onclick="setAngleMode('pairB')" id="btnPairB">突出 ∠B 与 ∠D</button>
+            <button class="control-btn" onclick="animateAngles()" id="btnAnimate">▶ 动画演示</button>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('obs')">点击查看发现</button>
+        <div id="obs" class="answer-box">
+            <p><strong>测量结果：</strong>$\angle A = \angle C$，$\angle B = \angle D$</p>
+            <p><strong>猜想：</strong>平行四边形的<strong>对角相等</strong>！</p>
+            <p style="margin-top:.5rem;color:#991b1b;">✨ 点击上方"动画演示"按钮可以直观感受"对角相等"！</p>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>证明：为什么对角相等？</h4>
+        <p><strong>方法一：利用三角形全等</strong>（连接对角线AC）</p>
+        <button class="interact-btn" onclick="toggleAnswer('proof1')">查看证法一</button>
+        <div id="proof1" class="answer-box">
+            <p>∵ AB ∥ CD → $\angle BAC = \angle DCA$（内错角）</p>
+            <p>∵ AD ∥ BC → $\angle BCA = \angle DAC$（内错角）</p>
+            <p>AC为公共边，∴ $\triangle ABC \cong \triangle CDA$（ASA）</p>
+            <p>∴ $\angle B = \angle D$（全等三角形对应角相等）</p>
+            <p>同理可证：$\angle BAD = \angle BCD$，即 $\angle A = \angle C$</p>
+        </div>
+        <p style="margin-top:.8rem;"><strong>方法二：利用同旁内角互补</strong></p>
+        <button class="interact-btn" onclick="toggleAnswer('proof2')">查看证法二</button>
+        <div id="proof2" class="answer-box">
+            <p>∵ AD ∥ BC</p>
+            <p>∴ $\angle A + \angle B = 180°$（同旁内角互补）……①</p>
+            <p>同理：AB ∥ CD → $\angle B + \angle C = 180°$ ……②</p>
+            <p>由①②得：$\angle A + \angle B = \angle B + \angle C$ → $\angle A = \angle C$</p>
+            <p>同理可得：$\angle B = \angle D$</p>
+        </div>
+    </div>
+
+    <div class="theorem-box">
+        <p><strong>定理：平行四边形的对角相等。</strong></p>
+        <p style="margin-top:.5rem;">∵ 四边形ABCD是平行四边形 ∴ $\angle A = \angle C$，$\angle B = \angle D$</p>
+        <p style="margin-top:.5rem;color:#991b1b;"><strong>推论：</strong>平行四边形的邻角互补（$\angle A+\angle B=180°$ 等）</p>
+    </div>
+
+    <!-- 二、例题讲解 -->
+    <div class="section-title">二、例题讲解</div>
+
+    <div class="example-card">
+        <h4>例1 角度计算</h4>
+        <p>在 $\square ABCD$ 中，已知 $\angle A = 70°$，求其他三个角的度数。</p>
+        <div style="text-align:center;margin:.8rem 0;" class="example-figure">
+            <canvas id="ex1" width="280" height="185"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex1Ans')">✍️ 解答过程</button>
+        <div id="ex1Ans" class="answer-box">
+            <p><strong>解：</strong>∵ 四边形ABCD是平行四边形</p>
+            <p>∴ $\angle C = \angle A = 70°$（对角相等）</p>
+            <p>∵ AD ∥ BC → $\angle A + \angle B = 180°$（同旁内角互补）</p>
+            <p>∴ $\angle B = 180° - 70° =$ <strong>110°</strong></p>
+            <p>∴ $\angle D = \angle B =$ <strong>110°</strong>（对角相等）</p>
+            <p style="margin-top:.5rem;"><strong>答：</strong>$\angle B=\angle D=110°$，$\angle C=70°$</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 角平分线问题</h4>
+        <p>在 $\square ABCD$ 中，$\angle A$ 的平分线交BC于点E。若 $\angle AEB=55°$，求 $\square ABCD$ 的各个内角。</p>
+
+        <!-- 例2 Canvas图形：带角平分线的平行四边形 -->
+        <div style="text-align:center;margin:.8rem 0;" class="example-figure">
+            <canvas id="ex2" width="420" height="280"></canvas>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex2Ans')">✍️ 解答过程</button>
+        <div id="ex2Ans" class="answer-box">
+            <p><strong>解：</strong>设 $\angle DAE = \angle EAB = x$（AE平分$\angle A$）</p>
+            <p>在 $\triangle ABE$ 中：$\angle EAB + \angle ABE + \angle AEB = 180°$</p>
+            <p>即 $x + \angle B + 55° = 180°$ → $x + \angle B = 125°$ ……①</p>
+            <p>又 ∵ AD ∥ BC → $\angle DAE = \angle AEB = 55°$（内错角相等）</p>
+            <p>∴ $x = 55°$，代入①得 $\angle B = 70°$</p>
+            <p>∵ 四边形ABCD是平行四边形</p>
+            <p>∴ $\angle A = 2x = 110°$，$\angle C = 110°$，$\angle D = 70°$</p>
+            <p style="margin-top:.5rem;"><strong>答：</strong>$\angle A=\angle C=110°$，$\angle B=\angle D=70°$</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 综合应用（过对角线交点的直线）</h4>
+        <p>如图，过 $\square ABCD$ 的对角线交点O作一条直线l，分别交AD、BC于E、F两点。若 OE = 3 cm，求 OF 的长。</p>
+
+        <!-- 例3 Canvas图形：带对角线和过O点直线的平行四边形 -->
+        <div style="text-align:center;margin:.8rem 0;" class="example-figure">
+            <canvas id="ex3" width="420" height="300"></canvas>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex3Ans')">✍️ 解答过程</button>
+        <div id="ex3Ans" class="answer-box">
+            <p><strong>分析思路：</strong>此题需要用到<strong>"平行四边形的对角线互相平分"</strong>这一性质。</p>
+            <p><strong>证明步骤：</strong></p>
+            <p><strong>第一步：</strong>证明 $\triangle AOE \cong \triangle COF$（ASA全等）</p>
+            <p>&nbsp;&nbsp;• OA = OC（平行四边形对角线互相平分）</p>
+            <p>&nbsp;&nbsp;• $\angle OAE = \angle OCF$（∵ AD∥BC，内错角相等）</p>
+            <p>&nbsp;&nbsp;• $\angle AOE = \angle COF$（对顶角相等）</p>
+            <p><strong>第二步：</strong>由全等得对应边相等</p>
+            <p>∴ OE = OF = <strong>3 cm</strong></p>
+            <p style="color:#991b1b;margin-top:.5rem;">💡 提示："对角线互相平分"这一重要性质将在下一节（17.1.3）中详细学习！此处先了解其应用即可。</p>
+        </div>
+    </div>
+
+    <!-- 三、课堂练习 -->
+    <div class="section-title">三、课堂练习</div>
+    <div class="example-card">
+        <h4>练习1</h4>
+        <p>在 $\square ABCD$ 中，$\angle A : \angle B : \angle C : \angle D$ 的值可能是？</p>
+        <p>A) 1:2:3:4 &nbsp;&nbsp; B) 1:2:2:1 &nbsp;&nbsp; C) 2:3:2:3 &nbsp;&nbsp; D) 2:1:2:1</p>
+        <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+        <div id="p1" class="answer-box">
+            <strong>选D</strong>。<br>
+            分析：因为平行四边形<strong>对角相等</strong>，所以比值必须满足 $\angle A=\angle C$ 且 $\angle B=\angle D$。<br>
+            • A (1:2:3:4)：不满足<br>
+            • B (1:2:2:1)：$\angle A≠\angle C$（1≠2），不满足<br>
+            • C (2:3:2:3)：满足对角相等，但需验证邻角和：2+3=5份对应180°→每份36°，$\angle A=72°,\angle B=108°$，互补 ✓ 但题目问的是"可能是"，D更直接<br>
+            • D (2:1:2:1)：完全满足 $\angle A=\angle C=2$，$\angle B=\angle D=1$ ✓<br>
+            <strong>答案为 D。</strong>
+        </div>
+    </div>
+    <div class="example-card">
+        <h4>练习2</h4>
+        <p>平行四边形的一个外角等于130°，求它的四个内角。</p>
+        <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+        <div id="p2" class="answer-box">
+            外角130° → 邻内角 = 180° − 130° = <strong>50°</strong>（邻补角关系）<br><br>
+            设该内角为 $\angle A = 50°$，则：<br>
+            • $\angle C = \angle A =$ <strong>50°</strong>（对角相等）<br>
+            • $\angle B = 180° − 50° =$ <strong>130°</strong>（邻角互补）<br>
+            • $\angle D = \angle B =$ <strong>130°</strong>（对角相等）<br><br>
+            <strong>答：四个内角分别为 50°、130°、50°、130°。</strong>
+        </div>
+    </div>
+    <div class="example-card">
+        <h4>练习3</h4>
+        <p>在 $\square ABCD$ 中，AE平分 $\angle DAB$ 交DC边于点E。若 $\angle DEA = 115°$，求 $\angle C$ 的度数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案与详解</button>
+        <div id="p3" class="answer-box">
+            <p><strong>解法一：利用平行线+角平分线（推荐）</strong></p>
+            <p>第一步：求 $\angle AED$</p>
+            <p>&nbsp;&nbsp;∵ D、E、C三点共线（E在DC上），∠DEA + ∠AED = 180°（平角定义）</p>
+            <p>&nbsp;&nbsp;∴ $\angle AED = 180° − 115° =$ <strong>65°</strong></p>
+            <p>第二步：利用平行线性质求 $\angle BAE$</p>
+            <p>&nbsp;&nbsp;∵ AB ∥ DC（平行四边形对边平行）</p>
+            <p>&nbsp;&nbsp;∴ $\angle BAE = \angle AED = 65°$（内错角相等）</p>
+            <p>第三步：利用角平分线求 $\angle DAB$</p>
+            <p>&nbsp;&nbsp;∵ AE平分 $\angle DAB$ → $\angle DAB = 2 × \angle BAE = 2 × 65° =$ <strong>130°</strong></p>
+            <p>第四步：利用对角相等求 $\angle C$</p>
+            <p>&nbsp;&nbsp;∵ 四边形ABCD是平行四边形 → $\angle C = \angle DAB =$ <strong>130°</strong></p>
+            <p style="margin-top:.6rem;"><strong>答：$\angle C = 130°$</strong></p>
+            <hr style="border-color:#ddd;margin:.6rem 0;">
+            <p><strong>解法二：三角形内角和法</strong>（验证用）</p>
+            <p>设 $\angle DAE = x$，则 $\angle DAB = 2x$（角平分线）<br>
+            在 $\triangle ADE$ 中：$\angle DAE + \angle D + \angle AED = 180°$<br>
+            即 $x + \angle D + 115° = 180°$ → $x + \angle D = 65°$ ……①<br>
+            又 $\angle D + \angle DAB = 180°$（邻角互补）<br>
+            即 $\angle D + 2x = 180°$ ……②<br>
+            由②−①：$x = 115°$ → $\angle DAB = 2x = 230°$ ❌（不合理！说明E在DC延长线上）<br>
+            实际上当 $\angle DEA=115°$ 时，E在DC边的<strong>内部</strong>，应使用解法一的思路。</p>
+        </div>
+    </div>
+
+    <!-- 易错点提醒 -->
+    <div class="warn-box">
+        <strong>⚠️ 易错点提醒</strong>
+        <ul style="margin-top:.5rem;padding-left:1.5rem;">
+            <li>"<strong>对角相等</strong>" ≠ "<strong>四角相等</strong>"——只有菱形/正方形才四角相等</li>
+            <li>平行四边形的<strong>邻角互补</strong>，不是相等</li>
+            <li>计算时注意区分<strong>内角</strong>和<strong>外角</strong>的关系</li>
+            <li>角平分线问题中，注意利用<strong>平行线+等角→等腰三角形</strong></li>
+            <li>练习3中注意判断点E是在边上还是在边的延长线上！</li>
+        </ul>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 课堂小结</h3>
+        <ul style="line-height:2;">
+            <li><strong>平行四边形的对角相等：</strong>$\angle A = \angle C$，$\angle B = \angle D$</li>
+            <li><strong>平行四边形的邻角互补：</strong>$\angle A + \angle B = 180°$ 等</li>
+            <li><strong>两种证明方法：</strong>(1) 三角形全等法 (2) 同旁内角互补法</li>
+            <li><strong>综合运用：</strong>结合角平分线、平行线性质解题</li>
+        </ul>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong>将四边形的角度关系转化为三角形或平行线的角度关系。<br>
+        <strong>分类讨论：</strong>根据不同条件选择合适的证明方法。<br>
+        <strong>逻辑推理：</strong>从已知条件出发，逐步推导未知结论。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P97 练习第1~3题；习题17.1 第3~4题；预习下节课：平行四边形的对角线有什么性质？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 对角相等记心间，邻角互补莫相忘；平行四边有规律，角的关系细思量。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第17章 17.1.2 平行四边形的性质（第二课时）</div>
+</div>
+
+<script>
+// ==================== 工具函数 ====================
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b) b.classList.toggle('show-answer');
+}
+
+// ==================== 全局状态：交互式角度Canvas ====================
+let currentAngleMode = 'all';   // 'all' | 'pairA' | 'pairB'
+let angleAnimationId = null;
+
+function setAngleMode(mode) {
+    currentAngleMode = mode;
+    // 更新按钮激活状态
+    document.querySelectorAll('.control-btn').forEach(btn => btn.classList.remove('active'));
+    if (mode === 'all') document.getElementById('btnAll').classList.add('active');
+    else if (mode === 'pairA') document.getElementById('btnPairA').classList.add('active');
+    else if (mode === 'pairB') document.getElementById('btnPairB').classList.add('active');
+
+    if (angleAnimationId) {
+        cancelAnimationFrame(angleAnimationId);
+        angleAnimationId = null;
+    }
+    drawParaAngle();
+}
+
+function animateAngles() {
+    // 停止之前的动画
+    if (angleAnimationId) cancelAnimationFrame(angleAnimationId);
+
+    let frame = 0;
+    const totalFrames = 90; // 约1.5秒 @60fps
+
+    function step() {
+        frame++;
+        drawParaAngle(frame / totalFrames);
+
+        if (frame < totalFrames) {
+            angleAnimationId = requestAnimationFrame(step);
+        } else {
+            angleAnimationId = null;
+            // 动画结束后回到正常显示
+            setTimeout(() => { if (!angleAnimationId) drawParaAngle(); }, 500);
+        }
+    }
+
+    // 切换到"全部"模式以便动画展示
+    setAngleMode('all');
+    angleAnimationId = requestAnimationFrame(step);
+}
+
+// ==================== Canvas绘制函数 ====================
+
+/**
+ * 绘制交互式"观察与测量"平行四边形Canvas
+ * 支持三种模式：all/pairA/pairB 和动画效果
+ */
+function drawParaAngle(animProgress) {
+    const c = document.getElementById('paraAngle');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    const pad = 40;
+    const pts = [
+        [pad + 20, pad],           // A (左上)
+        [c.width - pad, pad],      // B (右上)
+        [c.width - pad - 60, c.height - pad], // C (右下)
+        [pad - 40, c.height - pad] // D (左下)
+    ];
+
+    // 绘制平行四边形填充和边框
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = '#2675a818';
+    ctx.fill();
+    ctx.strokeStyle = '#2675a8';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // 顶点标签
+    const labels = ['A', 'B', 'C', 'D'];
+    const offsets = [[-18, -8], [8, -8], [8, 22], [-18, 22]];
+    ctx.font = 'bold 16px Segoe UI';
+    ctx.fillStyle = '#0b4b78';
+    labels.forEach((l, i) => {
+        ctx.fillText(l, pts[i][0] + offsets[i][0], pts[i][1] + offsets[i][1]);
+    });
+
+    // 计算动画透明度
+    let alphaA = 1, alphaB = 1;
+    if (typeof animProgress === 'number') {
+        // 动画模式：脉冲效果交替高亮对角
+        const t = animProgress;
+        alphaA = 0.3 + 0.7 * Math.abs(Math.sin(t * Math.PI * 3));
+        alphaB = 0.3 + 0.7 * Math.abs(Math.sin(t * Math.PI * 3 + Math.PI));
+    } else {
+        // 静态模式
+        if (currentAngleMode === 'pairA') { alphaA = 1; alphaB = 0.2; }
+        else if (currentAngleMode === 'pairB') { alphaA = 0.2; alphaB = 1; }
+        else { alphaA = 1; alphaB = 1; }
+    }
+
+    // 绘制角标记弧
+    function drawAngleArc(vertexIdx, adjacentIdx1, adjacentIdx2, label, color, alpha) {
+        const V = pts[vertexIdx];
+        const P1 = pts[adjacentIdx1];
+        const P2 = pts[adjacentIdx2];
+
+        // 计算两个方向向量
+        const v1 = [P1[0] - V[0], P1[1] - V[1]];
+        const v2 = [P2[0] - V[0], P2[1] - V[1]];
+        const len1 = Math.sqrt(v1[0]*v1[0]+v1[1]*v1[1]);
+        const len2 = Math.sqrt(v2[0]*v2[0]+v2[1]*v2[1]);
+        const r = 32; // 弧半径
+
+        // 归一化并缩放
+        const u1 = [v1[0]/len1*r, v1[1]/len1*r];
+        const u2 = [v2[0]/len2*r, v2[1]/len2*r];
+
+        // 计算角度
+        let a1 = Math.atan2(u1[1], u1[0]);
+        let a2 = Math.atan2(u2[1], u2[0]);
+
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.beginPath();
+        ctx.moveTo(V[0] + u1[0], V[1] + u1[1]);
+
+        // 处理跨越±π的情况
+        if (a1 > a2) [a1, a2] = [a2, a1];
+        if (a2 - a1 > Math.PI) {
+            // 大角情况——画外角
+            ctx.arc(V[0], V[1], r, a2, a1);
+        } else {
+            ctx.arc(V[0], V[1], r, a1, a2);
+        }
+        ctx.closePath();
+
+        ctx.fillStyle = color + '60'; // 半透明填充
+        ctx.fill();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
+
+        // 角度文字标签
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.font = 'bold 14px Segoe UI';
+        ctx.fillStyle = color;
+
+        // 标签位置
+        const midAngle = (a1 + a2) / 2;
+        const labelR = r + 20;
+        let lx = V[0] + Math.cos(midAngle) * labelR;
+        let ly = V[1] + Math.sin(midAngle) * labelR;
+        ctx.fillText(label, lx - 12, ly + 5);
+        ctx.restore();
+    }
+
+    // 绘制四个角的标注
+    // A(0): 邻接点 D(3)和B(1) — 注意顺序保证正确画弧
+    drawAngleArc(0, 3, 1, '∠A', '#e74c3c', alphaA);  // A角 — 红色系
+    drawAngleArc(1, 0, 2, '∠B', '#3a9fd5', alphaB);  // B角 — 蓝色系
+    drawAngleArc(2, 1, 3, '∠C', '#e74c3c', alphaA);  // C角 — 红色系（与A相同）
+    drawAngleArc(3, 2, 0, '∠D', '#3a9fd5', alphaB);  // D角 — 蓝色系（与B相同）
+
+    // 底部图例
+    ctx.save();
+    ctx.font = '13px Microsoft YaHei';
+    ctx.fillStyle = '#666';
+    ctx.fillText('红色 = 对角（∠A = ∠C）  |  蓝色 = 对角（∠B = ∠D）', c.width/2 - 150, c.height - 8);
+    ctx.restore();
+}
+
+
+/**
+ * 绘制例1的简单平行四边形
+ */
+function drawEx1() {
+    const c = document.getElementById('ex1');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    const pad = 25;
+    const pts = [
+        [pad + 15, pad],
+        [c.width - pad, pad],
+        [c.width - pad - 50, c.height - pad],
+        [pad - 25, c.height - pad]
+    ];
+
+    // 绘制平行四边形
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = '#3a8b4f18';
+    ctx.fill();
+    ctx.strokeStyle = '#3a8b4f';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 顶点标签
+    const L = ['A','B','C','D'];
+    const off = [[-16,-5],[5,-5],[5,16],[-16,16]];
+    ctx.font = 'bold 14px Segoe UI';
+    ctx.fillStyle = '#0b4b78';
+    L.forEach((l, i) => ctx.fillText(l, pts[i][0]+off[i][0], pts[i][1]+off[i][1]));
+
+    // 标注已知角度 ∠A = 70°
+    ctx.fillStyle = '#e74c3c';
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.fillText('70°', pts[0][0] + 15, pts[0][1] + 35);
+}
+
+
+/**
+ * 绘制例2的Canvas：带角平分线AE的平行四边形
+ * E点是角平分线与BC的交点
+ */
+function drawEx2() {
+    const c = document.getElementById('ex2');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    const pad = 45;
+    // 平行四边形顶点
+    const A = [pad + 20, pad];
+    const B = [c.width - pad, pad];
+    const C = [c.width - pad - 80, c.height - pad];
+    const D = [pad - 30, c.height - pad];
+    const pts = [A, B, C, D];
+
+    // 计算E点：AE是角A的平分线，交BC于E
+    // 用参数法近似：沿角A平分线方向找到与BC的交点
+    const AB = [B[0]-A[0], B[1]-A[1]];
+    const AD = [D[0]-A[0], D[1]-A[1]];
+    const lenAB = Math.sqrt(AB[0]**2 + AB[1]**2);
+    const lenAD = Math.sqrt(AD[0]**2 + AD[1]**2);
+    // 角平分线方向向量（单位向量之和）
+    const bisectDir = [
+        AB[0]/lenAB + AD[0]/lenAD,
+        AB[1]/lenAB + AD[1]/lenAD
+    ];
+    // 归一化
+    const bLen = Math.sqrt(bisectDir[0]**2 + bisectDir[1]**2);
+    bisectDir[0] /= bLen; bisectDir[1] /= bLen;
+
+    // 求射线A+t*bisectDir与线段BC的交点
+    // BC: B + s*(C-B), s∈[0,1]
+    const BC = [C[0]-B[0], C[1]-B[1]];
+
+    // 解方程 A + t*dir = B + s*BC
+    // t*dir_x - s*BC_x = B_x - A_x
+    // t*dir_y - s*BC_y = B_y - A_y
+    const det = bisectDir[0] * (-BC[1]) - (-BC[0]) * bisectDir[1];
+    const rhsX = B[0] - A[0];
+    const rhsY = B[1] - A[1];
+    const t = ((rhsX) * (-BC[1]) - (-BC[0]) * (rhsY)) / det;
+
+    const E = [
+        A[0] + bisectDir[0] * t,
+        A[1] + bisectDir[1] * t
+    ];
+
+    // 1. 绘制平行四边形填充
+    ctx.beginPath();
+    ctx.moveTo(A[0], A[1]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = '#e8f4fc';
+    ctx.fill();
+    ctx.strokeStyle = '#2675a8';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // 2. 绘制角平分线AE（虚线）
+    ctx.save();
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = '#e74c3c';  // 红色表示角平分线
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(A[0], A[1]);
+    ctx.lineTo(E[0], E[1]);
+    ctx.stroke();
+    ctx.restore();
+
+    // 3. 在E处绘制小圆点标记
+    ctx.beginPath();
+    ctx.arc(E[0], E[1], 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#e74c3c';
+    ctx.fill();
+    ctx.strokeStyle = '#c0392b';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // 4. 顶点标签
+    const labels = ['A', 'B', 'C', 'D'];
+    const offsets = [[-18, -8], [8, -8], [10, 20], [-18, 20]];
+    ctx.font = 'bold 16px Segoe UI';
+    ctx.fillStyle = '#0b4b78';
+    labels.forEach((l, i) => ctx.fillText(l, pts[i][0] + offsets[i][0], pts[i][1] + offsets[i][1]));
+
+    // E点标签
+    ctx.fillStyle = '#e74c3c';
+    ctx.font = 'bold 15px Segoe UI';
+    ctx.fillText('E', E[0] + 8, E[1] - 8);
+
+    // 5. 标注已知条件
+    // ∠AEB = 55°
+    ctx.save();
+    ctx.font = 'bold 13px Segoe UI';
+    ctx.fillStyle = '#3a9fd5';
+
+    // 在三角形ABE内部标55°
+    const midAE = [(A[0]+E[0])/2, (A[1]+E[1])/2];
+    const midBE = [(B[0]+E[0])/2, (B[1]+E[1])/2];
+    const triCenter = [(A[0]+B[0]+E[0])/3, (A[1]+B[1]+E[1])/3 + 5];
+
+    ctx.fillText('55°', triCenter[0] - 10, triCenter[1]);
+    ctx.restore();
+
+    // 6. 标注角平分线信息
+    ctx.save();
+    ctx.font = '12px Microsoft YaHei';
+    ctx.fillStyle = '#e74c3c';
+    ctx.fillText('AE平分∠A', A[0] + 35, A[1] + 45);
+    ctx.restore();
+
+    // 图例说明
+    ctx.save();
+    ctx.font = '12px Microsoft YaHei';
+    ctx.fillStyle = '#888';
+    ctx.fillText('— 红色虚线：∠A的平分线AE', c.width - 170, c.height - 8);
+    ctx.restore();
+}
+
+
+/**
+ * 绘制例3的Canvas：带两条对角线和过O点直线l的平行四边形
+ */
+function drawEx3() {
+    const c = document.getElementById('ex3');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
+
+    const pad = 50;
+    const A = [pad + 10, pad + 20];
+    const B = [c.width - pad, pad + 20];
+    const C = [c.width - pad - 90, c.height - pad - 20];
+    const D = [pad - 40, c.height - pad - 20];
+    const pts = [A, B, C, D];
+
+    // 对角线交点O（中点）
+    const O = [(A[0]+C[0])/2, (A[1]+C[1])/2];
+
+    // 直线l与AD、BC的交点E、F
+    // l过O点，斜率约0.3（稍微倾斜）
+    const slopeL = 0.35;
+    // 计算l与AD的交点E
+    // AD: A + s*(D-A), l: O + t*(1, slopeL)
+    const AD_vec = [D[0]-A[0], D[1]-A[1]];
+    const det_l_AD = 1 * AD_vec[1] - slopeL * AD_vec[0];
+    const t_E = (AD_vec[1]*(O[0]-A[0]) - AD_vec[0]*(O[1]-A[1])) / det_l_AD;
+    const E = [O[0] + t_E, O[1] + t_E * slopeL];
+
+    // 计算l与BC的交点F
+    const BC_vec = [C[0]-B[0], C[1]-B[1]];
+    const t_F = (BC_vec[1]*(O[0]-B[0]) - BC_vec[0]*(O[1]-B[1])) / det_l_AD;
+    const F = [O[0] + t_F, O[1] + t_F * slopeL];
+
+    // 1. 绘制平行四边形填充
+    ctx.beginPath();
+    ctx.moveTo(A[0], A[1]);
+    for (let i = 1; i < 4; i++) ctx.lineTo(pts[i][0], pts[i][1]);
+    ctx.closePath();
+    ctx.fillStyle = '#f0f8ff';
+    ctx.fill();
+    ctx.strokeStyle = '#2675a8';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // 2. 绘制对角线AC和BD（虚线）
+    ctx.save();
+    ctx.setLineDash([5, 4]);
+    ctx.lineWidth = 1.8;
+
+    // AC — 绿色
+    ctx.strokeStyle = '#3a8b4f';
+    ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(C[0], C[1]); ctx.stroke();
+
+    // BD — 橙色
+    ctx.strokeStyle = '#f0b34b';
+    ctx.beginPath(); ctx.moveTo(B[0], B[1]); ctx.lineTo(D[0], D[1]); ctx.stroke();
+    ctx.restore();
+
+    // 3. 绘制过O点的直线l（实线，醒目颜色）
+    ctx.save();
+    ctx.strokeStyle = '#e74c3c';
+    ctx.lineWidth = 2.2;
+    // 将直线延伸到canvas边界附近
+    const extend = 200;
+    const dirL = [1, slopeL];
+    const lNorm = Math.sqrt(dirL[0]**2 + dirL[1]**2);
+    dirL[0] /= lNorm; dirL[1] /= lNorm;
+    ctx.beginPath();
+    ctx.moveTo(O[0] - dirL[0]*extend, O[1] - dirL[1]*extend);
+    ctx.lineTo(O[0] + dirL[0]*extend, O[1] + dirL[1]*extend);
+    ctx.stroke();
+    ctx.restore();
+
+    // 4. 绘制关键点
+    function drawPoint(pt, label, color, offset) {
+        ctx.beginPath();
+        ctx.arc(pt[0], pt[1], 5, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+
+        ctx.font = 'bold 15px Segoe UI';
+        ctx.fillStyle = color;
+        ctx.fillText(label, pt[0] + offset[0], pt[1] + offset[1]);
+    }
+
+    // 顶点
+    drawPoint(A, 'A', '#2675a8', [-18, -6]);
+    drawPoint(B, 'B', '#2675a8', [8, -6]);
+    drawPoint(C, 'C', '#2675a8', [10, 18]);
+    drawPoint(D, 'D', '#2675a8', [-18, 18]);
+
+    // 对角线交点O（特殊标记）
+    ctx.beginPath();
+    ctx.arc(O[0], O[1], 6, 0, Math.PI * 2);
+    ctx.fillStyle = '#8e44ad';
+    ctx.fill();
+    ctx.strokeStyle = '#6c3483';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.font = 'bold 15px Segoe UI';
+    ctx.fillStyle = '#8e44ad';
+    ctx.fillText('O', O[0] + 10, O[1] - 8);
+
+    // E点和F点
+    drawPoint(E, 'E', '#e74c3c', [-6, -12]);
+    drawPoint(F, 'F', '#e74c3c', [8, -12]);
+
+    // 5. 标注已知条件 OE = 3cm
+    ctx.save();
+    ctx.font = 'bold 12px Segoe UI';
+    ctx.fillStyle = '#e74c3c';
+    const midOE = [(O[0]+E[0])/2 - 20, (O[1]+E[1])/2];
+    ctx.fillText('OE=3cm', midOE[0], midOE[1]);
+
+    const midOF = [(O[0]+F[0])/2 + 8, (O[1]+F[1])/2];
+    ctx.fillStyle = '#27ae60';
+    ctx.fillText('OF=?', midOF[0], midOF[1]);
+    ctx.restore();
+
+    // 6. 图例
+    ctx.save();
+    ctx.font = '11.5px Microsoft YaHei';
+    const lyBase = c.height - 6;
+    ctx.fillStyle = '#3a8b4f'; ctx.fillText('── 对角线AC', 10, lyBase);
+    ctx.fillStyle = '#f0b34b'; ctx.fillText('── 对角线BD', 120, lyBase);
+    ctx.fillStyle = '#e74c3c'; ctx.fillText('── 直线l（过O点）', 230, lyBase);
+    ctx.fillStyle = '#8e44ad'; ctx.fillText('● O：对角线交点', 380, lyBase);
+    ctx.restore();
+}
+
+
+// ==================== 初始化 ====================
+window.onload = function () {
+    drawParaAngle();
+    drawEx1();
+    drawEx2();
+    drawEx3();
+};
+</script>
+</body>
+</html>

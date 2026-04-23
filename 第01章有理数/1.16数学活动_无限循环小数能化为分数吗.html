@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动：无限循环小数能化为分数吗 | 华师版·七上 第1章</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .activity-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .activity-sub {
+            font-size: 1.2rem;
+            color: #2c5778;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .explore-box {
+            background: #e3f2fd;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #5f9dc9;
+            box-shadow: 0 6px 0 #3f7ba3;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .discovery-box {
+            background: #f9f2e0;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e6b422;
+        }
+        .math-beauty {
+            background: #e8eaf6;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0;
+            border-left: 8px solid #3f51b5;
+        }
+        .step-box {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid #b9d6ef;
+        }
+        .step-title {
+            font-weight: 600;
+            color: #2675a8;
+            margin-bottom: 0.5rem;
+        }
+        .pattern-box {
+            background: #fff9c4;
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            border: 2px solid #f5c542;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background-color: #e1eff9;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="activity-title">数学活动：无限循环小数能化为分数吗</div>
+
+    <div class="learning-targets">
+        <h3>🎯 活动目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>了解无限循环小数都可以化为分数</div>
+            <div class="target-item"><span>✔</span>掌握用方程思想将循环小数化为分数的方法</div>
+            <div class="target-item"><span>✔</span>能区分纯循环小数与混循环小数的转化规律</div>
+            <div class="target-item"><span>✔</span>体会数学中的化归思想和方程思想</div>
+        </div>
+    </div>
+
+    <!-- 情境引入 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 我们知道：分数都可以化成小数，要么化成有限小数，要么化成无限循环小数。</p>
+        <p style="font-size:1.2rem;">📌 反过来，有限小数都可以写成分数。那么，<strong>无限循环小数是否也能化为分数呢？</strong></p>
+    </div>
+
+    <!-- 探索活动1：纯循环小数 0.47 -->
+    <h2 style="color:#144a6f; margin-top:2rem;">🔍 探索活动一：纯循环小数</h2>
+    
+    <div class="explore-box">
+        <p style="font-size:1.3rem; text-align:center;">\(0.47 = 0.474747\ldots\) 是一个以47为循环节的无限循环小数</p>
+        <p><strong>问题：</strong>怎样将这个无限循环小数化为分数？</p>
+    </div>
+
+    <div class="step-box">
+        <div class="step-title">📐 第1步：扩大倍数</div>
+        <p>将 \(0.47\) 扩大到100倍，把第一个循环节移到小数点之前：</p>
+        <p style="text-align:center; font-size:1.3rem;">\(100 \times 0.47 = 47.4747\ldots\)</p>
+    </div>
+
+    <div class="step-box">
+        <div class="step-title">📐 第2步：观察发现</div>
+        <p>发现 \(47.4747\ldots\) 的小数部分依然是循环节为47的无限循环小数，即仍是原数！</p>
+        <p style="text-align:center; font-size:1.3rem;">\(100 \times 0.47 = 47 + 0.47\)</p>
+    </div>
+
+    <div class="step-box">
+        <div class="step-title">📐 第3步：列方程求解</div>
+        <p>设 \(x = 0.47\)，则：</p>
+        <p style="text-align:center; font-size:1.3rem;">\(100x = 47 + x\)</p>
+        <p style="text-align:center; font-size:1.3rem;">\(100x - x = 47\)</p>
+        <p style="text-align:center; font-size:1.3rem;">\(99x = 47\)</p>
+        <p style="text-align:center; font-size:1.3rem;">\(x = \dfrac{47}{99}\)</p>
+    </div>
+
+    <div class="pattern-box">
+        <p>🎉 所以：<strong>\(0.47 = \dfrac{47}{99}\)</strong></p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="think-box">
+        <p><strong>✏️ 试一试：</strong>这种方法是否适用于其他纯循环小数？</p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0;">
+            <div style="background:#edf7fc; border-radius:20px; padding:1rem; text-align:center;">
+                <p style="font-size:1.3rem;">\(0.74\)</p>
+                <p>(循环节 74)</p>
+            </div>
+            <div style="background:#edf7fc; border-radius:20px; padding:1rem; text-align:center;">
+                <p style="font-size:1.3rem;">\(0.8\)</p>
+                <p>(循环节 8)</p>
+            </div>
+            <div style="background:#edf7fc; border-radius:20px; padding:1rem; text-align:center;">
+                <p style="font-size:1.3rem;">\(0.325\)</p>
+                <p>(循环节 325)</p>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('try1')" style="margin-top:0.5rem;">显示答案</button>
+        <div id="answerTry1" class="answer-box">
+            <div class="answer-line">\(0.74\)：设 \(x=0.74\)，则 \(100x=74+x\)，\(99x=74\)，\(x=\dfrac{74}{99}\)</div>
+            <div class="answer-line">\(0.8\)：设 \(x=0.8\)，则 \(10x=8+x\)，\(9x=8\)，\(x=\dfrac{8}{9}\)</div>
+            <div class="answer-line">\(0.325\)：设 \(x=0.325\)，则 \(1000x=325+x\)，\(999x=325\)，\(x=\dfrac{325}{999}\)</div>
+        </div>
+    </div>
+
+    <!-- 规律总结1 -->
+    <div class="rule-box">
+        <div class="title" style="font-weight:700; font-size:1.3rem; color:#b13e3e; margin-bottom:0.8rem;">📌 纯循环小数化分数规律</div>
+        <p><strong>一个纯循环小数化成分数，分子是一个循环节的数字组成的数，分母是由若干个9组成的数，9的个数等于循环节的位数。</strong>[citation:1]</p>
+        <p style="margin-top:0.5rem;">例如：\(0.\dot{4}\dot{7} = \dfrac{47}{99}\)，\(0.\dot{8} = \dfrac{8}{9}\)，\(0.\dot{3} = \dfrac{3}{9} = \dfrac{1}{3}\)</p>
+    </div>
+
+    <!-- 探索活动2：混循环小数 -->
+    <h2 style="color:#144a6f; margin-top:2rem;">🔍 探索活动二：混循环小数</h2>
+    
+    <div class="explore-box">
+        <p><strong>问题：</strong>对于不是从小数点后第一位开始循环的小数（混循环小数），例如 \(0.32\dot{5}\)，能化为分数吗？</p>
+    </div>
+
+    <div class="step-box">
+        <div class="step-title">📐 方法：先转化为纯循环小数</div>
+        <p>以 \(0.32\dot{5} = 0.325555\ldots\) 为例：</p>
+        <p>设 \(x = 0.325555\ldots\)</p>
+        <p>先乘以 \(10^2\) 把不循环部分移到整数部分：\(100x = 32.5555\ldots\)</p>
+        <p>而 \(0.5555\ldots = \dfrac{5}{9}\)</p>
+        <p>所以 \(100x = 32 + \dfrac{5}{9} = \dfrac{288}{9} + \dfrac{5}{9} = \dfrac{293}{9}\)</p>
+        <p>因此 \(x = \dfrac{293}{900}\)</p>
+    </div>
+
+    <div class="step-box">
+        <div class="step-title">📐 另一种解法（方程法）</div>
+        <p>设 \(x = 0.32\dot{5}\)</p>
+        <p>先乘以100：\(100x = 32.\dot{5}\)</p>
+        <p>再乘以10：\(1000x = 325.\dot{5}\)</p>
+        <p>两式相减：\(1000x - 100x = 325.\dot{5} - 32.\dot{5} = 293\)</p>
+        <p>所以 \(900x = 293\)，\(x = \dfrac{293}{900}\)</p>
+    </div>
+
+    <!-- 规律总结2 -->
+    <div class="rule-box">
+        <div class="title" style="font-weight:700; font-size:1.3rem; color:#b13e3e; margin-bottom:0.8rem;">📌 混循环小数化分数规律</div>
+        <p><strong>一个混循环小数化成分数，分子是第二个循环节以前的小数部分组成的数与小数部分中不循环部分组成的数的差；分母的头几位是9，末几位是0，9的个数与循环节位数相同，0的个数与不循环部分位数相同。</strong>[citation:1]</p>
+        <p style="margin-top:0.5rem;">例如：\(0.32\dot{5} = \dfrac{325-32}{900} = \dfrac{293}{900}\)</p>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="think-box">
+        <p><strong>✏️ 巩固练习</strong></p>
+        <div class="exercise-item" style="border-bottom: none;">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 将下列纯循环小数化为分数：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(0.\dot{6}\) (2) \(0.\dot{1}\dot{2}\) (3) \(0.\dot{2}\dot{3}\dot{4}\)</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) \(0.\dot{6} = \dfrac{6}{9} = \dfrac{2}{3}\)</div>
+                <div class="answer-line">(2) \(0.\dot{1}\dot{2} = \dfrac{12}{99} = \dfrac{4}{33}\)</div>
+                <div class="answer-line">(3) \(0.\dot{2}\dot{3}\dot{4} = \dfrac{234}{999} = \dfrac{78}{333} = \dfrac{26}{111}\)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item" style="border-bottom: none;">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 将下列混循环小数化为分数：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(0.1\dot{6}\) (2) \(0.23\dot{4}\) (3) \(0.12\dot{3}\dot{4}\)</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) \(0.1\dot{6} = \dfrac{16-1}{90} = \dfrac{15}{90} = \dfrac{1}{6}\)</div>
+                <div class="answer-line">(2) \(0.23\dot{4} = \dfrac{234-23}{900} = \dfrac{211}{900}\)</div>
+                <div class="answer-line">(3) \(0.12\dot{3}\dot{4} = \dfrac{1234-12}{9900} = \dfrac{1222}{9900} = \dfrac{611}{4950}\)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item" style="border-bottom: none;">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 将 \(2.1\dot{8}\) 化为分数。</span>
+                <button class="interact-btn" onclick="toggleAnswer('p3')">显示答案</button>
+            </div>
+            <div id="answerP3" class="answer-box">
+                <div class="answer-line">\(2.1\dot{8} = 2 + 0.1\dot{8}\)</div>
+                <div class="answer-line">\(0.1\dot{8} = \dfrac{18-1}{90} = \dfrac{17}{90}\)</div>
+                <div class="answer-line">所以 \(2.1\dot{8} = 2 + \dfrac{17}{90} = \dfrac{180}{90} + \dfrac{17}{90} = \dfrac{197}{90}\)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学文化：0.9循环等于1吗 -->
+    <div class="math-beauty">
+        <h3 style="color:#1d6130; margin-bottom:1rem;">🤔 思考：\(0.\dot{9} = 1\) 吗？</h3>
+        <p>用我们今天的方法：</p>
+        <p>设 \(x = 0.999\ldots\)，则 \(10x = 9.999\ldots\)</p>
+        <p>两式相减：\(10x - x = 9.999\ldots - 0.999\ldots\)</p>
+        <p>\(9x = 9\)，所以 \(x = 1\)</p>
+        <p style="margin-top:1rem;"><strong>结论：\(0.\dot{9} = 1\)</strong>，这不是近似，而是严格相等！[citation:5]</p>
+    </div>
+
+    <!-- 拓展：庄子一尺之棰 -->
+    <div class="discovery-box">
+        <h3 style="color:#b13e3e; margin-bottom:1rem;">📜 数学文化 · 庄子一尺之棰</h3>
+        <p>《庄子·天下篇》：“一尺之棰，日取其半，万世不竭。”</p>
+        <p>用数学式子表示：\(\dfrac{1}{2} + \dfrac{1}{4} + \dfrac{1}{8} + \dfrac{1}{16} + \cdots = 1\)</p>
+        <p>你能用今天学的方法证明吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('zhuangzi')">显示提示</button>
+        <div id="answerZhuangzi" class="answer-box">
+            <div class="answer-line">设 \(S = \dfrac{1}{2} + \dfrac{1}{4} + \dfrac{1}{8} + \dfrac{1}{16} + \cdots\)</div>
+            <div class="answer-line">则 \(2S = 1 + \dfrac{1}{2} + \dfrac{1}{4} + \dfrac{1}{8} + \cdots = 1 + S\)</div>
+            <div class="answer-line">所以 \(2S - S = 1\)，即 \(S = 1\)</div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 活动小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical" style="margin-top:1rem;">
+                <div class="summary-item">无限循环小数都可以化为分数——用方程思想解决无限问题</div>
+                <div class="summary-item">纯循环小数：分子是一个循环节，分母是若干个9</div>
+                <div class="summary-item">混循环小数：分子是小数部分减去不循环部分，分母是9后面跟0</div>
+                <div class="summary-item">数学思想：化归思想（无限→有限）、方程思想</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课外探究 -->
+    <div class="homework-box" style="background:#b3d6ed; border-radius:60px; padding:1rem 2.5rem; margin:2rem 0; display:flex; align-items:center; gap:1.5rem;">
+        <span style="font-size:2.5rem;">🔍</span>
+        <span style="font-size:1.2rem;"><strong>课外探究：</strong> 查阅资料，了解无限不循环小数（无理数）能否化为分数？为什么？</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 无限循环藏分数，方程思想破迷障 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 数学活动</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

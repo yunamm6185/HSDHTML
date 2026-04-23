@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1章 有理数 复习 | 华师版·七上</title>
+    <!-- MathJax 配置：确保在新内容插入后能正确渲染 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        /* 与之前相同，省略重复样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .knowledge-map {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .map-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1rem;
+            border-left: 8px solid #2675a8;
+            box-shadow: 0 4px 0 #b0cddb;
+        }
+        .map-item h4 {
+            color: #0f4a6f;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .map-item ul {
+            margin-left: 1.2rem;
+            list-style-type: disc;
+        }
+        .map-item li {
+            font-size: 1rem;
+            margin: 0.3rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #144a6f;
+            margin: 2rem 0 1rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1rem;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.5rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin-bottom: 0.8rem;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .level-tag {
+            display: inline-block;
+            background: #2f6d9c;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #e1eff9;
+            font-weight: 600;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">★ 本章将数的范围扩充到有理数，研究了有理数的概念、大小比较和运算。</div>
+    <div class="lesson-title">全章复习</div>
+
+    <div class="learning-targets">
+        <h3>🎯 复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数的概念，掌握数轴、相反数、绝对值等基本概念</div>
+            <div class="target-item"><span>✔</span>掌握有理数的大小比较方法，能熟练比较有理数的大小</div>
+            <div class="target-item"><span>✔</span>熟练掌握有理数的加、减、乘、除、乘方运算法则及混合运算顺序</div>
+            <div class="target-item"><span>✔</span>理解运算律（交换律、结合律、分配律），并能运用运算律简化计算</div>
+            <div class="target-item"><span>✔</span>会用科学记数法表示大数，理解近似数的概念，能按精确度要求取近似数</div>
+        </div>
+    </div>
+
+    <!-- 知识结构图 -->
+    <div class="knowledge-map">
+        <h3 style="color:#0f4a6f; margin-bottom:1rem;">📚 知识结构</h3>
+        <div class="map-grid">
+            <div class="map-item">
+                <h4>基本概念</h4>
+                <ul>
+                    <li>正数、负数、0</li>
+                    <li>数轴（原点、正方向、单位长度）</li>
+                    <li>相反数（互为相反数的两个数）</li>
+                    <li>绝对值（|a| ≥ 0）</li>
+                    <li>有理数分类</li>
+                </ul>
+            </div>
+            <div class="map-item">
+                <h4>大小比较</h4>
+                <ul>
+                    <li>数轴上右边的数总比左边的大</li>
+                    <li>正数 > 0 > 负数</li>
+                    <li>两个负数比较：绝对值大的反而小</li>
+                </ul>
+            </div>
+            <div class="map-item">
+                <h4>运算</h4>
+                <ul>
+                    <li>加法法则（同号、异号、相反数）</li>
+                    <li>减法法则（减去一个数等于加上它的相反数）</li>
+                    <li>乘法法则（同号得正、异号得负）</li>
+                    <li>除法法则（除以一个数等于乘以它的倒数）</li>
+                    <li>乘方（aⁿ，底数、指数、幂）</li>
+                    <li>混合运算顺序</li>
+                </ul>
+            </div>
+            <div class="map-item">
+                <h4>运算律</h4>
+                <ul>
+                    <li>加法交换律、结合律</li>
+                    <li>乘法交换律、结合律</li>
+                    <li>分配律 a(b+c)=ab+ac</li>
+                </ul>
+            </div>
+            <div class="map-item">
+                <h4>科学记数法</h4>
+                <ul>
+                    <li>a × 10ⁿ (1≤|a|<10)</li>
+                </ul>
+            </div>
+            <div class="map-item">
+                <h4>近似数</h4>
+                <ul>
+                    <li>精确到哪一位（四舍五入）</li>
+                    <li>进一法、去尾法</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 典型例题 -->
+    <h2 class="section-title">🔍 典型例题</h2>
+
+    <div class="example-box" id="ex1">
+        <p><strong>例1</strong> 填空：</p>
+        <p>(1) -3 的相反数是____，绝对值是____；</p>
+        <p>(2) 绝对值等于5的数是____；</p>
+        <p>(3) 数轴上与表示-2的点距离为3的点表示的数是____。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            <div class="answer-line">(1) 3, 3</div>
+            <div class="answer-line">(2) 5 或 -5</div>
+            <div class="answer-line">(3) 1 或 -5（左移3到-5，右移3到1）</div>
+        </div>
+    </div>
+
+    <div class="example-box" id="ex2">
+        <p><strong>例2</strong> 比较下列各组数的大小：</p>
+        <p>(1) -3 与 -4； (2) -0.5 与 -\(\frac{1}{2}\)； (3) -\(\frac{3}{4}\) 与 -\(\frac{2}{3}\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box">
+            <div class="answer-line">(1) -3 > -4（两个负数，绝对值大的反而小）</div>
+            <div class="answer-line">(2) -0.5 = -\(\frac{1}{2}\)，相等</div>
+            <div class="answer-line">(3) -\(\frac{3}{4}\) < -\(\frac{2}{3}\)（因为\(\frac{3}{4} > \frac{2}{3}\)，绝对值大的反而小）</div>
+        </div>
+    </div>
+
+    <div class="example-box" id="ex3">
+        <p><strong>例3</strong> 计算：</p>
+        <p>(1) \(-2^2 + (-3) \times [(-4) - 2]\)；</p>
+        <p>(2) \(-1^4 - \frac{1}{6} \times [2 - (-3)^2]\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示答案</button>
+        <div id="exampleAnswer3" class="answer-box">
+            <div class="answer-line">(1) \(-2^2 + (-3) \times (-6) = -4 + 18 = 14\)</div>
+            <div class="answer-line">(2) \(-1 - \frac{1}{6} \times (2-9) = -1 - \frac{1}{6} \times (-7) = -1 + \frac{7}{6} = \frac{1}{6}\)</div>
+        </div>
+    </div>
+
+    <!-- 例题4：科学记数法与近似数 -->
+    <div class="example-box" id="ex4">
+        <p><strong>例4</strong> (1) 用科学记数法表示：-1230000；</p>
+        <p>(2) 下列由四舍五入得到的近似数，分别精确到哪一位？ 3.20万， 5.08×10³。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示答案</button>
+        <div id="exampleAnswer4" class="answer-box">
+            <div class="answer-line">(1) \(-1.23 \times 10^6\)</div>
+            <div class="answer-line">(2) 3.20万 = 32000，精确到百位（因为3.20万表示3.20×10⁴，最后一位0在百位）</div>
+            <div class="answer-line">5.08×10³ = 5080，精确到十位（8在十位）</div>
+        </div>
+    </div>
+
+    <!-- 易错点 -->
+    <div class="tip-box">
+        <p><strong>⚠️ 易错点提醒</strong></p>
+        <ul style="margin-left:2rem;">
+            <li>负数的奇次幂是负数，偶次幂是正数。例如 \((-2)^3 = -8\)，\((-2)^4 = 16\)。</li>
+            <li>注意 \(-2^2\) 与 \((-2)^2\) 的区别：\(-2^2 = -4\)，\((-2)^2 = 4\)。</li>
+            <li>除法没有结合律，不能随意加括号。例如 \(a \div b \div c \neq a \div (b \div c)\)。</li>
+            <li>近似数1.50与1.5精确度不同：1.50精确到百分位，1.5精确到十分位。</li>
+        </ul>
+    </div>
+
+    <!-- ==================== 综合练习（A组、B组、C组）==================== -->
+    <div class="exercises">
+        <h3>综合练习</h3>
+        
+        <!-- A组 基础题 -->
+        <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <span class="level-tag">A组</span>
+                <span style="font-size: 1.2rem; color: #1e4660;">基础巩固</span>
+            </div>
+            
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>1.</strong> 下列有理数中，哪些是正数？哪些是负数？</span>
+                    <button class="interact-btn" onclick="toggleAnswer('a1')">显示答案</button>
+                </div>
+                <div class="sub-question">\(2.5, -8, -0.7, \frac{3}{2}, -\frac{1}{7}, 0.05, 0\)</div>
+                <div id="answerA1" class="answer-box">
+                    <div class="answer-line">正数：\(2.5, \frac{3}{2}, 0.05\)</div>
+                    <div class="answer-line">负数：\(-8, -0.7, -\frac{1}{7}\)</div>
+                    <div class="answer-line">0既不是正数也不是负数。</div>
+                </div>
+            </div>
+
+            <!-- 第2题 表格（修复LaTeX语法） -->
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>2.</strong> 根据下表每行中的已知数，填写该行中其他的数：</span>
+                    <button class="interact-btn" onclick="toggleTableAnswers()">显示/隐藏答案</button>
+                </div>
+                <table id="table2">
+                    <tr>
+                        <th>原数</th>
+                        <th>相反数</th>
+                        <th>绝对值</th>
+                        <th>倒数</th>
+                    </tr>
+                    <tr>
+                        <td>\(-2\)</td>
+                        <td id="cell1"></td>
+                        <td id="cell2"></td>
+                        <td id="cell3"></td>
+                    </tr>
+                    <tr>
+                        <td>\(-7.5\)</td>
+                        <td id="cell4"></td>
+                        <td id="cell5"></td>
+                        <td id="cell6"></td>
+                    </tr>
+                    <tr>
+                        <td>\(0\)</td>
+                        <td id="cell7"></td>
+                        <td id="cell8"></td>
+                        <td id="cell9"></td>
+                    </tr>
+                    <tr>
+                        <td>\(\frac{10}{7}\)</td>
+                        <td id="cell10"></td>
+                        <td id="cell11"></td>
+                        <td id="cell12"></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>3.</strong> 把表示下列各数的点画在数轴上，再按从小到大的顺序，用“<”号连接起来：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('a3')">显示答案</button>
+                </div>
+                <div class="sub-question">\(2.5, -3, 5\frac{1}{2}, -2\frac{1}{2}, 0, -1.6\)</div>
+                <div id="answerA3" class="answer-box">
+                    <div class="answer-line">数轴略</div>
+                    <div class="answer-line">从小到大：\(-3 < -2\frac{1}{2} < -1.6 < 0 < 2.5 < 5\frac{1}{2}\)</div>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>4.</strong> 计算：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('a4')">显示答案</button>
+                </div>
+                <div class="sub-question">(1) \(-100 + 157\) (2) \(-18 + (-32)\) (3) \(-9 - 27\) (4) \(-29 - (-12)\)</div>
+                <div class="sub-question">(5) \(-8 \times (-15)\) (6) \((-4) \div (-\frac{1}{4})\) (7) \(72 \div (-\frac{1}{3})\) (8) \((-0.03) \times (-100)\)</div>
+                <div id="answerA4" class="answer-box">
+                    <div class="answer-line">(1) 57 (2) -50 (3) -36 (4) -17</div>
+                    <div class="answer-line">(5) 120 (6) 16 (7) -216 (8) 3</div>
+                </div>
+            </div>
+
+            <!-- 第5题：乘方计算 -->
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>5.</strong> 计算下列乘方：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('a5')">显示答案</button>
+                </div>
+                <div class="sub-question">(1) \((-2)^3\) (2) \((-3)^4\) (3) \(-2^4\) (4) \((-1)^{10}\) (5) \(0^5\)</div>
+                <div id="answerA5" class="answer-box">
+                    <div class="answer-line">(1) \((-2)^3 = -8\)</div>
+                    <div class="answer-line">(2) \((-3)^4 = 81\)</div>
+                    <div class="answer-line">(3) \(-2^4 = -16\)（注意与 \((-2)^4\) 的区别）</div>
+                    <div class="answer-line">(4) \((-1)^{10} = 1\)</div>
+                    <div class="answer-line">(5) \(0^5 = 0\)</div>
+                </div>
+            </div>
+
+            <!-- 第6题：科学记数法 -->
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>6.</strong> 用科学记数法表示下列各数：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('a6')">显示答案</button>
+                </div>
+                <div class="sub-question">(1) 696000 (2) 1000000 (3) -12300000</div>
+                <div id="answerA6" class="answer-box">
+                    <div class="answer-line">(1) \(6.96 \times 10^5\)</div>
+                    <div class="answer-line">(2) \(1 \times 10^6\)</div>
+                    <div class="answer-line">(3) \(-1.23 \times 10^7\)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- B组 中档题 -->
+        <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <span class="level-tag">B组</span>
+                <span style="font-size: 1.2rem; color: #1e4660;">能力提升</span>
+            </div>
+            
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>1.</strong> 计算：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('b1')">显示答案</button>
+                </div>
+                <div class="sub-question">(1) \(8 + \left(-\frac{1}{4}\right) - 5 - (-0.25)\)</div>
+                <div class="sub-question">(2) \((-82) + 72 \div 36\)</div>
+                <div class="sub-question">(3) \((3 - 4 - 5) \div \left(-1\frac{1}{5}\right)\)</div>
+                <div class="sub-question">(4) \(25 \times \frac{3}{4} - (-25) \times \frac{1}{2} + 25 \times \left(-\frac{1}{4}\right)\)</div>
+                <div id="answerB1" class="answer-box">
+                    <div class="answer-line">(1) \(8 - 0.25 - 5 + 0.25 = 3\)</div>
+                    <div class="answer-line">(2) \(-82 + 2 = -80\)</div>
+                    <div class="answer-line">(3) \((-6) \div (-\frac{6}{5}) = (-6) \times (-\frac{5}{6}) = 5\)</div>
+                    <div class="answer-line">(4) \(25 \times (\frac{3}{4} + \frac{1}{2} - \frac{1}{4}) = 25 \times 1 = 25\)（分配律逆用）</div>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>2.</strong> 已知 \(|a| = 3\)，\(|b| = 5\)，且 \(a > b\)，求 \(a + b\) 的值。</span>
+                    <button class="interact-btn" onclick="toggleAnswer('b2')">显示答案</button>
+                </div>
+                <div id="answerB2" class="answer-box">
+                    <div class="answer-line">由|a|=3得a=±3，|b|=5得b=±5</div>
+                    <div class="answer-line">a > b，则a=3时，b=-5；a=-3时，b=-5</div>
+                    <div class="answer-line">所以a+b = 3+(-5) = -2 或 (-3)+(-5) = -8</div>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>3.</strong> 某检修小组乘车沿公路检修线路，约定向东为正。某天从A地出发到收工时，行驶记录（单位：km）为：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('b3')">显示答案</button>
+                </div>
+                <div class="sub-question">\(+15, -2, +5, -3, +8, -3, -1, +11, +4, -5, -2, +7, -3, +5\)</div>
+                <div class="sub-question">收工时，检修小组在A地的哪一边？距离A地多远？</div>
+                <div id="answerB3" class="answer-box">
+                    <div class="answer-line">总和 = 15-2+5-3+8-3-1+11+4-5-2+7-3+5</div>
+                    <div class="answer-line">= (15+5+8+11+4+7+5) - (2+3+3+1+5+2+3)</div>
+                    <div class="answer-line">= 55 - 19 = 36</div>
+                    <div class="answer-line">所以在A地东边36km处。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- C组 拓展题 -->
+        <div style="margin-bottom: 1rem;">
+            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <span class="level-tag">C组</span>
+                <span style="font-size: 1.2rem; color: #1e4660;">拓展探究</span>
+            </div>
+            
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>1.</strong> 字母a取怎样的有理数时，下列关系式成立？</span>
+                    <button class="interact-btn" onclick="toggleAnswer('c1')">显示答案</button>
+                </div>
+                <div class="sub-question">(1) \(|a| = a\) (2) \(|a| > a\) (3) \(|a| = -a\) (4) \(a > -a\)</div>
+                <div id="answerC1" class="answer-box">
+                    <div class="answer-line">(1) \(a \ge 0\)（非负数）</div>
+                    <div class="answer-line">(2) \(a < 0\)（负数）</div>
+                    <div class="answer-line">(3) \(a \le 0\)（非正数）</div>
+                    <div class="answer-line">(4) \(a > 0\)（正数）</div>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text"><strong>2.</strong> 观察下列等式，找出规律并计算：</span>
+                    <button class="interact-btn" onclick="toggleAnswer('c2')">显示答案</button>
+                </div>
+                <div class="sub-question">\(1 + 3 = 4 = 2^2\)</div>
+                <div class="sub-question">\(1 + 3 + 5 = 9 = 3^2\)</div>
+                <div class="sub-question">\(1 + 3 + 5 + 7 = 16 = 4^2\)</div>
+                <div class="sub-question">(1) 由此猜测：从1开始的n个连续奇数之和等于多少？</div>
+                <div class="sub-question">(2) 计算：\(1 + 3 + 5 + \cdots + 99\)</div>
+                <div id="answerC2" class="answer-box">
+                    <div class="answer-line">(1) 从1开始的n个连续奇数之和等于 \(n^2\)</div>
+                    <div class="answer-line">(2) 1到99共有50个奇数，所以和为 \(50^2 = 2500\)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="reading-block" style="background-color:#e1f0de; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <h3 style="color:#1d6130; border-left:8px solid #47945b; padding-left:1rem;">📖 数学思想 · 数形结合与化归</h3>
+        <p>本章我们学习了用数轴上的点表示有理数，直观地理解相反数、绝对值和大小比较，这体现了<strong>数形结合</strong>的思想。</p>
+        <p>在有理数运算中，我们常将减法转化为加法，将除法转化为乘法，将乘方转化为乘法，这体现了<strong>化归</strong>的思想——将新问题转化为已解决的问题。</p>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 复习要点</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">有理数：整数和分数统称，包括正数、负数、0</div>
+                <div class="summary-item">数轴的三要素：原点、正方向、单位长度</div>
+                <div class="summary-item">相反数：只有符号不同的两个数，0的相反数是0</div>
+                <div class="summary-item">绝对值：数轴上点到原点的距离，非负</div>
+                <div class="summary-item">大小比较：数轴法、法则法（正负、绝对值）</div>
+                <div class="summary-item">运算法则：加、减、乘、除、乘方</div>
+                <div class="summary-item">运算律：交换律、结合律、分配律</div>
+                <div class="summary-item">科学记数法：a×10ⁿ (1≤|a|<10)</div>
+                <div class="summary-item">近似数：精确度、四舍五入、进一法、去尾法</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置（题号已更新） -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>复习作业：</strong> 整理本章错题；完成课本P76-79复习题A组第1-11题，B组第13-22题，C组第23-25题。</span>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 温故知新，融会贯通 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第1章复习课</div>
+</div>
+
+<script>
+    // 存储表格答案（使用正确的 LaTeX 语法：双反斜杠）
+    const tableAnswers = [
+        ['$2$', '$2$', '$-\\frac{1}{2}$'],
+        ['$7.5$', '$7.5$', '$-\\frac{2}{15}$'],
+        ['$0$', '$0$', '不存在'],
+        ['$-\\frac{10}{7}$', '$\\frac{10}{7}$', '$\\frac{7}{10}$']
+    ];
+    let tableFilled = false;
+
+    async function toggleTableAnswers() {
+        const cells = [
+            document.getElementById('cell1'), document.getElementById('cell2'), document.getElementById('cell3'),
+            document.getElementById('cell4'), document.getElementById('cell5'), document.getElementById('cell6'),
+            document.getElementById('cell7'), document.getElementById('cell8'), document.getElementById('cell9'),
+            document.getElementById('cell10'), document.getElementById('cell11'), document.getElementById('cell12')
+        ];
+
+        if (!tableFilled) {
+            // 填充答案
+            for (let i = 0; i < 12; i++) {
+                const row = Math.floor(i / 3);
+                const col = i % 3;
+                cells[i].innerHTML = tableAnswers[row][col];
+            }
+            tableFilled = true;
+        } else {
+            // 清空
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].innerHTML = '';
+            }
+            tableFilled = false;
+        }
+
+        // 强制 MathJax 重新渲染新添加的内容
+        if (window.MathJax) {
+            try {
+                await MathJax.typesetPromise();
+            } catch (err) {
+                console.log('MathJax 渲染错误', err);
+            }
+        }
+    }
+
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.toUpperCase());
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

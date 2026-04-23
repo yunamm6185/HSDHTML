@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.3 数学活动·探索勾股定理的无字证明 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background:linear-gradient(135deg,#f0f4f8,#d9e2ec);
+            font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;
+            line-height:1.6;color:#334155;
+            padding:1.5rem;
+        }
+        .textbook{
+            max-width:1300px;margin:0 auto;background:white;
+            border-radius:1.8rem;box-shadow:0 15px 40px -10px rgba(0,0,0,0.12);
+            padding:2rem 2.5rem;border:1px solid #e2e8f0;
+        }
+        .header-meta{
+            display:flex;justify-content:space-between;align-items:center;
+            border-bottom:3px solid #94a3b8;padding-bottom:.6rem;margin-bottom:1rem;
+            font-weight:600;font-size:.95rem;color:#64748b;
+        }
+        h1{font-size:2.2rem;color:#1e293b;font-weight:700;}
+        h1::after{content:'';display:block;width:70px;height:4px;background:#3b82f6;border-radius:4px;margin-top:6px;}
+        .lesson-title{
+            text-align:center;font-size:1.7rem;color:#1e293b;
+            background:#eff6ff;padding:.6rem 1.4rem;border-radius:50px;
+            border:2px solid #bfdbfe;margin:1rem 0 1.5rem;font-weight:700;
+        }
+
+        /* 学习目标 */
+        .learning-targets{
+            background:linear-gradient(145deg,#eff6ff,#dbeafe);
+            border-radius:1.5rem;padding:1.3rem 1.8rem;margin:1rem 0 1.5rem;
+            border:1px solid #93c5fd;box-shadow:0 4px 0 #60a5fa;
+        }
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.35rem;border-left:6px solid #2563eb;padding-left:1rem;color:#1e40af;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.7rem;}
+        .target-item{
+            background:white;border-radius:30px;padding:.35rem 1.3rem .35rem .85rem;
+            display:flex;align-items:center;gap:.45rem;font-weight:600;font-size:.95rem;
+            box-shadow:0 2px 0 #93c5fd;border:1px solid #dbeafe;
+        }
+        .target-item span{
+            background:#2563eb;color:white;border-radius:50%;
+            width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
+            font-weight:bold;font-size:.8rem;
+        }
+
+        /* 引入卡片 */
+        .intro-card{
+            background:#fefce8;border-radius:1.5rem;padding:1.3rem 1.8rem;
+            margin:1rem 0;border-left:6px solid #eab308;font-weight:500;
+        }
+
+        /* ========== 核心交互区（复刻飞象老师布局）========== */
+        .interactive-container{
+            display:grid;grid-template-columns:360px 1fr;gap:1.5rem;
+            margin:1.5rem 0;background:#f8fafc;border-radius:1.5rem;
+            border:2px solid #e2e8f0;overflow:hidden;
+        }
+
+        /* 左侧控制面板 */
+        .control-panel{
+            background:white;padding:1.5rem 1.3rem;border-right:2px solid #e2e8f0;
+            display:flex;flex-direction:column;gap:1rem;
+        }
+        .panel-title{
+            font-size:1.5rem;color:#1e40af;font-weight:700;margin-bottom:.3rem;
+        }
+        .panel-subtitle{font-size:.9rem;color:#64748b;margin-bottom:.8rem;}
+
+        /* 滑块组 */
+        .slider-group{
+            background:#f1f5f9;border-radius:12px;padding:.9rem 1.1rem;margin-bottom:.3rem;
+        }
+        .slider-label{
+            display:flex;justify-content:space-between;align-items:center;
+            margin-bottom:6px;font-weight:600;font-size:.92rem;color:#334155;
+        }
+        .slider-value{
+            background:#dbeafe;color:#1e40af;padding:2px 10px;border-radius:6px;
+            font-weight:700;font-family:'Consolas','Courier New',monospace;min-width:50px;text-align:center;
+        }
+        input[type=range]{
+            -webkit-appearance:none;width:100%;height:8px;
+            background:linear-gradient(to right,#93c5fd,#3b82f6);border-radius:4px;
+            outline:none;cursor:pointer;margin:4px 0;
+        }
+        input[type=range]::-webkit-slider-thumb{
+            -webkit-appearance:none;width:22px;height:22px;
+            background:linear-gradient(135deg,#3b82f6,#1d4ed8);border-radius:50%;
+            cursor:pointer;box-shadow:0 2px 6px rgba(59,130,246,0.4);
+            border:2px solid white;
+        }
+
+        /* 模式切换按钮 */
+        .mode-buttons{display:flex;gap:8px;}
+        .mode-btn{
+            flex:1;padding:10px 8px;border:2px solid #cbd5e1;border-radius:10px;
+            background:white;color:#475569;font-weight:700;font-size:.9rem;
+            cursor:pointer;transition:all .25s;text-align:center;
+        }
+        .mode-btn:hover{border-color:#93c5fd;background:#f0f9ff;}
+        .mode-btn.active{
+            border-color:#3b82f6;background:#3b82f6!important;color:white;
+            box-shadow:0 3px 10px rgba(59,130,246,0.3);
+        }
+
+        /* 操作按钮 */
+        .action-buttons{display:flex;gap:10px;margin-top:.3rem;}
+        .action-btn{
+            flex:1;padding:12px 16px;border:none;border-radius:12px;
+            font-weight:700;font-size:.95rem;cursor:pointer;transition:all .25s;
+            display:flex;align-items:center;justify-content:center;gap:6px;
+        }
+        .btn-primary{
+            background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:white;
+            box-shadow:0 4px 0 #1e40af;
+        }
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1e40af;}
+        .btn-primary:active{transform:translateY(2px);box-shadow:0 1px 0 #1e40af;}
+        .btn-secondary{
+            background:#f1f5f9;color:#475569;border:2px solid #cbd5e1;
+        }
+        .btn-secondary:hover{background:#e2e8f0;}
+
+        /* 几何原理说明 */
+        .principle-box{
+            background:#eff6ff;border-radius:12px;padding:1rem 1.1rem;
+            border:1px solid #93c5fd;margin-top:auto;
+        }
+        .principle-box h4{
+            color:#1e40af;font-size:1rem;margin-bottom:.6rem;
+            display:flex;align-items:center;gap:6px;
+        }
+        .principle-formula{
+            background:white;border-radius:8px;padding:10px 14px;
+            font-size:.92rem;line-height:1.9;color:#334155;
+            border:1px dashed #93c5fd;
+        }
+
+        /* 右侧画布区 */
+        .canvas-area{
+            position:relative;background:#ffffff;padding:1.2rem;
+            display:flex;flex-direction:column;
+        }
+        .data-display{
+            position:absolute;top:1rem;right:1.4rem;
+            background:rgba(255,255,255,0.92);border:2px solid #e2e8f0;
+            border-radius:10px;padding:8px 16px;font-size:.88rem;z-index:10;
+            backdrop-filter:blur(4px);font-family:'Consolas',monospace;
+        }
+        .data-display div{display:flex;justify-content:space-between;gap:12px;}
+        .data-display span{color:#64748b;}
+        .data-display strong{color:#1e40af;font-size:1.05rem;}
+        .canvas-wrapper{
+            flex:1;display:flex;align-items:center;justify-content:center;
+            background:#fafbfc;border:2px solid #e2e8f0;border-radius:12px;
+            overflow:hidden;min-height:480px;
+        }
+        canvas{display:block;}
+        .hint-text{
+            text-align:center;color:#94a3b8;font-size:.88rem;
+            margin-top:.6rem;font-style:italic;
+        }
+
+
+
+    /* 参考图形区域 */
+    .reference-figures{margin:1.5rem 0 1rem;}
+    .reference-figures h3{
+        color:#1e293b;font-size:1.35rem;margin-bottom:.5rem;
+        border-left:6px solid #f59e0b;padding-left:1rem;
+    }
+    .ref-fig-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .ref-fig-card{
+        background:white;border:2px solid #e2e8f0;border-radius:1.2rem;
+        padding:1.2rem 1.4rem;
+    }
+    .ref-fig-card h4{color:#b45309;font-size:1.08rem;margin-bottom:.4rem;}
+    .ref-canvas-wrap{
+        background:#fafbfc;border:1px solid #e2e8f0;border-radius:10px;
+        display:flex;align-items:center;justify-content:center;
+        padding:.5rem;margin-top:.5rem;
+    }
+    .ref-canvas-wrap canvas{display:block;}
+
+    @media(max-width:768px){
+        .ref-fig-grid{grid-template-columns:1fr;}
+    }
+
+
+        /* 读一读 */
+        .reading-section{
+            background:#fefce8;border-left:6px solid #eab308;
+            border-radius:1.2rem;padding:1.2rem 1.8rem;margin:1.4rem 0;
+        }
+        .reading-section h4{color:#a16207;margin-bottom:.6rem;}
+
+        /* 总结 */
+        .summary-section{
+            background:#f0fdf4;border-left:6px solid #22c55e;
+            border-radius:1.2rem;padding:1.2rem 1.8rem;margin:1.4rem 0;
+        }
+        .summary-section h3{color:#166534;margin-bottom:.8rem;font-size:1.3rem;}
+        .summary-section ul{list-style:none;padding:0;}
+        .summary-section li{padding:.3rem 0 .3rem 1.5rem;position:relative;font-size:.98rem;}
+        .summary-section li::before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:bold;}
+
+        /* 作业框 */
+        .homework-box{
+            background:#e0e7ff;border-radius:50px;padding:1rem 1.8rem;
+            display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:1.5rem 0;
+        }
+
+        /* 页脚 */
+        .footer-note{
+            text-align:right;color:#94a3b8;border-top:2px solid #e2e8f0;
+            padding-top:.8rem;margin-top:1.5rem;font-size:.88rem;
+        }
+
+        @media(max-width:900px){
+            .interactive-container{grid-template-columns:1fr;}
+            .control-panel{border-right:none;border-bottom:2px solid #e2e8f0;}
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级上册</span><span>第13章 勾股定理 · 数学活动</span></div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">🎨 13.3 数学活动——探索勾股定理的无字证明</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 活动目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>了解勾股定理的多种"无字证明"方法</div>
+            <div class="target-item"><span>✔</span>通过图形拼凑直观理解 $a^2+b^2=c^2$ 的几何意义</div>
+            <div class="target-item"><span>✔</span>欣赏数学之美，感受不同文化的数学智慧</div>
+            <div class="target-item"><span>✔</span>培养空间想象力和逻辑推理能力</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p><strong>什么是"无字证明"？</strong></p>
+        <p style="margin-top:.6rem;">"<strong>Proof without words</strong>"（无字证明）是指仅通过巧妙的图形排列和变换，不借助任何文字或代数运算，就能让人直观地看出某个数学命题的正确性。</p>
+        <p style="margin-top:.6rem;">下面我们重点体验<strong>中国古代两种经典的无字证明</strong>——<strong>弦图</strong>和<strong>青朱出入图</strong>，它们都源自三国时期赵爽对《周髀算经》的注释，是中华数学瑰宝！</p>
+    </div>
+
+    <!-- ═══ 经典图形参考示意（静态Canvas）═══ -->
+    <div class="reference-figures">
+        <h3>📜 经典无字证明图形参考</h3>
+        <p style="color:#64748b;font-size:.92rem;margin-bottom:1rem;">下图展示了两种经典的勾股定理无字证明图形结构。右侧交互区可动态操作这些图形的拼合过程。</p>
+        <div class="ref-fig-grid">
+            <div class="ref-fig-card">
+                <h4 style="font-size:1.2rem;">🏯 赵爽弦图</h4>
+                <p style="font-size:1.05rem;color:#475569;margin-bottom:.6rem;">大正方形边长 = $c$，内部4个全等直角三角形围成 $(b-a)^2$ 小正方形</p>
+                <div class="ref-canvas-wrap"><canvas id="xianTuRefCanvas" width="560" height="460"></canvas></div>
+                <p style="text-align:center;margin-top:.5rem;font-size:1.1rem;color:#64748b;">$$c^2 = 4 \times \frac{1}{2}ab + (b-a)^2$$</p>
+            </div>
+            <div class="ref-fig-card">
+                <h4 style="font-size:1.2rem;">🔷 青朱出入图</h4>
+                <p style="font-size:1.05rem;color:#475569;margin-bottom:.6rem;">大正方形边长 = $a+b$，四角各放1个直角三角形，中间留出 $c^2$ 正方形</p>
+                <div class="ref-canvas-wrap"><canvas id="qingZhuRefCanvas" width="560" height="460"></canvas></div>
+                <p style="text-align:center;margin-top:.5rem;font-size:1.1rem;color:#64748b;">$$(a+b)^2 = 4 \times \frac{1}{2}ab + c^2$$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════ 核心交互区（复刻飞象老师布局）════════════ -->
+    <div class="interactive-container">
+
+        <!-- 左侧控制面板 -->
+        <div class="control-panel">
+            <div class="panel-title">勾股定理探索</div>
+            <div class="panel-subtitle">勾股定理的中国古代证明</div>
+
+            <!-- 直角边 a -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>直角边 a (短边)</span>
+                    <span class="slider-value" id="valA">3.0</span>
+                </div>
+                <input type="range" id="sliderA" min="1.5" max="6" step="0.1" value="3" oninput="onSliderChange()">
+            </div>
+
+            <!-- 直角边 b -->
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>直角边 b (长边)</span>
+                    <span class="slider-value" id="valB">4.5</span>
+                </div>
+                <input type="range" id="sliderB" min="3" max="8" step="0.1" value="4.5" oninput="onSliderChange()">
+            </div>
+
+            <!-- 模式切换 -->
+            <div class="mode-buttons">
+                <button class="mode-btn active" id="btnXianTu" onclick="switchMode('xiantu')">弦图</button>
+                <button class="mode-btn" id="btnQingZhu" onclick="switchMode('qingzhu')">青朱出入图</button>
+            </div>
+
+            <!-- 操作按钮 -->
+            <div class="action-buttons">
+                <button class="action-btn btn-primary" id="btnAnimate" onclick="toggleAnimation()">
+                    <span id="animIcon">▶</span><span id="animText">演示拼合</span>
+                </button>
+                <button class="action-btn btn-secondary" onclick="resetAll()">重置</button>
+            </div>
+
+            <!-- 几何原理说明 -->
+            <div class="principle-box">
+                <h4>📐 几何原理</h4>
+                <div class="principle-formula" id="principleFormula">
+                    大正方形面积 $c^2$ = 4个三角形 + 中间小正方形<br>
+                    $$c^2 = 4 \times \frac{1}{2}ab + (b-a)^2$$
+                    $$c^2 = 2ab + (a^2 - 2ab + b^2) = a^2 + b^2$$
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧画布区 -->
+        <div class="canvas-area">
+            <div class="data-display" id="dataDisplay">
+                <div><span>c = </span><strong id="dispC">5.41</strong></div>
+                <div style="margin-top:2px;"><span>Area = </span><strong id="dispArea">29.23</strong></div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="mainCanvas" width="720" height="520"></canvas>
+            </div>
+            <div class="hint-text" id="hintText">* 拖动滑块改变三角形尺寸，点击"演示拼合"观察拼合过程</div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="reading-section">
+        <h4>📖 更多有趣的勾股定理证明</h4>
+        <p>勾股定理被称为"数学中最著名的定理"，据统计已有<strong>超过500种</strong>不同的证明方法！以下是其中一些经典的证明方法：</p>
+        <ul style="margin-left:1.5rem;margin-top:.5rem;line-height:2;">
+            <li><strong>🇺🇸 加菲尔德证法（1876·美国）：</strong>将两个全等的直角三角形和一个等腰直角三角形拼成一个梯形。梯形面积 = $\frac{(a+b)(a+b)}{2}$ = 三个三角形面积之和 = $ab + \frac{1}{2}c^2$，化简得 $a^2+b^2=c^2$。发现者詹姆斯·A·加菲尔德是美国第20任总统，他是唯一一位发表过数学论文的美国总统！</li>
+            <li><strong>🧩 佩里加尔剖分法（1873·英国）：</strong>将边长为 $a$ 和 $b$ 的两个正方形分别切割成4块，然后将所有碎片重新拼接，恰好能填满边长为 $c$ 的大正方形！纯粹的面积割补方法。发现者亨利·佩里加尔是一位英国会计师。</li>
+            <li><strong>🇮🇳 婆什迦罗证法（12世纪·印度）：</strong>大正方形内包含一个倾斜的小正方形和4个直角三角形。面积关系：$c^2 = (b-a)^2 + 4\times\frac{1}{2}ab$ → 展开化简得 $a^2+b^2=c^2$。婆什迦罗第二的经典名言是"看图！"（Behold!）</li>
+            <li><strong>📐 欧几里得证明（古希腊）：</strong>收录于《几何原本》第一卷命题47。构造直角三角形三边上的正方形，通过辅助线和相似三角形证明两直角边上的正方形面积之和等于斜边上的正方形面积。这是最经典、最严谨的证明方法。</li>
+            <li><strong>🎨 达芬奇的证明（意大利）：</strong>通过构造两个完全相同的六边形来证明。在直角三角形各边上作正方形，再以这些正方形为底构造两个全等的六边形，通过比较面积得到结论。体现了艺术与数学的完美结合。</li>
+            <li><strong>💫 爱因斯坦少年时的证明：</strong>少年爱因斯坦用相似三角形的方法独立发现了勾股定理的证明。他从直角顶点向斜边作高，利用相似三角形的性质推导得出。展现了天才的数学直觉。</li>
+            <li><strong>🔄 剪拼法：</strong>将两直角边上的正方形剪成若干块，重新拼成斜边上的正方形。这种"割补术"在中国古代数学中极为常见，体现了"出入相补"原理。</li>
+            <li><strong>📊 相似三角形法：</strong>从直角顶点向斜边作高，将原三角形分成两个小直角三角形，三个三角形相似，对应边成比例，由此推出 $a^2+b^2=c^2$。这是最简洁的代数推导之一。</li>
+            <li><strong>📐 圆内接四边形法：</strong>以直角三角形三边为直径画半圆，利用圆面积公式和半圆面积关系证明。或构造圆内接四边形，利用托勒密定理推导。</li>
+            <li><strong>🧮 微积分法：</strong>利用定积分计算曲线下面积，或通过微分方程证明。体现了现代数学工具的威力。</li>
+            <li><strong>🎲 解析几何法：</strong>建立坐标系，设直角三角形顶点坐标，利用距离公式计算三边长度，直接验证 $a^2+b^2=c^2$。</li>
+            <li><strong>➡️ 向量法：</strong>设直角三角形两直角边向量为 $\vec{u}$ 和 $\vec{v}$，则 $\vec{u}\perp\vec{v}$，故 $\vec{u}\cdot\vec{v}=0$。斜边向量 $\vec{w}=\vec{u}+\vec{v}$，则 $|\vec{w}|^2=(\vec{u}+\vec{v})\cdot(\vec{u}+\vec{v})=|\vec{u}|^2+|\vec{v}|^2$，即 $c^2=a^2+b^2$。</li>
+            <li><strong>📐 复数法：</strong>将直角三角形放在复平面上，设两直角边对应的复数为 $z_1=a$ 和 $z_2=bi$，则斜边对应 $z=z_1+z_2=a+bi$，模长 $|z|=\sqrt{a^2+b^2}=c$。</li>
+            <li><strong>🔄 旋转法：</strong>将直角三角形绕直角顶点旋转90度，形成一个新的正方形，通过面积关系证明。这是"无字证明"的一种变体。</li>
+            <li><strong>🇨🇳 刘徽证法（三国·中国）：</strong>利用"出入相补"原理，将图形剪拼移动，证明面积相等。刘徽在《九章算术注》中详细阐述了这一方法，是中国古代数学的杰出贡献。</li>
+            <li><strong>🌀 螺旋线法：</strong>利用阿基米德螺旋线或双曲线的性质，通过曲线围成的面积关系证明。这种方法较为高深，但极具美感。</li>
+            <li><strong>📊 比例法：</strong>利用直角三角形中锐角的三角函数定义，$\sin^2\alpha+\cos^2\alpha=1$ 恰好对应 $a^2+b^2=c^2$。这是三角学视角下的证明。</li>
+        </ul>
+        <p style="margin-top:.8rem;">这些丰富多彩的证明方法体现了人类智慧的多样性，也展示了数学的魅力所在！不同时代、不同文化的数学家们用各自独特的方式诠释了同一个真理，这正是数学这门学科跨越时空、超越语言的伟大之处。</p>
+        <p style="margin-top:.6rem;"><strong>🏆 历史注记：</strong>2002年第24届国际数学家大会（北京）的会标正是基于赵爽弦图设计的，这是中国古老数学智慧的现代传承。勾股定理在西方称为"毕达哥拉斯定理"，但在中国，早在西周时期的《周髀算经》中就有"勾三股四弦五"的记载，比毕达哥拉斯早了约600年！</p>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3>📌 活动总结</h3>
+        <ul>
+            <li><strong>弦图的核心思想：</strong>$c^2 = 4 \times (\frac{1}{2}ab) + (b-a)^2$，展开即得 $a^2+b^2=c^2$</li>
+            <li><strong>青朱出入图的思想：</strong>$(a+b)^2 = 4 \times (\frac{1}{2}ab) + c^2$，展开即得 $a^2+b^2=c^2$</li>
+            <li><strong>两种方法的本质相同：</strong>都是通过面积的"割"与"补"来证明勾股定理，只是视角不同</li>
+            <li>赵爽弦图是中国古代数学的瑰宝，体现了"数形结合"的思想精髓</li>
+            <li>无字证明让我们感受到数学中的简洁美、对称美与和谐美</li>
+        </ul>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:1.8rem;">✏️</span>
+        <span><strong>活动作业：</strong>(1) 调整滑块使 a=3, b=4，观察两种模式的拼合效果；(2) 尝试 a=5, b=12 看看结果；(3) 设计你自己的"无字证明"图形！</span>
+    </div>
+
+    <div class="footer-note">八年级上册 · 第13章 13.3 数学活动——探索勾股定理的无字证明</div>
+</div>
+
+<script>
+// ============================================================
+//
+//   🎯 完全复刻飞象老师网页 —— 弦图 & 青朱出入图 交互
+//
+//   【功能】
+//     1. 双滑块调节直角边 a, b（实时更新图形）
+//     2. 两种模式：弦图 / 青朱出入图
+//     3. "演示拼合"动画：4个三角形从分散位置飞入拼合成正方形
+//     4. 实时显示 c 值和面积
+//     5. 动态几何原理公式
+//
+// ============================================================
+
+var canvas = document.getElementById('mainCanvas');
+var ctx = canvas.getContext('2d');
+var W = canvas.width, H = canvas.height;
+
+// 状态变量
+var mode = 'xiantu';       // 'xiantu' 或 'qingzhu'
+var valA = 3.0;             // 直角边 a
+var valB = 4.5;             // 直角边 b
+var animProgress = 0;       // 动画进度 0~1
+var isAnimating = false;    // 是否正在动画中
+var isAssembled = false;    // 是否已拼合
+var animTimer = null;
+
+// 颜色方案
+// 青朱出入图用：T1红、T2橙、T3绿、T4蓝
+var COLORS = [
+    { fill: 'rgba(239,68,68,0.5)', stroke: '#dc2626', name: '红' },        // T1
+    { fill: 'rgba(251,191,36,0.6)', stroke: '#d97706', name: '橙' },       // T2
+    { fill: 'rgba(74,222,128,0.5)', stroke: '#16a34a', name: '绿' },       // T3
+    { fill: 'rgba(96,165,250,0.55)', stroke: '#2563eb', name: '蓝' }        // T4
+];
+// 弦图用（与参考图一致）：T1蓝、T2绿、T3红、T4橙
+var COLORS_XIANTU = [
+    { fill: 'rgba(96,165,250,0.55)', stroke: '#2563eb', name: '蓝' },      // T1 上
+    { fill: 'rgba(74,222,128,0.55)', stroke: '#16a34a', name: '绿' },      // T2 右
+    { fill: 'rgba(239,68,68,0.5)', stroke: '#dc2626', name: '红' },        // T3 下
+    { fill: 'rgba(251,191,36,0.6)', stroke: '#d97706', name: '橙' }        // T4 左
+];
+
+// ===== 工具函数 =====
+function lerp(a, b, t) { return a + (b - a) * t; }
+function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+function easeInOut(t) { return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2; }
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+// 绘制单个直角三角形
+function drawTriangle(cx, cy, angle, a_px, b_px, c_px, colorInfo, alpha) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle);
+    ctx.globalAlpha = clamp(alpha, 0, 1);
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);                           // 直角顶点
+    ctx.lineTo(a_px, 0);                        // 沿 a 边
+    ctx.lineTo(0, b_px);                        // 沿 b 边
+    ctx.closePath();
+
+    ctx.fillStyle = colorInfo.fill;
+    ctx.fill();
+    ctx.strokeStyle = colorInfo.stroke;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 直角标记
+    var rs = Math.min(a_px, b_px) * 0.18;
+    ctx.beginPath();
+    ctx.moveTo(rs, 0); ctx.lineTo(rs, rs); ctx.lineTo(0, rs);
+    ctx.strokeStyle = colorInfo.stroke;
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    ctx.restore();
+}
+
+// 绘制带标签的三角形（用于初始状态）
+function drawLabeledTriangle(x, y, a_px, b_px, c_px, rotation, colorInfo, alpha) {
+    ctx.save();
+    ctx.translate(x, y);
+    if (rotation) ctx.rotate(rotation);
+
+    // 绘制三角形
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(a_px, 0);
+    ctx.lineTo(0, b_px);
+    ctx.closePath();
+    ctx.globalAlpha = clamp(alpha, 0, 1);
+    ctx.fillStyle = colorInfo.fill;
+    ctx.fill();
+    ctx.strokeStyle = colorInfo.stroke;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 直角标记
+    var rs = Math.min(a_px, b_px) * 0.18;
+    ctx.beginPath(); ctx.moveTo(rs, 0); ctx.lineTo(rs, rs); ctx.lineTo(0, rs);
+    ctx.strokeStyle = colorInfo.stroke; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // 标签
+    ctx.fillStyle = '#334155';
+    ctx.font = 'bold 14px Segoe UI';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+    // a 标签在竖直边上
+    ctx.fillText('a', -14, b_px / 2);
+    // b 标签在水平边上
+    ctx.fillText('b', a_px / 2, 16);
+    // c 标签在斜边上中点
+    var midC_x = a_px / 2, midC_y = b_px / 2;
+    ctx.save(); ctx.translate(midC_x, midC_y);
+    ctx.rotate(Math.atan2(b_px, a_px));
+    ctx.fillText('c', 0, -12);
+    ctx.restore();
+
+    ctx.restore();
+}
+
+// ===== 主绘制函数 =====
+function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // 绘制网格背景（类似飞象老师）
+    drawGrid();
+
+    // 计算实际像素值（缩放到合适的显示大小）
+    var scale = 32; // 像素/单位长度
+    var a_px = valA * scale;
+    var b_px = valB * scale;
+    var c_px = Math.sqrt(valA*valA + valB*valB) * scale;
+
+    if (mode === 'xiantu') {
+        drawXianTu(a_px, b_px, c_px);
+    } else {
+        drawQingZhu(a_px, b_px, c_px);
+    }
+
+    // 更新数据显示
+    updateDataDisplay();
+}
+
+// ===== 绘制网格背景 =====
+function drawGrid() {
+    ctx.save();
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 0.5;
+    var step = 20;
+    for (var x = step; x < W; x += step) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (var y = step; y < H; y += step) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+    ctx.restore();
+}
+
+// ════════════════════════════════════════
+//   🏯 弦图模式（标准赵爽弦图）
+//
+//   【正确几何结构】
+//   大正方形 边长 = c（虚线框）
+//   4个全等直角三角形，每个的 斜边 = 大正方形的一条边
+//   直角顶点朝向中心，两条直角边(a,b)沿内部延伸
+//   中间形成 (b-a)² 的正放小正方形
+//
+//   排列（假设 b ≥ a）:
+//     T1(上): 斜边=上边界(水平), 直角在下, a边向右下, b边向左下? 
+//     实际: 从斜边两端出发, 两直角边交于内部的直角顶点
+//     T1: 左端→沿a方向, 右端→沿b方向, 交汇于P1
+//
+// ════════════════════════════════════════
+function drawXianTu(a_px, b_px, c_px) {
+    var cx = W / 2, cy = H / 2;
+    var halfC = c_px / 2;
+    // 短边=sa, 长边=sb (始终 sa <= sb)
+    var sa = Math.min(a_px, b_px);
+    var sb = Math.max(a_px, b_px);
+
+    // 大正方形区域
+    var sqL = cx - halfC, sqT = cy - halfC;
+    var sqR = cx + halfC, sqB = cy + halfC;
+
+    // 中间正方形边长
+    var innerS = sb - sa;  // = |b-a|
+
+    var t = easeOutCubic(animProgress);
+
+    // ===== 正确的4个三角形坐标构造 =====
+    //
+    // 对于 T1(上方): 斜边从 A=(sqL,sqT) 到 B=(sqR,sqT) [整个上边]
+    //   直角顶点 P 在 AB 下方。|PA|=sb, |PB|=sa (或反过来)
+    //   用参数化: P = A + α*(B-A) + β*⊥(B-A)
+    //   其中 ⊥(B-A) = (0, c) 向下
+    //
+    //   |P-A|² = (αc)² + (βc)² = sb²   ...①
+    //   |P-B|² = ((α-1)c)² + (βc)² = sa² ...②
+    //   ①-②: α²-(α-1)² = (sb²-sa²)/c² → 2α-1 = (sb²-sa²)/c²
+    //   由于 c²=sa²+sb²: 2α-1 = (sb²-sa²)/(sa²+sb²)
+    //   α = (sb²/(sa²+sb²) + 1)/2 = (2sb²)/(2(sa²+sb²)) = sb²/c² ✓
+    //   β = sa*sb/c² (取正值=向下)
+    //
+
+    var alpha_val = (sb * sb) / (c_px * c_px);   // sb²/c²
+    var beta_val = (sa * sb) / (c_px * c_px);    // sa·sb/c²
+
+    // T1(上): 斜边在上边界, 直角顶点在内下方
+    var P1x = sqL + alpha_val * c_px;   // 从左边出发沿斜边的距离
+    var P1y = sqT + beta_val * c_px;    // 向下的距离
+
+    // 其余3个通过对称旋转得到 (绕中心cx,cy)
+    var d1x = P1x - cx, d1y = P1y - cy;
+
+    // 4个直角顶点
+    var rtVerts = [
+        { x: P1x,      y: P1y },              // T1 上方
+        { x: cx - d1y, y: cy + d1x },          // T2 右方 (rot +90°)
+        { x: cx - d1x, y: cy - d1y },          // T3 下方 (rot +180°)
+        { x: cx + d1y, y: cy - d1x }           // T4 左方 (rot +270°/-90°)
+    ];
+
+    // 4个三角形各自的斜边端点对（大正方形的四条边）
+    var hypotenuses = [
+        [{ x: sqL, y: sqT }, { x: sqR, y: sqT }],     // T1: 上边
+        [{ x: sqR, y: sqT }, { x: sqR, y: sqB }],     // T2: 右边
+        [{ x: sqR, y: sqB }, { x: sqL, y: sqB }],     // T3: 下边
+        [{ x: sqL, y: sqB }, { x: sqL, y: sqT }]      // T4: 左边
+    ];
+
+    // 初始分散位置（四角散开）
+    var initPos = [
+        { x: cx - c_px * 0.6, y: cy - c_px * 0.5 },
+        { x: cx + c_px * 0.6, y: cy - c_px * 0.5 },
+        { x: cx + c_px * 0.6, y: cy + c_px * 0.5 },
+        { x: cx - c_px * 0.6, y: cy + c_px * 0.5 }
+    ];
+
+    // === 散开状态：画4个独立带标签三角形 ===
+    if (!isAssembled && animProgress < 0.01) {
+        for (var i = 0; i < 4; i++)
+            drawLabeledTriangle(initPos[i].x, initPos[i].y, a_px, b_px, c_px, 0, COLORS_XIANTU[i], 1);
+        return;
+    }
+
+    // === 拼合动画/完成状态 ===
+
+    // ── 2. 大正方形虚线框 ──
+    if (t > 0.35) {
+        var bAlpha = clamp((t - 0.35) / 0.28, 0, 1);
+        ctx.globalAlpha = bAlpha;
+        ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+        ctx.setLineDash([8, 5]);
+        ctx.strokeRect(sqL, sqT, c_px, c_px);
+        ctx.setLineDash([]);
+
+        // c 标注
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 13px Segoe UI';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        var off = 16;
+        ctx.fillText('c', cx, sqT - off);         // 上
+        ctx.fillText('c', sqR + off, cy);           // 右
+        ctx.fillText('c', cx, sqB + off);           // 下
+        ctx.fillText('c', sqL - off, cy);           // 左
+        ctx.globalAlpha = 1;
+    }
+
+    // ── 3. 绘制4个三角形（用"三顶点法"直接绘制）──
+    for (var i = 0; i < 4; i++) {
+        var rt = rtVerts[i];       // 直角顶点（目标位置）
+        var hyp = hypotenuses[i];  // 斜边的两个端点
+        var ip = initPos[i];       // 初始位置
+
+        // 插值：初始位置→目标位置（整体平移）
+        var curRx = lerp(ip.x, rt.x, t);
+        var curRy = lerp(ip.y, rt.y, t);
+
+        // 斜边端点也跟着一起平移（保持相对位置不变）
+        var dx = rt.x - ip.x;
+        var dy = rt.y - ip.y;
+        var curA = { x: hyp[0].x - dx * (1-t), y: hyp[0].y - dy * (1-t) };
+        var curB = { x: hyp[1].x - dx * (1-t), y: hyp[1].y - dy * (1-t) };
+
+        ctx.save();
+        ctx.globalAlpha = clamp(t, 0, 1);
+
+        // 用三个顶点绘制三角形：斜边两端点 + 直角顶点
+        ctx.beginPath();
+        ctx.moveTo(curA.x, curA.y);   // 斜边端点A
+        ctx.lineTo(curB.x, curB.y);   // 斜边端点B  
+        ctx.lineTo(curRx, curRy);     // 直角顶点P
+        ctx.closePath();
+
+        ctx.fillStyle = COLORS_XIANTU[i].fill;
+        ctx.fill();
+        ctx.strokeStyle = COLORS_XIANTU[i].stroke;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 直角标记（在直角顶点处）
+        // 计算从直角顶点到两斜边端点的单位向量
+        var vA = { x: curA.x - curRx, y: curA.y - curRy };
+        var vB = { x: curB.x - curRx, y: curB.y - curRy };
+        var lenA = Math.sqrt(vA.x*vA.x + vA.y*vA.y);
+        var lenB = Math.sqrt(vB.x*vB.x + vB.y*vB.y);
+        if (lenA > 0 && lenB > 0) {
+            var uA = { x: vA.x/lenA, y: vA.y/lenA };
+            var uB = { x: vB.x/lenB, y: vB.y/lenB };
+            var markSize = Math.min(lenA, lenB) * 0.15;
+            var m1 = { x: curRx + uA.x * markSize, y: curRy + uA.y * markSize };
+            var m2 = { x: curRx + uA.x * markSize + uB.x * markSize,
+                       y: curRy + uA.y * markSize + uB.y * markSize };
+            var m3 = { x: curRx + uB.x * markSize, y: curRy + uB.y * markSize };
+            ctx.beginPath();
+            ctx.moveTo(m1.x, m1.y); ctx.lineTo(m2.x, m2.y); ctx.lineTo(m3.x, m3.y);
+            ctx.strokeStyle = COLORS_XIANTU[i].stroke;
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+        }
+
+        // 标签 a, b, c
+        if (t > 0.55) {
+            var la = clamp((t - 0.55) / 0.45, 0, 1);
+            ctx.globalAlpha = la;
+            ctx.fillStyle = '#334155';
+            ctx.font = 'bold 11px Segoe UI';
+            ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+            // c 标签：在斜边中点外侧
+            var midC = { x: (curA.x + curB.x)/2, y: (curA.y + curB.y)/2 };
+            // 外法向量
+            var outNx = (curB.y - curA.y) / lenA; // 近似
+            var outNy = -(curB.x - curA.x) / lenA;
+            ctx.fillText('c', midC.x + outNx * 14, midC.y + outNy * 14);
+
+            // a 标签：在较短的直角边上
+            var midA = { x: (curRx + curA.x)/2, y: (curRy + curA.y)/2 };
+            ctx.fillText('a', midA.x, midA.y);
+
+            // b 标签：在较长的直角边上
+            var midB = { x: (curRx + curB.x)/2, y: (curRy + curB.y)/2 };
+            ctx.fillText('b', midB.x, midB.y);
+        }
+
+        ctx.restore();
+    }
+}
+
+// ════════════════════════════════════════
+//   🔷 青朱出入图模式
+//
+//   【正确几何结构】（参考用户提供的正确图片）
+//   大正方形 边长 = (a+b)（实线框）
+//   四角各放1个直角三角形，直角在四角**外部/角落**位置：
+//     T1(左上,红): 直角在左上角, a边沿上边向右, b边沿左边向下
+//       → 斜边从 (left+a, top) 到 (left, top+b)，即从上边某点到左边某点
+//     T2(右上,橙): 直角在右上角, b边沿上边向左, a边沿右边向下
+//       → 斜边从 (right-b, top) 到 (right, top+a)
+//     T3(右下,绿): 直角在右下角, a边沿下边向左, b边沿右边向上
+//       → 斜边从 (right-a, bottom) 到 (right, bottom-b)
+//     T4(左下,蓝): 直角在左下角, b边沿下边向右, a边沿左边向上
+//       → 斜边从 (left+a, bottom) 到 (left, bottom-b)
+//
+//   4条斜边围成中间倾斜的 c² 正方形（菱形外观）
+//
+//   边段标注（从图中可见）：
+//     上边: 左段=b(T1), 右段=a(T2)
+//     右边: 上段=b(T2), 下段=a(T3)
+//     下边: 右段=b(T3), 左段=a(T4)
+//     左边: 上段=a(T1), 下段=b(T4)
+//
+// ════════════════════════════════════════
+function drawQingZhu(a_px, b_px, c_px) {
+    var cx = W / 2, cy = H / 2;
+    var bigL = a_px + b_px;      // 大正方形边长 = a+b
+    var halfB = bigL / 2;
+
+    var t = easeOutCubic(animProgress);
+
+    // 大正方形区域
+    var left = cx - halfB;
+    var top = cy - halfB;
+    var right = cx + halfB;
+    var bottom = cy + halfB;
+
+    // ===== 4个三角形的三个顶点坐标（最终拼合位置）=====
+    //
+    // 关键：每个三角形的两条直角边沿着大正方形的相邻两边延伸，
+    // 直角顶点就在大正方形的角落。
+    // 4个斜边的端点构成中间的 c² 倾斜正方形。
+    //
+    var triVerts = [
+        // T1 左上(红色): 直角=左上角, a→沿左边向下, b→沿上边向右
+        { rt: {x:left, y:top},        legA:{x:left, y:top+a_px},      legB:{x:left+b_px, y:top} },
+        // T2 右上(橙色): 直角=右上角, a→沿上边向左, b→沿右边向下
+        { rt: {x:right, y:top},       legA:{x:right-a_px, y:top},     legB:{x:right, y:top+b_px} },
+        // T3 右下(绿色): 直角=右下角, a→沿右边向上, b→沿下边向左
+        { rt: {x:right, y:bottom},    legA:{x:right, y:bottom-a_px},  legB:{x:right-b_px, y:bottom} },
+        // T4 左下(蓝色): 直角=左下角, a→沿底边向右, b→沿左边向上
+        { rt: {x:left, y:bottom},     legA:{x:left+a_px, y:bottom},   legB:{x:left, y:bottom-b_px} }
+    ];
+
+    // 初始分散位置
+    var initPositions = [
+        { x: cx - bigL * 0.55, y: cy - bigL * 0.42 },
+        { x: cx + bigL * 0.55, y: cy - bigL * 0.42 },
+        { x: cx + bigL * 0.55, y: cy + bigL * 0.42 },
+        { x: cx - bigL * 0.55, y: cy + bigL * 0.42 }
+    ];
+
+    // === 散开状态 ===
+    if (!isAssembled && animProgress < 0.01) {
+        for (var i = 0; i < 4; i++) {
+            var p = initPositions[i];
+            drawLabeledTriangle(p.x, p.y, a_px, b_px, c_px, 0, COLORS[i], 1);
+        }
+        return;
+    }
+
+    // === 拼合动画/完成状态 ===
+
+    // ── 1. 中间区域不画任何东西 —— 就是4个全等三角形围出的空白 c² ──
+
+    // ── 2. 大正方形实线边框 ──
+    if (t > 0.35) {
+        var bfAlpha = clamp((t - 0.35) / 0.28, 0, 1);
+        ctx.globalAlpha = bfAlpha;
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 2.5;
+        ctx.strokeRect(left, top, bigL, bigL);
+
+        // 标注各边段（匹配正确图中的标注方式）
+        ctx.fillStyle = '#475569';
+        ctx.font = 'bold 12px Segoe UI';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+
+        // 上边标注: 左b(T1), 右a(T2)
+        ctx.fillText('b', left + b_px/2, top - 13);
+        ctx.fillText('a', right - a_px/2, top - 13);
+
+        // 右边标注: 上b(T2), 下a(T3)
+        ctx.fillText('b', right + 15, top + b_px/2);
+        ctx.fillText('a', right + 15, bottom - a_px/2);
+
+        // 下边标注: 右b(T3), 左a(T4)
+        ctx.fillText('b', right - b_px/2, bottom + 13);
+        ctx.fillText('a', left + a_px/2, bottom + 13);
+
+        // 左边标注: 上a(T1), 下b(T4)
+        ctx.fillText('a', left - 15, top + a_px/2);
+        ctx.fillText('b', left - 15, bottom - b_px/2);
+
+        ctx.globalAlpha = 1;
+    }
+
+    // ── 3. 绘制4个三角形 ──
+    for (var i = 0; i < 4; i++) {
+        var tv = triVerts[i];
+        var ip = initPositions[i];
+
+        // 插值：直角顶点
+        var curRt = { x: lerp(ip.x, tv.rt.x, t), y: lerp(ip.y, tv.rt.y, t) };
+        // 直角边端点也做同样插值（保持相对位置）
+        var rtDx = tv.rt.x - ip.x, rtDy = tv.rt.y - ip.y;
+        var curA = { x: tv.legA.x - rtDx*(1-t), y: tv.legA.y - rtDy*(1-t) };
+        var curB = { x: tv.legB.x - rtDx*(1-t), y: tv.legB.y - rtDy*(1-t) };
+
+        ctx.save();
+        ctx.globalAlpha = clamp(t, 0, 1);
+
+        // 绘制三角形：直角顶点 → 一条直角边端点 → 另一条直角边端点
+        ctx.beginPath();
+        ctx.moveTo(curRt.x, curRt.y);   // 直角顶点（在大正方形的角上）
+        ctx.lineTo(curA.x, curA.y);      // 一条直角边端点
+        ctx.lineTo(curB.x, curB.y);      // 另一条直角边端点
+        ctx.closePath();
+
+        ctx.fillStyle = COLORS[i].fill;
+        ctx.fill();
+        ctx.strokeStyle = COLORS[i].stroke;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 直角标记（在角落处，沿两边画）
+        var vA2 = { x: curA.x-curRt.x, y: curA.y-curRt.y };
+        var vB2 = { x: curB.x-curRt.x, y: curB.y-curRt.y };
+        var lA2 = Math.sqrt(vA2.x*vA2.x+vA2.y*vA2.y);
+        var lB2 = Math.sqrt(vB2.x*vB2.x+vB2.y*vB2.y);
+        if(lA2>0 && lB2>0){
+            var uAx=vA2.x/lA2, uAy=vA2.y/lA2;
+            var uBx=vB2.x/lB2, uBy=vB2.y/lB2;
+            var ms=Math.min(lA2,lB2)*0.16;
+            ctx.beginPath();
+            ctx.moveTo(curRt.x+uAx*ms,curRt.y+uAy*ms);
+            ctx.lineTo(curRt.x+uAx*ms+uBx*ms,curRt.y+uAy*ms+uBy*ms);
+            ctx.lineTo(curRt.x+uBx*ms,curRt.y+uBy*ms);
+            ctx.strokeStyle=COLORS[i].stroke;ctx.lineWidth=1.2;ctx.stroke();
+        }
+
+        ctx.restore();
+    }
+}
+
+// ===== 数据显示更新 =====
+function updateDataDisplay() {
+    var c_val = Math.sqrt(valA * valA + valB * valB);
+    var area = c_val * c_val;
+    document.getElementById('dispC').textContent = c_val.toFixed(2);
+    document.getElementById('dispArea').textContent = area.toFixed(2);
+}
+
+// ===== 滑块变化处理 =====
+function onSliderChange() {
+    valA = parseFloat(document.getElementById('sliderA').value);
+    valB = parseFloat(document.getElementById('sliderB').value);
+
+    // 确保 a <= b
+    if (valA > valB) {
+        valA = valB;
+        document.getElementById('sliderA').value = valA;
+    }
+
+    document.getElementById('valA').textContent = valA.toFixed(1);
+    document.getElementById('valB').textContent = valB.toFixed(1);
+
+    // 如果正在拼合状态，重置动画
+    if (isAssembled) {
+        animProgress = 1;
+    } else {
+        animProgress = 0;
+    }
+
+    draw();
+}
+
+// ===== 模式切换 =====
+function switchMode(newMode) {
+    mode = newMode;
+
+    // 更新按钮状态
+    document.querySelectorAll('.mode-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    if (newMode === 'xiantu') {
+        document.getElementById('btnXianTu').classList.add('active');
+    } else {
+        document.getElementById('btnQingZhu').classList.add('active');
+    }
+
+    // 更新几何原理说明
+    updatePrincipleFormula();
+
+    // 重置动画状态
+    stopAnimation();
+    animProgress = 0;
+    isAssembled = false;
+    updateAnimButton();
+
+    draw();
+}
+
+// ===== 更新几何原理文字（LaTeX公式）=====
+function updatePrincipleFormula() {
+    var el = document.getElementById('principleFormula');
+    if (mode === 'xiantu') {
+        el.innerHTML =
+            '大正方形面积 $c^2$ = 4个三角形 + 中间小正方形<br>' +
+            '$$c^2 = 4 \\times \\frac{1}{2}ab + (b-a)^2$$' +
+            '$$c^2 = 2ab + (a^2 - 2ab + b^2) = a^2 + b^2$$';
+    } else {
+        el.innerHTML =
+            '大正方形面积 $(a+b)^2$ = 4个三角形 + 中间倾斜正方形<br>' +
+            '$$(a+b)^2 = 4 \\times \\frac{1}{2}ab + c^2$$' +
+            '$$a^2 + 2ab + b^2 = 2ab + c^2 \\quad\\Rightarrow\\quad a^2 + b^2 = c^2$$';
+    }
+    // 通知MathJax重新渲染公式
+    if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([el]).catch(function(err) { console.log('MathJax error:', err); });
+    }
+}
+
+// ===== 动画控制 =====
+function toggleAnimation() {
+    if (isAnimating) {
+        // 如果正在播放，且已拼合，则还原
+        if (isAssembled) {
+            playReverseAnimation();
+        } else {
+            stopAnimation();
+        }
+    } else {
+        if (isAssembled) {
+            // 已拼合状态 → 还原
+            playReverseAnimation();
+        } else {
+            // 未拼合 → 播放拼合动画
+            playForwardAnimation();
+        }
+    }
+}
+
+function playForwardAnimation() {
+    stopAnimation();
+    isAnimating = true;
+    isAssembled = false;
+    updateAnimButton();
+
+    animProgress = 0;
+    animTimer = setInterval(function() {
+        animProgress += 0.018;
+        if (animProgress >= 1) {
+            animProgress = 1;
+            isAssembled = true;
+            isAnimating = false;
+            stopAnimation();
+            updateAnimButton();
+        }
+        draw();
+    }, 25);
+}
+
+function playReverseAnimation() {
+    stopAnimation();
+    isAnimating = true;
+    updateAnimButton();
+
+    var startProgress = animProgress;
+    animTimer = setInterval(function() {
+        animProgress -= 0.025;
+        if (animProgress <= 0) {
+            animProgress = 0;
+            isAssembled = false;
+            isAnimating = false;
+            stopAnimation();
+            updateAnimButton();
+        }
+        draw();
+    }, 25);
+}
+
+function stopAnimation() {
+    if (animTimer) {
+        clearInterval(animTimer);
+        animTimer = null;
+    }
+    isAnimating = false;
+}
+
+function updateAnimButton() {
+    var iconEl = document.getElementById('animIcon');
+    var textEl = document.getElementById('animText');
+
+    if (isAssembled) {
+        iconEl.textContent = '↺';
+        textEl.textContent = '还原';
+    } else if (isAnimating) {
+        iconEl.textContent = '⏸';
+        textEl.textContent = '演示中...';
+    } else {
+        iconEl.textContent = '▶';
+        textEl.textContent = '演示拼合';
+    }
+}
+
+// ===== 重置全部 =====
+function resetAll() {
+    stopAnimation();
+    animProgress = 0;
+    isAssembled = false;
+    valA = 3.0;
+    valB = 4.5;
+    document.getElementById('sliderA').value = valA;
+    document.getElementById('sliderB').value = valB;
+    document.getElementById('valA').textContent = valA.toFixed(1);
+    document.getElementById('valB').textContent = valB.toFixed(1);
+    updateAnimButton();
+    draw();
+}
+
+// ═══ 初始化 ═══
+window.onload = function() {
+    draw();
+    drawReferenceFigures();  // 绘制参考示意图
+};
+
+// ════════════════════════════════════════════════
+//  参考图形绘制（弦图 + 青朱出入图 静态示意）
+// ════════════════════════════════════════════════
+function drawReferenceFigures() {
+
+    // ═══ 弦图参考图（与主交互区相同算法：三顶点法）═══
+    var xCanvas = document.getElementById('xianTuRefCanvas');
+    if (!xCanvas) return;
+    var xc = xCanvas.getContext('2d');
+    var xw=xCanvas.width, xh=xCanvas.height;
+    xc.clearRect(0,0,xw,xh);
+
+    var ra=72, rb=96, rc=Math.sqrt(ra*ra+rb*rb);
+    var sa=Math.min(ra,rb), sb=Math.max(ra,rb);
+    var xcx=xw/2, xcy=xh/2+12;
+    var xl=xcx-rc/2, xt=xcy-rc/2, xr=xl+rc, xb=xt+rc;
+    var innerS=sb-sa;
+
+    // 网格
+    xc.strokeStyle='#f0f0f0';xc.lineWidth=.5;
+    for(var gx=10;gx<xw;gx+=16){xc.beginPath();xc.moveTo(gx,0);xc.lineTo(gx,xh);xc.stroke();}
+    for(var gy=10;gy<xh;gy+=16){xc.beginPath();xc.moveTo(0,gy);xc.lineTo(xw,gy);xc.stroke();}
+
+    // 向量法计算4个直角顶点
+    var av=(sb*sb)/(rc*rc), bv=(sa*sb)/(rc*rc);
+    var P1x=xl+av*rc, P1y=xt+bv*rc;
+    var dx1=P1x-xcx, dy1=P1y-xcy;
+    var rts=[
+        {x:P1x,y:P1y}, {x:xcx-dy1,y:xcy+dx1},
+        {x:xcx-dx1,y:xcy-dy1}, {x:xcx+dy1,y:xcy-dx1}
+    ];
+    // 斜边端点
+    var hps=[
+        [{x:xl,y:xt},{x:xr,y:xt}],[{x:xr,y:xt},{x:xr,y:xb}],
+        [{x:xr,y:xb},{x:xl,y:xb}],[{x:xl,y:xb},{x:xl,y:xt}]
+    ];
+
+    // 大正方形虚线框
+    xc.setLineDash([6,4]);xc.strokeStyle='#64748b';xc.lineWidth=2.5;
+    xc.strokeRect(xl,xt,rc,rc);xc.setLineDash([]);
+
+    // 中间小正方形（已删除——方向不对，用户要求移除）
+
+    // 4个三角形（三顶点法）
+    var tc=['rgba(96,165,250,0.55)','rgba(74,222,128,0.55)','rgba(251,113,133,0.55)','rgba(251,191,36,0.65)'];
+    var ts=['#2563eb','#16a34a','#dc2626','#d97706'];
+    for(var xi=0;xi<4;xi++){
+        var rt=rts[xi], hp=hps[xi];
+        xc.beginPath();
+        xc.moveTo(hp[0].x,hp[0].y);xc.lineTo(hp[1].x,hp[1].y);xc.lineTo(rt.x,rt.y);
+        xc.closePath();xc.fillStyle=tc[xi];xc.fill();xc.strokeStyle=ts[xi];xc.lineWidth=2;xc.stroke();
+        // 直角标记
+        var vA={x:hp[0].x-rt.x,y:hp[0].y-rt.y},vB={x:hp[1].x-rt.x,y:hp[1].y-rt.y};
+        var lA=Math.sqrt(vA.x*vA.x+vA.y*vA.y),lB=Math.sqrt(vB.x*vB.x+vB.y*vB.y);
+        if(lA>0&&lB>0){
+            var ua={x:vA.x/lA,y:vA.y/lA},ub={x:vB.x/lB,y:vB.y/lB};
+            var ms=Math.min(lA,lB)*0.16;
+            xc.beginPath();
+            xc.moveTo(rt.x+ua.x*ms,rt.y+ua.y*ms);
+            xc.lineTo(rt.x+ua.x*ms+ub.x*ms,rt.y+ua.y*ms+ub.y*ms);
+            xc.lineTo(rt.x+ub.x*ms,rt.y+ub.y*ms);
+            xc.strokeStyle=ts[xi];xc.lineWidth=1.2;xc.stroke();
+        }
+        // 只标注斜边c（去掉a、b标注，避免拥挤）
+        xc.fillStyle='#334155';xc.font='bold 18px Segoe UI';
+        xc.textAlign='center';xc.textBase='middle';
+        var mcx=(hp[0].x+hp[1].x)/2,mcy=(hp[0].y+hp[1].y)/2;
+        var onx=(hp[1].y-hp[0].y)/rc,ony=-(hp[1].x-hp[0].x)/rc;
+        xc.fillText('c',mcx+onx*20,mcy+ony*20);
+    }
+    // 外部c
+    xc.fillStyle='#475569';xc.font='bold 20px Segoe UI';
+    xc.fillText('c',xcx,xt-20);xc.fillText('c',xr+22,xcy);
+    xc.fillText('c',xcx,xb+22);xc.fillText('c',xl-22,xcy);
+    // 底部公式说明已在HTML中用LaTeX显示
+
+
+    // ═══ 青朱出入图参考图 ═══
+    var qCanvas=document.getElementById('qingZhuRefCanvas');
+    if(!qCanvas)return;
+    var qc=qCanvas.getContext('2d');
+    var qw=qCanvas.width,qh=qCanvas.height;
+    qc.clearRect(0,0,qw,qh);
+
+    var qa=72,qb=96,qcc=Math.sqrt(qa*qa+qb*qb);
+    var qbl=qa+qb,qhf=qbl/2;
+    var qcx=qw/2,qcy=qh/2+12;
+    var ql=qcx-qhf,qt=qcy-qhf,qr=ql+qbl,qbtt=qt+qbl;
+
+    // 网格
+    qc.strokeStyle='#f0f0f0';qc.lineWidth=.5;
+    for(var gx2=10;gx2<qw;gx2+=16){qc.beginPath();qc.moveTo(gx2,0);qc.lineTo(gx2,qh);qc.stroke();}
+    for(var gy2=10;gy2<qh;gy2+=16){qc.beginPath();qc.moveTo(0,gy2);qc.lineTo(qw,gy2);qc.stroke();}
+
+    // 4个三角形的顶点（直角在大正方形四角——与正确图片一致）
+    // 颜色: T1=红(左上), T2=橙/黄(右上), T3=绿(右下), T4=蓝(左下)
+    var qtV=[
+        {rt:{x:ql,y:qt},      legA:{x:ql,y:qt+qa},     legB:{x:ql+qb,y:qt}},       // T1左上(红): a→下, b→右
+        {rt:{x:qr,y:qt},      legA:{x:qr-qa,y:qt},     legB:{x:qr,y:qt+qb}},       // T2右上(橙): a→左, b→下
+        {rt:{x:qr,y:qbtt},    legA:{x:qr,y:qbtt-qa},   legB:{x:qr-qb,y:qbtt}},     // T3右下(绿): a→上, b→左
+        {rt:{x:ql,y:qbtt},    legA:{x:ql+qa,y:qbtt},   legB:{x:ql,y:qbtt-qb}}      // T4左下(蓝): a→右, b→上
+    ];
+
+    // 大正方形实线框
+    qc.strokeStyle='#64748b';qc.lineWidth=2.5;
+    qc.strokeRect(ql,qt,qbl,qbl);
+
+    // 中间 c² 区域——4个三角形围出的空白，不画任何东西
+
+    // 4个三角形 —— 红(T1左上)、橙/黄(T2右上)、绿(T3右下)、蓝(T4左下)
+    var qtc=['rgba(239,68,68,0.5)','rgba(251,191,36,0.6)','rgba(74,222,128,0.5)','rgba(96,165,250,0.55)'];
+    var qts=['#dc2626','#d97706','#16a34a','#2563eb'];
+
+    for(var qi=0;qi<4;qi++){
+        var tv=qtV[qi];
+        qc.beginPath();
+        qc.moveTo(tv.rt.x,tv.rt.y);
+        qc.lineTo(tv.legA.x,tv.legA.y);
+        qc.lineTo(tv.legB.x,tv.legB.y);
+        qc.closePath();
+        qc.fillStyle=qtc[qi];qc.fill();qc.strokeStyle=qts[qi];qc.lineWidth=2.2;qc.stroke();
+
+        // 直角标记
+        var va2={x:tv.legA.x-tv.rt.x,y:tv.legA.y-tv.rt.y};
+        var vb2={x:tv.legB.x-tv.rt.x,y:tv.legB.y-tv.rt.y};
+        var la2=Math.sqrt(va2.x*va2.x+va2.y*va2.y);
+        var lb2=Math.sqrt(vb2.x*vb2.x+vb2.y*vb2.y);
+        if(la2>0&&lb2>0){
+            var uax=va2.x/la2,uay=va2.y/la2,ubx=vb2.x/lb2,uby=vb2.y/lb2;
+            var qms2=Math.min(la2,lb2)*0.16;
+            qc.beginPath();
+            qc.moveTo(tv.rt.x+uax*qms2,tv.rt.y+uay*qms2);
+            qc.lineTo(tv.rt.x+uax*qms2+ubx*qms2,tv.rt.y+uay*qms2+uby*qms2);
+            qc.lineTo(tv.rt.x+ubx*qms2,tv.rt.y+uby*qms2);
+            qc.strokeStyle=qts[qi];qc.lineWidth=1.4;qc.stroke();
+        }
+
+        // 不在三角形内部标注a,b（避免与边段标注重复）
+    }
+
+    // 边段标注
+    qc.fillStyle='#475569';qc.font='bold 20px Segoe UI';
+    qc.textAlign='center';qc.textBase='middle';
+    qc.fillText('b',ql+qb/2,qt-22); qc.fillText('a',qr-qa/2,qt-22);
+    qc.fillText('b',qr+24,qt+qb/2); qc.fillText('a',qr+24,qbtt-qa/2);
+    qc.fillText('b',qr-qb/2,qbtt+22); qc.fillText('a',ql+qa/2,qbtt+22);
+    qc.fillText('b',ql-24,qbtt-qb/2); qc.fillText('a',ql-24,qt+qa/2);
+
+    // 中间c²标注
+    var midCx = qcx, midCy = qcy;
+    qc.fillStyle='#7c3aed';qc.font='bold 24px Segoe UI';
+    qc.fillText('c²',midCx,midCy);
+}
+
+// 响应窗口大小变化
+window.addEventListener('resize', function() {
+    draw();
+});
+</script>
+</body>
+</html>

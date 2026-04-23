@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图形的平移演示 </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 暖色系自定义配置 */
+        :root {
+            --warm-bg: #FFF5EB;
+            --warm-primary: #FF8C42;
+            --warm-secondary: #F9C784;
+            --warm-accent: #FC5185;
+            --warm-text: #4A403A;
+            --warm-panel: #FFF0E0;
+            --highlight-color: #00BCD4;
+        }
+
+        body {
+            background-color: var(--warm-bg);
+            color: var(--warm-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        .control-panel {
+            background: rgba(255, 240, 224, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 140, 66, 0.2);
+            box-shadow: 5px 0 25px rgba(255, 140, 66, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            left: 0;
+            right: auto;
+        }
+
+        .control-panel.right {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid rgba(255, 140, 66, 0.2);
+            box-shadow: -5px 0 25px rgba(255, 140, 66, 0.1);
+        }
+
+        .btn-warm {
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B6B 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(255, 107, 107, 0.2);
+        }
+        .btn-warm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255, 107, 107, 0.3);
+        }
+        .btn-warm:active {
+            transform: translateY(0);
+        }
+        .btn-warm.active {
+            background: linear-gradient(135deg, #FC5185 0%, #FF8C42 100%);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--warm-primary);
+            border: 2px solid var(--warm-secondary);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: var(--warm-secondary);
+            color: white;
+        }
+
+        .btn-highlight {
+            background: linear-gradient(135deg, #00BCD4 0%, #00838F 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 188, 212, 0.2);
+        }
+        .btn-highlight:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 188, 212, 0.3);
+        }
+        .btn-highlight.active {
+            background: linear-gradient(135deg, #00838F 0%, #00BCD4 100%);
+            ring: 2px solid white;
+        }
+
+        .btn-compare {
+            background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(156, 39, 176, 0.2);
+        }
+        .btn-compare:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(156, 39, 176, 0.3);
+        }
+        .btn-compare.active {
+            background: linear-gradient(135deg, #7B1FA2 0%, #9C27B0 100%);
+        }
+
+        #canvas-container {
+            cursor: crosshair;
+            background-image: 
+                linear-gradient(rgba(255, 140, 66, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 140, 66, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .grabbing {
+            cursor: grabbing !important;
+        }
+        
+        .toggle-btn {
+            background: var(--warm-primary);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            z-index: 50;
+        }
+        .toggle-btn:hover {
+            transform: scale(1.1);
+            background: var(--warm-accent);
+        }
+
+        .overlay-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex relative">
+
+    <!-- 主显示区域 -->
+    <div id="canvas-container" class="flex-grow h-full relative">
+        <canvas id="geometryCanvas" class="block w-full h-full"></canvas>
+        <canvas id="compareCanvas" class="overlay-canvas w-full h-full"></canvas>
+        
+        <!-- 标题居中显示 -->
+        <div class="absolute top-6 left-0 right-0 pointer-events-none select-none text-center">
+            <h1 class="text-3xl font-bold text-orange-800 mb-2 tracking-tight inline-block bg-white/50 px-6 py-2 rounded-xl backdrop-blur-sm">图形的平移演示</h1>
+            <p class="text-orange-600/80 text-sm bg-white/50 p-2 rounded-lg backdrop-blur-sm inline-block mt-2">
+                <span class="font-bold">提示：</span> 拖动顶点可改变图形形状，点击"开始平移"查看动画。
+            </p>
+        </div>
+    </div>
+
+    <!-- 控制面板 - 初始在左边 -->
+    <div id="panel" class="control-panel absolute top-0 h-full w-80 flex flex-col p-6 z-40 overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-orange-800">控制面板</h2>
+            <button id="positionToggle" class="text-orange-400 hover:text-orange-600 transition-colors" title="切换位置">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- 图形选择 -->
+        <div class="space-y-4 mb-6">
+            <label class="block text-sm font-semibold text-orange-700 mb-2 uppercase tracking-wider">选择图形</label>
+            <div class="grid grid-cols-3 gap-3">
+                <button onclick="app.setShape('triangle')" id="btn-triangle" class="btn-warm active py-3 rounded-xl font-bold text-sm flex flex-col items-center gap-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path></svg>
+                    三角形
+                </button>
+                <button onclick="app.setShape('quadrilateral')" id="btn-quadrilateral" class="btn-secondary py-3 rounded-xl font-bold text-sm flex flex-col items-center gap-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    四边形
+                </button>
+                <button onclick="app.setShape('pentagon')" id="btn-pentagon" class="btn-secondary py-3 rounded-xl font-bold text-sm flex flex-col items-center gap-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                    五边形
+                </button>
+            </div>
+        </div>
+
+        <!-- 动画控制 -->
+        <div class="space-y-4 mb-6">
+            <label class="block text-sm font-semibold text-orange-700 mb-2 uppercase tracking-wider">动画控制</label>
+            <button onclick="app.startTranslation()" id="btn-translate" class="w-full btn-warm py-4 rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+                <svg class="w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                开始平移
+            </button>
+            <div class="flex gap-2">
+                <button onclick="app.reset()" class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">重置位置</button>
+                <button onclick="app.stopAnimation()" class="flex-1 bg-red-100 text-red-600 hover:bg-red-200 py-2 rounded-lg font-semibold text-sm transition-colors">停止</button>
+            </div>
+        </div>
+
+        <!-- 高亮控制 -->
+        <div class="space-y-4 mb-6">
+            <label class="block text-sm font-semibold text-orange-700 mb-2 uppercase tracking-wider">高亮显示</label>
+            <div class="grid grid-cols-1 gap-3">
+                <button onclick="app.highlightCorrespondingSegments()" id="btn-segments" class="btn-highlight py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    对应线段
+                </button>
+                <button onclick="app.highlightCorrespondingAngles()" id="btn-angles" class="btn-highlight py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                    对应角
+                </button>
+                <button onclick="app.highlightCorrespondingLines()" id="btn-lines" class="btn-highlight py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+                    对应点连线
+                </button>
+            </div>
+        </div>
+
+        <!-- 比较功能 -->
+        <div class="space-y-4 mb-6">
+            <label class="block text-sm font-semibold text-orange-700 mb-2 uppercase tracking-wider">叠合比较</label>
+            <button onclick="app.compareElements()" id="btn-compare" class="w-full btn-compare py-4 rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                比较大小
+            </button>
+            <div class="flex gap-2">
+                <button onclick="app.animateComparison()" id="btn-animate-compare" class="flex-1 bg-green-500 text-white hover:bg-green-600 py-2 rounded-lg font-semibold text-sm transition-colors hidden">
+                    播放叠合动画
+                </button>
+                <button onclick="app.clearComparison()" class="flex-1 btn-secondary py-2 rounded-lg font-semibold text-sm">清除比较</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 悬浮切换按钮 - 初始在右侧 -->
+    <div id="toggle-container" class="absolute top-1/2 -translate-y-1/2 left-[340px] transition-all duration-400 z-50">
+        <div onclick="app.togglePanelPosition()" class="toggle-btn">
+            <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        class GeometryApp {
+            constructor() {
+                this.canvas = document.getElementById('geometryCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.compareCanvas = document.getElementById('compareCanvas');
+                this.compareCtx = this.compareCanvas.getContext('2d');
+                this.panel = document.getElementById('panel');
+                this.toggleContainer = document.getElementById('toggle-container');
+                
+                this.shapeType = 'triangle';
+                this.isAnimating = false;
+                this.animationProgress = 0;
+                this.animationId = null;
+                this.panelOnLeft = true; // 初始在左边
+                
+                this.draggedPoint = null;
+                
+                this.originalPoints = [];
+                this.currentPoints = [];
+                this.targetOffset = { x: 200, y: -200 };
+                
+                // 高亮状态
+                this.highlightState = {
+                    segments: false,
+                    angles: false,
+                    lines: false,
+                    randomSegmentIndex: -1,
+                    randomAngleIndex: -1
+                };
+                
+                // 比较状态
+                this.compareState = {
+                    active: false,
+                    type: null,
+                    elements: [],
+                    animationProgress: 0,
+                    isAnimating: false
+                };
+                
+                this.resize();
+                this.initShape();
+                this.setupEvents();
+                this.draw();
+                
+                window.addEventListener('resize', () => {
+                    this.resize();
+                    this.draw();
+                });
+            }
+
+            resize() {
+                const parent = this.canvas.parentElement;
+                const dpr = window.devicePixelRatio || 1;
+                
+                this.canvas.width = parent.clientWidth * dpr;
+                this.canvas.height = parent.clientHeight * dpr;
+                this.ctx.scale(dpr, dpr);
+                this.canvas.style.width = parent.clientWidth + 'px';
+                this.canvas.style.height = parent.clientHeight + 'px';
+                
+                this.compareCanvas.width = parent.clientWidth * dpr;
+                this.compareCanvas.height = parent.clientHeight * dpr;
+                this.compareCtx.scale(dpr, dpr);
+                this.compareCanvas.style.width = parent.clientWidth + 'px';
+                this.compareCanvas.style.height = parent.clientHeight + 'px';
+                
+                this.width = parent.clientWidth;
+                this.height = parent.clientHeight;
+                this.centerX = this.width / 2;
+                this.centerY = this.height / 2;
+            }
+
+            getTranslatedLabel(originalLabel) {
+                const code = originalLabel.charCodeAt(0);
+                if (this.shapeType === 'triangle') {
+                    return String.fromCharCode(code + 3);
+                } else if (this.shapeType === 'quadrilateral') {
+                    return String.fromCharCode(code + 4);
+                } else if (this.shapeType === 'pentagon') {
+                    return String.fromCharCode(code + 5);
+                }
+                return originalLabel;
+            }
+
+            initShape() {
+                const cx = this.centerX;
+                const cy = this.centerY;
+                const size = 180;
+                
+                if (this.shapeType === 'triangle') {
+                    this.originalPoints = [
+                        { x: cx - size/2, y: cy + size/3, label: 'A' },
+                        { x: cx + size/2, y: cy + size/3, label: 'B' },
+                        { x: cx, y: cy - size/2, label: 'C' }
+                    ];
+                } else if (this.shapeType === 'quadrilateral') {
+                    this.originalPoints = [
+                        { x: cx - size/2, y: cy - size/2, label: 'A' },
+                        { x: cx + size/2, y: cy - size/2, label: 'B' },
+                        { x: cx + size/2, y: cy + size/2, label: 'C' },
+                        { x: cx - size/2, y: cy + size/2, label: 'D' }
+                    ];
+                } else if (this.shapeType === 'pentagon') {
+                    this.originalPoints = [];
+                    for (let i = 0; i < 5; i++) {
+                        const angle = (i * 2 * Math.PI / 5) - Math.PI / 2;
+                        this.originalPoints.push({
+                            x: cx + size * 0.8 * Math.cos(angle),
+                            y: cy + size * 0.8 * Math.sin(angle),
+                            label: String.fromCharCode(65 + i)
+                        });
+                    }
+                }
+                
+                this.currentPoints = this.originalPoints.map(p => ({...p}));
+                this.animationProgress = 0;
+                this.isAnimating = false;
+                this.clearHighlights();
+                this.clearComparison();
+            }
+
+            setShape(type) {
+                this.shapeType = type;
+                
+                ['triangle', 'quadrilateral', 'pentagon'].forEach(t => {
+                    const btn = document.getElementById(`btn-${t}`);
+                    if (t === type) {
+                        btn.classList.remove('btn-secondary');
+                        btn.classList.add('btn-warm', 'active');
+                    } else {
+                        btn.classList.remove('btn-warm', 'active');
+                        btn.classList.add('btn-secondary');
+                    }
+                });
+                
+                this.stopAnimation();
+                this.initShape();
+                this.draw();
+            }
+
+            startTranslation() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+                this.animationProgress = 0;
+                this.animate();
+            }
+
+            stopAnimation() {
+                this.isAnimating = false;
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+            }
+
+            reset() {
+                this.stopAnimation();
+                this.animationProgress = 0;
+                this.currentPoints = this.originalPoints.map(p => ({...p}));
+                this.clearHighlights();
+                this.clearComparison();
+                this.draw();
+            }
+
+            clearHighlights() {
+                this.highlightState = {
+                    segments: false,
+                    angles: false,
+                    lines: false,
+                    randomSegmentIndex: -1,
+                    randomAngleIndex: -1
+                };
+                ['segments', 'angles', 'lines'].forEach(type => {
+                    const btn = document.getElementById(`btn-${type}`);
+                    if (btn) btn.classList.remove('active');
+                });
+            }
+
+            highlightCorrespondingSegments() {
+                if (this.animationProgress === 0) {
+                    alert('请先开始平移动画');
+                    return;
+                }
+                this.clearHighlights();
+                this.highlightState.segments = true;
+                const numSegments = this.originalPoints.length;
+                this.highlightState.randomSegmentIndex = Math.floor(Math.random() * numSegments);
+                document.getElementById('btn-segments').classList.add('active');
+                this.draw();
+            }
+
+            calculateInteriorAngle(pPrev, pVertex, pNext) {
+                const v1 = { x: pPrev.x - pVertex.x, y: pPrev.y - pVertex.y };
+                const v2 = { x: pNext.x - pVertex.x, y: pNext.y - pVertex.y };
+                
+                const angle1 = Math.atan2(v1.y, v1.x);
+                const angle2 = Math.atan2(v2.y, v2.x);
+                
+                let angle = angle2 - angle1;
+                if (angle < 0) angle += 2 * Math.PI;
+                
+                if (angle > Math.PI) {
+                    angle = 2 * Math.PI - angle;
+                }
+                
+                return { angle, v1, v2, angle1, angle2 };
+            }
+
+            highlightCorrespondingAngles() {
+                if (this.animationProgress === 0) {
+                    alert('请先开始平移动画');
+                    return;
+                }
+                this.clearHighlights();
+                this.highlightState.angles = true;
+                const numAngles = this.originalPoints.length;
+                this.highlightState.randomAngleIndex = Math.floor(Math.random() * numAngles);
+                document.getElementById('btn-angles').classList.add('active');
+                this.draw();
+            }
+
+            highlightCorrespondingLines() {
+                if (this.animationProgress === 0) {
+                    alert('请先开始平移动画');
+                    return;
+                }
+                this.clearHighlights();
+                this.highlightState.lines = true;
+                document.getElementById('btn-lines').classList.add('active');
+                this.draw();
+            }
+
+            compareElements() {
+                if (this.highlightState.segments) {
+                    this.setupSegmentComparison();
+                } else if (this.highlightState.angles) {
+                    this.setupAngleComparison();
+                } else if (this.highlightState.lines) {
+                    this.setupLinesComparison();
+                } else {
+                    alert('请先选择"对应线段"、"对应角"或"对应点连线"中的一个进行高亮');
+                    return;
+                }
+                
+                document.getElementById('btn-compare').classList.add('active');
+                document.getElementById('btn-animate-compare').classList.remove('hidden');
+                this.draw();
+            }
+
+            setupSegmentComparison() {
+                const idx = this.highlightState.randomSegmentIndex;
+                const n = this.originalPoints.length;
+                const p1 = this.originalPoints[idx];
+                const p2 = this.originalPoints[(idx + 1) % n];
+                const t1 = this.currentPoints[idx];
+                const t2 = this.currentPoints[(idx + 1) % n];
+                
+                const targetX = this.width * 0.75;
+                const targetY = this.height * 0.7;
+                
+                const origAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+                const origLength = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+                
+                this.compareState = {
+                    active: true,
+                    type: 'segment',
+                    elements: [
+                        {
+                            p1: { x: p1.x, y: p1.y },
+                            p2: { x: p2.x, y: p2.y },
+                            color: '#FF6B6B',
+                            stage1Center: { x: targetX, y: targetY - 30 },
+                            stage2Center: { x: targetX, y: targetY }
+                        },
+                        {
+                            p1: { x: t1.x, y: t1.y },
+                            p2: { x: t2.x, y: t2.y },
+                            color: '#FFD93D',
+                            stage1Center: { x: targetX, y: targetY + 30 },
+                            stage2Center: { x: targetX, y: targetY }
+                        }
+                    ],
+                    animationProgress: 0,
+                    isAnimating: false,
+                    stage: 0
+                };
+            }
+
+            setupAngleComparison() {
+                const idx = this.highlightState.randomAngleIndex;
+                const n = this.originalPoints.length;
+                const prev = (idx - 1 + n) % n;
+                const next = (idx + 1) % n;
+                
+                const origVertex = this.originalPoints[idx];
+                const origPrev = this.originalPoints[prev];
+                const origNext = this.originalPoints[next];
+                
+                const transVertex = this.currentPoints[idx];
+                const transPrev = this.currentPoints[prev];
+                const transNext = this.currentPoints[next];
+                
+                const targetX = this.width * 0.75;
+                const targetY = this.height * 0.7;
+                
+                this.compareState = {
+                    active: true,
+                    type: 'angle',
+                    elements: [
+                        {
+                            vertex: { x: origVertex.x, y: origVertex.y },
+                            p1: { x: origPrev.x, y: origPrev.y },
+                            p2: { x: origNext.x, y: origNext.y },
+                            color: '#FF6B6B',
+                            stage1Vertex: { x: targetX, y: targetY - 50 },
+                            stage2Vertex: { x: targetX, y: targetY }
+                        },
+                        {
+                            vertex: { x: transVertex.x, y: transVertex.y },
+                            p1: { x: transPrev.x, y: transPrev.y },
+                            p2: { x: transNext.x, y: transNext.y },
+                            color: '#FFD93D',
+                            stage1Vertex: { x: targetX, y: targetY + 50 },
+                            stage2Vertex: { x: targetX, y: targetY }
+                        }
+                    ],
+                    animationProgress: 0,
+                    isAnimating: false,
+                    stage: 0
+                };
+            }
+
+            setupLinesComparison() {
+                const targetX = this.width * 0.75;
+                const targetY = this.height * 0.5;
+                
+                this.compareState = {
+                    active: true,
+                    type: 'lines',
+                    elements: [],
+                    animationProgress: 0,
+                    isAnimating: false,
+                    stage: 0
+                };
+                
+                for (let i = 0; i < this.originalPoints.length; i++) {
+                    const origP1 = this.originalPoints[i];
+                    const origP2 = this.currentPoints[i];
+                    
+                    const midX = (origP1.x + origP2.x) / 2;
+                    const midY = (origP1.y + origP2.y) / 2;
+                    
+                    this.compareState.elements.push({
+                        p1: { x: origP1.x, y: origP1.y },
+                        p2: { x: origP2.x, y: origP2.y },
+                        mid: { x: midX, y: midY },
+                        color: i % 2 === 0 ? '#FF6B6B' : '#FFD93D',
+                        stage1Mid: { x: targetX, y: targetY + (i - 2) * 25 },
+                        stage2Mid: { x: targetX, y: targetY }
+                    });
+                }
+            }
+
+            animateComparison() {
+                if (!this.compareState.active || this.compareState.isAnimating) return;
+                
+                this.compareState.isAnimating = true;
+                this.compareState.animationProgress = 0;
+                
+                const stage1Duration = 2.0;
+                const stage2Duration = 2.0;
+                const totalDuration = stage1Duration + stage2Duration;
+                
+                const animate = () => {
+                    if (!this.compareState.isAnimating) return;
+                    
+                    this.compareState.animationProgress += 0.008;
+                    
+                    if (this.compareState.animationProgress < stage1Duration) {
+                        this.compareState.stage = 1;
+                    } else if (this.compareState.animationProgress < totalDuration) {
+                        this.compareState.stage = 2;
+                    } else {
+                        this.compareState.animationProgress = totalDuration;
+                        this.compareState.stage = 2;
+                        this.compareState.isAnimating = false;
+                    }
+                    
+                    this.drawComparison();
+                    
+                    if (this.compareState.isAnimating) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+                
+                animate();
+            }
+
+            clearComparison() {
+                this.compareState = {
+                    active: false,
+                    type: null,
+                    elements: [],
+                    animationProgress: 0,
+                    isAnimating: false,
+                    stage: 0
+                };
+                document.getElementById('btn-compare').classList.remove('active');
+                document.getElementById('btn-animate-compare').classList.add('hidden');
+                this.compareCtx.clearRect(0, 0, this.width, this.height);
+            }
+
+            animate() {
+                if (!this.isAnimating) return;
+                
+                const speed = 0.008;
+                this.animationProgress += speed;
+                
+                if (this.animationProgress >= 1) {
+                    this.animationProgress = 1;
+                    this.isAnimating = false;
+                }
+                
+                this.currentPoints = this.originalPoints.map((p, i) => ({
+                    x: p.x + this.targetOffset.x * this.easeOutCubic(this.animationProgress),
+                    y: p.y + this.targetOffset.y * this.easeOutCubic(this.animationProgress),
+                    label: this.getTranslatedLabel(p.label)
+                }));
+                
+                this.draw();
+                
+                if (this.isAnimating) {
+                    this.animationId = requestAnimationFrame(() => this.animate());
+                }
+            }
+
+            easeOutCubic(x) {
+                return 1 - Math.pow(1 - x, 3);
+            }
+
+            draw() {
+                const ctx = this.ctx;
+                ctx.clearRect(0, 0, this.width, this.height);
+                
+                this.drawPolygon(ctx, this.originalPoints, '#FF8C42', '#FF6B6B', false);
+                
+                if (this.animationProgress > 0) {
+                    ctx.beginPath();
+                    ctx.setLineDash([5, 5]);
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = '#FC5185';
+                    
+                    for (let i = 0; i < this.originalPoints.length; i++) {
+                        const p1 = this.originalPoints[i];
+                        const p2 = this.currentPoints[i];
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                    }
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    
+                    if (this.highlightState.lines) {
+                        ctx.beginPath();
+                        ctx.setLineDash([5, 5]);
+                        ctx.lineWidth = 4;
+                        ctx.strokeStyle = '#00BCD4';
+                        for (let i = 0; i < this.originalPoints.length; i++) {
+                            const p1 = this.originalPoints[i];
+                            const p2 = this.currentPoints[i];
+                            ctx.moveTo(p1.x, p1.y);
+                            ctx.lineTo(p2.x, p2.y);
+                        }
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                    
+                    this.drawPolygon(ctx, this.currentPoints, '#F9C784', '#FFD93D', true);
+                    
+                    if (this.highlightState.segments && this.highlightState.randomSegmentIndex >= 0) {
+                        this.drawHighlightedSegment(ctx, this.highlightState.randomSegmentIndex);
+                    }
+                    
+                    if (this.highlightState.angles && this.highlightState.randomAngleIndex >= 0) {
+                        this.drawHighlightedAngle(ctx, this.highlightState.randomAngleIndex);
+                    }
+                }
+                
+                if (this.compareState.active) {
+                    this.drawComparison();
+                }
+            }
+
+            drawComparison() {
+                const ctx = this.compareCtx;
+                ctx.clearRect(0, 0, this.width, this.height);
+                
+                const progress = this.compareState.animationProgress;
+                const stage1Duration = 2.0;
+                
+                let t = 0;
+                if (progress <= stage1Duration) {
+                    t = progress / stage1Duration;
+                } else {
+                    t = (progress - stage1Duration) / 2.0;
+                }
+                t = Math.min(1, Math.max(0, t));
+                
+                const easeT = this.easeOutCubic(t);
+                
+                if (this.compareState.type === 'segment') {
+                    this.compareState.elements.forEach((elem, idx) => {
+                        const origCenterX = (elem.p1.x + elem.p2.x) / 2;
+                        const origCenterY = (elem.p1.y + elem.p2.y) / 2;
+                        const angle = Math.atan2(elem.p2.y - elem.p1.y, elem.p2.x - elem.p1.x);
+                        const length = Math.hypot(elem.p2.x - elem.p1.x, elem.p2.y - elem.p1.y);
+                        
+                        let targetCenterX, targetCenterY;
+                        
+                        if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                            targetCenterX = origCenterX + (elem.stage1Center.x - origCenterX) * easeT;
+                            targetCenterY = origCenterY + (elem.stage1Center.y - origCenterY) * easeT;
+                        } else {
+                            targetCenterX = elem.stage1Center.x + (elem.stage2Center.x - elem.stage1Center.x) * easeT;
+                            targetCenterY = elem.stage1Center.y + (elem.stage2Center.y - elem.stage1Center.y) * easeT;
+                        }
+                        
+                        const halfLength = length / 2;
+                        const currentP1 = {
+                            x: targetCenterX - halfLength * Math.cos(angle),
+                            y: targetCenterY - halfLength * Math.sin(angle)
+                        };
+                        const currentP2 = {
+                            x: targetCenterX + halfLength * Math.cos(angle),
+                            y: targetCenterY + halfLength * Math.sin(angle)
+                        };
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(currentP1.x, currentP1.y);
+                        ctx.lineTo(currentP2.x, currentP2.y);
+                        ctx.lineWidth = 6;
+                        ctx.strokeStyle = elem.color;
+                        ctx.stroke();
+                        
+                        [currentP1, currentP2].forEach(p => {
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+                            ctx.fillStyle = elem.color;
+                            ctx.fill();
+                            ctx.strokeStyle = '#fff';
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+                        });
+                    });
+                    
+                    ctx.font = 'bold 16px sans-serif';
+                    ctx.fillStyle = '#4A403A';
+                    ctx.textAlign = 'center';
+                    
+                    if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                        ctx.fillText('平移到比较区域', this.width * 0.75, this.height * 0.7 - 60);
+                    } else if (progress >= stage1Duration + 1.0) {
+                        ctx.fillText('叠合比较：对应线段相等', this.width * 0.75, this.height * 0.7 - 60);
+                        ctx.font = '14px sans-serif';
+                        ctx.fillStyle = '#666';
+                        ctx.fillText('（两条线段完全重合）', this.width * 0.75, this.height * 0.7 + 50);
+                    }
+                    
+                } else if (this.compareState.type === 'angle') {
+                    this.compareState.elements.forEach((elem, idx) => {
+                        const v1 = { x: elem.p1.x - elem.vertex.x, y: elem.p1.y - elem.vertex.y };
+                        const v2 = { x: elem.p2.x - elem.vertex.x, y: elem.p2.y - elem.vertex.y };
+                        
+                        const len1 = Math.hypot(v1.x, v1.y);
+                        const len2 = Math.hypot(v2.x, v2.y);
+                        
+                        const angle1 = Math.atan2(v1.y, v1.x);
+                        const angle2 = Math.atan2(v2.y, v2.x);
+                        
+                        let targetVertexX, targetVertexY;
+                        
+                        if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                            targetVertexX = elem.vertex.x + (elem.stage1Vertex.x - elem.vertex.x) * easeT;
+                            targetVertexY = elem.vertex.y + (elem.stage1Vertex.y - elem.vertex.y) * easeT;
+                        } else {
+                            targetVertexX = elem.stage1Vertex.x + (elem.stage2Vertex.x - elem.stage1Vertex.x) * easeT;
+                            targetVertexY = elem.stage1Vertex.y + (elem.stage2Vertex.y - elem.stage1Vertex.y) * easeT;
+                        }
+                        
+                        const currentP1 = {
+                            x: targetVertexX + len1 * Math.cos(angle1),
+                            y: targetVertexY + len1 * Math.sin(angle1)
+                        };
+                        const currentP2 = {
+                            x: targetVertexX + len2 * Math.cos(angle2),
+                            y: targetVertexY + len2 * Math.sin(angle2)
+                        };
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(targetVertexX, targetVertexY);
+                        ctx.lineTo(currentP1.x, currentP1.y);
+                        ctx.moveTo(targetVertexX, targetVertexY);
+                        ctx.lineTo(currentP2.x, currentP2.y);
+                        ctx.lineWidth = 5;
+                        ctx.strokeStyle = elem.color;
+                        ctx.stroke();
+                        
+                        ctx.beginPath();
+                        ctx.arc(targetVertexX, targetVertexY, 8, 0, Math.PI * 2);
+                        ctx.fillStyle = elem.color;
+                        ctx.fill();
+                        ctx.strokeStyle = '#fff';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        
+                        const arcAngle1 = Math.atan2(currentP1.y - targetVertexY, currentP1.x - targetVertexX);
+                        const arcAngle2 = Math.atan2(currentP2.y - targetVertexY, currentP2.x - targetVertexX);
+                        
+                        let startAngle = arcAngle1;
+                        let endAngle = arcAngle2;
+                        
+                        let angleDiff = endAngle - startAngle;
+                        if (angleDiff < 0) angleDiff += 2 * Math.PI;
+                        if (angleDiff > Math.PI) {
+                            const temp = startAngle;
+                            startAngle = endAngle;
+                            endAngle = temp;
+                        }
+                        
+                        ctx.beginPath();
+                        ctx.arc(targetVertexX, targetVertexY, 30, startAngle, endAngle, false);
+                        ctx.lineWidth = 3;
+                        ctx.strokeStyle = elem.color;
+                        ctx.stroke();
+                        
+                        ctx.fillStyle = elem.color + '30';
+                        ctx.fill();
+                    });
+                    
+                    ctx.font = 'bold 16px sans-serif';
+                    ctx.fillStyle = '#4A403A';
+                    ctx.textAlign = 'center';
+                    
+                    if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                        ctx.fillText('平移到比较区域', this.width * 0.75, this.height * 0.7 - 90);
+                    } else if (progress >= stage1Duration + 1.0) {
+                        ctx.fillText('叠合比较：对应角相等', this.width * 0.75, this.height * 0.7 - 90);
+                        ctx.font = '14px sans-serif';
+                        ctx.fillStyle = '#666';
+                        ctx.fillText('（两个角完全重合）', this.width * 0.75, this.height * 0.7 + 80);
+                    }
+                    
+                } else if (this.compareState.type === 'lines') {
+                    this.compareState.elements.forEach((elem, idx) => {
+                        const angle = Math.atan2(elem.p2.y - elem.p1.y, elem.p2.x - elem.p1.x);
+                        const length = Math.hypot(elem.p2.x - elem.p1.x, elem.p2.y - elem.p1.y);
+                        
+                        let targetMidX, targetMidY;
+                        
+                        if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                            targetMidX = elem.mid.x + (elem.stage1Mid.x - elem.mid.x) * easeT;
+                            targetMidY = elem.mid.y + (elem.stage1Mid.y - elem.mid.y) * easeT;
+                        } else {
+                            targetMidX = elem.stage1Mid.x + (elem.stage2Mid.x - elem.stage1Mid.x) * easeT;
+                            targetMidY = elem.stage1Mid.y + (elem.stage2Mid.y - elem.stage1Mid.y) * easeT;
+                        }
+                        
+                        const halfLength = length / 2;
+                        const currentP1 = {
+                            x: targetMidX - halfLength * Math.cos(angle),
+                            y: targetMidY - halfLength * Math.sin(angle)
+                        };
+                        const currentP2 = {
+                            x: targetMidX + halfLength * Math.cos(angle),
+                            y: targetMidY + halfLength * Math.sin(angle)
+                        };
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(currentP1.x, currentP1.y);
+                        ctx.lineTo(currentP2.x, currentP2.y);
+                        ctx.lineWidth = 4;
+                        ctx.strokeStyle = elem.color;
+                        ctx.setLineDash([5, 5]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                        
+                        [currentP1, currentP2].forEach(p => {
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+                            ctx.fillStyle = elem.color;
+                            ctx.fill();
+                        });
+                    });
+                    
+                    ctx.font = 'bold 16px sans-serif';
+                    ctx.fillStyle = '#4A403A';
+                    ctx.textAlign = 'center';
+                    
+                    if (this.compareState.stage === 0 || progress <= stage1Duration) {
+                        ctx.fillText('平移到比较区域', this.width * 0.75, this.height * 0.5 - 80);
+                    } else if (progress >= stage1Duration + 1.0) {
+                        ctx.fillText('叠合比较：对应点连线平行且相等', this.width * 0.75, this.height * 0.5 - 80);
+                        ctx.font = '14px sans-serif';
+                        ctx.fillStyle = '#666';
+                        ctx.fillText('（所有线段长度相等）', this.width * 0.75, this.height * 0.5 + 60);
+                    }
+                }
+            }
+
+            drawPolygon(ctx, points, fillColor, strokeColor, isTranslated) {
+                if (points.length === 0) return;
+                
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+                for (let i = 1; i < points.length; i++) {
+                    ctx.lineTo(points[i].x, points[i].y);
+                }
+                ctx.closePath();
+                
+                ctx.fillStyle = fillColor + '40';
+                ctx.fill();
+                
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = strokeColor;
+                ctx.stroke();
+                
+                points.forEach((p, i) => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+                    ctx.fillStyle = '#fff';
+                    ctx.fill();
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = strokeColor;
+                    ctx.stroke();
+                    
+                    ctx.font = 'bold 14px sans-serif';
+                    ctx.fillStyle = '#4A403A';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    
+                    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+                    ctx.fillRect(p.x - 10, p.y - 20, 20, 16);
+                    
+                    ctx.fillStyle = '#4A403A';
+                    ctx.fillText(p.label, p.x, p.y - 12);
+                });
+            }
+
+            drawHighlightedSegment(ctx, index) {
+                const n = this.originalPoints.length;
+                const p1 = this.originalPoints[index];
+                const p2 = this.originalPoints[(index + 1) % n];
+                const t1 = this.currentPoints[index];
+                const t2 = this.currentPoints[(index + 1) % n];
+                
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.lineWidth = 6;
+                ctx.strokeStyle = '#00BCD4';
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(t1.x, t1.y);
+                ctx.lineTo(t2.x, t2.y);
+                ctx.lineWidth = 6;
+                ctx.strokeStyle = '#00BCD4';
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#FF6B6B';
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(t1.x, t1.y);
+                ctx.lineTo(t2.x, t2.y);
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#FFD93D';
+                ctx.stroke();
+            }
+
+            drawHighlightedAngle(ctx, index) {
+                const n = this.originalPoints.length;
+                const prev = (index - 1 + n) % n;
+                const next = (index + 1) % n;
+                
+                this.drawAngleArc(ctx, this.originalPoints[prev], this.originalPoints[index], this.originalPoints[next], '#00BCD4', 35);
+                this.drawAngleArc(ctx, this.currentPoints[prev], this.currentPoints[index], this.currentPoints[next], '#00BCD4', 35);
+            }
+
+            drawAngleArc(ctx, p1, vertex, p2, color, radius) {
+                const v1 = { x: p1.x - vertex.x, y: p1.y - vertex.y };
+                const v2 = { x: p2.x - vertex.x, y: p2.y - vertex.y };
+                
+                const angle1 = Math.atan2(v1.y, v1.x);
+                const angle2 = Math.atan2(v2.y, v2.x);
+                
+                let angleDiff = angle2 - angle1;
+                if (angleDiff < 0) angleDiff += 2 * Math.PI;
+                
+                let startAngle = angle1;
+                let endAngle = angle2;
+                
+                if (angleDiff > Math.PI) {
+                    startAngle = angle2;
+                    endAngle = angle1;
+                }
+                
+                ctx.beginPath();
+                ctx.arc(vertex.x, vertex.y, radius, startAngle, endAngle, false);
+                ctx.lineWidth = 5;
+                ctx.strokeStyle = color;
+                ctx.stroke();
+                
+                ctx.fillStyle = color + '30';
+                ctx.fill();
+            }
+
+            setupEvents() {
+                const getPos = (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                    return {
+                        x: clientX - rect.left,
+                        y: clientY - rect.top
+                    };
+                };
+
+                const handleStart = (e) => {
+                    if (this.isAnimating) return;
+                    const pos = getPos(e);
+                    
+                    for (let p of this.originalPoints) {
+                        const dist = Math.hypot(p.x - pos.x, p.y - pos.y);
+                        if (dist < 15) {
+                            this.draggedPoint = p;
+                            this.canvas.classList.add('grabbing');
+                            break;
+                        }
+                    }
+                };
+
+                const handleMove = (e) => {
+                    const pos = getPos(e);
+                    
+                    if (this.draggedPoint) {
+                        this.draggedPoint.x = pos.x;
+                        this.draggedPoint.y = pos.y;
+                        this.draw();
+                    } else {
+                        let hovering = false;
+                        for (let p of this.originalPoints) {
+                            if (Math.hypot(p.x - pos.x, p.y - pos.y) < 15) {
+                                hovering = true;
+                                break;
+                            }
+                        }
+                        this.canvas.style.cursor = hovering ? 'grab' : 'crosshair';
+                    }
+                };
+
+                const handleEnd = () => {
+                    this.draggedPoint = null;
+                    this.canvas.classList.remove('grabbing');
+                };
+
+                this.canvas.addEventListener('mousedown', handleStart);
+                this.canvas.addEventListener('mousemove', handleMove);
+                window.addEventListener('mouseup', handleEnd);
+                
+                this.canvas.addEventListener('touchstart', handleStart, {passive: false});
+                this.canvas.addEventListener('touchmove', (e) => { e.preventDefault(); handleMove(e); }, {passive: false});
+                window.addEventListener('touchend', handleEnd);
+            }
+
+            togglePanelPosition() {
+                this.panelOnLeft = !this.panelOnLeft;
+                
+                if (this.panelOnLeft) {
+                    this.panel.classList.remove('right');
+                    this.toggleContainer.style.left = '340px';
+                    this.toggleContainer.style.right = 'auto';
+                    document.getElementById('toggle-icon').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />';
+                } else {
+                    this.panel.classList.add('right');
+                    this.toggleContainer.style.left = 'auto';
+                    this.toggleContainer.style.right = '340px';
+                    document.getElementById('toggle-icon').innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />';
+                }
+            }
+        }
+
+        const app = new GeometryApp();
+        document.getElementById('positionToggle').addEventListener('click', () => app.togglePanelPosition());
+    </script>
+</body>
+</html>

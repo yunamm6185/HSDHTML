@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.1.2 三角形的内角和与外角和 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box { margin: 2rem 0; text-align: center; }
+        .figcaption { font-size: 1rem; color: #144a6f; margin-top: 0.3rem; text-align: center; }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+            word-break: break-word;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .image-row .img-container {
+            flex: 1 1 250px;
+            min-width: 200px;
+        }
+        .step-proof {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #2675a8;
+            min-width: 80px;
+            text-align: center;
+            margin: 0 0.2rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第8章 三角形 · 8.1.2</span>
+    </div>
+    <h1>第8章 三角形</h1>
+    <h2>8.1 与三角形有关的边和角</h2>
+    <div class="chapter-intro">★ 掌握三角形内角和定理及其推论，理解外角性质和外角和。</div>
+    <div class="lesson-title">8.1.2 三角形的内角和与外角和</div>
+
+    <!-- 复习导入 -->
+    <div class="intro-block">
+        <p>上节课我们认识了三角形的基本元素。小学时我们通过剪拼发现三角形的三个内角可以拼成一个平角。今天，我们将用严谨的推理证明这一结论，并探索外角的性质。</p>
+        <div class="img-container">
+            <img src="8.1.7.png" alt="图8.1.7 剪拼">
+            <div class="figcaption">图8.1.7</div>
+        </div>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握三角形内角和定理及证明</div>
+            <div class="target-item"><span>✔</span>理解直角三角形的两个锐角互余</div>
+            <div class="target-item"><span>✔</span>掌握三角形外角的两条性质</div>
+            <div class="target-item"><span>✔</span>知道三角形的外角和等于360°</div>
+        </div>
+    </div>
+
+    <!-- 内角和定理 -->
+    <div class="highlight">
+        <p><strong>三角形的内角和等于 $180^{\circ}$。</strong></p>
+    </div>
+
+    <!-- 证明（梯等式） -->
+    <div class="example-box">
+        <h4>证明：三角形的内角和等于180°</h4>
+        <p>如图，延长 $BC$ 至 $E$，过点 $C$ 作 $CD \parallel BA$，则 $\angle B = \angle DCE$，$\angle A = \angle ACD$。</p>
+        <div class="img-container">
+            <img src="8.1.8.png" alt="图8.1.8 三角形ABC">
+            <div class="figcaption">图8.1.8</div>
+        </div>
+        <div class="img-container">
+            <img src="8.1.9.png" alt="图8.1.9 证明方法">
+            <div class="figcaption">图8.1.9</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('proof')">📌 显示详细证明（梯等式）</button>
+        <div id="proof" class="answer-box">
+            <p>已知：$\triangle ABC$，求证：$\angle A + \angle B + \angle C = 180°$。</p>
+            <p>证明：</p>
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\because CD \parallel BA \quad (\text{作图}), \\
+                &\therefore \angle B = \angle DCE \quad (\text{同位角相等}), \\
+                &\angle A = \angle ACD \quad (\text{内错角相等}). \\
+                &\because \angle ACB + \angle ACD + \angle DCE = 180^{\circ} \quad (\text{平角定义}), \\
+                &\therefore \angle A + \angle B + \angle ACB = 180^{\circ} \quad (\text{等量代换}).
+                \end{aligned}
+                \]
+            </div>
+            <p>因此，三角形的内角和等于 $180^{\circ}$。</p>
+        </div>
+    </div>
+
+    <!-- 思考：直角三角形 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>如图8.1.10，在 Rt$\triangle ABC$ 中，$\angle C = 90°$，则 $\angle A$ 与 $\angle B$ 有什么关系？</p>
+        <div class="img-container">
+            <img src="8.1.10.png" alt="图8.1.10 直角三角形">
+            <div class="figcaption">图8.1.10</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('rt')">💡 显示结论</button>
+        <div id="rt" class="answer-box">
+            <p>$\angle A + \angle B = 90°$，即直角三角形的两个锐角互余。</p>
+        </div>
+    </div>
+
+    <!-- 反过来 -->
+    <div class="highlight">
+        <p><strong>有两个角互余的三角形是直角三角形。</strong></p>
+    </div>
+
+    <!-- 例题1（梯等式解答） -->
+    <div class="example-box">
+        <h4>例1</h4>
+        <p>如图8.1.11，$AD$ 是 $\triangle ABC$ 的边 $BC$ 上的高，$\angle 1 = 45°$，$\angle C = 65°$。求 $\angle BAC$ 的度数。</p>
+        <div class="img-container">
+            <img src="8.1.11.png" alt="图8.1.11 例题1图">
+            <div class="figcaption">图8.1.11</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\text{在 Rt}\triangle ABD \text{中，} \angle 1 + \angle B = 90^{\circ}, \\
+                &\therefore \angle B = 90^{\circ} - \angle 1 = 90^{\circ} - 45^{\circ} = 45^{\circ}. \\
+                &\text{在 }\triangle ABC \text{中，} \angle BAC = 180^{\circ} - \angle B - \angle C, \\
+                &\therefore \angle BAC = 180^{\circ} - 45^{\circ} - 65^{\circ} = 70^{\circ}.
+                \end{aligned}
+                \]
+            </div>
+        </div>
+    </div>
+
+    <!-- 外角性质 + 图8.1.12和图8.1.13 -->
+    <div class="highlight">
+        <p><strong>三角形外角的性质：</strong></p>
+        <ul style="margin-left:2rem;">
+            <li>三角形的一个外角等于与它不相邻的两个内角的和；</li>
+            <li>三角形的一个外角大于任何一个与它不相邻的内角。</li>
+        </ul>
+        <!-- 图8.1.12 和 图8.1.13 并排放置 -->
+        <div class="image-row">
+            <div class="img-container">
+                <img src="8.1.12.png" alt="图8.1.12 外角与内角关系">
+                <div class="figcaption">图8.1.12</div>
+            </div>
+            <div class="img-container">
+                <img src="8.1.13.png" alt="图8.1.13 外角性质推导">
+                <div class="figcaption">图8.1.13</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 做一做：外角和 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>如图8.1.14，$\angle 1 + \angle 2 + \angle 3$ 是三角形的外角和。计算 $\angle 1 + \angle 2 + \angle 3$ 的值。</p>
+        <div class="img-container">
+            <img src="8.1.14.png" alt="图8.1.14 外角和">
+            <div class="figcaption">图8.1.14</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('waijiaohe')">🔍 显示推导</button>
+        <div id="waijiaohe" class="answer-box">
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\angle 1 + \angle ACB = 180^{\circ},\\
+                &\angle 2 + \angle BAC = 180^{\circ},\\
+                &\angle 3 + \angle ABC = 180^{\circ}.\\
+                &\text{三式相加：}\\
+                &(\angle 1+\angle2+\angle3) + (\angle ACB+\angle BAC+\angle ABC) = 540^{\circ}.\\
+                &\because \angle ACB+\angle BAC+\angle ABC = 180^{\circ},\\
+                &\therefore \angle 1+\angle2+\angle3 = 540^{\circ} - 180^{\circ} = 360^{\circ}.
+                \end{aligned}
+                \]
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题2（梯等式解答） -->
+    <div class="example-box">
+        <h4>例2</h4>
+        <p>如图8.1.15，$D$ 是 $\triangle ABC$ 的边 $BC$ 上一点，$\angle B = \angle BAD$，$\angle ADC = 80°$，$\angle BAC = 70°$。求 $\angle B$ 和 $\angle C$ 的度数。</p>
+        <div class="img-container">
+            <img src="8.1.15.png" alt="图8.1.15 例2图">
+            <div class="figcaption">图8.1.15</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\because \angle ADC \text{ 是 } \triangle ABD \text{ 的外角},\\
+                &\therefore \angle B + \angle BAD = \angle ADC = 80^{\circ}.\\
+                &\because \angle B = \angle BAD,\\
+                &\therefore \angle B = \frac{80^{\circ}}{2} = 40^{\circ}.\\[1em]
+                &\text{在 } \triangle ABC \text{ 中},\\
+                &\angle C = 180^{\circ} - \angle B - \angle BAC \\
+                &\quad = 180^{\circ} - 40^{\circ} - 70^{\circ} = 70^{\circ}.
+                \end{aligned}
+                \]
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习题（第8、10、11页，共7题） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习（课本第8、10、11页）</h3>
+        
+        <!-- 第8页 第1题 -->
+        <div class="exercise-item">
+            <p><strong>1.</strong> 如图，∠A = 40°，则 ∠1 + ∠2 + ∠3 + ∠4 = ______。</p>
+            <div class="img-container">
+                <img src="第1题.png" alt="第1题图">
+                <div class="figcaption">第1题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('q1')">🔍 答案</button>
+            <div id="q1" class="answer-box">
+                <p>∠1 + ∠2 + ∠3 + ∠4 = 280°</p>
+            </div>
+        </div>
+
+        <!-- 第8页 第2题 -->
+        <div class="exercise-item">
+            <p><strong>2.</strong> 在△ABC中，∠A + ∠B = 80°，∠C = 2∠B。求∠A、∠B和∠C的度数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('q2')">🔍 答案</button>
+            <div id="q2" class="answer-box">
+                <div class="step-proof">
+                    \[
+                    \begin{aligned}
+                    &\angle A + \angle B + \angle C = 180^\circ,\\
+                    &\angle A + \angle B = 80^\circ,\ \angle C = 2\angle B,\\
+                    &\therefore 80^\circ + 2\angle B = 180^\circ,\\
+                    &2\angle B = 100^\circ,\ \angle B = 50^\circ,\\
+                    &\angle A = 80^\circ - 50^\circ = 30^\circ,\\
+                    &\angle C = 2 \times 50^\circ = 100^\circ.
+                    \end{aligned}
+                    \]
+                </div>
+            </div>
+        </div>
+
+        <!-- 第8页 第3题 -->
+        <div class="exercise-item">
+            <p><strong>3.</strong> 在△ABC中，∠B = ∠A + 30°，∠C = ∠B + 30°。求△ABC的各内角的度数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('q3')">🔍 答案</button>
+            <div id="q3" class="answer-box">
+                <div class="step-proof">
+                    \[
+                    \begin{aligned}
+                    &\text{设 } \angle A = x,\quad \angle B = x + 30^\circ,\quad \angle C = x + 60^\circ,\\
+                    &x + (x + 30^\circ) + (x + 60^\circ) = 180^\circ,\\
+                    &3x + 90^\circ = 180^\circ,\quad 3x = 90^\circ,\quad x = 30^\circ,\\
+                    &\angle A = 30^\circ,\quad \angle B = 60^\circ,\quad \angle C = 90^\circ.
+                    \end{aligned}
+                    \]
+                </div>
+            </div>
+        </div>
+
+        <!-- 第8页 第4题 -->
+        <div class="exercise-item">
+            <p><strong>4.</strong> 如图，在Rt△ABC中，∠C = 90°，D、E分别是边CB、AB延长线上的点，∠A = ∠D。试说明△BDE是直角三角形。</p>
+            <div class="img-container">
+                <img src="第4题.png" alt="第4题图">
+                <div class="figcaption">第4题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('q4')">🔍 答案</button>
+            <div id="q4" class="answer-box">
+                <div class="step-proof">
+                    \[
+                    \begin{aligned}
+                    &\because \angle C = 90^\circ,\quad \angle A + \angle ABC = 90^\circ,\\
+                    &\angle D = \angle A,\quad \angle DBE = \angle ABC \ (\text{对顶角相等}),\\
+                    &\therefore \angle D + \angle DBE = \angle A + \angle ABC = 90^\circ,\\
+                    &\therefore \triangle BDE \text{ 中，}\angle BDE = 90^\circ,\ \text{即} \triangle BDE \text{ 是直角三角形}.
+                    \end{aligned}
+                    \]
+                </div>
+            </div>
+        </div>
+
+        <!-- 第10页 第1题（口答） -->
+        <div class="exercise-item">
+            <p><strong>5.</strong> （口答）一个三角形可以有两个内角都是直角吗？可以有两个内角都是钝角或都是锐角吗？为什么？</p>
+            <button class="interact-btn" onclick="toggleAnswer('q5')">🔍 答案</button>
+            <div id="q5" class="answer-box">
+                <p>不能有两个直角或两个钝角，因为内角和会超过180°；可以有两个锐角。</p>
+            </div>
+        </div>
+
+        <!-- 第10页 第2题（使用单个图片“第6题.png”） -->
+        <div class="exercise-item">
+            <p><strong>6.</strong> 说出下列各图中∠1的度数。</p>
+            <div class="img-container">
+                <img src="第6题.png" alt="第6题图">
+                <div class="figcaption">第6题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('q6')">🔍 答案</button>
+            <div id="q6" class="answer-box">
+                <p>① ∠1 = 90°；② ∠1 = 95°；③ ∠1 = 85°。</p>
+            </div>
+        </div>
+
+        <!-- 第11页 第3题（填空形式，题目完整显示） -->
+        <div class="exercise-item">
+            <p><strong>7.</strong> 如图，在Rt△ABC中，CD是斜边AB上的高，∠BCD = 35°。</p>
+            <p>(1) 求∠EBC的度数；(2) 求∠A的度数。</p>
+            <p>对于上述问题，在以下解答过程的空白处填上适当的内容（理由或数学式）。</p>
+            <div class="img-container">
+                <img src="第7题.png" alt="第7题图">
+                <div class="figcaption">第7题</div>
+            </div>
+            <div class="step-proof">
+                <p><strong>解</strong></p>
+                <p>(1) ∵ CD ⊥ AB（已知），</p>
+                <p>∴ ∠CDB = <span class="fill-blank"></span>。</p>
+                <p>∴ ∠EBC = ∠CDB + ∠BCD（<span class="fill-blank"></span>），</p>
+                <p>∠BCD = 35°（已知），</p>
+                <p>∴ ∠EBC = <span class="fill-blank"></span> + 35° = <span class="fill-blank"></span>（等量代换）。</p>
+                <p>(2) ∵ ∠EBC = ∠A + ∠ACB（<span class="fill-blank"></span>），</p>
+                <p>∴ ∠A = ∠EBC - ∠ACB（等式的性质）。</p>
+                <p>∵ ∠ACB = 90°（已知），</p>
+                <p>∴ ∠A = <span class="fill-blank"></span> - 90° = <span class="fill-blank"></span>（等量代换）。</p>
+                <p>你还能用其他方法解决这一问题吗？</p>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('q7')">🔍 显示答案</button>
+            <div id="q7" class="answer-box">
+                <p><strong>解（答案）</strong></p>
+                <p>(1) ∵ CD ⊥ AB（已知），</p>
+                <p>∴ ∠CDB = <span style="color: #c00; font-weight: bold;">90°</span>。</p>
+                <p>∴ ∠EBC = ∠CDB + ∠BCD（<span style="color: #c00; font-weight: bold;">三角形的一个外角等于与它不相邻的两个内角的和</span>），</p>
+                <p>∠BCD = 35°（已知），</p>
+                <p>∴ ∠EBC = <span style="color: #c00; font-weight: bold;">90°</span> + 35° = <span style="color: #c00; font-weight: bold;">125°</span>（等量代换）。</p>
+                <p>(2) ∵ ∠EBC = ∠A + ∠ACB（<span style="color: #c00; font-weight: bold;">三角形的一个外角等于与它不相邻的两个内角的和</span>），</p>
+                <p>∴ ∠A = ∠EBC - ∠ACB（等式的性质）。</p>
+                <p>∵ ∠ACB = 90°（已知），</p>
+                <p>∴ ∠A = <span style="color: #c00; font-weight: bold;">125°</span> - 90° = <span style="color: #c00; font-weight: bold;">35°</span>（等量代换）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：证明方法的多样性 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 证明方法的多样性</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>三角形内角和定理的证明方法有很多种，例如拼图法、平行线法等。不同的证明思路体现了数学的灵活性。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将三角形的内角和转化为平角或平行线关系。<br>
+        <strong>演绎推理：</strong> 通过已知事实推出新结论。<br>
+        <strong>数形结合：</strong> 利用图形直观理解角度关系。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">三角形内角和等于180°</div>
+            <div class="summary-item">直角三角形的两个锐角互余</div>
+            <div class="summary-item">三角形的一个外角等于不相邻两内角和，且大于任一不相邻内角</div>
+            <div class="summary-item">三角形的外角和等于360°</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题8.1 A组第2、3、4题，B组第6题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 三角形的角，藏着180°的秘密 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第8章 8.1.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

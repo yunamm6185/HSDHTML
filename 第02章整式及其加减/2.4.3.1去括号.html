@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第33课时 去括号 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 探索框样式 */
+        .explore-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .explore-card {
+            flex: 1;
+            min-width: 200px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,40,60,0.1);
+            text-align: center;
+            border: 2px solid #b0d4ee;
+        }
+        .explore-card .title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f4a6f;
+        }
+        .explore-card .arrow-box {
+            background: #eef4fa;
+            border-radius: 12px;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .explore-card .arrow-box:before {
+            content: '↓';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -1.2rem;
+            font-size: 1.5rem;
+            color: #e67e22;
+        }
+        .explore-card .formula {
+            font-size: 1.3rem;
+            background: #fff9c4;
+            padding: 0.5rem;
+            border-radius: 30px;
+            border: 1px solid #f5c542;
+            margin: 1rem 0;
+        }
+        .explore-card .note {
+            font-size: 1rem;
+            color: #305d81;
+        }
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.4 整式的加减</h2>
+    <div class="lesson-title">第3课时 去括号</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解去括号法则的推导过程</div>
+            <div class="target-item"><span>✔</span>掌握去括号法则，能正确去掉括号</div>
+            <div class="target-item"><span>✔</span>能运用去括号法则化简整式</div>
+            <div class="target-item"><span>✔</span>体会符号意识与运算的严谨性</div>
+        </div>
+    </div>
+
+    <!-- 情境引入：图书馆人数问题 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 周三下午，校图书馆内起初有 \(a\) 位同学。后来又有一些同学前来阅读，第一批来了 \(b\) 位同学，第二批又来了 \(c\) 位同学，则图书馆内共有 \(a + b + c\) 位同学。我们还可以这样理解：后来两批一共来了 \((b + c)\) 位同学，因而图书馆内共有 \(a + (b + c)\) 位同学。由于 \(a + b + c\) 和 \(a + (b + c)\) 均表示同一个量，于是我们便得到等式：</p>
+        <p style="text-align: center; font-size: 1.3rem;">\(a + (b + c) = a + b + c\)。</p>
+    </div>
+
+    <!-- 做一做：离开情境 -->
+    <div class="think-box">
+        <p><strong>📝 做一做</strong></p>
+        <p>图书馆内原有 \(a\) 位同学。后来有些同学因上课要离开，第一批走了 \(b\) 位同学，第二批又走了 \(c\) 位同学。试用两种方式写出图书馆内还剩下的同学数，你能从中发现什么关系？</p>
+        <button class="interact-btn" onclick="toggleAnswer('do')">显示答案</button>
+        <div id="answerDo" class="answer-box">
+            <div class="answer-line">方法一：直接减：\(a - b - c\)；</div>
+            <div class="answer-line">方法二：先计算一共走了 \((b + c)\) 人，则剩余 \(a - (b + c)\)。</div>
+            <div class="answer-line">由结果相同可得：\(a - (b + c) = a - b - c\)。</div>
+        </div>
+    </div>
+
+    <!-- 探索：观察规律（课本第107页图示） -->
+    <div style="margin: 2rem 0;">
+        <p style="font-size:1.2rem; text-align:center;"><strong>观察①②两个等式中括号和各项正负号的变化，你能发现什么规律？</strong></p>
+        <div class="explore-container">
+            <!-- 括号没了，正负号没变 -->
+            <div class="explore-card">
+                <div class="title">括号没了，正负号没变</div>
+                <div class="arrow-box">
+                    \(a + (b + c)\)
+                </div>
+                <div class="formula">\(a + b + c\)</div>
+                <div class="note">去括号后，括号内各项正负号不变</div>
+            </div>
+            <!-- 括号没了，正负号却变了 -->
+            <div class="explore-card">
+                <div class="title">括号没了，正负号却变了</div>
+                <div class="arrow-box">
+                    \(a - (b + c)\)
+                </div>
+                <div class="formula">\(a - b - c\)</div>
+                <div class="note">去括号后，括号内各项正负号都改变</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 去括号法则 -->
+    <div class="rule-box">
+        <div class="title">📌 去括号法则</div>
+        <p><span class="term-highlight">括号前面是“+”号</span>，把括号和它前面的“+”号去掉，括号里各项都不改变正负号。</p>
+        <p><span class="term-highlight">括号前面是“-”号</span>，把括号和它前面的“-”号去掉，括号里各项都改变正负号。</p>
+        <p>例如：\(a + (b - c) = a + b - c\)； \(a - (b - c) = a - b + c\)。</p>
+    </div>
+
+    <!-- 例6（课本P107） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex6">
+        <p><strong>例6</strong> 去括号：</p>
+        <p>(1) \(a + (b - c)\)； (2) \(a - (b - c)\)； (3) \(a + (-b + c)\)； (4) \(a - (-b - c)\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(6)">显示答案</button>
+        <div id="exampleAnswer6" class="answer-box">
+            <div class="answer-line">(1) \(a + (b - c) = a + b - c\)</div>
+            <div class="answer-line">(2) \(a - (b - c) = a - b + c\)</div>
+            <div class="answer-line">(3) \(a + (-b + c) = a - b + c\)</div>
+            <div class="answer-line">(4) \(a - (-b - c) = a + b + c\)</div>
+        </div>
+    </div>
+
+    <!-- 例7（课本P107-108） -->
+    <div class="example-box" id="ex7">
+        <p><strong>例7</strong> 先去括号，再合并同类项：</p>
+        <p>(1) \((x + y - z) + (x - y + z) - (x - y - z)\)；</p>
+        <p>(2) \((a^2 + 2ab + b^2) - (a^2 - 2ab + b^2)\)；</p>
+        <p>(3) \(3(2x^2 - y^2) - 2(3y^2 - 2x^2)\)。</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(7)">显示(1)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(8)">显示(2)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(9)">显示(3)答案</button>
+        </div>
+        <div id="exampleAnswer7" class="answer-box">
+            (1) \((x + y - z) + (x - y + z) - (x - y - z)\)<br>
+            \(= x + y - z + x - y + z - x + y + z\)<br>
+            \(= (x + x - x) + (y - y + y) + (-z + z + z)\)<br>
+            \(= x + y + z\)
+        </div>
+        <div id="exampleAnswer8" class="answer-box">
+            (2) \((a^2 + 2ab + b^2) - (a^2 - 2ab + b^2)\)<br>
+            \(= a^2 + 2ab + b^2 - a^2 + 2ab - b^2\)<br>
+            \(= (a^2 - a^2) + (2ab + 2ab) + (b^2 - b^2)\)<br>
+            \(= 4ab\)
+        </div>
+        <div id="exampleAnswer9" class="answer-box">
+            (3) \(3(2x^2 - y^2) - 2(3y^2 - 2x^2)\)<br>
+            \(= 6x^2 - 3y^2 - 6y^2 + 4x^2\)<br>
+            \(= (6x^2 + 4x^2) + (-3y^2 - 6y^2)\)<br>
+            \(= 10x^2 - 9y^2\)
+        </div>
+    </div>
+
+    <!-- 练习（课本P108） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 去括号：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \((a - b) + (-c - d)\)；</div>
+            <div class="sub-question">(2) \((a - b) - (-c - d)\)；</div>
+            <div class="sub-question">(3) \(-(a - b) + (-c - d)\)；</div>
+            <div class="sub-question">(4) \(-(a - b) - (-c - d)\)。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) \(a - b - c - d\)</div>
+                <div class="answer-line">(2) \(a - b + c + d\)</div>
+                <div class="answer-line">(3) \(-a + b - c - d\)</div>
+                <div class="answer-line">(4) \(-a + b + c + d\)</div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 判断下列去括号是否正确，如果不正确，请说明错在哪里，并加以改正：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(a - (b - c) = a - b - c\)；</div>
+            <div class="sub-question">(2) \(-(a - b + c) = -a + b - c\)；</div>
+            <div class="sub-question">(3) \(c + 2(a - b) = c + 2a - b\)。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) 不正确。括号前是“-”，去括号后各项应变号，正确应为：\(a - b + c\)。</div>
+                <div class="answer-line">(2) 正确。</div>
+                <div class="answer-line">(3) 不正确。括号前的系数2应乘以括号内每一项，正确应为：\(c + 2a - 2b\)。</div>
+            </div>
+        </div>
+
+        <!-- 第3题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>3.</strong> 化简：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p3')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(a^2 - 2(ab - b^2) - b^2\)；</div>
+            <div class="sub-question">(2) \((x^2 - y^2) - 3(2x^2 - 3y^2)\)；</div>
+            <div class="sub-question">(3) \(7a^2b - (-4a^2b + 5ab^2) - 2(2a^2b - 3ab^2)\)。</div>
+            <div id="answerP3" class="answer-box">
+                <div class="answer-line">(1) \(a^2 - 2ab + 2b^2 - b^2 = a^2 - 2ab + b^2\)</div>
+                <div class="answer-line">(2) \(x^2 - y^2 - 6x^2 + 9y^2 = -5x^2 + 8y^2\)</div>
+                <div class="answer-line">(3) \(7a^2b + 4a^2b - 5ab^2 - 4a^2b + 6ab^2\)</div>
+                <div class="answer-line">\(= (7a^2b + 4a^2b - 4a^2b) + (-5ab^2 + 6ab^2) = 7a^2b + ab^2\)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：符号意识与运算律 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 符号意识——运算中的规则</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>去括号法则本质上源于分配律和符号运算。例如，\(a - (b + c) = a - b - c\) 可以理解为减去两个数的和等于分别减去这两个数，这是加法逆运算的体现。当括号前是“-”时，去掉括号相当于乘以 \(-1\)，因此各项符号都要改变。</p>
+            <p>正确运用去括号法则，是培养符号意识的关键一步。在后续的整式加减、解方程等学习中，去括号都是基础技能。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 符号意识 · 运算能力 · 推理能力</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">去括号法则：括号前是“+”号，去括号后各项不变号；括号前是“-”号，去括号后各项都变号。</div>
+                <div class="summary-item">当括号前有数字因数时，要利用分配律将数字乘到括号内每一项。</div>
+                <div class="summary-item">去括号后再合并同类项可化简整式。</div>
+                <div class="summary-item">去括号是整式加减的基础，需细心避免符号错误。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P108练习第1、2、3题；习题2.4 A组第7、8、9题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 去括号法则要记清，符号变化看仔细 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第33课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.2.2 勾股定理的应用（第二课时）| 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1100px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,0.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;}
+        h1{font-size:2.4rem;color:#0f405e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#26a69a;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#00695c;background:#e0f2f1;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80cbc4;margin:1.2rem 0 1.8rem;font-weight:700;}
+
+        /* 学习目标 */
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #00acc1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #00838f;padding-left:1rem;color:#00695c;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #26c6da;border:1px solid #b2ebf2;}
+        .target-item span{background:#00838f;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem;}
+
+        /* 导入区域 */
+        .intro-section{background:linear-gradient(145deg,#fff8e1,#ffecb3);border-radius:1.8rem;padding:1.3rem 2rem;margin:1.2rem 0;border:2px solid #ffd54f;}
+        .intro-section h3{color:#e65100;font-size:1.35rem;margin-bottom:.8rem;}
+
+        /* 例题卡片 */
+        .example-section{margin:1.5rem 0;}
+        .example-card{background:#e8f5e9;border-left:8px solid #43a047;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.2rem 0;}
+        .example-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+        .example-badge{background:#43a047;color:white;font-weight:700;font-size:1.1rem;padding:.4rem 1.2rem;border-radius:40px;}
+        .example-title{color:#2e7d32;font-size:1.35rem;font-weight:700;}
+
+        /* 练习区域 */
+        .exercise-section{background:#e8eaf6;border-radius:2rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #9fa8da;}
+        .exercise-title-bar{background:linear-gradient(135deg,#3949ab,#5c6bc0);color:white;padding:.6rem 1.5rem;border-radius:12px;font-size:1.4rem;font-weight:700;display:inline-block;margin-bottom:1.2rem;}
+        .exercise-item{background:white;border-radius:1.2rem;padding:1.2rem 1.5rem;margin:1rem 0;border:1px solid #d1c4e9;box-shadow:0 2px 8px rgba(57,73,171,.08);}
+        .exercise-question{font-weight:600;color:#283593;font-size:1.05rem;line-height:1.8;}
+
+        /* 图形展示区 */
+        .figure-area{background:#fafafa;border:2px dashed #90a4ae;border-radius:1.2rem;padding:1.2rem;margin:1rem 0;text-align:center;}
+        .figure-caption{font-size:.92rem;color:#607d8b;margin-top:.5rem;font-style:italic;}
+
+        /* 解答框 */
+        .answer-btn{background:#1976d2;border:none;color:white;padding:.45rem 1.5rem;border-radius:30px;font-weight:700;cursor:pointer;font-size:.95rem;transition:all .25s;box-shadow:0 4px 0 #1565c0;margin-top:.8rem;display:inline-block;}
+        .answer-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #1565c0;}
+        .answer-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #1565c0;}
+        .answer-box{background:#fff8e1;border-left:6px solid #ffc107;border-radius:0 1.2rem 1.2rem 0;padding:1rem 1.5rem;margin:1rem 0;display:none;font-size:.98rem;}
+        .answer-box.show-answer{display:block;}
+
+        /* 分析框 */
+        .analysis-box{background:#e3f2fd;border-left:6px solid #2196f3;border-radius:0 1rem 1rem 0;padding:1rem 1.5rem;margin:1rem 0;font-size:.98rem;}
+        .analysis-box strong{color:#1565c0;}
+
+        /* 解答步骤 */
+        .solution-step{background:white;border-radius:.8rem;padding:.8rem 1.2rem;margin:.6rem 0;border:1px solid #e0e0e0;line-height:1.9;}
+        .step-label{display:inline-block;background:#4caf50;color:white;padding:.15rem .7rem;border-radius:20px;font-size:.85rem;font-weight:700;margin-right:.5rem;}
+
+        /* 小结 */
+        .summary-section{background:#e0f2f1;border-left:6px solid #00acc1;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .summary-section h3{color:#00695c;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-list li{margin:.5rem 0;padding-left:.3rem;}
+
+        /* 核心要点 */
+        .key-point{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-left:6px solid #ff9800;border-radius:1rem;padding:.8rem 1.3rem;margin:.8rem 0;font-weight:600;color:#e65100;}
+
+        /* 底部 */
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        
+        /* 交互按钮 */
+        .interact-btn{background:#4caf50;border:none;color:white;padding:.4rem 1.2rem;border-radius:30px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #388e3c;margin:.5rem .3rem .5rem 0;font-size:.9rem;display:inline-block;transition:all .2s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(2px);}
+        .interact-btn.reset{background:#ff7043;box-shadow:0 4px 0 #d84315;}
+        .interact-btn.hint{background:#7e57c2;box-shadow:0 4px 0 #512da8;}
+
+        /* 网格图容器 */
+        .grid-container{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;align-items:flex-start;margin:1rem 0;}
+        .grid-figure{text-align:center;}
+        .grid-figure p{font-size:.92rem;color:#555;margin-bottom:.4rem;font-weight:600;}
+
+        @media(max-width:900px){
+            body{padding:.8rem;font-size:16px;}
+            .textbook{padding:1.2rem;border-radius:1.5rem;}
+            h1{font-size:1.8rem;}
+            .lesson-title{font-size:1.5rem;}
+            .grid-container{flex-direction:column;align-items:center;}
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级上册</span><span>第13章 勾股定理 · 13.2.2（第二课时）</span></div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">📐 13.2.2 勾股定理的应用（第二课时）</div>
+
+    <!-- ═══ 学习目标 ═══ -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能在网格中画出指定长度的线段（如 $\sqrt{5}$）</div>
+            <div class="target-item"><span>✔</span>能综合运用勾股定理及其逆定理解决问题</div>
+            <div class="target-item"><span>✔</span>掌握分类讨论思想：已知两边求第三边时考虑斜边情况</div>
+            <div class="target-item"><span>✔</span>会用勾股定理构造 $\sqrt{n}$ 的线段</div>
+        </div>
+    </div>
+
+    <!-- ═══ 导入 ═══ -->
+    <div class="intro-section">
+        <h3>💡 课堂导入</h3>
+        <p style="line-height:1.9;">
+            上节课我们学习了勾股定理在实际中的应用。本节课我们将继续探索勾股定理的更多应用：
+        </p>
+        <ul style="margin-top:.6rem;padding-left:1.8rem;line-height:2;">
+            <li><strong>网格中的几何作图：</strong>如何在方格图中画出指定长度（如 $\sqrt{5}$）的线段和等腰三角形？</li>
+            <li><strong>勾股定理及其逆定理的综合应用：</strong>如何通过边长关系判定直角三角形并求解面积？</li>
+            <li><strong>尺规作图：</strong>如何用勾股定理作出无理数长度（如 $\sqrt{3}$、$\sqrt{5}$）的线段？</li>
+        </ul>
+    </div>
+
+    <!-- ═══ 例3：网格中的线段与等腰三角形 ═══ -->
+    <div class="example-section">
+        <div class="example-card">
+            <div class="example-header">
+                <span class="example-badge">例 3</span>
+                <span class="example-title">网格中的线段与等腰三角形</span>
+            </div>
+
+            <p style="font-size:1.05rem;line-height:1.9;">
+                如图 $13.2.5$，在 $3 \times 3$ 的方格图中，每个小方格的边长都为 $1$，请在给定网格中按下列要求画出图形：
+            </p>
+            <p style="margin-top:.5rem;padding-left:1rem;">
+                （1）画出所有从点 $A$ 出发，另一个端点在格点上（即小正方形的顶点上），且长度为 $\sqrt{5}$ 的线段；
+            </p>
+            <p style="padding-left:1rem;">
+                （2）画出所有以小题（1）中所画线段为腰的等腰三角形。
+            </p>
+
+            <!-- 图13.2.5 原始网格（无外框实线）+ 图13.2.6 答案（需点击按钮显示） -->
+            <!-- 使用flex布局并设置固定间距，防止按钮点击后图13.2.5移动 -->
+            <div style="display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-start;margin:1rem 0;">
+                <!-- 左：原始网格 图13.2.5（固定宽度容器） -->
+                <div style="text-align:center;min-width:180px;">
+                    <p style="font-size:.92rem;color:#555;margin-bottom:.4rem;font-weight:600;">图 13.2.5</p>
+                    <svg width="180" height="210" viewBox="-15 -15 195 225" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 3×3网格，每格50px，仅内部网格线，无外框实线 -->
+                        <g stroke="#bbb" stroke-width="1" fill="none">
+                            <line x1="0" y1="0" x2="150" y2="0"/>
+                            <line x1="0" y1="50" x2="150" y2="50"/>
+                            <line x1="0" y1="100" x2="150" y2="100"/>
+                            <line x1="0" y1="150" x2="150" y2="150"/>
+                            <line x1="0" y1="0" x2="0" y2="150"/>
+                            <line x1="50" y1="0" x2="50" y2="150"/>
+                            <line x1="100" y1="0" x2="100" y2="150"/>
+                            <line x1="150" y1="0" x2="150" y2="150"/>
+                        </g>
+                        <!-- 点A 在左数第二列、上数第二行的交点处 (50, 50)，即从0起算的第1列第1行 -->
+                        <circle cx="50" cy="50" r="5" fill="#d32f2f" stroke="white" stroke-width="1.5"/>
+                        <text x="33" y="42" fill="#d32f2f" font-weight="bold" font-size="16" font-family="serif">A</text>
+                    </svg>
+                </div>
+
+                <!-- 右：答案图 图13.2.6（初始隐藏，固定宽度容器） -->
+                <div style="text-align:center;min-width:200px;display:none;" id="fig1326Container">
+                    <p style="font-size:.92rem;color:#555;margin-bottom:.4rem;font-weight:600;">图 13.2.6 （答案）</p>
+                    <svg width="200" height="200" viewBox="-20 -20 190 210" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 3×3网格（同图13.2.5），每格50px，无外框实线 -->
+                        <g stroke="#ccc" stroke-width="1" fill="none">
+                            <line x1="0" y1="0" x2="150" y2="0"/>
+                            <line x1="0" y1="50" x2="150" y2="50"/>
+                            <line x1="0" y1="100" x2="150" y2="100"/>
+                            <line x1="0" y1="150" x2="150" y2="150"/>
+                            <line x1="0" y1="0" x2="0" y2="150"/>
+                            <line x1="50" y1="0" x2="50" y2="150"/>
+                            <line x1="100" y1="0" x2="100" y2="150"/>
+                            <line x1="150" y1="0" x2="150" y2="150"/>
+                        </g>
+
+                        <!-- A点位置不变: (50, 50) = 第1列第1行交点 -->
+                        <circle cx="50" cy="50" r="5" fill="#d32f2f" stroke="white" stroke-width="1.5"/>
+                        <text x="30" y="40" fill="#d32f2f" font-weight="bold" font-size="15" font-family="serif">A</text>
+
+                        <!-- 在3×3网格内找距离=√5的格点:
+                             A=(50,50). 需要Δx²+Δy²=5(格²).
+                             每格=50px, 所以Δx_px²+Δy_px²=5×50²=12500.
+                             
+                             可能的组合(Δx格, Δy格): (±1, ±2) 或 (±2, ±1)
+                             
+                             B: 右1下2 → (50+50, 50+100)=(100, 150) ✓ 在3×3内
+                             C: 左1下2 → (50-50, 50+100)=(0, 150) ✓ 在3×3内  
+                             D: 右2下1 → (50+100, 50+50)=(150, 100) ✓ 在3×3内
+                             E: 左2下1 → (50-100, 50+50)=(-50, 100) ❌ 出界!
+                             
+                             改: 上方向试试:
+                             B: 右1下2 → (100, 150) ✓
+                             C: 左1下2 → (0, 150) ✓
+                             D: 右2上1 → (150, 0) ✓ 
+                             E: 左2上1 → (-50, 0) ❌ 出界
+                             
+                             再改: A放在更中心的位置?
+                             但题目说"如图13.2.5"，A位置固定。
+                             
+                             实际上3×3网格内从A(50,50)出发能到达的√5格点:
+                             向右下: (100,150)=右1下2 ✓, (150,100)=右2下1 ✓
+                             向左下: (0,150)=左1下2 ✓, (-50,100)=左2下1 ❌
+                             向右上: (100,0)=右1上2 ❌(y<0), (150,-50)❌
+                             
+                             只有3个点在范围内? 但用户说应该有4个点.
+                             
+                             让我重新理解: 3×3方格图有4×4=16个格点.
+                             A在某格点上. 如果A在中心4个格点之一, 则可以有4个√5点.
+                             
+                             按课本图13.2.5, A不在角落也不在最边上.
+                             让我们把A放在(50,50)即从左上角数第2列第2行的格点,
+                             则可用的格点范围是x∈[0,150], y∈[0,150].
+                             
+                             从(50,50)出发, Δx=±1格(±50px), Δy=±2格(±100px):
+                               (+1,+2)→(100,150)✓  (+1,-2)→(100,-50)✗
+                               (-1,+2)→(0,150)✓    (-1,-2)→(0,-50)✗
+                             Δx=±2格(±100px), Δy=±1格(±50px):
+                               (+2,+1)→(150,100)✓  (+2,-1)→(150,0)✓
+                               (-2,+1)→(-50,100)✗ (-2,-1)→(-50,0)✗
+                             
+                             所以有4个点! B(100,150), C(0,150), D(150,100), E(150,0)
+                        -->
+
+                        <!-- B: 右1格 下2格 → (100, 150) -->
+                        <circle cx="100" cy="150" r="4.5" fill="#1976d2" stroke="white" stroke-width="1.2"/>
+                        <text x="105" y="148" fill="#1976d2" font-weight="bold" font-size="13">B</text>
+
+                        <!-- C: 左1格 下2格 → (0, 150) -->
+                        <circle cx="0" cy="150" r="4.5" fill="#388e3c" stroke="white" stroke-width="1.2"/>
+                        <text x="-15" y="148" fill="#388e3c" font-weight="bold" font-size="13">C</text>
+
+                        <!-- D: 右2格 下1格 → (150, 100) -->
+                        <circle cx="150" cy="100" r="4.5" fill="#7b1fa2" stroke="white" stroke-width="1.2"/>
+                        <text x="158" y="95" fill="#7b1fa2" font-weight="bold" font-size="14">D</text>
+
+                        <!-- E: 右2格 上1格 → (150, 0) -->
+                        <circle cx="150" cy="0" r="4.5" fill="#f57c00" stroke="white" stroke-width="1.2"/>
+                        <text x="158" y="-5" fill="#f57c00" font-weight="bold" font-size="14">E</text>
+
+                        <!-- 四条√5线段 -->
+                        <line x1="50" y1="50" x2="100" y2="150" stroke="#1976d2" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="50" y1="50" x2="0" y2="150" stroke="#388e3c" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="50" y1="50" x2="150" y2="100" stroke="#7b1fa2" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="50" y1="50" x2="150" y2="0" stroke="#f57c00" stroke-width="2.5" stroke-linecap="round"/>
+
+                        <!-- 6个等腰三角形半透明填充 -->
+                        <polygon points="50,50 100,150 0,150" fill="rgba(25,118,212,0.10)" stroke="none"/><!-- △ABC -->
+                        <polygon points="50,50 100,150 150,100" fill="rgba(123,31,162,0.08)" stroke="none"/><!-- △ABD -->
+                        <polygon points="50,50 100,150 150,0" fill="rgba(245,124,0,0.08)" stroke="none"/><!-- △ABE -->
+                        <polygon points="50,50 0,150 150,100" fill="rgba(56,142,60,0.08)" stroke="none"/><!-- △ACD -->
+                        <polygon points="50,50 0,150 150,0" fill="rgba(211,47,47,0.07)" stroke="none"/><!-- △ACE -->
+                        <polygon points="50,50 150,100 150,0" fill="rgba(103,58,183,0.06)" stroke="none"/><!-- △ADE -->
+
+                        <!-- 底边虚线 -->
+                        <line x1="100" y1="150" x2="0" y2="150" stroke="#1976d2" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                        <line x1="100" y1="150" x2="150" y2="100" stroke="#7b1fa2" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+                        <line x1="100" y1="150" x2="150" y2="0" stroke="#f57c00" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+                        <line x1="0" y1="150" x2="150" y2="100" stroke="#388e3c" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+                        <line x1="0" y1="150" x2="150" y2="0" stroke="#d32f2f" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+                        <line x1="150" y1="100" x2="150" y2="0" stroke="#7b1fa2" stroke-width="1" stroke-dasharray="4,3" opacity="0.4"/>
+                    </svg>
+                    <p style="font-size:.85rem;color:#607d8b;margin-top:.3rem;font-style:italic;">$4$ 条 $\sqrt{5}$ 线段，$6$ 个等腰三角形</p>
+                </div>
+            </div>
+
+            <!-- 显示/隐藏答案图 按钮 -->
+            <div style="text-align:center;margin:.8rem 0;">
+                <button class="interact-btn" onclick="toggleFig1326()" id="btnToggle1326">🔍 显示答案（图13.2.6）</button>
+            </div>
+
+            <button class="answer-btn" onclick="toggleAnswer('ex3')">✍️ 详细解答</button>
+            <div id="ex3" class="answer-box">
+                <div class="solution-step">
+                    <span class="step-label">解（1）</span>
+                    如图 $13.2.6$ 所示，从点 $A$ 出发，寻找满足 $(\Delta x)^2 + (\Delta y)^2 = 5$ 的格点：
+                    <br><br>
+                    以 $A$ 为中心，在网格范围内搜索，共有 <strong>$4$ 条</strong>长度为 $\sqrt{5}$ 的线段：
+                    <table style="width:100%;margin-top:.5rem;border-collapse:collapse;" border="1" cellpadding="6" cellspacing="0">
+                        <tr style="background:#e3f2fd;"><th style="text-align:center;">线段</th><th style="text-align:center;">$\Delta x$（格）</th><th style="text-align:center;">$\Delta y$（格）</th><th style="text-align:center;">长度计算</th></tr>
+                        <tr><td style="text-align:center;">$AB$</td><td style="text-align:center;">$+1$</td><td style="text-align:center;">$+2$</td><td style="text-align:center;">$\sqrt{1^2+2^2}=\sqrt{5}$ ✅</td></tr>
+                        <tr><td style="text-align:center;">$AC$</td><td style="text-align:center;">$-1$</td><td style="text-align:center;">$+2$</td><td style="text-align:center;">$\sqrt{(-1)^2+2^2}=\sqrt{5}$ ✅</td></tr>
+                        <tr><td style="text-align:center;">$AD$</td><td style="text-align:center;">$+2$</td><td style="text-align:center;">$+1$</td><td style="text-align:center;">$\sqrt{2^2+1^2}=\sqrt{5}$ ✅</td></tr>
+                        <tr><td style="text-align:center;">$AE$</td><td style="text-align:center;">$-2$</td><td style="text-align:center;">$+1$</td><td style="text-align:center;">$\sqrt{(-2)^2+1^2}=\sqrt{5}$ ✅</td></tr>
+                    </table>
+                </div>
+
+                <div class="solution-step">
+                    <span class="step-label">解（2）</span>
+                    以上述 $4$ 条线段为<strong>腰</strong>（每两条可组成一个等腰三角形），可以作出以下 <strong>$6$ 个</strong>等腰三角形：
+                    <ol style="margin-left:1.5rem;margin-top:.5rem;line-height:2;">
+                        <li>$\triangle ABC$（以 $AB$、$AC$ 为两腰，底边 $BC$）</li>
+                        <li>$\triangle ABD$（以 $AB$、$AD$ 为两腰，底边 $BD$）</li>
+                        <li>$\triangle ABE$（以 $AB$、$AE$ 为两腰，底边 $BE$）</li>
+                        <li>$\triangle ACD$（以 $AC$、$AD$ 为两腰，底边 $CD$）</li>
+                        <li>$\triangle ACE$（以 $AC$、$AE$ 为两腰，底边 $CE$）</li>
+                        <li>$\triangle ADE$（以 $AD$、$AE$ 为两腰，底边 $DE$）</li>
+                    </ol>
+                    如 图 $13.2.6$ 所示，这 $6$ 个等腰三角形就是所要画的图形。<br>
+                    💡 <strong>注意：</strong>从 $n$ 条线段中任取 $2$ 条作为腰，共有 $C_4^2 = \frac{4 \times 3}{2} = 6$ 种选法，恰好对应 $6$ 个等腰三角形。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ 例4：勾股定理逆定理应用——求面积 ═══ -->
+    <div class="example-section">
+        <div class="example-card">
+            <div class="example-header">
+                <span class="example-badge">例 4</span>
+                <span class="example-title">利用逆定理求着色部分的面积</span>
+            </div>
+
+            <p style="font-size:1.05rem;line-height:1.9;">
+                如图 $13.2.7$，已知 $CD = 6\ \text{m}$，$AD = 8\ \text{m}$，$\angle ADC = 90°$，$BC = 24\ \text{m}$，$AB = 26\ \text{m}$。
+                <strong>求图中着色部分的面积。</strong>
+            </p>
+
+            <!-- 示意图 图13.2.7 -->
+            <div class="figure-area" style="background:#fff;">
+                <svg width="480" height="320" viewBox="-30 -30 520 370" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 
+                        坐标设定:
+                        D = (140, 220)
+                        C = (140, 100)  → CD = 120px (代表6m)
+                        A = (60, 220)   → AD = 80px (代表8m)  
+                        B = (380, 300)  → BC ≈ 255px (代表24m), AB ≈ 330px (代表26m)
+                    -->
+                    
+                    <!-- 着色部分: 大三角形ABC 减去 白色三角形ADC -->
+                    <polygon points="60,220 380,300 140,100" fill="rgba(255,179,77,0.7)" stroke="none"/>
+                    
+                    <!-- 白色三角形ADC覆盖（挖空效果） -->
+                    <polygon points="60,220 140,220 140,100" fill="#ffffff" stroke="#e65100" stroke-width="2"/>
+                    
+                    <!-- 大三角形ABC轮廓 -->
+                    <polygon points="60,220 380,300 140,100" fill="none" stroke="#e65100" stroke-width="2.5" stroke-linejoin="round"/>
+                    
+                    <!-- 内部线段 CD -->
+                    <line x1="140" y1="220" x2="140" y2="100" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- 直角标记在D处 (∠ADC=90°) -->
+                    <path d="M 128 220 L 128 208 L 140 208" fill="none" stroke="#333" stroke-width="1.5"/>
+                    
+                    <!-- 点标注（位置紧邻点） -->
+                    <circle cx="60" cy="220" r="5.5" fill="#1565c0" stroke="white" stroke-width="1.5"/>
+                    <text x="38" y="215" fill="#1565c0" font-weight="bold" font-size="17" font-family="serif">A</text>
+                    
+                    <circle cx="140" cy="220" r="5.5" fill="#c62828" stroke="white" stroke-width="1.5"/>
+                    <text x="146" y="244" fill="#c62828" font-weight="bold" font-size="17" font-family="serif">D</text>
+                    
+                    <circle cx="140" cy="100" r="5.5" fill="#2e7d32" stroke="white" stroke-width="1.5"/>
+                    <text x="148" y="92" fill="#2e7d32" font-weight="bold" font-size="17" font-family="serif">C</text>
+                    
+                    <circle cx="380" cy="300" r="5.5" fill="#6a1b9a" stroke="white" stroke-width="1.5"/>
+                    <text x="390" y="315" fill="#6a1b9a" font-weight="bold" font-size="17" font-family="serif">B</text>
+                    
+                    <!-- 边长标注 -->
+                    <!-- 8m 在 AD 上方: AD从(60,220)到(140,220), 中点(100,220) -->
+                    <text x="92" y="212" fill="#333" font-size="14" font-weight="600" font-family="serif">8 m</text>
+                    <!-- 6m 在 CD 右侧: CD从(140,220)到(140,100), 中点(140,160) -->
+                    <text x="148" y="165" fill="#333" font-size="14" font-weight="600" font-family="serif">6 m</text>
+                    <!-- 24m 在 BC 线段旁: B(380,300), C(140,100), 中点(260,200) -->
+                    <text x="250" y="195" fill="#333" font-size="14" font-weight="600" font-family="serif">24 m</text>
+                    <!-- 26m 在 AB 线段下方: A(60,220), B(380,300), 中点(220,260) -->
+                    <text x="210" y="282" fill="#333" font-size="14" font-weight="600" font-family="serif">26 m</text>
+                </svg>
+                <p class="figure-caption">图 13.2.7 —— 着色部分面积 = $S_{\triangle ABC} - S_{\triangle ADC}$</p>
+            </div>
+
+            <button class="answer-btn" onclick="toggleAnswer('ex4')">✍️ 查看解答</button>
+            <div id="ex4" class="answer-box" style="font-size:1.05rem;line-height:2.3;">
+                <p><strong style="color:#1565c0;">解</strong>&nbsp;在 Rt$\triangle ADC$ 中，</p>
+                <p style="margin-left:1rem;">$\because\ AC^2 = AD^2 + CD^2$</p>
+                <p style="margin-left:2rem;">$= 8^2 + 6^2 = 100$（勾股定理），<br>$\therefore\ AC = 10$．</p>
+                <p style="margin-top:.5rem;">$\because\ AC^2 + BC^2 = 10^2 + 24^2 = 676 = 26^2 = AB^2$，</p>
+                <p style="margin-left:1rem;">$\therefore\ \triangle ACB$ 为直角三角形（勾股定理的逆定理）．</p>
+                <p style="margin-top:.5rem;">$\therefore\ S_{\text{着色部分}} = S_{\triangle ACB} - S_{\triangle ADC}$</p>
+                <p style="margin-left:4rem;">$= \dfrac{1}{2} \times 10 \times 24 - \dfrac{1}{2} \times 6 \times 8$</p>
+                <p style="margin-left:4rem;">$= 96(\mathrm{m}^2)$．</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ 练习部分 ═══ -->
+    <div class="exercise-section">
+        <div class="exercise-title-bar">✏️ 课内练习</div>
+
+        <!-- 练习第1题 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 形状为直角三角形的一块铁板的三边长分别为 $2\ \text{m}$、$4\ \text{m}$、$x\ \text{m}$，试求出 $x$ 的所有可能值。（精确到 $0.01\ \text{m}$）</p>
+
+            <button class="answer-btn" onclick="toggleAnswer('ex1')">💡 查看解答</button>
+            <div id="ex1" class="answer-box">
+                <p><strong>分析：</strong>直角三角形的斜边是最长的边。由于不知道哪条是斜边，需要分两种情况讨论：</p>
+
+                <div class="solution-step">
+                    <span class="step-label">情形一</span>$x$ 是斜边（此时 $x > 4$）
+                    <br><br>
+                    由勾股定理：$x^2 = 2^2 + 4^2 = 4 + 16 = 20$
+                    <br>
+                    $$\therefore x = \sqrt{20} = 2\sqrt{5} \approx \mathbf{4.47}\ \text{(m)}$$
+                </div>
+
+                <div class="solution-step">
+                    <span class="step-label">情形二</span>$4$ 是斜边（此时 $x < 4$）
+                    <br><br>
+                    由勾股定理：$x^2 + 2^2 = 4^2$
+                    <br>
+                    $$x^2 = 16 - 4 = 12$$
+                    $$\therefore x = \sqrt{12} = 2\sqrt{3} \approx \mathbf{3.46}\ \text{(m)}$$
+                </div>
+
+                <div class="solution-step" style="background:#fffde7;border-color:#ffd54f;">
+                    <strong style="color:#f57f17;">📌 结论：</strong>$x$ 的所有可能值为 $\boldsymbol{\approx 4.47\ \text{m}}$ 或 $\boldsymbol{\approx 3.46\ \text{m}}$
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习第2题 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 利用勾股定理，分别作出长度为 $\sqrt{3}\ \text{cm}$ 和 $\sqrt{5}\ \text{cm}$ 的线段。</p>
+
+            <!-- 作图演示区域 -->
+            <div class="figure-area" id="constructArea" style="background:#fff;">
+                <canvas id="constructCanvas" width="720" height="280"></canvas>
+                <p class="figure-caption">点击下方按钮查看作图过程演示</p>
+                <div style="margin-top:.8rem;">
+                    <button class="interact-btn" onclick="showConstruct('sqrt3')">▶️ 作 $\sqrt{3}\,\text{cm}$ 线段</button>
+                    <button class="interact-btn" onclick="showConstruct('sqrt5')">▶️ 作 $\sqrt{5}\,\text{cm}$ 线段</button>
+                    <button class="interact-btn reset" onclick="clearConstruct()">🔄 清除</button>
+                </div>
+            </div>
+
+            <button class="answer-btn" onclick="toggleAnswer('ex2')">💡 查看解答</button>
+            <div id="ex2" class="answer-box">
+                <p><strong>分析：</strong>利用勾股定理作无理数长度的线段，关键是<strong>找到合适的直角边长度</strong>。</p>
+
+                <div class="solution-step">
+                    <span class="step-label">作 $\sqrt{3}\,\text{cm}$ 线段</span>
+                    因为 $\sqrt{3} = \sqrt{2^2 - 1^2}$，所以可以构造一个斜边为 $2\ \text{cm}$、一条直角边为 $1\ \text{cm}$ 的直角三角形，其另一条直角边即为 $\sqrt{3}\ \text{cm}$。
+                    <br><br>
+                    <strong>作法：</strong>
+                    <ol style="margin-left:1.5rem;margin-top:.3rem;line-height:1.9;">
+                        <li>画射线 $OX$；</li>
+                        <li>在 $OX$ 上截取 $OA = 1\ \text{cm}$；</li>
+                        <li>过点 $A$ 作 $OX$ 的垂线 $AY$；</li>
+                        <li>以 $O$ 为圆心，$2\ \text{cm}$ 为半径画弧交 $AY$ 于点 $B$；</li>
+                        <li>则 $OB = \sqrt{3}\ \text{cm}$ 即为所求。</li>
+                    </ol>
+                </div>
+
+                <div class="solution-step">
+                    <span class="step-label">作 $\sqrt{5}\,\text{cm}$ 线段</span>
+                    因为 $\sqrt{5} = \sqrt{1^2 + 2^2}$，所以可以构造一个直角边分别为 $1\ \text{cm}$ 和 $2\ \text{cm}$ 的直角三角形，其斜边即为 $\sqrt{5}\ \text{cm}$。
+                    <br><br>
+                    <strong>作法：</strong>
+                    <ol style="margin-left:1.5rem;margin-top:.3rem;line-height:1.9;">
+                        <li>画直角 $\angle XOY$；</li>
+                        <li>在 $OX$ 上截取 $OA = 1\ \text{cm}$；</li>
+                        <li>在 $OY$ 上截取 $OB = 2\ \text{cm}$；</li>
+                        <li>连接 $AB$；</li>
+                        <li>则 $AB = \sqrt{1^2+2^2} = \sqrt{5}\ \text{cm}$ 即为所求。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ 课堂小结 ═══ -->
+    <div class="summary-section">
+        <h3>📌 课堂小结</h3>
+        <ul class="summary-list" style="list-style:none;padding:0;">
+            <li style="padding:.4rem 0;">✅ <strong>网格中线段长度：</strong>$L = \sqrt{(\Delta x)^2 + (\Delta y)^2}$，其中 $\Delta x$、$\Delta y$ 为横纵方向的格数；</li>
+            <li style="padding:.4rem 0;">✅ <strong>分类讨论思想：</strong>已知直角三角形两边求第三边时，要考虑哪条是斜边的不同情况（如练习第1题）；</li>
+            <li style="padding:.4rem 0;">✅ <strong>尺规作图方法：</strong>利用勾股定理可作出任意形如 $\sqrt{n}$ 的线段（如 $\sqrt{3}$、$\sqrt{5}$）；</li>
+            <li style="padding:.4rem 0;">✅ <strong>勾股定理及其逆定理的综合应用：</strong>先由勾股定理求未知边长，再用逆定理判定直角三角形，进而求解面积等问题（如例4）；</li>
+            <li style="padding:.4rem 0;">✅ <strong>组合计数：</strong>从 $n$ 条线段中任取 $2$ 条作为腰，共可构成 $C_n^2 = \frac{n(n-1)}{2}$ 个等腰三角形（如例3中 $C_4^2 = 6$ 个）。</li>
+        </ul>
+    </div>
+
+    <!-- 数学思想 -->
+    <div style="background:linear-gradient(145deg,#ede7f6,#d1c4e9);border-left:8px solid #7e57c2;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.5rem 0;">
+        <h4 style="color:#512da8;font-size:1.3rem;margin-bottom:.6rem;">🧠 本课涉及的数学思想</h4>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:.8rem;">
+            <div style="background:white;border-radius:.8rem;padding:.8rem 1rem;">
+                <strong style="color:#6a1b9a;">🔢 数形结合</strong>
+                <p style="font-size:.9rem;color:#555;margin-top:.3rem;">将代数式 $\sqrt{n}$ 与几何网格联系起来，通过构造直角三角形实现转化</p>
+            </div>
+            <div style="background:white;border-radius:.8rem;padding:.8rem 1rem;">
+                <strong style="color:#6a1b9a;">📋 分类讨论</strong>
+                <p style="font-size:.9rem;color:#555;margin-top:.3rem;">对不确定的斜边进行分情况讨论，确保不遗漏任何可能</p>
+            </div>
+            <div style="background:white;border-radius:.8rem;padding:.8rem 1rem;">
+                <strong style="color:#6a1b9a;">🔄 正逆互用</strong>
+                <p style="font-size:.9rem;color:#555;margin-top:.3rem;">灵活切换使用勾股定理（正用求边）和逆定理（反用判定直角）</p>
+            </div>
+            <div style="background:white;border-radius:.8rem;padding:.8rem 1rem;">
+                <strong style="color:#6a1b9a;">📐 构造法</strong>
+                <p style="font-size:.9rem;color:#555;margin-top:.3rem;">通过构造辅助图形（直角三角形）来求解面积或作图问题</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课后作业 -->
+    <div style="background:linear-gradient(145deg,#e8f5e9,#c8e6c9);border-radius:60px;padding:1.3rem 2rem;margin:1.5rem 0;border:2px solid #81c784;">
+        <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;">
+            <span style="font-size:1.8rem;">📚</span>
+            <strong style="font-size:1.25rem;color:#2e7d32;">课后作业</strong>
+        </div>
+
+        <!-- 课本作业 - 仅写明出处 -->
+        <div style="background:white;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1rem;border-left:4px solid #43a047;">
+            <div style="line-height:1.9;font-size:1.02rem;color:#1b5e20;">
+                📖 课本习题 13.2 A 组第 4 题、第 5 题
+            </div>
+        </div>
+
+        <!-- 课外作业 -->
+        <div style="background:white;border-radius:12px;padding:1rem 1.5rem;border-left:4px solid #7e57c2;">
+            <div style="font-weight:700;color:#4527a0;font-size:1.05rem;margin-bottom:.6rem;">🎮 课外拓展（趣味数学游戏）</div>
+            <div style="background:#f3e5f5;border-radius:10px;padding:.9rem 1.2rem;line-height:1.85;">
+                <p>下载手机/平板应用 <strong style="color:#7e57c2;">Pythagorea</strong>（免费），完成其中<strong>"勾股定理"</strong>（Pythagorean Theorem）相关的关卡。</p>
+                <ul style="margin-top:.5rem;padding-left:1.3rem;color:#444;">
+                    <li>iOS 用户可在 App Store 搜索 "Pythagorea" 下载</li>
+                    <li>Android 用户可在 Google Play 或应用商店搜索下载</li>
+                </ul>
+                <p style="margin-top:.6rem;background:#ede7f6;display:inline-block;padding:.3rem .8rem;border-radius:20px;font-size:.9rem;">🎯 推荐理由：在网格中通过构造直角三角形来解题，与本课"网格中的勾股定理"内容高度契合！</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #26a69a;padding:1rem 1.5rem;border-radius:2rem;margin:1.5rem 0;">
+        💡 网格之中藏奥秘，勾股逆理显神通；<br>
+        正逆结合巧运用，数学之美在其中。💡
+    </div>
+
+    <div class="footer-note">八年级上册 · 第13章 · 13.2.2 勾股定理的应用（第二课时）</div>
+</div>
+
+<script>
+    // ===== 解答显示/隐藏 =====
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) {
+            box.classList.toggle('show-answer');
+            if (box.classList.contains('show-answer')) {
+                setTimeout(() => box.scrollIntoView({behavior:'smooth',block:'nearest'}), 100);
+            }
+        }
+    }
+
+    // ===== 图13.2.6答案显示/隐藏 =====
+    function toggleFig1326() {
+        const container = document.getElementById('fig1326Container');
+        const btn = document.getElementById('btnToggle1326');
+        if (container && btn) {
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                btn.textContent = '🙈 隐藏答案（图13.2.6）';
+                btn.style.background = '#ff7043';
+                btn.style.boxShadow = '0 4px 0 #d84315';
+            } else {
+                container.style.display = 'none';
+                btn.textContent = '🔍 显示答案（图13.2.6）';
+                btn.style.background = '#4caf50';
+                btn.style.boxShadow = '0 4px 0 #388e3c';
+            }
+        }
+    }
+
+    // ===== 作图演示 Canvas =====
+    var constructCanvas = document.getElementById('constructCanvas');
+    var cctx = constructCanvas.getContext('2d');
+    var CW = constructCanvas.width, CH = constructCanvas.height;
+    var animTimer = null;
+
+    function clearConstruct() {
+        if (animTimer) clearInterval(animTimer);
+        drawConstructBase();
+    }
+
+    function drawConstructBase() {
+        cctx.clearRect(0, 0, CW, CH);
+        cctx.fillStyle = '#fafafa';
+        cctx.fillRect(0, 0, CW, CH);
+
+        // 左半部分标题
+        cctx.fillStyle = '#1565c0';
+        cctx.font = 'bold 16px Segoe UI';
+        cctx.textAlign = 'center';
+        cctx.fillText('作 √3 cm 线段', 170, 22);
+        cctx.strokeStyle = '#bbdefb';
+        cctx.lineWidth = 1;
+        cctx.setLineDash([4,3]);
+        cctx.strokeRect(30, 35, 280, 225);
+        cctx.setLineDash([]);
+
+        // 右半部分标题
+        cctx.fillStyle = '#2e7d32';
+        cctx.font = 'bold 16px Segoe UI';
+        cctx.fillText('作 √5 cm 线段', 550, 22);
+        cctx.strokeStyle = '#c8e6c9';
+        cctx.lineWidth = 1;
+        cctx.setLineDash([4,3]);
+        cctx.strokeRect(380, 35, 310, 225);
+        cctx.setLineDash([]);
+    }
+
+    function showConstruct(type) {
+        if (animTimer) clearInterval(animTimer);
+        drawConstructBase();
+
+        var scale = 35;
+
+        if (type === 'sqrt3') {
+            var step = 0;
+            var maxSteps = 60;
+
+            animTimer = setInterval(function() {
+                step++;
+                var progress = step / maxSteps;
+                var ease = 1 - Math.pow(1 - progress, 3);
+
+                cctx.clearRect(30, 35, 280, 225);
+                cctx.fillStyle = '#e3f2fd';
+                cctx.fillRect(30, 35, 280, 225);
+
+                var Ox = 60, Oy = 220;
+
+                // 射线OX
+                cctx.beginPath();
+                cctx.moveTo(Ox, Oy);
+                cctx.lineTo(Ox + 200 * ease, Oy);
+                cctx.strokeStyle = '#333';
+                cctx.lineWidth = 1.5;
+                cctx.stroke();
+
+                // OA = 1cm
+                if (progress > 0.1) {
+                    var aProgress = Math.min((progress - 0.1) / 0.2, 1);
+                    cctx.beginPath();
+                    cctx.moveTo(Ox, Oy);
+                    cctx.lineTo(Ox + scale * aProgress, Oy);
+                    cctx.strokeStyle = '#1565c0';
+                    cctx.lineWidth = 3;
+                    cctx.stroke();
+                    if (progress > 0.3) {
+                        cctx.fillStyle = '#1565c0';
+                        cctx.font = 'bold 13px Segoe UI';
+                        cctx.textAlign = 'left';
+                        cctx.fillText('OA=1cm', Ox + scale/2, Oy + 18);
+                        cctx.fillText('A', Ox + scale + 8, Oy + 5);
+                        cctx.beginPath(); cctx.arc(Ox + scale, Oy, 4, 0, Math.PI*2); cctx.fill();
+                    }
+                }
+
+                // 垂线AY
+                if (progress > 0.3) {
+                    var vProgress = Math.min((progress - 0.3) / 0.2, 1);
+                    cctx.beginPath();
+                    cctx.moveTo(Ox + scale, Oy);
+                    cctx.lineTo(Ox + scale, Oy - 100 * vProgress);
+                    cctx.strokeStyle = '#999';
+                    cctx.lineWidth = 1.5;
+                    cctx.setLineDash([4,3]);
+                    cctx.stroke();
+                    cctx.setLineDash([]);
+                    if (progress > 0.5) {
+                        cctx.fillStyle = '#666'; cctx.font = '12px Segoe UI'; cctx.textAlign = 'left';
+                        cctx.fillText('⊥', Ox + scale + 10, Oy - 40);
+                    }
+                }
+
+                // 弧（圆心O，半径2cm）
+                if (progress > 0.5) {
+                    var arcProgress = Math.min((progress - 0.5) / 0.25, 1);
+                    cctx.beginPath();
+                    cctx.arc(Ox, Oy, 2 * scale, -Math.PI/2 * arcProgress, 0);
+                    cctx.strokeStyle = '#e91e63';
+                    cctx.lineWidth = 2;
+                    cctx.stroke();
+                }
+
+                // OB = √3
+                if (progress > 0.75) {
+                    var bProgress = Math.min((progress - 0.75) / 0.2, 1);
+                    var Bx = Ox + scale * bProgress;
+                    var By = Oy - Math.sqrt(3) * scale * bProgress;
+                    cctx.beginPath();
+                    cctx.moveTo(Ox, Oy);
+                    cctx.lineTo(Bx, By);
+                    cctx.strokeStyle = '#e91e63';
+                    cctx.lineWidth = 3.5;
+                    cctx.stroke();
+
+                    if (progress > 0.9) {
+                        cctx.fillStyle = '#e91e63';
+                        cctx.beginPath(); cctx.arc(Bx, By, 5, 0, Math.PI*2); cctx.fill();
+                        cctx.font = 'bold 13px Segoe UI'; cctx.textAlign = 'left';
+                        cctx.fillText('B', Bx + 10, By - 5);
+                        cctx.font = 'bold 15px Segoe UI';
+                        cctx.fillText('OB = √3 cm ✓', Ox + 50, Oy - 100);
+
+                        cctx.beginPath();
+                        cctx.moveTo(Ox + scale - 12, Oy);
+                        cctx.lineTo(Ox + scale - 12, Oy - 12);
+                        cctx.lineTo(Ox + scale, Oy - 12);
+                        cctx.strokeStyle = '#333'; cctx.lineWidth = 1.2; cctx.stroke();
+                    }
+                }
+
+                // 步骤说明
+                cctx.font = '12px Segoe UI'; cctx.textAlign = 'left';
+                var stepsText = [
+                    '① 画射线 OX', '② 在 OX 上取 OA = 1cm',
+                    '③ 过 A 作 OX 的垂线', '④ 以 O 为圆心，2cm 为半径画弧',
+                    '⑤ 弧与垂线的交点为 B', '⑥ OB = √3 cm ✓'
+                ];
+                for (var i = 0; i < stepsText.length; i++) {
+                    cctx.fillStyle = step >= maxSteps * (i+1)/6 ? '#2e7d32' : '#999';
+                    cctx.fillText(stepsText[i], 40, 55 + i * 22);
+                }
+
+                if (step >= maxSteps) { clearInterval(animTimer); animTimer = null; }
+            }, 30);
+
+        } else {
+            var step = 0;
+            var maxSteps = 60;
+
+            animTimer = setInterval(function() {
+                step++;
+                var progress = step / maxSteps;
+
+                cctx.clearRect(380, 35, 310, 225);
+                cctx.fillStyle = '#f1f8e9';
+                cctx.fillRect(380, 35, 310, 225);
+
+                var Ox = 430, Oy = 210;
+
+                // OX水平
+                if (progress > 0.05) {
+                    var p1 = Math.min((progress - 0.05) / 0.2, 1);
+                    cctx.beginPath(); cctx.moveTo(Ox, Oy); cctx.lineTo(Ox + scale * p1, Oy);
+                    cctx.strokeStyle = '#2e7d32'; cctx.lineWidth = 3; cctx.stroke();
+                    if (progress > 0.2) {
+                        cctx.fillStyle = '#2e7d32'; cctx.font = 'bold 12px Segoe UI'; cctx.textAlign = 'left';
+                        cctx.fillText('OA=1cm', Ox + scale/2 - 15, Oy + 17);
+                        cctx.fillText('A', Ox + scale + 5, Oy + 5);
+                        cctx.beginPath(); cctx.arc(Ox + scale, Oy, 4, 0, Math.PI*2); cctx.fill();
+                    }
+                }
+
+                // OY竖直
+                if (progress > 0.15) {
+                    var p2 = Math.min((progress - 0.15) / 0.2, 1);
+                    cctx.beginPath(); cctx.moveTo(Ox, Oy); cctx.lineTo(Ox, Oy - 2*scale * p2);
+                    cctx.strokeStyle = '#2e7d32'; cctx.lineWidth = 3; cctx.stroke();
+                    if (progress > 0.3) {
+                        cctx.fillStyle = '#2e7d32'; cctx.font = 'bold 12px Segoe UI'; cctx.textAlign = 'left';
+                        cctx.fillText('OB=2cm', Ox + 5, Oy - scale);
+                        cctx.fillText('B', Ox - 15, Oy - 2*scale);
+                        cctx.beginPath(); cctx.arc(Ox, Oy - 2*scale, 4, 0, Math.PI*2); cctx.fill();
+                    }
+                }
+
+                // 直角标记
+                if (progress > 0.35) {
+                    cctx.beginPath();
+                    cctx.moveTo(Ox + 14, Oy); cctx.lineTo(Ox + 14, Oy - 14); cctx.lineTo(Ox, Oy - 14);
+                    cctx.strokeStyle = '#333'; cctx.lineWidth = 1.2; cctx.stroke();
+                    cctx.fillStyle = '#666'; cctx.font = '11px Segoe UI'; cctx.textAlign = 'left';
+                    cctx.fillText('90°', Ox + 18, Oy - 18);
+                }
+
+                // 斜边AB
+                if (progress > 0.5) {
+                    var p3 = Math.min((progress - 0.5) / 0.25, 1);
+                    cctx.beginPath();
+                    cctx.moveTo(Ox + scale * p3, Oy);
+                    cctx.lineTo(Ox, Oy - 2 * scale * p3);
+                    cctx.strokeStyle = '#e91e63'; cctx.lineWidth = 3.5; cctx.stroke();
+
+                    if (progress > 0.75) {
+                        cctx.fillStyle = '#e91e63'; cctx.font = 'bold 15px Segoe UI'; cctx.textAlign = 'left';
+                        cctx.fillText('AB = √5 cm ✓', Ox + 30, Oy - 110);
+                    }
+                }
+
+                // 步骤说明
+                cctx.font = '12px Segoe UI'; cctx.textAlign = 'left';
+                var stepsText2 = [
+                    '① 画直角 ∠XOY', '② 在 OX 上取 OA = 1cm',
+                    '③ 在 OY 上取 OB = 2cm', '④ 连接 AB', '⑤ AB = √5 cm ✓'
+                ];
+                for (var j = 0; j < stepsText2.length; j++) {
+                    cctx.fillStyle = step >= maxSteps * (j+1)/5 ? '#2e7d32' : '#999';
+                    cctx.fillText(stepsText2[j], 400, 55 + j * 22);
+                }
+
+                if (step >= maxSteps) { clearInterval(animTimer); animTimer = null; }
+            }, 30);
+        }
+    }
+
+    window.addEventListener('load', function() { drawConstructBase(); });
+</script>
+</body>
+</html>

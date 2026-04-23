@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.3.3 旋转对称图形 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* ========== 原有样式保持不变 ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #fff3cd;
+            border: 2px solid #f4b84b;
+            border-radius: 16px;
+            padding: 1rem;
+            min-width: 160px;
+            text-align: center;
+            color: #8a6d3b;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #dbb068;
+            margin: 0.5rem auto;
+        }
+        .img-placeholder::before {
+            content: "🖼️ 缺失图片: ";
+            font-size: 0.9rem;
+            color: #a5762e;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold { font-weight: 700; color: #0b4b6b; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        .break-line { display: block; margin-top: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0; color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; font-size: 1.5rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden; transition: max-height 0.4s ease; max-height: 0; margin-top: 0;
+        }
+        .reading-content.expanded { max-height: 800px; margin-top: 1rem; }
+        .rotate-demo {
+            background: #f0f7fc; border-radius: 24px; padding: 20px; margin: 20px 0; text-align: center;
+        }
+        #rotateCanvas {
+            display: block; margin: 0 auto; background: #ffeadb; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .rotate-control { margin: 15px 0; display: flex; justify-content: center; align-items: center; gap: 20px; }
+        #angleSlider { width: 300px; }
+        .answer-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            color: #0a4a6f;
+        }
+        .answer-box.show-answer {
+            max-height: 200px;
+            padding: 0.5rem 1rem;
+            background: #e8f4fc;
+            border-radius: 12px;
+        }
+        /* 阅读区图片行 */
+        .reading-img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .reading-img-item {
+            flex: 1 1 200px;
+            min-width: 160px;
+        }
+
+        /* ========== 新增演示样式（从原演示代码提取，稍加适配） ========== */
+        .demo-wrapper {
+            width: 100%;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8fafd;
+            border-radius: 24px;
+            border: 2px solid #c9ddef;
+        }
+        .demo-wrapper .instructions {
+            background: #e6f2fc;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #3f8ab3;
+        }
+        .demo-wrapper .instructions h3 {
+            color: #144a6f;
+            margin-bottom: 0.5rem;
+        }
+        .demo-wrapper .instructions ol {
+            padding-left: 1.5rem;
+            line-height: 1.6;
+        }
+        .demo-wrapper .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .demo-wrapper .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .demo-wrapper .btn-primary {
+            background: #3f8ab3;
+            color: white;
+        }
+        .demo-wrapper .btn-primary:hover {
+            background: #2675a8;
+        }
+        .demo-wrapper .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+        .demo-wrapper .btn-reset:hover {
+            background: #c0392b;
+        }
+        .demo-wrapper .angle-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f0f7fc;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #c9ddef;
+        }
+        .demo-wrapper .angle-control label {
+            font-weight: 600;
+            color: #0a3144;
+        }
+        .demo-wrapper .angle-control input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #c9ddef;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .demo-wrapper .angle-control span {
+            color: #144a6f;
+        }
+        #canvas-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            background: #f9fcff;
+            border-radius: 12px;
+            border: 1px solid #c9ddef;
+            overflow: hidden;
+        }
+        #rotationCanvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            display: block;
+        }
+        .demo-wrapper .status {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: #e3f0fd;
+            border-radius: 8px;
+            color: #0a3e5f;
+        }
+        .demo-wrapper .legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .demo-wrapper .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .demo-wrapper .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .demo-wrapper .original-color {
+            background: #888888;
+        }
+        .demo-wrapper .rotated-color {
+            background: #e74c3c;
+        }
+        .demo-wrapper .point-color {
+            background: #2675a8;
+        }
+        .demo-wrapper .arc-color {
+            background: #2ecc71;
+        }
+        .demo-wrapper .dash-color {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.3.3</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.3 旋转 —— 3. 旋转对称图形</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解旋转对称图形的概念</div>
+            <div class="target-item"><span>✔</span>能找出旋转对称图形的旋转角度</div>
+            <div class="target-item"><span>✔</span>会设计简单的旋转对称图形</div>
+        </div>
+    </div>
+
+    <!-- 导入：生活中的旋转对称 图9.3.10 -->
+    <div class="figure-box">
+        <p>在日常生活中，我们经常可以看到，一些图形绕着某一定点旋转一定的角度后能与自身重合。如图9.3.10所示，电扇的叶片旋转 \(120^\circ\) 、螺旋桨旋转 \(180^\circ\) 后，都能与自身重合。你能再举出一些这样的实例吗？</p>
+        <div class="image-container">
+            <img src="9.3.10.png" alt="图9.3.10 电扇叶片、螺旋桨" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">9.3.10.png (电扇叶片/螺旋桨)</div>
+            <div class="image-caption">图9.3.10</div>
+        </div>
+    </div>
+
+    <!-- 试一试 图9.3.11 -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>用一张半透明的薄纸，覆盖在如图9.3.11所示的图形上，在薄纸上画这个图形，使它与图9.3.11所示的图形重合。然后用一枚图钉在圆心处穿过，将薄纸绕着图钉旋转，观察旋转多少度（小于周角）后，薄纸上的图形能与原图形再一次重合。</p>
+        <div class="image-container">
+            <img src="9.3.11.png" alt="图9.3.11 旋转对称图形示例" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">9.3.11.png (旋转对称图形)</div>
+            <div class="image-caption">图9.3.11</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('tryAnswer')">🔍 观察结果</button>
+        <div id="tryAnswer" class="answer-box">
+            <p>该图形绕圆心旋转 \(60^\circ\) 后能与自身重合（旋转 \(120^\circ, 180^\circ, 240^\circ, 300^\circ\) 后也能重合）。</p>
+        </div>
+    </div>
+
+    <!-- 旋转对称图形定义 -->
+    <div class="concept-box">
+        <strong>旋转对称图形</strong> <em>(a figure of rotation symmetry)</em>：像这样旋转一定角度后能与自身重合的图形叫做旋转对称图形。旋转角度可以在 \(0^\circ\) 到 \(360^\circ\) 之间。
+    </div>
+
+    <!-- 做一做 设计旋转对称图形 图9.3.12 9.3.13 -->
+    <div class="do-section">
+        <p class="bold">做一做</p>
+        <p>设计一个旋转 \(90^\circ\) 后能与自身重合的旋转对称图形：将如图9.3.12所示的图形绕圆心旋转 \(90^\circ\) ，再将旋转后所得到的图形绕圆心旋转 \(90^\circ\) ，然后再重复旋转一次，可以得到如图9.3.13所示的图形。</p>
+        <div class="img-row">
+            <div class="image-container">
+                <img src="9.3.12.png" alt="图9.3.12 基本图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">9.3.12.png (基本图形)</div>
+                <div class="image-caption">图9.3.12</div>
+            </div>
+            <div class="image-container">
+                <img src="9.3.13.png" alt="图9.3.13 旋转后的图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">9.3.13.png (旋转后图形)</div>
+                <div class="image-caption">图9.3.13</div>
+            </div>
+        </div>
+        <p>将如图9.3.13所示的图形绕圆心旋转 \(90^\circ\) 后，可以发现旋转以后的图形能与原来位置上的原图形重合，因此该图形是旋转对称图形。当然该图形绕圆心旋转 \(180^\circ\) 或 \(270^\circ\) 后的图形也能与原图形重合，也可得出该图形是旋转对称图形。</p>
+        <p>你能设计一个旋转 \(30^\circ\) 后能与自身重合的图形吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('designHint')">💡 提示</button>
+        <div id="designHint" class="answer-box">
+            <p>可以以正十二边形为基础，每30°重复一个基本图案。</p>
+        </div>
+    </div>
+
+    <!-- 旋转对称演示（原图案演示，保留） -->
+    <div class="rotate-demo">
+        <h4 style="color:#135b8d;">🔄 旋转对称演示</h4>
+        <canvas id="rotateCanvas" width="300" height="300"></canvas>
+        <div class="rotate-control">
+            <span>旋转角度：</span>
+            <input type="range" id="angleSlider" min="0" max="360" value="0" step="1">
+            <span id="angleDisplay">0°</span>
+        </div>
+        <p>当旋转角度为90°、180°、270°时，图形与自身重合。</p>
+    </div>
+
+    <!-- 练习（第35页） -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 举出日常生活中旋转对称图形的几个实例。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">💡 举例</button>
+            <div id="prac1" class="answer-box">
+                <p>例如：五角星（旋转72°）、雪花（旋转60°）、风车、八卦图等。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 找找看，下面这幅古代艺术品图形中有几匹马？它们的位置关系大致如何？</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 古代艺术品" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习2.png (古代艺术品)</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>这是经典的洛伊德四马谜题（也叫波斯人的马），属于视觉错觉类古代艺术品图形。是17世纪波斯风格的视觉谜题，后由美国谜题大师山姆・洛伊德（Sam Loyd）推广，利用人类视觉的完形感知，让重叠的线条同时构成多个完整形象。它们通过线条的巧妙共用与重叠，形成了一个视觉上的错觉，让观者可以同时看到4个完整的马形轮廓。4匹马以中心对称的方式分布在画面中，彼此的身体轮廓相互交错、共用线条。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 如图所示的图形绕哪一点旋转多少度后能与自身重合？</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 旋转对称图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习3.png (旋转对称图形)</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>（1）绕中心旋转60°、120°、180°、240°、300°后与自身重合。；（2）绕中心旋转90°、180°、270°后与自身重合。</p>
+            </div>
+        </div>
+        
+        <!-- 练习4：插入全新的△ABC旋转演示 -->
+        <div class="exercise-item">
+            <p><strong>4.</strong> 任意作一个△ABC，再任意作一个点P，然后作出△ABC绕点P逆时针旋转60°后的三角形。（使用下方交互工具绘制）</p>
+            <div class="demo-wrapper">
+                <div class="instructions">
+                    <h3>操作步骤：</h3>
+                    <ol>
+                        <li>点击画布绘制△ABC的三个顶点（依次点击A、B、C），画完立刻显示三角形</li>
+                        <li>绘制完成后，点击画布任意位置确定旋转中心点O</li>
+                        <li>输入旋转角度（0°~360°），点击「生成旋转图形」查看效果</li>
+                        <li>生成图形后，可拖动A/B/C/O点实时调整，所有线条同步更新</li>
+                        <li>可点击「清空画布」重新绘制</li>
+                    </ol>
+                </div>
+                <div class="controls">
+                    <div class="angle-control">
+                        <label>旋转角度：</label>
+                        <input type="number" id="rotationAngleInput" value="60" min="0" max="360" step="1">
+                        <span>°（逆时针）</span>
+                    </div>
+                    <button class="btn btn-primary" id="rotateBtn" disabled>生成旋转图形</button>
+                    <button class="btn btn-reset" id="clearBtn">清空画布</button>
+                </div>
+                <div id="canvas-container">
+                    <canvas id="rotationCanvas"></canvas>
+                </div>
+                <div class="status" id="statusText">
+                    请点击画布绘制△ABC的第一个顶点A
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="color-box original-color"></div>
+                        <span>原三角形 △ABC</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box rotated-color"></div>
+                        <span>旋转后三角形 △A'B'C'</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box point-color"></div>
+                        <span>旋转中心点 O</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box arc-color"></div>
+                        <span>对应点旋转弧线（绿色虚线）</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box dash-color"></div>
+                        <span>旋转中心到顶点虚线（蓝色）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阅读材料：古建筑中的旋转对称（带三张指定图片） -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 阅读材料 · 古建筑中的旋转对称</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>从敦煌洞窟到欧洲教堂，敦煌的佛教洞窟与欧洲的基督教堂相距数千米，文化和宗教背景截然不同，然而，在相距几百年的时间里，却先后出现了完全相同的一种图案：三只兔子相互追逐形成一环。大英博物馆《国际敦煌学项目》（IDP News）首次披露了这一发现。</p>
+            <div class="reading-img-row">
+                <div class="reading-img-item image-container">
+                    <img src="敦煌407窟.png" alt="敦煌407窟" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">敦煌407窟.png</div>
+                    <div class="image-caption">敦煌407窟</div>
+                </div>
+                <div class="reading-img-item image-container">
+                    <img src="德国帕德波恩大教堂.png" alt="德国帕德波恩大教堂" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">德国帕德波恩大教堂.png</div>
+                    <div class="image-caption">德国帕德波恩大教堂</div>
+                </div>
+                <div class="reading-img-item image-container">
+                    <img src="19世纪欧洲谜语书.png" alt="19世纪欧洲谜语书" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">19世纪欧洲谜语书.png</div>
+                    <div class="image-caption">19世纪欧洲谜语书</div>
+                </div>
+            </div>
+            <p>敦煌佛教洞窟中，至少有16个洞窟中出现了这一图案：三只兔子位于莲花的中心，耳朵相连，朝着不同方向，互相追逐，有的是顺时针（如305窟），有的是逆时针（如407窟）。这些洞窟建于隋朝和晚唐时期。但是，敦煌学文献中却找不到关于这一图案相关研究的记录。</p>
+            <p>而到了13世纪，在欧洲的德国、法国和英国某些基督教堂的屋顶浮雕等处，都发现了相同或相似的图案。这三只兔子是如何从中国传到欧洲的，一时成为敦煌学界的一大研究热点。有专家指出，这一图案是通过中国的纺织品经由丝绸之路传到欧洲的，但目前还没有确切的证据证实这一观点。对此，专家们还在进行研究，以期解开“三只兔子之谜”。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象能力：</strong> 从具体实例中抽象出旋转对称图形的概念。<br>
+        <strong>几何直观：</strong> 通过旋转操作感受图形的对称美。<br>
+        <strong>文化理解：</strong> 了解数学在人类文化遗产中的体现。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">旋转对称图形：旋转一定角度后能与自身重合。</div>
+            <div class="summary-item">旋转角度可以是多个，通常是最小正旋转角度的整数倍。</div>
+            <div class="summary-item">设计旋转对称图形：从基本图形通过多次旋转得到。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.3 A组第1、2、3题；设计一个旋转60°后能与自身重合的图形。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.3.3</div>
+</div>
+
+<script>
+    // ========== 原有脚本（旋转对称演示和通用函数） ==========
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+
+    // 原旋转对称演示
+    (function() {
+        const canvas = document.getElementById('rotateCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const slider = document.getElementById('angleSlider');
+        const angleDisplay = document.getElementById('angleDisplay');
+
+        function drawPattern(angle) {
+            ctx.clearRect(0, 0, 300, 300);
+            ctx.save();
+            ctx.translate(150, 150);
+            ctx.rotate(angle * Math.PI / 180);
+            // 外圆
+            ctx.beginPath();
+            ctx.arc(0, 0, 140, 0, 2 * Math.PI);
+            ctx.strokeStyle = '#0047ab';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            // 中心黑点
+            ctx.beginPath();
+            ctx.arc(0, 0, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = '#002b7f';
+            ctx.fill();
+            ctx.strokeStyle = '#001a4d';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            // 四个扇区
+            const colors = ['#add8e6', '#add8e6', '#add8e6', '#add8e6'];
+            const angles = [
+                { start: -Math.PI/2, end: 0 },
+                { start: 0, end: Math.PI/2 },
+                { start: Math.PI/2, end: Math.PI },
+                { start: Math.PI, end: 3*Math.PI/2 }
+            ];
+            angles.forEach((angleRange, i) => {
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, 140, angleRange.start, angleRange.end);
+                ctx.quadraticCurveTo(
+                    Math.cos((angleRange.start + angleRange.end)/2) * 70,
+                    Math.sin((angleRange.start + angleRange.end)/2) * 70,
+                    0, 0
+                );
+                ctx.closePath();
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                ctx.strokeStyle = '#0047ab';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.restore();
+            });
+            ctx.restore();
+        }
+
+        if (slider) {
+            slider.addEventListener('input', (e) => {
+                const val = parseInt(e.target.value);
+                angleDisplay.textContent = val + '°';
+                drawPattern(val);
+            });
+        }
+        drawPattern(0);
+    })();
+
+    // ========== 新增：△ABC旋转演示的脚本（从原演示代码移植，并适配现有环境） ==========
+    (function() {
+        const canvas = document.getElementById('rotationCanvas');
+        if (!canvas) return; // 确保元素存在
+        const ctx = canvas.getContext('2d');
+        const rotateBtn = document.getElementById('rotateBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const statusText = document.getElementById('statusText');
+        const angleInput = document.getElementById('rotationAngleInput');
+
+        // 核心变量
+        let points = []; // A(0), B(1), C(2)
+        let rotationPoint = null; // 旋转中心O
+        let rotatedTriangleDrawn = false;
+
+        // 拖动相关变量
+        let isDragging = false;
+        let dragTarget = null; // 'point', 'rotationPoint'
+        let dragIndex = -1;
+        let dragOffset = {x: 0, y: 0};
+
+        // 画布尺寸适配
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            redrawAll();
+        }
+
+        // 重绘所有元素
+        function redrawAll() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 1. 绘制A/B/C顶点
+            if (points.length > 0) {
+                const labels = ['A', 'B', 'C'];
+                points.forEach(function(point, index) {
+                    if (index < 3) {
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 8, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#888888';
+                        ctx.fill();
+                        ctx.strokeStyle = '#333';
+                        ctx.stroke();
+                        ctx.font = 'bold 20px Arial';
+                        ctx.fillStyle = '#0a3144';
+                        ctx.fillText(labels[index], point.x + 15, point.y - 15);
+                    }
+                });
+            }
+
+            // 2. 画完A/B/C立刻显示三角形
+            if (points.length === 3) {
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+                ctx.lineTo(points[1].x, points[1].y);
+                ctx.lineTo(points[2].x, points[2].y);
+                ctx.closePath();
+                ctx.strokeStyle = '#888888';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillStyle = 'rgba(136, 136, 136, 0.1)';
+                ctx.fill();
+            }
+
+            // 3. 绘制旋转中心O
+            if (rotationPoint) {
+                ctx.beginPath();
+                ctx.arc(rotationPoint.x, rotationPoint.y, 10, 0, 2 * Math.PI);
+                ctx.fillStyle = '#2675a8';
+                ctx.fill();
+                ctx.strokeStyle = '#144a6f';
+                ctx.stroke();
+                ctx.font = 'bold 22px Arial';
+                ctx.fillStyle = '#ffffff';
+                ctx.strokeStyle = '#144a6f';
+                ctx.lineWidth = 1;
+                ctx.strokeText('O', rotationPoint.x + 15, rotationPoint.y + 8);
+                ctx.fillText('O', rotationPoint.x + 15, rotationPoint.y + 8);
+
+                // O到A/B/C的蓝色虚线
+                points.forEach(function(point) {
+                    ctx.beginPath();
+                    ctx.moveTo(rotationPoint.x, rotationPoint.y);
+                    ctx.lineTo(point.x, point.y);
+                    ctx.strokeStyle = '#3498db';
+                    ctx.lineWidth = 2;
+                    ctx.setLineDash([8, 4]);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                });
+            }
+
+            // 4. 绘制旋转后的图形（含弧线）
+            if (rotatedTriangleDrawn && rotationPoint && points.length === 3) {
+                const angle = parseInt(angleInput.value) || 60;
+                const ROTATION_ANGLE = angle * Math.PI / 180;
+
+                // 计算旋转后坐标
+                const rotatedPoints = points.map(function(point) {
+                    const dx = point.x - rotationPoint.x;
+                    const dy = point.y - rotationPoint.y;
+                    return {
+                        x: rotationPoint.x + dx * Math.cos(ROTATION_ANGLE) - dy * Math.sin(ROTATION_ANGLE),
+                        y: rotationPoint.y + dx * Math.sin(ROTATION_ANGLE) + dy * Math.cos(ROTATION_ANGLE)
+                    };
+                });
+
+                // 绘制旋转后的三角形
+                ctx.beginPath();
+                ctx.moveTo(rotatedPoints[0].x, rotatedPoints[0].y);
+                ctx.lineTo(rotatedPoints[1].x, rotatedPoints[1].y);
+                ctx.lineTo(rotatedPoints[2].x, rotatedPoints[2].y);
+                ctx.closePath();
+                ctx.strokeStyle = '#e74c3c';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.fillStyle = 'rgba(231, 76, 60, 0.1)';
+                ctx.fill();
+
+                // 绘制旋转后顶点
+                const rotatedLabels = ["A'", "B'", "C'"];
+                rotatedPoints.forEach(function(point, index) {
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, 8, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#e74c3c';
+                    ctx.fill();
+                    ctx.strokeStyle = '#c0392b';
+                    ctx.stroke();
+                    ctx.font = 'bold 20px Arial';
+                    ctx.fillStyle = '#0a3144';
+                    ctx.fillText(rotatedLabels[index], point.x + 15, point.y - 15);
+                });
+
+                // O到旋转后顶点的蓝色虚线
+                rotatedPoints.forEach(function(point) {
+                    ctx.beginPath();
+                    ctx.moveTo(rotationPoint.x, rotationPoint.y);
+                    ctx.lineTo(point.x, point.y);
+                    ctx.strokeStyle = '#3498db';
+                    ctx.lineWidth = 2;
+                    ctx.setLineDash([8, 4]);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                });
+
+                // 绘制绿色虚线弧线
+                points.forEach(function(original, index) {
+                    const radius = Math.sqrt(
+                        Math.pow(original.x - rotationPoint.x, 2) + 
+                        Math.pow(original.y - rotationPoint.y, 2)
+                    );
+                    const startAngle = Math.atan2(original.y - rotationPoint.y, original.x - rotationPoint.x);
+                    const endAngle = startAngle + ROTATION_ANGLE;
+                    ctx.beginPath();
+                    ctx.arc(rotationPoint.x, rotationPoint.y, radius, startAngle, endAngle, false);
+                    ctx.strokeStyle = '#2ecc71';
+                    ctx.lineWidth = 3;
+                    ctx.setLineDash([6, 3]);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                });
+            }
+        }
+
+        // 初始化画布大小
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 点击绘制点
+        canvas.addEventListener('click', function(e) {
+            if (isDragging) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // 边界限制
+            const padding = 50;
+            if (x < padding || x > canvas.width - padding || y < padding || y > canvas.height - padding) {
+                statusText.textContent = "请在画布中间区域点击绘制点！";
+                return;
+            }
+
+            if (points.length < 3) {
+                points.push({x: x, y: y});
+                redrawAll();
+                if (points.length === 1) statusText.textContent = "已绘制顶点A，请继续绘制顶点B";
+                else if (points.length === 2) statusText.textContent = "已绘制顶点B，请继续绘制顶点C";
+                else if (points.length === 3) statusText.textContent = "已绘制△ABC，请点击画布确定旋转中心点O";
+            } else if (points.length === 3 && !rotationPoint) {
+                rotationPoint = {x: x, y: y};
+                rotateBtn.disabled = false;
+                statusText.textContent = "已设置旋转中心O，输入角度后点击「生成旋转图形」";
+                redrawAll();
+            }
+        });
+
+        // 生成旋转图形
+        rotateBtn.addEventListener('click', function() {
+            if (points.length === 3 && rotationPoint) {
+                rotatedTriangleDrawn = true;
+                statusText.textContent = "旋转图形已生成！可拖动A/B/C/O点实时调整";
+                redrawAll();
+            }
+        });
+
+        // 清空画布
+        clearBtn.addEventListener('click', function() {
+            points = [];
+            rotationPoint = null;
+            rotatedTriangleDrawn = false;
+            isDragging = false;
+            dragTarget = null;
+            rotateBtn.disabled = true;
+            statusText.textContent = "请点击画布绘制△ABC的第一个顶点A";
+            redrawAll();
+        });
+
+        // 角度变化实时更新
+        angleInput.addEventListener('input', function() {
+            let value = parseInt(this.value);
+            if (isNaN(value)) value = 60;
+            if (value < 0) value = 0;
+            if (value > 360) value = 360;
+            this.value = value;
+            if (rotatedTriangleDrawn) redrawAll();
+        });
+
+        // 拖动功能
+        function getClickedPoint(x, y) {
+            for (let i = 0; i < points.length; i++) {
+                const dist = Math.sqrt(Math.pow(x - points[i].x, 2) + Math.pow(y - points[i].y, 2));
+                if (dist < 15) return {type: 'point', index: i};
+            }
+            if (rotationPoint) {
+                const dist = Math.sqrt(Math.pow(x - rotationPoint.x, 2) + Math.pow(y - rotationPoint.y, 2));
+                if (dist < 20) return {type: 'rotationPoint'};
+            }
+            return null;
+        }
+
+        canvas.addEventListener('mousedown', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const target = getClickedPoint(x, y);
+            if (target) {
+                isDragging = true;
+                dragTarget = target.type;
+                if (target.type === 'point') {
+                    dragIndex = target.index;
+                    dragOffset.x = x - points[target.index].x;
+                    dragOffset.y = y - points[target.index].y;
+                } else {
+                    dragOffset.x = x - rotationPoint.x;
+                    dragOffset.y = y - rotationPoint.y;
+                }
+                canvas.style.cursor = 'move';
+            }
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const padding = 20;
+            if (x < padding || x > canvas.width - padding || y < padding || y > canvas.height - padding) return;
+
+            if (dragTarget === 'point') {
+                points[dragIndex] = {x: x - dragOffset.x, y: y - dragOffset.y};
+            } else if (dragTarget === 'rotationPoint') {
+                rotationPoint = {x: x - dragOffset.x, y: y - dragOffset.y};
+            }
+            redrawAll();
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            isDragging = false;
+            dragTarget = null;
+            canvas.style.cursor = 'crosshair';
+        });
+        canvas.addEventListener('mouseleave', function() {
+            isDragging = false;
+            dragTarget = null;
+            canvas.style.cursor = 'crosshair';
+        });
+    })();
+
+    // 图片加载失败处理
+    window.onload = function() {
+        // 默认展开阅读区
+        const readingContent = document.getElementById('readingContent');
+        const readingToggle = document.getElementById('readingToggle');
+        if (readingContent && readingToggle) {
+            readingContent.classList.add('expanded');
+            readingToggle.textContent = '▲';
+        }
+
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

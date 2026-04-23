@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>△ABC 绕点 O 自定义角度旋转演示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f5fb;
+            padding: 2rem;
+            color: #1e2b3a;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #0a3144;
+            margin-bottom: 1.5rem;
+            border-bottom: 4px solid #58a9d4;
+            padding-bottom: 0.5rem;
+        }
+        
+        .instructions {
+            background: #e6f2fc;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #3f8ab3;
+        }
+        
+        .instructions h3 {
+            color: #144a6f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .instructions ol {
+            padding-left: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #3f8ab3;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2675a8;
+        }
+        
+        .btn-reset {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #c0392b;
+        }
+        
+        .angle-control {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #f0f7fc;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #c9ddef;
+        }
+        
+        .angle-control label {
+            font-weight: 600;
+            color: #0a3144;
+        }
+        
+        .angle-control input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #c9ddef;
+            border-radius: 6px;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .angle-control span {
+            color: #144a6f;
+        }
+        
+        #canvas-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #f9fcff;
+            border-radius: 12px;
+            border: 1px solid #c9ddef;
+            overflow: hidden;
+        }
+        
+        #rotationCanvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            display: block;
+        }
+        
+        .status {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: #e3f0fd;
+            border-radius: 8px;
+            color: #0a3e5f;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .original-color {
+            background: #888888;
+        }
+        
+        .rotated-color {
+            background: #e74c3c;
+        }
+        
+        .point-color {
+            background: #2675a8;
+        }
+        
+        .arc-color {
+            background: #2ecc71;
+        }
+        
+        .dash-color {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>△ABC 绕点 O 自定义角度旋转演示</h1>
+        
+        <div class="instructions">
+            <h3>操作步骤：</h3>
+            <ol>
+                <li>点击画布绘制△ABC的三个顶点（依次点击A、B、C），画完立刻显示三角形</li>
+                <li>绘制完成后，点击画布任意位置确定旋转中心点O</li>
+                <li>输入旋转角度（0°~360°），点击「生成旋转图形」查看效果</li>
+                <li>生成图形后，可拖动A/B/C/O点实时调整，所有线条同步更新</li>
+                <li>可点击「清空画布」重新绘制</li>
+            </ol>
+        </div>
+        
+        <div class="controls">
+            <div class="angle-control">
+                <label>旋转角度：</label>
+                <input type="number" id="rotationAngleInput" value="60" min="0" max="360" step="1">
+                <span>°（逆时针）</span>
+            </div>
+            <button class="btn btn-primary" id="rotateBtn" disabled>生成旋转图形</button>
+            <button class="btn btn-reset" id="clearBtn">清空画布</button>
+        </div>
+        
+        <div id="canvas-container">
+            <canvas id="rotationCanvas"></canvas>
+        </div>
+        
+        <div class="status" id="statusText">
+            请点击画布绘制△ABC的第一个顶点A
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="color-box original-color"></div>
+                <span>原三角形 △ABC</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box rotated-color"></div>
+                <span>旋转后三角形 △A'B'C'</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box point-color"></div>
+                <span>旋转中心点 O</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box arc-color"></div>
+                <span>对应点旋转弧线（绿色虚线）</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box dash-color"></div>
+                <span>旋转中心到顶点虚线（蓝色）</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('rotationCanvas');
+            const ctx = canvas.getContext('2d');
+            const rotateBtn = document.getElementById('rotateBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const statusText = document.getElementById('statusText');
+            const angleInput = document.getElementById('rotationAngleInput');
+            
+            // 核心变量
+            let points = []; // A(0), B(1), C(2)
+            let rotationPoint = null; // 旋转中心O
+            let rotatedTriangleDrawn = false;
+            
+            // 拖动相关变量
+            let isDragging = false;
+            let dragTarget = null; // 'A', 'B', 'C', 'O'
+            let dragOffset = {x: 0, y: 0};
+            
+            // 画布尺寸适配
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                const rect = container.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                redrawAll();
+            }
+            
+            // 重绘所有元素（核心：保证拖动/角度变化时全部更新）
+            function redrawAll() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // 1. 绘制A/B/C顶点
+                if (points.length > 0) {
+                    const labels = ['A', 'B', 'C'];
+                    points.forEach(function(point, index) {
+                        if (index < 3) {
+                            // 绘制顶点圆点
+                            ctx.beginPath();
+                            ctx.arc(point.x, point.y, 8, 0, 2 * Math.PI);
+                            ctx.fillStyle = '#888888';
+                            ctx.fill();
+                            ctx.strokeStyle = '#333';
+                            ctx.stroke();
+                            
+                            // 绘制顶点标签（放大字体）
+                            ctx.font = 'bold 20px Arial';
+                            ctx.fillStyle = '#0a3144';
+                            ctx.fillText(labels[index], point.x + 15, point.y - 15);
+                        }
+                    });
+                }
+                
+                // 2. 画完A/B/C立刻显示三角形（核心修复点1）
+                if (points.length === 3) {
+                    ctx.beginPath();
+                    ctx.moveTo(points[0].x, points[0].y);
+                    ctx.lineTo(points[1].x, points[1].y);
+                    ctx.lineTo(points[2].x, points[2].y);
+                    ctx.closePath();
+                    ctx.strokeStyle = '#888888';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.fillStyle = 'rgba(136, 136, 136, 0.1)';
+                    ctx.fill();
+                }
+                
+                // 3. 绘制旋转中心O（文本移到左侧外部）
+                if (rotationPoint) {
+                    // 绘制O点圆点
+                    ctx.beginPath();
+                    ctx.arc(rotationPoint.x, rotationPoint.y, 10, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#2675a8';
+                    ctx.fill();
+                    ctx.strokeStyle = '#144a6f';
+                    ctx.stroke();
+                    
+                    // O标签：左侧外部 + 醒目样式
+                    ctx.font = 'bold 24px Arial';       // 大号粗体
+                    ctx.fillStyle = '#144a6f';          // 深蓝色填充（不刺眼）
+                    ctx.strokeStyle = '#ffffff';        // 白色描边增强对比
+                    ctx.lineWidth = 2;                  // 描边宽度
+                    // 位置：圆点左侧25px，垂直居中（y轴+8px适配字体基线）
+                    ctx.strokeText('O', rotationPoint.x - 25, rotationPoint.y + 8);
+                    ctx.fillText('O', rotationPoint.x - 25, rotationPoint.y + 8);
+                    
+                    // O到A/B/C的蓝色虚线
+                    points.forEach(function(point) {
+                        ctx.beginPath();
+                        ctx.moveTo(rotationPoint.x, rotationPoint.y);
+                        ctx.lineTo(point.x, point.y);
+                        ctx.strokeStyle = '#3498db';
+                        ctx.lineWidth = 2;
+                        ctx.setLineDash([8, 4]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    });
+                }
+                
+                // 4. 绘制旋转后的图形（含弧线，核心修复点2）
+                if (rotatedTriangleDrawn && rotationPoint && points.length === 3) {
+                    const angle = parseInt(angleInput.value);
+                    const ROTATION_ANGLE = angle * Math.PI / 180;
+                    
+                    // 计算旋转后坐标
+                    const rotatedPoints = points.map(function(point) {
+                        const dx = point.x - rotationPoint.x;
+                        const dy = point.y - rotationPoint.y;
+                        return {
+                            x: rotationPoint.x + dx * Math.cos(ROTATION_ANGLE) - dy * Math.sin(ROTATION_ANGLE),
+                            y: rotationPoint.y + dx * Math.sin(ROTATION_ANGLE) + dy * Math.cos(ROTATION_ANGLE)
+                        };
+                    });
+                    
+                    // 绘制旋转后的三角形
+                    ctx.beginPath();
+                    ctx.moveTo(rotatedPoints[0].x, rotatedPoints[0].y);
+                    ctx.lineTo(rotatedPoints[1].x, rotatedPoints[1].y);
+                    ctx.lineTo(rotatedPoints[2].x, rotatedPoints[2].y);
+                    ctx.closePath();
+                    ctx.strokeStyle = '#e74c3c';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    ctx.fillStyle = 'rgba(231, 76, 60, 0.1)';
+                    ctx.fill();
+                    
+                    // 绘制旋转后顶点
+                    const rotatedLabels = ["A'", "B'", "C'"];
+                    rotatedPoints.forEach(function(point, index) {
+                        ctx.beginPath();
+                        ctx.arc(point.x, point.y, 8, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#e74c3c';
+                        ctx.fill();
+                        ctx.strokeStyle = '#c0392b';
+                        ctx.stroke();
+                        
+                        ctx.font = 'bold 20px Arial';
+                        ctx.fillStyle = '#0a3144';
+                        ctx.fillText(rotatedLabels[index], point.x + 15, point.y - 15);
+                    });
+                    
+                    // O到旋转后顶点的蓝色虚线
+                    rotatedPoints.forEach(function(point) {
+                        ctx.beginPath();
+                        ctx.moveTo(rotationPoint.x, rotationPoint.y);
+                        ctx.lineTo(point.x, point.y);
+                        ctx.strokeStyle = '#3498db';
+                        ctx.lineWidth = 2;
+                        ctx.setLineDash([8, 4]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    });
+                    
+                    // 绘制绿色虚线弧线（拖动时实时跟随）
+                    points.forEach(function(original, index) {
+                        const radius = Math.sqrt(
+                            Math.pow(original.x - rotationPoint.x, 2) + 
+                            Math.pow(original.y - rotationPoint.y, 2)
+                        );
+                        const startAngle = Math.atan2(original.y - rotationPoint.y, original.x - rotationPoint.x);
+                        const endAngle = startAngle + ROTATION_ANGLE;
+                        
+                        // 绿色虚线弧线
+                        ctx.beginPath();
+                        ctx.arc(rotationPoint.x, rotationPoint.y, radius, startAngle, endAngle, false);
+                        ctx.strokeStyle = '#2ecc71';
+                        ctx.lineWidth = 3;
+                        ctx.setLineDash([6, 3]);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    });
+                }
+            }
+            
+            // 初始化画布
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // 点击绘制点
+            canvas.addEventListener('click', function(e) {
+                if (isDragging) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // 边界限制
+                const padding = 50;
+                if (x < padding || x > canvas.width - padding || 
+                    y < padding || y > canvas.height - padding) {
+                    statusText.textContent = "请在画布中间区域点击绘制点！";
+                    return;
+                }
+                
+                // 绘制A/B/C三点
+                if (points.length < 3) {
+                    points.push({x: x, y: y});
+                    redrawAll();
+                    
+                    if (points.length === 1) {
+                        statusText.textContent = "已绘制顶点A，请继续绘制顶点B";
+                    } else if (points.length === 2) {
+                        statusText.textContent = "已绘制顶点B，请继续绘制顶点C";
+                    } else if (points.length === 3) {
+                        statusText.textContent = "已绘制△ABC，请点击画布确定旋转中心点O";
+                    }
+                } 
+                // 绘制旋转中心O
+                else if (points.length === 3 && !rotationPoint) {
+                    rotationPoint = {x: x, y: y};
+                    rotateBtn.disabled = false;
+                    statusText.textContent = "已设置旋转中心O，输入角度后点击「生成旋转图形」";
+                    redrawAll();
+                }
+            });
+            
+            // 生成旋转图形
+            rotateBtn.addEventListener('click', function() {
+                if (points.length === 3 && rotationPoint) {
+                    rotatedTriangleDrawn = true;
+                    statusText.textContent = "旋转图形已生成！可拖动A/B/C/O点实时调整";
+                    redrawAll();
+                }
+            });
+            
+            // 清空画布
+            clearBtn.addEventListener('click', function() {
+                points = [];
+                rotationPoint = null;
+                rotatedTriangleDrawn = false;
+                isDragging = false;
+                dragTarget = null;
+                rotateBtn.disabled = true;
+                statusText.textContent = "请点击画布绘制△ABC的第一个顶点A";
+                redrawAll();
+            });
+            
+            // 角度变化实时更新
+            angleInput.addEventListener('input', function() {
+                let value = parseInt(this.value);
+                if (isNaN(value)) value = 60;
+                if (value < 0) value = 0;
+                if (value > 360) value = 360;
+                this.value = value;
+                
+                if (rotatedTriangleDrawn) {
+                    redrawAll();
+                }
+            });
+            
+            // ===== 拖动功能（核心：保证弧线跟随）=====
+            // 检测点击的点
+            function getClickedPoint(x, y) {
+                // 检测A/B/C
+                for (let i = 0; i < points.length; i++) {
+                    const dist = Math.sqrt(
+                        Math.pow(x - points[i].x, 2) + 
+                        Math.pow(y - points[i].y, 2)
+                    );
+                    if (dist < 15) {
+                        return {type: 'point', index: i};
+                    }
+                }
+                // 检测O
+                if (rotationPoint) {
+                    const dist = Math.sqrt(
+                        Math.pow(x - rotationPoint.x, 2) + 
+                        Math.pow(y - rotationPoint.y, 2)
+                    );
+                    if (dist < 20) {
+                        return {type: 'rotationPoint'};
+                    }
+                }
+                return null;
+            }
+            
+            // 鼠标按下
+            canvas.addEventListener('mousedown', function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const target = getClickedPoint(x, y);
+                if (target) {
+                    isDragging = true;
+                    dragTarget = target;
+                    // 计算偏移，避免拖动跳变
+                    if (target.type === 'point') {
+                        dragOffset.x = x - points[target.index].x;
+                        dragOffset.y = y - points[target.index].y;
+                    } else if (target.type === 'rotationPoint') {
+                        dragOffset.x = x - rotationPoint.x;
+                        dragOffset.y = y - rotationPoint.y;
+                    }
+                    canvas.style.cursor = 'move';
+                }
+            });
+            
+            // 鼠标移动（核心：拖动时实时重绘）
+            canvas.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // 边界限制
+                const padding = 20;
+                if (x < padding || x > canvas.width - padding || 
+                    y < padding || y > canvas.height - padding) {
+                    return;
+                }
+                
+                // 更新拖动点坐标
+                if (dragTarget.type === 'point') {
+                    points[dragTarget.index] = {
+                        x: x - dragOffset.x,
+                        y: y - dragOffset.y
+                    };
+                } else if (dragTarget.type === 'rotationPoint') {
+                    rotationPoint = {
+                        x: x - dragOffset.x,
+                        y: y - dragOffset.y
+                    };
+                }
+                
+                // 实时重绘所有元素（包括弧线）
+                redrawAll();
+            });
+            
+            // 鼠标松开/离开
+            canvas.addEventListener('mouseup', function() {
+                isDragging = false;
+                dragTarget = null;
+                canvas.style.cursor = 'crosshair';
+            });
+            canvas.addEventListener('mouseleave', function() {
+                isDragging = false;
+                dragTarget = null;
+                canvas.style.cursor = 'crosshair';
+            });
+        });
+    </script>
+</body>
+</html>

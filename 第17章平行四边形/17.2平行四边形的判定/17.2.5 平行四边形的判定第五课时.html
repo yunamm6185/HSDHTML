@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<title>17.2.5 平行四边形的判定（第五课时）| 华师版·八年级下册</title>
+<script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+.textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+.learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+.learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+.target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #2a7faa;font-weight:600;}
+.explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+.explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+.fact-card{background:#fff8e1;border-left:8px solid #f0b34b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b85c1a;}
+.theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+.example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.example-card h4{font-size:1.35rem;color:#1d6130;}
+.interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;}.interact-btn:active{transform:translateY(2px);}
+.answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+.section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+.summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+.math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+.homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+.message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+.footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}p{margin:.5rem 0;}canvas{max-width:100%;height:auto;border-radius:12px;}
+table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #dcebf5;}th{background:linear-gradient(135deg,#2675a8,#3a9fd5);color:white;}tr:nth-child(even){background:#f6fbff;}
+.figure-container{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:flex-start;margin:1rem 0;}
+.figure-container canvas{background:#fafcff;border:1px solid #d4e5f7;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.2.5</span></div>
+<h1>第17章 平行四边形</h1>
+<div class="lesson-title">17.2.5 平行四边形的判定（第五课时）——综合复习与能力提升</div>
+
+<div class="learning-targets"><h3>🎯 学习目标</h3><div class="target-grid">
+<div class="target-item"><span>1</span>系统回顾平行四边形的全部性质和判定方法</div>
+<div class="target-item"><span>2</span>掌握性质与判定的互逆关系和灵活运用</div>
+<div class="target-item"><span>3</span>能解决中考难度的综合证明题</div>
+<div class="target-item"><span>4</span>建立完整的平行四边形知识体系</div>
+</div></div>
+
+<!-- 知识网络 -->
+<div class="section-title">一、知识网络总览</div>
+
+<div style="text-align:center;margin:1rem 0;"><canvas id="network" width="560" height="220"></canvas></div>
+
+<div class="fact-card"><h4>📌 性质与判定的对应关系</h4><table style="margin:.5rem auto;">
+<tr><th colspan="2">性质 → 判定（逆命题）</th></tr>
+<tr><td><strong>对边平行</strong></td><td>→ 两组对边分别平行（定义/判定①）</td></tr>
+<tr><td><strong>对边相等</strong></td><td>→ 两组对边分别相等（判定②）</td></tr>
+<tr><td><strong>对角相等</strong></td><td>→ 两组对角分别相等（判定⑤）</td></tr>
+<tr><td><strong>对角线互相平分</strong></td><td>→ 对角线互相平分（判定④）</td></tr>
+<tr style="background:#fff8e1;"><td><strong>(组合)</strong></td><td>→ 一组对边平行且相等（判定③）</td></tr>
+</table></div>
+
+<!-- 二、典型综合题 -->
+<div class="section-title">二、综合能力提升题</div>
+
+<div class="example-card"><h4>例1 多步证明</h4>
+<p>如图，在$\square$ABCD中，E、F分别在AD、BC上，且AE=BF。连接AF、CE分别交BD于M、N。求证：MN = $\frac{1}{3}$BD。</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex1Fig" width="420" height="300"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答思路</button>
+<div id="ex1" class="answer-box">
+<p><strong>分析：</strong></p>
+<ol style="padding-left:1.5rem;">
+<li>先证四边形AECF是平行四边形（一组对边平行且相等）</li>
+<li>得 AF∥CE 且 AF=CE</li>
+<li>在△DMN中利用平行关系或相似三角形比例</li>
+<li>最终通过多次比例计算得出 MN = $\frac{1}{3}$BD</li>
+</ol>
+<p style="color:#991b1b;">💡 这类多步骤题目需要<strong>分阶段证明</strong>，逐步推进！</p>
+</div></div>
+
+<div class="example-card"><h4>例2 动点问题（中考题型）</h4>
+<p>如图，在$\square$ABCD中，AB=6，BC=8。动点P从A出发沿AD向D运动，速度为1单位/秒。过P作PE⊥AB于E。设运动时间为t秒，S<sub>△APE</sub>=S<sub>t</sub>。</p>
+<p>(1) 求S与t的函数关系式；(2) 当t为何值时，S最大？(3) 若S=3，求t值。</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex2Fig" width="400" height="280"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex2')">解答过程</button>
+<div id="ex2" class="answer-box">
+<p><strong>解：</strong></p>
+<p>(1) AP = t，设∠A = α</p>
+<p>则 PE = AP · sinα = t · sinα</p>
+<p>AE = AP · cosα = t · cosα</p>
+<p>S = $\frac{1}{2}$ × AE × PE = $\frac{1}{2}$t²sinαcosα = $\frac{1}{4}$t²sin2α</p>
+<p>(2) 当t取最大值（即P到达D点时），S最大<br>若AD=8：t∈[0,8]，当t=8时S最大</p>
+<p>(3) S=3时解方程即可</p>
+</div></div>
+
+<div class="example-card"><h4>例3 面积分割问题</h4>
+<p>P是$\square$ABCD内一点，满足PA²+PC² = PB²+PD²。求证：对角线AC⊥BD。</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex3Fig" width="380" height="320"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex3')">思路提示</button>
+<div id="ex3" class="answer-box">
+<p><strong>提示：</strong>利用<strong>平行四边形恒等式</strong>：</p>
+<p>$PA^2 + PC^2 = PB^2 + PD^2$ <strong>⇔</strong> AC ⊥ BD</p>
+<p>证明可使用坐标法或向量法。<br>
+这是<strong>平行四边形的重要结论</strong>：内接点到顶点的距离平方满足上述等式 ⟺ 对角线垂直（即菱形条件）。</p>
+</div></div>
+
+<!-- 三、练习 -->
+<div class="section-title">三、课堂练习</div>
+<div class="example-card"><h4>练习1（基础）</h4>
+<p>下列说法正确的是？<br>A) 对角线相等的四边形是平行四边形<br>B) 对角线垂直的四边形是平行四边形<br>C) 一组对边平行，另一组对边相等的四边形是平行四边形<br>D) 对角线互相平分的四边形是平行四边形</p>
+<button class="interact-btn" onclick="toggleAnswer('p1')">答案</button>
+<div id="p1" class="answer-box"><strong>D</strong>。A是矩形，B是菱形，C可能是等腰梯形。</div></div>
+
+<div class="example-card"><h4>练习2（提高）</h4>
+<p>E是$\square$ABCD边CD上的一点，延长BE交AD的延长线于F。若DE:EC=1:2，AE交BF于G。求EG:GA。</p>
+<button class="interact-btn" onclick="toggleAnswer('p2')">提示</button>
+<div id="p2" class="answer-box">提示：利用△ADE∽△FCE 或 △AGE∽△FGE 的相似比。</div></div>
+
+<!-- 易错总结 -->
+<div class="warn-box"><strong>⚠️ 常见错误汇总</strong>
+<ul style="margin-top:.5rem;padding-left:1.5rem;">
+<li><strong>混淆矩形/菱形的特殊性质：</strong>不是所有平行四边形都对角线相等或垂直</li>
+<li><strong>"一组对边平行+另一组对边相等"</strong> ≠ 平行四边形（等腰梯形反例）</li>
+<li><strong>证明时循环论证：</strong>不能把要证的结论当作已知条件用</li>
+<li><strong>漏掉分类讨论：</strong>如动点位置不同时情况可能不同</li>
+</ul></div>
+
+<!-- 小结 -->
+<div class="summary-section"><h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 17.2节完整小结——平行四边形的判定</h3>
+<table style="margin:.5rem auto;">
+<tr><th>#</th><th>名称</th><th>条件</th><th>核心依据</th></tr>
+<tr><td>①</td><td>定义法</td><td>两组对边分别平行</td><td>直接</td></tr>
+<tr><td>②</td><td>SSS法</td><td>两组对边分别相等</td><td>SSS全等</td></tr>
+<tr><td>③</td><td>一边法</td><td>一组对边平行且相等</td><td>SAS全等</td></tr>
+<tr><td>④</td><td>对角线法</td><td>对角线互相平分</td><td>SAS全等</td></tr>
+<tr><td>⑤</td><td>对角法</td><td>两组对角分别相等</td><td>邻角互补</td></tr>
+</table>
+<p style="margin-top:.8rem;text-align:center;font-size:1.15rem;">✨ <strong>五种判定，五种路径，殊途同归！</strong> ✨</p></div>
+
+<div class="math-idea"><h4>🧠 数学思想·核心素养</h4>
+<p><strong>系统思维：</strong>建立完整的知识网络图。<br><strong>互逆思维：</strong>理解性质与判定是互逆命题。<br><strong>优化策略：</strong>根据条件选择最优解题路径。<br><strong>严谨表达：</strong>规范几何证明的书写格式。</p></div>
+
+<div class="homework-box"><span style="font-size:2rem;">📚</span><span><strong>作业：</strong>课本P112 综合测试第1~5题；整理本章错题；准备第17章单元测试。</span></div>
+
+<div class="message-box"><p>✨ 五种判定各千秋，灵活选择显智慧；性质判定互为逆，平行四边形任我推！✨</p></div>
+<div class="footer-note">八年级下册 · 第17章 17.2.5 平行四边形的判定（第五课时）</div>
+</div>
+<script>
+function toggleAnswer(id){const b=document.getElementById(id);if(b)b.classList.toggle('show-answer');}
+
+// ========== 知识网络图 ==========
+function drawNetwork(){
+    const c=document.getElementById('network'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    const cx=c.width/2,cy=c.height/2;
+    
+    // 中心节点 - 平行四边形
+    ctx.beginPath();
+    ctx.arc(cx,cy,32,0,Math.PI*2);
+    ctx.fillStyle='#2675a8';
+    ctx.fill();
+    ctx.strokeStyle='#1a5075';
+    ctx.lineWidth=2;
+    ctx.stroke();
+    ctx.fillStyle='white';
+    ctx.font='bold 13px Segoe UI';
+    ctx.textAlign='center';
+    ctx.fillText('$\\square$ABCD',cx,cy+5);
+    
+    // 分支节点
+    const branches=[
+        {label:'边的判定',items:['两组对边平行','两组对边相等','一组对边平且等'],angle:-Math.PI/3,color:'#3a8b4f'},
+        {label:'角的判定',items:['两组对角相等'],angle:0,color:'#f0b34b'},
+        {label:'对角线判定',items:['互相平分'],angle:Math.PI/3,color:'#e74c3c'}
+    ];
+    
+    branches.forEach((b,i)=>{
+        const rad=b.angle-Math.PI/2;
+        const dist=130,x=cx+dist*Math.cos(rad),y=cy+dist*Math.sin(rad);
+        
+        // 连线
+        ctx.beginPath();
+        ctx.moveTo(cx+32*Math.cos(rad),cy+32*Math.sin(rad));
+        ctx.lineTo(x,y-18);
+        ctx.strokeStyle=b.color;
+        ctx.lineWidth=2.5;
+        ctx.stroke();
+        
+        // 节点圆
+        ctx.beginPath();
+        ctx.arc(x,y,24,0,Math.PI*2);
+        ctx.fillStyle=b.color+'18';
+        ctx.fill();
+        ctx.strokeStyle=b.color;
+        ctx.lineWidth=2;
+        ctx.stroke();
+        
+        ctx.fillStyle='#0b4b78';
+        ctx.font='bold 11px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(b.label,x,y+4);
+    });
+    
+    // 上方分支：性质和判定
+    [{label:'性质',x:100,y:30,color:'#2a7faa'},{label:'判定',x:460,y:30,color:'#991b1b'}].forEach(b=>{
+        ctx.beginPath();
+        ctx.moveTo(cx,cy-32);
+        ctx.lineTo(b.x,b.y+16);
+        ctx.strokeStyle=b.color;
+        ctx.lineWidth=2;
+        ctx.setLineDash([5,3]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        ctx.fillStyle=b.color;
+        ctx.font='bold 12px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(b.label,b.x,b.y+8);
+    });
+}
+
+// ========== 例1图形：多步证明 ==========
+function drawExample1(){
+    const c=document.getElementById('ex1Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    const pad=40,scale=1.0;
+    // ▱ABCD顶点
+    const A={x:pad+20*scale,y:c.height-pad-120*scale};
+    const B={x:A.x+200*scale,y:A.y};
+    const C={x:B.x-60*scale,y:B.y+140*scale};
+    const D={x:A.x-60*scale,y:C.y};
+    
+    // E在AD上(约1/3处)，F在BC上
+    const t=0.35;
+    const E={x:D.x+(A.x-D.x)*t,y:D.y+(A.y-D.y)*t};
+    const F={x:C.x+(B.x-C.x)*t,y:C.y+(B.y-C.y)*t};
+    
+    // 对角线BD上的M,N点
+    function getPointOnLine(p1,p2,ratio){
+        return{x:p1.x+(p2.x-p1.x)*ratio,y:p1.y+(p2.y-p1.y)*ratio};
+    }
+    const M=getPointOnLine(B,D,0.28);
+    const N=getPointOnLine(B,D,0.55);
+    
+    // 绘制▱ABCD
+    ctx.beginPath();
+    ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();
+    ctx.fillStyle='#e8f4fc';
+    ctx.fill();
+    ctx.strokeStyle='#2a7faa';
+    ctx.lineWidth=2;
+    ctx.stroke();
+    
+    // 对角线BD
+    ctx.beginPath();ctx.moveTo(B.x,B.y);ctx.lineTo(D.x,D.y);
+    ctx.strokeStyle='#666';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+    
+    // AF连线
+    ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(F.x,F.y);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=2;ctx.stroke();
+    
+    // CE连线  
+    ctx.beginPath();ctx.moveTo(C.x,C.y);ctx.lineTo(E.x,E.y);
+    ctx.strokeStyle='#27ae60';ctx.lineWidth=2;ctx.stroke();
+    
+    // 标注点
+    const points=[{p:A,l:'A',dx:-8,dy:-5},{p:B,l:'B',dx:5,dy:-5},
+                  {p:C,l:'C',dx:5,dy:15},{p:D,l:'D',dx:-10,dy:15},
+                  {p:E,l:'E',dx:-15,dy:5},{p:F,l:'F',dx:8,dy:5},
+                  {p:M,l:'M',dx:-18,dy:0},{p:N,l:'N',dx:8,dy:0}];
+    
+    points.forEach(pt=>{
+        ctx.beginPath();
+        ctx.arc(pt.p.x,pt.p.y,4,0,Math.PI*2);
+        ctx.fillStyle='#c0392b';ctx.fill();
+        ctx.fillStyle='#1e3b5a';
+        ctx.font='bold 14px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(pt.l,pt.p.x+pt.dx,pt.p.y+pt.dy);
+    });
+    
+    // 标记AE=BF
+    ctx.strokeStyle='#e74c3c';
+    ctx.lineWidth=1.5;
+    // AE标记
+    drawTickMark(ctx,A,E,8,3);
+    // BF标记
+    drawTickMark(ctx,B,F,8,3);
+    
+    ctx.fillStyle='#666';
+    ctx.font='12px Segoe UI';
+    ctx.textAlign='left';
+    ctx.fillText('AE = BF',20,25);
+}
+
+function drawTickMark(ctx,p1,p2,len,count){
+    const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;
+    const dx=p2.x-p1.x,dy=p2.y-p1.y;
+    const d=Math.sqrt(dx*dx+dy*dy)||1;
+    const nx=-dy/d,ny=dx/d;
+    for(let i=-Math.floor(count/2);i<=Math.floor(count/2);i++){
+        ctx.beginPath();
+        ctx.moveTo(mx+nx*(i*len*0.7)-nx*len/2,my+ny*(i*len*0.7)-ny*len/2);
+        ctx.lineTo(mx+nx*(i*len*0.7)+nx*len/2,my+ny*(i*len*0.7)+ny*len/2);
+        ctx.stroke();
+    }
+}
+
+// ========== 例2图形：动点问题 ==========
+function drawExample2(){
+    const c=document.getElementById('ex2Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    const pad=45;
+    // ▱ABCD
+    const A={x:pad,y:c.height-pad-80};
+    const B={x:A.x+180,y:A.y};
+    const C={x:B.x-50,y:B.y+120};
+    const D={x:A.x-50,y:C.y};
+    
+    // 绘制▱ABCD
+    ctx.beginPath();
+    ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();
+    ctx.fillStyle='#e8f4fc';
+    ctx.fill();
+    ctx.strokeStyle='#2a7faa';
+    ctx.lineWidth=2.5;
+    ctx.stroke();
+    
+    // P点位置（多个示意）
+    const pRatios=[0.25,0.5,0.75];
+    const colors=['#e74c3c','#27ae60','#8e44ad'];
+    const labels=['P₁','P₂','P₃'];
+    
+    pRatios.forEach((r,i)=>{
+        const P={x:D.x+(A.x-D.x)*r,y:D.y+(A.y-D.y)*r};
+        // PE垂线到AB
+        const E={x:P.x,y:A.y};
+        
+        // PE虚线
+        ctx.beginPath();ctx.moveTo(P.x,P.y);ctx.lineTo(E.x,E.y);
+        ctx.strokeStyle=colors[i];ctx.lineWidth=1.8;ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);
+        
+        // 直角标记
+        ctx.beginPath();
+        ctx.moveTo(E.x-10,E.y);ctx.lineTo(E.x-10,E.y-10);ctx.lineTo(E.x,E.y-10);
+        ctx.strokeStyle=colors[i];ctx.lineWidth=1;ctx.stroke();
+        
+        // P点
+        ctx.beginPath();ctx.arc(P.x,P.y,5,0,Math.PI*2);
+        ctx.fillStyle=colors[i];ctx.fill();
+        ctx.fillStyle='#1e3b5a';
+        ctx.font='bold 12px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(labels[i],P.x,P.y-12);
+        
+        // E点
+        if(i===1){
+            ctx.beginPath();ctx.arc(E.x,E.y,4,0,Math.PI*2);
+            ctx.fillStyle=colors[i];ctx.fill();
+            ctx.fillText('E',E.x+12,E.y+4);
+        }
+    });
+    
+    // 标注顶点
+    const vPoints=[{p:A,l:'A',dx:-8,dy:-8},{p:B,l:'B',dx:8,dy:-8},
+                   {p:C,l:'C',dx:8,dy:15},{p:D,l:'D',dx:-10,dy:15}];
+    vPoints.forEach(pt=>{
+        ctx.beginPath();ctx.arc(pt.p.x,pt.p.y,4,0,Math.PI*2);
+        ctx.fillStyle='#2a7faa';ctx.fill();
+        ctx.fillStyle='#1e3b5a';
+        ctx.font='bold 14px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(pt.l,pt.p.x+pt.dx,pt.p.y+pt.dy);
+    });
+    
+    // 运动方向箭头
+    ctx.beginPath();ctx.moveTo(A.x+10,A.y-15);ctx.lineTo(D.x+10,D.y-15);
+    ctx.strokeStyle='#999';ctx.lineWidth=1.5;
+    // 箭头
+    const ax=D.x+10,ay=A.y-15;
+    ctx.moveTo(ax+8,ay-5);ctx.lineTo(ax,ay);ctx.lineTo(ax+8,ay+5);
+    ctx.stroke();
+    ctx.fillStyle='#666';ctx.font='11px Segoe UI';ctx.textAlign='center';
+    ctx.fillText('P运动方向 →',(A.x+D.x)/2,A.y-22);
+}
+
+// ========== 例3图形：面积分割 ==========
+function drawExample3(){
+    const c=document.getElementById('ex3Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    
+    const cx=c.width/2,cy=c.height/2+20,sizeX=140,sizeY=110;
+    
+    // ▱ABCD
+    const A={x:cx-sizeX,y:cy-sizeY};
+    const B={x:cx+sizeX,y:cy-sizeY};
+    const C={x:cx+sizeX-50,y:cy+sizeY};
+    const D={x:cx-sizeX-50,y:cy+sizeY};
+    
+    // P点（内部）
+    const P={x:cx-10,y:cy+20};
+    
+    // 绘制▱ABCD
+    ctx.beginPath();
+    ctx.moveTo(A.x,A.y);ctx.lineTo(B.x,B.y);ctx.lineTo(C.x,C.y);ctx.lineTo(D.x,D.y);ctx.closePath();
+    ctx.fillStyle='#e8f4fc';
+    ctx.fill();
+    ctx.strokeStyle='#2a7faa';
+    ctx.lineWidth=2.5;
+    ctx.stroke();
+    
+    // 对角线AC
+    ctx.beginPath();ctx.moveTo(A.x,A.y);ctx.lineTo(C.x,C.y);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=2;ctx.stroke();
+    
+    // 对角线BD
+    ctx.beginPath();ctx.moveTo(B.x,B.y);ctx.lineTo(D.x,D.y);
+    ctx.strokeStyle='#27ae60';ctx.lineWidth=2;ctx.stroke();
+    
+    // PA,PB,PC,PD 虚线
+    [[P,A,'#9b59b6'],[P,B,'#e67e22'],[P,C,'#1abc9c'],[P,D,'#e74c3c']].forEach(([from,to,col])=>{
+        ctx.beginPath();ctx.moveTo(from.x,from.y);ctx.lineTo(to.x,to.y);
+        ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);
+    });
+    
+    // 顶点标注
+    const vPts=[{p:A,l:'A',dx:-10,dy:-8},{p:B,l:'B',dx:8,dy:-8},
+                {p:C,l:'C',dx:8,dy:15},{p:D,l:'D',dx:-12,dy:15}];
+    vPts.forEach(pt=>{
+        ctx.beginPath();ctx.arc(pt.p.x,pt.p.y,5,0,Math.PI*2);
+        ctx.fillStyle='#2a7faa';ctx.fill();
+        ctx.fillStyle='#1e3b5a';
+        ctx.font='bold 14px Segoe UI';
+        ctx.textAlign='center';
+        ctx.fillText(pt.l,pt.p.x+pt.dx,pt.p.y+pt.dy);
+    });
+    
+    // P点
+    ctx.beginPath();ctx.arc(P.x,P.y,6,0,Math.PI*2);
+    ctx.fillStyle='#8e44ad';ctx.fill();
+    ctx.fillStyle='#1e3b5a';
+    ctx.font='bold 15px Segoe UI';
+    ctx.textAlign='center';
+    ctx.fillText('P',P.x,P.y-12);
+    
+    // 图例说明
+    ctx.font='11px Segoe UI';ctx.textAlign='left';
+    ctx.fillStyle='#e74c3c';ctx.fillRect(c.width-120,10,12,3);ctx.fillStyle='#333';ctx.fillText('AC',c.width-103,16);
+    ctx.fillStyle='#27ae60';ctx.fillRect(c.width-120,25,12,3);ctx.fillStyle='#333';ctx.fillText('BD',c.width-103,31);
+    ctx.fillStyle='#9b59b6';ctx.fillRect(c.width-120,40,12,3);ctx.setLineDash([4,2]);ctx.beginPath();ctx.moveTo(c.width-120,46.5);ctx.lineTo(c.width-108,46.5);ctx.strokeStyle='#9b59b6';ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#333';ctx.fillText('PA,PB,PC,PD',c.width-103,50);
+}
+
+window.onload=function(){
+    drawNetwork();
+    drawExample1();
+    drawExample2();
+    drawExample3();
+};
+
+// 窗口大小变化时重绘
+window.addEventListener('resize',function(){
+    drawNetwork();
+    drawExample1();
+    drawExample2();
+    drawExample3();
+});
+</script>
+</body></html>

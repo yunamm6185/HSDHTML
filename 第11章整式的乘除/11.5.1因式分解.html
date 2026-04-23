@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.5.1 因式分解 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.5.1</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.5.1 因式分解</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解因式分解的意义</div>
+            <div class="target-item"><span>✔</span>掌握提公因式法分解因式</div>
+            <div class="target-item"><span>✔</span>能运用平方差公式、完全平方公式分解因式</div>
+        </div>
+    </div>
+
+    <!-- 导入：整式乘法与因式分解的关系 -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <p>计算下列整式乘法：</p>
+        <p>$(1)\ m(a+b+c) = \underline{\qquad\qquad}$</p>
+        <p>$(2)\ (a+b)(a-b) = \underline{\qquad\qquad}$</p>
+        <p>$(3)\ (a+b)^2 = \underline{\qquad\qquad}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('importAns')">🔍 显示结果</button>
+        <div id="importAns" class="answer-box">
+            <p>$(1)\ ma+mb+mc$</p>
+            <p>$(2)\ a^2-b^2$</p>
+            <p>$(3)\ a^2+2ab+b^2$</p>
+        </div>
+        <p>反过来，把一个多项式化成几个整式的积的形式，叫做因式分解。</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>观察下面的等式，左边是多项式，右边是整式的乘积：</p>
+        <p>$(1)\ ma+mb+mc = m(a+b+c)$</p>
+        <p>$(2)\ a^2-b^2 = (a+b)(a-b)$</p>
+        <p>$(3)\ a^2+2ab+b^2 = (a+b)^2$</p>
+        <p>这就是因式分解。</p>
+    </div>
+
+    <!-- 概括（仅此处保留英文） -->
+    <div class="concept-box">
+        <strong>概括</strong><br>
+        把一个多项式化为几个整式的积的形式，叫做多项式的因式分解（factorization）。<br>
+        多项式 $ma+mb+mc$ 中的每一项都含有一个相同的因式 $m$，我们称之为公因式（common factor）。<br>
+        提公因式法：$ma+mb+mc = m(a+b+c)$<br>
+        公式法：$a^2-b^2 = (a+b)(a-b)$，$a^2+2ab+b^2 = (a+b)^2$，$a^2-2ab+b^2 = (a-b)^2$。
+    </div>
+
+    <!-- 例1 -->
+    <div class="example-box">
+        <h4>例1 把下列多项式分解因式</h4>
+        <p>$(1)\ -5a^2+25a$； $(2)\ 3a^2-9ab$； $(3)\ 25x^2-16y^2$； $(4)\ x^2+4xy+4y^2$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>$(1)\ -5a^2+25a = -5a(a-5)$；</p>
+            <p>$(2)\ 3a^2-9ab = 3a(a-3b)$；</p>
+            <p>$(3)\ 25x^2-16y^2 = (5x)^2-(4y)^2 = (5x+4y)(5x-4y)$；</p>
+            <p>$(4)\ x^2+4xy+4y^2 = x^2+2\cdot x\cdot2y+(2y)^2 = (x+2y)^2$。</p>
+        </div>
+    </div>
+
+    <!-- 例2 -->
+    <div class="example-box">
+        <h4>例2 把下列多项式分解因式</h4>
+        <p>$(1)\ 4x^3y-4x^2y^2+xy^3$； $(2)\ 3x^3-12xy^2$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>$(1)\ 4x^3y-4x^2y^2+xy^3 = xy(4x^2-4xy+y^2) = xy(2x-y)^2$；</p>
+            <p>$(2)\ 3x^3-12xy^2 = 3x(x^2-4y^2) = 3x(x+2y)(x-2y)$。</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p class="exercise-question">1. 判断下列因式分解是否正确，如果不正确，请写出正确答案：</p>
+            <span class="sub-question">$(1)\ 4a^2-4a+1 = 4a(a-1)+1$；</span>
+            <span class="sub-question">$(2)\ x^2-4y^2 = (x+4y)(x-4y)$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) 不正确，应为 $(2a-1)^2$；</p>
+                <p class="sub-answer">(2) 不正确，应为 $(x+2y)(x-2y)$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p class="exercise-question">2. 把下列多项式分解因式：</p>
+            <span class="sub-question">$(1)\ a^2+a$；</span>
+            <span class="sub-question">$(2)\ 4ab-2a^2b$；</span>
+            <span class="sub-question">$(3)\ 9m^2-n^2$；</span>
+            <span class="sub-question">$(4)\ 2am^2-8a$；</span>
+            <span class="sub-question">$(5)\ 2a^2+4ab+2b^2$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) $a(a+1)$；</p>
+                <p class="sub-answer">(2) $2ab(2-a)$；</p>
+                <p class="sub-answer">(3) $(3m+n)(3m-n)$；</p>
+                <p class="sub-answer">(4) $2a(m-2)(m+2)$；</p>
+                <p class="sub-answer">(5) $2(a+b)^2$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：因式分解的历史（修正版） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 因式分解的起源</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>因式分解的相关研究源远流长。在代数理论的演进中，阿拉伯数学家及文艺复兴时期的欧洲学者对多项式运算的探索，为因式分解理论的初步形成奠定了基础。19世纪，抽象代数和多项式理论的兴起使因式分解的研究进入新的阶段，其理论体系不断完善，成为现代代数的重要组成部分。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>逆向思维：</strong> 因式分解是整式乘法的逆变形。<br>
+        <strong>整体思想：</strong> 提公因式时把公因式看作整体。<br>
+        <strong>转化思想：</strong> 利用公式将多项式转化为乘积形式。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">因式分解：把一个多项式化成几个整式的积的形式。</div>
+            <div class="summary-item">提公因式法：找各项的公因式，然后写成 $m(a+b+c)$ 的形式。</div>
+            <div class="summary-item">公式法：平方差公式 $a^2-b^2=(a+b)(a-b)$，完全平方公式 $a^2\pm2ab+b^2=(a\pm b)^2$。</div>
+            <div class="summary-item">分解因式必须分解到每个因式不能再分解为止。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.5 A组第1、2、3题，B组第6题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 因式分解，化积为和，整式变形的逆运算 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.5.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

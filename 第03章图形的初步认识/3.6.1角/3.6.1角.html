@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第46课时 角 | 华师版·七上 第3章</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 互动动画样式 */
+        .interactive-box {
+            background: #eef5f9;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #b8d2e8;
+            text-align: center;
+        }
+        .interactive-box h4 {
+            color: #0f4a6f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .angle-svg-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: center;
+        }
+        .angle-svg-container svg {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 200px;
+        }
+        .control-panel .slider-container {
+            width: 100%;
+        }
+        .control-panel .slider-container input {
+            width: 100%;
+        }
+        .angle-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2a7faa;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第46课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 从静态定义到动态旋转，认识角的概念与度量。</div>
+    <h2>3.6 角</h2>
+    <div class="lesson-title">第1课时 角的概念与度量</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解角的概念（静态和动态两种定义）</div>
+            <div class="target-item"><span>✔</span>掌握角的表示方法，认识平角、周角</div>
+            <div class="target-item"><span>✔</span>会进行度、分、秒的换算</div>
+            <div class="target-item"><span>✔</span>能用方位角描述方向</div>
+        </div>
+    </div>
+
+    <!-- 导入：观察图形，引出角的概念（153页） -->
+    <div class="intro-block">
+        <p>观察图3.6.1中的图形，你发现它们有什么共同的特点吗？这些图形都给出了角的形象。</p>
+    </div>
+    <div class="figure-box">
+        <img src="3.6.1.png" alt="图3.6.1">
+        <div class="figcaption">图3.6.1 角的形象</div>
+    </div>
+
+    <!-- 角的定义（静态） -->
+    <p>在小学里，我们已学习过角（angle）的概念，角是由两条有公共端点的射线组成的图形。</p>
+
+    <!-- 图3.6.2 动态定义 -->
+    <p>如图3.6.2，角更可以看成是由一条射线绕着它的端点旋转而成的图形。射线的端点叫做角的顶点，起始位置的射线叫做角的始边，终止位置的射线叫做角的终边。</p>
+    <div class="figure-box">
+        <img src="3.6.2.png" alt="图3.6.2">
+        <div class="figcaption">图3.6.2 角的动态定义</div>
+    </div>
+
+    <!-- 互动动画：角转动（左右分布，字母紧贴点） -->
+    <div class="interactive-box">
+        <h4>🔁 互动探索 · 角的变化</h4>
+        <p>拖动滑块，观察射线旋转时角度的变化。</p>
+        <div class="angle-svg-container">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <!-- 顶点 -->
+                <circle cx="200" cy="150" r="6" fill="#000" />
+                <!-- 固定射线（始边）向右 -->
+                <line x1="200" y1="150" x2="300" y2="150" stroke="#000" stroke-width="3" />
+                <!-- 可旋转射线（终边）用红色，通过JS更新 -->
+                <line id="rotatingRay" x1="200" y1="150" x2="300" y2="150" stroke="#f00" stroke-width="3" />
+                <!-- 标记顶点O：放在点正下方 -->
+                <text x="200" y="175" text-anchor="middle" font-size="20">O</text>
+                <!-- 标记始边点A：放在点正右方 -->
+                <text x="310" y="150" text-anchor="start" font-size="20">A</text>
+                <!-- 标记终边点B，随角度移动（放在点正上方） -->
+                <text id="pointBLabel" x="300" y="130" text-anchor="middle" font-size="20" fill="#f00">B</text>
+            </svg>
+            <div class="control-panel">
+                <div class="slider-container">
+                    <input type="range" id="angleSlider" min="0" max="360" value="60" step="1">
+                </div>
+                <div class="angle-display">当前角度：<span id="currentAngle">60</span>°</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 角转动交互
+        const slider = document.getElementById('angleSlider');
+        const rotatingRay = document.getElementById('rotatingRay');
+        const currentAngleSpan = document.getElementById('currentAngle');
+        const pointBLabel = document.getElementById('pointBLabel');
+
+        function updateAngle(deg) {
+            const rad = deg * Math.PI / 180;
+            const x2 = 200 + 100 * Math.cos(rad);
+            const y2 = 150 - 100 * Math.sin(rad); // y向下为正，故减去sin
+            rotatingRay.setAttribute('x2', x2);
+            rotatingRay.setAttribute('y2', y2);
+            currentAngleSpan.textContent = deg;
+            pointBLabel.setAttribute('x', x2);
+            pointBLabel.setAttribute('y', y2 - 15);
+        }
+
+        slider.addEventListener('input', function(e) {
+            updateAngle(parseInt(e.target.value));
+        });
+
+        // 初始化
+        updateAngle(60);
+    </script>
+
+    <!-- 角的表示方法（图3.6.3） -->
+    <p>如图3.6.3，角可以用几种不同的方法表示。注意用三个字母表示角时，必须把表示角的顶点的字母写在中间。</p>
+    <div class="figure-box">
+        <img src="3.6.3.png" alt="图3.6.3">
+        <div class="figcaption">图3.6.3 角的表示</div>
+    </div>
+
+    <!-- 平角和周角（图3.6.4） -->
+    <p>在图3.6.4中可以观察到两种特殊情况：第一种情况是绕着射线的端点旋转到角的终边和始边成一条直线，这时所成的角叫做<strong>平角</strong>（straight angle）；第二种情况是绕着射线的端点旋转到终边和始边再次重合，这时所成的角叫做<strong>周角</strong>（perigon）。本册教科书中的角，除了周角和平角外，一般是指小于平角的角。</p>
+    <div class="figure-box">
+        <img src="3.6.4.png" alt="图3.6.4">
+        <div class="figcaption">图3.6.4 平角与周角</div>
+    </div>
+
+    <!-- 角的度量 -->
+    <p>我们已经知道，如果把周角等分成360份，每一份就是1度的角，1度记作 \(1^{\circ}\) 。但是一个角的度数并不正好是整数，这时与长度单位一样，考虑用更小一些的单位进行表示。把1度等分成60份，每一份就是1分，记作 \(1^{\prime}\) ；把1分等分成60份，每一份就是1秒，记作 \(1^{\prime \prime}\) 。</p>
+    <p>\[1 \text{ 周角} = 360^{\circ}.\quad 1 \text{ 平角} = 180^{\circ}.\quad 1^{\circ} = 60^{\prime}, \quad 1^{\prime} = 60^{\prime \prime}.\]</p>
+
+    <!-- 角的分类（图3.6.5） -->
+    <p>从角的度数看，大于 \(0^{\circ}\) 且小于 \(90^{\circ}\) 的角是锐角；等于 \(90^{\circ}\) 的角是直角；大于 \(90^{\circ}\) 且小于 \(180^{\circ}\) 的角是钝角。如图3.6.5所示。</p>
+    <div class="figure-box">
+        <img src="3.6.5.png" alt="图3.6.5">
+        <div class="figcaption">图3.6.5 锐角、直角、钝角</div>
+    </div>
+
+    <!-- 例1 度分秒换算 -->
+    <div class="example-box" style="background: #e1f0de; border-radius:28px; padding:1.2rem 2rem; margin:1.5rem 0; border-left:8px solid #47945b;">
+        <h4>📐 例1</h4>
+        <p>（1）把 \(18^{\circ}15^{\prime}\) 化成用度表示的角；</p>
+        <p>（2）把 \(93.2^{\circ}\) 化成用度、分、秒表示的角。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx1')">📌 显示解答</button>
+        <div id="ansEx1" class="answer-box">
+            <p><strong>解：</strong>（1）先把 \(15^{\prime}\) 化成度，即 \(15^{\prime} = \left(\frac{15}{60}\right)^{\circ} = 0.25^{\circ}\)，所以 \(18^{\circ}15^{\prime} = 18.25^{\circ}\)。</p>
+            <p>（2）因为 \(1^{\circ} = 60^{\prime}\)，所以 \(0.2^{\circ} = 60^{\prime} \times 0.2 = 12^{\prime}\)，因此 \(93.2^{\circ} = 93^{\circ}12^{\prime}\)。</p>
+        </div>
+
+        <!-- 新增思考探索 -->
+        <div style="margin-top:1rem;">
+            <p><strong>思考：</strong> \(18^{\circ}15^{\prime}\) 和 \(18.15^{\circ}\) 相等吗？哪一个较大？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansThink1')">💡 显示提示</button>
+            <div id="ansThink1" class="answer-box">
+                <p>\(18^{\circ}15^{\prime} = 18.25^{\circ}\)，而 \(18.25^{\circ} > 18.15^{\circ}\)，所以 \(18^{\circ}15^{\prime}\) 更大。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 八个方向（图3.6.6） -->
+    <p>还记得如图3.6.6所示的八个方向吗？那是日常生活中经常用到的一些方向，如太阳从东方升起，明天将有4～5级西北风，等等。但实际上，八个方向还是不够用的。如果要准确地表示方向，那就要借用角的表示方式。</p>
+    <div class="figure-box">
+        <img src="3.6.6.png" alt="图3.6.6">
+        <div class="figcaption">图3.6.6 八个方向</div>
+    </div>
+
+    <!-- 例2 方向表示（图3.6.7, 3.6.8） -->
+    <p>例2 如图3.6.7，\(OA\) 是表示北偏东 \(30^{\circ}\) 方向的一条射线。仿照这条射线，画出表示下列方向的射线：</p>
+    <p>(1) 南偏东 \(25^{\circ}\)； (2) 北偏西 \(60^{\circ}\)。</p>
+    <div class="figure-box">
+        <img src="3.6.7.png" alt="图3.6.7">
+        <div class="figcaption">图3.6.7 北偏东30°</div>
+    </div>
+    <button class="interact-btn" onclick="toggleAnswer('ansEx2')">📌 显示解答</button>
+    <div id="ansEx2" class="answer-box">
+        <p><strong>解：</strong> 如图3.6.8所示。</p>
+        <div class="figure-box">
+            <img src="3.6.8.png" alt="图3.6.8">
+            <div class="figcaption">图3.6.8 方向射线</div>
+        </div>
+        <p>(1) 以正南方向的射线为始边，逆时针旋转 \(25^{\circ}\)，所成的角的终边即为所求的射线。</p>
+        <p>(2) 以正北方向的射线为始边，逆时针旋转 \(60^{\circ}\)，所成的角的终边即为所求的射线。</p>
+    </div>
+
+    <!-- 读一读：方位角（已补全课本原句） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 方位角</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>轮船、飞机等物体运动的方向与正北方向之间的夹角，即以测量点的正北方向为起始边，依顺时针方向到目标方向线之间的水平夹角称为方位角，领航员常用地图和罗盘进行方位角的测定。我们还可以以正北、正南方向为基准，描述物体运动的方向，如：“北偏东30°”“南偏东25°”“北偏西60°”。</p>
+            <p>在现代，全球定位系统（GPS）通过卫星信号实时计算方位角，为汽车导航、航海、航空提供精准的方向信息。古代的指南针和现代的手机罗盘，也都是利用方位角原理帮助我们辨认方向。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本156页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>练习</h3>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>1.</strong> 根据图3.6.6填空：</p>
+            <p>(1) 正东和正西方向所成的角是____度；<br>
+            (2) 正南和西南方向所成的角是____度；<br>
+            (3) 东北和西北方向所成的角是____度；<br>
+            (4) 正西和东南方向所成的角是____度。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansP1')">📌 显示答案</button>
+            <div id="ansP1" class="answer-box">
+                <p>(1) 180°；(2) 45°；(3) 90°；(4) 135°。</p>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>2.</strong> 用直尺画出 \(30^{\circ}\)、\(45^{\circ}\)、\(60^{\circ}\)、\(120^{\circ}\) 的角。随后用量角器量一量，比一比谁画的角最为准确。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">角的定义：静态（有公共端点的两条射线）和动态（一条射线绕端点旋转）</div>
+            <div class="summary-item">角的表示：∠AOB，∠O，∠1，∠α</div>
+            <div class="summary-item">平角=180°，周角=360°，1°=60′，1′=60″</div>
+            <div class="summary-item">锐角、直角、钝角的范围</div>
+            <div class="summary-item">方位角：北偏东、南偏西等</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>动态思想：</strong> 将角看作射线旋转的结果，为后续学习角的大小比较、三角函数做铺垫。<br>
+        <strong>数形结合：</strong> 用角度量刻画旋转量，将图形与数量联系起来。<br>
+        <strong>转化思想：</strong> 度分秒之间的换算，将高级单位转化为低级单位。<br>
+        <strong>应用意识：</strong> 方位角在实际生活中的应用（航海、地理、导航）。</p>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本P156练习第1、2题；用量角器测量身边物体的角度，并记录下来。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第46课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

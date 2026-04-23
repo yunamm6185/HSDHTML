@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动：升级版的消元法 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #e9f2f9;  /* 更柔和的背景 */
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.3);
+            padding: 2.5rem 3rem;
+            border: 1px solid #d0e2f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #4a8bb9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2rem;
+            color: #2c5778;
+            font-weight: 500;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; margin-bottom: 0.2rem; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e0edf5;
+            padding: 0.8rem 1.8rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 2rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: linear-gradient(145deg, #e6f2fc, #d0e6f5);
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #9bc2da;
+            margin: 1rem 0 2rem 0;
+            box-shadow: 0 4px 0 #7fa9c2;
+            font-weight: 600;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.5rem 0 2.5rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .example-box {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.5rem 2.5rem;
+            margin: 2rem 0;
+            border-left: 8px solid #2a7faa;
+            box-shadow: 0 8px 16px rgba(0,40,60,0.1);
+            border: 1px solid #d9e8f5;
+        }
+        .example-box h4 {
+            font-size: 1.6rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .example-box h4::before {
+            content: "📐";
+            margin-right: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.4rem 1.5rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: all 0.1s ease;
+            border: none;
+            outline: none;
+            margin: 0.8rem 0.5rem 0.8rem 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .interact-btn:hover {
+            background: #d9e9fa;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 0 #9fbede;
+        }
+        .interact-btn:active { 
+            transform: translateY(3px); 
+            box-shadow: 0 1px 0 #9fbede; 
+        }
+        .answer-box {
+            background: #f9fefe;
+            border-left: 6px solid #f4b84b;
+            padding: 1.2rem 2rem;
+            margin: 1.2rem 0 0 0;
+            display: none;
+            border-radius: 0 16px 16px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: linear-gradient(145deg, #b3d6ed, #a0c8e3);
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2.5rem 0 1.5rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+            border: 1px solid #7fadd0;
+            box-shadow: 0 6px 0 #5e8db3;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.5rem 2.5rem;
+            margin: 2.5rem 0 2rem;
+            border-left: 8px solid #2a7faa;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .math-idea h4 { 
+            font-size: 1.6rem; 
+            color: #0f4a6f; 
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .math-idea h4::before { content: "🧠"; margin-right: 0.5rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.5rem 2.5rem;
+            margin: 2rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .summary-box h4 { 
+            font-size: 1.6rem; 
+            color: #0f5669; 
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .summary-box h4::before { content: "📌"; margin-right: 0.5rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.6rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .ans-section {
+            margin: 1rem 0;
+            padding: 1.2rem;
+            background: #fdfdfd;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid #e1eef9;
+        }
+        .ans-section h5 {
+            font-size: 1.2rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+            border-left: 5px solid #47945b;
+            padding-left: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .ans-section h5::before {
+            font-size: 1.2rem;
+        }
+        .ans-section:nth-of-type(1) h5::before { content: "🔍 "; }
+        .ans-section:nth-of-type(2) h5::before { content: "📐 "; }
+        .ans-section:nth-of-type(3) h5::before { content: "✏️ "; }
+        .ans-section:nth-of-type(4) h5::before { content: "✅ "; }
+        .figure-box {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .puzzle-svg {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .rect { fill: #a8d1ff; stroke: #333; stroke-width: 1; }
+        .empty-square { fill: #fff; stroke: #333; stroke-width: 1; }
+        .figcaption {
+            font-size: 0.9rem;
+            color: #4e6b82;
+            margin-top: 0.2rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.8rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            font-size: 1.1rem;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #b0d4ee, transparent);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第6章 一次方程组 · 数学活动</span>
+    </div>
+    <h1>第6章 一次方程组</h1>
+    <div class="chapter-intro">★ 掌握整体消元技巧，灵活处理方程组中的整体关系。</div>
+    <div class="lesson-title">数学活动 · 升级版的消元法</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解整体代入思想</div>
+            <div class="target-item"><span>✔</span>能通过整体消元求未知数整体的值</div>
+            <div class="target-item"><span>✔</span>体会方程组中的整体处理方法</div>
+        </div>
+    </div>
+
+    <!-- 问题1 买花问题 -->
+    <div class="example-box">
+        <h4>问题1 · 买花问题</h4>
+        <p>小红、小莉去花店买花。小红买了3枝玫瑰、7枝康乃馨、1枝百合，花了28元；小莉买了4枝玫瑰、10枝康乃馨、1枝百合，花了32元。小莹看到后表示自己准备三种花各买2枝，则她要付多少钱？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')"><span>📌</span> 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <div class="ans-section">
+                <h5>分析</h5>
+                <p>设玫瑰、康乃馨、百合的单价分别为 \(x\) 元、 \(y\) 元、 \(z\) 元。根据题意：</p>
+                <p>\[\begin{cases} 3x+7y+z=28 \quad (1) \\ 4x+10y+z=32 \quad (2) \end{cases}\]</p>
+                <p>两式相减消去 \(z\)：\((4x+10y+z)-(3x+7y+z)=32-28\) 得 \(x+3y=4\)。 (3)</p>
+                <p>要求的是 \(2x+2y+2z\)，即 \(2(x+y+z)\)。</p>
+            </div>
+            <div class="ans-section">
+                <h5>求解</h5>
+                <p>将(1)和(2)相加：\(7x+17y+2z=60\)。又由(3) \(x=4-3y\)，代入得：</p>
+                \[
+                7(4-3y)+17y+2z=60 \implies 28-21y+17y+2z=60 \implies 28-4y+2z=60 \implies 2z-4y=32 \implies z-2y=16
+                \]
+                <p>所以 \(z=16+2y\)。则</p>
+                \[
+                2x+2y+2z = 2(4-3y) + 2y + 2(16+2y) = 8-6y+2y+32+4y = 40
+                \]
+                <p>因此小莹要付40元。这里我们不需要求出每个单价，直接得到整体值，这就是<strong>整体代入</strong>的思想。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题2 竞赛分数问题 -->
+    <div class="example-box">
+        <h4>问题2 · 竞赛分数问题</h4>
+        <p>某校举办法治常识竞赛，确定前60名参赛者获奖。原定一等奖5人，二等奖15人，三等奖40人。最后调整为一等奖10人，二等奖20人，三等奖30人。调整后一等奖平均分降低3分，二等奖平均分降低2分，三等奖平均分降低1分。已知原定二等奖的平均分比三等奖的高7分，问：调整后一等奖的平均分比二等奖的高多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans2')"><span>📌</span> 显示解答</button>
+        <div id="ans2" class="answer-box">
+            <div class="ans-section">
+                <h5>分析</h5>
+                <p>设原定一等奖、二等奖、三等奖的平均分分别为 \(a,b,c\)。则原定总分 \(5a+15b+40c\)，调整后一等奖 \(a-3\)，二等奖 \(b-2\)，三等奖 \(c-1\)，总分不变：</p>
+                \[
+                10(a-3)+20(b-2)+30(c-1)=5a+15b+40c
+                \]
+            </div>
+            <div class="ans-section">
+                <h5>化简</h5>
+                <p>展开：\(10a-30+20b-40+30c-30=5a+15b+40c\)</p>
+                <p>即 \(10a+20b+30c-100=5a+15b+40c\)</p>
+                <p>移项得 \(5a+5b-10c=100\)，除以5得 \(a+b-2c=20\)。 (1)</p>
+                <p>已知原二等奖比三等奖高7分：\(b=c+7\)。 (2)</p>
+                <p>代入(1)：\(a+(c+7)-2c=20\) ⇒ \(a - c = 13\)。</p>
+            </div>
+            <div class="ans-section">
+                <h5>求解目标</h5>
+                <p>调整后一等奖比二等奖高的分数为 \((a-3)-(b-2) = a-b-1 = (a-c) - (b-c) -1 = 13 - 7 - 1 = 5\)。</p>
+                <p>答：调整后一等奖平均分比二等奖高<strong>5分</strong>。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>整体思想：</strong> 把某个代数式看作一个整体代入，简化计算。<br>
+        <strong>化归思想：</strong> 将复杂问题转化为方程求解。<br>
+        <strong>模型思想：</strong> 从实际问题中抽象出方程组模型。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">整体代入法可以避免求具体值，直接得到整体结果</div>
+            <div class="summary-item">遇到多个未知数但只需求整体时，优先考虑整体处理</div>
+            <div class="summary-item">整体思想是代数中的重要方法</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 寻找类似可以用整体思想解决的问题，与同学交流。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 整体消元，见树又见林 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第6章 数学活动</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

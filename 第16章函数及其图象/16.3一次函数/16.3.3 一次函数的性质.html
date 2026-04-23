@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.3 一次函数的性质 | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 性质对比卡片 */
+        .prop-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;}
+        .prop-card{padding:1.2rem;border-radius:14px;text-align:center;}
+        .prop-up{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #4ade80;}
+        .prop-down{background:linear-gradient(135deg,#fee2e2,#fecaca);border:2px solid #f87171;}
+        @media(max-width:650px){.prop-cards{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.3 一次函数的性质</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解并掌握一次函数的增减性（单调性）</div>
+            <div class="target-item"><span>2</span>能利用函数性质比较函数值的大小</div>
+            <div class="target-item"><span>3</span>掌握一次函数与方程、不等式的联系</div>
+            <div class="target-item"><span>4</span>能用函数思想解决实际问题</div>
+        </div>
+    </div>
+
+    <!-- 增减性 -->
+    <div class="section-title">📊 核心性质一：增减性（单调性）</div>
+
+    <div class="fact-card">
+        <h4>📌 一次函数的增减性</h4>
+        <div class="theorem-box">
+            <p><strong>结论：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2.2;">
+                <li>当 $k > 0$ 时，$y$ 随 $x$ 的增大而<strong>增大</strong> → 称为<strong>增函数</strong></li>
+                <li>当 $k < 0$ 时，$y$ 随 $x$ 的增大而<strong>减小</strong> → 称为<strong>减函数</strong></li>
+            </ul>
+        </div>
+
+        <div class="prop-cards" style="margin-top:1rem;">
+            <div class="prop-card prop-up">
+                <p style="font-size:1.3rem;">📈 当 $k > 0$ 时</p>
+                <p style="font-size:1.1rem;"><strong>$x_1 < x_2 \Rightarrow y_1 < y_2$</strong></p>
+                <p style="margin-top:.5rem;color:#166534;">图象从左下方往右上方走<br>越往右越高<br>"左低右高"</p>
+            </div>
+            <div class="prop-card prop-down">
+                <p style="font-size:1.3rem;">📉 当 $k < 0$ 时</p>
+                <p style="font-size:1.1rem;"><strong>$x_1 < x_2 \Rightarrow y_1 > y_2$</strong></p>
+                <p style="margin-top:.5rem;color:#991b1b;">图象从左上方往右下方走<br>越往右越低<br>"左高右低"</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例1 利用增减性比较大小</h4>
+        <p>已知点 $A(x_1, y_1)$、$B(x_2, y_2)$ 在直线 $y = -3x + 2$ 上，且 $x_1 < x_2$。比较 $y_1$ 与 $y_2$ 的大小。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong>∵ 直线解析式为 $y = -3x + 2$<br>∴ 斜率 $k = -3 < 0$<br>∴ 该函数是<strong>减函数</strong>，$y$ 随 $x$ 的增大而<strong>减小</strong></p>
+            <p>又 ∵ $x_1 < x_2$<br>∴ $\boxed{y_1 > y_2}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法总结：</strong>判断增减性的关键就是看 $k$ 的正负！$k > 0$ 则同向（$x$ 大 $y$ 也大），$k < 0$ 则反向（$x$ 大 $y$ 反而小）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 与方程不等式的关系 -->
+    <div class="section-title">🔗 核心性质二：与方程、不等式的联系</div>
+
+    <div class="fact-card">
+        <h4>📌 一次函数与一次方程、一元一次不等式</h4>
+        <table>
+            <tr><th>代数问题</th><th>几何意义（从函数图象看）</th><th>示例：$y = 2x - 6$</th></tr>
+            <tr><td>解方程 $2x-6=0$</td><td>求函数图象与 $x$ 轴交点的横坐标</td><td>交点 $(3, 0)$ → $x = 3$</td></tr>
+            <tr><td>解不等式 $2x-6 > 0$</td><td>求函数图象在 $x$ 轴上方时 $x$ 的范围</td><td>$x > 3$ 时图象在 x 轴上方</td></tr>
+            <tr><td>解不等式 $2x-6 < 0$</td><td>求函数图象在 $x$ 轴下方时 $x$ 的范围</td><td>$x < 3$ 时图象在 x 轴下方</td></tr>
+        </table>
+    </div>
+
+    <div class="explore-card">
+        <h4>例2 从函数角度解方程和不等式</h4>
+        <p>已知一次函数 $y = -\frac{1}{2}x + 3$：</p>
+        <p>(1) 求方程 $-\frac12 x + 3 = 0$ 的解</p>
+        <p>(2) 求不等式 $-\frac12 x + 3 > 0$ 的解集</p>
+        <p>(3) 求不等式 $-\frac12 x + 3 < 1$ 的解集</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 令 $y = 0$：$-\frac12 x + 3 = 0$ → $x = 6$</p>
+            <p>即函数图象与 $x$ 轴交于 $(6, 0)$，方程的解为 $\boxed{x = 6}$</p>
+            <p><strong>(2)</strong> $y > 0$ 即图象在 $x$ 轴上方：</p>
+            <p>∵ $k = -\frac12 < 0$（减函数），当 $x = 6$ 时 $y = 0$</p>
+            <p>∴ 要使 $y > 0$，需要 $x <$ 交点的横坐标，即 $\boxed{x < 6}$</p>
+            <p><strong>(3)</strong> 先求 $y = 1$ 时 $x$ 的值：$-\frac12 x + 3 = 1$ → $x = 4$</p>
+            <p>要使 $y < 1$（比 $y=1$ 更低的位置），由于函数递减：<br>∵ $x$ 越大，$y$ 越小 → 需要 $x > 4$<br>∴ 不等式的解集为 $\boxed{x > 4}$</p>
+        </div>
+    </div>
+
+    <!-- 实际应用 -->
+    <div class="section-title">🎯 实际应用 — 最值问题</div>
+
+    <div class="example-card">
+        <h4>例3 方案选择问题</h4>
+        <p>某电信公司推出两种手机套餐：</p>
+        <ul style="padding-left:1.5rem;line-height:2;">
+            <li><strong>A套餐</strong>：月租费 18 元，通话费 0.2 元/分钟</li>
+            <li><strong>B套餐</strong>：无月租费，通话费 0.4 元/分钟</li>
+        </ul>
+        <p>(1) 分别写出两种套餐的费用 $y_A$、$y_B$（元）与通话时间 $x$（分钟）之间的函数关系式</p>
+        <p>(2) 如果每月通话时间为 100 分钟，选择哪种更划算？</p>
+        <p>(3) 通话多少分钟时，两种费用相同？何时选A划算？何时选B划算？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 详细解答</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong></p>
+            <p>$y_A = 0.2x + 18$（$x \geq 0$）</p>
+            <p>$y_B = 0.4x$（$x \geq 0$）</p>
+            <p><strong>(2)</strong> 当 $x = 100$ 时：</p>
+            <p>$y_A = 0.2 \times 100 + 18 =$ <strong>38 元</strong></p>
+            <p>$y_B = 0.4 \times 100 =$ <strong>40 元</strong></p>
+            <p>∴ 选 A 套餐更划算（省 2 元）</p>
+            <p><strong>(3)</strong> 令 $y_A = y_B$：</p>
+            <p>$0.2x + 18 = 0.4x$ → $0.2x = 18$ → $\boldsymbol{x = 90}$ 分钟</p>
+            <p>即通话 90 分钟时费用相同（均为 36 元）</p>
+            <p><strong>分析：</strong>观察两直线的斜率——B套餐斜率更大（0.4 > 0.2），说明 B 套餐费用增长更快！</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>当 $x < 90$ 时，$y_A > y_B$ → <strong>选 B 划算</strong></li>
+                <li>当 $x = 90$ 时，两者一样</li>
+                <li>当 $x > 90$ 时，$y_A < y_B$ → <strong>选 A 划算</strong></li>
+            </ul>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 实用建议：</strong>如果每月通话超过 90 分钟，选月租制(A)；少于 90 分钟，选无月租制(B)。这就是为什么"话务量大的用户适合包月"的道理。
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 已知一次函数 $y = (m+2)x + m^2 + m - 6$，且 $y$ 随 $x$ 的增大而减小，则 $m$ 的取值范围是？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>y 随 x 增大而减小 → 函数递减 → $k < 0$</p>
+            <p>即 $m + 2 < 0$ → $m < -2$</p>
+            <p>同时需满足 $k \neq 0$ 即 $m \neq -2$（已包含在上式中）</p>
+            <p>∴ 答案为 $m < -2$</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 如图，已知一次函数 $y = kx + b$ 的图象经过 $(-2, 0)$ 和 $(0, 3)$ 两点：</p>
+        <p>&nbsp;&nbsp;(1) 求 $k$, $b$ &nbsp;&nbsp; (2) 当 $x = -4$ 时 $y =$？ &nbsp;&nbsp; (3) 当 $y = 6$ 时 $x =$？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 过 $(0, 3)$ → $b = 3$；过 $(-2, 0)$ → $-2k + 3 = 0$ → $k = \frac32$</p>
+            <p><strong>(2)</strong> $x = -4$ → $y = \frac32 \times (-4) + 3 = -6 + 3 = \boldsymbol{-3}$</p>
+            <p><strong>(3)</strong> $y = 6$ → $\frac32 x + 3 = 6$ → $\frac32 x = 3$ → $x = \boldsymbol{2}$</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ol>
+            <li><strong>增减性</strong>：$k > 0$ → 增函数（$x$↑ $y$↑）；$k < 0$ → 减函数（$x$↑ $y$↓）</li>
+            <li><strong>与方程的联系</strong>：$y = 0$ 对应函数图象与 $x$ 轴的交点横坐标</li>
+            <li><strong>与不等式的联系</strong>：$y > 0$ / $y < 0$ 对应图象在 $x$ 轴上/下方的部分</li>
+            <li><strong>实际应用</strong>：方案选择问题中，找到两条直线的交点是关键——交点两侧分别对应不同方案更优</li>
+        </ol>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

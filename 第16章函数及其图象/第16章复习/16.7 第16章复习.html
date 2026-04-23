@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5 第16章复习 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #e6f4f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #1a3a4a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(13, 148, 136, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #a7d8e0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #14b8a6;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #0f766e;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f766e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0f766e;
+            background: linear-gradient(145deg, #e0f7fa, #b2ebf2);
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #80deea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            color: #0f766e;
+            border-left: 6px solid #0891b2;
+            padding-left: 1rem;
+            margin: 2rem 0 1rem;
+            font-weight: 700;
+        }
+        .knowledge-map {
+            background: linear-gradient(145deg, #e0f7fa, #b2ebf2);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #80deea;
+        }
+        .knowledge-map h3 {
+            font-size: 1.5rem;
+            color: #0e7490;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .map-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            border: 2px solid #14b8a6;
+            transition: all 0.3s;
+        }
+        .map-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);
+        }
+        .map-item h4 {
+            font-size: 1.2rem;
+            color: #0f766e;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #e0f7fa;
+            padding-bottom: 0.3rem;
+        }
+        .map-item ul {
+            list-style: none;
+            padding-left: 0.5rem;
+        }
+        .map-item li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin: 0.3rem 0;
+            font-size: 0.95rem;
+        }
+        .map-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #14b8a6;
+            font-weight: bold;
+        }
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .formula-card {
+            background: linear-gradient(135deg, #fef9c3, #fef3c7);
+            border: 2px solid #f59e0b;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .formula-card:hover {
+            transform: scale(1.02);
+        }
+        .formula-card h4 {
+            font-size: 1.1rem;
+            color: #b45309;
+            margin-bottom: 0.5rem;
+        }
+        .formula-card .formula {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #78350f;
+        }
+        .example-card {
+            background: #ecfdf5;
+            border-left: 8px solid #10b981;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .example-card h4 {
+            font-size: 1.35rem;
+            color: #047857;
+            margin-bottom: 0.8rem;
+        }
+        .interact-btn {
+            background: #e0f7fa;
+            border: none;
+            color: #0e7490;
+            padding: 0.35rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #4dd0e1;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+            transition: all 0.15s;
+        }
+        .interact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #4dd0e1;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #4dd0e1;
+        }
+        .answer-box {
+            background: #f0fdff;
+            border: 2px dashed #80deea;
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            margin-top: 0.6rem;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .warn-box {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            margin: 0.8rem 0;
+            color: #991b1b;
+            font-weight: 600;
+        }
+        .warn-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #dc2626;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #34d399;
+        }
+        .summary-box h4 {
+            color: #065f46;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .summary-box ul {
+            padding-left: 1.5rem;
+            line-height: 2;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem auto;
+            font-size: 0.95rem;
+        }
+        th {
+            background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+            color: white;
+            padding: 0.7rem;
+            border-radius: 8px 8px 0 0;
+        }
+        td {
+            padding: 0.65rem;
+            text-align: center;
+            border-bottom: 1px solid #e0f7fa;
+        }
+        tr:nth-child(even) td {
+            background: #f0fdff;
+        }
+        tr:hover td {
+            background: #e0f7fa;
+        }
+        p { margin: 0.5rem 0; }
+        .practice-section {
+            margin: 1.5rem 0;
+        }
+        .practice-section h3 {
+            font-size: 1.4rem;
+            color: #0e7490;
+            margin-bottom: 1rem;
+        }
+        .practice-group {
+            background: #f0fdff;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #bae6fd;
+        }
+        .practice-group h4 {
+            font-size: 1.2rem;
+            color: #0891b2;
+            margin-bottom: 0.8rem;
+        }
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1rem auto;
+            display: block;
+        }
+        .slider-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            background: #f0fdff;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 2px solid #bae6fd;
+        }
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .slider-group label {
+            font-weight: 700;
+            color: #0e7490;
+            min-width: 80px;
+        }
+        .slider-group input[type="range"] {
+            width: 150px;
+            accent-color: #0ea5e9;
+        }
+        .slider-group span {
+            font-weight: bold;
+            color: #dc2626;
+            min-width: 50px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="textbook">
+        <div class="header-meta">
+            <span>华师版 · 八年级下册</span>
+            <span>第16章 函数及其图象</span>
+        </div>
+        
+        <h1>第16章 复习</h1>
+        <div class="lesson-title">函数及其图象</div>
+        
+        <!-- 知识结构图 -->
+        <div class="section-title">一、知识结构</div>
+        <div class="knowledge-map">
+            <h3>第16章知识思维导图</h3>
+            <div class="map-grid">
+                <div class="map-item">
+                    <h4>📊 变量与函数</h4>
+                    <ul>
+                        <li>变量与常量</li>
+                        <li>自变量与因变量</li>
+                        <li>函数的定义</li>
+                        <li>函数的三种表示方法：
+                            <br>① 解析法
+                            <br>② 列表法
+                            <br>③ 图象法</li>
+                        <li>自变量的取值范围</li>
+                        <li>函数值</li>
+                    </ul>
+                </div>
+                
+                <div class="map-item">
+                    <h4>📈 函数的图象</h4>
+                    <ul>
+                        <li>平面直角坐标系</li>
+                        <li>点的坐标 $(x, y)$</li>
+                        <li>描点法画图象步骤：
+                            <br>① 列表
+                            <br>② 描点
+                            <br>③ 连线</li>
+                        <li>图象的实际意义</li>
+                    </ul>
+                </div>
+                
+                <div class="map-item">
+                    <h4>📐 一次函数</h4>
+                    <ul>
+                        <li>正比例函数 $y = kx$（$k \neq 0$）</li>
+                        <li>一次函数 $y = kx + b$（$k \neq 0$）</li>
+                        <li>一次函数的图象：直线</li>
+                        <li>一次函数的性质：
+                            <br>① $k > 0$：$y$ 随 $x$ 增大而增大
+                            <br>② $k < 0$：$y$ 随 $x$ 增大而减小</li>
+                        <li>待定系数法求解析式</li>
+                    </ul>
+                </div>
+                
+                <div class="map-item">
+                    <h4>🎯 实际应用</h4>
+                    <ul>
+                        <li>建立函数模型</li>
+                        <li>解决实际问题</li>
+                        <li>分段函数</li>
+                        <li>函数与其他知识综合</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 核心公式汇总 -->
+        <div class="section-title">二、核心公式与概念</div>
+        <div class="formula-grid">
+            <div class="formula-card">
+                <h4>正比例函数</h4>
+                <div class="formula">$y = kx$（$k \neq 0$）</div>
+            </div>
+            
+            <div class="formula-card">
+                <h4>一次函数</h4>
+                <div class="formula">$y = kx + b$（$k \neq 0$）</div>
+            </div>
+            
+            <div class="formula-card">
+                <h4>与 $x$ 轴交点坐标</h4>
+                <div class="formula">$\left(-\frac{b}{k}, 0\right)$</div>
+            </div>
+            
+            <div class="formula-card">
+                <h4>与 $y$ 轴交点坐标</h4>
+                <div class="formula">$(0, b)$</div>
+            </div>
+        </div>
+        
+        <!-- 易错点提醒 -->
+        <div class="section-title">三、易错点提醒</div>
+        <div class="warn-box">
+            <h4>⚠️ 注意事项</h4>
+            <p><strong>1. 自变量取值范围：</strong>实际问题中必须考虑实际意义。</p>
+            <p>• 分母不为零</p>
+            <p>• 被开方数非负</p>
+            <p>• 实际问题的限制（如时间、长度不能为负）</p>
+            
+            <p style="margin-top: 1rem;"><strong>2. 函数图象画法：</strong></p>
+            <p>• 一般取两点作直线（通常取与坐标轴的交点）</p>
+            <p>• 注意自变量的取值范围</p>
+            
+            <p style="margin-top: 1rem;"><strong>3. 待定系数法：</strong></p>
+            <p>• 先设函数表达式 $y = kx + b$</p>
+            <p>• 代入已知点坐标建立方程组</p>
+            <p>• 解出 $k$、$b$ 的值</p>
+            
+            <p style="margin-top: 1rem;"><strong>4. $k$ 和 $b$ 的意义：</strong></p>
+            <p>• $k$ 决定直线的倾斜方向（增减性）</p>
+            <p>• $b$ 决定直线与 $y$ 轴的交点位置</p>
+        </div>
+        
+        <!-- 典型例题 -->
+        <div class="section-title">四、典型例题</div>
+        
+        <div class="example-card">
+            <h4>例1：求自变量的取值范围</h4>
+            <p>求下列函数中自变量 $x$ 的取值范围：</p>
+            <p>（1）$y = 2x + 3$</p>
+            <p>（2）$y = \dfrac{1}{x - 2}$</p>
+            <p>（3）$y = \sqrt{x - 1}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">查看答案</button>
+            <div id="ex1" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>（1）$x$ 取全体实数</p>
+                <p>（2）由 $x - 2 \neq 0$，得 $x \neq 2$</p>
+                <p>（3）由 $x - 1 \geq 0$，得 $x \geq 1$</p>
+            </div>
+        </div>
+        
+        <div class="example-card">
+            <h4>例2：待定系数法求一次函数解析式</h4>
+            <p>已知一次函数的图象经过点 $A(1, 3)$ 和 $B(-1, -1)$，求这个函数的解析式。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">查看答案</button>
+            <div id="ex2" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>设一次函数的解析式为 $y = kx + b$</p>
+                <p>将 $A(1, 3)$ 代入，得 $k + b = 3$ ①</p>
+                <p>将 $B(-1, -1)$ 代入，得 $-k + b = -1$ ②</p>
+                <p>由①②解得：$k = 2$，$b = 1$</p>
+                <p>∴ 所求函数解析式为 $y = 2x + 1$</p>
+            </div>
+        </div>
+        
+        <div class="example-card">
+            <h4>例3：一次函数的性质</h4>
+            <p>已知一次函数 $y = (2m - 1)x + 3 - m$：</p>
+            <p>（1）当 $m$ 取何值时，$y$ 随 $x$ 的增大而增大？</p>
+            <p>（2）当 $m$ 取何值时，图象经过原点？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">查看答案</button>
+            <div id="ex3" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>（1）由 $y$ 随 $x$ 的增大而增大，得 $2m - 1 > 0$</p>
+                <p>解得 $m > \dfrac{1}{2}$</p>
+                <p style="margin-top: 0.5rem;">（2）图象经过原点，即 $x = 0$ 时 $y = 0$</p>
+                <p>将 $(0, 0)$ 代入，得 $3 - m = 0$</p>
+                <p>解得 $m = 3$</p>
+            </div>
+        </div>
+        
+        <!-- 动态演示 -->
+        <div class="section-title">五、一次函数图象探究</div>
+        <p>调整参数观察一次函数 $y = kx + b$ 的图象变化：</p>
+        
+        <div class="slider-row">
+            <div class="slider-group">
+                <label>斜率 $k$：</label>
+                <input type="range" id="kSlider" min="-3" max="3" step="0.1" value="1">
+                <span id="kValue">1</span>
+            </div>
+            <div class="slider-group">
+                <label>截距 $b$：</label>
+                <input type="range" id="bSlider" min="-5" max="5" step="0.5" value="0">
+                <span id="bValue">0</span>
+            </div>
+        </div>
+        
+        <canvas id="graphCanvas" width="600" height="400"></canvas>
+        
+        <div class="formula-card" style="text-align: left; margin-top: 1rem;">
+            <h4>📋 当前函数信息</h4>
+            <p><strong>解析式：</strong><span id="formulaDisplay">$y = x$</span></p>
+            <p><strong>与 $x$ 轴交点：</strong><span id="xIntercept">$(0, 0)$</span></p>
+            <p><strong>与 $y$ 轴交点：</strong><span id="yIntercept">$(0, 0)$</span></p>
+            <p><strong>增减性：</strong><span id="monotonicity">$y$ 随 $x$ 的增大而增大</span></p>
+        </div>
+        
+        <!-- 综合练习 -->
+        <div class="section-title">六、综合练习</div>
+        
+        <div class="practice-section">
+            <div class="practice-group">
+                <h4>A组（基础题）</h4>
+                <p><strong>1.</strong> 判断下列哪些是一次函数：</p>
+                <p>① $y = 2x$ &nbsp;&nbsp; ② $y = \dfrac{1}{x}$ &nbsp;&nbsp; ③ $y = -x + 1$ &nbsp;&nbsp; ④ $y = x^2$</p>
+                
+                <p style="margin-top: 1rem;"><strong>2.</strong> 一次函数 $y = -2x + 4$ 的图象与 $x$ 轴的交点坐标是______，与 $y$ 轴的交点坐标是______。</p>
+                
+                <p style="margin-top: 1rem;"><strong>3.</strong> 若一次函数 $y = kx + b$ 的图象经过第一、三、四象限，则 $k$______0，$b$______0。</p>
+                
+                <button class="interact-btn" onclick="toggleAnswer('practiceA')">查看答案</button>
+                <div id="practiceA" class="answer-box">
+                    <p><strong>1.</strong> ①③ 是一次函数（①是正比例函数，也是一次函数）</p>
+                    <p><strong>2.</strong> $(2, 0)$，$(0, 4)$</p>
+                    <p><strong>3.</strong> $k > 0$，$b < 0$</p>
+                </div>
+            </div>
+            
+            <div class="practice-group">
+                <h4>B组（提高题）</h4>
+                <p><strong>1.</strong> 已知 $y$ 是 $x$ 的一次函数，且当 $x = 2$ 时 $y = 4$，当 $x = -1$ 时 $y = -2$。</p>
+                <p>（1）求这个函数的解析式；</p>
+                <p>（2）当 $x = 3$ 时，$y$ 的值是多少？</p>
+                
+                <p style="margin-top: 1rem;"><strong>2.</strong> 某商店进一批水果，进货价为每千克 2 元，销售价定为每千克 4 元。</p>
+                <p>（1）写出利润 $y$（元）与销售量 $x$（千克）之间的函数关系式；</p>
+                <p>（2）如果要获利 200 元，需要销售多少千克水果？</p>
+                
+                <button class="interact-btn" onclick="toggleAnswer('practiceB')">查看答案</button>
+                <div id="practiceB" class="answer-box">
+                    <p><strong>1.</strong> （1）$y = 2x$ &nbsp;&nbsp;（2）$y = 6$</p>
+                    <p><strong>2.</strong> （1）$y = 2x$（利润 = 售价 - 进价 = 4 - 2 = 2元/千克）</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）由 $200 = 2x$，得 $x = 100$（千克）</p>
+                </div>
+            </div>
+            
+            <div class="practice-group">
+                <h4>C组（拓展题）</h4>
+                <p><strong>1.</strong> 如图，在平面直角坐标系中，直线 $l$ 经过点 $A(0, 3)$ 和点 $B(4, 0)$。</p>
+                <p>（1）求直线 $l$ 的解析式；</p>
+                <p>（2）若点 $C$ 在直线 $l$ 上，且 $\triangle OBC$ 的面积为 6，求点 $C$ 的坐标。</p>
+                
+                <p style="margin-top: 1rem;"><strong>2.</strong> 某市出租车收费标准为：起步价 8 元（不超过 3 千米），超过 3 千米后每千米加收 2 元。</p>
+                <p>（1）写出车费 $y$（元）与路程 $x$（千米，$x > 3$）的函数关系式；</p>
+                <p>（2）小明乘坐出租车走了 10 千米，应付多少车费？</p>
+                
+                <button class="interact-btn" onclick="toggleAnswer('practiceC')">查看答案</button>
+                <div id="practiceC" class="answer-box">
+                    <p><strong>1.</strong> （1）$y = -\dfrac{3}{4}x + 3$</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）$C(0, 3)$ 或 $C(8, -3)$</p>
+                    <p style="margin-top: 0.5rem;"><strong>2.</strong> （1）$y = 2(x - 3) + 8 = 2x + 2$（$x > 3$）</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）$y = 2 \times 10 + 2 = 22$（元）</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 数学文化 -->
+        <div class="section-title">七、数学文化</div>
+        <div class="summary-box">
+            <h4>📖 函数概念的发展史</h4>
+            <p>函数概念的形成经历了一个漫长的历史过程。</p>
+            <p style="margin-top: 0.5rem;"><strong>17世纪</strong>，莱布尼茨（Leibniz）首先使用了"函数"（function）一词，用来表示随曲线上的点变动的量。</p>
+            <p style="margin-top: 0.5rem;"><strong>18世纪</strong>，欧拉（Euler）给出了函数的明确定义："变量的函数是由这个变量和一些数以一定方式构成的解析表达式。"</p>
+            <p style="margin-top: 0.5rem;"><strong>19世纪</strong>，狄利克雷（Dirichlet）提出了现代函数的定义："对于在一定范围内的每一个确定的值，都有唯一确定的值与之对应，这种对应关系称为函数。"</p>
+            <p style="margin-top: 0.5rem;">函数是数学中最重要的概念之一，它不仅是描述自然规律的基本工具，也是现代数学、物理、工程等领域的基础。</p>
+        </div>
+        
+        <!-- 课堂小结 -->
+        <div class="summary-box">
+            <h4>🎯 本章核心素养</h4>
+            <ul>
+                <li><strong>数学抽象：</strong>理解变量、函数的概念，体会函数是刻画现实世界变化规律的重要模型</li>
+                <li><strong>直观想象：</strong>通过函数图象直观理解函数的性质，发展几何直观能力</li>
+                <li><strong>数学建模：</strong>能够用一次函数解决实际问题，体会函数模型的应用价值</li>
+                <li><strong>逻辑推理：</strong>掌握待定系数法，提高推理和运算能力</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // 答案显示/隐藏
+        function toggleAnswer(id) {
+            const box = document.getElementById(id);
+            if (box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                box.style.display = 'block';
+            }
+        }
+        
+        // 绘制函数图象
+        const canvas = document.getElementById('graphCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        const kSlider = document.getElementById('kSlider');
+        const bSlider = document.getElementById('bSlider');
+        const kValue = document.getElementById('kValue');
+        const bValue = document.getElementById('bValue');
+        const formulaDisplay = document.getElementById('formulaDisplay');
+        const xIntercept = document.getElementById('xIntercept');
+        const yIntercept = document.getElementById('yIntercept');
+        const monotonicity = document.getElementById('monotonicity');
+        
+        function drawGraph() {
+            const k = parseFloat(kSlider.value);
+            const b = parseFloat(bSlider.value);
+            
+            // 更新显示值
+            kValue.textContent = k.toFixed(1);
+            bValue.textContent = b.toFixed(1);
+            
+            // 更新公式显示
+            let formula = '$y = ';
+            if (k === 0) {
+                formula += b.toFixed(1);
+            } else {
+                if (k !== 1 && k !== -1) {
+                    formula += k.toFixed(1) + 'x';
+                } else if (k === 1) {
+                    formula += 'x';
+                } else {
+                    formula += '-x';
+                }
+                
+                if (b > 0) {
+                    formula += ' + ' + b.toFixed(1);
+                } else if (b < 0) {
+                    formula += ' - ' + Math.abs(b).toFixed(1);
+                }
+            }
+            formula += '$';
+            formulaDisplay.innerHTML = formula;
+            MathJax.typesetPromise([formulaDisplay]);
+            
+            // 更新交点信息
+            if (k === 0) {
+                xIntercept.textContent = '无（与 $x$ 轴平行）';
+            } else {
+                const xInt = -b / k;
+                xIntercept.innerHTML = '$\\left(' + xInt.toFixed(2) + ', 0\\right)$';
+            }
+            yIntercept.innerHTML = '$(0, ' + b.toFixed(1) + ')$';
+            MathJax.typesetPromise([xIntercept, yIntercept]);
+            
+            // 更新增减性
+            if (k > 0) {
+                monotonicity.textContent = '$y$ 随 $x$ 的增大而增大（图象上升）';
+            } else if (k < 0) {
+                monototonicity.textContent = '$y$ 随 $x$ 的增大而减小（图象下降）';
+            } else {
+                monotonicity.textContent = '常数函数（图象水平）';
+            }
+            monotonicity.textContent = k > 0 ? '$y$ 随 $x$ 的增大而增大（图象上升）' : 
+                                        (k < 0 ? '$y$ 随 $x$ 的增大而减小（图象下降）' : '常数函数（图象水平）');
+            MathJax.typesetPromise([monotonicity]);
+            
+            // 清空画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const scale = 30; // 每单位像素数
+            
+            // 绘制网格
+            ctx.strokeStyle = '#e0f7fa';
+            ctx.lineWidth = 1;
+            for (let i = -10; i <= 10; i++) {
+                // 垂直线
+                ctx.beginPath();
+                ctx.moveTo(centerX + i * scale, 0);
+                ctx.lineTo(centerX + i * scale, height);
+                ctx.stroke();
+                // 水平线
+                ctx.beginPath();
+                ctx.moveTo(0, centerY + i * scale);
+                ctx.lineTo(width, centerY + i * scale);
+                ctx.stroke();
+            }
+            
+            // 绘制坐标轴
+            ctx.strokeStyle = '#0f766e';
+            ctx.lineWidth = 2;
+            // x轴
+            ctx.beginPath();
+            ctx.moveTo(0, centerY);
+            ctx.lineTo(width, centerY);
+            ctx.stroke();
+            // y轴
+            ctx.beginPath();
+            ctx.moveTo(centerX, 0);
+            ctx.lineTo(centerX, height);
+            ctx.stroke();
+            
+            // 绘制箭头
+            ctx.fillStyle = '#0f766e';
+            // x轴箭头
+            ctx.beginPath();
+            ctx.moveTo(width - 10, centerY - 5);
+            ctx.lineTo(width, centerY);
+            ctx.lineTo(width - 10, centerY + 5);
+            ctx.fill();
+            // y轴箭头
+            ctx.beginPath();
+            ctx.moveTo(centerX - 5, 10);
+            ctx.lineTo(centerX, 0);
+            ctx.lineTo(centerX + 5, 10);
+            ctx.fill();
+            
+            // 标注坐标轴
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#0f766e';
+            ctx.fillText('x', width - 20, centerY - 10);
+            ctx.fillText('y', centerX + 10, 20);
+            ctx.fillText('O', centerX - 15, centerY + 15);
+            
+            // 绘制刻度
+            ctx.font = '12px Arial';
+            for (let i = -9; i <= 9; i++) {
+                if (i !== 0) {
+                    ctx.fillText(i.toString(), centerX + i * scale - 5, centerY + 15);
+                    ctx.fillText((-i).toString(), centerX - 20, centerY + i * scale + 4);
+                }
+            }
+            
+            // 绘制函数图象
+            if (k !== 0) {
+                ctx.strokeStyle = '#dc2626';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                
+                let first = true;
+                for (let px = 0; px <= width; px++) {
+                    const x = (px - centerX) / scale;
+                    const y = k * x + b;
+                    const py = centerY - y * scale;
+                    
+                    if (py >= 0 && py <= height) {
+                        if (first) {
+                            ctx.moveTo(px, py);
+                            first = false;
+                        } else {
+                            ctx.lineTo(px, py);
+                        }
+                    }
+                }
+                ctx.stroke();
+                
+                // 标注特殊点
+                // 与y轴交点
+                const yIntPy = centerY - b * scale;
+                if (yIntPy >= 0 && yIntPy <= height) {
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.arc(centerX, yIntPy, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // 与x轴交点
+                if (k !== 0) {
+                    const xInt = -b / k;
+                    const xIntPx = centerX + xInt * scale;
+                    if (xIntPx >= 0 && xIntPx <= width) {
+                        ctx.fillStyle = '#10b981';
+                        ctx.beginPath();
+                        ctx.arc(xIntPx, centerY, 6, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            } else {
+                // 常数函数
+                const y = b;
+                const py = centerY - y * scale;
+                if (py >= 0 && py <= height) {
+                    ctx.strokeStyle = '#dc2626';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(0, py);
+                    ctx.lineTo(width, py);
+                    ctx.stroke();
+                }
+            }
+        }
+        
+        // 绑定滑块事件
+        kSlider.addEventListener('input', drawGraph);
+        bSlider.addEventListener('input', drawGraph);
+        
+        // 初始绘制
+        drawGraph();
+    </script>
+</body>
+</html>

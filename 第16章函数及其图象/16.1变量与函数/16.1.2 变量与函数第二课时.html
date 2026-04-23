@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.1.2 变量与函数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.2rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem .5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .table-container{width:100%;margin:1.2rem 0;border-radius:16px;box-shadow:0 6px 20px rgba(13,148,136,0.15);}
+        table{width:100%;border-collapse:separate;border-spacing:0;font-size:1.15rem;border-radius:16px;overflow:hidden;border:2px solid #14b8a6;}
+        th{background:linear-gradient(135deg,#0891b2,#14b8a6);color:white;padding:0.9rem 0.5rem;font-size:1.15rem;font-weight:700;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,0.2);border-right:1px solid rgba(255,255,255,0.3);}
+        th:last-child{border-right:none;}
+        td{padding:0.9rem 0.4rem;text-align:center;border-bottom:2px solid #e0f7fa;border-right:1px solid #e0f7fa;white-space:nowrap;font-weight:600;background:#fff;color:#0f766e;}
+        td:last-child{border-right:none;}
+        tr:last-child td{border-bottom:none;}
+        tr:nth-child(even) td{background:#f0fdfa;}
+        td:hover{background:#ccfbf1;transition:background 0.2s;cursor:default;}
+        .black-cell{background:#1e293b !important;color:white !important;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul{padding-left:1.5rem;line-height:2;}
+        .summary-box li{margin:.3rem 0;}
+        p{margin:.5rem 0;}
+        .diagram-container{background:white;border-radius:16px;padding:1.5rem;margin:1rem 0;box-shadow:0 4px 15px rgba(0,0,0,0.1);text-align:center;}
+        .diagram-title{font-weight:bold;margin-bottom:1rem;color:#334155;}
+        .sub-problem{margin:1.2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,0.6);border-radius:12px;border-left:4px solid #10b981;display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px;}
+        .sub-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:1.1rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-top:2px;}
+        .sub-content{flex:1;min-width:250px;}
+        .sub-content > p{margin:0 0 0.5rem;}
+        .note-box{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-left:4px solid #8b5cf6;border-radius:12px;padding:1rem 1.5rem;margin:1rem 0;}
+        .note-title{font-weight:bold;color:#5b21b6;margin-bottom:.5rem;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.1.2 变量与函数（第二课时）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>能根据实际问题写出函数关系式</div>
+            <div class="target-item"><span>2</span>能确定函数自变量的取值范围</div>
+            <div class="target-item"><span>3</span>能根据自变量的值求函数值</div>
+            <div class="target-item"><span>4</span>理解函数在实际问题中的应用</div>
+        </div>
+    </div>
+
+    <!-- 章节导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🌍 <strong>上节课我们学习了函数的基本概念，今天我们来学习如何确定函数关系式、自变量的取值范围，以及如何求函数值。</strong></p>
+        <p>函数是刻画变量之间关系的重要工具，在实际生活中有着广泛的应用。</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="section-title">🔍 试一试</div>
+    
+    <div class="explore-card">
+        <h4>10以内正整数的加法表探索</h4>
+        <p>1. 填写如图所示的10以内正整数的加法表，然后把所有填有10的格子涂黑，你能发现什么？</p>
+        
+        <div class="table-container" style="max-width:600px;margin:1.2rem auto;">
+            <table id="additionTable" style="font-size:1.3rem;">
+                <tr>
+                    <th style="font-size:1.4rem;padding:0.6rem;">+</th>
+                    <th style="padding:0.6rem;">1</th><th style="padding:0.6rem;">2</th><th style="padding:0.6rem;">3</th><th style="padding:0.6rem;">4</th><th style="padding:0.6rem;">5</th><th style="padding:0.6rem;">6</th><th style="padding:0.6rem;">7</th><th style="padding:0.6rem;">8</th><th style="padding:0.6rem;">9</th>
+                </tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">1</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">2</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">3</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">4</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">5</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">6</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">7</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">8</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+                <tr><th style="font-size:1.4rem;padding:0.6rem;">9</th><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td><td style="padding:0.6rem;"></td></tr>
+            </table>
+        </div>
+        
+        <button class="interact-btn" id="fillTableBtn" onclick="toggleAdditionTable()">📝 显示加法表</button>
+        <button class="interact-btn" onclick="toggleAnswer('ans_try1')">💡 发现与规律</button>
+        
+        <div id="ans_try1" class="answer-box">
+            <p><strong>发现：</strong>所有填有10的格子排列成一条从左上到右下的斜线。</p>
+            <p>这些格子对应的数对是：(1,9)、(2,8)、(3,7)、(4,6)、(5,5)、(6,4)、(7,3)、(8,2)、(9,1)</p>
+            <p style="margin-top:0.8rem;"><strong>规律：</strong>每一对数的和都是10，即 <strong>横向加数 + 纵向加数 = 10</strong></p>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>问题2 — 写出函数关系式</h4>
+        <p>把这些涂黑的格子横向的加数用 $x$ 表示，纵向的加数用 $y$ 表示，试写出 $y$ 与 $x$ 之间的函数关系式。</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('ans_try2')">✍️ 解答</button>
+        
+        <div id="ans_try2" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>由题意，横向加数为 $x$，纵向加数为 $y$，它们的和为10</p>
+            <p style="text-align:center;margin:0.8rem 0;">$x + y = 10$</p>
+            <p>变形得函数关系式：</p>
+            <p style="text-align:center;margin:0.8rem 0;"><strong>$y = 10 - x$</strong></p>
+            <p>自变量 $x$ 的取值范围：<strong>$1 \leqslant x \leqslant 9$</strong>（$x$ 为正整数）</p>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>问题3 — 求函数值</h4>
+        <p>当涂黑的格子横向的加数为3时，纵向的加数是多少？当纵向的加数为6时，横向的加数是多少？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('ans_try3')">✍️ 解答</button>
+        
+        <div id="ans_try3" class="answer-box">
+            <p><strong>解：</strong>函数关系式为 $y = 10 - x$</p>
+            <p style="margin-top:0.8rem;">当 $x = 3$ 时：</p>
+            <p style="text-align:center;">$y = 10 - 3 = 7$</p>
+            <p style="margin-top:0.8rem;">当 $y = 6$ 时：</p>
+            <p style="text-align:center;">$6 = 10 - x$</p>
+            <p style="text-align:center;">$x = 10 - 6 = 4$</p>
+            <p style="margin-top:0.8rem;"><strong>答：</strong>当横向加数为3时，纵向加数是7；当纵向加数为6时，横向加数是4。</p>
+        </div>
+    </div>
+
+    <!-- 过渡衔接 -->
+    <div class="intro-card" style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-left-color:#f59e0b;">
+        <h4 style="color:#92400e;margin-bottom:0.8rem;">🔗 回顾与衔接</h4>
+        <p>刚才我们在<strong>试一试</strong>中通过加法表探索了变量之间的关系：</p>
+        <ul style="padding-left:2rem;margin:0.8rem 0;line-height:2;">
+            <li>首先<strong>发现规律</strong>——和为10的数对形成一条斜线，每一对数都满足 $x + y = 10$</li>
+            <li>然后<strong>建立函数关系式</strong>——把规律表示为 $y = 10 - x$</li>
+            <li>最后<strong>求值</strong>——给定 $x=3$，得到 $y=7$；给定 $y=6$，求得 $x=4$</li>
+        </ul>
+        <p>这里的 $y=7$（当 $x=3$ 时）和 $x=4$（当 $y=6$ 时）就是<strong>函数值</strong>。那么，什么是函数值？如何规范地求函数值呢？接下来我们学习本节课的核心概念。</p>
+    </div>
+
+    <!-- 新授：核心概念 -->
+    <div class="section-title">📚 新授知识</div>
+    
+    <div class="fact-card">
+        <h4>函数值的定义</h4>
+        <div class="theorem-box" style="font-size:1.4rem;padding:1.5rem 2rem;">
+            对于自变量 $x$ 在取值范围内的<strong>每一个确定的值</strong>，根据函数关系式，因变量 $y$ 都有<strong>唯一确定的值</strong>与之对应，这个值称为<strong>函数值</strong>。
+        </div>
+        <p style="margin-top:1rem;font-size:1.15rem;">例如：当 $x = 3$ 时，函数 $y = 10 - x$ 的函数值是 $y = 7$</p>
+    </div>
+
+    <!-- 例题讲解 -->
+    <div class="section-title">📖 例题讲解</div>
+
+    <div class="example-card">
+        <h4>例1 等腰三角形的顶角与底角</h4>
+        <p>等腰三角形顶角的度数 $y$ 是底角度数 $x$ 的函数，试写出这个函数关系式，并求出自变量 $x$ 的取值范围。</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>根据等腰三角形的性质和三角形内角和定理，可知：</p>
+            <p style="text-align:center;margin:0.8rem 0;">$2x + y = 180$</p>
+            <p>变形得函数关系式：</p>
+            <p style="text-align:center;margin:0.8rem 0;"><strong>$y = 180 - 2x$</strong></p>
+            <p style="margin-top:0.8rem;">由于等腰三角形的底角只能是锐角，所以：</p>
+            <p style="text-align:center;">$x > 0$</p>
+            <p style="text-align:center;">且 $180 - 2x > 0$（顶角也必须大于0）</p>
+            <p style="text-align:center;">$2x < 180$</p>
+            <p style="text-align:center;">$x < 90$</p>
+            <p style="margin-top:0.8rem;"><strong>所以自变量 $x$ 的取值范围是：$0 < x < 90$</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 重叠部分的面积问题</h4>
+        <p>如图16.1.3，已知等腰直角三角形 $ABC$ 的直角边长与正方形 $MNPQ$ 的边长均为10cm，$CA$ 与 $MN$ 在同一条直线上，开始时点 $A$ 与点 $M$ 重合，让 $\triangle ABC$ 向右移动，最后点 $A$ 与点 $N$ 重合。</p>
+        
+        <div class="diagram-container">
+            <div class="diagram-title">图16.1.3 动态重叠示意图（拖动滑块观察变化）</div>
+            <!-- 滑动条控制区域 -->
+            <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:15px;padding:12px;background:#f0fdfa;border-radius:12px;flex-wrap:wrap;">
+                <span style="font-weight:600;color:#0f766e;">点A移动距离 $x$：</span>
+                <button onclick="adjustSlider(-1)" style="background:#0ea5e9;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.2);">−</button>
+                <input type="range" id="slider" min="0" max="100" value="30" style="width:280px;height:8px;accent-color:#0ea5e9;cursor:pointer;">
+                <button onclick="adjustSlider(1)" style="background:#0ea5e9;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.2);">+</button>
+                <span id="distance" style="font-weight:700;color:#dc2626;font-size:1.2rem;">3.0 cm</span>
+            </div>
+            <!-- 面积显示 -->
+            <div style="text-align:center;margin-top:12px;padding:10px;background:#e0f7fa;border-radius:10px;">
+                <span style="font-size:1.25rem;font-weight:600;color:#0e7490;">重叠三角形面积 = </span>
+                <span id="area-value" style="font-size:1.35rem;font-weight:700;color:#dc2626;">4.50 cm²</span>
+            </div>
+            <!-- SVG几何图形 -->
+            <svg width="500" height="280" xmlns="http://www.w3.org/2000/svg" id="geometry-svg" style="max-width:100%;height:auto;background:linear-gradient(to bottom,#f8fafc,#ffffff);border-radius:12px;">
+                <!-- 正方形MNPQ（固定不动，边长140px = 10cm） -->
+                <line x1="220" y1="40" x2="360" y2="40" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                <line x1="360" y1="40" x2="360" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                <line x1="220" y1="180" x2="360" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                <line x1="220" y1="40" x2="220" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                <!-- 正方形顶点标签 -->
+                <text x="210" y="30" style="font-size:18px;font-weight:700;fill:#334155;">Q</text>
+                <text x="350" y="30" style="font-size:18px;font-weight:700;fill:#334155;">P</text>
+                <text x="210" y="205" style="font-size:18px;font-weight:700;fill:#334155;">M</text>
+                <text x="350" y="205" style="font-size:18px;font-weight:700;fill:#334155;">N</text>
+                <!-- 动态蓝色重叠区域 -->
+                <polygon id="blue-area" points="220 180, 220 180, 220 180" style="fill:#0ea5e9;fill-opacity:0.4;stroke:#0ea5e9;stroke-width:2.5;"></polygon>
+                <!-- 等腰直角三角形ABC（通过JS控制移动） -->
+                <g id="triangle" transform="translate(80, 40)">
+                    <!-- 直角边BC -->
+                    <line x1="0" y1="0" x2="0" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                    <!-- 直角边AC -->
+                    <line x1="0" y1="140" x2="140" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                    <!-- 斜边AB -->
+                    <line x1="0" y1="0" x2="140" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                    <!-- 直角标记（在BC右侧、AC上方） -->
+                    <rect x="0" y="125" width="15" height="15" style="stroke:#334155;stroke-width:2;fill:none;" />
+                    <!-- 三角形顶点标签 -->
+                    <text x="-8" y="-8" style="font-size:18px;font-weight:700;fill:#0f172a;">B</text>
+                    <text x="-22" y="158" style="font-size:18px;font-weight:700;fill:#0f172a;">C</text>
+                    <text x="132" y="158" style="font-size:18px;font-weight:700;fill:#0f172a;">A</text>
+                </g>
+                <!-- MA线段标注 -->
+                <line id="ma-line" x1="220" y1="220" x2="262" y2="220" style="stroke:#dc2626;stroke-width:2.5;" />
+                <text id="ma-label" x="236" y="240" style="font-size:16px;font-weight:700;fill:#dc2626;">x</text>
+            </svg>
+        </div>
+        
+        <div class="sub-problem">
+            <p><strong>(1)</strong> 试写出两图形重叠部分的面积 $y$ (cm²) 与线段 $MA$ 的长度 $x$ (cm) 之间的函数关系式。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2_1')">✍️ 解答(1)</button>
+            <div id="ex2_1" class="answer-box">
+                <p><strong>解(1)：求函数关系式</strong></p>
+                <p>由于 $\triangle ABC$ 是等腰直角三角形，重叠部分也是等腰直角三角形</p>
+                <p>当 $MA = x$ 时，重叠部分的直角边长为 $x$</p>
+                <p style="text-align:center;margin:0.8rem 0;">$y = \frac{1}{2} \times x \times x = \frac{1}{2}x^2$</p>
+                <p>自变量 $x$ 的取值范围：<strong>$0 \leqslant x \leqslant 10$</strong></p>
+                <p style="color:#666;font-size:0.9rem;margin-top:0.5rem;">（当 $x=0$ 时两图形刚开始接触，当 $x=10$ 时点 $A$ 到达点 $N$）</p>
+            </div>
+        </div>
+        
+        <div class="sub-problem">
+            <p><strong>(2)</strong> 当点 $A$ 从点 $M$ 开始向右移动1cm时，重叠部分的面积是多少？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2_2')">✍️ 解答(2)</button>
+            <div id="ex2_2" class="answer-box">
+                <p><strong>解(2)：求函数值</strong></p>
+                <p>点 $A$ 从点 $M$ 开始向右移动1cm，即 $MA = 1$，$x = 1$</p>
+                <p>当 $x = 1$ 时：</p>
+                <p style="text-align:center;">$y = \frac{1}{2} \times 1^2 = \frac{1}{2}$</p>
+                <p style="margin-top:0.8rem;"><strong>答：</strong>重叠部分的面积是 $\frac{1}{2}$ cm²</p>
+                <div class="highlight-box" style="margin-top:1rem;">
+                    <strong>💡 可以这样说：</strong>当自变量 $x = 1$ 时，函数值 $y = \frac{1}{2}$
+                </div>
+            </div>
+        </div>
+        
+        <div class="note-box">
+            <div class="note-title">🤔 思考</div>
+            <p>这里自变量 $x$ 的取值范围是什么？</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">📝 课堂练习</div>
+
+    <div class="example-card">
+        <h4>练习</h4>
+        
+        <p><strong>1.</strong> 当 $x = -2$ 和 $x = 3$ 时，分别求出下列函数的函数值：</p>
+        
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>$y = \dfrac{5x + 7}{2}$</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr1_1')">🔍 答案</button>
+                <div id="pr1_1" class="answer-box">
+                    <p>当 $x = -2$ 时：</p>
+                    <p style="text-align:center;">$y = \frac{5 \times (-2) + 7}{2} = \frac{-10 + 7}{2} = \frac{-3}{2} = -1.5$</p>
+                    <p style="margin-top:0.8rem;">当 $x = 3$ 时：</p>
+                    <p style="text-align:center;">$y = \frac{5 \times 3 + 7}{2} = \frac{15 + 7}{2} = \frac{22}{2} = 11$</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>$y = x^2 - x - 2$</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr1_2')">🔍 答案</button>
+                <div id="pr1_2" class="answer-box">
+                    <p>当 $x = -2$ 时：</p>
+                    <p style="text-align:center;">$y = (-2)^2 - (-2) - 2 = 4 + 2 - 2 = 4$</p>
+                    <p style="margin-top:0.8rem;">当 $x = 3$ 时：</p>
+                    <p style="text-align:center;">$y = 3^2 - 3 - 2 = 9 - 3 - 2 = 4$</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top:1.5rem;"><strong>2.</strong> 写出下列各问题中的函数关系式及自变量的取值范围：</p>
+        
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>某地民用水费基础标准（每月每户用水不超过18 t）为每吨2.91元，在这个范围内，水费 $y$（元）是用水吨数 $x$ 的函数</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr2_1')">🔍 答案</button>
+                <div id="pr2_1" class="answer-box">
+                    <p><strong>函数关系式：</strong>$y = 2.91x$</p>
+                    <p><strong>自变量取值范围：</strong>$0 \leqslant x \leqslant 18$</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>已知等腰三角形的面积为20 cm²，设它的底边长为 $x$ cm，底边上的高为 $y$ cm，$y$ 是 $x$ 的函数</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr2_2')">🔍 答案</button>
+                <div id="pr2_2" class="answer-box">
+                    <p>由三角形面积公式：$\frac{1}{2}xy = 20$</p>
+                    <p><strong>函数关系式：</strong>$y = \frac{40}{x}$</p>
+                    <p><strong>自变量取值范围：</strong>$x > 0$</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-problem">
+            <span class="sub-number">3</span>
+            <div class="sub-content">
+                <p>在一个半径为10 cm的圆形纸片中剪去一个半径为 $r$ cm的同心圆，得到一个圆环，设圆环的面积为 $S$ cm²，$S$ 是 $r$ 的函数</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr2_3')">🔍 答案</button>
+                <div id="pr2_3" class="answer-box">
+                    <p>圆环面积 = 大圆面积 - 小圆面积</p>
+                    <p style="text-align:center;">$S = \pi \times 10^2 - \pi \times r^2 = 100\pi - \pi r^2 = \pi(100 - r^2)$</p>
+                    <p><strong>自变量取值范围：</strong>$0 < r < 10$</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="margin-top:1.5rem;"><strong>3.</strong> 一架雪橇沿一斜坡滑下，经过时间 $t$（s）滑下的路程 $s$（m）由下式给出：</p>
+        <p style="text-align:center;margin:0.8rem 0;font-size:1.2rem;">$s = 10t + 2t^2$</p>
+        <p>假如从坡顶滑到坡底的时间为8 s，试问：坡长为多少？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('pr3')">🔍 答案</button>
+        <div id="pr3" class="answer-box">
+            <p>当 $t = 8$ 时：</p>
+            <p style="text-align:center;">$s = 10 \times 8 + 2 \times 8^2 = 80 + 2 \times 64 = 80 + 128 = 208$</p>
+            <p style="margin-top:0.8rem;"><strong>答：</strong>坡长为208米</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>函数关系式</strong>：用数学式子表示两个变量之间的关系</li>
+            <li><strong>自变量的取值范围</strong>：要使函数有意义且符合实际意义</li>
+            <li><strong>函数值</strong>：给定自变量的值，根据函数关系式求出的因变量的值</li>
+            <li><strong>确定取值范围的两个要点</strong>：①使解析式有意义 ②符合实际意义</li>
+        </ul>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="fact-card">
+        <h4>📝 作业布置</h4>
+        <p>1. 课本16.1A组第1、2、3题</p>
+        <p>2. 复习本节课所学内容，整理函数关系式、自变量取值范围、函数值的概念</p>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="intro-card" style="text-align:center;margin-top:2rem;">
+        <p style="font-size:1.2rem;">🌟 <strong>函数是描述变化规律的数学语言，学好函数，感受数学之美！</strong></p>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if(el.style.display === 'block' || el.style.display === '') {
+        var computed = window.getComputedStyle(el).display;
+        if(computed === 'block' || el.dataset.shown === 'yes') {
+            el.style.display = 'none';
+            return;
+        }
+    }
+    el.style.display = 'block';
+    el.dataset.shown = 'yes';
+    if(window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([el]).catch(function(err){console.log('err',err)});
+    }
+}
+
+// 切换加法表显示/隐藏
+let tableFilled = false;
+function toggleAdditionTable() {
+    const table = document.getElementById('additionTable');
+    const rows = table.querySelectorAll('tr');
+    const btn = document.getElementById('fillTableBtn');
+    
+    if (!tableFilled) {
+        // 填充表格
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].querySelectorAll('td');
+            const rowNum = i;
+            for (let j = 0; j < cells.length; j++) {
+                const colNum = j + 1;
+                const sum = rowNum + colNum;
+                cells[j].textContent = sum;
+                if (sum === 10) {
+                    cells[j].classList.add('black-cell');
+                }
+            }
+        }
+        tableFilled = true;
+        btn.textContent = '🔄 隐藏加法表';
+    } else {
+        // 清空表格
+        for (let i = 1; i < rows.length; i++) {
+            const cells = rows[i].querySelectorAll('td');
+            for (let j = 0; j < cells.length; j++) {
+                cells[j].textContent = '';
+                cells[j].classList.remove('black-cell');
+            }
+        }
+        tableFilled = false;
+        btn.textContent = '📝 显示加法表';
+    }
+}
+
+// 调整滑动条值
+function adjustSlider(delta) {
+    const slider = document.getElementById('slider');
+    let newValue = parseInt(slider.value) + delta;
+    if (newValue < 0) newValue = 0;
+    if (newValue > 100) newValue = 100;
+    slider.value = newValue;
+    slider.dispatchEvent(new Event('input'));
+}
+
+// SVG滑动条控制函数
+(function initOverlapSlider() {
+    const slider = document.getElementById('slider');
+    const distanceText = document.getElementById('distance');
+    const areaValue = document.getElementById('area-value');
+    const triangle = document.getElementById('triangle');
+    const blueArea = document.getElementById('blue-area');
+    const maLine = document.getElementById('ma-line');
+    const maLabel = document.getElementById('ma-label');
+    
+    if (!slider) return;
+    
+    // 坐标系：M点在(220, 180)，正方形边长140px对应10cm
+    const M_X = 220;
+    const M_Y = 180;
+    const SCALE = 14; // 1cm = 14px
+    const TRIANGLE_SIZE = 140; // 三角形直角边长（px）
+    const INITIAL_C_X = 80; // C点初始x坐标（A在220，C在80，相距140）
+    
+    function updateGeometry() {
+        const x_cm = parseInt(slider.value) / 10; // 转换为cm (0~10)
+        const moveX = x_cm * SCALE; // 转换为像素
+        
+        // 更新距离显示
+        distanceText.textContent = x_cm.toFixed(1) + ' cm';
+        
+        // 移动三角形：从初始位置向右移动
+        // 初始：C在80，A在220（与M重合）
+        // 移动后：C在(80 + moveX)，A在(220 + moveX)
+        const translateX = INITIAL_C_X + moveX;
+        triangle.setAttribute('transform', `translate(${translateX}, 40)`);
+        
+        // 计算重叠区域
+        // 当三角形向右移动时，A点进入正方形内部
+        // 重叠区域的直角边长 = min(moveX, TRIANGLE_SIZE) 当 moveX <= TRIANGLE_SIZE
+        // 但由于A从M开始移动，重叠区域的边长就是 moveX (即x_cm * SCALE)
+        const overlapSize = Math.min(moveX, TRIANGLE_SIZE);
+        
+        if (moveX <= 0) {
+            // 无重叠
+            blueArea.setAttribute('points', `${M_X} ${M_Y}, ${M_X} ${M_Y}, ${M_X} ${M_Y}`);
+            areaValue.textContent = '0 cm²';
+        } else {
+            // 重叠区域是等腰直角三角形
+            // 顶点：M(M_X, M_Y), QM边上的点(M_X, M_Y - overlapSize), A点(M_X + overlapSize, M_Y)
+            const intersectY = M_Y - overlapSize;
+            blueArea.setAttribute('points', `${M_X} ${M_Y}, ${M_X} ${intersectY}, ${M_X + overlapSize} ${M_Y}`);
+            
+            // 计算并显示面积 y = (1/2) * x²
+            const area = 0.5 * x_cm * x_cm;
+            areaValue.textContent = area.toFixed(2) + ' cm²';
+        }
+        
+        // 更新MA线段标注位置（从M到当前A点位置）
+        if (x_cm > 0.3) {
+            maLine.setAttribute('x1', M_X);
+            maLine.setAttribute('y1', 220);
+            maLine.setAttribute('x2', M_X + moveX);
+            maLine.setAttribute('y2', 220);
+            maLabel.setAttribute('x', M_X + moveX/2 - 5);
+            maLabel.setAttribute('y', 240);
+            maLine.style.display = 'block';
+            maLabel.style.display = 'block';
+        } else {
+            maLine.style.display = 'none';
+            maLabel.style.display = 'none';
+        }
+    }
+    
+    // 绑定事件
+    slider.addEventListener('input', updateGeometry);
+    
+    // 初始化（设置滑块初始值为30，对应x=3cm）
+    slider.value = 30;
+    updateGeometry();
+})();
+</script>
+</body>
+</html>

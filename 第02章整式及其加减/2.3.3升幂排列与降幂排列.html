@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第30课时 升幂排列与降幂排列 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 术语高亮 */
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.3 整式</h2>
+    <div class="lesson-title">第3课时 升幂排列与降幂排列</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解多项式按某一字母升幂或降幂排列的意义</div>
+            <div class="target-item"><span>✔</span>能熟练地将多项式按指定字母进行升幂或降幂排列</div>
+            <div class="target-item"><span>✔</span>掌握重新排列时各项符号的处理方法</div>
+            <div class="target-item"><span>✔</span>体会有序思考与分类讨论的数学思想</div>
+        </div>
+    </div>
+
+    <!-- 引入：通过加法交换律引出排列 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 运用加法交换律，可以任意交换多项式各项的位置。将多项式 \(x^2 + x + 1\) 中各项的位置交换，可以得到哪些不同的排列方式？在众多的排列方式中，你认为哪几种比较整齐？</p>
+    </div>
+
+    <!-- 试一试：学生活动，引出两种排列 -->
+    <div class="think-box">
+        <p><strong>试一试：</strong> 交换多项式 \(x^2 + x + 1\) 各项的位置，写出几种不同的排列方式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('try')">显示示例</button>
+        <div id="answerTry" class="answer-box">
+            <div class="answer-line">例如：\(x^2 + x + 1\)，\(x^2 + 1 + x\)，\(x + x^2 + 1\)，\(x + 1 + x^2\)，\(1 + x^2 + x\)，\(1 + x + x^2\)。</div>
+            <div class="answer-line">其中 \(x^2 + x + 1\)（按 \(x\) 的指数从大到小）和 \(1 + x + x^2\)（按 \(x\) 的指数从小到大）比较整齐。</div>
+        </div>
+    </div>
+
+    <!-- 概括：升幂排列与降幂排列的定义 -->
+    <div class="rule-box">
+        <div class="title">📌 升幂排列与降幂排列</div>
+        <p><span class="term-highlight">降幂排列</span>：把一个多项式的各项按某一个字母的指数从大到小的顺序排列。</p>
+        <p><span class="term-highlight">升幂排列</span>：把一个多项式的各项按某一个字母的指数从小到大的顺序排列。</p>
+        <p>例如，多项式 \(x^2 + x + 1\) 是按 \(x\) 的降幂排列，\(1 + x + x^2\) 是按 \(x\) 的升幂排列。</p>
+        <p>又如，多项式 \(5x^2 + 3x - 2x^3 - 1\)，按 \(x\) 的降幂排列是 \(-2x^3 + 5x^2 + 3x - 1\)；按 \(x\) 的升幂排列是 \(-1 + 3x + 5x^2 - 2x^3\)。</p>
+    </div>
+
+    <!-- 例4（课本P100） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex4">
+        <p><strong>例4</strong> 把多项式 \(2r - 1 + \dfrac{4}{3}r^3 - r^2\) 按 \(r\) 的升幂排列。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示答案</button>
+        <div id="exampleAnswer4" class="answer-box">
+            <div class="answer-line">按 \(r\) 的升幂排列为：</div>
+            <div class="answer-line">\(-1 + 2r - r^2 + \dfrac{4}{3}r^3\)。</div>
+        </div>
+    </div>
+
+    <!-- 例5（课本P100-101）完整版 -->
+    <div class="example-box" id="ex5">
+        <p><strong>例5</strong> 把多项式 \(a^3 + b^2 - 3a^2b - 3ab^3\) 重新排列：</p>
+        <p>(1) 按 \(a\) 的升幂排列； (2) 按 \(a\) 的降幂排列。</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(5)">显示(1)(2)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(6)">显示按b排列</button>
+        </div>
+        <div id="exampleAnswer5" class="answer-box">
+            <div class="answer-line">(1) 按 \(a\) 的升幂排列为：\(b^2 - 3ab^3 - 3a^2b + a^3\)。</div>
+            <div class="answer-line">(2) 按 \(a\) 的降幂排列为：\(a^3 - 3a^2b - 3ab^3 + b^2\)。</div>
+        </div>
+        <div id="exampleAnswer6" class="answer-box">
+            <div class="answer-line"><strong>试试看，将这个多项式按 \(b\) 的升幂（或降幂）排列：</strong></div>
+            <div class="answer-line">原多项式各项中，\(b\) 的指数分别为：0（\(a^3\)）、1（\(-3a^2b\)）、2（\(b^2\)）、3（\(-3ab^3\)）。</div>
+            <div class="answer-line">按 \(b\) 的升幂排列（指数从小到大）应为：\(a^3 - 3a^2b + b^2 - 3ab^3\)。</div>
+            <div class="answer-line">按 \(b\) 的降幂排列（指数从大到小）应为：\(-3ab^3 + b^2 - 3a^2b + a^3\)。</div>
+        </div>
+        <!-- 注意点 -->
+        <div class="tip-box" style="margin-top:1rem;">
+            <p><strong>注意：</strong></p>
+            <p>(1) 重新排列多项式时，每一项一定要连同它的正负号一起移动。</p>
+            <p>(2) 含有两个或两个以上字母的多项式，通常按其中某一个字母的升幂或降幂排列。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本P101） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 把多项式 \(2x^2 + \dfrac{2}{5}x^3 + x - 5x^4 - \dfrac{1}{3}\) 重新排列：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) 按 \(x\) 的升幂排列；</div>
+            <div class="sub-question">(2) 按 \(x\) 的降幂排列。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) 升幂排列：\(-\dfrac{1}{3} + x + 2x^2 + \dfrac{2}{5}x^3 - 5x^4\)。</div>
+                <div class="answer-line">(2) 降幂排列：\(-5x^4 + \dfrac{2}{5}x^3 + 2x^2 + x - \dfrac{1}{3}\)。</div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 把多项式 \(x^4 - y^4 + 3x^3y - 2xy^2 - 5x^2y^3\) 重新排列：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) 按 \(x\) 的降幂排列；</div>
+            <div class="sub-question">(2) 按 \(y\) 的降幂排列。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) 按 \(x\) 的降幂排列：\(x^4 + 3x^3y - 5x^2y^3 - 2xy^2 - y^4\)。</div>
+                <div class="answer-line">(2) 按 \(y\) 的降幂排列：\(-y^4 - 5x^2y^3 - 2xy^2 + 3x^3y + x^4\)。</div>
+                <div class="answer-line">（按 \(y\) 的指数从大到小：\(y^4\)、\(y^3\)、\(y^2\)、\(y^1\)、常数项）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：有序思维与数学美 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 有序排列——数学中的秩序美</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>将多项式按某个字母的指数从小到大或从大到小排列，就像整理书架上的书籍一样，使表达变得清晰、美观，便于后续运算（如加减、乘除、因式分解）。这种有序化的过程，体现了数学中的<strong>秩序感</strong>和<strong>分类思想</strong>。</p>
+            <p>升幂排列和降幂排列不仅是一种书写规范，更是数学抽象与符号表达的自然要求。通过排列，我们可以快速看出多项式的次数、主要项等信息，为后续学习整式的运算打下基础。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 数学抽象 · 分类讨论 · 有序思维</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">降幂排列：按某字母指数从大到小排列；升幂排列：按指数从小到大排列。</div>
+                <div class="summary-item">重新排列时，每一项必须连同它的正负号一起移动。</div>
+                <div class="summary-item">含有多个字母的多项式，通常按其中某一个字母的升幂或降幂排列。</div>
+                <div class="summary-item">有序排列使多项式表达更清晰，便于后续运算。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P101练习第1、2题；习题2.3 A组第4题，B组第6题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 升幂降幂有序排列，分类思想贯穿其间 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第30课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

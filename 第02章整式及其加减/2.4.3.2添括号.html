@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第34课时 添括号 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+        /* 探索卡片 - 并排显示，统一高度宽度 */
+        .explore-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .explore-card {
+            flex: 1 1 400px;
+            min-width: 350px;
+            max-width: 450px;
+            min-height: 380px;
+            background: #fff;
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 24px rgba(0,60,100,0.2);
+            text-align: center;
+            border: 3px solid #2a7faa;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .explore-card:hover {
+            transform: translateY(-6px);
+        }
+        .explore-card .title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            background: #2675a8;
+            display: inline-block;
+            padding: 0.3rem 1.8rem;
+            border-radius: 60px;
+            box-shadow: 0 4px 0 #0a3e5f;
+            align-self: center;
+        }
+        .explore-card .formula {
+            font-size: 2rem;
+            background-color: #b8d9e0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            border: 3px solid #f5c542;
+            margin: 0.5rem 0 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 5px 0 #dbaa2a;
+            color: #1e2b3a;
+        }
+        .explore-card .arrow-box {
+            background-color: #fff9c4;
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            position: relative;
+            font-size: 1.8rem;
+            font-weight: 600;
+            border: 2px dashed #2675a8;
+        }
+        .explore-card .arrow-box:before {
+            content: '↓';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -2.2rem;
+            font-size: 2.8rem;
+            color: #e67e22;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .explore-card .note {
+            font-size: 1.2rem;
+            color: #1e4b68;
+            background: #f0f7fe;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+            border: 1px solid #aac9e5;
+            font-weight: 500;
+        }
+        .fill-item {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.4 整式的加减</h2>
+    <div class="lesson-title">第4课时 添括号</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解添括号法则的推导过程</div>
+            <div class="target-item"><span>✔</span>掌握添括号法则，能正确添加括号</div>
+            <div class="target-item"><span>✔</span>能运用添括号法则简化计算</div>
+            <div class="target-item"><span>✔</span>体会逆向思维在数学中的应用</div>
+        </div>
+    </div>
+
+    <!-- 回顾引入：添括号是去括号的逆过程 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 我们学习了去括号法则：</p>
+        <p style="text-align:center;">\(a + (b + c) = a + b + c\)  \(a - (b + c) = a - b - c\)</p>
+        <p>反过来，将等式左右两边对调，就得到添括号的规律：</p>
+        <p style="text-align:center;">\(a + b + c = a + (b + c)\)  \(a - b - c = a - (b + c)\)</p>
+    </div>
+
+    <!-- 探索：添括号法则（左右并排，方便对比） -->
+    <div class="explore-container">
+        <div class="explore-card">
+            <div class="title">括号前是“+”号</div>
+            <div class="formula">\(a + b + c\)</div>
+            <div class="arrow-box">
+                \(a + (b + c)\)
+            </div>
+            <div class="note">括到括号里的各项都不改变正负号</div>
+        </div>
+        <div class="explore-card">
+            <div class="title">括号前是“-”号</div>
+            <div class="formula">\(a - b - c\)</div>
+            <div class="arrow-box">
+                \(a - (b + c)\)
+            </div>
+            <div class="note">括到括号里的各项都改变正负号</div>
+        </div>
+    </div>
+
+    <!-- 添括号法则 -->
+    <div class="rule-box">
+        <div class="title">📌 添括号法则</div>
+        <p><span class="term-highlight">所添括号前面是“+”号</span>，括到括号里的各项都不改变正负号。</p>
+        <p><span class="term-highlight">所添括号前面是“-”号</span>，括到括号里的各项都改变正负号。</p>
+        <p>例如：\(a + b - c = a + (b - c)\)； \(a - b + c = a - (b - c)\)。</p>
+    </div>
+
+    <!-- 做一做（课本P108） -->
+    <h3>📝 做一做</h3>
+    <div class="think-box">
+        <p>在括号内填入适当的项：</p>
+        <div class="fill-item">1. \(x^2 - x + 1 = x^2 - ( \quad )\)；</div>
+        <div class="fill-item">2. \(2x^2 - 3x - 1 = 2x^2 + ( \quad )\)；</div>
+        <div class="fill-item">3. \((a - b) - (c - d) = a - ( \quad )\)。</div>
+        <button class="interact-btn" onclick="toggleAnswer('do')">显示答案</button>
+        <div id="answerDo" class="answer-box">
+            <div class="answer-line">1. \(x - 1\)（因为 \(x^2 - x + 1 = x^2 - (x - 1)\)）</div>
+            <div class="answer-line">2. \(-3x - 1\)（\(2x^2 - 3x - 1 = 2x^2 + (-3x - 1)\)）</div>
+            <div class="answer-line">3. \(b + c - d\)（\((a - b) - (c - d) = a - b - c + d = a - (b + c - d)\)）</div>
+        </div>
+    </div>
+
+    <!-- 例8（课本P108） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex8">
+        <p><strong>例8</strong> 计算：</p>
+        <p>(1) \(214a + 47a + 53a\)； (2) \(214a - 39a - 61a\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(8)">显示答案</button>
+        <div id="exampleAnswer8" class="answer-box">
+            <div class="answer-line">(1) \(214a + 47a + 53a = 214a + (47a + 53a) = 214a + 100a = 314a\)</div>
+            <div class="answer-line">(2) \(214a - 39a - 61a = 214a - (39a + 61a) = 214a - 100a = 114a\)</div>
+        </div>
+    </div>
+
+    <!-- 注意提示（放在例题后） -->
+    <div class="tip-box">
+        <p><strong>📌 注意：</strong>添括号与去括号的过程正好相反，添括号是否正确，不妨通过去括号检验一下。</p>
+    </div>
+
+    <!-- 练习（课本P108-109） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题：计算 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer('c1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(117x + 138x - 38x\)；</div>
+            <div class="sub-question">(2) \(125x - 64x - 36x\)；</div>
+            <div class="sub-question">(3) \(136x - 87x + 57x\)。</div>
+            <div id="answerC1" class="answer-box">
+                <div class="answer-line">(1) \(117x + (138x - 38x) = 117x + 100x = 217x\)</div>
+                <div class="answer-line">(2) \(125x - (64x + 36x) = 125x - 100x = 25x\)</div>
+                <div class="answer-line">(3) \(136x - 87x + 57x = 136x - (87x - 57x) = 136x - 30x = 106x\)</div>
+            </div>
+        </div>
+
+        <!-- 第2题：填空（添括号） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 在下列各式的括号内填入适当的项：</span>
+                <button class="interact-btn" onclick="toggleAnswer('c2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(3x^2 - 2xy^2 + 2y^2 = 3x^2 - (\)__________\()\)；</div>
+            <div class="sub-question">(2) \(3x^2y^2 - 2x^3 + y^3 = 3x^2y^2 - (\)__________\()\)；</div>
+            <div class="sub-question">(3) \(-a^3 + 2a^2 - a + 1 = - (\)__________\()\)。</div>
+            <div id="answerC2" class="answer-box">
+                <div class="answer-line">(1) \(2xy^2 - 2y^2\) （因为括号前是“-”，括号内各项变号：\(-2xy^2\) 变 \(2xy^2\)，\(+2y^2\) 变 \(-2y^2\)）</div>
+                <div class="answer-line">(2) \(2x^3 - y^3\) （\(-2x^3\) 变 \(2x^3\)，\(+y^3\) 变 \(-y^3\)）</div>
+                <div class="answer-line">(3) \(a^3 - 2a^2 + a - 1\) （每一项都变号）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：逆向思维——巧添括号，计算更轻松（课堂版） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 逆向思维——巧添括号，计算更轻松</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>同学们，我们已经学会了去括号，现在来玩一个“逆向游戏”——添括号。想一想，如果给你一个没有括号的算式，比如 \(a + b + c\)，你想把它变成 \(a + (b + c)\)，这相当于给 \(b + c\) 穿上了“括号外套”。</p>
+            <p>关键问题是：这件外套前面应该放什么符号？如果放“+”，里面的 \(b\) 和 \(c\) 不需要变化；如果放“-”，里面的每一项都要变号！比如 \(a - b - c\) 要变成 \(a - (b + c)\)，就是因为括号前是“-”，所以 \(-b\) 和 \(-c\) 放进括号后要变成 \(+b\) 和 \(+c\)，括号里是 \(b + c\)。</p>
+            <p>我们总结一下：</p>
+            <ul style="margin-left:1.5rem; margin-top:0.5rem;">
+                <li><strong>添“+”括号</strong>：直接加括号，里面的项什么都不变，就像穿透明外套。</li>
+                <li><strong>添“-”括号</strong>：加括号后，里面每一项都要变号（正变负，负变正），就像穿了变色外套。</li>
+            </ul>
+            <p>看例8，\(214a + 47a + 53a\) 如果先算后两项，添上括号变成 \(214a + (47a + 53a)\)，一下子就得到 \(214a + 100a\)，多方便！添括号能帮我们“打包”计算，又快又准。你们学会了吗？</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 逆向思维 · 运算能力 · 转化思想</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">添括号法则：所添括号前是“+”号，括到括号里的各项不变号；所添括号前是“-”号，括到括号里的各项都变号。</div>
+                <div class="summary-item">添括号是去括号的逆过程，可以用去括号检验添括号是否正确。</div>
+                <div class="summary-item">适当添括号可以使计算简便（如合并同类项时先结合后计算）。</div>
+                <div class="summary-item">添括号体现了逆向思维和转化思想。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P109练习第1、2题；习题2.4 A组第11题，B组第12题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 添括号看符号，逆向思维要记牢 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第34课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

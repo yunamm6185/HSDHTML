@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.1 利用方程的变形解简单的一元一次方程 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .do-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .do-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .do-box h4::before { content: "🔧"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .sub-question {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.2.1 等式的性质与方程的简单变形</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 综合运用移项与系数化为1，解简单的一元一次方程。</div>
+    <div class="lesson-title">5.2.1 等式的性质与方程的简单变形</div>
+    <div class="sub-title">第三课时 利用方程的变形解简单的一元一次方程</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能灵活运用移项和系数化为1解方程</div>
+            <div class="target-item"><span>✔</span>掌握解一元一次方程的基本步骤</div>
+            <div class="target-item"><span>✔</span>能检验方程的解</div>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="do-box">
+        <h4>做一做</h4>
+        <p>利用方程的变形，求方程 $2x + 3 = 1$ 的解，并和同学交流。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">💡 显示解答</button>
+        <div id="do1" class="answer-box">
+            \[
+            \begin{aligned}
+            2x + 3 &= 1 \\
+            \text{移项，得} & \\
+            2x &= 1 - 3 \\
+            2x &= -2 \\
+            \text{系数化为1，得} & \\
+            x &= -1
+            \end{aligned}
+            \]
+        </div>
+    </div>
+
+    <!-- 例3 -->
+    <div class="example-box">
+        <h4>例3 解下列方程</h4>
+        <p>(1) $8x = 2x - 7$</p>
+        <p>(2) $6 = 8 + 2x$</p>
+        <p>(3) $2y - \frac{1}{2} = \frac{1}{2}y - 3$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">📌 显示解答</button>
+        <div id="ex3" class="answer-box">
+            <p class="sub-question">(1)</p>
+            \[
+            \begin{aligned}
+            8x &= 2x - 7 \\
+            \text{移项，得} & \\
+            8x - 2x &= -7 \\
+            6x &= -7 \\
+            \text{系数化为1，得} & \\
+            x &= -\frac{7}{6}
+            \end{aligned}
+            \]
+            <p class="sub-question">(2)</p>
+            \[
+            \begin{aligned}
+            6 &= 8 + 2x \\
+            \text{原方程即 }8 + 2x &= 6 \\
+            \text{移项，得} & \\
+            2x &= 6 - 8 \\
+            2x &= -2 \\
+            \text{系数化为1，得} & \\
+            x &= -1
+            \end{aligned}
+            \]
+            <p class="sub-question">(3)</p>
+            \[
+            \begin{aligned}
+            2y - \frac{1}{2} &= \frac{1}{2}y - 3 \\
+            \text{移项，得} & \\
+            2y - \frac{1}{2}y &= -3 + \frac{1}{2} \\
+            \frac{3}{2}y &= -\frac{5}{2} \\
+            \text{系数化为1，得} & \\
+            y &= -\frac{5}{3}
+            \end{aligned}
+            \]
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <ol>
+            <li>解下列方程：
+                <br>(1) $3x + 4 = 0$
+                <br>(2) $7y + 6 = -6y$
+                <br>(3) $5x + 2 = 7x + 8$
+                <br>(4) $3y - 2 = y + 1 + 6y$
+                <br>(5) $\frac{2}{5}x - 8 = \frac{1}{4} - 0.2x$
+                <br>(6) $1 - \frac{1}{2}x = x + \frac{1}{3}$
+            </li>
+            <li>试解5.1节中问题1所列出的方程 $45 + x = 3(13 + x)$。</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 参考答案</button>
+        <div id="prac3" class="answer-box">
+            <p>1. (1) $x = -\frac{4}{3}$；(2) $y = -\frac{6}{13}$；(3) $x = -3$；(4) $y = -1$；(5) $x = 15$；(6) $x = \frac{4}{9}$。</p>
+            <p>2. 去括号得 $45 + x = 39 + 3x$，移项得 $x - 3x = 39 - 45$，合并得 $-2x = -6$，$x = 3$。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代的“四元术” -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 四元术与多元方程组</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>元代数学家朱世杰在《四元玉鉴》中创立了“四元术”，可以解多达四个未知数的方程组。他利用天、地、人、物代表四个未知数，通过消元法逐步减少未知数，最终得到一元方程。这种方法与现在解方程组的思路完全一致，是中国古代数学的杰出成就。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>化归思想：</strong> 将复杂的一元一次方程通过变形化为 $x=a$ 的形式。<br>
+        <strong>算法思想：</strong> 解方程的步骤化、程序化，培养计算思维。<br>
+        <strong>检验意识：</strong> 将解代入原方程验证，养成严谨的习惯。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.2.1 第1题(5)(6)、第2题(3)(4)。</span>
+    </div>
+
+    <!-- 寄语（移到作业下面） -->
+    <p class="quote">✨ 解方程如同剥茧抽丝，每一步变形都离真相更近。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.2.1 第三课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

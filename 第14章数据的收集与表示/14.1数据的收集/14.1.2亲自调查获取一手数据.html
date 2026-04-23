@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>14.1.2 亲自调查获取一手数据 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'], ['¥','¥']], displayMath: [['$$','$$']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{
+            background: linear-gradient(135deg,#e8ecf4 0%,#d4dce8 100%);
+            font-family:'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;
+            font-weight:500;line-height:1.8;color:#1e3b5a;
+            padding:1.5rem;font-size:24px;min-height:100vh;
+        }
+        .textbook{
+            max-width:1100px;margin:0 auto;
+            background:#ffffff;
+            border-radius:24px;
+            box-shadow:0 8px 40px rgba(40,60,120,0.15),0 2px 8px rgba(0,0,0,0.06);
+            padding:0;overflow:hidden;
+        }
+        /* === 顶部标题区 === */
+        /* === 顶部信息栏 === */
+        .header-meta{
+            text-align:center;font-size:1rem;color:#6a7ba8;
+            padding:.9rem 2rem;background:#f5f7ff;
+            border-bottom:1px solid #dde3f5;
+            letter-spacing:.03em;
+        }
+        /* === 章节标题区 === */
+        .chapter-title{
+            text-align:center;padding:2.5rem 2rem 1.5rem;
+            background: linear-gradient(135deg,#2d3a6e 0%,#4a5fae 50%,#3d5a9e 100%);
+            color:white;
+            position:relative;overflow:hidden;
+        }
+        .chapter-title::before{
+            content:'';position:absolute;top:-60px;right:-40px;width:260px;height:260px;
+            background:rgba(255,255,255,0.05);border-radius:50%;
+        }
+        .chapter-title::after{
+            content:'';position:absolute;bottom:-80px;right:80px;width:180px;height:180px;
+            background:rgba(255,255,255,0.04);border-radius:50%;
+        }
+        .chapter-title h1{
+            font-size:2.6rem;font-weight:700;margin:0 0 .4rem;position:relative;z-index:1;
+            color:white;line-height:1.3;
+        }
+        .chapter-title .section-label{
+            font-size:1.25rem;opacity:.9;margin:.5rem 0;position:relative;z-index:1;
+            color:rgba(255,255,255,.88);
+        }
+        .chapter-title .lesson-title{
+            display:inline-block;background:rgba(255,255,255,.18);
+            border-radius:40px;padding:.4rem 1.5rem;font-size:1.25rem;
+            font-weight:600;margin-top:.6rem;position:relative;z-index:1;
+            color:white;letter-spacing:.04em;
+        }
+        .section-number{
+            display:inline-block;background:rgba(255,255,255,0.18);border-radius:50%;
+            width:36px;height:36px;text-align:center;line-height:36px;
+            font-weight:700;margin-right:.5rem;font-size:1.08rem;
+        }
+
+        /* === 内容区 === */
+        .content-body{padding:2rem 3rem 2.5rem;}
+
+        /* === 学习目标 === */
+        .goals-bar{
+            display:flex;flex-wrap:wrap;gap:.6rem;
+            background:linear-gradient(90deg,#f0f4ff,#e8ecf8);
+            border:1px solid #d0d8f0;border-radius:16px;
+            padding:1.2rem 1.4rem;margin-bottom:2rem;
+        }
+        .goal-pill{
+            display:flex;align-items:center;gap:.5rem;
+            background:white;border-radius:40px;
+            padding:.35rem 1.1rem;font-size:1.08rem;
+            box-shadow:0 2px 0 rgba(100,120,180,0.15);
+            border:1px solid #dde0f0;
+            font-weight:600;color:#2d3a6e;
+        }
+        .goal-pill .num{
+            background:#4a5fae;color:white;border-radius:50%;
+            width:22px;height:22px;display:inline-flex;
+            align-items:center;justify-content:center;
+            font-size:.88rem;font-weight:700;flex-shrink:0;
+        }
+
+        /* === 分节标题 === */
+        .section-head{
+            display:flex;align-items:center;gap:.8rem;
+            font-size:1.6rem;font-weight:700;
+            color:#2d3a6e;margin:2.2rem 0 1.2rem;
+            padding-bottom:.6rem;
+            border-bottom:3px solid #4a5fae;
+        }
+        .section-head .s-icon{
+            background:#4a5fae;color:white;border-radius:10px;
+            padding:.25rem .7rem;font-size:1rem;flex-shrink:0;
+        }
+
+        /* === 情境引入 === */
+        .intro-box{
+            background:linear-gradient(135deg,#f8faff,#eef2ff);
+            border-radius:18px;padding:1.5rem 1.8rem;
+            margin-bottom:2rem;border:1px solid #dde3f5;
+            border-left:5px solid #4a5fae;
+        }
+        .intro-box .q-title{
+            font-size:1.4rem;font-weight:700;color:#2d3a6e;
+            margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem;
+        }
+        .intro-box p{color:#3d4a6e;font-size:1.1rem;}
+        .intro-box ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.5rem;}
+        .intro-box ul li{
+            background:white;border-radius:10px;padding:.6rem 1rem;
+            font-size:1.08rem;border:1px solid #dde3f5;
+            display:flex;align-items:flex-start;gap:.4rem;
+        }
+        .intro-box ul li::before{content:'💬';flex-shrink:0;}
+
+        /* === 两种方法对比 === */
+        .methods-row{
+            display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;
+            margin-bottom:1.5rem;
+        }
+        .method-card{
+            border-radius:18px;padding:1.5rem;
+            border:2px solid;
+        }
+        .method-card.blue{
+            background:linear-gradient(145deg,#eef2ff,#f5f7ff);
+            border-color:#c5cdf5;
+        }
+        .method-card.green{
+            background:linear-gradient(145deg,#edf7f0,#f0faf4);
+            border-color:#b8dfc5;
+        }
+        .method-card h4{
+            font-size:1.25rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;
+        }
+        .method-card.blue h4{color:#2d3a6e;}
+        .method-card.green h4{color:#1a6b35;}
+        .method-card .tag{
+            display:inline-block;border-radius:20px;
+            padding:.15rem .7rem;font-size:.92rem;font-weight:700;
+            margin-right:.4rem;
+        }
+        .tag-primary{background:#4a5fae;color:white;}
+        .tag-success{background:#27ae60;color:white;}
+        .method-card p{font-size:1.08rem;margin:.4rem 0;color:#3d4a6e;}
+
+        /* === 六步流程 === */
+        .intro-text{
+            background:#fff8e6;border:1px solid #f5d070;
+            border-radius:14px;padding:1rem 1.4rem;
+            margin-bottom:1.2rem;font-size:1.1rem;color:#7a5c00;
+        }
+        .six-steps{
+            display:grid;grid-template-columns:repeat(3,1fr);
+            gap:.8rem;margin-bottom:1.5rem;
+        }
+        .step-box{
+            border-radius:16px;padding:1rem 1.1rem;
+            border:2px solid;border-color:#dde5f5;
+            background:linear-gradient(160deg,#f5f7ff,#fafbff);
+            position:relative;
+        }
+        .step-box:nth-child(1){border-top:4px solid #5b7fd4;}
+        .step-box:nth-child(2){border-top:4px solid #7b9fe4;}
+        .step-box:nth-child(3){border-top:4px solid #9bb8f0;}
+        .step-box:nth-child(4){border-top:4px solid #b8d0f5;}
+        .step-box:nth-child(5){border-top:4px solid #c5d8f8;}
+        .step-box:nth-child(6){border-top:4px solid #d8e6f8;}
+        .step-num{
+            font-size:.85rem;font-weight:700;color:#4a5fae;
+            background:#eef1fc;border-radius:20px;
+            display:inline-block;padding:.1rem .5rem;margin-bottom:.4rem;
+        }
+        .step-box h5{font-size:1.1rem;color:#2d3a6e;margin-bottom:.3rem;font-weight:700;}
+        .step-box p{font-size:1rem;color:#5a6a8e;line-height:1.6;}
+
+        /* === 表格 === */
+        .table-wrap{
+            overflow-x:auto;margin:1rem 0;
+            border-radius:14px;border:1px solid #dde3f5;
+            box-shadow:0 2px 8px rgba(40,60,120,0.08);
+        }
+        table{width:100%;border-collapse:collapse;margin:0;display:table;}
+        th,td{
+            padding:10px 12px;text-align:center;
+            border:1px solid #dde3f5;font-size:1.05rem;
+        }
+        th{
+            background:linear-gradient(135deg,#4a5fae,#5d77c4);
+            color:white;font-weight:700;
+        }
+        tr:nth-child(even) td{background:#f8f9ff;}
+        td{background:white;}
+        .th-sub{
+            background:linear-gradient(135deg,#6b82c8,#7d95d4) !important;
+            font-size:.95rem;
+        }
+
+        /* === 频数频率卡片 === */
+        .def-grid{
+            display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+            margin-bottom:1rem;
+        }
+        .def-card{
+            border-radius:16px;padding:1.2rem 1.5rem;
+            border:2px solid;
+        }
+        .def-card.purple{
+            background:linear-gradient(145deg,#f3f0ff,#f8f5ff);
+            border-color:#d4c8f5;
+        }
+        .def-card.orange{
+            background:linear-gradient(145deg,#fff5e6,#fffaf0);
+            border-color:#f5d8a0;
+        }
+        .def-card h5{font-size:1.25rem;margin-bottom:.5rem;font-weight:700;}
+        .def-card.purple h5{color:#5a3ea8;}
+        .def-card.orange h5{color:#b8860b;}
+        .def-card p{font-size:1.08rem;color:#3d4a6e;}
+
+        /* === 思考框 === */
+        .think-box{
+            background:linear-gradient(135deg,#fffde6,#fffbf0);
+            border:2px solid #f0c040;border-radius:14px;
+            padding:1rem 1.5rem;margin:1rem 0;
+            font-size:1.1rem;color:#7a5c00;
+        }
+        .think-box strong{font-size:1.2rem;}
+
+        /* === 读一读 === */
+        .read-box{
+            background:linear-gradient(135deg,#eaf4ff,#f2f9ff);
+            border:2px solid #74b9e8;border-radius:14px;
+            padding:1rem 1.5rem;margin:1rem 0;
+            font-size:1.08rem;color:#1a5276;
+        }
+        .read-box strong{font-size:1.15rem;}
+
+        /* === 练习区 === */
+        .ex-section-title{
+            font-size:1.45rem;font-weight:700;color:#2d3a6e;
+            margin:2rem 0 1rem;padding-bottom:.4rem;
+            border-bottom:2px solid #dde3f5;
+        }
+        .practice-card{
+            background:#f8f9ff;border:1px solid #dde3f5;
+            border-radius:18px;padding:1.4rem 1.6rem;
+            margin-bottom:1.2rem;
+        }
+        .practice-card h4{font-size:1.25rem;color:#2d3a6e;margin-bottom:.6rem;font-weight:700;}
+        .practice-card p{font-size:1.08rem;color:#4a5a7e;margin-bottom:.5rem;}
+        .practice-card ul{font-size:1.08rem;padding-left:1.4rem;}
+
+        .mini-card{
+            background:white;border:1px solid #dde3f5;
+            border-radius:12px;padding:1rem 1.2rem;margin:.6rem 0;
+        }
+        .mini-card h5{font-size:1.1rem;color:#3d4a7e;margin-bottom:.4rem;font-weight:700;}
+        .mini-card p{font-size:1.05rem;color:#5a6a8e;margin:0;}
+
+        /* === 按钮 === */
+        .btn{
+            display:inline-flex;align-items:center;gap:.4rem;
+            background:linear-gradient(135deg,#4a5fae,#5d77c4);
+            color:white;border:none;border-radius:40px;
+            padding:.4rem 1.2rem;font-weight:700;
+            cursor:pointer;font-size:1.02rem;
+            box-shadow:0 3px 0 #3a4e90;
+            transition:all .15s;margin-top:.6rem;
+        }
+        .btn:hover{transform:translateY(-1px);box-shadow:0 5px 0 #3a4e90;}
+        .btn:active{transform:translateY(1px);box-shadow:0 1px 0 #3a4e90;}
+        .answer-box{
+            background:#f0f4ff;border-left:4px solid #d4a017;
+            border-radius:0 12px 12px 0;padding:.8rem 1.2rem;
+            margin-top:.6rem;display:none;font-size:1.08rem;
+        }
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+        .show-answer{display:block;animation:fadeInUp .35s ease;}
+        ul,ol{line-height:1.9;}
+
+        /* === 小结 === */
+        .summary-grid{
+            display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+            margin:1rem 0;
+        }
+        .sum-card{
+            background:linear-gradient(160deg,#eef2ff,#f5f7ff);
+            border-radius:16px;padding:1.2rem 1.3rem;
+            border:1px solid #c8d2f0;
+        }
+        .sum-card h5{font-size:1.15rem;color:#2d3a6e;margin-bottom:.5rem;font-weight:700;}
+        .sum-card ul{list-style:none;padding:0;margin:0;}
+        .sum-card li{
+            font-size:1.02rem;color:#3d4a6e;
+            padding:.2rem 0;border-bottom:1px dashed #dde3f5;
+        }
+        .sum-card li:last-child{border:none;}
+        .sum-card li strong{color:#4a5fae;}
+
+        .warn-box{
+            background:#fef2f2;border:2px solid #fca5a5;
+            border-radius:14px;padding:1rem 1.4rem;margin-top:1rem;
+            font-size:1.08rem;color:#991b1b;
+        }
+        .warn-box strong{font-size:1.1rem;}
+
+        /* === 页脚 === */
+        .footer-note{
+            text-align:center;color:#8a96b8;font-size:.95rem;
+            padding:1rem 2rem 1.5rem;
+            border-top:1px solid #e8ecf4;
+        }
+
+        @media(max-width:768px){
+            .methods-row,.def-grid,.summary-grid{grid-template-columns:1fr;}
+            .six-steps{grid-template-columns:1fr 1fr;}
+            .intro-box ul{grid-template-columns:1fr;}
+            .content{padding:1.5rem 1.5rem 2rem;}
+                </style>
+</head>
+<body>
+<div class="textbook">
+
+<!-- 顶部英雄区 -->
+        <div class="header-meta">
+            华师版·八年级上册 &nbsp;|&nbsp; 第14章·数据的收集与表示
+        </div>
+        <div class="chapter-title">
+            <h1>第十四章 数据的收集与表示</h1>
+            <div class="section-label">14.1 数据的收集</div>
+            <span class="lesson-title">14.1.2 亲自调查获取一手数据</span>
+        </div>
+
+        <div class="content-body">
+
+    <!-- 学习目标 -->
+    <div class="goals-bar">
+        <div class="goal-pill"><span class="num">1</span>了解收集数据的两种基本方法</div>
+        <div class="goal-pill"><span class="num">2</span>掌握亲自调查的完整流程</div>
+        <div class="goal-pill"><span class="num">3</span>理解频数和频率的概念</div>
+        <div class="goal-pill"><span class="num">4</span>能够独立开展简单调查</div>
+    </div>
+
+    <!-- 一、两种方法 -->
+    <div class="section-head">
+        <span class="s-icon">一</span>收集数据的两种基本方法
+    </div>
+
+    <div class="methods-row">
+        <div class="method-card blue">
+            <h4><span class="tag tag-primary">一手数据</span>亲自调查</h4>
+            <p>经过<strong>亲自调查</strong>获取数据，如通过调查周围的人，询问他们对某个问题的看法。</p>
+            <p><strong style="color:#4a5fae;">优点：</strong>数据真实可靠，针对性强</p>
+            <p><strong style="color:#4a5fae;">适用：</strong>周围人群的访谈、问卷等</p>
+        </div>
+        <div class="method-card green">
+            <h4><span class="tag tag-success">二手数据</span>查阅文献</h4>
+            <p>经过<strong>查阅文献</strong>从现有数据资料中检索，如访问国家统计局网站获取各省市的经济发展数据。</p>
+            <p><strong style="color:#27ae60;">优点：</strong>省时省力，数据来源广泛</p>
+            <p><strong style="color:#27ae60;">适用：</strong>宏观数据、官方统计、文献资料</p>
+        </div>
+    </div>
+
+    <!-- 二、六步法 -->
+    <div class="section-head">
+        <span class="s-icon">二</span>亲自调查获取一手数据的步骤
+    </div>
+
+    <div class="intro-text">
+        🔍 以调查手机<strong>"护眼模式"</strong>的作用效果为例，让我们了解通过调查收集数据的完整过程：
+    </div>
+
+    <div class="six-steps">
+        <div class="step-box">
+            <div class="step-num">STEP 01</div>
+            <h5>明确调查问题</h5>
+            <p>调查问题要<strong>具体、清晰、可操作</strong>。</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">STEP 02</div>
+            <h5>确定调查对象</h5>
+            <p>调查对象应与调查问题相关，代表研究目标群体。</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">STEP 03</div>
+            <h5>选择调查方法</h5>
+            <p>访谈调查法 或 问卷调查法</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">STEP 04</div>
+            <h5>展开调查</h5>
+            <p>说明目的、<strong>征得同意</strong>、记录数据</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">STEP 05</div>
+            <h5>分析数据</h5>
+            <p>计算频数和频率，发现规律</p>
+        </div>
+        <div class="step-box">
+            <div class="step-num">STEP 06</div>
+            <h5>得出结论</h5>
+            <p>根据数据分析，得出调查结论</p>
+        </div>
+    </div>
+
+    <!-- 第四步展开 -->
+    <div style="background:#f0f4ff;border:2px solid #c5cdf5;border-radius:16px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;">
+        <h5 style="font-size:1.2rem;color:#2d3a6e;margin-bottom:.6rem;font-weight:700;">🔍 第四步"展开调查"详解（访谈法示例）</h5>
+        <ul style="font-size:1.08rem;display:grid;grid-template-columns:1fr 1fr;gap:.3rem .5rem;">
+            <li>① 向调查对象说明调查目的，<strong>征得对方同意</strong></li>
+            <li>② 收集调查对象的<strong>基本信息</strong>（性别、年龄段）</li>
+            <li>③ 询问了解与使用"护眼模式"的情况</li>
+            <li>④ 询问开启后多久安排一次间歇休息</li>
+            <li>⑤ 询问不开启时多久安排一次间歇休息</li>
+            <li>⑥ 做好记录，及时整理数据</li>
+        </ul>
+    </div>
+
+    <!-- 调查记录表 -->
+    <h5 style="font-size:1.25rem;color:#2d3a6e;margin:1.5rem 0 .8rem;font-weight:700;">📋 调查数据记录表</h5>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th><th>性别</th><th>年龄段</th>
+                    <th colspan="4">了解与使用"护眼模式"情况</th>
+                    <th colspan="2">间歇休息安排</th>
+                </tr>
+                <tr>
+                    <th></th><th></th><th></th>
+                    <th class="th-sub">不知道<br>也没用过</th>
+                    <th class="th-sub">知道<br>但不用</th>
+                    <th class="th-sub">有时用</th>
+                    <th class="th-sub">总是用</th>
+                    <th class="th-sub">开启后</th>
+                    <th class="th-sub">不开启</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td colspan="9" style="text-align:left;padding-left:1rem;font-style:italic;color:#8a96b8;">（续行……）</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 频数与频率 -->
+    <h5 style="font-size:1.25rem;color:#2d3a6e;margin:1.5rem 0 .8rem;font-weight:700;">📊 第五步"分析数据"：频数与频率</h5>
+    <div class="def-grid">
+        <div class="def-card purple">
+            <h5>🔢 频数</h5>
+            <p>每个对象出现的<strong>次数</strong></p>
+        </div>
+        <div class="def-card orange">
+            <h5>📐 频率</h5>
+            <p>频数 ÷ 总次数（<strong>比值或百分比</strong>）</p>
+        </div>
+    </div>
+
+    <div class="think-box">
+        🤔 <strong>思考：</strong>频数和频率都能反映每个对象出现的频繁程度，请举例说明两者在使用上的异同点。
+    </div>
+
+    <!-- 读一读 -->
+    <div class="read-box">
+        <strong>📖 读一读</strong>
+        <p>我们知道，π 是一个<strong>无限不循环小数</strong>。2022年，据媒体报道，利用超级计算机，可以将 π 精确计算到小数点后六十万亿位，而且这一世界记录还在持续受到挑战。</p>
+        <p>从实用角度说，计算如此多位数的 π 并没有特别的意义，但这个计算是对计算机性能的挑战，也有人试图在圆周率值中寻找某种规律，从而对无理数的认识有所启迪。</p>
+    </div>
+
+    <!-- 三、课堂练习 -->
+    <div class="ex-section-title">三、课堂练习</div>
+
+    <div class="practice-card">
+        <h4>练习1：从实际问题提炼调查问题</h4>
+        <p>请从下列问题中挑选一个，尝试提炼出明确的调查问题：</p>
+        <ul>
+            <li>家长最关注我们什么？我们最希望家长关注我们什么？</li>
+            <li>同月同日生的缘分有多难得？你们班有同月同日出生的同学吗？</li>
+            <li>许多人认为鹌鹑蛋比鸡蛋更有营养，实际是这样吗？</li>
+            <li>在我国，哪种癌症是目前最常见的癌症？</li>
+            <li>同学们对手机"护眼模式"的护眼作用是怎么看的？</li>
+            <li>媒体报道说某市GDP超越伦敦巴黎，我国各地人均GDP整体情况如何？</li>
+        </ul>
+        <button class="btn" onclick="toggleAnswer('ex1_hint')">💡 参考提示</button>
+        <div class="answer-box" id="ex1_hint">
+            <strong>提示：</strong>提炼调查问题时要做到——<br>
+            <strong>具体</strong>（不问"护眼模式有用吗"，而问"多久需要安排间歇休息"）<br>
+            <strong>可量化</strong>（设定具体的时间或数量指标）<br>
+            <strong>有代表性</strong>（确保调查结果能反映真实情况）
+        </div>
+    </div>
+
+    <div class="practice-card">
+        <h4>练习2：判断调查方法</h4>
+        <p>下列情境中，适合用哪种调查方法？说明理由。</p>
+
+        <div class="mini-card">
+            <h5>(1) 调查全班同学对"护眼模式"作用的看法</h5>
+            <button class="btn" onclick="toggleAnswer('ex2_1')">查看答案</button>
+            <div class="answer-box" id="ex2_1">
+                两种方法均可：<strong>访谈法</strong>（面对面快速收集）或<strong>问卷法</strong>（匿名减少表达压力）
+            </div>
+        </div>
+
+        <div class="mini-card">
+            <h5>(2) 调查家长对孩子使用手机的态度（家长会场合）</h5>
+            <button class="btn" onclick="toggleAnswer('ex2_2')">查看答案</button>
+            <div class="answer-box" id="ex2_2">
+                <strong>访谈调查法</strong>更合适——家长会可面对面深入交流，可追问细节，灵活性强。
+            </div>
+        </div>
+
+        <div class="mini-card">
+            <h5>(3) 调查全校同学每天睡眠时间的大致情况</h5>
+            <button class="btn" onclick="toggleAnswer('ex2_3')">查看答案</button>
+            <div class="answer-box" id="ex2_3">
+                <strong>问卷调查法</strong>更合适——涉及人数多，问卷可快速大量收集数据，便于统计分析。
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-card">
+        <h4>练习3：频数与频率计算</h4>
+        <p>某班40名同学参加课外活动，其中12人选择篮球，10人选择足球，8人选择羽毛球，其余选择其他项目。请计算频数和频率：</p>
+        <div class="table-wrap">
+        <table>
+            <thead>
+                <tr><th>活动项目</th><th>频数</th><th>频率</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>🏀 篮球</td><td>12</td><td>$12\div40=0.30$（30%）</td></tr>
+                <tr><td>⚽ 足球</td><td>10</td><td>$10\div40=0.25$（25%）</td></tr>
+                <tr><td>🏸 羽毛球</td><td>8</td><td>$8\div40=0.20$（20%）</td></tr>
+                <tr><td>🎯 其他</td><td>10</td><td>$10\div40=0.25$（25%）</td></tr>
+                <tr><td><strong>合计</strong></td><td><strong>40</strong></td><td><strong>1.00（100%）</strong></td></tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+    <!-- 四、课堂小结 -->
+    <div class="section-head">
+        <span class="s-icon">四</span>课堂小结
+    </div>
+
+    <div class="summary-grid">
+        <div class="sum-card">
+            <h5>📊 数据来源</h5>
+            <ul>
+                <li><strong>一手数据：</strong>亲自调查获取</li>
+                <li><strong>二手数据：</strong>查阅文献获取</li>
+            </ul>
+        </div>
+        <div class="sum-card">
+            <h5>🔢 调查六步骤</h5>
+            <ul>
+                <li>① 明确调查问题</li>
+                <li>② 确定调查对象</li>
+                <li>③ 选择调查方法</li>
+                <li>④ 展开调查</li>
+                <li>⑤ 分析数据</li>
+                <li>⑥ 得出结论</li>
+            </ul>
+        </div>
+        <div class="sum-card">
+            <h5>📐 频数与频率</h5>
+            <ul>
+                <li><strong>频数：</strong>出现的次数</li>
+                <li><strong>频率：</strong>频数÷总次数</li>
+                <li>两者均可反映频繁程度</li>
+                <li>频率之和恒等于1（100%）</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="warn-box">
+        ⚠️ <strong>易错提醒：</strong>
+        <ul style="list-style:disc;padding-left:1.2rem;">
+            <li>调查问题要<strong>具体、清晰、可操作</strong>，不能太宽泛</li>
+            <li>访谈前必须<strong>征得对方同意</strong>，尊重调查对象</li>
+            <li>频数是<strong>次数</strong>，频率是<strong>比值</strong>，意义不同</li>
+            <li>频率之和恒等于1（100%），可用于验算</li>
+        </ul>
+    </div>
+
+</div><!-- /content -->
+
+<div class="footer-note">
+    华师版 · 八年级上册 · 第14章 数据的收集与表示 · 14.1.2 亲自调查获取一手数据
+</div>
+
+</div><!-- /textbook -->
+
+<script>
+function toggleAnswer(id) {
+    var box = document.getElementById(id);
+    if (box.classList.contains('show-answer')) {
+        box.classList.remove('show-answer');
+        setTimeout(function() { box.style.display = 'none'; }, 350);
+    } else {
+        box.style.display = 'block';
+        void box.offsetWidth;
+        box.classList.add('show-answer');
+    }
+}
+</script>
+
+</body>
+</html>

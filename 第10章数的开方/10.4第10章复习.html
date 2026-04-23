@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10章 数的开方 章末复习 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .knowledge-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 8px 16px rgba(0,40,60,0.1);
+            border: 1px solid #b9d6ef;
+        }
+        .knowledge-card h4 {
+            font-size: 1.4rem;
+            color: #0b4b78;
+            border-bottom: 2px solid #58a9d4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .knowledge-tag {
+            display: inline-block;
+            background: #e1f0de;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            margin: 0.3rem;
+            font-size: 0.95rem;
+            border: 1px solid #47945b;
+            color: #1d6130;
+        }
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .concept-table th, .concept-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .concept-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            width: 20%;
+        }
+        .concept-table td {
+            background: #f9fcff;
+        }
+        .example-box, .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4, .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        /* 小题竖排 */
+        .sub-question {
+            display: block;
+            margin-left: 1rem;
+        }
+        .answer-box p.sub-answer {
+            margin: 0.2rem 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; }
+        /* 已知单元格样式（可选） */
+        td[data-known="true"] {
+            background-color: #e8f0fe;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第10章 数的开方 · 章末复习</span>
+    </div>
+    <h1>第10章 数的开方</h1>
+    <div class="chapter-intro">★ 系统梳理平方根、立方根、实数的概念与性质，构建知识体系。</div>
+    <div class="lesson-title">章末复习</div>
+
+    <!-- 复习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握平方根、算术平方根、立方根的概念与性质</div>
+            <div class="target-item"><span>✔</span>理解无理数和实数的意义，能进行实数分类与大小比较</div>
+            <div class="target-item"><span>✔</span>熟练运用平方法、估值法比较实数大小</div>
+            <div class="target-item"><span>✔</span>体会数形结合、分类讨论、类比等数学思想</div>
+        </div>
+    </div>
+
+    <!-- 知识结构图（卡片式） -->
+    <h2>📚 知识结构图</h2>
+    <div class="knowledge-grid">
+        <div class="knowledge-card">
+            <h4>📌 平方根与立方根</h4>
+            <div>
+                <span class="knowledge-tag">平方根：若 $x^2=a$，则 $x=\pm\sqrt{a}$</span>
+                <span class="knowledge-tag">算术平方根 $\sqrt{a}$</span>
+                <span class="knowledge-tag">立方根：若 $x^3=a$，则 $x=\sqrt[3]{a}$</span>
+                <span class="knowledge-tag">性质：正数有两个平方根，0有一个，负数无；立方根唯一</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>🔢 实数</h4>
+            <div>
+                <span class="knowledge-tag">有理数：整数、分数（有限小数、无限循环小数）</span>
+                <span class="knowledge-tag">无理数：无限不循环小数（$\sqrt{2},\pi$等）</span>
+                <span class="knowledge-tag">实数与数轴上的点一一对应</span>
+                <span class="knowledge-tag">相反数、绝对值、运算律仍适用</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>⚖️ 大小比较与运算</h4>
+            <div>
+                <span class="knowledge-tag">平方法比较</span>
+                <span class="knowledge-tag">估值法比较</span>
+                <span class="knowledge-tag">利用数轴比较</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>💡 数学思想</h4>
+            <div>
+                <span class="knowledge-tag">分类讨论（平方根、立方根）</span>
+                <span class="knowledge-tag">类比（由平方根学习立方根）</span>
+                <span class="knowledge-tag">数形结合（实数与数轴）</span>
+                <span class="knowledge-tag">逼近思想（近似计算）</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心概念回顾（表格） -->
+    <h2>📖 核心概念回顾</h2>
+    <table class="concept-table">
+        <tr><th>概念</th><th>定义/性质</th><th>示例/符号</th></tr>
+        <tr><td>平方根</td><td>若 $x^2=a$，则 $x$ 是 $a$ 的平方根（$a\ge0$）</td><td>$(\pm5)^2=25$，$25$的平方根是 $\pm5$</td></tr>
+        <tr><td>算术平方根</td><td>正数 $a$ 的正平方根，记作 $\sqrt{a}$；$\sqrt{0}=0$</td><td>$\sqrt{25}=5$</td></tr>
+        <tr><td>立方根</td><td>若 $x^3=a$，则 $x$ 是 $a$ 的立方根，记作 $\sqrt[3]{a}$</td><td>$\sqrt[3]{-8}=-2$</td></tr>
+        <tr><td>无理数</td><td>无限不循环小数</td><td>$\sqrt{2},\pi,-\sqrt{5}$</td></tr>
+        <tr><td>实数</td><td>有理数和无理数统称实数</td><td>$\mathbb{R}$</td></tr>
+        <tr><td>实数的相反数</td><td>与有理数相同，$a$ 的相反数是 $-a$</td><td>$\sqrt{2}$ 的相反数是 $-\sqrt{2}$</td></tr>
+        <tr><td>实数的绝对值</td><td>$|a|=\begin{cases}a,&a\ge0\\-a,&a<0\end{cases}$</td><td>$|\sqrt{2}-1|=\sqrt{2}-1$</td></tr>
+    </table>
+
+    <!-- 典型例题（不含计算器，避免完全平方展开） -->
+    <h2>📐 典型例题</h2>
+
+    <!-- 例1 平方根与立方根 -->
+    <div class="example-box">
+        <h4>例1 求下列各数的平方根与立方根</h4>
+        <p>$(1)\ 64;\qquad (2)\ -27;\qquad (3)\ 0.$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> $64$ 的平方根是 $\pm8$，立方根是 $4$；<br>
+            <strong>(2)</strong> $-27$ 没有平方根（负数无平方根），立方根是 $-3$；<br>
+            <strong>(3)</strong> $0$ 的平方根是 $0$，立方根是 $0$。</p>
+        </div>
+    </div>
+
+    <!-- 例2 实数分类 -->
+    <div class="example-box">
+        <h4>例2 将下列各数填入相应的集合：</h4>
+        <p>$\pi,\; \sqrt{4},\; -\sqrt{2},\; \dfrac{22}{7},\; 0.1010010001\ldots,\; \sqrt[3]{-8}$</p>
+        <p>有理数集合：{ ... }；无理数集合：{ ... }</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>有理数：$\sqrt{4}=2,\; \dfrac{22}{7},\; \sqrt[3]{-8}=-2$；<br>
+            无理数：$\pi,\; -\sqrt{2},\; 0.1010010001\ldots$（无限不循环）。</p>
+        </div>
+    </div>
+
+    <!-- 例3 比较大小（用平方法，无需展开完全平方） -->
+    <div class="example-box">
+        <h4>例3 比较下列各组数的大小</h4>
+        <p>$(1)\ 2\sqrt{3}$ 与 $3\sqrt{2}$； $(2)\ \sqrt{7}$ 与 $2\sqrt{2}$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">📌 显示解答</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong> $(2\sqrt{3})^2=12$，$(3\sqrt{2})^2=18$，$\because 12<18$，$\therefore 2\sqrt{3}<3\sqrt{2}$。<br>
+            <strong>(2)</strong> $(\sqrt{7})^2=7$，$(2\sqrt{2})^2=8$，$\because 7<8$，$\therefore \sqrt{7}<2\sqrt{2}$。</p>
+        </div>
+    </div>
+
+    <!-- 例4 实数化简（不含近似值） -->
+    <div class="example-box">
+        <h4>例4 化简：$|2\sqrt{3}-3\sqrt{2}| + |4\sqrt{2}-3\sqrt{3}|$</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">📌 显示解答</button>
+        <div id="ex4" class="answer-box">
+            <p>先判断符号：<br>
+            $(2\sqrt{3})^2=12$，$(3\sqrt{2})^2=18$，$\because 12<18$，$\therefore 2\sqrt{3}<3\sqrt{2}$，所以 $|2\sqrt{3}-3\sqrt{2}| = 3\sqrt{2}-2\sqrt{3}$。<br>
+            $(4\sqrt{2})^2=32$，$(3\sqrt{3})^2=27$，$\because 32>27$，$\therefore 4\sqrt{2}>3\sqrt{3}$，所以 $|4\sqrt{2}-3\sqrt{3}| = 4\sqrt{2}-3\sqrt{3}$。<br>
+            原式 $= (3\sqrt{2}-2\sqrt{3}) + (4\sqrt{2}-3\sqrt{3}) = 7\sqrt{2} - 5\sqrt{3}$。</p>
+        </div>
+    </div>
+
+    <!-- 练习区（不含计算器） -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 复习练习</h3>
+
+        <!-- 练习1 判断（分行显示） -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 判断下列说法是否正确，并说明理由：</p>
+            <span class="sub-question">(1) 4的平方根是2；</span>
+            <span class="sub-question">(2) -8的立方根是-2；</span>
+            <span class="sub-question">(3) 40的算术平方根是20；</span>
+            <span class="sub-question">(4) 负数没有立方根；</span>
+            <span class="sub-question">(5) 正数有两个立方根；</span>
+            <span class="sub-question">(6) 0没有平方根。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) 错，应为 $\pm2$；</p>
+                <p class="sub-answer">(2) 对；</p>
+                <p class="sub-answer">(3) 错，$\sqrt{40}=2\sqrt{10}\approx6.32$；</p>
+                <p class="sub-answer">(4) 错，负数有立方根（负）；</p>
+                <p class="sub-answer">(5) 错，正数只有一个立方根；</p>
+                <p class="sub-answer">(6) 错，0的平方根是0。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 复习题A组第2题表格 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. （复习题A组第2题）根据表格中所给的信息，完成下列表格：</p>
+            <table id="reviewTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>列1</th>
+                        <th>列2</th>
+                        <th>列3</th>
+                        <th>列4</th>
+                        <th>列5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>被开方数</td>
+                        <td id="a1" data-known="true">1</td>
+                        <td id="a2"></td>
+                        <td id="a3" data-known="true">0</td>
+                        <td id="a4"></td>
+                        <td id="a5"></td>
+                    </tr>
+                    <tr>
+                        <td>平方根</td>
+                        <td id="b1"></td>
+                        <td id="b2" data-known="true">±2</td>
+                        <td id="b3"></td>
+                        <td id="b4"></td>
+                        <td id="b5"></td>
+                    </tr>
+                    <tr>
+                        <td>算术平方根</td>
+                        <td id="c1"></td>
+                        <td id="c2"></td>
+                        <td id="c3"></td>
+                        <td id="c4"></td>
+                        <td id="c5"></td>
+                    </tr>
+                    <tr>
+                        <td>立方根</td>
+                        <td id="d1"></td>
+                        <td id="d2"></td>
+                        <td id="d3"></td>
+                        <td id="d4" data-known="true">3</td>
+                        <td id="d5" data-known="true">-4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="interact-btn" onclick="fillReviewTable()">📌 显示表格答案</button>
+        </div>
+
+        <!-- 练习3 比较大小（无需展开完全平方） -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 比较下列各组数的大小：</p>
+            <span class="sub-question">$(1)\ 3\sqrt{2}$ 与 $2\sqrt{5}$；</span>
+            <span class="sub-question">$(2)\ \dfrac{\sqrt{7}-1}{2}$ 与 $1$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p class="sub-answer"><strong>(1)</strong> $(3\sqrt{2})^2=18$，$(2\sqrt{5})^2=20$，$\because 18<20$，$\therefore 3\sqrt{2}<2\sqrt{5}$。</p>
+                <p class="sub-answer"><strong>(2)</strong> 比较 $\dfrac{\sqrt{7}-1}{2}$ 与 $1$，即比较 $\sqrt{7}-1$ 与 $2$，即比较 $\sqrt{7}$ 与 $3$，因为 $7<9$，所以 $\sqrt{7}<3$，故 $\dfrac{\sqrt{7}-1}{2}<1$。</p>
+            </div>
+        </div>
+
+        <!-- 练习4 实数与数轴 -->
+        <div class="exercise-item">
+            <p class="exercise-question">4. 数轴上点 $A$ 和点 $B$ 对应的实数分别为 $\sqrt{2}+1$ 和 $\sqrt{2}-1$，求 $A,B$ 两点间的距离。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac4')">🔍 答案</button>
+            <div id="prac4" class="answer-box">
+                <p>$(\sqrt{2}+1)-(\sqrt{2}-1)=2$，距离为2。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：为什么√2不是有理数（反证法） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 为什么 $\sqrt{2}$ 不是有理数</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>我们可以用反证法证明 $\sqrt{2}$ 不是有理数：</p>
+            <p>假设 $\sqrt{2}$ 是有理数，那么它可以表示为 $\dfrac{q}{p}$（$p,q$ 是互质的正整数）。由 $\sqrt{2}$ 的意义得 $\left(\dfrac{q}{p}\right)^2 = 2$，即 $q^2 = 2p^2$。于是 $q^2$ 是偶数，从而 $q$ 也是偶数。设 $q=2k$，代入得 $4k^2 = 2p^2$，即 $p^2 = 2k^2$，所以 $p$ 也是偶数。这与 $p,q$ 互质矛盾。因此假设不成立，$\sqrt{2}$ 不是有理数。</p>
+            <p>这个证明最早出现在欧几里得的《几何原本》中，是人类认识无理数的开端。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong> 平方根与立方根的性质因数的正负而异。<br>
+        <strong>类比思想：</strong> 由平方根的学习方法迁移到立方根。<br>
+        <strong>数形结合：</strong> 实数与数轴上的点一一对应，直观理解无理数的大小。<br>
+        <strong>逼近思想：</strong> 用有理数近似表示无理数，进行比较。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">平方根：正数有两个平方根，0的平方根是0，负数没有平方根。</div>
+            <div class="summary-item">算术平方根：$\sqrt{a}\ (a\ge0)$ 表示非负数 $a$ 的非负平方根。</div>
+            <div class="summary-item">立方根：任何实数都有唯一的立方根，符号与本身相同。</div>
+            <div class="summary-item">无理数是无限不循环小数，有理数和无理数统称实数。</div>
+            <div class="summary-item">实数的相反数、绝对值、大小比较与有理数一致。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 复习题 A组 第1、3、5题，B组 第6、8题，C组 第10题（选做）。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 数的开方，开启无理数之门，走进更广阔的实数世界 ✨</p>
+    <div class="footer-note">八年级上册 · 第10章 复习</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 表格填充状态
+    var tableFilled = false;
+
+    function fillReviewTable() {
+        if (!tableFilled) {
+            // 填充空白单元格（仅填充未标记为已知的单元格）
+            // 第1列：已知被开方数=1，需填平方根、算术平方根、立方根
+            document.getElementById('b1').innerText = '±1';
+            document.getElementById('c1').innerText = '1';
+            document.getElementById('d1').innerText = '1';
+
+            // 第2列：已知平方根=±2，被开方数=4，算术平方根=2，立方根=∛4
+            document.getElementById('a2').innerText = '4';
+            document.getElementById('c2').innerText = '2';
+            document.getElementById('d2').innerText = '∛4';
+
+            // 第3列：已知被开方数=0，平方根、算术平方根、立方根均为0
+            document.getElementById('b3').innerText = '0';
+            document.getElementById('c3').innerText = '0';
+            document.getElementById('d3').innerText = '0';
+
+            // 第4列：已知立方根=3，被开方数=27，平方根=±√27，算术平方根=√27
+            document.getElementById('a4').innerText = '27';
+            document.getElementById('b4').innerText = '±√27';
+            document.getElementById('c4').innerText = '√27';
+
+            // 第5列：已知立方根=-4，被开方数=-64，平方根无，算术平方根无
+            document.getElementById('a5').innerText = '-64';
+            document.getElementById('b5').innerText = '无';
+            document.getElementById('c5').innerText = '无';
+            // d5 已经是 -4，已知
+
+            tableFilled = true;
+        } else {
+            // 清空所有非已知的数据单元格（只清空数据列，即每行第一个td之后的单元格）
+            var dataCells = document.querySelectorAll('#reviewTable td:not(:first-child)');
+            dataCells.forEach(function(cell) {
+                if (!cell.hasAttribute('data-known')) {
+                    cell.innerText = '';
+                }
+            });
+            tableFilled = false;
+        }
+        // 触发 MathJax 重新渲染
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

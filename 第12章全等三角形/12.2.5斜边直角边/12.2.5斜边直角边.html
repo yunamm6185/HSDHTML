@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.2.5 斜边直角边 (HL) | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #1e3b5a;
+            padding: 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 1.5rem 2rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #3a9fd5;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 1.5rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0 1.5rem;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 4px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.3rem;
+            border-left: 5px solid #2675a8;
+            padding-left: 0.8rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 30px;
+            padding: 0.3rem 1.2rem 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 0 #b4cde2;
+            border: 1px solid #c3daef;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #2a7faa;
+            font-weight: 500;
+        }
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a8b4f;
+        }
+        .explore-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.4rem;
+            color: #1d6130;
+        }
+        .explore-card h4::before {
+            content: "🔍 ";
+        }
+        .experiment-container {
+            background: white;
+            border-radius: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 0.5rem;
+        }
+        .triangle-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .triangle-individual {
+            flex: 1;
+            max-width: 480px;          
+            min-width: 380px;
+            background: #fefefe;
+            border-radius: 24px;
+            border: 1px solid #eef2fa;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        @media (max-width: 850px) {
+            .triangle-individual {
+                min-width: 340px;
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 750px) {
+            .triangle-panel {
+                flex-direction: column;
+            }
+        }
+        .canvas-wrapper {
+            padding: 12px;
+            text-align: center;
+            background: #fff;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #fafdff;
+            border-radius: 12px;
+            border: 1px solid #e2edf5;
+        }
+        .triangle-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 10px 14px;
+            background: #f8fafd;
+            border-bottom: 1px solid #eef2fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .triangle1-title { color: #1e40af; }
+        .triangle2-title { color: #c2410c; }
+        .valid-badge {
+            font-size: 0.75rem;
+            background: #eef2ff;
+            padding: 2px 10px;
+            border-radius: 30px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+        .info-bar {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            text-align: center;
+            border-top: 1px solid #eef2fa;
+            background: #fafcff;
+        }
+        .controls-panel {
+            padding: 10px 12px;
+            background: #fafcff;
+            border-top: 1px solid #eef2fa;
+        }
+        .control-group {
+            margin-bottom: 12px;
+        }
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+        }
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .step-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 30px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.1s;
+        }
+        .step-btn:hover { background: #e9eef3; transform: scale(0.96);}
+        .value-badge {
+            background: #eef2ff;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .slider-wrapper input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #dceaf5;
+        }
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .btn-reset {
+            flex: 1;
+            background: #f0f6fc;
+            color: #3a7ca5;
+            border: 1px solid #c7d8ea;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+            font-size: 0.85rem;
+        }
+        .btn-reset:hover {
+            background: #e1eef8;
+        }
+        .compare-result {
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            margin: 20px 0 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #eef2fa;
+            border-left: 6px solid #3a9fd5;
+        }
+        .congruent-true {
+            background: #d9f0e3;
+            color: #0b5e2e;
+            border-left-color: #2e7d64;
+        }
+        .congruent-false {
+            background: #ffe6e5;
+            color: #b91c1c;
+            border-left-color: #b91c1c;
+        }
+        .info-note {
+            background: #f1f5f9;
+            border-radius: 16px;
+            padding: 8px 12px;
+            margin: 10px 0 0;
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .fact-card, .example-card, .deduction-card {
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+        .fact-card {
+            background: #fff3cd;
+            border-left: 6px solid #f0b34b;
+        }
+        .example-card {
+            background: #e5f3e2;
+            border-left: 6px solid #3a8b4f;
+        }
+        .deduction-card {
+            background: #e1eff9;
+            border-left: 6px solid #2a7faa;
+        }
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 1.5rem;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+            border: 1px solid #c0d6e8;
+            text-align: center;
+        }
+        .fig-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 0.8rem 0;
+        }
+        .fig-row .figure-container {
+            flex: 1;
+            min-width: 200px;
+            margin: 0;
+        }
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 0 #9fbede;
+            margin: 0.3rem 0 0;
+            font-size: 0.85rem;
+        }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 4px solid #f0b34b;
+            padding: 0.6rem 1rem;
+            margin: 0.6rem 0;
+            display: none;
+            border-radius: 0 0.8rem 0.8rem 0;
+            font-size: 0.85rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 1.5rem;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .exercise-item .figure-container {
+            max-width: 400px;
+            margin: 0.4rem 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+        .exercise-item img {
+            max-height: 150px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .summary-section, .math-idea, .reading-section, .homework-box, .message-box {
+            border-radius: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            font-weight: 500;
+        }
+        .summary-section {
+            background: #d6e9f5;
+            border-left: 5px solid #30829b;
+        }
+        .math-idea {
+            background: #deedf7;
+            border-left: 6px solid #2a7faa;
+        }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 6px solid #e6b422;
+        }
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 6px solid #3a9fd5;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 1px solid #c0d8ec;
+            padding-top: 0.6rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        .highlight {
+            background: #c5e0d4;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.8rem;
+            margin: 0.4rem 0;
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0;
+            font-size: 0.85rem;
+        }
+        .summary-table th, .summary-table td {
+            border: 1px solid #b8d2e9;
+            padding: 6px 4px;
+            text-align: center;
+        }
+        .summary-table th {
+            background: #e2effa;
+            font-weight: 700;
+        }
+        .divider {
+            margin: 1rem 0 0.8rem;
+            border-top: 1px dashed #b8d2e9;
+        }
+        .figure-caption {
+            font-size: 0.75rem;
+            color: #4a6a85;
+            margin-top: 4px;
+        }
+        .img-plain img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.2.5</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.2.5 斜边直角边 (HL)</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握直角三角形全等的“斜边直角边”判定方法</div>
+            <div class="target-item"><span>✔</span>能运用HL进行几何推理证明</div>
+            <div class="target-item"><span>✔</span>理解HL是SSA的特殊情形</div>
+        </div>
+    </div>
+
+    <div class="intro-card">
+        <p>我们已经知道，对于两个三角形，如果有“边边角”分别相等，那么不能保证这两个三角形全等。在两个直角三角形中，当斜边和一条直角边分别相等时，也属于“边边角”相等的情况，这时这两个直角三角形是否全等呢？</p>
+    </div>
+
+    <div class="explore-card">
+        <h4>做一做</h4>
+        <p>如图12.2.24，已知线段 $a, b(b > a)$，试作 $\mathrm{Rt}\triangle ABC$，使 $\angle B = 90^{\circ}$，$BC = a$，$AC = b$。</p>
+        <div class="fig-row">
+            <div class="figure-container">
+                <img src="12.2.24.png" alt="图12.2.24 已知线段a,b" style="max-width:240px;">
+                <div class="figure-caption">图12.2.24 已知线段 $a, b$</div>
+            </div>
+            <div class="figure-container">
+                <img src="12.2.25.png" alt="图12.2.25 作法示意图" style="max-width:240px;">
+                <div class="figure-caption">图12.2.25 作法示意图</div>
+            </div>
+        </div>
+        <p><strong>作法：</strong><br>
+        (1) 作线段 $BC$，使 $BC = a$；<br>
+        (2) 作 $\angle CBM = 90^{\circ}$；<br>
+        (3) 以点 $C$ 为圆心、线段 $b$ 的长为半径作圆弧，交射线 $BM$ 于点 $A$；<br>
+        (4) 连结 $AC$。<br>
+        如图12.2.25，$\triangle ABC$ 即为所要求作的直角三角形。</p>
+        <p>把你作的直角三角形与其他同学作的直角三角形进行比较，或剪下你作的直角三角形，放到其他同学作的直角三角形上，看看是否完全重合。所作的直角三角形都全等吗？<br>
+        换两条线段，试试看，是否有同样的结论？</p>
+        <p>由以上操作，可以发现它们完全重合，所作的直角三角形都全等。</p>
+
+        <div class="divider"></div>
+        <p style="margin: 0.6rem 0 0.4rem; font-weight: 500;">我们也可以借助下面的交互工具，动态调整斜边和一条直角边的长度，亲身体验“斜边直角边”判定：</p>
+
+        <!-- 全新交互面板：完全替换为交互.html 风格，双直角三角形动态验证HL -->
+        <div id="experimentContainer" class="experiment-container">
+            <!-- 内容由脚本动态生成保证结构一致，但为了完全复刻交互.html，直接静态嵌入 -->
+            <div class="triangle-panel">
+                <div class="triangle-individual">
+                    <div class="triangle-title triangle1-title">
+                        <span>🔷 Rt△ABC (∠A=90°)</span>
+                        <span class="valid-badge" id="valid1">有效</span>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="canvas1" width="400" height="300"></canvas>
+                    </div>
+                    <div class="info-bar">
+                        <div>直角边 AB = <strong id="leg1Display">3.00</strong>，斜边 BC = <strong id="hyp1Display">5.00</strong>，直角边 AC = <strong id="other1Display">4.00</strong></div>
+                    </div>
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>📏 直角边 AB (a)</span>
+                                <span class="value-badge" id="leg1Val">3.0</span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <button class="step-btn" data-tri="1" data-side="leg" data-delta="-0.5">−</button>
+                                <input type="range" id="leg1" min="1" max="8" step="0.5" value="3">
+                                <button class="step-btn" data-tri="1" data-side="leg" data-delta="0.5">+</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>📏 斜边 BC (c)</span>
+                                <span class="value-badge" id="hyp1Val">5.0</span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <button class="step-btn" data-tri="1" data-side="hyp" data-delta="-0.5">−</button>
+                                <input type="range" id="hyp1" min="2" max="10" step="0.5" value="5">
+                                <button class="step-btn" data-tri="1" data-side="hyp" data-delta="0.5">+</button>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-reset" id="resetTri1Btn">重置 (3,5)</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="triangle-individual">
+                    <div class="triangle-title triangle2-title">
+                        <span>🟠 Rt△DEF (∠D=90°)</span>
+                        <span class="valid-badge" id="valid2">有效</span>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <canvas id="canvas2" width="400" height="300"></canvas>
+                    </div>
+                    <div class="info-bar">
+                        <div>直角边 DE = <strong id="leg2Display">4.00</strong>，斜边 EF = <strong id="hyp2Display">5.00</strong>，直角边 DF = <strong id="other2Display">3.00</strong></div>
+                    </div>
+                    <div class="controls-panel">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>📏 直角边 DE (a')</span>
+                                <span class="value-badge" id="leg2Val">4.0</span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <button class="step-btn" data-tri="2" data-side="leg" data-delta="-0.5">−</button>
+                                <input type="range" id="leg2" min="1" max="8" step="0.5" value="4">
+                                <button class="step-btn" data-tri="2" data-side="leg" data-delta="0.5">+</button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <span>📏 斜边 EF (c')</span>
+                                <span class="value-badge" id="hyp2Val">5.0</span>
+                            </div>
+                            <div class="slider-wrapper">
+                                <button class="step-btn" data-tri="2" data-side="hyp" data-delta="-0.5">−</button>
+                                <input type="range" id="hyp2" min="2" max="10" step="0.5" value="5">
+                                <button class="step-btn" data-tri="2" data-side="hyp" data-delta="0.5">+</button>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button class="btn-reset" id="resetTri2Btn">重置 (3,5)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="compare-section">
+                <div class="compare-result" id="compareResult">
+                    等待比较...
+                </div>
+            </div>
+            <div class="info-note">
+                💡 分别调整两个直角三角形的直角边和斜边(cm)，系统自动计算另一直角边。当斜边和<strong>任意一条直角边</strong>分别相等(误差&lt;0.08)时，根据HL判定全等。试试看：让两个三角形的斜边相等，且一条直角边相等(包括交叉相等，如△ABC的AB=△DEF的DF)，即可验证全等！
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('expHL')">📐 实验结论</button>
+        <div id="expHL" class="answer-box">
+            <p>通过动态实验可以发现：当两个直角三角形的斜边和一条直角边分别相等时，它们能够完全重合，形状大小完全相同。这验证了定理“斜边和一条直角边分别相等的两个直角三角形全等”（HL）。交互工具支持交叉相等（如左边直角边等于右边另一直角边），更全面体现HL的本质。</p>
+        </div>
+    </div>
+
+    <div class="fact-card">
+        <h4>于是可得判定直角三角形全等的又一个定理！</h4>
+        <p class="highlight"><strong>斜边和一条直角边分别相等的两个直角三角形全等。</strong>（简写成“斜边直角边”或“HL”）</p>
+        <p>这是一个定理，以后会给出它的证明。</p>
+    </div>
+
+    <div class="example-card">
+        <h4>例8</h4>
+        <p>如图12.2.26，$AC = BD$，$\angle C = \angle D = 90^{\circ}$。求证：$BC = AD$。</p>
+        <div class="figure-container">
+            <img src="12.2.26.png" alt="图12.2.26 例8图" style="max-width:260px;">
+            <div class="figure-caption">图12.2.26</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex8')">✍️ 显示证明</button>
+        <div id="ex8" class="answer-box">
+            <p><strong>证明：</strong><br>
+            $\because \angle C = \angle D = 90^{\circ}$ (已知)，<br>
+            $\therefore \triangle ABC$ 和 $\triangle BAD$ 都是直角三角形。<br>
+            在 $\mathrm{Rt}\triangle ABC$ 和 $\mathrm{Rt}\triangle BAD$ 中，<br>
+            $\because AB = BA$ (公共边)，<br>
+            $AC = BD$ (已知)，<br>
+            $\therefore \mathrm{Rt}\triangle ABC \cong \mathrm{Rt}\triangle BAD$ (HL)。<br>
+            $\therefore BC = AD$ (全等三角形的对应边相等)。</p>
+        </div>
+    </div>
+
+    <div class="deduction-card">
+        <h4>思考</h4>
+        <p>为什么HL能判定直角三角形全等？你能结合前面学习的“边角边”或“角角边”给出证明吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('thinkHL')">📐 提示</button>
+        <div id="thinkHL" class="answer-box">
+            <p>事实上，HL定理的严格证明需要用到一些新的知识，我们将在后续学习中逐步揭示。目前，我们可以通过实验操作和直观感受来接受这一结论。这体现了直角三角形在全等判定中的特殊性——正是由于直角的存在，使“边边角”这种一般情形下不成立的判定在直角三角形中成了真命题。具体证明将在我们学习更多几何知识后给出。</p>
+        </div>
+    </div>
+
+    <div class="reading-section">
+        <h4>📖 读一读</h4>
+        <p>至此，我们已经学习了关于全等三角形的四个判定方法：SAS、ASA、AAS、SSS，以及直角三角形的特殊判定HL。HL是“边边角”在直角三角形中成立的特例，体现了数学中“特殊化”的思想。</p>
+    </div>
+
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:5px solid #30829b; padding-left:0.8rem; margin-bottom:0.8rem;">📊 概括</h3>
+        <p>我们可以将前面在对全等三角形判定的探索中得到的结论归纳成下表：</p>
+        <table class="summary-table">
+            <thead>
+                <tr><th rowspan="2">分别相等的元素</th><th colspan="2">两边一角</th><th colspan="2">两角一边</th><th rowspan="2">三角</th><th rowspan="2">三边</th><th rowspan="2">直角三角形（HL）</th></tr>
+                <tr><th>两边及其夹角</th><th>两边及其中一边的对角</th><th>两角及其夹边</th><th>两角及其中一角的对边</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>三角形是否全等</td><td>一定 (SAS)</td><td>不一定</td><td>一定 (ASA)</td><td>一定 (AAS)</td><td>不一定</td><td>一定 (SSS)</td><td>一定 (HL)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:0.8rem;">✏️ 练习</h3>
+        
+        <div class="exercise-item">
+            <p class="exercise-question">1. 如图，在 $\triangle ABC$ 中，点 $D$ 为 $BC$ 的中点，$DE \perp AB$，$DF \perp AC$，点 $E$、$F$ 为垂足，$DE = DF$。求证：$\mathrm{Rt}\triangle BED \cong \mathrm{Rt}\triangle CFD$。</p>
+            <div class="figure-container img-plain">
+                <img src="第1题.png" alt="第1题图" style="max-height:150px;">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p><strong>证明：</strong><br>
+                由 $D$ 是 $BC$ 中点得 $BD = CD$。<br>
+                在 $\mathrm{Rt}\triangle BED$ 和 $\mathrm{Rt}\triangle CFD$ 中，<br>
+                $\because DE = DF$ (已知)，$BD = CD$ (已证)，<br>
+                $\therefore \mathrm{Rt}\triangle BED \cong \mathrm{Rt}\triangle CFD$ (HL)。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如图，$AC = AD$，$\angle C = \angle D = 90^{\circ}$。求证：$BC = BD$。</p>
+            <div class="figure-container img-plain">
+                <img src="第2题.png" alt="第2题图" style="max-height:150px;">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p><strong>证明：</strong><br>
+                在 $\mathrm{Rt}\triangle ABC$ 和 $\mathrm{Rt}\triangle ABD$ 中，<br>
+                $\because AC = AD$ (已知)，$AB = AB$ (公共边)，<br>
+                $\therefore \mathrm{Rt}\triangle ABC \cong \mathrm{Rt}\triangle ABD$ (HL)。<br>
+                $\therefore BC = BD$。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 如图，有两个长度相同的滑梯，左边滑梯的高度 $AC$ 与右边滑梯水平方向的跨度 $DF$ 相等，这两个滑梯的倾斜角 $\angle CBA$ 与 $\angle EFD$ 的大小有什么关系？说说你的想法和理由。</p>
+            <div class="figure-container img-plain">
+                <img src="第3题.png" alt="第3题图" style="max-height:150px;">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>$\angle CBA = \angle EFD$。<br>
+                理由：由题意，$BC = EF$（滑梯长度相同），$AC = DF$，且$\angle BAC = \angle EDF = 90^{\circ}$。<br>
+                在 $\mathrm{Rt}\triangle ABC$ 和 $\mathrm{Rt}\triangle DEF$ 中，<br>
+                $\because BC = EF$，$AC = DF$，<br>
+                $\therefore \mathrm{Rt}\triangle ABC \cong \mathrm{Rt}\triangle DEF$ (HL)。<br>
+                $\therefore \angle CBA = \angle EFD$。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:5px solid #30829b; padding-left:0.8rem;">📌 课堂小结</h3>
+        <div>• 斜边和一条直角边分别相等的两个直角三角形全等（HL）。</div>
+        <div>• HL是直角三角形特有的判定方法，也是“边边角”在直角三角形中成立的特例。</div>
+        <div>• 运用HL时要注意：必须指明是直角三角形，且对应边是斜边和直角边。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>特殊化思想：</strong> HL是一般SSA在直角三角形中的特殊化，体现了从一般到特殊的数学思想。<br>
+        <strong>转化思想：</strong> 利用HL可将直角三角形全等问题转化为简单条件。<br>
+        <strong>推理意识：</strong> 严谨的演绎推理是几何学习的核心。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:1.8rem;">📚</span>
+        <span><strong>作业：</strong> 课本习题12.2 A组第7、8题，B组第10题；完成练习册HL专项练习。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 直角斜边一条腿，HL判定显神威；特殊之中见一般，几何推理步步随。 ✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第12章 12.2.5 斜边直角边</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // HL交互模块：完全基于交互.html 的优雅实现 (双直角三角形动态演示)
+    (function() {
+        const canvas1 = document.getElementById('canvas1');
+        const canvas2 = document.getElementById('canvas2');
+        const ctx1 = canvas1.getContext('2d');
+        const ctx2 = canvas2.getContext('2d');
+        canvas1.width = 400; canvas1.height = 300;
+        canvas2.width = 400; canvas2.height = 300;
+
+        function isValidTriangle(leg, hyp) {
+            return hyp > leg && leg > 0 && hyp > 0;
+        }
+        function calcOtherLeg(leg, hyp) {
+            if (!isValidTriangle(leg, hyp)) return 0;
+            return Math.sqrt(hyp * hyp - leg * leg);
+        }
+
+        function drawTriangle(ctx, leg, hyp, otherLeg, colorLeg, colorHyp, label, vertexLabels) {
+            ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+            const W = canvas1.width, H = canvas1.height;
+            if (!isValidTriangle(leg, hyp)) {
+                ctx.fillStyle = '#dc2626';
+                ctx.font = 'bold 18px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('⚠️ 无效三角形', W/2, H/2);
+                ctx.font = '12px sans-serif';
+                ctx.fillText('斜边必须大于直角边', W/2, H/2 + 30);
+                return;
+            }
+            const scale = Math.min((W - 80) / hyp, (H - 80) / Math.max(leg, otherLeg));
+            const baseLen = leg * scale;
+            const heightLen = otherLeg * scale;
+            const margin = 50;
+            const A = { x: margin, y: H - margin };
+            const B = { x: margin + baseLen, y: H - margin };
+            const C = { x: margin, y: H - margin - heightLen };
+            // 直角边 AB 和 AC
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.strokeStyle = colorLeg; ctx.lineWidth = 3; ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.strokeStyle = colorHyp; ctx.lineWidth = 4; ctx.stroke();
+            // 直角标记
+            ctx.strokeStyle = '#64748b'; ctx.strokeRect(A.x, A.y - 12, 12, 12);
+            ctx.fillStyle = '#0f405e'; ctx.font = 'bold 15px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText(vertexLabels[0], A.x - 12, A.y + 5);
+            ctx.fillText(vertexLabels[1], B.x + 8, B.y + 18);
+            ctx.fillText(vertexLabels[2], C.x - 12, C.y);
+            ctx.font = '12px sans-serif'; ctx.fillStyle = colorLeg;
+            ctx.fillText(`a=${leg.toFixed(2)}`, (A.x+B.x)/2, (A.y+B.y)/2 + 18);
+            ctx.fillStyle = colorHyp;
+            ctx.fillText(`c=${hyp.toFixed(2)}`, (B.x+C.x)/2 + 15, (B.y+C.y)/2);
+            ctx.fillStyle = '#2675a8';
+            ctx.fillText(`b=${otherLeg.toFixed(2)}`, (A.x+C.x)/2 - 25, (A.y+C.y)/2 - 5);
+            ctx.font = '12px sans-serif'; ctx.fillStyle = '#64748b'; ctx.fillText(label, W/2, 20);
+        }
+
+        function updateBothTriangles() {
+            const leg1 = parseFloat(document.getElementById('leg1').value);
+            const hyp1 = parseFloat(document.getElementById('hyp1').value);
+            const leg2 = parseFloat(document.getElementById('leg2').value);
+            const hyp2 = parseFloat(document.getElementById('hyp2').value);
+            document.getElementById('leg1Val').innerText = leg1.toFixed(1);
+            document.getElementById('hyp1Val').innerText = hyp1.toFixed(1);
+            document.getElementById('leg2Val').innerText = leg2.toFixed(1);
+            document.getElementById('hyp2Val').innerText = hyp2.toFixed(1);
+            const other1 = calcOtherLeg(leg1, hyp1);
+            const other2 = calcOtherLeg(leg2, hyp2);
+            document.getElementById('leg1Display').innerText = leg1.toFixed(2);
+            document.getElementById('hyp1Display').innerText = hyp1.toFixed(2);
+            document.getElementById('other1Display').innerText = other1.toFixed(2);
+            document.getElementById('leg2Display').innerText = leg2.toFixed(2);
+            document.getElementById('hyp2Display').innerText = hyp2.toFixed(2);
+            document.getElementById('other2Display').innerText = other2.toFixed(2);
+            const valid1 = isValidTriangle(leg1, hyp1);
+            const valid2 = isValidTriangle(leg2, hyp2);
+            document.getElementById('valid1').innerText = valid1 ? '有效' : '无效';
+            document.getElementById('valid1').style.background = valid1 ? '#eef2ff' : '#fee2e2';
+            document.getElementById('valid2').innerText = valid2 ? '有效' : '无效';
+            document.getElementById('valid2').style.background = valid2 ? '#eef2ff' : '#fee2e2';
+            drawTriangle(ctx1, leg1, hyp1, other1, '#3b82f6', '#ef4444', '△ABC (直角在A)', ['A','B','C']);
+            drawTriangle(ctx2, leg2, hyp2, other2, '#f97316', '#dc2626', '△DEF (直角在D)', ['D','E','F']);
+            if (!valid1 || !valid2) {
+                const resultDiv = document.getElementById('compareResult');
+                resultDiv.className = "compare-result congruent-false";
+                resultDiv.innerHTML = "❌ 存在无效直角三角形，无法判定全等";
+                return;
+            }
+            const eps = 0.08;
+            const hypEqual = Math.abs(hyp1 - hyp2) <= eps;
+            const leg1Equal = Math.abs(leg1 - leg2) <= eps;
+            const other1Equal = Math.abs(other1 - other2) <= eps;
+            const cross1 = Math.abs(leg1 - other2) <= eps;
+            const cross2 = Math.abs(other1 - leg2) <= eps;
+            const anyLegEqual = leg1Equal || other1Equal || cross1 || cross2;
+            if (hypEqual && anyLegEqual) {
+                const resultDiv = document.getElementById('compareResult');
+                resultDiv.className = "compare-result congruent-true";
+                let detail = "";
+                if (leg1Equal) detail = `直角边AB = 直角边DE = ${leg1.toFixed(2)}`;
+                else if (other1Equal) detail = `直角边AC = 直角边DF = ${other1.toFixed(2)}`;
+                else if (cross1) detail = `直角边AB = 直角边DF = ${leg1.toFixed(2)}`;
+                else detail = `直角边AC = 直角边DE = ${other1.toFixed(2)}`;
+                resultDiv.innerHTML = `✅ 全等判定：斜边相等 (c₁ = c₂ = ${hyp1.toFixed(2)}) 且 ${detail} → 根据HL，两直角三角形全等`;
+            } else {
+                const resultDiv = document.getElementById('compareResult');
+                resultDiv.className = "compare-result congruent-false";
+                if (!hypEqual) resultDiv.innerHTML = "❌ 不全等：斜边不相等。调整使斜边相等后再验证HL。";
+                else resultDiv.innerHTML = "❌ 不全等：斜边相等，但没有一条直角边相等(包括交叉相等)。调整任意一条直角边相等即可验证HL。";
+            }
+        }
+        function bindEvents() {
+            ['leg1','hyp1','leg2','hyp2'].forEach(id => document.getElementById(id).addEventListener('input', updateBothTriangles));
+            document.getElementById('resetTri1Btn').onclick = () => { document.getElementById('leg1').value = "3"; document.getElementById('hyp1').value = "5"; updateBothTriangles(); };
+            document.getElementById('resetTri2Btn').onclick = () => { document.getElementById('leg2').value = "3"; document.getElementById('hyp2').value = "5"; updateBothTriangles(); };
+            document.querySelectorAll('.step-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tri = btn.getAttribute('data-tri');
+                    const side = btn.getAttribute('data-side');
+                    const delta = parseFloat(btn.getAttribute('data-delta'));
+                    let inp = side === 'leg' ? document.getElementById(`leg${tri}`) : document.getElementById(`hyp${tri}`);
+                    if (inp) { let v = parseFloat(inp.value) + delta; v = Math.min(parseFloat(inp.max), Math.max(parseFloat(inp.min), v)); inp.value = v; updateBothTriangles(); }
+                });
+            });
+        }
+        bindEvents();
+        updateBothTriangles();
+    })();
+</script>
+</body>
+</html>

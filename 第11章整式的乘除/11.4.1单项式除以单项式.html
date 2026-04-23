@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.4.1 单项式除以单项式 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.4.1</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.4.1 单项式除以单项式</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解单项式除以单项式的运算法则</div>
+            <div class="target-item"><span>✔</span>能熟练进行单项式除法计算</div>
+            <div class="target-item"><span>✔</span>体会转化思想（将除法转化为乘法）</div>
+        </div>
+    </div>
+
+    <!-- 导入：从乘法引入 -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <p>计算：$12a^5c^2 \div 3a^2$</p>
+        <p>根据除法的意义，上面的计算就是要求一个式子，使它与 $3a^2$ 的乘积等于 $12a^5c^2$。</p>
+        <p>因为 $(4a^3c^2) \cdot 3a^2 = 12a^5c^2$，所以</p>
+        <p>$$12a^5c^2 \div 3a^2 = 4a^3c^2.$$</p>
+        <button class="interact-btn" onclick="toggleAnswer('importAns')">🔍 显示过程</button>
+        <div id="importAns" class="answer-box">
+            <p>通过逆用乘法得到结果，这启发我们如何直接进行单项式除法。</p>
+        </div>
+    </div>
+
+    <!-- 试一试（略，直接概括） -->
+    <div class="think-box">
+        <h4>概括</h4>
+        <p>单项式相除，把系数、同底数幂分别相除作为商的因式，对于只在被除式中出现的字母，则连同它的指数一起作为商的一个因式。</p>
+    </div>
+
+    <!-- 例1（课本例1） -->
+    <div class="example-box">
+        <h4>例1 计算</h4>
+        <p>$(1)\ 24a^3b^2 \div 3ab^2$； $(2)\ -21a^2b^3c \div 3ab$； $(3)\ (6xy^2)^2 \div 3xy$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>$(1)\ 24a^3b^2 \div 3ab^2 = (24 \div 3) a^{3-1} (b^{2-2}) = 8a^2$；</p>
+            <p>$(2)\ -21a^2b^3c \div 3ab = (-21 \div 3) a^{2-1} b^{3-1} c = -7ab^2c$；</p>
+            <p>$(3)\ (6xy^2)^2 \div 3xy = 36x^2y^4 \div 3xy = (36 \div 3) x^{2-1} y^{4-1} = 12xy^3$。</p>
+        </div>
+    </div>
+
+    <!-- 思考：用(a-b)的幂表示 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>你能用 $(a-b)$ 的幂表示 $(a-b)^5 \div (a-b)^2$ 的结果吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('thinkAns')">💭 显示答案</button>
+        <div id="thinkAns" class="answer-box">
+            <p>$(a-b)^5 \div (a-b)^2 = (a-b)^{5-2} = (a-b)^3$。</p>
+        </div>
+    </div>
+
+    <!-- 填表（课本练习，修正为4列表格） -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 填表</h3>
+        <table>
+            <tr>
+                <th></th>
+                <th>列1</th>
+                <th>列2</th>
+                <th>列3</th>
+            </tr>
+            <tr>
+                <td>被除式</td>
+                <td id="a1">$6x^3y^3$</td>
+                <td id="a2">$-42x^3y^3$</td>
+                <td id="a3">$-42x^3y^3$</td>
+            </tr>
+            <tr>
+                <td>除式</td>
+                <td id="b1">$2xy$</td>
+                <td id="b2">$-6x^2y^2$</td>
+                <td id="b3"></td>
+            </tr>
+            <tr>
+                <td>商</td>
+                <td id="c1"></td>
+                <td id="c2"></td>
+                <td id="c3">$7x^3$</td>
+            </tr>
+        </table>
+        <button class="interact-btn" onclick="fillTable()">📌 显示表格答案</button>
+        <p style="margin-top:0.5rem;">注：第三列已知商为 $7x^3$，请填写其他空白。</p>
+    </div>
+
+    <!-- 练习区 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p class="exercise-question">1. 计算：</p>
+            <span class="sub-question">$(1)\ (3ab - 2a) \div a$；</span>
+            <span class="sub-question">$(2)\ (5ax^2 + 15x) \div 5x$；</span>
+            <span class="sub-question">$(3)\ (12m^2n + 15mn^2) \div 6mn$；</span>
+            <span class="sub-question">$(4)\ (x^3 - 2x^2y) \div (-x^2)$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) $3b - 2$；</p>
+                <p class="sub-answer">(2) $ax + 3$；</p>
+                <p class="sub-answer">(3) $2m + \frac{5}{2}n$；</p>
+                <p class="sub-answer">(4) $-x + 2y$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：</p>
+            <span class="sub-question">$(1)\ (4a^3b^3 - 6a^2b^3c - 2ab^5) \div (-2ab^5)$；</span>
+            <span class="sub-question">$(2)\ \left(x^2y^3 - \frac{1}{2}x^3y^2 + 2x^2y^2\right) \div \frac{1}{2}xy^2$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) $-2a^2b^{-2} + 3a^2c + 1$；</p>
+                <p class="sub-answer">(2) $2xy - x^2 + 4x$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：除法的意义推导 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 根据除法的意义推导单项式除法法则</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>除法是乘法的逆运算。计算 $a^m \div a^n$ 就是要求一个式子，使它与 $a^n$ 的积等于 $a^m$。设这个式子是 $a^k$，则有 $a^n \cdot a^k = a^m$，由同底数幂乘法法则得 $a^{n+k}=a^m$，所以 $n+k=m$，$k=m-n$。因此 $a^m \div a^n = a^{m-n}$。对于单项式除法，系数相除、相同字母的幂相除，单独的字母照写，都是由这个思想推广而来。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将单项式除法转化为系数和同底数幂的除法。<br>
+        <strong>类比思想：</strong> 类比数的除法学习式的除法。<br>
+        <strong>逆向思维：</strong> 利用乘除互逆推导法则。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">单项式相除：系数相除，同底数幂相除，只在被除式中出现的字母连同指数照写。</div>
+            <div class="summary-item">注意符号：负数的个数决定商的符号。</div>
+            <div class="summary-item">先乘方，再除法，运算顺序要记牢。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.4 A组第1、2题，B组第6题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 系数相除，字母降幂，整式除法也有序 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.4.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    // 表格填充状态
+    var tableFilled = false;
+
+    function fillTable() {
+        // 获取单元格
+        var c1 = document.getElementById('c1');
+        var c2 = document.getElementById('c2');
+        var b3 = document.getElementById('b3');
+
+        if (!tableFilled) {
+            // 填充答案（使用LaTeX格式）
+            c1.innerHTML = '$3x^2y^2$';   // 6x³y³ ÷ 2xy
+            c2.innerHTML = '$7x$';         // -42x³y³ ÷ (-6x²y²)
+            b3.innerHTML = '$-6y^3$';      // (-42x³y³) ÷ 7x³
+            tableFilled = true;
+        } else {
+            // 清空答案，但保留已知内容（已知单元格已在HTML中写死，不会受影响）
+            c1.innerHTML = '';
+            c2.innerHTML = '';
+            b3.innerHTML = '';
+            tableFilled = false;
+        }
+        // 触发 MathJax 重新渲染
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

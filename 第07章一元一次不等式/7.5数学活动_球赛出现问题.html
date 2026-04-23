@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动：球赛出线问题 | 华师版七下·7.5</title>
+    <!-- MathJax 渲染 LaTeX -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f2f8fc;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e3a4b;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0, 60, 90, 0.3);
+            padding: 2rem 2.8rem;
+            border: 1px solid #cde3f2;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #9cc4e4;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.8rem;
+            color: #1e5a7a;
+            font-weight: 500;
+        }
+        h1 { font-size: 2.4rem; color: #083a54; letter-spacing: 1px; }
+        h1::after { content: ''; display: block; width: 80px; height: 5px; background: #3f9ad3; border-radius: 5px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #0e4b70;
+            border-left: 10px solid #3f9ad3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 1rem 0;
+        }
+        .activity-badge {
+            background: #ffe68f;
+            color: #7a5300;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: 2px solid #f2c744;
+            margin-bottom: 1rem;
+        }
+        .game-zone {
+            background: linear-gradient(165deg, #e8f2fc, #d4e9fa);
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 2px solid #b3d4f0;
+            box-shadow: 0 6px 0 #8bb9da;
+        }
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,50,70,0.1);
+            margin: 1.5rem 0;
+        }
+        .team-table th {
+            background: #1a6285;
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.8rem;
+        }
+        .team-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #c3ddf2;
+            text-align: center;
+            background: #f6fbfe;
+        }
+        .team-table tr:last-child td { border-bottom: none; }
+        .highlight-blue { background: #d9ecfe; font-weight: 600; }
+        .rule-box {
+            background: #edf7d9;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            border-left: 10px solid #7fb13b;
+            box-shadow: 0 5px 0 #b1cf7a;
+        }
+        .rule-box h4 { font-size: 1.5rem; color: #3d671d; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+        .rule-box h4::before { content: "🏀"; font-size: 1.8rem; }
+        .question-card {
+            background: #ffffffd9;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1.6rem 2.2rem;
+            margin: 2rem 0 1.2rem 0;
+            border: 2px solid #9dc3e7;
+            box-shadow: 0 6px 0 #7ca9ce;
+        }
+        .question-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #134870;
+            margin-bottom: 1rem;
+            border-left: 10px solid #f9b83c;
+            padding-left: 1.2rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #2e77a3;
+            color: #01427a;
+            padding: 0.5rem 1.8rem;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #a0c1dd;
+            transition: 0.08s linear;
+            margin: 0.5rem 0.5rem 0 0;
+            border: none;
+        }
+        .interact-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #a0c1dd; }
+        .answer-box {
+            background: #f2faff;
+            border-left: 8px solid #f4b84b;
+            padding: 1.2rem 2rem;
+            margin: 1.2rem 0 0.5rem 0;
+            display: none;
+            border-radius: 0 24px 24px 0;
+            box-shadow: 0 4px 12px rgba(0,50,70,0.1);
+            font-size: 1.05rem;
+        }
+        .show-answer { display: block; }
+        .analysis-step {
+            background: white;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border: 1px solid #cae1f2;
+        }
+        .math-badge {
+            background: #154e73;
+            color: white;
+            border-radius: 50px;
+            padding: 0.2rem 1rem;
+            width: fit-content;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #336f96;
+            border-top: 3px solid #b6d7f2;
+            padding-top: 1rem;
+            margin-top: 3rem;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .strategy-tip {
+            background: #fdebd0;
+            border-radius: 32px;
+            padding: 0.8rem 2rem;
+            margin: 2rem 0 0 0;
+            border: 2px solid #f5b37c;
+            color: #784421;
+        }
+        .table-mini {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 16px;
+        }
+        .table-mini th {
+            background: #a4cae7;
+            color: #05314b;
+            padding: 0.5rem;
+        }
+        .table-mini td, .table-mini th {
+            border: 1px solid #b8d7f3;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .emph { color: #b13e3e; font-weight: 700; }
+
+        /* 橙色背景块 */
+        .orange-reading {
+            background: #ffe1b3;   /* 柔和的橙色 */
+            border-radius: 28px;
+            padding: 1rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #f5b342;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .orange-reading:hover { background: #ffd699; }
+
+        /* 核心素养标签 */
+        .core-badge {
+            display: inline-block;
+            background: #2d728f;
+            color: white;
+            border-radius: 40px;
+            padding: 0.3rem 1.2rem;
+            margin: 0.3rem 0.3rem 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 数学活动</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <div class="activity-badge">🏀 数学活动 · 球赛出线问题</div>
+
+    <!-- 情境引入 + 规则说明 (折叠/展开) -->
+    <div class="game-zone">
+        <h2 style="border-left: none; text-align: center; color: #024d72; margin-top: 0;">火炬队 vs 月亮队</h2>
+        <p style="font-size: 1.2rem;">某次篮球联赛中，火炬队与月亮队正在争夺出线权。下面是两队目前的战绩以及剩余比赛场次：</p>
+        <table class="team-table">
+            <tr><th>球队</th><th>已赛场数</th><th>胜场</th><th>负场</th><th>剩余场数</th><th>相互战绩 (已赛)</th></tr>
+            <tr><td>🔥 火炬队</td><td>30</td><td>17</td><td>13</td><td>6</td><td>1负 (负4分)</td></tr>
+            <tr><td>🌙 月亮队</td><td>31</td><td>15</td><td>16</td><td>5</td><td>1胜 (赢4分)</td></tr>
+        </table>
+        <p>后面两队还要比赛一场（火炬队剩余6场中包含这一场）。</p>
+    </div>
+
+    <!-- 规则卡片，点击可显示详细排名规则 (适合不熟悉比赛的学生) -->
+    <div class="rule-box" onclick="toggleAnswer('ruleDetail')" style="cursor: pointer;">
+        <h4>🏀 点击查看排名规则 (怎样算“出线”?)</h4>
+        <div id="ruleDetail" class="answer-box" style="background: #f9fcf2; border-left-color: #7fb13b;">
+            <p>⦿ 先比较<span class="emph">胜场数</span>，胜场多的队伍排名靠前（出线）。<br>
+            ⦿ 如果两队胜场数<span class="emph">相同</span>，则比较他们之间的<span class="emph">相互战绩</span>：<br>
+            &nbsp;&nbsp;• 先看胜负关系（谁赢得多）；<br>
+            &nbsp;&nbsp;• 如果一胜一负，则比较两场比赛的<span class="emph">总净胜分</span>（即两场得分差之和）。<br>
+            ⚡ 目前火炬队与月亮队已赛一场，火炬队负4分。所以火炬队若想在小分上占优，第二场必须<span class="emph">赢月亮队至少5分</span>（总分才能反超）。</p>
+            <p style="margin-top: 0.5rem;">💡 “确保出线”指：无论其他比赛结果如何（尤其月亮队发挥最出色），火炬队达到某个胜场就一定能出线。</p>
+        </div>
+    </div>
+
+    <!-- 问题1 -->
+    <div class="question-card">
+        <div class="question-title">（1）为确保出线，火炬队在后面的比赛中至少要胜多少场？</div>
+        <button class="interact-btn" onclick="toggleAnswer('q1Ans')">📊 显示分析 & 答案</button>
+        <div id="q1Ans" class="answer-box">
+            <div class="math-badge">🔢 设火炬队后6场胜 $x$ 场 (包括可能再战月亮队)</div>
+            <div class="analysis-step">
+                <p>月亮队后5场最多全胜，即胜 $y=5$ 场。但火炬队与月亮队还有一次直接对话，结果会影响相互战绩。</p>
+                <p><span class="emph">最坏情况</span>：火炬队输给月亮队 或 赢但分差＜5（相互战绩仍处劣势）。此时必须胜场 > 月亮队才能出线。</p>
+                <p>▪ 若火炬队输给月亮队：月亮队最多 $15+5=20$ 胜，火炬队需 $17+x > 20$ ⇒ $x \ge 4$ (且这4场不能包含对月亮队的胜场，所以总胜场$17+4=21$)。</p>
+                <p>▪ 若火炬队赢月亮队但分差＜5：月亮队最多 $15+4=19$ 胜 (输给火炬1场)，火炬队需 $17+x \ge 20$ ⇒ $x \ge 3$ (包含胜月亮队1场，总胜$20$)。</p>
+                <p>但为了<span class="emph">确保</span>出线，必须考虑自己可能无法大胜月亮队 (甚至可能输)。取最苛刻的条件：即使输给月亮队也能出线，则 $x$ 必须至少为 <strong>4</strong> (总胜$21$)。</p>
+                <p>检验：若火炬队后6场胜4场，无论这4场是否包括胜月亮队，最终胜场 $\ge 21$，而月亮队最多20胜，火炬队必出线。</p>
+            </div>
+            <p style="font-size: 1.3rem; color: #105e8c;">✅ 至少要胜 <strong>4</strong> 场。</p>
+        </div>
+    </div>
+
+    <!-- 问题2 -->
+    <div class="question-card">
+        <div class="question-title">（2）如果火炬队在后面对月亮队的1场比赛中至少胜月亮队5分，那么它在后面的其他比赛中至少胜几场就一定能出线？</div>
+        <button class="interact-btn" onclick="toggleAnswer('q2Ans')">📊 显示分析 & 答案</button>
+        <div id="q2Ans" class="answer-box">
+            <div class="math-badge">🔢 设其他比赛 (除对月亮队外) 胜 $a$ 场</div>
+            <div class="analysis-step">
+                <p>火炬队胜月亮队5分以上 ⇒ 相互战绩占优 (总分反超)。</p>
+                <p>火炬队总胜场 = $17 + a + 1 = 18 + a$ (1为胜月亮队)。</p>
+                <p>月亮队因输给火炬队，剩余最多 $5-1=4$ 场全胜，总胜场 = $15+4=19$。</p>
+                <p>要确保出线：火炬队胜场 ≥ 月亮队最大胜场，且相等时因小分优而出线。</p>
+                <p>即 $18 + a \ge 19$ ⇒ $a \ge 1$。</p>
+                <p>若 $a=1$，火炬队总胜 $19$，月亮队最多 $19$，比较相互战绩火炬队占优 → 出线。</p>
+                <p>$a=0$ 时火炬队总胜 $18$ < $19$，不安全。</p>
+            </div>
+            <p style="font-size: 1.3rem; color: #105e8c;">✅ 其他比赛至少胜 <strong>1</strong> 场 (即总共胜2场，但必须赢月亮队5分以上)。</p>
+        </div>
+    </div>
+
+    <!-- 问题3 -->
+    <div class="question-card">
+        <div class="question-title">（3）如果月亮队在后面的比赛中3胜 (包括胜火炬队1场) 2负，那么火炬队在后面的比赛中至少要胜几场才能确保出线？</div>
+        <button class="interact-btn" onclick="toggleAnswer('q3Ans')">📊 显示分析 & 答案</button>
+        <div id="q3Ans" class="answer-box">
+            <div class="math-badge">🔢 月亮队已知后5场3胜2负，且胜火炬队1场</div>
+            <div class="analysis-step">
+                <p>月亮队最终胜场 = $15 + 3 = 18$ 胜，负场 $16+2=18$ 负。</p>
+                <p>火炬队后6场胜 $x$ 场 (因为月亮队已胜火炬队，所以这 $x$ 场不含对月亮队的胜场)。</p>
+                <p>火炬队最终胜场 = $17 + x$。</p>
+                <p>出线条件：$17 + x > 18$  (若相等则相互战绩火炬队两负，不能出线) ⇒ $x > 1$。</p>
+                <p>所以 $x$ 至少为 <strong>2</strong> (胜2场，总胜 $19$ > $18$)。</p>
+                <p>验证：$x=2$ 时火炬队 $19$胜，月亮队 $18$胜，出线。</p>
+            </div>
+            <p style="font-size: 1.3rem; color: #105e8c;">✅ 至少要胜 <strong>2</strong> 场。</p>
+        </div>
+    </div>
+
+    <!-- 问题4 -->
+    <div class="question-card">
+        <div class="question-title">（4）如果火炬队在后面的比赛中2胜4负，未能出线，那么月亮队在后面比赛中的战果如何？</div>
+        <button class="interact-btn" onclick="toggleAnswer('q4Ans')">📊 显示分析 & 答案</button>
+        <div id="q4Ans" class="answer-box">
+            <div class="math-badge">🔢 火炬队后6场2胜4负 ⇒ 最终胜场 $17+2=19$</div>
+            <div class="analysis-step">
+                <p>火炬队 $19$ 胜却未能出线，说明月亮队最终战绩 <strong>优于</strong> 火炬队。</p>
+                <p>月亮队后5场胜 $y$ 场，最终胜场 $=15+y$。</p>
+                <p><strong>情况1：</strong> $15+y > 19$ ⇒ $y > 4$ ⇒ $y=5$ (月亮队全胜)，最终胜场 $20$ > $19$，出线。</p>
+                <p><strong>情况2：</strong> $15+y = 19$ ⇒ $y=4$，两队胜场相同，需要比较相互战绩。此时月亮队 $4$ 胜 $1$ 负 (输给谁？若输给火炬队，则火炬队2胜中包括胜月亮队；若输给其他队，则火炬队双负月亮队)。</p>
+                <p>▪ 若火炬队2胜中 <strong>包含胜月亮队</strong> (且第二场分差为 $d$)，则相互战绩 $1$胜$1$负，净胜分：第一场火炬队 $-4$，第二场 $+d$，总分 $d-4$。要使得月亮队占优，需 $d-4 < 0$ 即 $d<4$ (火炬队赢月亮队但分差不超过3分)。</p>
+                <p>▪ 若火炬队2胜中 <strong>不包含胜月亮队</strong> (即火炬队输给月亮队)，则月亮队双杀火炬队，相互战绩绝对占优，出线。</p>
+                <p>所以月亮队战果可能是：<br>
+                ⚫ $y=5$ (5胜0负)；<br>
+                ⚫ $y=4$ 且 月亮队在与火炬队的交锋中占优 (要么双杀，要么一胜一负但净胜分占优)。</p>
+                <p>由于题目未给出第二场具体分差，这两种可能性都成立。</p>
+            </div>
+            <p style="font-size: 1.2rem; background: #ffe7ba; padding: 0.5rem 1rem; border-radius: 40px;">✅ 月亮队可能 <strong>5战全胜</strong>，或者 <strong>4胜1负</strong> 且在与火炬队的相互交手中占优 (即要么双杀火炬队，要么一胜一负但净胜分占优)。</p>
+        </div>
+    </div>
+
+    <!-- 综合表格 直观显示各情形 -->
+    <div style="margin: 2.5rem 0 1rem;">
+        <h3>📋 不同条件下火炬队出线所需胜场速览</h3>
+        <table class="table-mini">
+            <tr><th>条件</th><th>火炬队至少胜场 (总数)</th><th>说明</th></tr>
+            <tr><td>一般情况 (无小分优势)</td><td>4场</td><td>保证即使输月亮队且月亮队全胜也能出线</td></tr>
+            <tr><td>胜月亮队5+分</td><td>2场 (其他1场+胜月亮)</td><td>凭借小分优势，胜场持平即可出线</td></tr>
+            <tr><td>月亮队后5场3胜(已胜火炬)</td><td>2场 (全为其他比赛)</td><td>必须胜场多于月亮队</td></tr>
+        </table>
+    </div>
+
+    <!-- 策略与思考 (帮助不熟悉比赛的学生) -->
+    <div class="strategy-tip">
+        <h4 style="color: #a34c1e;">🧠 给同学们的思考便签</h4>
+        <ul style="margin-left: 1.5rem;">
+            <li>把“胜场数”用字母表示，列出不等式——就像解应用题一样。</li>
+            <li>“确保出线”通常要考虑<span class="emph">最不利的对手战绩</span> (月亮队剩余全胜)。</li>
+            <li>相互战绩 (小分) 只有在胜场持平时才起作用，这时第二场赢多少分就非常关键。</li>
+            <li>遇到“至少”“确保”这类词，先想想最极端的情况。</li>
+        </ul>
+    </div>
+
+    <!-- 橙色背景：为什么小分会影响到出线？ 点击可展开解释 (原来是小知识) -->
+    <div class="orange-reading" onclick="toggleAnswer('moreGame')">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span style="font-size: 2rem;">🏆</span>
+            <h4 style="color: #8a5c00; margin: 0;">为什么“小分”会影响出线？ (点击查看)</h4>
+        </div>
+        <div id="moreGame" class="answer-box" style="background: #fff8e7;">
+            <p>篮球联赛排名中，当两队胜场相同时，比较相互交锋的胜负及净胜分，是为了更公平地反映球队实力。就像火炬队第一场输了4分，第二场如果只赢3分，总分还是输1分，所以月亮队排名靠前。这种规则鼓励球队每球必争，哪怕已经领先也可能要争取更多净胜分。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 (原“本次活动用到的不等式思想”，扩充核心素养) -->
+    <div style="background: #d9eaf5; border-radius: 40px; padding: 1.5rem 2.2rem; margin: 2rem 0;">
+        <h3 style="color: #0c4b6f; margin-bottom: 1rem;">📖 课堂小结</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.2rem;">
+            <span class="core-badge">🧩 数学建模</span>
+            <span class="core-badge">⚖️ 逻辑推理</span>
+            <span class="core-badge">📂 分类讨论</span>
+            <span class="core-badge">📈 数形结合 (胜场比较)</span>
+        </div>
+        <ul style="margin-left: 1.5rem; font-size: 1.1rem;">
+            <li>将实际问题转化为不等式模型，用字母表示胜场，建立不等式。</li>
+            <li>通过分析“最坏情况”确保出线，体会逻辑推理的严密性。</li>
+            <li>当胜场相同时引入小分比较，需要分类讨论不同情形。</li>
+            <li>利用表格和数轴思想(胜场数轴)比较大小，直观清晰。</li>
+        </ul>
+        <p style="margin-top: 0.8rem;">⭐ 核心素养：数学抽象、逻辑推理、数学建模、直观想象</p>
+    </div>
+
+    <!-- 想一想 互动按钮区块 (原课后小思考，增加按钮显示答案) -->
+    <div style="background: #ffecbb; border-radius: 28px; padding: 1.2rem 2rem; border: 2px solid #e2b43c; margin: 2rem 0;">
+        <p style="font-size: 1.2rem; margin-bottom: 0.8rem;"><span style="font-weight: bold;">💭 想一想：</span> 如果火炬队后6场3胜3负 (包括胜月亮队3分)，月亮队后5场4胜1负 (仅输给火炬队)，哪一队出线？</p>
+        <button class="interact-btn" onclick="toggleAnswer('thinkAnswer')">🔍 点击显示答案</button>
+        <div id="thinkAnswer" class="answer-box" style="background: #fef7e9;">
+            <p><strong>答案：</strong> 火炬队最终胜场 = 17+3 = 20，月亮队最终胜场 = 15+4 = 19，所以火炬队胜场多，直接出线，不需要看小分。但如果两队胜场相同(比如火炬队胜月亮队分差不足)，则需要比较小分。这里火炬队已经多1胜，因此出线。</p>
+            <p style="margin-top: 0.3rem;">✨ 提示：胜场优先，只有当胜场相同时才看相互战绩。</p>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        数学 七年级下册 · 第7章 数学活动 —— 用不等式解读球赛
+    </div>
+</div>
+
+<!-- 交互函数 -->
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+</script>
+</body>
+</html>

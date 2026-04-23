@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>数学活动 面积与代数恒等式 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .activity-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .import-box {
+            background: #e7f2fa;
+            border-left: 6px solid #2675a8;
+            padding: 1.2rem 2rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #16445f;
+        }
+        .explore-box {
+            background: #e1f0de;
+            border-left: 8px solid #47945b;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .figure-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+            margin: 1rem 0 2rem 0;
+        }
+        .figure-box {
+            flex: 1 1 300px;
+            background: #f9fbfe;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 2px solid #b9d6ef;
+            text-align: center;
+        }
+        .figure-box h3 {
+            color: #0a3e5f;
+            margin-bottom: 1rem;
+        }
+        .grid-2x2 {
+            display: inline-grid;
+            grid-template-columns: 70px 70px;
+            grid-template-rows: 70px 70px;
+            gap: 0;
+            border: 3px solid #1e4f6b;
+            background-color: #e1f0e1;
+        }
+        .grid-2x2 .cell {
+            width: 70px;
+            height: 70px;
+            border: 1px dashed #7fa9c7;
+        }
+        .square-ab {
+            display: inline-grid;
+            grid-template-columns: 100px 40px;
+            grid-template-rows: 100px 40px;
+            border: 3px solid #1e4f6b;
+        }
+        .green-a2 { background-color: #e1f0e1; border-right: 3px solid #1e4f6b; border-bottom: 3px solid #1e4f6b; }
+        .blue-ab1 { background-color: #b3d9f2; border-bottom: 3px solid #1e4f6b; }
+        .blue-ab2 { background-color: #b3d9f2; border-right: 3px solid #1e4f6b; }
+        .pink-b2 { background-color: #f8d8e8; }
+        .figcaption {
+            margin-top: 10px;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+
+        .interact-area {
+            display: flex;
+            gap: 20px;
+            margin: 1rem 0 0 0;
+            flex-wrap: wrap;
+        }
+        .canvas-container {
+            flex: 2;
+            min-width: 600px;
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 20px;
+            border: 2px solid #b9d6ef;
+        }
+        #canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background-color: white;
+            border-radius: 16px;
+            border: 2px solid #7fa9c7;
+            cursor: crosshair;
+        }
+        .control-panel {
+            flex: 1;
+            min-width: 250px;
+            background: #e3f0fd;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 2px solid #b9d6ef;
+        }
+        .slider-group {
+            margin-bottom: 20px;
+        }
+        .slider-group label {
+            display: block;
+            font-weight: 600;
+            color: #014682;
+            margin-bottom: 5px;
+        }
+        .slider-group input {
+            width: 100%;
+            margin: 5px 0;
+        }
+        .value-display {
+            font-size: 1.1rem;
+            color: #135b8d;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 10px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+        }
+        .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .btn.rotate-btn {
+            background: #fff3cd;
+            border: 2px solid #f4b84b;
+            color: #8a6d3b;
+            box-shadow: 0 4px 0 #dbb068;
+        }
+        .btn.undo-btn {
+            background: #d9eaf5;
+            border: 2px solid #2a7faa;
+            color: #014682;
+            box-shadow: 0 4px 0 #7fa9c7;
+        }
+        .info {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #305d81;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #c00;
+        }
+        .angle-indicator {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #1d6130;
+            background: #e1f0de;
+            padding: 5px 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 数学活动</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="activity-title">数学活动 · 面积与代数恒等式</div>
+
+    <div class="import-box">
+        <strong>导入：</strong> 在之前的学习中，我们用长方形和正方形的面积解释了很多代数恒等式。今天我们将通过拼图活动，进一步探索面积与代数式的关系。
+    </div>
+
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p><strong>(1)</strong> 观察图1和图2，它们分别包含哪些长方形和正方形？你能用面积解释哪些恒等式？</p>
+        
+        <div class="figure-section">
+            <div class="figure-box">
+                <h3>图1</h3>
+                <div class="grid-2x2">
+                    <div class="cell"></div><div class="cell"></div>
+                    <div class="cell"></div><div class="cell"></div>
+                </div>
+                <div class="figcaption">边长为 $2a$ 的正方形，由4个边长为 $a$ 的小正方形组成</div>
+            </div>
+            <div class="figure-box">
+                <h3>图2</h3>
+                <div class="square-ab">
+                    <div class="green-a2"></div><div class="blue-ab1"></div>
+                    <div class="blue-ab2"></div><div class="pink-b2"></div>
+                </div>
+                <div class="figcaption">边长为 $a+b$ 的正方形：$a^2$ (绿) $+2ab$ (蓝) $+b^2$ (粉)</div>
+            </div>
+        </div>
+
+        <p><strong>(2)</strong> 利用下方的拼图实验室，调整 $a$ 和 $b$ 的大小，添加不同颜色的矩形，并通过旋转按钮调整方向。</p>
+
+        <div class="interact-area">
+            <div class="canvas-container">
+                <canvas id="canvas" width="800" height="500"></canvas>
+            </div>
+            <div class="control-panel">
+                <h3 style="color:#0a3e5f; margin-bottom:1rem;">✂️ 拼图实验室</h3>
+                <div class="slider-group">
+                    <label>$a$ (边长, 绿色) <span style="font-size:0.8rem;">(60~200px)</span></label>
+                    <input type="range" id="sliderA" min="60" max="200" value="120" step="1">
+                    <span id="aValue" class="value-display">120px</span>
+                </div>
+                <div class="slider-group">
+                    <label>$b$ (边长, 粉色) <span style="font-size:0.8rem;">(自动约束 $a \ge b$)</span></label>
+                    <input type="range" id="sliderB" min="60" max="200" value="80" step="1">
+                    <span id="bValue" class="value-display">80px</span>
+                </div>
+                <div class="btn-group">
+                    <button class="btn" id="addSquareA">➕ 添加 $a^2$ (绿色)</button>
+                    <button class="btn" id="addSquareB">➕ 添加 $b^2$ (粉色)</button>
+                    <button class="btn" id="addRectAB">➕ 添加 $a \times b$ (蓝色)</button>
+                    <button class="btn rotate-btn" id="rotate90Btn">↻ 旋转90° (选中矩形)</button>
+                    <button class="btn undo-btn" id="undoLast">↩ 撤回上一步</button>
+                    <button class="btn" id="clearCanvas">🗑️ 清空画布</button>
+                </div>
+                <div class="angle-indicator" id="angleIndicator">当前选中角度: 0°</div>
+                <div class="info">
+                    <p>• 点击矩形可选中（高亮红色边框）<br>• 拖动矩形可移动<br>• 滑块 $a$, $b$ 实时改变所有矩形尺寸<br>• <span class="highlight">选中蓝色矩形后，点击旋转按钮即可90°旋转</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:#e1f0fa; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <h4 style="color:#0f4a6f;">📐 活动说明</h4>
+        <p>通过拖动滑块改变 $a$ 和 $b$，观察矩形尺寸变化。尝试拼出 $(a+b)^2 = a^2+2ab+b^2$ 或 $(a-b)^2 = a^2-2ab+b^2$ 的图形。</p>
+    </div>
+</div>
+
+<script>
+(function() {
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const sliderA = document.getElementById('sliderA');
+    const sliderB = document.getElementById('sliderB');
+    const aSpan = document.getElementById('aValue');
+    const bSpan = document.getElementById('bValue');
+    const rotateBtn = document.getElementById('rotate90Btn');
+    const angleIndicator = document.getElementById('angleIndicator');
+
+    let rects = [];
+    let selectedIndex = -1;
+
+    let a = 120, b = 80;
+
+    // 获取矩形宽高（不交换，a永远是长，b永远是宽，旋转通过变换实现）
+    function getDimensions(type) {
+        if (type === 'squareA') {
+            return { width: a, height: a };
+        } else if (type === 'squareB') {
+            return { width: b, height: b };
+        } else { // rectAB
+            return { width: a, height: b };
+        }
+    }
+
+    // 更新滑块显示并保证 a >= b
+    function updateValues() {
+        a = parseInt(sliderA.value);
+        b = parseInt(sliderB.value);
+        if (a < b) {
+            b = a;
+            sliderB.value = a;
+        }
+        aSpan.textContent = a + 'px';
+        bSpan.textContent = b + 'px';
+        drawCanvas();
+    }
+
+    sliderA.addEventListener('input', updateValues);
+    sliderB.addEventListener('input', updateValues);
+    updateValues();
+
+    // 添加矩形
+    document.getElementById('addSquareA').addEventListener('click', function() {
+        rects.push({ type: 'squareA', x: 100, y: 100, angle: 0 });
+        selectedIndex = -1;
+        angleIndicator.textContent = '当前选中角度: 0°';
+        drawCanvas();
+    });
+    document.getElementById('addSquareB').addEventListener('click', function() {
+        rects.push({ type: 'squareB', x: 200, y: 100, angle: 0 });
+        selectedIndex = -1;
+        angleIndicator.textContent = '当前选中角度: 0°';
+        drawCanvas();
+    });
+    document.getElementById('addRectAB').addEventListener('click', function() {
+        rects.push({ type: 'rectAB', x: 150, y: 150, angle: 0 });
+        selectedIndex = -1;
+        angleIndicator.textContent = '当前选中角度: 0°';
+        drawCanvas();
+    });
+
+    // 撤回
+    document.getElementById('undoLast').addEventListener('click', function() {
+        if (rects.length) {
+            rects.pop();
+            selectedIndex = -1;
+            angleIndicator.textContent = '当前选中角度: 0°';
+            drawCanvas();
+        } else {
+            alert('没有可以撤回的操作');
+        }
+    });
+
+    // 清空
+    document.getElementById('clearCanvas').addEventListener('click', function() {
+        rects = [];
+        selectedIndex = -1;
+        angleIndicator.textContent = '当前选中角度: 0°';
+        drawCanvas();
+    });
+
+    // 旋转90度按钮
+    rotateBtn.addEventListener('click', function() {
+        if (selectedIndex === -1) {
+            alert('请先点击选中一个矩形');
+            return;
+        }
+        let r = rects[selectedIndex];
+        let dims = getDimensions(r.type);
+        let w = dims.width, h = dims.height;
+
+        // 计算原中心
+        let cx = r.x + w / 2;
+        let cy = r.y + h / 2;
+
+        // 角度增加90度
+        r.angle = (r.angle + 90) % 360;
+
+        // 更新左上角使中心不变（注意旋转后宽高可能交换？不，我们绘制时固定宽高，旋转只是方向变化，但中心计算仍基于原始宽高）
+        // 但旋转90度后，矩形的视觉宽度变为原来的高度，高度变为原来的宽度，因此如果我们要保持中心不变，需要重新计算左上角，
+        // 因为绘制时我们始终用原始宽高，旋转后视觉上矩形所占空间大小不变，所以左上角坐标应当不变？不对，因为绘制时我们是以中心为原点旋转，
+        // 所以左上角坐标实际上应随旋转而变化，但之前我们存储的是左上角，所以需要更新左上角坐标。
+        // 为了保持中心不变，新的左上角应为 cx - h/2, cy - w/2 （因为宽高交换了）
+        // 所以我们需要根据是否交换来调整左上角。但由于我们绘制时使用了相同的宽高，旋转90度后视觉宽高交换，因此左上角必须重新计算。
+        // 修正：计算新左上角
+        r.x = cx - h / 2;
+        r.y = cy - w / 2;
+
+        // 确保不超出画布边界（简单处理）
+        r.x = Math.max(0, Math.min(r.x, canvas.width - h));
+        r.y = Math.max(0, Math.min(r.y, canvas.height - w));
+
+        angleIndicator.textContent = `当前选中角度: ${r.angle}°`;
+        drawCanvas();
+    });
+
+    function drawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // 网格
+        ctx.strokeStyle = '#ddd';
+        ctx.lineWidth = 0.5;
+        ctx.setLineDash([5, 5]);
+        for (let i = 0; i < canvas.width; i += 20) {
+            ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+        }
+        for (let i = 0; i < canvas.height; i += 20) {
+            ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+        }
+        ctx.setLineDash([]);
+
+        rects.forEach((r, idx) => {
+            let dims = getDimensions(r.type);
+            let w = dims.width, h = dims.height;
+            ctx.save();
+            ctx.translate(r.x + w/2, r.y + h/2);
+            ctx.rotate(r.angle * Math.PI / 180);
+            // 填充色
+            if (r.type === 'squareA') ctx.fillStyle = '#e1f0e1';
+            else if (r.type === 'squareB') ctx.fillStyle = '#f8d8e8';
+            else ctx.fillStyle = '#b3d9f2';
+            ctx.fillRect(-w/2, -h/2, w, h);
+            // 边框
+            ctx.strokeStyle = idx === selectedIndex ? '#ff0000' : '#1e4f6b';
+            ctx.lineWidth = idx === selectedIndex ? 4 : 2;
+            ctx.strokeRect(-w/2, -h/2, w, h);
+            ctx.restore();
+        });
+    }
+
+    // 鼠标交互
+    let isDragging = false;
+    let dragStartX, dragStartY;
+    let dragRectStartX, dragRectStartY;
+
+    function handleMouseDown(e) {
+        let rect = canvas.getBoundingClientRect();
+        let scaleX = canvas.width / rect.width;
+        let scaleY = canvas.height / rect.height;
+        let mouseX = (e.clientX - rect.left) * scaleX;
+        let mouseY = (e.clientY - rect.top) * scaleY;
+
+        for (let i = rects.length - 1; i >= 0; i--) {
+            let r = rects[i];
+            let dims = getDimensions(r.type);
+            let w = dims.width, h = dims.height;
+            // 检测点是否在旋转后的矩形内（使用变换逆推）
+            let cx = r.x + w/2, cy = r.y + h/2;
+            let dx = mouseX - cx, dy = mouseY - cy;
+            let cos = Math.cos(r.angle * Math.PI / 180);
+            let sin = Math.sin(r.angle * Math.PI / 180);
+            // 逆旋转坐标
+            let rx = dx * cos + dy * sin;
+            let ry = -dx * sin + dy * cos;
+            if (Math.abs(rx) <= w/2 && Math.abs(ry) <= h/2) {
+                selectedIndex = i;
+                isDragging = true;
+                dragStartX = mouseX;
+                dragStartY = mouseY;
+                dragRectStartX = r.x;
+                dragRectStartY = r.y;
+                angleIndicator.textContent = `当前选中角度: ${r.angle}°`;
+                drawCanvas();
+                break;
+            }
+        }
+    }
+
+    function handleMouseMove(e) {
+        if (!isDragging || selectedIndex < 0) return;
+        let rect = canvas.getBoundingClientRect();
+        let scaleX = canvas.width / rect.width;
+        let scaleY = canvas.height / rect.height;
+        let mouseX = (e.clientX - rect.left) * scaleX;
+        let mouseY = (e.clientY - rect.top) * scaleY;
+
+        let dx = mouseX - dragStartX;
+        let dy = mouseY - dragStartY;
+
+        let newX = dragRectStartX + dx;
+        let newY = dragRectStartY + dy;
+
+        let r = rects[selectedIndex];
+        let dims = getDimensions(r.type);
+        let w = dims.width, h = dims.height;
+
+        // 边界限制
+        newX = Math.max(0, Math.min(newX, canvas.width - w));
+        newY = Math.max(0, Math.min(newY, canvas.height - h));
+
+        r.x = newX;
+        r.y = newY;
+        drawCanvas();
+    }
+
+    function handleMouseUp() { isDragging = false; }
+
+    canvas.addEventListener('mousedown', handleMouseDown);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseup', handleMouseUp);
+    canvas.addEventListener('mouseleave', handleMouseUp);
+
+    drawCanvas();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.1.2 立方根 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+
+        /* 简易立方体 (轴测投影) */
+        .cube-draw {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .cube {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(330deg) rotateY(20deg);
+            margin: 30px 0;
+        }
+        .cube-face {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: #b8d9f0;
+            border: 3px solid #2675a8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #014682;
+        }
+        .front { transform: translateZ(60px); background: #b8d9f0; }
+        .back { transform: rotateY(180deg) translateZ(60px); background: #a0c4e0; }
+        .right { transform: rotateY(90deg) translateZ(60px); background: #9bc2db; }
+        .left { transform: rotateY(-90deg) translateZ(60px); background: #9bc2db; }
+        .top { transform: rotateX(90deg) translateZ(60px); background: #c9def0; }
+        .bottom { transform: rotateX(-90deg) translateZ(60px); background: #c9def0; }
+        .cube-label {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: -40px;
+            font-size: 1rem;
+            color: #0b4b78;
+        }
+
+        /* 云图提示框 */
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+            position: relative;
+        }
+        .cloud-note::before {
+            content: "💡";
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+
+        .exercise-item {
+            margin-bottom: 1.8rem;
+        }
+        .exercise-item p {
+            margin: 0.3rem 0;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第10章 数的开方 · 10.1.2 立方根</span>
+    </div>
+    <h1>第10章 数的开方</h1>
+    <div class="lesson-title">10.1.2 立方根</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解立方根的概念</div>
+            <div class="target-item"><span>✔</span>掌握立方根的性质（正数、负数、0）</div>
+            <div class="target-item"><span>✔</span>会用计算器求一个数的立方根</div>
+        </div>
+    </div>
+
+    <!-- 导入：正方体容积问题 + 简易立方体 -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <div class="cube-draw">
+            <div class="cube">
+                <div class="cube-face front"></div>
+                <div class="cube-face back"></div>
+                <div class="cube-face right"></div>
+                <div class="cube-face left"></div>
+                <div class="cube-face top"></div>
+                <div class="cube-face bottom"></div>
+                <div class="cube-label">216 cm³</div>
+            </div>
+        </div>
+        <p>要做一只容积为 $216\,\text{cm}^3$ 的正方体纸盒，正方体的棱长是多少？</p>
+        <p>容易发现，$6^3=216$，所以棱长是 $6\,\text{cm}$。<br>
+        这个问题实质上就是要求一个数，这个数的立方等于216。</p>
+    </div>
+
+    <!-- 概括1：立方根定义 -->
+    <div class="concept-box">
+        <strong>立方根</strong> <em>(cube root)</em>：如果一个数的立方等于 $a$，那么这个数叫做 $a$ 的立方根。<br>
+        例如，因为 $2^3=8$，所以2是8的立方根；因为 $(-2)^3=-8$，所以-2是-8的立方根。
+    </div>
+
+    <!-- 试一试 -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>1. 27的立方根是什么？<br>2. -27的立方根是什么？<br>3. 0的立方根是什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('tryAns')">🔍 显示答案</button>
+        <div id="tryAns" class="answer-box">
+            <p>1. $3$； 2. $-3$； 3. $0$。</p>
+        </div>
+        <p style="background:#fff3cd; padding:0.5rem; border-radius:8px; margin-top:0.8rem;">✏️ 请你自己也编三道求立方根的题目，并给出解答。</p>
+    </div>
+
+    <!-- 云图：任何数都有且只有一个立方根 -->
+    <div class="cloud-note">
+        <strong>任何数的立方根如果存在的话，必定只有一个。正数的立方根是正数，负数的立方根是负数，0的立方根是0。</strong>
+    </div>
+
+    <!-- 概括2：立方根的表示与开立方 -->
+    <div class="concept-box">
+        <strong>立方根的表示</strong>：数 $a$ 的立方根记作 $\sqrt[3]{a}$，读作“三次根号 $a$”。其中 $a$ 是被开方数，$3$ 是根指数。<br>
+        <strong>开立方</strong>：求一个数的立方根的运算，叫做开立方。
+    </div>
+
+    <!-- 例4 -->
+    <div class="example-box">
+        <h4>例4 求下列各数的立方根</h4>
+        <p>$(1)\ \dfrac{8}{27};\qquad (2)\ -125;\qquad (3)\ -0.008.$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4Ans')">📌 显示解答</button>
+        <div id="ex4Ans" class="answer-box">
+            <p>(1) 因为 $\left(\dfrac{2}{3}\right)^3=\dfrac{8}{27}$，所以 $\sqrt[3]{\dfrac{8}{27}}=\dfrac{2}{3}$。<br>
+            (2) 因为 $(-5)^3=-125$，所以 $\sqrt[3]{-125}=-5$。<br>
+            (3) 因为 $(-0.2)^3=-0.008$，所以 $\sqrt[3]{-0.008}=-0.2$。</p>
+        </div>
+    </div>
+
+    <!-- 练习区域 (练习1、练习2，删除练习3) -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 练习1 表格 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 完成下列表格：</p>
+            <table id="cubeRootTable">
+                <tr><th>被开方数</th><th>-64</th><th>-27</th><th>-8</th><th>-1</th><th>0</th><th>1</th><th>8</th><th>27</th><th>64</th></tr>
+                <tr><th>立方根</th><td id="cr-64"></td><td id="cr-27"></td><td id="cr-8"></td><td id="cr-1"></td><td id="cr0"></td><td id="cr1"></td><td id="cr8"></td><td id="cr27"></td><td id="cr64"></td></tr>
+            </table>
+            <button class="interact-btn" onclick="toggleCubeTable()">📌 显示表格答案</button>
+        </div>
+
+        <!-- 练习2 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 求下列各数的立方根：</p>
+            <p>(1) 512; &nbsp; (2) -0.027; &nbsp; (3) $-\dfrac{64}{125}$.</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>(1) $\sqrt[3]{512}=8$； (2) $\sqrt[3]{-0.027}=-0.3$； (3) $\sqrt[3]{-\dfrac{64}{125}}=-\dfrac{4}{5}$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：九章算术与开立方术（具体介绍并举例） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 九章算术中的开立方术</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>中国古代数学经典《九章算术》第四章“少广”中，记载了开平方和开立方的算法，称为“开方术”和“开立方术”。开立方术是一种用算筹进行开立方运算的方法，通过逐次试商逼近结果，与现代笔算开立方的原理完全相同。</p>
+            <p><strong>具体步骤（以求 $\sqrt[3]{1860867}$ 为例）：</strong></p>
+            <ul style="margin-left:1.5rem;">
+                <li>首先，将被开方数从个位起向左每隔三位分为一节：$1\,860\,867$，可知立方根是三位数。</li>
+                <li>估计最高位：$1^3=1$，不超过第一节1，所以第一位是1。减去 $1^3=1$，余 $0$，接着落下下一节860，得860。</li>
+                <li>用公式 $(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3$ 来试下一位。这里 $a=10$（因为第一位1实际代表100，但古代算法用算筹定位）。实际上，古代算法是通过“借算”逐步进行的。经过计算，第二位是2（因为 $12^3=1728$，小于1860？需仔细）。但已知 $\sqrt[3]{1860867}=123$，因为 $123^3=1860867$。</li>
+                <li>继续上述过程，最终得到123。古代数学家通过这种逐次逼近，可以求出整数立方根，若开不尽则继续开方得到近似值。</li>
+            </ul>
+            <p>刘徽在注《九章算术》时，还对开立方不尽的情况提出了“加定法”继续开方的思想，实际上已经触及无理立方根的近似计算。开立方术是中国古代数学在数值计算方面的重要成就，比欧洲类似的算法早出现一千多年。</p>
+            <p style="margin-top:0.5rem;">——从开立方术可以看出，古代数学家已经熟练掌握了高次方程的数值解法，这是中华民族智慧的结晶。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong> 由平方根类比学习立方根，理解运算的互逆性。<br>
+        <strong>分类思想：</strong> 正数、0、负数的立方根各有特点。<br>
+        <strong>数形结合：</strong> 用正方体模型理解立方根的实际意义。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">立方根：若 $x^3=a$，则 $x$ 是 $a$ 的立方根（$a$ 为任意实数）</div>
+            <div class="summary-item">正数的立方根是正数，负数的立方根是负数，0的立方根是0</div>
+            <div class="summary-item">每个实数有且只有一个立方根，记作 $\sqrt[3]{a}$</div>
+            <div class="summary-item">开立方运算与立方运算互为逆运算</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题10.1 A组第1(3)(4)、2、3题，用计算器验证。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 立方根打开了负数开方的大门，让数系更加完整 ✨</p>
+    <div class="footer-note">八年级上册 · 第10章 10.1.2</div>
+</div>
+
+<script>
+    // 切换立方根表格答案（填充/清空）
+    function toggleCubeTable() {
+        var cr64 = document.getElementById('cr-64');
+        // 如果已经填充（非空），则清空所有单元格
+        if (cr64.innerText.trim() !== '') {
+            var ids = ['cr-64','cr-27','cr-8','cr-1','cr0','cr1','cr8','cr27','cr64'];
+            ids.forEach(id => document.getElementById(id).innerText = '');
+        } else {
+            document.getElementById('cr-64').innerText = '-4';
+            document.getElementById('cr-27').innerText = '-3';
+            document.getElementById('cr-8').innerText = '-2';
+            document.getElementById('cr-1').innerText = '-1';
+            document.getElementById('cr0').innerText = '0';
+            document.getElementById('cr1').innerText = '1';
+            document.getElementById('cr8').innerText = '2';
+            document.getElementById('cr27').innerText = '3';
+            document.getElementById('cr64').innerText = '4';
+        }
+    }
+
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

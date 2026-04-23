@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.3.1 图形的旋转 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 150px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        
+        .construction-box {
+            background: #e8f0f7;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #7fa9c7;
+        }
+        .construction-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #135b8d;
+            margin-bottom: 0.8rem;
+        }
+        .step-list {
+            list-style-type: decimal;
+            padding-left: 1.8rem;
+            margin: 0.5rem 0;
+        }
+        .step-list li {
+            margin: 0.3rem 0;
+        }
+
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        
+        .break-line {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* 读一读样式 */
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            overflow: visible;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: visible;
+            transition: max-height 0.4s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content.expanded {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        
+        /* 填空列表样式 - 课本风格 */
+        .fill-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0;
+        }
+        .fill-list li {
+            display: flex;
+            align-items: center;
+            margin: 0.7rem 0;
+            font-size: 1.1rem;
+        }
+        .fill-label {
+            width: 260px;
+            color: #014682;
+        }
+        .fill-line {
+            flex: 1;
+            border-bottom: 2px dashed #1e7e9f;
+            height: 1.2rem;
+            margin-left: 0.5rem;
+        }
+        .fill-list li .math-inline {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.3.1</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.3 旋转 —— 1. 图形的旋转</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解旋转、旋转中心、旋转角、旋转方向的概念</div>
+            <div class="target-item"><span>✔</span>能识别旋转中的对应点、对应线段、对应角</div>
+            <div class="target-item"><span>✔</span>会描述一个简单的旋转运动</div>
+        </div>
+    </div>
+
+    <!-- 导入：生活中的旋转 图9.3.1 -->
+    <div class="figure-box">
+        <p>在日常生活中，除了物体的平行移动外，我们还可以看到许多如图9.3.1所示物体的旋转现象。时钟上秒针的不停转动提醒着人们时间的流逝，大风车的转动给人们带来快乐，飞速转动的电风扇叶片给人们带来丝丝凉意。</p>
+        <div class="image-container">
+            <img src="9.3.1.png" alt="图9.3.1 生活中的旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">⏰ 时钟、风车、电风扇</div>
+            <div class="image-caption">图9.3.1</div>
+        </div>
+    </div>
+
+    <!-- 旋转的定义 图9.3.2 -->
+    <div class="concept-box">
+        <strong>旋转</strong> <em>(rotation)</em>：如图9.3.2，单摆上的小球绕着悬挂点在一个平面上转动，由位置 \(P\) 转动到位置 \(P'\) ，像这样的运动叫做旋转。这一悬挂点叫做小球旋转的<strong>旋转中心</strong> <em>(centre of rotation)</em>。旋转中心在旋转过程中保持不动，图形的旋转由<strong>旋转中心</strong>、<strong>旋转角度</strong>和<strong>旋转方向</strong>决定。
+    </div>
+    <div class="image-container">
+        <img src="9.3.2.png" alt="图9.3.2 单摆旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">🕰️ 图9.3.2 单摆旋转</div>
+        <div class="image-caption">图9.3.2</div>
+    </div>
+
+    <!-- 试一试 图9.3.3 课本填空格式（精确按照用户提供的文本） -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>如图9.3.3，把一张半透明的薄纸，覆盖在作有任意△AOB的纸上，在薄纸上作出与△AOB重合的一个三角形。然后用一枚图钉在点 \(O\) 处固定，将薄纸绕着图钉（即点 \(O\) ）逆时针旋转 \(45^\circ\)，薄纸上的三角形就旋转到了新的位置，标上点 \(A'\) 、 \(B'\) ，我们可以认为 \(\triangle AOB\) 逆时针旋转 \(45^\circ\) 后变成 \(\triangle A'OB'\) 。</p>
+        <div class="image-container">
+            <img src="9.3.3.png" alt="图9.3.3 旋转三角形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔺 图9.3.3 旋转三角形</div>
+            <div class="image-caption">图9.3.3</div>
+        </div>
+        <p>从图9.3.3中，可以看到点 \(A\) 旋转到点 \(A'\)，\(OA\) 旋转到 \(OA'\)，∠\(AOB\) 旋转到 ∠\(A'O'B'\)，这些分别是互相对应的点、线段和角。此时：</p>
+        
+        <ul class="fill-list">
+            <li>
+                <span class="fill-label">点 \(B\) 的对应点是点</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">线段 \(OB\) 的对应线段是线段</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">线段 \(AB\) 的对应线段是线段</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">∠\(A\) 的对应角是</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">∠\(B\) 的对应角是</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">旋转中心是点</span>
+                <span class="fill-line"></span>
+            </li>
+            <li>
+                <span class="fill-label">旋转角度是</span>
+                <span class="fill-line"></span>
+            </li>
+        </ul>
+        
+        <button class="interact-btn" onclick="toggleAnswer('tryAnswer')">🔍 显示答案</button>
+        <div id="tryAnswer" class="answer-box">
+            <p>点 \(B'\)；线段 \(OB'\)；线段 \(A'B'\)；\(\angle A'\)；\(\angle B'\)；点 \(O\)；\(45^\circ\)。</p>
+        </div>
+    </div>
+
+    <!-- 例1 图9.3.4 -->
+    <div class="example-box">
+        <h4>例1</h4>
+        <p>如图9.3.4， \(\triangle ABC\) 是等边三角形， \(D\) 是边 \(BC\) 上一点， \(\triangle ABD\) 经过逆时针旋转后到达 \(\triangle ACE\) 的位置。</p>
+        <p>（1）旋转中心是哪一点？<br>（2）旋转了多少度？<br>（3）如果点 \(M\) 是 \(AB\) 的中点，那么经过上述旋转后，点 \(M\) 转到了什么位置？</p>
+        <div class="image-container">
+            <img src="9.3.4.png" alt="图9.3.4 等边三角形旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔺 图9.3.4 等边三角形旋转</div>
+            <div class="image-caption">图9.3.4</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('example1')">🔍 解答</button>
+        <div id="example1" class="answer-box">
+            <p>解：(1) 旋转中心是点 \(A\) 。<br>(2) 旋转了 \(60^\circ\) 。<br>(3) 点 \(M\) 转到了 \(AC\) 的中点位置处。</p>
+        </div>
+    </div>
+
+    <!-- 例2 图9.3.5 -->
+    <div class="example-box">
+        <h4>例2</h4>
+        <p>如图9.3.5①，点 \(M\) 是线段 \(AB\) 上一点，将线段 \(AB\) 绕着点 \(M\) 顺时针旋转 \(90^\circ\) ，旋转后的线段与原线段的位置有何关系？如果逆时针旋转 \(90^\circ\) 呢？</p>
+        <div class="image-container">
+            <img src="9.3.5.png" alt="图9.3.5 线段旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📏 图9.3.5 线段旋转</div>
+            <div class="image-caption">图9.3.5</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('example2')">🔍 解答</button>
+        <div id="example2" class="answer-box">
+            <p>解：如图9.3.5②，顺时针旋转 \(90^\circ\) ， \(A'B'\) 与 \(AB\) 互相垂直。如图9.3.5③，逆时针旋转 \(90^\circ\) ， \(A''B''\) 与 \(AB\) 互相垂直。</p>
+            <p><strong>线段绕线段上的某一点旋转 \(90^\circ\) 后与原来位置的线段互相垂直。</strong></p>
+        </div>
+    </div>
+
+    <!-- 图案设计 图9.3.6 -->
+    <div class="guide-text">
+        <p>图形的旋转在图案设计中也具有广泛应用。如图9.3.6所示的两幅美丽的图案都可以看成是由一个或几个基本图案，在同一平面上旋转若干次而产生的结果。</p>
+    </div>
+    <div class="image-container">
+        <img src="9.3.6.png" alt="图9.3.6 旋转图案" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">🎨 图9.3.6 旋转图案</div>
+        <div class="image-caption">图9.3.6</div>
+    </div>
+
+    <!-- 练习（第31页） -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 举出现实生活中旋转的一些实例。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">💡 举例</button>
+            <div id="prac1" class="answer-box">
+                <p>例如：摩天轮、旋转木马、汽车方向盘、水龙头开关、风扇叶片等。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 如图，\(\triangle ABC\) 按逆时针方向旋转一个角度后成为 \(\triangle AB'C'\) ，图中哪一点是旋转中心？旋转了多少度？</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 旋转中心" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🔍 练习2</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>旋转中心是点 \(A\)，旋转了 \(\angle BAB'\) 的度数（或 \(\angle CAC'\)）。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 如图，\(\triangle ABC\) 和 \(\triangle ADE\) 都是等腰直角三角形，\(\angle C\) 和 \(\angle AED\) 都是直角，点 \(E\) 在边 \(AB\) 上，如果 \(\triangle ABC\) 经逆时针旋转后能与 \(\triangle ADE\) 重合，那么哪一点是旋转中心？旋转了多少度？</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 等腰直角三角形旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🔺 练习3</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>旋转中心是点 \(A\)，旋转了 \(45^\circ\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：旋转的奥秘（拓展） -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 旋转的奥秘</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>旋转不仅是几何变换，在自然界和人类创造中无处不在。雪花具有六重旋转对称性，许多花朵的花瓣也呈旋转对称分布。在艺术领域，旋转被用来创作动态的视觉效果，如抽象画家罗伯特·德劳内的作品。在工程技术中，旋转运动是机械的核心，从发动机到涡轮机都离不开旋转。旋转还是虚拟现实、计算机图形学中实现视角变换的基础。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象能力：</strong> 从生活实例中抽象出旋转的三要素。<br>
+        <strong>几何直观：</strong> 通过图形理解旋转的不变性。<br>
+        <strong>模型观念：</strong> 旋转是一种重要的图形变换模型。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">旋转中心、旋转角、旋转方向是旋转的三要素。</div>
+            <div class="summary-item">旋转前后的图形全等，对应点到旋转中心的距离相等，对应点与旋转中心连线所成的角等于旋转角。</div>
+            <div class="summary-item">旋转在图案设计中广泛应用。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.3 A组第1、2、3题。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.3.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+    window.onload = function() {
+        // 默认展开阅读区
+        document.getElementById('readingContent').classList.add('expanded');
+        document.getElementById('readingToggle').textContent = '▲';
+        
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

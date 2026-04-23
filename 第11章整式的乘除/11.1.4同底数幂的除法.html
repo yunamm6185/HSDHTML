@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.1.4 同底数幂的除法 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .fill-blank {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.1.4</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.1.4 同底数幂的除法</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解同底数幂除法的运算法则</div>
+            <div class="target-item"><span>✔</span>能运用法则进行计算和化简</div>
+            <div class="target-item"><span>✔</span>体会除法与乘法的互逆关系</div>
+        </div>
+    </div>
+
+    <!-- 导入：从乘法到除法 -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <p>我们已经知道同底数幂的乘法法则：$a^{m}\cdot a^{n}=a^{m+n}$。那么同底数幂怎么相除呢？比如 $2^{5}\div 2^{2}$ 等于多少？</p>
+        <p>用你熟悉的方法计算：</p>
+        <p>$(1)\ 2^{5}\div 2^{2} = \_\_\_\_\_\_\_$</p>
+        <p>$(2)\ 10^{7}\div 10^{3} = \_\_\_\_\_\_\_$</p>
+        <p>$(3)\ a^{7}\div a^{3} = \_\_\_\_\_\_\_$</p>
+        <button class="interact-btn" onclick="toggleAnswer('importAns')">🔍 显示答案</button>
+        <div id="importAns" class="answer-box">
+            <p>$(1)\ 2^{3}=8$；$(2)\ 10^{4}=10000$；$(3)\ a^{4}$。</p>
+        </div>
+    </div>
+
+    <!-- 试一试（课本上的填空，用括号表示） -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>用你熟悉的方法计算：</p>
+        <p>\((1)\ 2^{5}\div 2^{2} = \underline{\qquad\qquad}\)</p>
+        <p>\((2)\ 10^{7}\div 10^{3} = \underline{\qquad\qquad}\)</p>
+        <p>\((3)\ a^{7}\div a^{3} = \underline{\qquad\qquad}\)</p>
+        <button class="interact-btn" onclick="toggleAnswer('tryAns')">🔍 显示答案</button>
+        <div id="tryAns" class="answer-box">
+            <p>\((1)\ 2^{3}\)；\((2)\ 10^{4}\)；\((3)\ a^{4}\)。</p>
+        </div>
+    </div>
+
+    <!-- 概括（法则推导） -->
+    <div class="concept-box">
+        <strong>概括</strong><br>
+        由上面的计算，我们发现：
+        \[
+        2^{5}\div 2^{2}=2^{3}=2^{5-2},\quad
+        10^{7}\div 10^{3}=10^{4}=10^{7-3},\quad
+        a^{7}\div a^{3}=a^{4}=a^{7-3}.
+        \]
+        一般地，设 $m,n$ 为正整数，$m>n$，$a\neq0$，有
+        \[
+        a^{m}\div a^{n}=a^{m-n}.
+        \]
+        这就是说，同底数幂相除，底数不变，指数相减。
+    </div>
+
+    <!-- 例4（课本例4） -->
+    <div class="example-box">
+        <h4>例4 计算</h4>
+        <p>\((1)\ a^{8}\div a^{3}\)；\((2)\ (-a)^{10}\div (-a)^{3}\)；\((3)\ (-2a)^{7}\div (2a)^{4}\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>\((1)\ a^{8}\div a^{3}=a^{8-3}=a^{5}\)；</p>
+            <p>\((2)\ (-a)^{10}\div (-a)^{3}=(-a)^{10-3}=(-a)^{7}=-a^{7}\)；</p>
+            <p>\((3)\ (-2a)^{7}\div (2a)^{4}=(-1)^{7}(2a)^{7}\div(2a)^{4}=-(2a)^{7-4}=-(2a)^{3}=-8a^{3}\)。</p>
+        </div>
+    </div>
+
+    <!-- 思考（用(a+b)的幂表示） -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>你能用 $(a+b)$ 的幂表示 $(a+b)^{4}\div (a+b)^{2}$ 的结果吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('thinkAns')">💭 显示答案</button>
+        <div id="thinkAns" class="answer-box">
+            <p>$(a+b)^{4}\div (a+b)^{2}=(a+b)^{4-2}=(a+b)^{2}$。</p>
+        </div>
+    </div>
+
+    <!-- 练习1 填空 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 填空：</p>
+            <span class="sub-question">\((1)\ a^{5}\cdot (\quad) = a^{9}\)；</span>
+            <span class="sub-question">\((2)\ (\quad) \cdot (-b)^{2} = (-b)^{7}\)；</span>
+            <span class="sub-question">\((3)\ x^{6}\div (\quad) = x\)；</span>
+            <span class="sub-question">\((4)\ (\quad) \div (-y)^{3} = (-y)^{7}\)。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) $a^{4}$（因为 $a^{5}\cdot a^{4}=a^{9}$）；</p>
+                <p class="sub-answer">(2) $(-b)^{5}$（因为 $(-b)^{5}\cdot (-b)^{2}=(-b)^{7}$）；</p>
+                <p class="sub-answer">(3) $x^{5}$（因为 $x^{6}\div x^{5}=x$）；</p>
+                <p class="sub-answer">(4) $(-y)^{10}$（因为 $(-y)^{10}\div (-y)^{3}=(-y)^{7}$）。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 计算 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：</p>
+            <span class="sub-question">\((1)\ a^{10}\div a^{2}\)；</span>
+            <span class="sub-question">\((2)\ (-x)^{9}\div (-x)^{3}\)；</span>
+            <span class="sub-question">\((3)\ m^{8}\div m^{2}\cdot m^{3}\)；</span>
+            <span class="sub-question">\((4)\ (a^{3})^{2}\div a^{6}\)；</span>
+            <span class="sub-question">\((5)\ (x+2y)^{5}\div (x+2y)^{2}\)。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) $a^{8}$；</p>
+                <p class="sub-answer">(2) $(-x)^{6}=x^{6}$；</p>
+                <p class="sub-answer">(3) $m^{8-2+3}=m^{9}$；</p>
+                <p class="sub-answer">(4) $a^{6}\div a^{6}=1$；</p>
+                <p class="sub-answer">(5) $(x+2y)^{3}$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：根据除法的意义推导同底数幂的除法法则 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 根据除法的意义推导同底数幂的除法法则</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>因为除法是乘法的逆运算，计算 $a^{m}\div a^{n}\ (m>n,\ a\neq0)$ 实际上是要求一个式子，使</p>
+            <p>$$a^{n}\cdot (\quad)=a^{m}.$$</p>
+            <p>假设这个式子是 $a^{k}$（$k$ 为正整数，待定），即应有</p>
+            <p>$$a^{n}\cdot a^{k}=a^{m},$$</p>
+            <p>即 $a^{n+k}=a^{m}$，所以 $n+k=m$，得 $k=m-n$。</p>
+            <p>因此，要求的式子应是 $a^{m-n}$。由同底数幂的乘法法则，可知</p>
+            <p>$$a^{n}\cdot a^{m-n}=a^{n+(m-n)}=a^{m},$$</p>
+            <p>所以 $a^{m-n}$ 满足要求，从而有</p>
+            <p>$$a^{m}\div a^{n}=a^{m-n}\quad(m>n,\ a\neq0).$$</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>逆向思维：</strong> 利用除法是乘法的逆运算来推导法则。<br>
+        <strong>转化思想：</strong> 将同底数幂的除法转化为指数的减法。<br>
+        <strong>特殊到一般：</strong> 从具体例子归纳出一般法则。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">同底数幂相除：$a^{m}\div a^{n}=a^{m-n}\ (a\neq0,\ m>n)$。</div>
+            <div class="summary-item">注意底数可以是数、字母或代数式，如 $(x+y)^{5}\div (x+y)^{2}=(x+y)^{3}$。</div>
+            <div class="summary-item">运算顺序：先算乘方，再算乘除。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.1 A组第5题，B组第7题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 指数相减，底数不变，除法与乘法本是同根生 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.1.4</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

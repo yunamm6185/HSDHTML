@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12课时 加法运算律在加减混合运算中的应用 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+
+        /* 学习目标卡片 - 柔和的蓝色 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入块 - 极浅蓝 */
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 探究模块 - 暖白 */
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+
+        /* 技巧总结卡片 */
+        .tips-box {
+            background: #d6f0e6;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #2e8b6c;
+            box-shadow: 0 4px 0 #1d6b50;
+            color: #0a3b2e;
+        }
+        .tips-box h4 {
+            color: #0f5669;
+            margin-bottom: 0.8rem;
+            border-left: 6px solid #30829b;
+            padding-left: 1rem;
+        }
+        .tips-box ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+        }
+        .tips-box li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* 例题框 - 加深蓝灰色 */
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        /* 答案框 - 用于递等式，无缩进 */
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.8rem 2rem;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            word-break: break-word;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 练习区 - 浅紫灰 */
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        /* 读一读 - 运算能力培养（依据课标） */
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content p {
+            margin-bottom: 0.8rem;
+        }
+        .reading-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .reading-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .emph-orange { color: #a13e00; font-weight: 600; }
+
+        /* 作业布置 */
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">
+        ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+    </div>
+
+    <h2>1.8 有理数的加减混合运算</h2>
+    <div class="lesson-title">第二课时 加法运算律在加减混合运算中的应用</div>
+
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解加法运算律在加减混合运算中的作用</div>
+            <div class="target-item"><span>✔</span>掌握运用运算律简化计算的方法</div>
+            <div class="target-item"><span>✔</span>能灵活运用交换律、结合律进行简便运算</div>
+            <div class="target-item"><span>✔</span>在运算中培养数感和运算能力</div>
+        </div>
+    </div>
+
+    <!-- 导入 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">🧮 上节课我们把加减混合运算统一成了加法，写成省略加号的和的形式。这节课我们要学习如何利用加法运算律让计算变得更简便。</p>
+        <p>例如：\(-24+3.2-16-3.5+0.3\)，怎样算更快？</p>
+    </div>
+
+    <!-- 新知探究：运算律的应用技巧 -->
+    <h3>🔍 探究：如何让计算更简便？</h3>
+    <div class="axis-showcase">
+        <p>在进行有理数加减混合运算时，可以运用加法交换律和结合律，根据数字的特点重新组合，使计算简便。</p>
+        <div class="tips-box">
+            <h4>📌 常用简便技巧</h4>
+            <ul>
+                <li><strong>同号结合法</strong>：把正数与正数、负数与负数分别结合相加</li>
+                <li><strong>相反数结合法</strong>：先把互为相反数的数结合（和为0）</li>
+                <li><strong>凑整法</strong>：把相加能得到整数、整十、整百的数先结合</li>
+                <li><strong>同分母结合法</strong>：分母相同的分数先结合</li>
+                <li><strong>小数分数统一法</strong>：将小数统一成分数或分数统一成小数再计算</li>
+                <li><strong>带分数拆分法</strong>：带分数拆成整数和真分数分别相加</li>
+            </ul>
+            <p style="margin-top:0.5rem;">⚠️ 注意：交换加数位置时，要连同它前面的符号一起交换。</p>
+        </div>
+    </div>
+
+    <!-- 例题1（课本例2(1)） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例2(1)</strong> 计算：\(-24+3.2-16-3.5+0.3\)</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            \(-24+3.2-16-3.5+0.3\) <br>
+            \(= (-24-16) + (3.2+0.3) - 3.5\) <span style="color:#888;">（同号结合）</span><br>
+            \(= -40 + 3.5 - 3.5\) <br>
+            \(= -40 + 0\) <span style="color:#888;">（互为相反数）</span><br>
+            \(= -40\)
+        </div>
+    </div>
+
+    <!-- 例题2（课本例2(2)） -->
+    <div class="example-box" id="example2">
+        <p><strong>例2(2)</strong> 计算：\(0-21\frac{2}{3} + \left(+3\frac{1}{4}\right) - \left(-\frac{2}{3}\right) - \left(+\frac{1}{4}\right)\)</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box">
+            \(0-21\frac{2}{3} + \left(+3\frac{1}{4}\right) - \left(-\frac{2}{3}\right) - \left(+\frac{1}{4}\right)\) <br>
+            \(= -21\frac{2}{3} + 3\frac{1}{4} + \frac{2}{3} - \frac{1}{4}\) <span style="color:#888;">（减法转加法，省略加号）</span><br>
+            \(= \left(-21\frac{2}{3} + \frac{2}{3}\right) + \left(3\frac{1}{4} - \frac{1}{4}\right)\) <span style="color:#888;">（同分母结合）</span><br>
+            \(= -21 + 3\) <br>
+            \(= -18\)
+        </div>
+    </div>
+
+    <!-- 例题3（补充例题，含小数分数混合） -->
+    <div class="example-box" id="example3">
+        <p><strong>例3</strong> 计算：\((-0.5) - \left(-\frac{1}{4}\right) + \left(+2.75\right) - \left(+5.5\right)\)</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示答案</button>
+        <div id="exampleAnswer3" class="answer-box">
+            \((-0.5) - \left(-\frac{1}{4}\right) + \left(+2.75\right) - \left(+5.5\right)\) <br>
+            \(= -0.5 + 0.25 + 2.75 - 5.5\) <span style="color:#888;">（统一成小数）</span><br>
+            \(= (-0.5 - 5.5) + (0.25 + 2.75)\) <span style="color:#888;">（同号结合、凑整）</span><br>
+            \(= -6 + 3\) <br>
+            \(= -3\)
+        </div>
+    </div>
+
+    <!-- 巩固练习（课本P36练习第2题） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习1：判断变形是否正确 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 下列变形是否正确？如果不正确，错在哪里？<br>
+                (1) \(1-4+5-4 = 1-4+4-5\)；<br>
+                (2) \(1-2+3-4 = 2-1+4-3\)；<br>
+                (3) \(4.5-1.7-2.5+1.8 = 4.5-2.5+1.8-1.7\)；<br>
+                (4) \(-\frac{1}{3}+\frac{3}{4}-\frac{1}{6}-\frac{1}{4} = \frac{1}{4}+\frac{3}{4}-\frac{1}{3}-\frac{1}{6}\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box">
+                (1) 错误，交换加数位置时，要连同符号一起交换，1-4+5-4 = 1-4-4+5<br>
+                (2) 错误，1-2+3-4 = 1+3-2-4 或 = -2+1-4+3，原变形符号错误<br>
+                (3) 正确，运用了加法交换律，符号一起移动<br>
+                (4) 错误，\(-\frac{1}{3}+\frac{3}{4}-\frac{1}{6}-\frac{1}{4} = -\frac{1}{3}-\frac{1}{6}+\frac{3}{4}-\frac{1}{4}\)，原变形中\(\frac{1}{4}\)符号应为负
+            </div>
+        </div>
+
+        <!-- 练习2：计算（课本P36练习第2题） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：<br>
+                (1) \(0-1+2-3+4-5\)；<br>
+                (2) \(-4.2+5.7-8.4+10.2\)；<br>
+                (3) \(-30-11-(-10)+(-12)+18\)；<br>
+                (4) \(3\frac{1}{2} - \left(-2\frac{1}{4}\right) + \left(-\frac{1}{3}\right) - \frac{1}{4} - \left(+\frac{1}{6}\right)\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div id="answer1" class="answer-box">
+                (1) \(0-1+2-3+4-5\) <br>
+                \(= (2+4) + (-1-3-5)\) <br>
+                \(= 6 + (-9)\) <br>
+                \(= -3\) <br><br>
+                (2) \(-4.2+5.7-8.4+10.2\) <br>
+                \(= (-4.2-8.4) + (5.7+10.2)\) <br>
+                \(= -12.6 + 15.9\) <br>
+                \(= 3.3\) <br><br>
+                (3) \(-30-11-(-10)+(-12)+18\) <br>
+                \(= -30-11+10-12+18\) <br>
+                \(= (-30-11-12) + (10+18)\) <br>
+                \(= -53 + 28\) <br>
+                \(= -25\) <br><br>
+                (4) \(3\frac{1}{2} - \left(-2\frac{1}{4}\right) + \left(-\frac{1}{3}\right) - \frac{1}{4} - \left(+\frac{1}{6}\right)\) <br>
+                \(= 3\frac{1}{2} + 2\frac{1}{4} - \frac{1}{3} - \frac{1}{4} - \frac{1}{6}\) <br>
+                化成分母12：\(= 3\frac{6}{12} + 2\frac{3}{12} - \frac{4}{12} - \frac{3}{12} - \frac{2}{12}\) <br>
+                整数部分：\(3+2=5\)；分数部分：\(\frac{6+3-4-3-2}{12} = \frac{0}{12} = 0\) <br>
+                \(= 5\)
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：运算能力——新课标核心素养 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 运算能力：算得快，更要算得巧</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《义务教育数学课程标准（2022年版）》将<strong>“运算能力”</strong>列为初中阶段数学核心素养之一。运算能力不仅指算得对、算得快，更重要的是理解算理、掌握算法，并能根据数据特点选择合理简洁的运算策略。</p>
+            <p>本节课我们学习的“巧用运算律”，正是培养运算能力的最佳实践：</p>
+            <ul>
+                <li><strong>理解算理</strong>：为什么可以交换位置？因为加法交换律。为什么可以先结合？因为加法结合律。明白背后的道理，才算真正掌握了运算。</li>
+                <li><strong>选择策略</strong>：面对 \(-24+3.2-16-3.5+0.3\)，你是从左到右硬算，还是先观察数据特点？有策略的人一眼看出“同号结合”和“相反数凑整”。</li>
+                <li><strong>简化过程</strong>： \(-21\frac{2}{3} + \frac{2}{3}\) 直接抵消， \(-1.75\) 和 \(-2.25\) 先结合得到 \(-4\)——每一步都让式子变得更简单，最终达到“又准又快”。</li>
+            </ul>
+            <p>运算能力强的同学，往往具备以下特质：</p>
+            <ul>
+                <li>✔ 拿到题目不急着动笔，先观察数据特点</li>
+                <li>✔ 能灵活运用运算律，而不是机械套用</li>
+                <li>✔ 会反思自己的计算过程，寻找更优的方法</li>
+                <li>✔ 计算后能估计结果是否合理（数感的体现）</li>
+            </ul>
+            <p>运算能力不是天生的，而是在每一次计算中有意识地练习获得的。本节课的简便技巧，就是你培养运算能力的“脚手架”。多用、多练、多总结，你也能成为运算高手！</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+        </div>
+        <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">有理数加减混合运算步骤：统一成加法 → 写成省略加号的形式 → 运用运算律简化计算</div>
+                <div class="summary-item">简便技巧：同号结合、凑整、同分母结合、相反数结合、小数分数统一</div>
+                <div class="summary-item">交换加数位置时，要连同符号一起交换</div>
+                <div class="summary-item">运算能力：理解算理、选择策略、优化过程</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P36 练习第1、2题；习题1.8 A组第3题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 巧用运算律，计算更轻松；培养运算力，素养在心中 ✨</p>
+
+    <div class="footer-note">
+        数学 七年级上册 · 第12课时
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById('answer' + index);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+            content.style.maxHeight = '300px';
+            toggle.textContent = '▼';
+        } else {
+            content.style.maxHeight = '0';
+            toggle.textContent = '▶';
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>19.1.3 中位数和众数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.2rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;border-radius:8px 8px 0 0;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}
+        tr:nth-child(even) td{background:#f0fdff;}
+        tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;background:white;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul{padding-left:1.5rem;line-height:2;}
+        .summary-box li{margin:.3rem 0;}
+        p{margin:.5rem 0;}
+        .canvas-container{position:relative;width:100%;margin:1rem auto;}
+        .data-input-container{background:#f0fdff;border-radius:1.5rem;padding:1.5rem;margin:1rem 0;border:2px solid #80deea;}
+        .data-input-container label{font-weight:700;color:#0e7490;display:block;margin-bottom:.5rem;}
+        .data-input-container input[type="text"]{width:100%;padding:.6rem;border:2px solid #80deea;border-radius:10px;font-size:1rem;margin-bottom:.8rem;}
+        .data-input-container input[type="text"]:focus{outline:none;border-color:#14b8a6;}
+        .btn-group{display:flex;gap:.8rem;flex-wrap:wrap;}
+        .control-btn{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border:none;padding:.5rem 1.5rem;border-radius:30px;font-weight:700;cursor:pointer;font-size:.95rem;transition:all .2s;box-shadow:0 4px 0 #0891b2;}
+        .control-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #0891b2;}
+        .control-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0891b2;}
+        .control-btn.secondary{background:linear-gradient(135deg,#f59e0b,#fbbf24);}
+        .control-btn.danger{background:linear-gradient(135deg,#ef4444,#f87171);}
+        .result-display{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border:2px solid #34d399;font-weight:600;}
+        .result-display .stat-item{display:inline-block;margin-right:1.5rem;}
+        .result-display .stat-label{color:#64748b;font-size:.9rem;}
+        .result-display .stat-value{color:#0e7490;font-size:1.3rem;font-weight:700;}
+        .tab-container{display:flex;gap:.5rem;margin:1rem 0;flex-wrap:wrap;}
+        .tab-btn{background:#e0f7fa;border:2px solid #80deea;color:#0e7490;padding:.5rem 1.2rem;border-radius:25px;font-weight:600;cursor:pointer;transition:all .2s;}
+        .tab-btn.active{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-color:#14b8a6;}
+        .tab-content{display:none;}
+        .tab-content.active{display:block;}
+        .homework-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.5rem 0;display:flex;align-items:center;gap:1rem;font-weight:600;box-shadow:0 5px 0 #d97706;}
+        .message-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:2px solid #34d399;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;text-align:center;font-weight:600;color:#065f46;font-size:1.05rem;}
+        .footer-note{text-align:center;color:#64748b;font-size:.9rem;margin-top:1.5rem;padding-top:1rem;border-top:2px solid #e0f7fa;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.3 中位数和众数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解中位数的概念,掌握中位数的求法</div>
+            <div class="target-item"><span>2</span>理解众数的概念,掌握众数的求法</div>
+            <div class="target-item"><span>3</span>了解平均数、中位数、众数的特点和适用场景</div>
+            <div class="target-item"><span>4</span>能根据实际问题选择合适的代表值</div>
+        </div>
+    </div>
+
+    <!-- 问题情境 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;"><strong>日常生活中,我们面对一组数据,常常需要寻找一个能代表这组数据总体面貌的特殊数据。</strong></p>
+        <p>比如有下面一些问题,你能回答吗?</p>
+    </div>
+
+    <!-- 探究活动 -->
+    <div class="explore-card">
+        <h4>探究问题</h4>
+        <p><strong>问题1：</strong>同学问小明:"你知道你妈妈的鞋号是多少吗?"小明在家里找到了10双妈妈的鞋,鞋号分别是:</p>
+        <p style="text-align:center;font-size:1.2rem;color:#0e7490;margin:.8rem 0;">23, 22, 23, 23, 23, 22, 23, 23, 22, 23</p>
+        <p>小明的回答应该是<span style="color:#ef4444;font-weight:700;">______</span></p>
+
+        <p style="margin-top:1.2rem;"><strong>问题2：</strong>一家小店有7名员工,他们的月收入(单位:元)分别是:</p>
+        <p style="text-align:center;font-size:1.2rem;color:#0e7490;margin:.8rem 0;">3000, 1500, 2000, 3500, 3000, 5000, 3000</p>
+        <p>该店员工的月收入可以认为是<span style="color:#ef4444;font-weight:700;">______</span></p>
+
+        <button class="interact-btn" onclick="toggleAnswer('q1')">💡 思考提示</button>
+        <div id="q1" class="answer-box">
+            <p>对于<strong>问题1</strong>,小明应该回答<strong style="color:#ef4444;">23号</strong>,因为23号出现的次数最多(共6次)。</p>
+            <p>对于<strong>问题2</strong>,该店员工的月收入可以认为是<strong style="color:#ef4444;">3000元</strong>,因为3000元出现的次数最多。</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 关键发现：</strong>有些问题不适合用平均数作代表,需要引入新的指标来刻画数据的集中趋势！
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题3:气温数据 -->
+    <div class="explore-card">
+        <h4>问题3 — 全国主要城市最高气温</h4>
+        <p>2024年1月8日,我国31个城市的最高气温如下表所示:</p>
+        <table style="font-size:.85rem;">
+            <tr>
+                <th>城市</th>
+                <td>北京</td><td>天津</td><td>石家庄</td><td>太原</td><td>呼和浩特</td><td>沈阳</td><td>长春</td><td>哈尔滨</td>
+            </tr>
+            <tr>
+                <th>气温(°C)</th>
+                <td>0</td><td>1</td><td>3</td><td>-1</td><td>-6</td><td>-5</td><td>-3</td><td>-4</td>
+            </tr>
+            <tr>
+                <th>城市</th>
+                <td>上海</td><td>南京</td><td>杭州</td><td>合肥</td><td>福州</td><td>南昌</td><td>济南</td><td>郑州</td>
+            </tr>
+            <tr>
+                <th>气温(°C)</th>
+                <td>5</td><td>5</td><td>8</td><td>4</td><td>11</td><td>7</td><td>2</td><td>3</td>
+            </tr>
+            <tr>
+                <th>城市</th>
+                <td>武汉</td><td>长沙</td><td>广州</td><td>海口</td><td>南宁</td><td>成都</td><td>重庆</td><td>贵阳</td>
+            </tr>
+            <tr>
+                <th>气温(°C)</th>
+                <td>8</td><td>8</td><td>8</td><td>15</td><td>13</td><td>6</td><td>11</td><td>4</td>
+            </tr>
+            <tr>
+                <th>城市</th>
+                <td>昆明</td><td>拉萨</td><td>西安</td><td>兰州</td><td>银川</td><td>西宁</td><td>乌鲁木齐</td>
+            </tr>
+            <tr>
+                <th>气温(°C)</th>
+                <td>7</td><td>2</td><td>5</td><td>1</td><td>0</td><td>-3</td><td>-6</td>
+            </tr>
+        </table>
+        <p style="margin-top:1rem;">我们很容易得到这些城市当日最高气温的平均数约为 <strong>3.5°C</strong>。你还能从其他角度找到这组数据的代表吗?</p>
+        <button class="interact-btn" onclick="toggleAnswer('q2')">💡 探索思路</button>
+        <div id="q2" class="answer-box">
+            <p>除了平均数,我们还可以用<strong>中位数</strong>或<strong>众数</strong>作为这组数据的代表!</p>
+        </div>
+    </div>
+
+    <!-- 中位数概念 -->
+    <div class="fact-card">
+        <h4>📌 核心概念一:中位数</h4>
+        <div class="theorem-box">
+            <p><strong>中位数:</strong>将一组数据按由小到大的顺序排列,处在正中间位置的那个值。</p>
+            <p style="margin-top:.8rem;">• 如果数据个数是<strong>奇数</strong>,则中位数是正中间的那个数</p>
+            <p>• 如果数据个数是<strong>偶数</strong>,则中位数是中间两个数的平均数</p>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="medianDemo" width="800" height="300"></canvas>
+        </div>
+
+        <div class="data-input-container">
+            <label>📝 输入数据(用逗号分隔):</label>
+            <input type="text" id="medianInput" placeholder="例如: 3, 5, 7, 2, 9, 1, 4" value="3, 5, 7, 2, 9, 1, 4">
+            <div class="btn-group">
+                <button class="control-btn" onclick="calculateMedian()">计算中位数</button>
+                <button class="control-btn secondary" onclick="animateMedianSort()">动画演示排序</button>
+                <button class="control-btn danger" onclick="clearMedian()">清空</button>
+            </div>
+            <div id="medianResult" class="result-display" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- 众数概念 -->
+    <div class="fact-card">
+        <h4>📌 核心概念二:众数</h4>
+        <div class="theorem-box">
+            <p><strong>众数:</strong>一组数据中出现次数最多的那个数据值。</p>
+            <p style="margin-top:.8rem;">• 一组数据可以有<strong>一个众数</strong>,也可以有<strong>多个众数</strong></p>
+            <p>• 一组数据也可能<strong>没有众数</strong>(所有数据出现的次数相同)</p>
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="modeDemo" width="800" height="320"></canvas>
+        </div>
+
+        <div class="data-input-container">
+            <label>📝 输入数据(用逗号分隔):</label>
+            <input type="text" id="modeInput" placeholder="例如: 2, 3, 2, 5, 4, 3, 2, 3" value="2, 3, 2, 5, 4, 3, 2, 3">
+            <div class="btn-group">
+                <button class="control-btn" onclick="calculateMode()">计算众数</button>
+                <button class="control-btn secondary" onclick="showModeChart()">显示频数图</button>
+                <button class="control-btn danger" onclick="clearMode()">清空</button>
+            </div>
+            <div id="modeResult" class="result-display" style="display:none;"></div>
+        </div>
+    </div>
+
+    <!-- 气温数据分析 -->
+    <div class="example-card">
+        <h4>📊 31个城市气温数据分析</h4>
+        <p>让我们对上面31个城市的最高气温数据进行分析,计算平均数、中位数和众数:</p>
+
+        <div class="canvas-container">
+            <canvas id="tempCompare" width="800" height="400"></canvas>
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('all')">全部显示</button>
+            <button class="tab-btn" onclick="showTab('mean')">平均数</button>
+            <button class="tab-btn" onclick="showTab('median')">中位数</button>
+            <button class="tab-btn" onclick="showTab('mode')">众数</button>
+        </div>
+
+        <div id="tab-all" class="tab-content active">
+            <div class="result-display">
+                <div class="stat-item"><span class="stat-label">平均数:</span> <span class="stat-value">3.5°C</span></div>
+                <div class="stat-item"><span class="stat-label">中位数:</span> <span class="stat-value">3°C</span></div>
+                <div class="stat-item"><span class="stat-label">众数:</span> <span class="stat-value">8°C</span></div>
+            </div>
+        </div>
+        <div id="tab-mean" class="tab-content">
+            <div class="highlight-box">
+                <p><strong>平均数的计算过程:</strong></p>
+                <p>将31个城市的气温相加,再除以31:</p>
+                <p>$\bar{x} = \frac{0+1+3+(-1)+(-6)+\cdots+(-6)}{31} = \frac{110}{31} \approx 3.5$</p>
+            </div>
+        </div>
+        <div id="tab-median" class="tab-content">
+            <div class="highlight-box">
+                <p><strong>中位数的求法:</strong></p>
+                <p>将31个城市的气温按从小到大排列:</p>
+                <p>-6, -6, -5, -4, -3, -3, -1, 0, 0, 1, 1, 2, 2, <strong style="color:#ef4444;">3</strong>, 3, 4, 4, 5, 5, 5, 6, 7, 7, 8, 8, 8, 8, 11, 11, 13, 15</p>
+                <p style="margin-top:.8rem;">因为有31个数据(奇数个),中位数是第 $\frac{31+1}{2}=16$ 个数,即 <strong style="color:#ef4444;">3°C</strong></p>
+            </div>
+        </div>
+        <div id="tab-mode" class="tab-content">
+            <div class="highlight-box">
+                <p><strong>众数的求法:</strong></p>
+                <p>统计各温度出现的频数:</p>
+                <table style="font-size:.85rem;max-width:600px;">
+                    <tr><th>气温(°C)</th><td>-6</td><td>-5</td><td>-4</td><td>-3</td><td>-1</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>11</td><td>13</td><td>15</td></tr>
+                    <tr><th>频数</th><td>2</td><td>1</td><td>1</td><td>2</td><td>1</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>3</td><td>1</td><td>2</td><td>4</td><td>2</td><td>1</td><td>1</td></tr>
+                </table>
+                <p style="margin-top:.8rem;">出现次数最多的是 <strong style="color:#ef4444;">8°C</strong>,共出现 <strong>4次</strong>,所以众数是 <strong style="color:#ef4444;">8°C</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三种代表值的特点 -->
+    <div class="fact-card">
+        <h4>📌 平均数、中位数和众数的特点</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:.8rem;">
+            <div class="highlight-box" style="flex:1;min-width:280px;">
+                <p><strong>① 平均数</strong></p>
+                <p>• 反映这组数据中每个数据的平均大小</p>
+                <p>• <strong style="color:#ef4444;">受极端值影响较大</strong></p>
+                <p>• 适用于数据分布比较均匀的情况</p>
+            </div>
+            <div class="highlight-box" style="flex:1;min-width:280px;">
+                <p><strong>② 中位数</strong></p>
+                <p>• 中位数的左边和右边恰有一样多的数据</p>
+                <p>• <strong style="color:#10b981;">不受极端值影响</strong></p>
+                <p>• 适用于数据分布偏斜或有极端值的情况</p>
+            </div>
+            <div class="highlight-box" style="flex:1;min-width:280px;">
+                <p><strong>③ 众数</strong></p>
+                <p>• 出现次数最多的值</p>
+                <p>• <strong style="color:#0891b2;">反映数据的集中趋势</strong></p>
+                <p>• 适用于关注最常见值的情况(如商品定价)</p>
+            </div>
+        </div>
+
+        <div class="warn-box" style="margin-top:1rem;">
+            <strong>⚠️ 注意:</strong>一组数据可以有不止一个众数,也可以没有众数!
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例题:苹果质量的统计分析</h4>
+        <p>某商场进了一批苹果,每箱苹果的质量约为15kg。进入仓库前,从中随机抽出10箱称重,得到10箱苹果的质量(单位:kg)如下:</p>
+        <p style="text-align:center;font-size:1.2rem;color:#0e7490;margin:.8rem 0;">15.2, 14.8, 14.9, 15.2, 15.3, 15.2, 14.9, 15.3, 15.0, 15.1</p>
+        <p>请指出这10箱苹果质量的平均数、中位数和众数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解:</strong></p>
+            <p><strong>(1) 平均数:</strong></p>
+            <p>$\bar{x} = \frac{15.2+14.8+14.9+15.2+15.3+15.2+14.9+15.3+15.0+15.1}{10} = \frac{150.9}{10} = 15.09$ (kg)</p>
+            
+            <p style="margin-top:1rem;"><strong>(2) 中位数:</strong></p>
+            <p>将数据按从小到大排列:</p>
+            <p>14.8, 14.9, 14.9, 15.0, <strong style="color:#ef4444;">15.1, 15.2</strong>, 15.2, 15.2, 15.3, 15.3</p>
+            <p>因为有10个数据(偶数个),中位数是中间两个数的平均数:</p>
+            <p>中位数 $= \frac{15.1+15.2}{2} = 15.15$ (kg)</p>
+            
+            <p style="margin-top:1rem;"><strong>(3) 众数:</strong></p>
+            <p>15.2 kg出现3次,次数最多,所以众数是 <strong>15.2 kg</strong></p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>判断题</strong> (对的在括号内填√,错的填×):</p>
+        
+        <p style="margin-top:.8rem;">(1) 给定一组数据,那么这组数据的平均数一定只有一个。(  )</p>
+        <p>(2) 给定一组数据,那么这组数据的中位数一定只有一个。(  )</p>
+        <p>(3) 给定一组数据,那么这组数据的众数一定只有一个。(  )</p>
+        <p>(4) 给定一组数据,那么这组数据的平均数一定不会大于最大值,也不会小于最小值。(  )</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>(1) <strong style="color:#10b981;">√</strong> 平均数 = 所有数据的和 ÷ 数据个数,唯一确定</p>
+            <p>(2) <strong style="color:#10b981;">√</strong> 中位数是将数据排序后取中间位置的值,唯一确定</p>
+            <p>(3) <strong style="color:#ef4444;">×</strong> 一组数据可能有多个众数,也可能没有众数</p>
+            <p>(4) <strong style="color:#10b981;">√</strong> 平均数在最小值和最大值之间</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>中位数</strong>:将数据从小到大排列后,处在正中间位置的值(奇数个取中间,偶数个取中间两个的平均)</li>
+            <li><strong>众数</strong>:出现次数最多的数据值(可能有多个,也可能没有)</li>
+            <li><strong>平均数、中位数、众数的比较:</strong>
+                <ul style="margin-top:.5rem;">
+                    <li>平均数:反映平均水平,受极端值影响大</li>
+                    <li>中位数:不受极端值影响,反映中间水平</li>
+                    <li>众数:反映最常见值,体现集中趋势</li>
+                </ul>
+            </li>
+            <li><strong>选择代表值</strong>:根据实际问题背景和数据特点,选择合适的代表值</li>
+        </ul>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业:</strong>课本P114 练习19.3 第1~3题;收集班级同学的鞋码数据,找出中位数和众数;思考:为什么商店通常用众数来进货?</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 中位数看居中,众数显最频;三种代表各千秋,选择使用显智慧!✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第19章 19.1.3 中位数和众数</div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if(el.style.display === 'block' || el.style.display === '') {
+        var computed = window.getComputedStyle(el).display;
+        if(computed === 'block' || el.dataset.shown === 'yes') {
+            el.style.display = 'none';
+            return;
+        }
+    }
+    el.style.display = 'block';
+    el.dataset.shown = 'yes';
+    if(window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([el]).catch(function(err){console.log('err',err)});
+    }
+}
+
+function showTab(tabName) {
+    // 移除所有tab按钮的active类
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    // 隐藏所有tab内容
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    // 添加active类到当前按钮
+    event.target.classList.add('active');
+    // 显示对应的tab内容
+    document.getElementById('tab-' + tabName).classList.add('active');
+    
+    // 重新渲染数学公式
+    if(window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise().catch(function(err){console.log('err',err)});
+    }
+}
+
+// ========== 中位数演示 ==========
+var medianCanvas = document.getElementById('medianDemo');
+var medianCtx = medianCanvas.getContext('2d');
+var medianData = [];
+var medianSortSteps = [];
+var medianCurrentStep = 0;
+var medianAnimationId = null;
+
+function drawMedianDemo(data, highlightMiddle = false) {
+    var ctx = medianCtx;
+    var W = medianCanvas.width;
+    var H = medianCanvas.height;
+    ctx.clearRect(0, 0, W, H);
+    
+    if (data.length === 0) return;
+    
+    var barWidth = Math.min(60, (W - 100) / data.length - 10);
+    var maxVal = Math.max(...data.map(Math.abs)) + 2;
+    var startX = (W - (barWidth + 10) * data.length) / 2;
+    var baseY = H - 60;
+    
+    // 绘制背景网格
+    ctx.strokeStyle = '#e0f2fe';
+    ctx.lineWidth = 1;
+    for (var i = 0; i <= 10; i++) {
+        var y = 40 + (H - 100) * i / 10;
+        ctx.beginPath();
+        ctx.moveTo(40, y);
+        ctx.lineTo(W - 40, y);
+        ctx.stroke();
+    }
+    
+    // 绘制数据条
+    data.forEach((val, idx) => {
+        var x = startX + idx * (barWidth + 10);
+        var barHeight = Math.abs(val) / maxVal * (H - 120);
+        var y = baseY - barHeight;
+        
+        // 判断是否为中间位置
+        var isMiddle = false;
+        if (highlightMiddle) {
+            var midPos = Math.floor(data.length / 2);
+            if (data.length % 2 === 1) {
+                isMiddle = (idx === midPos);
+            } else {
+                isMiddle = (idx === midPos - 1 || idx === midPos);
+            }
+        }
+        
+        // 绘制条形
+        if (isMiddle) {
+            ctx.fillStyle = '#ef4444';
+            ctx.shadowColor = 'rgba(239, 68, 68, 0.5)';
+            ctx.shadowBlur = 10;
+        } else {
+            ctx.fillStyle = '#14b8a6';
+            ctx.shadowBlur = 0;
+        }
+        
+        ctx.fillRect(x, y, barWidth, barHeight);
+        ctx.shadowBlur = 0;
+        
+        // 绘制数值
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x + barWidth / 2, y - 10);
+        
+        // 绘制序号
+        ctx.fillStyle = '#64748b';
+        ctx.font = '18px sans-serif';
+        ctx.fillText((idx + 1), x + barWidth / 2, baseY + 25);
+    });
+    
+    // 绘制中间位置标识
+    if (highlightMiddle) {
+        var midPos = Math.floor(data.length / 2);
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.textAlign = 'center';
+        
+        if (data.length % 2 === 1) {
+            var x = startX + midPos * (barWidth + 10) + barWidth / 2;
+            ctx.fillText('中位数', x, baseY + 45);
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillText(data[midPos], x, 25);
+        } else {
+            var x1 = startX + (midPos - 1) * (barWidth + 10) + barWidth / 2;
+            var x2 = startX + midPos * (barWidth + 10) + barWidth / 2;
+            ctx.fillText('中间两个数', (x1 + x2) / 2, baseY + 45);
+            var median = (data[midPos - 1] + data[midPos]) / 2;
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillText('中位数 = ' + median, W / 2, 25);
+        }
+    }
+}
+
+function calculateMedian() {
+    var input = document.getElementById('medianInput').value;
+    var data = input.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    
+    if (data.length === 0) {
+        alert('请输入有效的数据!');
+        return;
+    }
+    
+    var sorted = [...data].sort((a, b) => a - b);
+    var median;
+    
+    if (sorted.length % 2 === 1) {
+        median = sorted[Math.floor(sorted.length / 2)];
+    } else {
+        var mid = sorted.length / 2;
+        median = (sorted[mid - 1] + sorted[mid]) / 2;
+    }
+    
+    medianData = sorted;
+    drawMedianDemo(sorted, true);
+    
+    var result = document.getElementById('medianResult');
+    result.style.display = 'block';
+    result.innerHTML = '<div class="stat-item"><span class="stat-label">原始数据:</span> <span class="stat-value">' + data.join(', ') + '</span></div>' +
+                       '<div class="stat-item"><span class="stat-label">排序后:</span> <span class="stat-value">' + sorted.join(', ') + '</span></div>' +
+                       '<div class="stat-item"><span class="stat-label">中位数:</span> <span class="stat-value">' + median + '</span></div>';
+}
+
+function animateMedianSort() {
+    var input = document.getElementById('medianInput').value;
+    var data = input.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    
+    if (data.length === 0) {
+        alert('请输入有效的数据!');
+        return;
+    }
+    
+    // 简单冒泡排序动画
+    medianSortSteps = [[...data]];
+    var arr = [...data];
+    for (var i = 0; i < arr.length - 1; i++) {
+        for (var j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                medianSortSteps.push([...arr]);
+            }
+        }
+    }
+    
+    medianCurrentStep = 0;
+    if (medianAnimationId) cancelAnimationFrame(medianAnimationId);
+    
+    function animate() {
+        if (medianCurrentStep < medianSortSteps.length) {
+            drawMedianDemo(medianSortSteps[medianCurrentStep], false);
+            medianCurrentStep++;
+            setTimeout(() => requestAnimationFrame(animate), 300);
+        } else {
+            drawMedianDemo(medianSortSteps[medianSortSteps.length - 1], true);
+        }
+    }
+    animate();
+}
+
+function clearMedian() {
+    document.getElementById('medianInput').value = '';
+    medianData = [];
+    medianCtx.clearRect(0, 0, medianCanvas.width, medianCanvas.height);
+    document.getElementById('medianResult').style.display = 'none';
+}
+
+// ========== 众数演示 ==========
+var modeCanvas = document.getElementById('modeDemo');
+var modeCtx = modeCanvas.getContext('2d');
+var modeData = [];
+
+function drawModeDemo(data) {
+    var ctx = modeCtx;
+    var W = modeCanvas.width;
+    var H = modeCanvas.height;
+    ctx.clearRect(0, 0, W, H);
+    
+    if (data.length === 0) return;
+    
+    // 计算频数
+    var freq = {};
+    data.forEach(val => {
+        freq[val] = (freq[val] || 0) + 1;
+    });
+    
+    var values = Object.keys(freq).map(Number).sort((a, b) => a - b);
+    var maxFreq = Math.max(...Object.values(freq));
+    var modes = values.filter(v => freq[v] === maxFreq);
+    
+    var barWidth = Math.min(70, (W - 100) / values.length - 10);
+    var startX = (W - (barWidth + 10) * values.length) / 2;
+    var baseY = H - 50;
+    
+    // 绘制频数条
+    values.forEach((val, idx) => {
+        var x = startX + idx * (barWidth + 10);
+        var barHeight = freq[val] / maxFreq * (H - 120);
+        var y = baseY - barHeight;
+        
+        var isMode = modes.includes(val);
+        
+        // 绘制条形
+        if (isMode) {
+            var grad = ctx.createLinearGradient(x, y, x, baseY);
+            grad.addColorStop(0, '#ef4444');
+            grad.addColorStop(1, '#fca5a5');
+            ctx.fillStyle = grad;
+            ctx.shadowColor = 'rgba(239, 68, 68, 0.5)';
+            ctx.shadowBlur = 10;
+        } else {
+            var grad = ctx.createLinearGradient(x, y, x, baseY);
+            grad.addColorStop(0, '#14b8a6');
+            grad.addColorStop(1, '#99f6e4');
+            ctx.fillStyle = grad;
+            ctx.shadowBlur = 0;
+        }
+        
+        ctx.fillRect(x, y, barWidth, barHeight);
+        ctx.shadowBlur = 0;
+        
+        // 绘制数值
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x + barWidth / 2, baseY + 20);
+        
+        // 绘制频数
+        ctx.fillStyle = isMode ? '#ef4444' : '#0e7490';
+        ctx.font = 'bold 16px sans-serif';
+        ctx.fillText(freq[val] + '次', x + barWidth / 2, y - 10);
+    });
+    
+    // 标注众数
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 18px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('众数: ' + modes.join(', ') + ' (出现' + maxFreq + '次)', W / 2, 30);
+}
+
+function calculateMode() {
+    var input = document.getElementById('modeInput').value;
+    var data = input.split(',').map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    
+    if (data.length === 0) {
+        alert('请输入有效的数据!');
+        return;
+    }
+    
+    modeData = data;
+    drawModeDemo(data);
+    
+    // 计算众数
+    var freq = {};
+    data.forEach(val => {
+        freq[val] = (freq[val] || 0) + 1;
+    });
+    
+    var maxFreq = Math.max(...Object.values(freq));
+    var modes = Object.keys(freq).filter(v => freq[v] === maxFreq).map(Number);
+    
+    var result = document.getElementById('modeResult');
+    result.style.display = 'block';
+    result.innerHTML = '<div class="stat-item"><span class="stat-label">数据:</span> <span class="stat-value">' + data.join(', ') + '</span></div>' +
+                       '<div class="stat-item"><span class="stat-label">众数:</span> <span class="stat-value">' + modes.join(', ') + '</span></div>' +
+                       '<div class="stat-item"><span class="stat-label">出现次数:</span> <span class="stat-value">' + maxFreq + '次</span></div>';
+}
+
+function showModeChart() {
+    calculateMode();
+}
+
+function clearMode() {
+    document.getElementById('modeInput').value = '';
+    modeData = [];
+    modeCtx.clearRect(0, 0, modeCanvas.width, modeCanvas.height);
+    document.getElementById('modeResult').style.display = 'none';
+}
+
+// ========== 气温数据对比图 ==========
+var tempCanvas = document.getElementById('tempCompare');
+var tempCtx = tempCanvas.getContext('2d');
+
+var tempData = [
+    -6, -6, -5, -4, -3, -3, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 7, 7, 8, 8, 8, 8, 11, 11, 13, 15
+];
+
+function drawTempCompare() {
+    var ctx = tempCtx;
+    var W = tempCanvas.width;
+    var H = tempCanvas.height;
+    ctx.clearRect(0, 0, W, H);
+    
+    var padLeft = 50, padRight = 30, padTop = 40, padBottom = 50;
+    var chartW = W - padLeft - padRight;
+    var chartH = H - padTop - padBottom;
+    
+    var minTemp = -10, maxTemp = 20;
+    var barWidth = chartW / tempData.length - 4;
+    
+    // 绘制背景网格
+    ctx.strokeStyle = '#e0f2fe';
+    ctx.lineWidth = 1;
+    for (var t = minTemp; t <= maxTemp; t += 5) {
+        var y = padTop + chartH - (t - minTemp) * chartH / (maxTemp - minTemp);
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(W - padRight, y);
+        ctx.stroke();
+        
+        ctx.fillStyle = '#64748b';
+        ctx.font = '18px sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(t + '°C', padLeft - 10, y + 6);
+    }
+    
+    // 绘制条形图
+    tempData.forEach((temp, idx) => {
+        var x = padLeft + idx * (barWidth + 4) + 2;
+        var barH = Math.abs(temp) * chartH / (maxTemp - minTemp);
+        var y;
+        
+        if (temp >= 0) {
+            y = padTop + chartH - (temp - minTemp) * chartH / (maxTemp - minTemp);
+            var grad = ctx.createLinearGradient(x, y, x, y + barH);
+            grad.addColorStop(0, '#ef4444');
+            grad.addColorStop(1, '#fca5a5');
+            ctx.fillStyle = grad;
+        } else {
+            y = padTop + chartH - (0 - minTemp) * chartH / (maxTemp - minTemp);
+            var grad = ctx.createLinearGradient(x, y, x, y + barH);
+            grad.addColorStop(0, '#3b82f6');
+            grad.addColorStop(1, '#93c5fd');
+            ctx.fillStyle = grad;
+        }
+        
+        ctx.fillRect(x, y, barWidth, barH);
+    });
+    
+    // 平均数线 (3.5°C)
+    var meanY = padTop + chartH - (3.5 - minTemp) * chartH / (maxTemp - minTemp);
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(padLeft, meanY);
+    ctx.lineTo(W - padRight, meanY);
+    ctx.stroke();
+    ctx.fillStyle = '#ef4444';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('平均数 3.5°C', padLeft + 10, meanY - 8);
+    
+    // 中位数线 (3°C)
+    var medianY = padTop + chartH - (3 - minTemp) * chartH / (maxTemp - minTemp);
+    ctx.strokeStyle = '#10b981';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(padLeft, medianY);
+    ctx.lineTo(W - padRight, medianY);
+    ctx.stroke();
+    ctx.fillStyle = '#10b981';
+    ctx.fillText('中位数 3°C', padLeft + 10, medianY - 8);
+    
+    // 众数框 (8°C)
+    var modeY = padTop + chartH - (8 - minTemp) * chartH / (maxTemp - minTemp);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([5, 5]);
+    ctx.strokeRect(padLeft + 5, modeY - 10, W - padLeft - padRight - 10, 20);
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#3b82f6';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.fillText('众数 8°C', W - padRight - 100, modeY - 15);
+    
+    // 坐标轴标签
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('31个城市气温数据', W / 2, H - 10);
+}
+
+// 初始化
+window.addEventListener('load', function() {
+    drawMedianDemo([1, 2, 3, 4, 5, 6, 7], true);
+    drawModeDemo([2, 3, 2, 5, 4, 3, 2, 3]);
+    drawTempCompare();
+});
+</script>
+</body>
+</html>

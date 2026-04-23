@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2课时 有理数 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数等 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        /* 页眉装饰 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 540;
+            color: #1e5780;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        /* 课时标题居中 */
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 530;
+            color: #2b4f6e;
+            margin: 1.4rem 0 0.4rem 0;
+            border-bottom: 1px dashed #b3cee5;
+            padding-bottom: 4px;
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e1f0fa, #d2e6f5);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入卡片 */
+        .intro-block {
+            background: linear-gradient(145deg, #f3f9ff, #e3eff9);
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 分类卡片容器（垂直排列） */
+        .classify-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+        .classify-card {
+            background: #f9f7f0;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            border: 2px solid #e4b77d;
+            box-shadow: 0 8px 0 #c29a5e;
+        }
+        .classify-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border-bottom: 2px solid #e4b77d;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .classify-header h4 {
+            margin: 0;
+            color: #7b4a1e;
+            border: none;
+            font-size: 1.5rem;
+        }
+        .classify-toggle {
+            font-size: 2rem;
+            color: #b47d36;
+        }
+        .classify-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .classify-content.collapsed {
+            display: none;
+        }
+        .classify-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .classify-content li {
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
+            background: #fce5cd; /* 加深一级背景色 */
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #dba05c;
+            color: #5a3e1f;
+        }
+        .classify-content ul ul {
+            margin-left: 2rem;
+        }
+        .classify-content ul ul li {
+            background: #fff9e6; /* 更浅的二级背景色 */
+            border: 1px dashed #dba05c;
+        }
+
+        /* 例题卡片 */
+        .example-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: #f6fafd;
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            margin: 1rem 0 1.5rem 0;
+            border: 1px solid #cddeec;
+        }
+
+        .example-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #d7e5f1;
+            padding-bottom: 0.7rem;
+        }
+
+        .example-item:last-child {
+            border-bottom: none;
+        }
+
+        .example-icon {
+            font-size: 1.6rem;
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 60, 100, 0.15);
+        }
+
+        /* 可点击数字样式（加大） */
+        .clickable-number {
+            display: inline-block;
+            margin: 0.3rem 0.4rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            background: #eef4fa;
+            border: 2px solid #9bbede;
+            cursor: pointer;
+            transition: 0.1s;
+            font-weight: 600;
+            color: #014682;
+            font-size: 1.3rem;
+            line-height: 1.4;
+        }
+        .clickable-number.selected {
+            background: #e63946;
+            color: white;
+            border-color: #b12a3a;
+        }
+
+        /* 数集展示卡片 */
+        .set-card {
+            background: #d9eaf5;
+            border-radius: 24px;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            border-left: 8px solid #2a7faa;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .set-title {
+            font-weight: 600;
+            color: #0f4a6f;
+            margin-right: 1rem;
+        }
+        .set-content {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        .summary-box {
+            background-color: #ddeeff;
+            border-radius: 24px;
+            padding: 1.3rem 2rem;
+            margin: 1.8rem 0;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #73b1d6;
+        }
+
+        .summary-box p {
+            font-size: 1.15rem;
+            margin: 0.5rem 0;
+        }
+
+        .attention {
+            background: #fde6d2;
+            border-radius: 30px;
+            padding: 0.6rem 1.8rem;
+            display: inline-block;
+            font-weight: 600;
+            color: #a13e00;
+            border: 1px solid #ffb27a;
+            margin: 0.5rem 0 0 0;
+        }
+
+        /* 交互按钮样式 */
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.8rem 2rem;
+            margin: 0.8rem 0 0.5rem 1.5rem;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1.05rem;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        .exercises {
+            background-color: #fcfcff;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        .number-list {
+            background: #f2f0fa;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            word-spacing: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* 寄语卡片 */
+        .message-box {
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 2rem 0 0.5rem;
+            padding: 0.5rem;
+            border-top: 1px dashed #accee5;
+            padding-top: 1.5rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+
+        .math-negative {
+            color: #b13e3e;
+            font-weight: 500;
+        }
+
+        .math-positive {
+            color: #1c7842;
+        }
+
+        .frac {
+            display: inline-block;
+            font-size: 0.95em;
+            vertical-align: middle;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+
+        /* 读一读按钮调整 */
+        .reading-block {
+            background-color: #eaf3e8;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+
+        /* 课堂小结垂直列表 */
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.1rem;
+            border: 1px solid #c0ddec;
+        }
+    </style>
+</head>
+<body>
+    <div class="textbook">
+        <!-- 头部信息 -->
+        <div class="header-meta">
+            <span class="version">华师版·七年级上册</span>
+            <span class="chapter-tag">第1章 有理数</span>
+        </div>
+
+        <!-- 主标题 -->
+        <h1>第1章 有理数</h1>
+        <div class="chapter-intro">
+            ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+        </div>
+
+        <!-- 第二课时标题 -->
+        <h2>1.1 有理数的引入</h2>
+        <div class="lesson-title">第二课时 有理数</div>
+
+        <!-- 学习目标模块 -->
+        <div class="learning-targets">
+            <h3>🎯 本课时学习目标</h3>
+            <div class="target-grid">
+                <div class="target-item"><span>✔</span>理解整数、分数的分类</div>
+                <div class="target-item"><span>✔</span>掌握有理数的定义</div>
+                <div class="target-item"><span>✔</span>能对有理数进行分类</div>
+                <div class="target-item"><span>✔</span>认识数的集合</div>
+            </div>
+        </div>
+
+        <!-- 导入 -->
+        <div class="intro-block">
+            <p style="font-size:1.2rem;">我们以前学过正整数、0、分数（小数），比如：\(1, 2, 3, 0, \frac{1}{2}, 0.75\)。现在又认识了负数，数的家族更庞大了。它们之间有什么关系呢？</p>
+        </div>
+
+        <!-- 有理数的分类（垂直卡片，颜色优化） -->
+        <h3 style="margin-top: 2rem;">📚 有理数的分类</h3>
+        <div class="classify-vertical">
+            <!-- 按定义分类卡片 -->
+            <div class="classify-card" id="card1">
+                <div class="classify-header" onclick="toggleClassify('card1')">
+                    <h4>🔹 按定义分类</h4>
+                    <span class="classify-toggle" id="toggle1">▼</span>
+                </div>
+                <div class="classify-content" id="content1">
+                    <ul>
+                        <li><strong>整数</strong></li>
+                        <ul>
+                            <li>正整数：1, 2, 3, …</li>
+                            <li>0</li>
+                            <li>负整数：-1, -2, -3, …</li>
+                        </ul>
+                        <li><strong>分数</strong></li>
+                        <ul>
+                            <li>正分数：\(\frac{1}{2}, \frac{22}{7}, 4.5\)</li>
+                            <li>负分数：\(-\frac{1}{3}, -2.5, -\frac{5}{6}\)</li>
+                        </ul>
+                    </ul>
+                    <p style="margin-top:0.5rem; font-style:italic;">整数和分数统称为有理数。</p>
+                </div>
+            </div>
+            <!-- 按性质分类卡片（增加举例） -->
+            <div class="classify-card" id="card2">
+                <div class="classify-header" onclick="toggleClassify('card2')">
+                    <h4>🔸 按性质分类</h4>
+                    <span class="classify-toggle" id="toggle2">▼</span>
+                </div>
+                <div class="classify-content" id="content2">
+                    <ul>
+                        <li><strong>正有理数</strong></li>
+                        <ul>
+                            <li>正整数：1, 2, 3, …</li>
+                            <li>正分数：\(\frac{1}{2}, \frac{3}{4}, \frac{22}{7}, …\)</li>
+                        </ul>
+                        <li><strong>0</strong>（既不是正数也不是负数）</li>
+                        <li><strong>负有理数</strong></li>
+                        <ul>
+                            <li>负整数：-1, -2, -3, …</li>
+                            <li>负分数：\(-\frac{1}{2}, -\frac{2}{3}, -0.6, …\)</li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 读一读：有理数名称由来（折叠） -->
+        <div class="reading-block" id="readingBlock">
+            <div class="reading-header" onclick="toggleReading()">
+                <h3>📖 读一读 · “有理数”名称的由来</h3>
+                <span class="toggle-icon" id="toggleIcon">▶</span>
+            </div>
+            <div class="reading-content collapsed" id="readingContent">
+                <p>“有理数”的英文名 rational number 中的 rational 应看成 ratio（比、比率）的形容词形式，因此 rational number 应该理解为“比率数”，即可以表示为两个整数之商（比率）的数。在学习了有理数的除法之后，这样的解释准确地描述了有理数的本质。</p>
+            </div>
+        </div>
+
+        <!-- 例题解析（交互式数字，已加大，2023改为2026） -->
+        <h3>🔍 例题（点击数字加入数集）</h3>
+        <div class="example-grid">
+            <div class="example-item">
+                <span class="example-icon">📌</span>
+                <div class="example-text">
+                    <strong>例</strong> 把下列各数填入表示它们所在的数集的圈里：<br>
+                    <span class="clickable-number" data-value="-18" data-display="-18" onclick="toggleNumber(this)">-18</span>
+                    <span class="clickable-number" data-value="\\frac{22}{7}" data-display="\(\frac{22}{7}\)" onclick="toggleNumber(this)">\(\frac{22}{7}\)</span>
+                    <span class="clickable-number" data-value="3.1416" data-display="3.1416" onclick="toggleNumber(this)">3.1416</span>
+                    <span class="clickable-number" data-value="0" data-display="0" onclick="toggleNumber(this)">0</span>
+                    <span class="clickable-number" data-value="2026" data-display="2026" onclick="toggleNumber(this)">2026</span>
+                    <span class="clickable-number" data-value="-\\frac{3}{5}" data-display="\(-\frac{3}{5}\)" onclick="toggleNumber(this)">\(-\frac{3}{5}\)</span>
+                    <span class="clickable-number" data-value="-0.142857" data-display="-0.142857" onclick="toggleNumber(this)">-0.142857</span>
+                    <span class="clickable-number" data-value="95\\%" data-display="95%" onclick="toggleNumber(this)">95%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数集展示（数学格式化） -->
+        <div class="set-card">
+            <span class="set-title">正数集：</span>
+            <span class="set-content" id="positiveSet">{ , … }</span>
+        </div>
+        <div class="set-card">
+            <span class="set-title">负数集：</span>
+            <span class="set-content" id="negativeSet">{ , … }</span>
+        </div>
+        <div class="set-card">
+            <span class="set-title">整数集：</span>
+            <span class="set-content" id="integerSet">{ , … }</span>
+        </div>
+        <div class="set-card">
+            <span class="set-title">有理数集：</span>
+            <span class="set-content" id="rationalSet">{ , … }</span>
+        </div>
+
+        <!-- 练习部分 -->
+        <div class="exercises">
+            <h3>练习</h3>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">1. 请说出两个正整数、两个负整数、两个正分数、两个负分数。它们都是有理数吗？</span>
+                    <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+                </div>
+                <div id="answer0" class="answer-box">
+                    正整数：3, 10；负整数：-5, -21；正分数：\(\frac{1}{2}, \frac{3}{4}\)；负分数：\(-\frac{2}{3}, -\frac{5}{7}\)。它们都是有理数。
+                </div>
+            </div>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">2. 有理数集中有没有这样的数，它既不是正数，也不是负数？若有，请说出这样的数。</span>
+                    <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+                </div>
+                <div id="answer1" class="answer-box">
+                    有，0 既不是正数也不是负数。
+                </div>
+            </div>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">3. 把下列各数填入相应的集合：\(-7, 0.5, -\frac{2}{3}, 0, 2024, -3.14, \frac{22}{7}\)</span>
+                    <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+                </div>
+                <div id="answer2" class="answer-box">
+                    正数集：\(\{0.5, 2024, \frac{22}{7}, \ldots\}\)；负数集：\(\{-7, -\frac{2}{3}, -3.14, \ldots\}\)；整数集：\(\{-7, 0, 2024, \ldots\}\)；分数集：\(\{0.5, -\frac{2}{3}, -3.14, \frac{22}{7}, \ldots\}\)。
+                </div>
+            </div>
+        </div>
+
+        <!-- 课堂小结 (垂直列表，表述统一) -->
+        <div style="background:#e2eff0; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+            <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+                <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem;">📌 课堂小结</h3>
+                <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+            </div>
+            <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+                <div class="summary-vertical">
+                    <div class="summary-item">整数（正整数、0、负整数）</div>
+                    <div class="summary-item">分数（正分数、负分数）</div>
+                    <div class="summary-item">有理数 = 整数 + 分数</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作业布置 -->
+        <div style="background:#b3d6ed; border-radius: 60px; padding: 1rem 2.5rem; margin:2rem 0 1rem; display:flex; align-items:center; gap:1.5rem;">
+            <span style="font-size:2.5rem;">📚</span>
+            <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题1.1 A组第1、2题；将今天学到的分类讲给家长听。</span>
+        </div>
+
+        <!-- 寄语（与第1课时格式一致） -->
+        <hr>
+        <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 有理数让数的世界更有秩序，分类是认识世界的开始 ✨</p>
+
+        <!-- 页脚 -->
+        <div class="footer-note">
+            数学 七年级上册 · 第2课时
+        </div>
+    </div>
+
+    <script>
+        // 存储选中数字的数组，每个元素为对象 { value, display }
+        let selectedNumbers = [];
+
+        // 答案切换函数
+        function toggleAnswer(index) {
+            var answerDiv = document.getElementById('answer' + index);
+            if (answerDiv) {
+                answerDiv.classList.toggle('show-answer');
+            }
+        }
+
+        // 读一读折叠
+        function toggleReading() {
+            var content = document.getElementById('readingContent');
+            var icon = document.getElementById('toggleIcon');
+            content.classList.toggle('collapsed');
+            icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+        }
+
+        // 课堂小结折叠
+        function toggleSummary() {
+            var content = document.getElementById('summaryContent');
+            var toggle = document.getElementById('summaryToggle');
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+                content.style.maxHeight = '300px';
+                toggle.textContent = '▼';
+            } else {
+                content.style.maxHeight = '0';
+                toggle.textContent = '▶';
+            }
+        }
+
+        // 分类卡片折叠（使用display控制）
+        function toggleClassify(cardId) {
+            var content = document.getElementById('content' + cardId.slice(-1));
+            var toggle = document.getElementById('toggle' + cardId.slice(-1));
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('collapsed');
+                toggle.textContent = '▶';
+            }
+        }
+
+        // 初始化所有分类卡片为展开状态
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('content1').classList.remove('collapsed');
+            document.getElementById('toggle1').textContent = '▼';
+            document.getElementById('content2').classList.remove('collapsed');
+            document.getElementById('toggle2').textContent = '▼';
+            // 初始化数集显示
+            updateSets();
+        });
+
+        // 点击数字切换
+        function toggleNumber(element) {
+            const val = element.getAttribute('data-value');
+            const disp = element.getAttribute('data-display') || element.innerText;
+            const index = selectedNumbers.findIndex(item => item.value === val);
+            if (index === -1) {
+                selectedNumbers.push({ value: val, display: disp });
+                element.classList.add('selected');
+            } else {
+                selectedNumbers.splice(index, 1);
+                element.classList.remove('selected');
+            }
+            updateSets();
+        }
+
+        // 更新数集显示（支持数学格式化）
+        function updateSets() {
+            const positive = [];
+            const negative = [];
+            const integer = [];
+            const rational = [];
+
+            selectedNumbers.forEach(item => {
+                const val = item.value;
+                const disp = item.display; // 已经是LaTeX格式
+                rational.push(disp);
+                if (val === '0') {
+                    integer.push(disp);
+                } else if (val.includes('-')) {
+                    negative.push(disp);
+                    // 判断是否为整数：-18 是整数，-0.142857 和 -\frac{3}{5} 不是整数
+                    if (val === '-18') {
+                        integer.push(disp);
+                    } else if (val === '-0.142857') {
+                        // 不是整数
+                    } else if (val === '-\\frac{3}{5}') {
+                        // 不是整数
+                    }
+                } else {
+                    positive.push(disp);
+                    if (val === '2026') {
+                        integer.push(disp);
+                    }
+                }
+            });
+
+            // 将数组转换为逗号分隔的字符串，并插入到span中，确保有“…”符号
+            document.getElementById('positiveSet').innerHTML = '{ ' + positive.join(', ') + (positive.length ? ' , … }' : ' … }');
+            document.getElementById('negativeSet').innerHTML = '{ ' + negative.join(', ') + (negative.length ? ' , … }' : ' … }');
+            document.getElementById('integerSet').innerHTML = '{ ' + integer.join(', ') + (integer.length ? ' , … }' : ' … }');
+            document.getElementById('rationalSet').innerHTML = '{ ' + rational.join(', ') + (rational.length ? ' , … }' : ' … }');
+
+            // 重新渲染MathJax
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+    </script>
+</body>
+</html>

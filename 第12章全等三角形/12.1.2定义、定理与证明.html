@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>12.1.2 定义、定理与证明 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* ========== 全局样式：清晰粗体，适合教学 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+
+        /* 头部 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            color: #2e5b7c;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem 0;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem 0;
+            color: #0b3b59;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 导入语卡片 */
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #144d6e;
+            box-shadow: 0 4px 0 #9fbedb;
+        }
+        .intro-card::before {
+            content: "📘 ";
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        /* 统一卡片：定义、基本事实、定理 底色一致 */
+        .unified-card {
+            background: #dcf0f7;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #aac7dd;
+            border-left: 8px solid #1e7e9f;
+            font-weight: 600;
+        }
+        .unified-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #0b4b6b;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .unified-card h4::before {
+            font-size: 1.6rem;
+        }
+
+        /* 例子统一背景框（用于定义和定理中的举例） */
+        .example-box {
+            background: #c5e0d4;        /* 统一的浅绿色背景 */
+            border-radius: 1.2rem;
+            padding: 0.5rem 1.2rem;
+            margin-top: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* 思考卡片 */
+        .think-card {
+            background: #e9f2e8;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.6rem 0;
+            border-left: 8px solid #3e8b54;
+            box-shadow: 0 4px 0 #b1cfb0;
+        }
+        .think-card h4 {
+            font-size: 1.4rem;
+            color: #1d6130;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+        .think-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .think-item {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 0.8rem 1.2rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c5ddec;
+            font-weight: 500;
+        }
+        .think-item strong {
+            font-size: 1.1rem;
+            color: #0a4b6e;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+        .think-footer {
+            margin-top: 1rem;
+            background: #dff0dc;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1.2rem;
+            font-style: italic;
+            font-weight: 600;
+        }
+        .think-footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 按钮和答案框 */
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0 0;
+            transition: 0.05s;
+        }
+        .interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+        }
+        .show-answer { display: block; }
+
+        /* 练习区域 */
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #c0d2e8;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .sub-question { display: block; margin-left: 1.5rem; margin-top: 0.2rem; }
+
+        /* 数学思想 */
+        .math-idea {
+            background: #deedf7;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.4rem; color: #0f4a6f; font-weight: 700; }
+
+        /* 读一读折叠 */
+        .reading-block {
+            background: #fffaea;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0;
+            border: 1px solid #ecdbaa;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #7a5f2e;
+            border-left: 6px solid #f0b34b;
+            padding-left: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #b38f40; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.25s;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 300px;
+            margin-top: 0.8rem;
+        }
+
+        /* 小结折叠 */
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s;
+            max-height: 600px;
+        }
+        #summaryContent.collapsed { max-height: 0; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c5ddec;
+            font-weight: 600;
+        }
+
+        /* 图形容器 */
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+        svg {
+            max-width: 100%;
+            height: auto;
+            display: inline-block;
+        }
+        .text-label {
+            font-family: "Times New Roman", serif;
+            font-size: 18px;
+            fill: #1d4f6e;
+            font-weight: 600;
+        }
+
+        /* 作业 */
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.1.2</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.1.2 定义、定理与证明</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解定义、基本事实、定理的含义</div>
+            <div class="target-item"><span>✔</span>了解证明的意义，体会证明的必要性</div>
+            <div class="target-item"><span>✔</span>能进行简单的几何证明，做到“言必有据”</div>
+        </div>
+    </div>
+
+    <!-- 导入语 (贴合本节主题) -->
+    <div class="intro-card">
+        数学中，我们经常使用“定义”来明确概念，利用“基本事实”作为推理的起点，通过“证明”得到新的“定理”。本节课我们就来学习这些重要的术语，并体会证明的必要性。
+    </div>
+
+    <!-- 定义、基本事实、定理 统一底色 -->
+    <div class="unified-card fact-card">
+        <h4>📌 定义</h4>
+        <p>对名词的含义进行说明的语句。</p>
+        <!-- 定义中的例子加背景框 -->
+        <div class="example-box">
+            💡 例如，“在同一平面内不相交的两条直线”就是“平行线”的定义。
+        </div>
+    </div>
+
+    <div class="unified-card axiom-card">
+        <h4>🔹 基本事实 (公理)</h4>
+        <p>从实践中总结出来的、作为推理出发点的真命题。例如：</p>
+        <ul style="margin-left:1.8rem; font-weight:600;">
+            <li>两点确定一条直线；</li>
+            <li>两点之间线段最短；</li>
+            <li>同一平面内，过一点有且只有一条直线与已知直线垂直；</li>
+            <li>过直线外一点有且只有一条直线与这条直线平行；</li>
+            <li>两条直线被第三条直线所截，如果同位角相等，那么这两条直线平行。</li>
+        </ul>
+    </div>
+
+    <div class="unified-card theorem-card">
+        <h4>🔸 定理与证明</h4>
+        <p><strong>定理：</strong> 从基本事实或其他真命题出发，用逻辑推理证明是正确的，并可作为进一步推理依据的真命题。</p>
+        <p><strong>证明：</strong> 根据条件、定义、基本事实、定理等，经过演绎推理，判断一个命题是否正确的过程。</p>
+        <!-- 定理中的例子加背景框（与定义中的一致） -->
+        <div class="example-box">
+            💡 例如，由“两直线平行，同位角相等”可以证明“两直线平行，同旁内角互补”。
+        </div>
+    </div>
+
+    <!-- 思考区域 (三问题排版清爽) -->
+    <div class="think-card">
+        <h4>💭 思考</h4>
+        <div class="think-grid">
+            <div class="think-item">
+                <strong>问题 (1)</strong>
+                <p>$2+1=3$，$2\times3+1=7$，$2\times3\times5+1=31$，$2\times3\times5\times7+1=211$，由此得出结论：从质数2开始，任意多个质数的积加1一定是质数。正确吗？</p>
+                <p style="color:#b34b0b;">计算 $2\times3\times5\times7\times11+1=2311$，$2\times3\times5\times7\times11\times13+1=30031$，你发现了什么？</p>
+            </div>
+            <div class="think-item">
+                <strong>问题 (2)</strong>
+                <p>一位同学发现：三角形三条边的垂直平分线的交点都在三角形内部，于是他得出结论：任何一个三角形三边垂直平分线的交点都在内部。正确吗？</p>
+            </div>
+            <div class="think-item full-width">
+                <strong>问题 (3)</strong>
+                <p>我们曾通过计算四边形、五边形……的内角和，得到 $n$ 边形内角和等于 $(n-2)\times180^\circ$。这个结论正确吗？是否有一个多边形的内角和不满足这一结论？</p>
+            </div>
+        </div>
+        <div class="think-footer">
+            <!-- 按钮放在最前面，点击后解答框出现在按钮下方 -->
+            <div style="margin-bottom:0.5rem;">
+                <button class="interact-btn" onclick="toggleAnswer('thinkAns')">🔍 查看具体解答</button>
+            </div>
+            <div id="thinkAns" class="answer-box">
+                <p>(1) 不都正确。$2311$ 是质数，但 $30031 = 59\times509$，不是质数，所以结论错误。</p>
+                <p>(2) 不正确。钝角三角形的三边垂直平分线交点在三角形外部。</p>
+                <p>(3) 正确，这是经过严格证明的定理。</p>
+            </div>
+            <!-- 以下两段为原有文字，已删除提示徽章 -->
+            <p>上面几个例子说明：通过特殊事例得到的结论可能正确，也可能不正确。因此，通过这种方式得到的结论，还需进一步加以证实。</p>
+            <p>根据条件、定义及基本事实、定理等，经过演绎推理，来判断一个命题是否正确，这样的推理过程叫做<strong>证明</strong>。演绎推理是研究数学的一个重要方法。除了基本事实和已知的定理外，等式与不等式的有关性质以及等量代换也可以作为推理的依据。</p>
+        </div>
+    </div>
+
+    <!-- 证明示例 + 用户提供的SVG图形 -->
+    <div class="unified-card theorem-card" style="border-left-color: #3a8b4f;">
+        <h4>📐 例 (证明命题)</h4>
+        <p>有了“两条平行线被第三条直线所截，同位角相等”这条定理，我们可以证明：两条平行线被第三条直线所截，同旁内角互补。</p>
+        <p><strong>已知：</strong>如图，直线 $a\parallel b$，$\angle 1$ 与 $\angle 2$ 是同旁内角。</p>
+        <p><strong>求证：</strong>$\angle 1 + \angle 2 = 180^\circ$。</p>
+
+        <!-- 用户提供的精确SVG图形 -->
+        <div class="figure-container">
+            <svg viewBox="0 0 400 250" style="max-width:100%; height:auto;">
+                <!-- 平行线 a (下方) y=180 ; b (上方) y=80 -->
+                <line x1="20" y1="180" x2="380" y2="180" stroke="#1e4f6b" stroke-width="2.5"/>
+                <line x1="20" y1="80" x2="380" y2="80" stroke="#1e4f6b" stroke-width="2.5"/>
+                <!-- 截线 c (60°夹角) -->
+                <line x1="80" y1="246.2" x2="320" y2="1.6" stroke="#b3450b" stroke-width="2.5" stroke-dasharray="6 3"/>
+                <!-- 角弧线 -->
+                <path d="M 186 180 A 25 25 0 0 0 170 155.65" stroke="#1e4f6b" stroke-width="2" fill="none"/>
+                <path d="M 270 80 A 40 40 0 0 1 225 100" stroke="#1e4f6b" stroke-width="2" fill="none"/>
+                <path d="M 282 80 A 30 30 0 0 0 268 55" stroke="#1e4f6b" stroke-width="2" fill="none"/>
+                <!-- 数字 1,2,3 (加粗) -->
+                <text x="190" y="165" class="text-label" style="font-size:20px; font-weight:bold;">1</text>
+                <text x="250" y="120" class="text-label" style="font-size:20px; font-weight:bold;">2</text>
+                <text x="290" y="65" class="text-label" style="font-size:20px; font-weight:bold;">3</text>
+                <!-- 直线标签 a,b,c 斜体 -->
+                <text x="5" y="175" class="text-label" style="font-size:22px; font-style:italic;">a</text>
+                <text x="5" y="75" class="text-label" style="font-size:22px; font-style:italic;">b</text>
+                <text x="330" y="30" class="text-label" style="font-size:20px; fill:#b3450b; font-style:italic;">c</text>
+            </svg>
+            <div class="figure-caption">图12.1.2 直线 $a\parallel b$，$\angle 1$ 与 $\angle 2$ 是同旁内角，$\angle 1$ 与 $\angle 3$ 是同位角</div>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>证明：</strong> 将 $\angle 1$ 的同位角记为 $\angle 3$。</p>
+        <p>$\because a\parallel b$ (已知)，</p>
+        <p>$\therefore \angle 1 = \angle 3$ (两直线平行，同位角相等)。</p>
+        <p>又 $\because \angle 3 + \angle 2 = 180^\circ$ (邻补角的定义)，</p>
+        <p>$\therefore \angle 1 + \angle 2 = 180^\circ$ (等量代换)。</p>
+    </div>
+
+    <!-- 读一读 折叠 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 证明必须“言必有据”</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>证明必须做到“言必有据”，每步推理都要有依据，可以是已知条件、定义、基本事实、已经学过的定理，以及等量代换、等式性质等。初学证明时，建议把依据写在每一步后面的括号内，熟练后可简化。</p>
+            <p style="margin-top:0.5rem;">—— 引自教材“读一读”</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 把下列定理改写成“如果……那么……”的形式，指出条件和结论，并证明(1)：</p>
+            <span class="sub-question">(1) 同旁内角互补，两直线平行；</span>
+            <span class="sub-question">(2) 三角形的外角和等于360°。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) 如果两条直线被第三条直线所截，同旁内角互补，那么这两条直线平行。条件：同旁内角互补；结论：两直线平行。证明略。</p>
+                <p>(2) 如果一个角是多边形的外角，那么三角形的外角和等于360°。条件：三个外角；结论：和为360°。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 判断命题“两条直线被第三条直线所截，内错角相等”的真假，并说明理由。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>假命题。反例：当两条直线不平行时，内错角不相等。必须是两直线平行时内错角才相等。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 如图，已知 $\angle B = 50^\circ$，$\angle C = 70^\circ$，点 $D$、$E$ 分别在 $AB$、$BC$ 上，且 $\angle ADE = 120^\circ$。求证：$DE\parallel AC$。将证明补充完整。</p>
+            <p>证明：$\because \angle A + \angle B + \angle C = 180^\circ$ （____________），</p>
+            <p>$\angle B = 50^\circ$，$\angle C = 70^\circ$，$\therefore \angle A = 60^\circ$。</p>
+            <p>又 $\because \angle ADE = 120^\circ$，$\therefore \angle ADE + \angle A = 180^\circ$。</p>
+            <p>$\therefore DE\parallel AC$ （____________）。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>第一空：三角形的内角和等于180°；第二空：同旁内角互补，两直线平行。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>演绎推理：</strong> 从基本事实和定义出发，通过逻辑链条证明命题。<br>
+        <strong>公理化思想：</strong> 以少数基本事实为基础，建立整个理论体系。<br>
+        <strong>证明的必要性：</strong> 特殊归纳不能代替严格证明。</p>
+    </div>
+
+    <!-- 课堂小结 折叠 -->
+    <div style="background:#d6e9f5; border-radius:1.8rem; padding:1rem 2rem; margin:1.5rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; font-size:1.5rem; font-weight:700;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">定义：明确名词含义的语句。</div>
+            <div class="summary-item">基本事实：公认的真命题，推理的出发点。</div>
+            <div class="summary-item">定理：经过证明的真命题，可作为推理依据。</div>
+            <div class="summary-item">证明：根据已知、定义、公理、定理进行推理，每一步必须有依据。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong> 习题12.1 A组第4、5题，B组第6题；整理证明的书写格式。</span>
+    </div>
+
+    <p style="text-align: center; color:#336d9a; margin:1rem 0 0.3rem; font-weight:700;">✨ 言之有理，落笔有据，证明让数学更严谨 ✨</p>
+    <div class="footer-note">八年级上册 · 第12章 12.1.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const c = document.getElementById('summaryContent');
+        const t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const c = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.addEventListener('load', function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

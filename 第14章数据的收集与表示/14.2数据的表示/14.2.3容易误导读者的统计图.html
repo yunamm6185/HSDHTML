@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>14.2.3 容易误导读者的统计图 | 华师版·八年级上册</title>
+    <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:#f0f2f5;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(60,50,90,0.2);padding:2rem 2.5rem;border:1px solid #d4dae8;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8c4dc;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#3d4a6e;}
+        h1{font-size:2.4rem;color:#2d3a5e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#5b6eae;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#2d3a5e;background:#e8ecf4;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #c4cee0;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #c4cce0;box-shadow:0 5px 0 #a8b8cc;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #5b6eae;padding-left:1rem;color:#2d3a5e;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4c4d8;border:1px solid #c8d2e2;}
+        .target-item span{background:#5b6eae;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:linear-gradient(135deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.8rem 2rem;margin:1.4rem 1.5rem;border-left:8px solid #5b6eae;font-weight:600;}
+        .fact-card{background:#fff8e1;border-left:8px solid #d4a017;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 1.5rem;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 1.5rem;color:#991b1b;font-weight:600;}
+        .example-card{background:#e8f4e8;border-left:8px solid #4a7c4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 1.5rem;}
+        .compare-box{display:flex;gap:1.5rem;margin:1.5rem 1.5rem;}
+        .compare-item{flex:1;border-radius:1.5rem;padding:1.5rem;text-align:center;}
+        .wrong-chart{background:#fee;border:3px solid #fca5a5;border-radius:1.5rem;padding:1.5rem;}
+        .correct-chart{background:#efe;border:3px solid #8bc34a;border-radius:1.5rem;padding:1.5rem;}
+        .section-title{font-size:1.6rem;color:#2d3a5e;font-weight:700;margin:2rem 1.5rem 1rem;padding-bottom:.4rem;border-bottom:3px solid #5b6eae;}
+        .summary-section{background:#dce4f0;border-left:6px solid #5b6eae;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 1.5rem;}
+        .footer-note{text-align:right;color:#3d4a6e;border-top:2px solid #c4cee0;padding-top:.8rem;margin:1.5rem 1.5rem 0;}
+        table{width:100%;border-collapse:collapse;margin:1rem 1.5rem;width:calc(100% - 3rem);}th,td{padding:10px 14px;text-align:center;border:1px solid #d4dae8;}
+        th{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;}tr:nth-child(even){background:#f8fafc;}tr:hover{background:#eef2f7;}
+        ul,ol{margin-left:25px;line-height:2;}
+        p{margin:.5rem 0;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;}
+        .chart-container{background:#f8f9ff;border:2px solid #d4dae8;border-radius:1rem;padding:1.5rem;margin:1.5rem;text-align:center;}
+        .interact-btn{background:linear-gradient(135deg,#5b6eae,#7c8fcf);border:none;color:white;padding:.4rem 1.4rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #3d4e7e;margin:.5rem .3rem 0;font-size:.9rem;transition:all .2s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #3d4e7e;}
+        .interact-btn.active{background:linear-gradient(135deg,#3d4e7e,#5b6eae);}
+        .btn-group{text-align:center;margin:.8rem 1.5rem;}
+        /* 比较布局 */
+        .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 1.5rem;}
+        @media(max-width:800px){.compare-grid{grid-template-columns:1fr;}}
+        .chart-label{font-size:1.15rem;font-weight:700;margin-bottom:.6rem;}
+        .wrong-label{color:#dc2626;}
+        .correct-label{color:#16a34a;}
+        .problem-tag{background:#fecaca;color:#991b1b;padding:.2rem .6rem;border-radius:8px;font-size:.85rem;font-weight:700;display:inline-block;margin:.3rem 0;}
+        .ok-tag{background:#bbf7d0;color:#166534;padding:.2rem .6rem;border-radius:8px;font-size:.85rem;font-weight:700;display:inline-block;margin:.3rem 0;}
+        .cube-compare{display:flex;justify-content:center;align-items:flex-end;gap:2rem;padding:1.5rem 0;}
+        .cube-shape{display:flex;flex-direction:column;align-items:center;}
+        .cube-info{margin-top:.5rem;font-weight:600;color:#2d3a5e;}
+        .practice-area{background:#f0f4ff;border:2px dashed #7c8fcf;border-radius:1.5rem;padding:1.5rem;margin:1.5rem 1.5rem;}
+        .practice-option{background:white;border:2px solid #c4cee0;border-radius:12px;padding:1rem 1.5rem;margin:.6rem 0;cursor:pointer;transition:all .2s;}
+        .practice-option:hover{border-color:#5b6eae;background:#f8f9ff;}
+        .practice-option.correct{border-color:#22c55e;background:#f0fdf4;}
+        .practice-option.wrong{border-color:#ef4444;background:#fef2f2;}
+        .feedback-text{font-weight:700;margin:.5rem 0;padding:.5rem;border-radius:8px;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📊 第14章 数据的收集与表示</span>
+        <span>14.2.3 容易误导读者的统计图</span>
+    </div>
+
+    <h1>14.2.3 容易误导读者的统计图</h1>
+
+    <div class="lesson-title">🔍 学会识别"说谎"的统计图</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>了解不规范统计图的常见问题类型</div>
+            <div class="target-item"><span>2</span>学会识别容易误导读者的统计图</div>
+            <div class="target-item"><span>3</span>掌握正确绘制和解读统计图的方法</div>
+            <div class="target-item"><span>4</span>培养批判性思维和数据素养</div>
+        </div>
+    </div>
+
+    <!-- 引言 -->
+    <div class="intro-card">
+        ⚠️ <strong>重要提示：</strong>形象的统计图如果画得不规范，也会给人留下不真实的印象。这里我们提醒大家注意几种<strong>容易误导读者</strong>的统计图。学会识别这些"陷阱"，是每个具备数据素养的人必备的技能。
+    </div>
+
+    <!-- ========== 案例1：纵轴起点不是0 ========== -->
+    <div class="section-title">📊 问题一：纵轴起点不是0（轴线截断）</div>
+
+    <div class="fact-card">
+        <strong>📌 情境引入：</strong><br>
+        一则广告说："据调查，使用本厂牙膏可以较大地降低蛀牙率"，并以条形图示意其调查得到的数据。调查结果显示：使用该厂产品前蛀牙率为 $60\%$，使用后降为 $40\%$。
+    </div>
+
+    <!-- 切换按钮 -->
+    <div class="btn-group">
+        <button class="interact-btn active" onclick="showCase1('wrong', this)">❌ 看误导性图表（纵轴从30%开始）</button>
+        <button class="interact-btn" onclick="showCase1('correct', this)">✅ 看正确图表（纵轴从0开始）</button>
+        <button class="interact-btn" onclick="showCase1('both', this)">⚖️ 左右对比</button>
+    </div>
+
+    <div class="compare-grid" id="case1-container">
+        <!-- 错误图表 -->
+        <div class="wrong-chart" id="case1-wrong">
+            <div class="chart-label wrong-label">❌ 误导性统计图（广告使用）</div>
+            <canvas id="canvas1-wrong" width="480" height="320"></canvas>
+            <p style="margin-top:.8rem;"><span class="problem-tag">⛔ 问题：纵轴从30%开始截断</span></p>
+            <p style="color:#dc2626;font-size:.95rem;">左边条形的高度约为右边条形的 <strong>3倍</strong>，给人错误印象：该牙膏使蛀牙率减少了三分之二！实际上只减少了 $20$ 个百分点。</p>
+        </div>
+        <!-- 正确图表 -->
+        <div class="correct-chart" id="case1-correct" style="display:none;">
+            <div class="chart-label correct-label">✅ 正确的统计图</div>
+            <canvas id="canvas1-correct" width="480" height="320"></canvas>
+            <p style="margin-top:.8rem;"><span class="ok-tag">✓ 规范：纵轴从0开始</span></p>
+            <p style="color:#166534;font-size:.95rem;">纵轴从 $0$ 开始，真实反映数据差异：从 $60\%$ 到 $40\%$ 只减少了 $20$ 个百分点，视觉上不会被夸大。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        💡 <strong>核心教训：</strong>条形统计图的<strong>纵轴必须从0开始</strong>！否则会严重夸大数据之间的视觉差异，给读者造成错误印象。
+    </div>
+
+    <!-- ========== 案例2：单位长度不一致 ========== -->
+    <div class="section-title">📏 问题二：纵轴单位长度不一致</div>
+
+    <div class="fact-card">
+        <strong>📌 情境引入：鹌鹑蛋与鸡蛋的维生素B含量对比</strong><br>
+        许多人认为鹌鹑蛋比鸡蛋更有营养，是不是这样呢？检测发现，每 $100\text{g}$ 鹌鹑蛋和鸡蛋的可食部分中各种维生素B的含量分别为：
+        <ul style="margin-top:.5rem;">
+            <li>维生素B$_1$：约 $0.18\,\text{mg}$ 和 $0.15\,\text{mg}$</li>
+            <li>维生素B$_2$：约 $0.79\,\text{mg}$ 和 $0.31\,\text{mg}$</li>
+            <li>维生素B$_6$：约 $0.02\,\text{mg}$ 和 $0.12\,\text{mg}$</li>
+        </ul>
+    </div>
+
+    <div class="btn-group">
+        <button class="interact-btn active" onclick="showCase2('wrong', this)">❌ 厂商甲的做法（两幅分开的图）</button>
+        <button class="interact-btn" onclick="showCase2('correct', this)">✅ 厂商乙的做法（同一幅图对比）</button>
+    </div>
+
+    <div id="case2-wrong-box" class="wrong-chart" style="margin:1.5rem 1.5rem;">
+        <div class="chart-label wrong-label">❌ 厂商甲：两幅独立的条形图（纵轴刻度不同！）</div>
+        <div style="display:flex;gap:1rem;justify-content:center;">
+            <div style="text-align:center;">
+                <strong style="color:#5b6eae;">鹌鹑蛋</strong>
+                <canvas id="canvas2-quail" width="340" height="260"></canvas>
+                <p class="problem-tag" style="font-size:.8rem;">⛔ 各自独立设置纵轴范围</p>
+            </div>
+            <div style="text-align:center;">
+                <strong style="color:#5b6eae;">鸡蛋</strong>
+                <canvas id="canvas2-egg" width="340" height="260"></canvas>
+                <p class="problem-tag" style="font-size:.8rem;">⛔ 两幅图的单位长度不同</p>
+            </div>
+        </div>
+        <p style="color:#dc2626;margin-top:.8rem;font-size:.95rem;"><strong>问题：</strong>两幅图的纵轴单位长度不同，无法进行准确比较！这种做法会让读者产生误解。</p>
+    </div>
+
+    <div id="case2-correct-box" class="correct-chart" style="margin:1.5rem 1.5rem;display:none;">
+        <div class="chart-label correct-label">✅ 厂商乙：同一幅图中对比（单位长度一致）</div>
+        <canvas id="canvas2-correct" width="520" height="320"></canvas>
+        <p style="margin-top:.8rem;"><span class="ok-tag">✓ 同一幅图、同一坐标轴</span></p>
+        <p style="color:#166534;font-size:.95rem;">将两组数据放在同一幅图中，<strong>纵轴单位长度一致</strong>，可以直观准确地比较两种蛋的营养含量。</p>
+    </div>
+
+    <div class="example-card">
+        💡 <strong>核心教训：</strong>比较两组或多组数据时，应该<strong>在同一幅图中进行对比</strong>，确保坐标轴的单位长度一致。
+    </div>
+
+    <!-- ========== 案例3：三维图形表示数量 ========== -->
+    <div class="section-title">📦 问题三：用三维图形表示数量（面积/体积比例失真）</div>
+
+    <div class="fact-card">
+        <strong>📌 情境引入：小文的邮票收藏</strong><br>
+        小文是集邮爱好者。2020年她收藏了 $100$ 张邮票，2021年她收藏了 $200$ 张邮票。她用<strong>立体图形（立方体）</strong>来表示自己的收藏成果，这样的描述合适吗？
+    </div>
+
+    <div class="btn-group">
+        <button class="interact-btn active" onclick="showCase3('wrong', this)">❌ 用立体图形表示（有问题）</button>
+        <button class="interact-btn" onclick="showCase3('correct', this)">✅ 用条形图表示（正确）</button>
+    </div>
+
+    <div id="case3-wrong-box" class="wrong-chart" style="margin:1.5rem 1.5rem;">
+        <div class="chart-label wrong-label">❌ 不合适：用立方体表示数量</div>
+        <canvas id="canvas3-cube" width="600" height="340"></canvas>
+        <p style="margin-top:.8rem;"><span class="problem-tag">⛔ 体积比例失真！</span></p>
+        <p style="color:#dc2626;font-size:.95rem;"><strong>问题：</strong>数据是 $200 \div 100 = 2$ 倍。若按<strong>边长</strong>画成立方体（左边长50，右边长100），边长是 $2$ 倍，但<strong>体积变为 $2^3 = 8$ 倍</strong>！右边的立方体看起来比左边大得多，读者会产生错觉：以为2021年邮票多了很多。</p>
+    </div>
+
+    <div id="case3-correct-box" class="correct-chart" style="margin:1.5rem 1.5rem;display:none;">
+        <div class="chart-label correct-label">✅ 正确：用条形图表示数量</div>
+        <canvas id="canvas3-bar" width="520" height="300"></canvas>
+        <p style="margin-top:.8rem;"><span class="ok-tag">✓ 高度比例为2:1，真实反映数据</span></p>
+        <p style="color:#166534;font-size:.95rem;">使用条形图等<strong>二维图形</strong>表示数量，高度与数据成比例，不会产生面积或体积上的视觉误差。</p>
+    </div>
+
+    <div class="example-card">
+        💡 <strong>核心教训：</strong>不要用三维图形（立方体、圆柱体等）来表示数量。<strong>体积/面积的放大效应</strong>会严重夸大数据的实际差异。应使用条形图、折线图等二维图形。
+    </div>
+
+    <!-- ========== 总结 ========== -->
+    <div class="section-title">📋 三种常见的误导性统计图</div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>问题类型</th>
+                <th>问题描述</th>
+                <th>正确做法</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1</strong></td>
+                <td>纵轴起点不是0</td>
+                <td>截断纵轴起点，夸大视觉差异</td>
+                <td>纵轴必须从0开始</td>
+            </tr>
+            <tr>
+                <td><strong>2</strong></td>
+                <td>单位长度不一致</td>
+                <td>多图比较时坐标尺度不同</td>
+                <td>在同一幅图中对比，统一坐标轴</td>
+            </tr>
+            <tr>
+                <td><strong>3</strong></td>
+                <td>用三维图形表示数量</td>
+                <td>体积/面积放大造成视觉误差</td>
+                <td>使用二维图形（条形图等）</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="warn-box" style="margin:1.5rem 1.5rem;">
+        🧠 <strong>如何识别误导性统计图——自检清单：</strong>
+        <ol style="margin-top:.5rem;">
+            <li>检查条形图的<strong>纵轴是否从0开始</strong></li>
+            <li>比较两幅图时，确认<strong>坐标轴单位长度是否一致</strong></li>
+            <li>观察是否使用了<strong>三维效果/立体图形</strong>来表示数值大小</li>
+            <li>留意是否有<strong>异常的比例关系</strong>或变形效果</li>
+        </ol>
+    </div>
+
+    <!-- ========== 练习题 ========== -->
+    <div class="section-title">✏️ 课堂练习</div>
+
+    <div class="practice-area">
+        <p><strong>练习1：</strong>某公司展示近两年利润增长情况如下：去年利润 $500$ 万元，今年利润 $600$ 万元。公司宣传用的条形图纵轴从 $450$ 万元开始。这个统计图有什么问题？</p>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            A. 图表完全正确，没有问题
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, true)">
+            B. 纵轴不从0开始，夸大了利润增长幅度
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            C. 应该改用扇形统计图
+        </div>
+        <div id="feedback1" class="feedback-text" style="display:none;"></div>
+    </div>
+
+    <div class="practice-area">
+        <p><strong>练习2：</strong>小明要比较自己班和隔壁班的数学平均成绩（分别为 $82$ 分和 $78$ 分），他分别画了两幅条形图，各自独立设置纵轴范围。这样做合适吗？</p>
+        <div class="practice-option" onclick="checkAnswer(this, true)">
+            A. 不合适，应在同一幅图中用统一的纵轴
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            B. 合适，这样每班的数据都能清晰显示
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            C. 无所谓，只要数据正确就行
+        </div>
+        <div id="feedback2" class="feedback-text" style="display:none;"></div>
+    </div>
+
+    <div class="practice-area">
+        <p><strong>练习3：</strong>某市2023年人口为500万，2024年人口为550万。以下哪种方式展示增长最规范？</p>
+        <div class="practice-option" onclick="checkAnswer(this, true)">
+            A. 条形图，纵轴从0开始，两个条形高度比为 11:10
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            B. 用两个球体表示人口，第二个球的直径是第一个的1.1倍
+        </div>
+        <div class="practice-option" onclick="checkAnswer(this, false)">
+            C. 折线图但纵轴从480万开始以突出增长趋势
+        </div>
+        <div id="feedback3" class="feedback-text" style="display:none;"></div>
+    </div>
+
+    <!-- ========== 课堂小结 ========== -->
+    <div class="section-title">📝 课堂小结</div>
+
+    <div class="summary-section">
+        <ol>
+            <li>统计图可以直观地显示数据，但<strong>不规范的统计图会误导读者</strong>。</li>
+            <li>三种最常见的误导方式：<strong>纵轴截断</strong>、<strong>单位长度不一致</strong>、<strong>三维图形表示数量</strong>。</li>
+            <li>阅读统计图时要保持<strong>批判性思维</strong>，注意检查图形是否规范。</li>
+            <li>绘制统计图时要遵循规范：<strong>纵轴从0开始</strong>、<strong>统一坐标轴</strong>、<strong>使用二维图形</strong>。</li>
+        </ol>
+    </div>
+
+    <div class="warn-box">
+        📢 <strong>科学态度提醒：</strong>"用数据说话"是重要的科学精神。我们不仅要学会绘制规范的统计图，还要学会识别不规范的统计图，避免被误导。在信息时代，这是一项重要的公民素养。
+    </div>
+
+    <div class="footer-note">
+        华东师范大学版 · 数学八年级上册 · 第14章 数据的收集与表示 · 14.2.3
+    </div>
+</div>
+
+<script>
+// ==================== 案例1：纵轴截断 ====================
+function drawBarChart(canvasId, data, options) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const pad = { top: 35, right: 25, bottom: 45, left: 55 };
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
+
+    // 绘制背景网格
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+        const y = pad.top + (ch / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(W - pad.right, y);
+        ctx.stroke();
+    }
+
+    // Y轴
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, pad.top);
+    ctx.lineTo(pad.left, H - pad.bottom);
+    ctx.stroke();
+
+    // X轴
+    ctx.beginPath();
+    ctx.moveTo(pad.left, H - pad.bottom);
+    ctx.lineTo(W - pad.right, H - pad.bottom);
+    ctx.stroke();
+
+    // Y轴标签
+    ctx.fillStyle = '#475569';
+    ctx.font = '13px "Segoe UI", "PingFang SC", sans-serif';
+    ctx.textAlign = 'right';
+    const minVal = options.yMin;
+    const maxVal = options.yMax;
+    const range = maxVal - minVal;
+    for (let i = 0; i <= 5; i++) {
+        const val = minVal + (range / 5) * (5 - i);
+        const y = pad.top + (ch / 5) * i;
+        let label = options.isPercent ? (val + '%') : val.toFixed(options.decimals || 0);
+        ctx.fillText(label, pad.left - 8, y + 4);
+    }
+
+    // Y轴标题
+    ctx.save();
+    ctx.translate(15, pad.top + ch / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center';
+    ctx.font = 'bold 13px "Segoe UI", "PingFang SC", sans-serif';
+    ctx.fillText(options.yLabel || '', 0, 0);
+    ctx.restore();
+
+    // 条形
+    const barWidth = Math.min(cw / data.length * 0.35, 70);
+    const gap = cw / data.length;
+    data.forEach((d, i) => {
+        const x = pad.left + gap * i + gap / 2 - barWidth / 2;
+        const normalizedVal = (d.value - minVal) / range;
+        const barH = normalizedVal * ch;
+        const y = H - pad.bottom - barH;
+
+        // 渐变填充
+        const grad = ctx.createLinearGradient(x, y, x, H - pad.bottom);
+        if (options.barColor === 'red') {
+            grad.addColorStop(0, '#ef4444');
+            grad.addColorStop(1, '#f87171');
+        } else {
+            grad.addColorStop(0, '#5b6eae');
+            grad.addColorStop(1, '#7c8fcf');
+        }
+        ctx.fillStyle = grad;
+        roundRect(ctx, x, y, barWidth, barH, 6);
+        ctx.fill();
+
+        // 数值标签
+        ctx.fillStyle = '#1e293b';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.textAlign = 'center';
+        let vlabel = options.isPercent ? (d.value + '%') : d.value.toString();
+        ctx.fillText(vlabel, x + barWidth / 2, y - 8);
+
+        // X轴类别标签
+        ctx.fillStyle = '#475569';
+        ctx.font = '14px "Segoe UI", "PingFang SC", sans-serif';
+        ctx.fillText(d.label, x + barWidth / 2, H - pad.bottom + 22);
+    });
+
+    // 标注问题
+    if (options.annotate) {
+        ctx.save();
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6, 4]);
+        // 标注起始点
+        const startY = H - pad.bottom;
+        ctx.beginPath();
+        ctx.moveTo(pad.left - 10, startY);
+        ctx.lineTo(W - pad.right + 10, startY);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.fillStyle = '#dc2626';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('⬇ 轴线从这里开始（非0！）', pad.left + 5, startY + 18);
+    }
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+    if (h <= 0) return;
+    r = Math.min(r, w / 2, h / 2);
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+}
+
+// 案例1数据
+const case1Data = [
+    { label: '使用前', value: 60 },
+    { label: '使用后', value: 40 }
+];
+
+function showCase1(type, btn) {
+    // 找案例1区域内的按钮组（第1个btn-group）
+    document.querySelectorAll('.btn-group')[0].querySelectorAll('.interact-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const wrongDiv = document.getElementById('case1-wrong');
+    const correctDiv = document.getElementById('case1-correct');
+
+    if (type === 'wrong') {
+        wrongDiv.style.display = '';
+        correctDiv.style.display = 'none';
+        drawBarChart('canvas1-wrong', case1Data, { yMin: 30, yMax: 65, isPercent: true, yLabel: '蛀牙率 (%)', annotate: true });
+    } else if (type === 'correct') {
+        wrongDiv.style.display = 'none';
+        correctDiv.style.display = '';
+        drawBarChart('canvas1-correct', case1Data, { yMin: 0, yMax: 70, isPercent: true, yLabel: '蛀牙率 (%)' });
+    } else {
+        // both
+        wrongDiv.style.display = '';
+        correctDiv.style.display = '';
+        drawBarChart('canvas1-wrong', case1Data, { yMin: 30, yMax: 65, isPercent: true, yLabel: '蛀牙率 (%)', annotate: true });
+        drawBarChart('canvas1-correct', case1Data, { yMin: 0, yMax: 70, isPercent: true, yLabel: '蛀牙率 (%)' });
+    }
+}
+
+// ==================== 案例2：单位长度不一致 ====================
+// 厂商甲的错误做法：各自按自身数据最大值设置纵轴（各自"看起来都很正常"，但无法横向比较）
+// 厂商乙的正确做法：统一纵轴放在同一幅图中
+function showCase2(type, btn) {
+    document.querySelectorAll('.btn-group')[1].querySelectorAll('.interact-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const wrongBox = document.getElementById('case2-wrong-box');
+    const correctBox = document.getElementById('case2-correct-box');
+
+    if (type === 'wrong') {
+        wrongBox.style.display = '';
+        correctBox.style.display = 'none';
+        // 鹌鹑蛋：纵轴自动适应其最大值(0.79)
+        drawMultiBar('canvas2-quail', [
+            { label: 'B₁', value: 0.18 },
+            { label: 'B₂', value: 0.79 },
+            { label: 'B₆', value: 0.02 }
+        ], { yMin: 0, yMax: 0.9, title: '鹌鹑蛋 (各自范围)' });
+        // 鸡蛋：纵轴自动适应其最大值(0.31)，和鹌鹑蛋刻度不同！
+        drawMultiBar('canvas2-egg', [
+            { label: 'B₁', value: 0.15 },
+            { label: 'B₂', value: 0.31 },
+            { label: 'B₆', value: 0.12 }
+        ], { yMin: 0, yMax: 0.36, title: '鸡蛋 (各自范围)' });
+    } else {
+        wrongBox.style.display = 'none';
+        correctBox.style.display = '';
+        drawGroupedBar('canvas2-correct');
+    }
+}
+
+// drawMultiBar：单组条形图，仅显示维A（突出数值差异），B₁/B₂单独用注释说明
+function drawMultiBar(canvasId, data, opts) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const pad = { top: 45, right: 18, bottom: 42, left: 52 };
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
+    const range = opts.yMax - opts.yMin;
+
+    // 标题
+    ctx.fillStyle = '#2d3a5e'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(opts.title || '', W / 2, 18);
+
+    // 网格
+    ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+    for (let i = 0; i <= 4; i++) {
+        const y = pad.top + (ch / 4) * i;
+        ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    }
+
+    // 轴
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
+
+    // Y轴刻度
+    ctx.fillStyle = '#475569'; ctx.font = '12px sans-serif'; ctx.textAlign = 'right';
+    for (let i = 0; i <= 4; i++) {
+        const val = opts.yMin + (range / 4) * (4 - i);
+        const decimals = opts.yMax < 10 ? 2 : 0;
+        ctx.fillText(val.toFixed(decimals), pad.left - 6, pad.top + (ch / 4) * i + 4);
+    }
+
+    // Y轴单位标注（红色强调纵轴范围不同）
+    ctx.save(); ctx.translate(13, pad.top + ch / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center'; ctx.font = 'bold 11px sans-serif';
+    ctx.fillStyle = '#dc2626';
+    const unitStr = opts.yMax < 10 ? `0 ~ ${opts.yMax} mg` : `0 ~ ${opts.yMax} μg`;
+    ctx.fillText(unitStr, 0, 0); ctx.restore();
+
+    const bw = Math.min(cw / data.length * 0.5, 55);
+    data.forEach((d, i) => {
+        const cx = pad.left + cw * (i + 0.5) / data.length;
+        const rawH = (d.value / range) * ch;
+        const isNearZero = rawH < 4;
+        const bh = isNearZero ? 4 : rawH;
+        const x = cx - bw / 2;
+        const y = H - pad.bottom - bh;
+        const grad = ctx.createLinearGradient(x, y, x, H - pad.bottom);
+        grad.addColorStop(0, isNearZero ? '#fca5a5' : '#5b6eae');
+        grad.addColorStop(1, isNearZero ? '#f87171' : '#7c8fcf');
+        ctx.fillStyle = grad;
+        roundRect(ctx, x, y, bw, bh, 4); ctx.fill();
+
+        ctx.fillStyle = isNearZero ? '#dc2626' : '#1e293b';
+        ctx.font = `bold ${isNearZero ? 10 : 11}px sans-serif`; ctx.textAlign = 'center';
+        const valStr = d.value.toFixed(2);
+        ctx.fillText(isNearZero ? `≈0` : valStr, cx, y - (isNearZero ? 14 : 6));
+        if (isNearZero) {
+            ctx.fillText(`(${valStr})`, cx, y - 4);
+        }
+        ctx.fillStyle = '#475569'; ctx.font = '12px sans-serif';
+        ctx.fillText(d.label, cx, H - pad.bottom + 18);
+    });
+
+    // 右上角红色警示标注
+    ctx.fillStyle = '#dc2626'; ctx.font = 'bold 11px sans-serif'; ctx.textAlign = 'left';
+    const maxStr = opts.yMax < 10 ? opts.yMax.toFixed(2) : opts.yMax.toFixed(0);
+    ctx.fillText(`⛔ 纵轴: 0~${maxStr}`, pad.left + 2, pad.top - 8);
+}
+
+function drawGroupedBar(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const pad = { top: 38, right: 22, bottom: 48, left: 52 };
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
+
+    ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1;
+    for (let i = 0; i <= 5; i++) {
+        const y = pad.top + (ch / 5) * i;
+        ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+    }
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
+
+    // Y轴 0-0.9，单位mg
+    const yMax = 0.9;
+    ctx.fillStyle = '#475569'; ctx.font = '12px sans-serif'; ctx.textAlign = 'right';
+    for (let i = 0; i <= 5; i++) {
+        const val = (yMax / 5) * (5 - i);
+        ctx.fillText(val.toFixed(2), pad.left - 6, pad.top + (ch / 5) * i + 4);
+    }
+    ctx.save(); ctx.translate(14, pad.top + ch / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center'; ctx.font = 'bold 11px sans-serif'; ctx.fillText('含量 (mg)', 0, 0); ctx.restore();
+
+    // 3组 × 2个条形
+    const groups = ['维生素B₁', '维生素B₂', '维生素B₆'];
+    const values = [[0.18, 0.15], [0.79, 0.31], [0.02, 0.12]];
+    const colors = ['#5b6eae', '#22c55e'];
+    const labels = ['鹌鹑蛋', '鸡蛋'];
+
+    const groupW = cw / 3;
+    const bw = groupW * 0.28;
+
+    groups.forEach((g, gi) => {
+        const gcx = pad.left + groupW * gi + groupW / 2;
+        values[gi].forEach((v, vi) => {
+            const x = gcx - bw + vi * (bw * 1.1);
+            const rawH = (v / yMax) * ch;
+            const isNearZero = rawH < 3;
+            const bh = isNearZero ? 3 : rawH;
+            const y = H - pad.bottom - bh;
+            const grad = ctx.createLinearGradient(x, y, x, H - pad.bottom);
+            grad.addColorStop(0, colors[vi]); grad.addColorStop(1, vi === 0 ? '#7c8fcf' : '#86efac');
+            ctx.fillStyle = grad;
+            roundRect(ctx, x, y, bw, bh, 4); ctx.fill();
+            // 数值
+            ctx.fillStyle = '#1e293b'; ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center';
+            const valStr = v.toFixed(2);
+            ctx.fillText(valStr, x + bw / 2, y - 5);
+        });
+        // 组标签
+        ctx.fillStyle = '#475569'; ctx.font = '12px sans-serif';
+        ctx.fillText(g, gcx, H - pad.bottom + 18);
+    });
+
+    // 图例
+    const legendY = pad.top - 14;
+    colors.forEach((c, i) => {
+        const lx = pad.left + i * 110;
+        ctx.fillStyle = c;
+        roundRect(ctx, lx, legendY - 8, 16, 16, 3); ctx.fill();
+        ctx.fillStyle = '#334155'; ctx.font = '12px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText(labels[i], lx + 22, legendY + 4);
+    });
+}
+
+// ==================== 案例3：三维 vs 条形图 ====================
+function showCase3(type, btn) {
+    document.querySelectorAll('.btn-group')[2].querySelectorAll('.interact-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    if (type === 'wrong') {
+        document.getElementById('case3-wrong-box').style.display = '';
+        document.getElementById('case3-correct-box').style.display = 'none';
+        drawCubeComparison('canvas3-cube');
+    } else {
+        document.getElementById('case3-wrong-box').style.display = 'none';
+        document.getElementById('case3-correct-box').style.display = '';
+        drawBarChart('canvas3-bar', [{ label:'2020年', value:100 }, { label:'2021年', value:200 }],
+            { yMin: 0, yMax: 240, yLabel: '邮票数 (张)' });
+    }
+}
+
+function drawCubeComparison(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // 留出底部文字区域
+    const cy = H * 0.52;
+
+    // 绘制伪3D立方体函数
+    function drawCube(cx, cyBase, size, label, color) {
+        const s = size;
+        // 顶面
+        ctx.fillStyle = lighten(color, 30);
+        ctx.beginPath();
+        ctx.moveTo(cx, cyBase - s);
+        ctx.lineTo(cx + s*0.5, cyBase - s - s*0.35);
+        ctx.lineTo(cx, cyBase - s - s*0.7);
+        ctx.lineTo(cx - s*0.5, cyBase - s - s*0.35);
+        ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = darken(color, 20); ctx.lineWidth = 1.5; ctx.stroke();
+
+        // 右面
+        ctx.fillStyle = lighten(color, 10);
+        ctx.beginPath();
+        ctx.moveTo(cx + s*0.5, cyBase - s - s*0.35);
+        ctx.lineTo(cx + s*0.5, cyBase - s*0.35);
+        ctx.lineTo(cx, cyBase);
+        ctx.lineTo(cx, cyBase - s);
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+
+        // 正面
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(cx, cyBase);
+        ctx.lineTo(cx - s*0.5, cyBase - s*0.35);
+        ctx.lineTo(cx - s*0.5, cyBase - s - s*0.35);
+        ctx.lineTo(cx, cyBase - s);
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+
+        // 数值标签（正面中央）
+        ctx.fillStyle = '#fff'; ctx.font = `bold ${Math.max(14, s*0.22)}px sans-serif`;
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText(label + '张', cx - s*0.1, cyBase - s*0.65);
+
+        ctx.textBaseline = 'alphabetic';
+    }
+
+    // 左边：100 的立方体 (size=50)
+    const leftCX = W * 0.28, leftBase = cy;
+    drawCube(leftCX, leftBase, 50, '100', '#5b6eae');
+
+    // 右边：200 的立方体 (size=100)
+    const rightCX = W * 0.72, rightBase = cy;
+    drawCube(rightCX, rightBase, 100, '200', '#7c3aed');
+
+    // 标注：左边立方体上方
+    const leftTopY = leftBase - 50 - 50 * 0.7;   // 顶点Y
+    const rightTopY = rightBase - 100 - 100 * 0.7; // 顶点Y
+
+    // 左边标注
+    ctx.save();
+    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(leftCX, leftTopY);
+    ctx.lineTo(leftCX - 55, leftTopY - 20);
+    ctx.stroke(); ctx.restore();
+    ctx.fillStyle = '#2563eb'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'right';
+    ctx.fillText('边长 = 1（基准）', leftCX - 58, leftTopY - 22);
+    ctx.fillText('体积 = 1³ = 1', leftCX - 58, leftTopY - 8);
+
+    // 右边标注
+    ctx.save();
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(rightCX, rightTopY);
+    ctx.lineTo(rightCX + 50, rightTopY - 20);
+    ctx.stroke(); ctx.restore();
+    ctx.fillStyle = '#dc2626'; ctx.font = 'bold 12px sans-serif'; ctx.textAlign = 'left';
+    ctx.fillText('边长 = 2（数据是2倍）', rightCX + 53, rightTopY - 22);
+    ctx.fillText('体积 = 2³ = 8 ‼️', rightCX + 53, rightTopY - 8);
+
+    // 底部警告
+    ctx.fillStyle = '#dc2626'; ctx.font = 'bold 14px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('⚠️ 数据仅2倍，但边长按2倍画 → 视觉体积变成 8 倍！严重失真！', W / 2, H - 10);
+}
+
+function lighten(hex, percent) {
+    const num = parseInt(hex.slice(1), 16);
+    const r = Math.min(255, ((num >> 16) & 0xff) + percent);
+    const g = Math.min(255, ((num >> 8) & 0xff) + percent);
+    const b = Math.min(255, (num & 0xff) + percent);
+    return `rgb(${r},${g},${b})`;
+}
+function darken(hex, percent) {
+    const num = parseInt(hex.slice(1), 16);
+    const r = Math.max(0, ((num >> 16) & 0xff) - percent);
+    const g = Math.max(0, ((num >> 8) & 0xff) - percent);
+    const b = Math.max(0, (num & 0xff) - percent);
+    return `rgb(${r},${g},${b})`;
+}
+
+// ==================== 练习题交互 ====================
+const feedbackMessages = {
+    feedback1: {
+        correct: '✅ 回答正确！纵轴从450万元开始而非0，会把600-500=100万元的增长在视觉上放大，让条形的高度差看起来远超实际比例，产生严重误导。',
+        wrong: '❌ 不对哦！这幅统计图的问题是纵轴没有从0开始（从450万元起），会夸大利润增长的视觉幅度，让读者以为增长幅度远比实际大。'
+    },
+    feedback2: {
+        correct: '✅ 回答正确！比较两组数据时，必须在同一幅图中使用统一的坐标轴。分开画两幅图时，各自设置纵轴范围，会让读者无法准确比较两者的差异。',
+        wrong: '❌ 不对哦！分开画两幅图时，各自的纵轴范围不同，读者无法直观比较。应将两组数据放在同一幅图中，使用统一的坐标轴才能进行准确对比。'
+    },
+    feedback3: {
+        correct: '✅ 回答正确！条形图纵轴从0开始，两条形高度之比为550:500=11:10，真实反映了数据比例，没有任何视觉失真。',
+        wrong: '❌ 不对哦！用两个球体表示时，若直径是1.1倍，体积则是1.1³≈1.33倍，严重夸大差异；折线图纵轴不从0开始则会截断轴线，均会产生误导。'
+    }
+};
+
+function checkAnswer(el, isCorrect) {
+    const siblings = el.parentElement.querySelectorAll('.practice-option');
+    siblings.forEach(s => { s.classList.remove('correct', 'wrong'); });
+
+    const parent = el.parentElement;
+    const feedbackEl = parent.querySelector('.feedback-text');
+    const feedbackId = feedbackEl ? feedbackEl.id : null;
+
+    if (isCorrect) {
+        el.classList.add('correct');
+        if (feedbackId && feedbackMessages[feedbackId]) {
+            feedbackEl.style.display = 'block';
+            feedbackEl.style.background = '#f0fdf4';
+            feedbackEl.style.color = '#166534';
+            feedbackEl.innerHTML = feedbackMessages[feedbackId].correct;
+        }
+    } else {
+        el.classList.add('wrong');
+        if (feedbackId && feedbackMessages[feedbackId]) {
+            feedbackEl.style.display = 'block';
+            feedbackEl.style.background = '#fef2f2';
+            feedbackEl.style.color = '#991b1b';
+            feedbackEl.innerHTML = feedbackMessages[feedbackId].wrong;
+        }
+    }
+}
+
+// ==================== 页面加载初始化 ====================
+window.addEventListener('load', function() {
+    // 默认显示案例1的错误图表
+    drawBarChart('canvas1-wrong', case1Data, { yMin: 30, yMax: 65, isPercent: true, yLabel: '蛀牙率 (%)', annotate: true });
+
+    // 默认显示案例2的错误图表（两幅分开）
+    drawMultiBar('canvas2-quail', [
+        { label: 'B₁', value: 0.18 },
+        { label: 'B₂', value: 0.79 },
+        { label: 'B₆', value: 0.02 }
+    ], { yMin: 0, yMax: 0.9, title: '鹌鹑蛋' });
+    drawMultiBar('canvas2-egg', [
+        { label: 'B₁', value: 0.15 },
+        { label: 'B₂', value: 0.31 },
+        { label: 'B₆', value: 0.12 }
+    ], { yMin: 0, yMax: 0.36, title: '鸡蛋' });
+
+    // 默认显示案例3的三维图形
+    drawCubeComparison('canvas3-cube');
+});
+</script>
+</body>
+</html>

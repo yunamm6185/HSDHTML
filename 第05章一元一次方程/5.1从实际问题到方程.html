@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1 从实际问题到方程 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$','$$'], ['\\[','\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #0b4b78;
+            margin: 1.2rem 0 0.8rem;
+            padding-left: 0.8rem;
+            border-left: 4px solid #58a9d4;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 2000px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 8em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+        .symbol-note {
+            background: #e6f2fa;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #014682;
+            border-left: 4px solid #2675a8;
+        }
+        /* 知识结构树（本页未用） */
+        .mind-tree {
+            background: #f5fafe;
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid #b9d6ef;
+        }
+        .mind-tree ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        .mind-tree li {
+            margin: 0.5rem 0;
+            position: relative;
+        }
+        .mind-tree li::before {
+            content: "●";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+        }
+        .mind-tree .branch {
+            font-weight: bold;
+            color: #144a6f;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        .mind-tree .leaf {
+            color: #1e2b3a;
+            margin-left: 1rem;
+        }
+        /* 尝试检验表格 */
+        .try-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .try-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+            padding: 0.5rem;
+        }
+        .try-table td {
+            padding: 0.5rem;
+            border: 1px solid #b0d4ee;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.1</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 从实际问题中抽象出方程，体会方程是刻画现实世界的有效模型。</div>
+    <div class="lesson-title">5.1 从实际问题到方程</div>
+
+    <!-- 问题1 猜年龄 -->
+    <div class="explore-box">
+        <h4>问题1 猜年龄</h4>
+        <p>课外活动中，张老师组织同学们进行“猜年龄”游戏，她首先提出如下问题：</p>
+        <p style="font-style:italic;">同学们今年的年龄是13岁，我今年的年龄是45岁，经过几年我的年龄正好是你们年龄的3倍？</p>
+        <p><strong>解法1（尝试－检验）</strong> 小敏首先发现了答案：</p>
+        <ul>
+            <li>经过1年，同学们14岁，老师46岁，不是3倍；</li>
+            <li>经过2年，同学们15岁，老师47岁，不是3倍；</li>
+            <li>经过3年，同学们16岁，老师48岁，恰好是3倍。</li>
+        </ul>
+        <p><strong>解法2（分析－列算式）</strong> 年龄差不变：\(45-13=32\)（岁）。当老师年龄是同学3倍时，年龄差是同学年龄的2倍，此时同学年龄 \(32\div2=16\)（岁），所以经过 \(16-13=3\) 年。</p>
+    </div>
+
+    <!-- 探索 列方程 -->
+    <div class="think-box">
+        <h4>探索</h4>
+        <p>如果设经过 \(x\) 年，老师的年龄为 \(45+x\)，同学的年龄为 \(13+x\)，根据“老师的年龄 = 3 × 同学的年龄”，可得方程：</p>
+        <p style="text-align:center; font-size:1.3rem;">\(45 + x = 3(13 + x)\)</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>同学们今年的年龄是13岁，班主任李老师今年的年龄是55岁，经过几年李老师的年龄是同学们年龄的3倍？</p>
+        <button class="interact-btn" onclick="toggleAnswer('try1')">💡 列出方程</button>
+        <div id="try1" class="answer-box">
+            <p>设经过 \(x\) 年，则 \(55 + x = 3(13 + x)\)。</p>
+        </div>
+    </div>
+
+    <!-- 问题2 晨跑问题 -->
+    <div class="explore-box">
+        <h4>问题2 学校运动队晨跑</h4>
+        <p>甲、乙两队员同时出发，跑完一圈乙比甲多用 \(1\min\)，已知甲、乙队员跑步的平均速度分别是 \(4\ \mathrm{m/s}\)、\(3.5\ \mathrm{m/s}\)，这一圈步道有多长？</p>
+        <p><strong>探索：</strong>设步道一圈的长为 \(x\ \mathrm{m}\)，则乙所用时间为 \(\frac{x}{3.5}\ \mathrm{s}\)，甲所用时间为 \(\frac{x}{4}\ \mathrm{s}\)。由“乙用时 = 甲用时 + 60”得方程：</p>
+        <p style="text-align:center; font-size:1.3rem;">\(\displaystyle \frac{x}{3.5} = \frac{x}{4} + 60\)</p>
+    </div>
+
+    <!-- 概括 方程的定义 -->
+    <div class="highlight">
+        <p style="font-size:1.2rem; font-weight:bold;">📌 方程、方程的解、解方程</p>
+        <p><strong>方程：</strong>含有未知数的等式叫做方程。<br>
+        <strong>方程的解：</strong>能使方程左、右两边相等的未知数的值叫做方程的解。例如 \(x=3\) 是方程 \(45+x=3(13+x)\) 的解。<br>
+        <strong>根：</strong>一元方程的解也叫根。<br>
+        <strong>解方程：</strong>求方程解的过程叫做解方程。</p>
+    </div>
+
+    <!-- 读一读：尝试检验法 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 尝试检验法</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>尝试检验法是一种通过代入可能的值来检验方程解的方法。例如解方程 \(45 + x = 3(13 + x)\)，可以列表如下：</p>
+            <table class="try-table">
+                <tr><th>\(x\)</th><th>左边 \(45+x\)</th><th>右边 \(3(13+x)\)</th><th>是否相等</th></tr>
+                <tr><td>1</td><td>46</td><td>42</td><td>不相等</td></tr>
+                <tr><td>2</td><td>47</td><td>45</td><td>不相等</td></tr>
+                <tr><td>3</td><td>48</td><td>48</td><td>相等</td></tr>
+                <tr><td>4</td><td>49</td><td>51</td><td>不相等</td></tr>
+            </table>
+            <p>从而发现 \(x=3\) 是方程的解。这种方法虽然有时较慢，但直观易懂。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本上的两道列方程题） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <p>根据题意列出方程（不必求解）：</p>
+        <ol>
+            <li>某班原分成两个小组进行课外体育活动，第一组26人，第二组22人，现根据学校活动器材的数量，要将第一组的人数调整为第二组的一半，应从第一组调多少人到第二组去？</li>
+            <li>加工某种零件，师傅平均每小时做5个，徒弟平均每小时做4个，加工一盒零件，师傅比徒弟少用 \(2\ \mathrm{h}\)。问：一盒零件有多少个？</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('practice')">🔍 显示所列方程</button>
+        <div id="practice" class="answer-box">
+            <p>1. 设应从第一组调 \(x\) 人到第二组，则调整后第一组 \(26-x\) 人，第二组 \(22+x\) 人，根据题意得：\(26-x = \frac{1}{2}(22+x)\)。</p>
+            <p>2. 设一盒零件有 \(x\) 个，则师傅用时 \(\frac{x}{5}\) h，徒弟用时 \(\frac{x}{4}\) h，根据题意得：\(\frac{x}{4} - \frac{x}{5} = 2\)。</p>
+        </div>
+    </div>
+
+    <!-- 习题5.1 A组 -->
+    <div class="exercises" style="background-color: #eef4fa; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b9d6ef;">
+        <h3>📚 习题5.1 A组</h3>
+        <ol>
+            <li>检验下列方程后面大括号内所列各数是否为相应方程的解：
+                <br>(1) \(\frac{5x+1}{8}=x-1,\quad \{-5,3\}\);
+                <br>(2) \(2(y-2)-9(1-y)=3(4y-1),\quad \{-10,10\}\).
+            </li>
+            <li>小明去商店买练习本，回来后问同学：“店主告诉我，如果多买一些就给我打八折，于是，我就买了20本，结果便宜了4.80元，原来每本的价格是多少？”你能列出方程吗？</li>
+            <li>根据班级内男、女同学的人数编一道应用题，和同学交流一下。</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('exA1')">🔍 第1题答案</button>
+        <div id="exA1" class="answer-box">
+            <p>(1) 当 \(x=-5\) 时，左边=\(\frac{5(-5)+1}{8}=\frac{-24}{8}=-3\)，右边=\(-5-1=-6\)，左边≠右边，不是解；当 \(x=3\) 时，左边=\(\frac{16}{8}=2\)，右边=\(2\)，左边=右边，是解。</p>
+            <p>(2) 当 \(y=-10\) 时，左边=\(2(-12)-9(11)=-24-99=-123\)，右边=\(3(-40-1)=3(-41)=-123\)，左边=右边，是解；当 \(y=10\) 时，左边=\(2(8)-9(-9)=16+81=97\)，右边=\(3(40-1)=117\)，左边≠右边，不是解。</p>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('exA2')">🔍 第2题方程</button>
+        <div id="exA2" class="answer-box">
+            <p>设原来每本 \(x\) 元，则20本原价 \(20x\) 元，八折后总价 \(20x \times 0.8 = 16x\) 元，便宜了 \(20x - 16x = 4.8\)，即 \(4x = 4.8\)。</p>
+        </div>
+    </div>
+
+    <!-- 习题5.1 B组 -->
+    <div class="exercises" style="background-color: #eef4fa; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b9d6ef;">
+        <h3>📚 习题5.1 B组</h3>
+        <ol start="4">
+            <li>根据题意列出方程（不必求解）：
+                <br>(1) 某班到离校 \(30\ \mathrm{km}\) 的国家森林公园春游，先坐车，速度为 \(36\ \mathrm{km/h}\)，下车后以 \(6\ \mathrm{km/h}\) 的速度步行到达目的地，共花了 \(1\ \mathrm{h}\)。问：他们步行了多少时间？
+                <br>(2) 某车间接到一批小家电组装任务，原计划每天组装36台，预计若干天完成，在组装了任务的三分之一后，调整工序，改进操作技术，工效提高了1倍，结果提前2天完成任务，求这次组装小家电的总台数。
+            </li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('exB')">🔍 列出方程</button>
+        <div id="exB" class="answer-box">
+            <p>(1) 设步行了 \(x\ \mathrm{h}\)，则坐车时间为 \(1-x\) h，根据路程关系：\(36(1-x) + 6x = 30\)。</p>
+            <p>(2) 设总台数为 \(x\)，原计划天数为 \(\frac{x}{36}\) 天；前 \(\frac{1}{3}\) 任务用了 \(\frac{x}{3\times36}\) 天，后 \(\frac{2}{3}\) 任务工效提高一倍即每天72台，用了 \(\frac{2x}{3\times72}\) 天，实际总天数为 \(\frac{x}{108} + \frac{x}{108} = \frac{x}{54}\) 天。提前2天，即 \(\frac{x}{36} - \frac{x}{54} = 2\)。</p>
+        </div>
+    </div>
+
+    <!-- 章末寄语（可选） -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 方程是刻画现实世界的数学语言，从实际问题到方程，开启建模之旅 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第5章 5.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

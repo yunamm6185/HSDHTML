@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.5 数学活动——三角形全等的判断 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;  /* 基础字体增大 */
+        }
+        .textbook {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        .activity-card {
+            background: #fef7e0;
+            border-left: 8px solid #e6b422;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #2c6079;
+            margin-top: 0.5rem;
+        }
+        .figure-inline {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 0 #9fbede;
+            margin: 0.2rem 0;
+            font-size: 0.95rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.2rem;
+            margin: 0.6rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+        .show-answer { display: block; }
+        /* 表格样式：固定布局，避免列宽变化，字体加大 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 1rem;
+            table-layout: fixed;
+        }
+        th, td {
+            border: 2px solid #c0d8ec;
+            padding: 12px 8px;
+            text-align: center;
+            vertical-align: middle;
+            word-break: break-word;
+        }
+        th:first-child { width: 20%; }
+        th:nth-child(2) { width: 40%; }
+        th:nth-child(3) { width: 40%; }
+        th {
+            background: #e2effa;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        td {
+            font-size: 0.98rem;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .intro-card {
+            background: #e8f4f8;
+            border-left: 8px solid #3a9fd5;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 → 12.5 数学活动</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.5 数学活动——三角形全等的判断</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 活动目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>探索特殊三角形（直角、等腰、等边）的全等判定条件</div>
+            <div class="target-item"><span>✔</span>经历类比、猜想、验证的过程，体会特殊到一般的数学思想</div>
+            <div class="target-item"><span>✔</span>尝试探索四边形的全等条件，培养探究能力</div>
+            <div class="target-item"><span>✔</span>能通过画图、测量、推理等方式得出结论</div>
+        </div>
+    </div>
+
+    <!-- 活动引入 -->
+    <div class="intro-card">
+        <h3>🔍 活动引入</h3>
+        <p>我们已经学习了判定两个三角形全等的四种一般方法：SAS、ASA、AAS、SSS。对于直角三角形，还有特殊的HL判定方法。那么对于等腰三角形、等边三角形，是否存在更简便的判定条件？对于两个四边形，需要满足什么条件才能全等？今天我们将通过数学活动来探索这些问题。</p>
+    </div>
+
+    <!-- 活动一：特殊三角形的全等条件 -->
+    <div class="activity-card">
+        <h3>📐 活动一：特殊三角形的全等条件</h3>
+        <p>对于一般的三角形，我们需要至少三组对应元素（其中至少有一边）才能判定全等。但对于特殊的三角形，由于它们具有额外的性质（如直角、等边、等角），判定全等所需要的条件可能会减少。请同学们分组讨论，将探索结果填入下表（点击按钮查看具体内容）：</p>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>三角形的类型</th>
+                        <th>判断全等的条件</th>
+                        <th>说明（举例或理由）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 直角三角形 -->
+                    <tr>
+                        <td style="background:#f0f7ff;">直角三角形</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('rtCond')">显示条件</button>
+                            <div id="rtCond" class="answer-box">
+                                ① 斜边和一条直角边（HL）；<br>
+                                ② 两条直角边（SAS）；<br>
+                                ③ 一条直角边和一个锐角（ASA或AAS）；<br>
+                                ④ 斜边和一个锐角（AAS）。
+                            </div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('rtExp')">显示说明</button>
+                            <div id="rtExp" class="answer-box">
+                                直角三角形中已有一个直角相等，因此只需再找两组对应元素（其中至少一组是边）即可。HL是特有的判定方法。
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 等腰三角形 -->
+                    <tr>
+                        <td style="background:#f0f7ff;">等腰三角形</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('isoCond')">显示条件</button>
+                            <div id="isoCond" class="answer-box">
+                                ① 底边和底角对应相等；<br>
+                                ② 腰和顶角对应相等；<br>
+                                ③ 腰和底边对应相等（SSS）；<br>
+                                ④ 一腰和一底角对应相等；<br>
+                                ⑤ 底边和顶角对应相等。
+                            </div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('isoExp')">显示说明</button>
+                            <div id="isoExp" class="answer-box">
+                                由等腰三角形的性质（等边对等角），可转化为一般三角形的判定（ASA、SAS、SSS、AAS等）。<br>
+                                例如：底边+底角→ASA；腰+顶角→SAS；腰+底边→SSS；腰+底角→AAS；底边+顶角→由等边对等角得底角相等，进而ASA。
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- 等边三角形 -->
+                    <tr>
+                        <td style="background:#f0f7ff;">等边三角形</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('equiCond')">显示条件</button>
+                            <div id="equiCond" class="answer-box">
+                                只需要一条边对应相等。
+                            </div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('equiExp')">显示说明</button>
+                            <div id="equiExp" class="answer-box">
+                                等边三角形三边相等，三个角都是60°。只要一条边相等，则三边都相等，由SSS可证全等；或由ASA、AAS、SAS均可证。
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 活动二：四边形的全等问题 -->
+    <div class="activity-card">
+        <h3>📐 活动二：四边形的全等问题</h3>
+        <p>两个三角形全等需要三组对应元素（至少有一边）。那么两个四边形全等需要多少组对应元素呢？是否也能像三角形那样，通过“边边边边”（SSSS）或“边角边角边”等条件判定？</p>
+        <p>请同学们以四边形为例，利用尺规作图或动态几何软件进行探索：</p>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>猜想1：</strong> 四边对应相等的两个四边形是否全等？</li>
+            <li><strong>猜想2：</strong> 如果添加一个角相等，即“边边边边角”是否足够？</li>
+            <li><strong>猜想3：</strong> 最少需要几个条件？</li>
+        </ul>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>判断全等的条件</th>
+                        <th>是否一定全等？</th>
+                        <th>反例或说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>四边对应相等（SSSS）</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad1Ans')">显示答案</button>
+                            <div id="quad1Ans" class="answer-box">不一定</div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad1Exp')">显示说明</button>
+                            <div id="quad1Exp" class="answer-box">例如正方形和菱形（内角不同）四边相等但不全等。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>四边相等且一个角相等</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad2Ans')">显示答案</button>
+                            <div id="quad2Ans" class="answer-box">不一定</div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad2Exp')">显示说明</button>
+                            <div id="quad2Exp" class="answer-box">需要确保对应边和角的位置顺序。例如，一个角相等但邻边不对应仍可能不同。</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>两边及其夹角对应相等（SAS）</td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad3Ans')">显示答案</button>
+                            <div id="quad3Ans" class="answer-box">不够</div>
+                        </td>
+                        <td>
+                            <button class="interact-btn" onclick="toggleAnswer('quad3Exp')">显示说明</button>
+                            <div id="quad3Exp" class="answer-box">四边形不稳定，还需要更多条件。</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('activity3More')">📐 探索提示</button>
+        <div id="activity3More" class="answer-box">
+            <p>两个多边形全等的定义是：能够完全重合。对于四边形，至少需要5组对应元素相等（例如“边角边角边”或“边边角边角”等），而且必须保证对应顶点顺序一致。</p>
+            <p>一种常见的充分条件是：<strong>四边及一条对角线对应相等</strong>（因为对角线将四边形分成两个三角形，每个三角形由三边SSS唯一确定）。此外，<strong>两边及其夹角和另外两边</strong>（即“边角边边”按顺序）等组合也可以，但必须保证能唯一确定四边形。</p>
+            <p>同学们可以尝试用尺规作图：已知四边形的四条边和一个对角，能否作出唯一的四边形？这类似于三角形全等的思路，但四边形具有不稳定性，因此条件要求更多。</p>
+        </div>
+        <div style="margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleAnswer('quadConclusion')">📌 查看结论</button>
+            <div id="quadConclusion" class="answer-box">
+                <p>✅ 判定两个四边形全等有多种充分条件，例如“四边+一条对角线”对应相等、“边角边角边”（SASAS）对应相等等。最少需要5组对应元素相等，且要保证对应顶点顺序一致。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-card">
+        <h3>📌 活动小结</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li>直角三角形全等除了HL外，还有多种判定方式（SAS、ASA、AAS）。</li>
+            <li>等腰三角形全等常用条件：底边+底角、腰+顶角、腰+底边等，比一般三角形更灵活。</li>
+            <li>等边三角形全等只需要一条边对应相等。</li>
+            <li>四边形全等至少需要5组对应元素相等，例如“四边+一对角线”或“边角边角边”等。</li>
+            <li>数学活动让我们经历了“猜想—验证—归纳”的探究过程，这是数学学习的重要方法。</li>
+        </ul>
+    </div>
+
+    <!-- 数学思想与素养 -->
+    <div class="math-idea-card">
+        <h4>🧠 数学思想 · 核心素养</h4>
+        <p><strong>• 类比思想：</strong> 将三角形的全等判定类比到四边形；<br>
+        <strong>• 特殊化思想：</strong> 研究直角三角形、等腰三角形、等边三角形的全等条件；<br>
+        <strong>• 分类讨论：</strong> 对不同类型的图形分别探究；<br>
+        <strong>• 几何直观与推理：</strong> 通过作图、测量、证明得出结论。</p>
+    </div>
+
+    <!-- 课后拓展 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom: 0.5rem;">📚 课后拓展</h3>
+        <ul style="margin-left: 1.8rem; font-weight: 500;">
+            <li>尝试用尺规作图，验证“五边形全等至少需要多少组对应元素”。</li>
+            <li>写一篇数学小短文，总结本活动中的发现和感悟。</li>
+            <li>思考：为什么三角形具有稳定性，而四边形不具有？这与全等判定条件有什么关系？</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 特殊图形特殊判，四边全等需思量；活动探究真有趣，几何世界任翱翔！ ✨<br>
+        大胆猜想，小心求证，你会发现更多数学的奥秘。</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第12章 12.5 数学活动——三角形全等的判断 | 互动课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', () => {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.1.1 平方根 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+
+        /* 直角正方形（无圆角） */
+        .square-draw {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .square {
+            width: 140px;
+            height: 140px;
+            background: #b8d9f0;
+            border: 4px solid #2675a8;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 0 #7fa9c7;
+            color: #014682;
+            font-weight: bold;
+        }
+        .square .area {
+            font-size: 1.4rem;
+            background: white;
+            padding: 0.2rem 0.6rem;
+            margin-bottom: 0.5rem;
+            border: 2px solid #2675a8;
+            border-radius: 0;
+        }
+        .square .side {
+            font-size: 1.2rem;
+            background: #fff3cd;
+            padding: 0.2rem 0.8rem;
+            border: 2px solid #f4b84b;
+            border-radius: 0;
+        }
+
+        /* 云图提示框 */
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+            position: relative;
+        }
+        .cloud-note::before {
+            content: "💡";
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+
+        .exercise-item {
+            margin-bottom: 1.8rem;
+        }
+        .exercise-item p {
+            margin: 0.3rem 0;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第10章 数的开方 · 10.1.1 平方根</span>
+    </div>
+    <h1>第10章 数的开方</h1>
+    <div class="lesson-title">10.1.1 平方根</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解平方根的概念</div>
+            <div class="target-item"><span>✔</span>掌握平方根的性质（正数两个、0一个、负数无）</div>
+            <div class="target-item"><span>✔</span>了解算术平方根，会用计算器求算术平方根</div>
+        </div>
+    </div>
+
+    <!-- 导入：剪正方形纸片 + 直角正方形 -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <div class="square-draw">
+            <div class="square">
+                <div class="area">25 cm²</div>
+                <div class="side">边长 = ? cm</div>
+            </div>
+        </div>
+        <p>要剪出一张面积为 $25\,\text{cm}^2$ 的正方形纸片，正方形的边长应是多少？</p>
+        <p>容易知道，这个正方形的边长是 $5\,\text{cm}$。<br>
+        上述问题实质上就是要求一个数，这个数的平方等于25。</p>
+    </div>
+
+    <!-- 概括1：平方根定义 -->
+    <div class="concept-box">
+        <strong>平方根</strong> <em>(square root)</em>：如果一个数的平方等于 $a$，那么这个数叫做 $a$ 的平方根。<br>
+        例如，因为 $5^2=25$，所以5是25的一个平方根；又因为 $(-5)^2=25$，所以-5也是25的一个平方根。这就是说，5和-5都是25的平方根。
+    </div>
+
+    <!-- 例1 (在试一试之前) -->
+    <div class="example-box">
+        <h4>例1 求100的平方根</h4>
+        <p>解：因为 $10^2=100$，$(-10)^2=100$，所以100的平方根是 $\pm10$。</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>1. 144的平方根是什么？<br>2. 0的平方根是什么？<br>3. -4有没有平方根？为什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('tryAns')">🔍 显示答案</button>
+        <div id="tryAns" class="answer-box">
+            <p>1. $\pm12$； 2. $0$； 3. 没有，因为任何有理数的平方都不可能是负数。</p>
+        </div>
+        <p style="background:#fff3cd; padding:0.5rem; border-radius:8px; margin-top:0.8rem;">✏️ 请你自己也编三道求平方根的题目，并给出解答。</p>
+    </div>
+
+    <!-- 云图：负数没有平方根的理由 -->
+    <div class="cloud-note">
+        <strong>因为任何有理数的平方都不可能是负数，所以负数没有平方根。</strong>
+    </div>
+
+    <!-- 概括2：平方根的性质、算术平方根、开平方 -->
+    <div class="concept-box">
+        <strong>正数的平方根</strong>：一个正数如果有平方根，那么必定有两个，它们互为相反数。<br>
+        <strong>算术平方根</strong>：正数 $a$ 的正的平方根叫做 $a$ 的算术平方根，记作 $\sqrt{a}$（$a\ge 0$），读作“根号 $a$”。另一个平方根是 $-\sqrt{a}$。因此，正数 $a$ 的平方根可以记作 $\pm\sqrt{a}$。<br>
+        0的平方根只有一个（就是0），也叫做0的算术平方根，记作 $\sqrt{0}=0$。<br>
+        <strong>开平方</strong>：求一个非负数的平方根的运算，叫做开平方。
+    </div>
+
+    <!-- 云图：开平方的关键 -->
+    <div class="cloud-note">
+        <strong>将一个正数开平方，关键是找出它的算术平方根。</strong>
+    </div>
+
+    <!-- 例2 -->
+    <div class="example-box">
+        <h4>例2 将下列各数开平方</h4>
+        <p>$(1)\ 49;\qquad (2)\ \dfrac{4}{25}.$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2Ans')">📌 显示解答</button>
+        <div id="ex2Ans" class="answer-box">
+            <p>(1) $\because 7^2=49$，$\therefore \sqrt{49}=7$，因此49的平方根为 $\pm\sqrt{49}=\pm7$。<br>
+            (2) $\because \left(\dfrac{2}{5}\right)^2=\dfrac{4}{25}$，$\therefore \sqrt{\dfrac{4}{25}}=\dfrac{2}{5}$，平方根为 $\pm\dfrac{2}{5}$。</p>
+        </div>
+    </div>
+
+    <!-- 用计算器求算术平方根 例3 -->
+    <div class="example-box">
+        <h4>例3 用计算器求下列各数的算术平方根</h4>
+        <p>(1) $529$; &nbsp; (2) $44.81$ (精确到0.01).</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3Ans')">📌 显示解答</button>
+        <div id="ex3Ans" class="answer-box">
+            <p>(1) 按键顺序：$\boxed{5}\boxed{2}\boxed{9}\boxed{\sqrt{}}$，显示 $23$，所以 $\sqrt{529}=23$。<br>
+            (2) 按键 $44.81$ 再按 $\sqrt{}$，显示 $6.694027188$，精确到0.01得 $\sqrt{44.81}\approx 6.69$。</p>
+        </div>
+    </div>
+
+    <!-- 练习区域 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 练习1 表格 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 完成下列表格：</p>
+            <table id="squareRootTable">
+                <tr><th>被开方数</th><th>0</th><th>1</th><th>4</th><th>9</th><th>16</th><th>25</th><th>36</th><th>49</th><th>64</th><th>81</th><th>100</th></tr>
+                <tr><th>算术平方根</th><td id="as0"></td><td id="as1"></td><td id="as4"></td><td id="as9"></td><td id="as16"></td><td id="as25"></td><td id="as36"></td><td id="as49"></td><td id="as64"></td><td id="as81"></td><td id="as100"></td></tr>
+                <tr><th>平方根</th><td id="sq0"></td><td id="sq1"></td><td id="sq4"></td><td id="sq9"></td><td id="sq16"></td><td id="sq25"></td><td id="sq36"></td><td id="sq49"></td><td id="sq64"></td><td id="sq81"></td><td id="sq100"></td></tr>
+            </table>
+            <button class="interact-btn" onclick="toggleTable()">📌 显示表格答案</button>
+        </div>
+
+        <!-- 练习2 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 说出下列各数的平方根：</p>
+            <p>(1) 6400; &nbsp; (2) 0.25; &nbsp; (3) $\dfrac{49}{81}$.</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>(1) $\pm80$; (2) $\pm0.5$; (3) $\pm\dfrac{7}{9}$.</p>
+            </div>
+        </div>
+
+        <!-- 练习3 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 用计算器计算（精确到0.01）：</p>
+            <p>(1) $\sqrt{676}$; &nbsp; (2) $\sqrt{27.8784}$; &nbsp; (3) $\sqrt{4.225}$.</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>(1) $26$; (2) $5.28$; (3) $2.06$.</p>
+            </div>
+        </div>
+
+        <!-- 练习4 -->
+        <div class="exercise-item">
+            <p class="exercise-question">4. 下列说法正确吗？为什么？如果不正确，请改正：</p>
+            <p>(1) 16的平方根是4; &nbsp; (2) $\sqrt{25}=\pm5$.</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac4')">🔍 答案</button>
+            <div id="prac4" class="answer-box">
+                <p>(1) 不正确，16的平方根是 $\pm4$； (2) 不正确，$\sqrt{25}=5$（算术平方根），平方根才是 $\pm5$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：平方根符号“√”的由来（重新设计） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 平方根符号“$\sqrt{\,\,\,}$”的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>今天我们所使用的平方根符号 <strong>√</strong> 是从拉丁词 <strong>radix</strong>（根）的首字母 <strong>r</strong> 演变而来，经过多位数学家的改造才成为现在的样子。</p>
+            <p>📜 <strong>早期探索：</strong><br>
+            • 古埃及人用“┌”表示平方根；<br>
+            • 古印度人在数前写 <strong>ka</strong> 或 <strong>c</strong>（源自 carani，平方根）；<br>
+            • 罗马及欧洲早期用 <strong>l</strong>（latus，正方形的边）或大写 <strong>R</strong>（radix）表示“根”，例如 <strong>R q 16</strong> 就表示 √16；<br>
+            • 阿拉伯数学家使用字母 <strong>ج（jīm）</strong>（源自 jadhir，根），其形状已与现代 √ 有几分相似；<br>
+            • 1480年左右德国手稿中曾用<strong>点</strong>来记根：· 表示平方根，·· 表示四次方根，… 表示立方根（但容易混淆）。</p>
+            <p>🔑 <strong>现代符号的定型：</strong><br>
+            • <strong>1525年</strong>，德国数学家鲁道夫（Christoph Rudolff）在《Die Coss》一书中首次将小写字母 <strong>r</strong> 拉长、变形，去掉横线，创制了印刷符号 <strong>√</strong>，成为现代根号的雏形。<br>
+            • <strong>1637年</strong>，法国数学家笛卡尔（René Descartes）在《几何学》中给 √ 加上一条<strong>横线（vinculum）</strong>，将被开方数括起来，形成了 <strong>√̅x</strong> 的写法——这正是我们今天通用的平方根符号。</p>
+            <p>💡 <strong>小知识：</strong> 平方根符号在 Unicode 中的编码是 <strong>U+221A</strong>，立方根符号 <strong>∛</strong> 的编码是 U+221B。它们都源自同一个古老的“根”字。</p>
+            <p style="margin-top:0.5rem;">——符号背后，是人类探索数的漫长历程。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong> 正数的平方根有两个，0有一个，负数没有。<br>
+        <strong>运算互逆：</strong> 开平方与平方互为逆运算。<br>
+        <strong>符号意识：</strong> 用 $\sqrt{a}$ 表示算术平方根。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">平方根：若 $x^2=a$，则 $x$ 是 $a$ 的平方根（$a\ge0$）</div>
+            <div class="summary-item">正数有两个平方根，互为相反数；0的平方根是0；负数没有平方根</div>
+            <div class="summary-item">算术平方根：正数 $a$ 的正平方根 $\sqrt{a}$，0的算术平方根是0</div>
+            <div class="summary-item">开平方运算与平方运算互为逆运算</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题10.1 A组第1、2、3题，用计算器验证。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 开方是平方的逆运算，也是认识无理数的第一步 ✨</p>
+    <div class="footer-note">八年级上册 · 第10章 10.1.1</div>
+</div>
+
+<script>
+    // 切换表格答案（填充/清空）
+    function toggleTable() {
+        // 获取第一个算术平方根单元格作为状态判断
+        var as0 = document.getElementById('as0');
+        // 如果已经填充（非空），则清空所有单元格
+        if (as0.innerText.trim() !== '') {
+            var asIds = ['as0','as1','as4','as9','as16','as25','as36','as49','as64','as81','as100'];
+            var sqIds = ['sq0','sq1','sq4','sq9','sq16','sq25','sq36','sq49','sq64','sq81','sq100'];
+            asIds.forEach(id => document.getElementById(id).innerText = '');
+            sqIds.forEach(id => document.getElementById(id).innerText = '');
+        } else {
+            // 否则填充答案
+            document.getElementById('as0').innerText = '0';
+            document.getElementById('as1').innerText = '1';
+            document.getElementById('as4').innerText = '2';
+            document.getElementById('as9').innerText = '3';
+            document.getElementById('as16').innerText = '4';
+            document.getElementById('as25').innerText = '5';
+            document.getElementById('as36').innerText = '6';
+            document.getElementById('as49').innerText = '7';
+            document.getElementById('as64').innerText = '8';
+            document.getElementById('as81').innerText = '9';
+            document.getElementById('as100').innerText = '10';
+            document.getElementById('sq0').innerText = '0';
+            document.getElementById('sq1').innerText = '±1';
+            document.getElementById('sq4').innerText = '±2';
+            document.getElementById('sq9').innerText = '±3';
+            document.getElementById('sq16').innerText = '±4';
+            document.getElementById('sq25').innerText = '±5';
+            document.getElementById('sq36').innerText = '±6';
+            document.getElementById('sq49').innerText = '±7';
+            document.getElementById('sq64').innerText = '±8';
+            document.getElementById('sq81').innerText = '±9';
+            document.getElementById('sq100').innerText = '±10';
+        }
+    }
+
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

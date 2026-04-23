@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章复习 图形的初步认识 | 华师版·七上</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #0a3144;
+            margin-bottom: 0.5rem;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 2rem 0 1rem 0;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-item p {
+            margin-bottom: 0.5rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        /* 工具链接样式与按钮一致 */
+        .tool-link {
+            background: #3b82f6;
+            border: 2px solid #2563eb;
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #1d4ed8;
+            transition: 0.1s;
+            margin-top: 0.5rem;
+            margin-left: 0.5rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+        .tool-link:hover {
+            background: #2563eb;
+            color: white;
+        }
+        .tool-link:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #1d4ed8;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .knowledge-structure {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #b8d2e8;
+            font-size: 1.1rem;
+        }
+        .knowledge-structure h3 {
+            color: #0f4a6f;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            border-left: 6px solid #2a7faa;
+            padding-left: 1rem;
+        }
+        .structure-grid {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .structure-grid table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 800px;
+        }
+        .structure-grid td {
+            padding: 0.8rem;
+            vertical-align: top;
+            border: 1px solid #b0d4ee;
+            background-color: white;
+        }
+        .structure-grid .main-node {
+            font-weight: bold;
+            color: #0a3e5f;
+            background-color: #d4e9fa;
+            text-align: center;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { 
+            font-size: 1.5rem; 
+            color: #1d6130; 
+            margin-bottom: 0.8rem; 
+        }
+        .example-box h4::before { 
+            content: "📐"; 
+            margin-right: 0.5rem; 
+        }
+        .example-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #accee5;
+        }
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 复习</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 回顾本章知识，巩固立体图形、平面图形、线段与角的基础内容。</div>
+
+    <!-- 知识结构图 -->
+    <div class="knowledge-structure">
+        <h3>📊 本章知识结构</h3>
+        <div class="structure-grid">
+            <table>
+                <tr>
+                    <td class="main-node" colspan="2">图形的初步认识</td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;"><strong>立体图形</strong><br>
+                        • 柱体（棱柱、圆柱）<br>
+                        • 锥体（棱锥、圆锥）<br>
+                        • 球体<br>
+                        • 多面体</td>
+                    <td style="width: 50%;"><strong>平面图形</strong><br>
+                        • 多边形（三角形、四边形等）<br>
+                        • 圆<br>
+                        • 点、线、角</td>
+                </tr>
+                <tr>
+                    <td><strong>视图与投影</strong><br>
+                        • 平行投影、中心投影<br>
+                        • 三视图（主视图、俯视图、左视图）<br>
+                        • 由视图到立体图形</td>
+                    <td><strong>表面展开图</strong><br>
+                        • 正方体展开图（11种）<br>
+                        • 棱柱、圆柱、圆锥展开图</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>点、线、角</strong><br>
+                        • 线段、射线、直线（两点确定一条直线，两点之间线段最短）<br>
+                        • 角的概念与度量（度、分、秒换算）<br>
+                        • 角的比较与运算（角平分线、余角、补角）</td>
+                </tr>
+            </table>
+        </div>
+        <p style="text-align:center; margin-top:1rem; color:#2a5f7a;">※ 立体图形与平面图形相互转化：视图、展开图、从不同方向看</p>
+    </div>
+
+    <!-- 例题1：三视图最少/最多问题 -->
+    <div class="example-box">
+        <h4>例1</h4>
+        <div class="example-item">
+            <p>几个相同的正方体叠合在一起，该组合体的主视图与俯视图如图所示，那么组合体中正方体的个数至少有几个？至多有几个？</p>
+            <!-- 原图片（可保留，但互动工具用链接代替） -->
+            <div class="figure-box">
+                <img src="复习C15.png" alt="主视图与俯视图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习C15.png（三视图）</div>
+            </div>
+            <!-- 按钮和链接 -->
+            <div>
+                <button class="interact-btn" onclick="toggleAnswer('ansEx1')">📌 显示答案</button>
+                <a class="tool-link" href="多个正方体的三视图.html" target="_blank">演示工具</a>
+            </div>
+            <div id="ansEx1" class="answer-box">
+                <p>根据主视图和俯视图分析：最少需要 6 个小正方体，最多需要 8 个小正方体。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题2：正方体展开图 -->
+    <div class="example-box">
+        <h4>例2</h4>
+        <div class="example-item">
+            <p>如图是正方体的表面展开图，如果 \(a\) 在后面，\(b\) 在下面，\(c\) 在左面，试说明其他各面的位置。</p>
+            <div class="figure-box">
+                <img src="复习A3.png" alt="正方体展开图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习A3.png（展开图）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx2')">📌 显示答案</button>
+            <div id="ansEx2" class="answer-box">
+                <p>根据正方体展开图的相对面关系：\(a\) 与 \(f\) 相对，\(b\) 与 \(d\) 相对，\(c\) 与 \(e\) 相对。</p>
+                <p>已知 \(a\) 在后面，则 \(f\) 在前面；\(b\) 在下面，则 \(d\) 在上面；\(c\) 在左面，则 \(e\) 在右面。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题3：线段中点分类讨论 -->
+    <div class="example-box">
+        <h4>例3</h4>
+        <div class="example-item">
+            <p>已知线段 \(AB = 10\ \mathrm{cm}\)，点 \(C\) 在直线 \(AB\) 上，且 \(AC = 4\ \mathrm{cm}\)，点 \(M\)、\(N\) 分别是 \(AC\)、\(BC\) 的中点，求 \(MN\) 的长。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx3')">📌 显示解答</button>
+            <div id="ansEx3" class="answer-box">
+                <p><strong>解：</strong> 分两种情况讨论：</p>
+                <p><strong>情况1：</strong> 点 \(C\) 在线段 \(AB\) 上，则 \(BC = AB - AC = 6\ \mathrm{cm}\)。</p>
+                <p>\(MC = \frac{1}{2}AC = 2\ \mathrm{cm}\)，\(CN = \frac{1}{2}BC = 3\ \mathrm{cm}\)，</p>
+                <p>∴ \(MN = MC + CN = 5\ \mathrm{cm}\)。</p>
+                <p><strong>情况2：</strong> 点 \(C\) 在线段 \(AB\) 的延长线上，则 \(BC = AC - AB?\) 需重新分析：</p>
+                <p>若 \(C\) 在 \(AB\) 延长线上，则 \(AB = 10\)，\(AC = 4\) 不可能，因为 \(AC < AB\)。所以只可能 \(C\) 在 \(BA\) 延长线上：</p>
+                <p>此时 \(BC = AB + AC = 14\ \mathrm{cm}\)，\(MC = \frac{1}{2}AC = 2\ \mathrm{cm}\)，\(CN = \frac{1}{2}BC = 7\ \mathrm{cm}\)，</p>
+                <p>∴ \(MN = CN - CM = 5\ \mathrm{cm}\)。</p>
+                <p><strong>结论：</strong> \(MN = 5\ \mathrm{cm}\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题4：复习题第14题（余角补角概念） -->
+    <div class="example-box">
+        <h4>例4</h4>
+        <div class="example-item">
+            <p>(1) 一个角与它的余角相等，这个角是怎样的角？</p>
+            <p>(2) 一个角与它的补角相等，这个角是怎样的角？</p>
+            <p>(3) 互补的两个角能否都是锐角？能否都是直角？能否都是钝角？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx4')">📌 显示答案</button>
+            <div id="ansEx4" class="answer-box">
+                <p>(1) 设这个角为 \(x\)，则 \(x = 90^{\circ} - x\)，解得 \(x = 45^{\circ}\)，所以这个角是 \(45^{\circ}\)。</p>
+                <p>(2) 设这个角为 \(x\)，则 \(x = 180^{\circ} - x\)，解得 \(x = 90^{\circ}\)，所以这个角是直角。</p>
+                <p>(3) 不能都是锐角（因为两个锐角和小于 \(180^{\circ}\)）；能都是直角（\(90^{\circ}+90^{\circ}=180^{\circ}\)）；不能都是钝角（两个钝角和大于 \(180^{\circ}\)）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 复习题 A组（已删除第3题，避免与例题2重复） -->
+    <div class="section-title">复习题 A组</div>
+
+    <div class="exercise-item">
+        <p><strong>1.</strong> 如图是两幅精致的屏风图案，其中有不少是我们已认识的平面图形，试写出它们的名称。</p>
+        <div class="figure-box">
+            <img src="复习A1.png" alt="屏风图案" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习A1.png（屏风图案）</div>
+            <div class="figcaption">（第1题）</div>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>2.</strong> 如图是一些立体图形的视图，但是观察的方向不同，试说明它们可能是哪种立体图形的视图。</p>
+        <div class="figure-box">
+            <img src="复习A2.png" alt="视图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习A2.png（视图）</div>
+            <div class="figcaption">（第2题）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansA2')">📌 显示答案</button>
+        <div id="ansA2" class="answer-box">
+            <p>第一幅图可能是球或圆柱的视图；第二幅图可能是三棱柱或三棱锥或四棱锥的视图；第三幅图可能是三棱柱或圆柱或四棱柱的视图。</p>
+        </div>
+    </div>
+
+    <!-- 第3题已删除（例题2已覆盖） -->
+
+    <div class="exercise-item">
+        <p><strong>4.</strong> 如图，\(A, B, C\) 三点在同一条直线上，则关于线段 \(AB, BC, AC\) 有下列等式成立：</p>
+        <p>(1) \(AB + BC = \_\_\_\) &nbsp;&nbsp; (2) \(AC - BC = \_\_\_\) &nbsp;&nbsp; (3) \(AC - AB = \_\_\_\)</p>
+        <div class="figure-box">
+            <img src="复习A4.png" alt="线段" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习A4.png（线段图）</div>
+            <div class="figcaption">（第4题）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansA4')">📌 显示答案</button>
+        <div id="ansA4" class="answer-box">
+            <p>(1) \(AB + BC = AC\) &nbsp; (2) \(AC - BC = AB\) &nbsp; (3) \(AC - AB = BC\)</p>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>5.</strong> 在纸上画出四个点（其中任意三点不在同一条直线上），经过每两点用直尺画一条直线，一共可以画几条？试画出所有的直线。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansA5')">📌 显示答案</button>
+        <div id="ansA5" class="answer-box">
+            <p>一共可以画 \( \frac{4 \times 3}{2} = 6 \) 条直线。图形略。</p>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>6.</strong> 计算下列各题：</p>
+        <p>\((1)\ 23^{\circ}30^{\prime} = \underline{\qquad}^{\circ},\quad 13.6^{\circ} = \underline{\qquad}^{\circ}\underline{\qquad}^{\prime}\)</p>
+        <p>\((2)\ 52^{\circ}45^{\prime} - 32^{\circ}46^{\prime} = \underline{\qquad}^{\circ}\underline{\qquad}^{\prime}\)</p>
+        <p>\((3)\ 18.3^{\circ} + 26^{\circ}34^{\prime} = \underline{\qquad}^{\circ}\underline{\qquad}^{\prime}\)</p>
+        <p>\((4)\ 12^{\circ}17^{\prime} \times 4 = \underline{\qquad}^{\circ}\underline{\qquad}^{\prime}\)</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansA6')">📌 显示答案</button>
+        <div id="ansA6" class="answer-box">
+            <p>(1) \(23.5^{\circ},\ 13^{\circ}36^{\prime}\)</p>
+            <p>(2) \(19^{\circ}59^{\prime}\)</p>
+            <p>(3) \(44^{\circ}52^{\prime}\)（或 \(44.866...^{\circ}\)）</p>
+            <p>(4) \(49^{\circ}8^{\prime}\)</p>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>7.</strong> 根据图形填空：</p>
+        <p>(1) \(\angle AOC = \_\_\_\_ + \_\_\_\_\)</p>
+        <p>(2) \(\angle AOC - \angle AOB = \_\_\_\_\)</p>
+        <p>(3) \(\angle COD = \angle AOD - \_\_\_\_\)</p>
+        <p>(4) \(\angle BOC = \_\_\_\_ - \_\_\_\_\)</p>
+        <p>(5) \(\angle AOB + \angle COD = \_\_\_\_ - \_\_\_\_\)</p>
+        <div class="figure-box">
+            <img src="复习A7.png" alt="角的图形" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习A7.png（角的图形）</div>
+            <div class="figcaption">（第7题）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansA7')">📌 显示答案</button>
+        <div id="ansA7" class="answer-box">
+            <p>(1) \(\angle AOB + \angle BOC\)</p>
+            <p>(2) \(\angle BOC\)</p>
+            <p>(3) \(\angle AOC\)</p>
+            <p>(4) \(\angle AOC - \angle AOB\) 或 \(\angle AOC - \angle AOB\)</p>
+            <p>(5) \(\angle AOD - \angle BOC\)</p>
+        </div>
+    </div>
+
+    <!-- 复习题 B组 -->
+    <div class="section-title">复习题 B组</div>
+
+    <div class="exercise-item">
+        <p><strong>8.</strong> 如图，\(EF, EG\) 分别是 \(\angle AEB\) 和 \(\angle BEC\) 的平分线，求 \(\angle FEG\) 的度数，并写出 \(\angle FEB\) 的余角。</p>
+        <div class="figure-box">
+            <img src="复习B8.png" alt="角平分线" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习B8.png</div>
+            <div class="figcaption">（第8题）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansB8')">📌 显示答案</button>
+        <div id="ansB8" class="answer-box">
+            <p>\(\angle FEG = \frac{1}{2}(\angle AEB + \angle BEC) = \frac{1}{2} \times 180^{\circ} = 90^{\circ}\)；\(\angle FEB\) 的余角是 \(\angle GEB\)（或 \(\angle BEG\)）。</p>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>9.</strong> 如图，已知 \(\angle A\) 和 \(\angle B\)，利用尺规作图作 \(\angle C\)，使 \(\angle C = \angle A + \angle B\)。</p>
+        <div class="figure-box">
+            <img src="复习B9.png" alt="两个角" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习B9.png</div>
+            <div class="figcaption">（第9题）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansB9')">📌 显示作法</button>
+        <div id="ansB9" class="answer-box">
+            <p>作法：①作射线 \(O'C\)；②以 \(O\) 为圆心，任意长为半径画弧交 \(\angle A\) 两边于两点，以 \(O'\) 为圆心相同半径画弧交 \(O'C\) 于一点；③以该点为圆心，以 \(\angle A\) 两交点间的距离为半径画弧，交前弧于一点，过该点作射线 \(O'D\)，则 \(\angle CO'D = \angle A\)；④类似地，以 \(O'\) 为顶点，以 \(O'D\) 为一边，在外部作 \(\angle DO'E = \angle B\)，则 \(\angle CO'E = \angle A + \angle B\)。</p>
+        </div>
+    </div>
+
+    <!-- 复习题 C组（已删除第15题，避免与例题1重复） -->
+    <div class="section-title">复习题 C组</div>
+
+    <div class="exercise-item">
+        <p><strong>16.</strong> 一个直立的三棱柱的俯视图是一个三角形，如图，已知这个俯视图的1个内角等于 \(\angle \alpha\)，夹该角的两条边长分别等于线段 \(m\) 和 \(n\)，试利用尺规作图作出这个俯视图。</p>
+        <div class="figure-box">
+            <img src="复习C16.png" alt="尺规作图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习C16.png</div>
+            <div class="figcaption">（第16题）</div>
+        </div>
+    </div>
+
+    <div class="exercise-item">
+        <p><strong>17.</strong> 请以给定的图形（两个圆、两个三角形、两条平行线段）为构件，尽可能多地构思独特且有意义的图形，并写上一两句贴切、诙谐的解说词。如图就是符合要求的两个图形。你还能构思出其他图形吗？比一比，看谁构思得多。</p>
+        <div class="figure-box">
+            <img src="复习C17.png" alt="图形构思" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 复习C17.png</div>
+            <div class="figcaption">（第17题）</div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从现实物体中抽象出几何图形（柱体、锥体、球体、点、线、面）。<br>
+        <strong>分类思想：</strong> 将立体图形按形状分类，将角按大小分类。<br>
+        <strong>转化思想：</strong> 立体图形与三视图、展开图之间的相互转化；多边形分割为三角形。<br>
+        <strong>数形结合：</strong> 用数量（角度、长度）刻画几何图形，通过计算解决问题。<br>
+        <strong>分类讨论：</strong> 线段中点问题中考虑点在不同位置的情况。</p>
+    </div>
+
+    <!-- 读一读：数学抽象（可折叠） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 抽象——数学的眼镜</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>“抽象”是数学最核心的思想之一。当我们看到生活中的实物，比如金字塔、足球、书本，数学家用“抽象”的眼光去掉颜色、材质、重量等非几何属性，只留下形状、大小、位置关系，就得到了几何图形。正是这种抽象，让数学能够跨越不同的实物，研究普遍性的规律。例如，无论是什么材料做的长方体，我们都用同一个公式计算体积。本章中，我们从物体抽象出立体图形，从立体图形抽象出视图和展开图，又从复杂图形抽象出点、线、角等基本元素。抽象让我们能够由浅入深、由表及里地认识世界。</p>
+        </div>
+    </div>
+
+    <!-- 本章要点（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 本章要点</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">柱体、锥体、球体、多面体</div>
+            <div class="summary-item">三视图（主视图、俯视图、左视图）</div>
+            <div class="summary-item">立体图形的表面展开图（特别是正方体的11种展开图）</div>
+            <div class="summary-item">多边形与圆的初步认识</div>
+            <div class="summary-item">点、线段、射线、直线的概念及基本事实</div>
+            <div class="summary-item">线段的中点、比较线段长短的方法</div>
+            <div class="summary-item">角的概念、表示、度量、分类</div>
+            <div class="summary-item">角平分线、余角、补角</div>
+        </div>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第3章复习</div>
+</div>
+
+<!-- 图片错误处理 + 折叠脚本 -->
+<script>
+    // 如果图片加载失败，显示占位符文字
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+        });
+    });
+
+    // 答案切换
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 折叠本章要点
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    // 折叠读一读
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

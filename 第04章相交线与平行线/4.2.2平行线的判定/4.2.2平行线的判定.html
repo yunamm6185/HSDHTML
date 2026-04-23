@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.2 平行线的判定 | 华师版·七上 第4章 | 动态三线八角模型</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号，并配置为使用斜线平行符号 -->
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {
+                packages: {'[+]': ['ams']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 800px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 1px dashed #2675a8;
+            padding: 0 4px;
+            margin: 0 2px;
+            letter-spacing: 2px;
+        }
+        .symbol-note {
+            background: #e6f2fa;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #014682;
+            border-left: 4px solid #2675a8;
+        }
+
+        /* ========= 交互模型样式 (从4.1.3移植) ========= */
+        .interactive-model {
+            background: #ffffff;
+            border-radius: 32px;
+            margin: 2rem 0;
+            padding: 1.2rem 1.5rem 1.8rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            border: 2px solid #cbe4fe;
+        }
+        .model-title {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #0f5b7a;
+            background: #eef4fc;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            margin-bottom: 1.2rem;
+            border-left: 6px solid #2675a8;
+        }
+        .model-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: stretch;
+        }
+        .model-left {
+            flex: 2;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .model-svg {
+            background: #fefef9;
+            border-radius: 20px;
+            box-shadow: inset 0 1px 4px #0001, 0 6px 12px rgba(0,0,0,0.05);
+            padding: 10px;
+        }
+        .model-svg svg {
+            width: 100%;
+            height: auto;
+            background: #fafaf5;
+            border-radius: 16px;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #d9e2ec;
+        }
+        .sliders-area {
+            background: #f8fafd;
+            border-radius: 24px;
+            padding: 12px 16px;
+            border: 1px solid #e0edf5;
+        }
+        .slider-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-evenly;
+            margin-bottom: 16px;
+        }
+        .slider-row:last-child {
+            margin-bottom: 0;
+        }
+        .slider-item {
+            flex: 1;
+            min-width: 160px;
+            background: white;
+            border-radius: 20px;
+            padding: 8px 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+        }
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        .slider-name {
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .angle-badge-sm {
+            width: 26px;
+            height: 26px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        .angle-value-sm {
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .slider-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .stepper-sm {
+            width: 30px;
+            height: 30px;
+            background: #95a5a6;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .stepper-sm:hover { transform: scale(1.05); background: #7f8c8d; }
+        .slider-control input {
+            flex: 1;
+            height: 5px;
+            border-radius: 5px;
+            background: #cbdae9;
+        }
+        .constraint-sm {
+            font-size: 0.7rem;
+            color: #5f7f9e;
+            margin-top: 6px;
+            text-align: center;
+        }
+        .model-right {
+            flex: 1.1;
+            min-width: 260px;
+            background: #f8fafd;
+            border-radius: 28px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #cde0f0;
+        }
+        .parallel-status {
+            text-align: center;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: linear-gradient(135deg, #2c7da0, #1f6392);
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.25s;
+            font-size: 1.2rem;
+        }
+        .parallel-status.show {
+            opacity: 1;
+        }
+        .button-pair {
+            background: #ffffffcc;
+            border-radius: 48px;
+            margin-bottom: 14px;
+            padding: 8px 12px;
+            border: 1px solid #e2edf7;
+        }
+        .pair-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c6e9e;
+            margin-bottom: 8px;
+            padding-left: 6px;
+        }
+        .pair-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-model {
+            background: #eef3fc;
+            border: 1px solid #9bb7d4;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #1d5a8b;
+            cursor: pointer;
+            transition: 0.1s;
+            font-size: 0.9rem;
+            flex: 1;
+            text-align: center;
+            min-width: 100px;
+        }
+        .btn-model.active {
+            background: #2675a8;
+            color: white;
+            border-color: #2675a8;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .btn-model.reset {
+            background: #ecf0f1;
+            color: #2c3e50;
+            border-color: #bdc3c7;
+        }
+        .reset-row {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+        }
+        .shape-badge {
+            font-size: 1.1rem;
+            margin-left: 4px;
+        }
+        .glow-line1 { animation: glowBlue 1.4s ease-in-out infinite; }
+        .glow-line2 { animation: glowGreen 1.4s ease-in-out infinite; }
+        @keyframes glowBlue {
+            0%,100%{ stroke: #2980b9; filter: drop-shadow(0 0 2px #3498db); }
+            50%{ stroke: #5dade2; filter: drop-shadow(0 0 10px #3498db); }
+        }
+        @keyframes glowGreen {
+            0%,100%{ stroke: #27ae60; filter: drop-shadow(0 0 2px #2ecc71); }
+            50%{ stroke: #52be80; filter: drop-shadow(0 0 10px #2ecc71); }
+        }
+        @media (max-width: 800px) {
+            .textbook { padding: 1rem; }
+            .model-main { flex-direction: column; }
+            .model-right { width: 100%; }
+            .slider-row { flex-direction: column; gap: 12px; }
+            .slider-item { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第4章 相交线与平行线 · 4.2.2</span>
+    </div>
+    <h1>第4章 相交线与平行线</h1>
+    <div class="chapter-intro">★ 掌握平行线的三种判定方法，能运用它们进行简单的推理和计算。</div>
+    <h2>4.2 平行线</h2>
+    <div class="lesson-title">第2课时 平行线的判定</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解平行线的三种判定方法</div>
+            <div class="target-item"><span>✔</span>能根据同位角、内错角、同旁内角的关系判定两条直线平行</div>
+            <div class="target-item"><span>✔</span>会进行简单的推理和书写</div>
+            <div class="target-item"><span>✔</span>体会几何推理的基本过程</div>
+        </div>
+    </div>
+
+    <!-- 引入：如何判定平行 -->
+    <div class="intro-block">
+        <p>要判定两条直线是否平行，我们无法直接看到它们在无限延长的过程中是否相交。那么，从画平行线的过程中，你能得到什么启示呢？</p>
+    </div>
+
+    <!-- 判定方法1：同位角相等，两直线平行 -->
+    <div class="explore-box">
+        <h4>判定方法1：同位角相等，两直线平行</h4>
+        <p>如图4.2.5，在画平行线时，三角板紧靠直尺的一边和紧靠直线 \(a\) 的一边所成的角在移动前后构成了一对同位角，其大小始终不变。因此，只要保持同位角相等，就可以保证画出的直线与已知直线平行。</p>
+        <div class="figure-box">
+            <img src="4.2.5.png" alt="图4.2.5 同位角相等">
+            <div class="figcaption">图4.2.5 如果 \(\angle 1 = \angle 2\)，那么 \(a \mathrel{/\mkern-5mu/} b\)</div>
+        </div>
+        <p>于是得到基本事实：<strong>两条直线被第三条直线所截，如果同位角相等，那么这两条直线平行。</strong>简称为：同位角相等，两直线平行。</p>
+    </div>
+
+    <!-- 判定方法2：内错角相等，两直线平行 -->
+    <div class="explore-box">
+        <h4>判定方法2：内错角相等，两直线平行</h4>
+        <p>如图4.2.5，如果内错角相等，即 \(\angle 2 = \angle 3\)，由于 \(\angle 1 = \angle 3\)（对顶角相等），因此 \(\angle 1 = \angle 2\)。根据同位角相等，可得 \(a \mathrel{/\mkern-5mu/} b\)。所以：</p>
+        <div class="figure-box">
+            <img src="4.2.5.png" alt="图4.2.5 内错角相等">
+            <div class="figcaption">图4.2.5 如果 \(\angle 2 = \angle 3\)，那么 \(a \mathrel{/\mkern-5mu/} b\)</div>
+        </div>
+        <p><strong>两条直线被第三条直线所截，如果内错角相等，那么这两条直线平行。</strong>简称为：内错角相等，两直线平行。</p>
+    </div>
+
+    <!-- 判定方法3：同旁内角互补，两直线平行 -->
+    <div class="explore-box">
+        <h4>判定方法3：同旁内角互补，两直线平行</h4>
+        <p>如图4.2.5.3，如果同旁内角互补，即 \(\angle 2 + \angle 4 = 180^\circ\)，由于 \(\angle 1 + \angle 4 = 180^\circ\)（邻补角），可得 \(\angle 1 = \angle 2\)（等角的补角相等）。根据同位角相等，可得 \(a \mathrel{/\mkern-5mu/} b\)。因此：</p>
+        <div class="figure-box">
+            <img src="4.2.5.3.png" alt="图4.2.5.3 同旁内角互补">
+            <div class="figcaption">图4.2.5.3 如果 \(\angle 2 + \angle 4 = 180^\circ\)，那么 \(a \mathrel{/\mkern-5mu/} b\)</div>
+        </div>
+        <p><strong>两条直线被第三条直线所截，如果同旁内角互补，那么这两条直线平行。</strong>简称为：同旁内角互补，两直线平行。</p>
+    </div>
+
+    <!-- 概括三种方法 -->
+    <div class="highlight">
+        <p style="margin:0; font-size:1.2rem;">📌 平行线的判定方法：</p>
+        <ul class="rule-list">
+            <li>同位角相等，两直线平行；</li>
+            <li>内错角相等，两直线平行；</li>
+            <li>同旁内角互补，两直线平行。</li>
+        </ul>
+    </div>
+
+    <!-- ========= 交互模型：从4.1.3移植的动态三线八角模型 ========= -->
+    <div class="interactive-model">
+        <div class="model-title">📐 动手实践 | 三线八角动态模型</div>
+        <div class="model-main">
+            <!-- 左侧：画布 + 滑块区 -->
+            <div class="model-left">
+                <div class="model-svg">
+                    <svg id="dynamic-svg" viewBox="0 0 700 520" preserveAspectRatio="xMidYMid meet">
+                        <line id="dyn-line1" stroke="#2c3e50" stroke-width="5" stroke-linecap="round"/>
+                        <line id="dyn-line2" stroke="#2c3e50" stroke-width="5" stroke-linecap="round"/>
+                        <line id="dyn-line3" stroke="#ff7744" stroke-width="5" stroke-linecap="round"/>
+                        <g id="dyn-centers"></g>
+                        <g id="dyn-angles"></g>
+                        <g id="dyn-shapeGroup"></g>
+                        <g id="dyn-labels"></g>
+                    </svg>
+                </div>
+                <div class="sliders-area">
+                    <div class="slider-row">
+                        <div class="slider-item">
+                            <div class="slider-header">
+                                <span class="slider-name"><span class="angle-badge-sm">1</span> \(\angle 1\)</span>
+                                <span class="angle-value-sm" id="dynDisplay1">87°</span>
+                            </div>
+                            <div class="slider-control">
+                                <button class="stepper-sm" onclick="adjustAngleModel('1', -1)">−</button>
+                                <input type="range" id="dynSlider1" min="15" max="165" value="87">
+                                <button class="stepper-sm" onclick="adjustAngleModel('1', 1)">+</button>
+                            </div>
+                            <div class="constraint-sm">互补 ∠2</div>
+                        </div>
+                        <div class="slider-item">
+                            <div class="slider-header">
+                                <span class="slider-name"><span class="angle-badge-sm" style="background:#3498db;">2</span> \(\angle 2\)</span>
+                                <span class="angle-value-sm" id="dynDisplay2" style="color:#3498db;">93°</span>
+                            </div>
+                            <div class="slider-control">
+                                <button class="stepper-sm" onclick="adjustAngleModel('2', -1)">−</button>
+                                <input type="range" id="dynSlider2" min="15" max="165" value="93">
+                                <button class="stepper-sm" onclick="adjustAngleModel('2', 1)">+</button>
+                            </div>
+                            <div class="constraint-sm">\(\angle 1 + \angle 2 = 180^\circ\)</div>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <div class="slider-item">
+                            <div class="slider-header">
+                                <span class="slider-name"><span class="angle-badge-sm" style="background:#2ecc71;">6</span> \(\angle 6\)</span>
+                                <span class="angle-value-sm" id="dynDisplay6" style="color:#2ecc71;">113°</span>
+                            </div>
+                            <div class="slider-control">
+                                <button class="stepper-sm" onclick="adjustAngleModel('6', -1)">−</button>
+                                <input type="range" id="dynSlider6" min="15" max="165" value="113">
+                                <button class="stepper-sm" onclick="adjustAngleModel('6', 1)">+</button>
+                            </div>
+                            <div class="constraint-sm">互补 ∠8</div>
+                        </div>
+                        <div class="slider-item">
+                            <div class="slider-header">
+                                <span class="slider-name"><span class="angle-badge-sm" style="background:#9b59b6;">8</span> \(\angle 8\)</span>
+                                <span class="angle-value-sm" id="dynDisplay8" style="color:#9b59b6;">67°</span>
+                            </div>
+                            <div class="slider-control">
+                                <button class="stepper-sm" onclick="adjustAngleModel('8', -1)">−</button>
+                                <input type="range" id="dynSlider8" min="15" max="165" value="67">
+                                <button class="stepper-sm" onclick="adjustAngleModel('8', 1)">+</button>
+                            </div>
+                            <div class="constraint-sm">\(\angle 6 + \angle 8 = 180^\circ\)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右侧：按钮区 -->
+            <div class="model-right">
+                <div id="parallelStatusDynamic" class="parallel-status">
+                    <span class="math-text">\(l_1 // l_2\)</span>
+                    <div class="sub-text">两直线平行</div>
+                </div>
+                <div class="button-pair">
+                    <div class="pair-title">📌 同位角 · Corresponding Angles</div>
+                    <div class="pair-buttons">
+                        <button class="btn-model" onclick="showAnglePairModel('corresponding')">同位角</button>
+                        <button class="btn-model" onclick="showLetterShapeModel('F')">同位角形状 <span class="shape-badge">(F)</span></button>
+                    </div>
+                </div>
+                <div class="button-pair">
+                    <div class="pair-title">✂️ 内错角 · Alternate Interior Angles</div>
+                    <div class="pair-buttons">
+                        <button class="btn-model" onclick="showAnglePairModel('alternate')">内错角</button>
+                        <button class="btn-model" onclick="showLetterShapeModel('Z')">内错角形状 <span class="shape-badge">(Z)</span></button>
+                    </div>
+                </div>
+                <div class="button-pair">
+                    <div class="pair-title">🌀 同旁内角 · Interior Angles on Same Side</div>
+                    <div class="pair-buttons">
+                        <button class="btn-model" onclick="showAnglePairModel('consecutive')">同旁内角</button>
+                        <button class="btn-model" onclick="showLetterShapeModel('C')">同旁内角形状 <span class="shape-badge">(C)</span></button>
+                    </div>
+                </div>
+                <div class="reset-row">
+                    <button class="btn-model reset" onclick="resetHighlightModel()">重置所有高亮</button>
+                </div>
+                <div class="constraint-sm" style="margin-top:12px; text-align:center;">💡 拖动滑块改变角度，平行时两线发光✨</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 思考：尺规作平行线（课本原文） -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>我们已经知道利用尺规作图可以作一条线段等于已知线段，以及作一个角等于已知角的方法。那么，如何过已知直线外一点作该直线的平行线呢？</p>
+        <p>由平行线的判定方法，你自然会想到在直线 \(AB\) 和直线外一点 \(P\) 处，设法如图4.2.6那样构造一对相等的同位角 \(\angle 1\) 和 \(\angle 2\)，那样就可以作出所需要的平行线了。</p>
+        <div class="figure-box">
+            <img src="4.2.6.png" alt="图4.2.6 尺规作平行线示意">
+            <div class="figcaption">图4.2.6</div>
+        </div>
+    </div>
+
+    <!-- 试一试：按下列作法准确地过点P作直线AB的平行线（图用4.2.7） -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>如图4.2.7，已知直线 \(AB\)，以及直线 \(AB\) 外一点 \(P\)，试利用尺规作图按下列作法准确地过点 \(P\) 作直线 \(AB\) 的平行线：</p>
+        <div class="figure-box">
+            <img src="4.2.7.png" alt="图4.2.7 尺规作平行线步骤">
+            <div class="figcaption">图4.2.7</div>
+        </div>
+        <ol>
+            <li>在直线 \(AB\) 上取一点 \(Q\)，经过点 \(P\) 和点 \(Q\) 作直线 \(MN\)；</li>
+            <li>作 \(\angle MPD = \angle PQB\)，并使得 \(\angle MPD\) 与 \(\angle PQB\) 是一对同位角；</li>
+            <li>反向延长射线 \(PD\)，得到直线 \(CD\)。直线 \(CD\) 就是过点 \(P\) 所要求作的直线 \(AB\) 的平行线。</li>
+        </ol>
+    </div>
+
+    <!-- 例题1（使用4.2.8.png） -->
+    <div class="example-box">
+        <h4>📐 例1</h4>
+        <p>如图4.2.8，直线 \(a, b\) 被直线 \(l\) 所截，已知 \(\angle 1 = 115^\circ\)，\(\angle 2 = 115^\circ\)，直线 \(a, b\) 平行吗？为什么？</p>
+        <div class="figure-box">
+            <img src="4.2.8.png" alt="图4.2.8 例1图">
+            <div class="figcaption">图4.2.8</div>
+        </div>
+        <div class="symbol-note">
+            ⚡ 在下面的推理中，我们用符号“∵”表示“因为”，“∴”表示“所以”。
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx1')">📌 显示解答</button>
+        <div id="ansEx1" class="answer-box">
+            <p>\(\because \angle 1 = 115^\circ\)，\(\angle 2 = 115^\circ\) (已知)，<br>
+            \(\therefore \angle 1 = \angle 2\) (等量代换).<br>
+            \(\therefore a \mathrel{/\mkern-5mu/} b\) (内错角相等，两直线平行).</p>
+        </div>
+    </div>
+
+    <!-- 读一读：推理的基本思想 -->
+    <div class="reading-block" id="readingBlock3">
+        <div class="reading-header" onclick="toggleReading3()">
+            <h4>📖 读一读 · 推理的基本思想</h4>
+            <span class="toggle-icon" id="toggleIcon3">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent3">
+            <p>“推理”是数学的一种基本思想，包括归纳推理和演绎推理。归纳推理是一种从特殊到一般的推理，我们通过一些探索、操作，得到某些猜想的过程就是在做这样的推理。数与代数中由一些具体的结果，归纳得到一般的结论，也是这样的推理。演绎推理是一种从一般到特殊的推理，它借助于一些公认的基本事实及由此推导得到的结论，通过推断，说明最后结论的正确。例1、例2、例3采用的就是演绎推理。</p>
+            <p>在书写推理过程时，我们常用符号 “\(\because\)” 表示“因为”，“\(\therefore\)” 表示“所以”，使表达更加简洁。例如上面的例题解答中就使用了这些符号。</p>
+        </div>
+    </div>
+
+    <!-- 例题2 -->
+    <div class="example-box">
+        <h4>📐 例2</h4>
+        <p>如图4.2.9，在四边形 \(ABCD\) 中，已知 \(\angle B = 60^\circ\)，\(\angle C = 120^\circ\)，\(AB\) 与 \(CD\) 平行吗？\(AD\) 与 \(BC\) 平行吗？</p>
+        <div class="figure-box">
+            <img src="4.2.9.png" alt="图4.2.9 例2图">
+            <div class="figcaption">图4.2.9</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx2')">📌 显示解答</button>
+        <div id="ansEx2" class="answer-box">
+            <p>\(\because \angle B = 60^\circ\)，\(\angle C = 120^\circ\) (已知)，<br>
+            \(\therefore \angle B + \angle C = 180^\circ\) (等式的性质).<br>
+            \(\therefore AB \mathrel{/\mkern-5mu/} CD\) (同旁内角互补，两直线平行).<br>
+            \(\because\) 已知条件不足，无法判定 \(AD\) 与 \(BC\) 是否平行。</p>
+        </div>
+    </div>
+
+    <!-- 例题3 -->
+    <div class="example-box">
+        <h4>📐 例3</h4>
+        <p>如图4.2.10，在同一平面内，直线 \(CD\)、\(EF\) 均与直线 \(AB\) 垂直，点 \(D\)、\(F\) 为垂足。试判断 \(CD\) 与 \(EF\) 是否平行。</p>
+        <div class="figure-box">
+            <img src="4.2.10.png" alt="图4.2.10 例3图">
+            <div class="figcaption">图4.2.10</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx3')">📌 显示解答</button>
+        <div id="ansEx3" class="answer-box">
+            <p>\(\because CD \perp AB\)，\(EF \perp AB\) (已知)，<br>
+            \(\therefore \angle ADC = \angle AFE = 90^\circ\).<br>
+            \(\therefore CD \mathrel{/\mkern-5mu/} EF\) (同位角相等，两直线平行).<br>
+            由此得到：<strong>同一平面内，垂直于同一条直线的两条直线平行</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 练习区 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 根据题图，在下列解答中，填上适当的理由：</p>
+            <p>(1) \(\because \angle B = \angle 1\) (已知)，\(\therefore AD \mathrel{/\mkern-5mu/} BC\) 
+                <span class="blank-space">(          )</span>.<br>
+            (2) \(\because \angle D = \angle 1\) (已知)，\(\therefore AB \mathrel{/\mkern-5mu/} CD\) 
+                <span class="blank-space">(          )</span>.</p>
+            <div class="figure-box">
+                <img src="第1题.png" alt="第1题图">
+                <div class="figcaption">（第1题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP1')">🔍 参考答案</button>
+            <div id="ansP1" class="answer-box">
+                <p>(1) 同位角相等，两直线平行； (2) 内错角相等，两直线平行。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 根据题图，在下列解答中，填空：</p>
+            <p>(1) \(\because \angle BAD + \angle ABC = 180^\circ\) (已知)，<br>​\(\therefore\) 
+                <span class="blank-space">(          )</span> \(\mathrel{/\mkern-5mu/}\) 
+                <span class="blank-space">(          )</span> (同旁内角互补，两直线平行).<br>
+            (2) \(\because \angle BCD + \angle ABC = 180^\circ\) (已知)，<br>​\(\therefore\) 
+                <span class="blank-space">(          )</span> \(\mathrel{/\mkern-5mu/}\) 
+                <span class="blank-space">(          )</span> (同旁内角互补，两直线平行).</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP2')">🔍 参考答案</button>
+            <div id="ansP2" class="answer-box">
+                <p>(1) \(AD \mathrel{/\mkern-5mu/} BC\)； (2) \(AB \mathrel{/\mkern-5mu/} CD\)。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 根据图中给出的条件，指出互相平行的直线和互相垂直的直线。</p>
+            <div class="figure-box">
+                <img src="第3题.png" alt="第3题图">
+                <div class="figcaption">（第3题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP3')">🔍 参考答案</button>
+            <div id="ansP3" class="answer-box">
+                <p>a∥b，c∥d，a⊥e，b⊥e</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一个读一读：工人师傅的画法 -->
+    <div class="reading-block" id="readingBlock1">
+        <div class="reading-header" onclick="toggleReading1()">
+            <h4>📖 读一读 · 工人师傅的画法</h4>
+            <span class="toggle-icon" id="toggleIcon1">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent1">
+            <p>我们曾利用手中的直尺和三角板，过直线外一点画出与已知直线平行的直线，你可能还见过木工师傅用角尺画出平行线的方法。（如图4.2.12）</p>
+            <div class="figure-box">
+                <img src="4.2.12.png" alt="图4.2.12 工人师傅用角尺画平行线">
+                <div class="figcaption">图4.2.12 工人师傅的方法</div>
+            </div>
+            <p>两者的原理一样，都是依据平行线的判定定理：同位角相等，两直线平行。</p>
+        </div>
+    </div>
+
+    <!-- 第二个读一读：小明的折纸方法 -->
+    <div class="reading-block" id="readingBlock2">
+        <div class="reading-header" onclick="toggleReading2()">
+            <h4>📖 读一读 · 小明的折纸方法</h4>
+            <span class="toggle-icon" id="toggleIcon2">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent2">
+            <p>小明还发现了另一种折纸的方法：</p>
+            <div class="figure-box">
+                <img src="4.2.13.png" alt="图4.2.13 小明折纸的方法">
+                <div class="figcaption">图4.2.13 小明折纸的方法</div>
+            </div>
+            <ol>
+                <li>将直线 \(AB\) 翻折，使折痕过点 \(P\)，直线的左、右两边互相重合；</li>
+                <li>将已得到的第一条折痕在点 \(P\) 处翻折，使上、下两部分重合，得到第二条折痕。</li>
+            </ol>
+            <p>小明由此断定第二条折痕就是所求的直线，即过点 \(P\) 平行于已知直线 \(AB\) 的直线。你知道小明画平行线方法的理由吗？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansFold')">📐 显示理由</button>
+            <div id="ansFold" class="answer-box">
+                <p>第一次折叠使左右两边重合，折痕垂直于 \(AB\)（即第一条折痕是 \(AB\) 的垂线）；第二次折叠使上下两部分重合，折痕垂直于第一条折痕。根据“垂直于同一条直线的两条直线平行”，第二条折痕平行于 \(AB\)。</p>
+            </div>
+            <p>你还能找到其他画平行线的方法吗？上网搜一搜，动脑想一想，动手试一试、画一画，大家一起交流，相信一定能找到更多画平行线的方法！</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">同位角相等，两直线平行</div>
+            <div class="summary-item">内错角相等，两直线平行</div>
+            <div class="summary-item">同旁内角互补，两直线平行</div>
+            <div class="summary-item">同一平面内，垂直于同一直线的两直线平行</div>
+            <div class="summary-item">推理格式：“∵……， ∴……”并注明理由</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将平行线的判定转化为角的数量关系（相等或互补）。<br>
+        <strong>推理思想：</strong> 从已知条件出发，依据基本事实推导结论。<br>
+        <strong>模型思想：</strong> 将实际问题抽象为“三线八角”模型进行判断。</p>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本习题4.2 A组第1、2、3题；用硬纸板制作一个“三线八角”模型，并标注判定方法。</span>
+    </div>
+
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 由角的关系推平行，开启几何推理之门 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第55课时</div>
+</div>
+
+<script>
+    // 原有函数 (折叠/答案等)
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading1() {
+        var c = document.getElementById('readingContent1');
+        var icon = document.getElementById('toggleIcon1');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading2() {
+        var c = document.getElementById('readingContent2');
+        var icon = document.getElementById('toggleIcon2');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading3() {
+        var c = document.getElementById('readingContent3');
+        var icon = document.getElementById('toggleIcon3');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+
+<!-- ========= 三线八角动态模型脚本 (从4.1.3完整移植) ========= -->
+<script>
+(function(){
+    const colors = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#f39c12', '#1abc9c', '#e91e63', '#f1c40f'];
+    const angleNames = ['1','2','3','4','5','6','7','8'];
+    const BASE_CONFIG = { l3: { center: {x: 350, y: 290}, angle: -75, length: 450 }, l1: { length: 500 }, l2: { length: 500 } };
+    let rotationCenters = { p1: null, p2: null };
+    let currentAngles = { angle1: 87, angle2: 93, angle6: 67, angle8: 113 };
+    let angleData = {};
+    let isParallel = false;
+
+    const svg = document.getElementById('dynamic-svg');
+    const line1El = document.getElementById('dyn-line1');
+    const line2El = document.getElementById('dyn-line2');
+    const line3El = document.getElementById('dyn-line3');
+    const anglesGroup = document.getElementById('dyn-angles');
+    const labelsGroup = document.getElementById('dyn-labels');
+    const centersGroup = document.getElementById('dyn-centers');
+    const shapeGroup = document.getElementById('dyn-shapeGroup');
+    const parallelStatusDiv = document.getElementById('parallelStatusDynamic');
+    const slider1 = document.getElementById('dynSlider1'), slider2 = document.getElementById('dynSlider2');
+    const slider6 = document.getElementById('dynSlider6'), slider8 = document.getElementById('dynSlider8');
+    const display1 = document.getElementById('dynDisplay1'), display2 = document.getElementById('dynDisplay2');
+    const display6 = document.getElementById('dynDisplay6'), display8 = document.getElementById('dynDisplay8');
+
+    function normalizeAngle(angle){ while(angle<0) angle+=360; while(angle>360) angle-=360; if(angle>180) angle=360-angle; return angle; }
+    function getLineEquation(x1,y1,x2,y2){ let A=y2-y1, B=x1-x2, C=x2*y1-x1*y2; return {A,B,C}; }
+    function getIntersection(l1,l2){ let eq1=getLineEquation(l1.x1,l1.y1,l1.x2,l1.y2), eq2=getLineEquation(l2.x1,l2.y1,l2.x2,l2.y2); let det=eq1.A*eq2.B-eq2.A*eq1.B; if(Math.abs(det)<0.001) return null; let x=(eq1.B*eq2.C-eq2.B*eq1.C)/det, y=(eq2.A*eq1.C-eq1.A*eq2.C)/det; return {x,y}; }
+    function calculateLineEndpoints(config){ let rad=config.angle*Math.PI/180, half=config.length/2; return { x1: config.center.x-half*Math.cos(rad), y1: config.center.y-half*Math.sin(rad), x2: config.center.x+half*Math.cos(rad), y2: config.center.y+half*Math.sin(rad) }; }
+    function calculateLineFromCenter(center,angle,length){ let rad=angle*Math.PI/180, half=length/2; return { x1: center.x-half*Math.cos(rad), y1: center.y-half*Math.sin(rad), x2: center.x+half*Math.cos(rad), y2: center.y+half*Math.sin(rad) }; }
+    function createAngleArc(center,startPoint,endPoint,radius,color){
+        let startAngle=Math.atan2(startPoint.y-center.y, startPoint.x-center.x);
+        let endAngle=Math.atan2(endPoint.y-center.y, endPoint.x-center.x);
+        let diff=endAngle-startAngle; while(diff>Math.PI) diff-=2*Math.PI; while(diff<-Math.PI) diff+=2*Math.PI;
+        let large=Math.abs(diff)>Math.PI?1:0, sweep=diff>0?1:0;
+        let x1=center.x+radius*Math.cos(startAngle), y1=center.y+radius*Math.sin(startAngle);
+        let x2=center.x+radius*Math.cos(endAngle), y2=center.y+radius*Math.sin(endAngle);
+        let path=document.createElementNS("http://www.w3.org/2000/svg","path");
+        path.setAttribute("d",`M ${x1} ${y1} A ${radius} ${radius} 0 ${large} ${sweep} ${x2} ${y2}`);
+        path.setAttribute("fill","none"); path.setAttribute("stroke",color); path.setAttribute("stroke-width","5"); path.setAttribute("stroke-linecap","round");
+        let midAngle=startAngle+diff/2;
+        return {path, midAngle};
+    }
+    function initCenters(){
+        let l1t={...BASE_CONFIG.l1, center:{x:350,y:180}, angle:12}, l2t={...BASE_CONFIG.l2, center:{x:350,y:400}, angle:-8};
+        let line1=calculateLineEndpoints(l1t), line2=calculateLineEndpoints(l2t), line3=calculateLineEndpoints(BASE_CONFIG.l3);
+        rotationCenters.p1=getIntersection(line1,line3); rotationCenters.p2=getIntersection(line2,line3);
+        let alpha=BASE_CONFIG.l3.angle;
+        currentAngles.angle1=normalizeAngle(l1t.angle-alpha); currentAngles.angle2=180-currentAngles.angle1;
+        currentAngles.angle6=normalizeAngle(l2t.angle-alpha); currentAngles.angle8=180-currentAngles.angle6;
+        updateDisplays();
+    }
+    function updateDisplays(){
+        display1.textContent=currentAngles.angle1+'°'; display2.textContent=currentAngles.angle2+'°';
+        display6.textContent=currentAngles.angle8+'°'; display8.textContent=currentAngles.angle6+'°';
+        slider1.value=currentAngles.angle1; slider2.value=currentAngles.angle2;
+        slider6.value=currentAngles.angle8; slider8.value=currentAngles.angle6;
+    }
+    function updateGeometry(){
+        let alpha=BASE_CONFIG.l3.angle;
+        let line3=calculateLineEndpoints(BASE_CONFIG.l3);
+        let line1=calculateLineFromCenter(rotationCenters.p1, alpha+currentAngles.angle1, BASE_CONFIG.l1.length);
+        let line2=calculateLineFromCenter(rotationCenters.p2, alpha+currentAngles.angle6, BASE_CONFIG.l2.length);
+        line1El.setAttribute('x1',line1.x1); line1El.setAttribute('y1',line1.y1); line1El.setAttribute('x2',line1.x2); line1El.setAttribute('y2',line1.y2);
+        line2El.setAttribute('x1',line2.x1); line2El.setAttribute('y1',line2.y1); line2El.setAttribute('x2',line2.x2); line2El.setAttribute('y2',line2.y2);
+        line3El.setAttribute('x1',line3.x1); line3El.setAttribute('y1',line3.y1); line3El.setAttribute('x2',line3.x2); line3El.setAttribute('y2',line3.y2);
+        isParallel = Math.abs(currentAngles.angle1 - currentAngles.angle6) < 0.5;
+        if(isParallel){ line1El.classList.add('glow-line1'); line2El.classList.add('glow-line2'); parallelStatusDiv.classList.add('show'); }
+        else{ line1El.classList.remove('glow-line1'); line2El.classList.remove('glow-line2'); parallelStatusDiv.classList.remove('show'); line1El.setAttribute('stroke','#2c3e50'); line2El.setAttribute('stroke','#2c3e50'); }
+        updateCentersMarkers(); updateAngleArcs(line1,line2,line3);
+    }
+    function updateCentersMarkers(){
+        centersGroup.innerHTML='';
+        [rotationCenters.p1, rotationCenters.p2].forEach((c,idx)=>{
+            let circle=document.createElementNS("http://www.w3.org/2000/svg","circle");
+            circle.setAttribute("cx",c.x); circle.setAttribute("cy",c.y); circle.setAttribute("r","5");
+            circle.setAttribute("fill",idx===0?'#e74c3c':'#2ecc71'); circle.setAttribute("stroke","white"); circle.setAttribute("stroke-width","2");
+            centersGroup.appendChild(circle);
+        });
+    }
+    function updateAngleArcs(line1,line2,line3){
+        anglesGroup.innerHTML=''; labelsGroup.innerHTML=''; angleData={};
+        let inter1=rotationCenters.p1, inter2=rotationCenters.p2;
+        let upPoints=[{x:line1.x1,y:line1.y1},{x:line1.x2,y:line1.y2},{x:line3.x1,y:line3.y1},{x:line3.x2,y:line3.y2}];
+        let downPoints=[{x:line2.x1,y:line2.y1},{x:line2.x2,y:line2.y2},{x:line3.x1,y:line3.y1},{x:line3.x2,y:line3.y2}];
+        let radii=[35,52,40,48,40,38,34,45];
+        let idxColor=0;
+        [[inter1,upPoints],[inter2,downPoints]].forEach(([center,pts])=>{
+            let pairs=[[pts[0],pts[2]],[pts[1],pts[2]],[pts[0],pts[3]],[pts[1],pts[3]]];
+            pairs.forEach((pair,i)=>{
+                let radius=radii[idxColor];
+                let res=createAngleArc(center, pair[0], pair[1], radius, colors[idxColor]);
+                anglesGroup.appendChild(res.path);
+                angleData[angleNames[idxColor]]={path:res.path, color:colors[idxColor]};
+                let labelDist=radius+22; let lx=center.x+labelDist*Math.cos(res.midAngle), ly=center.y+labelDist*Math.sin(res.midAngle);
+                let text=document.createElementNS("http://www.w3.org/2000/svg","text");
+                text.setAttribute("x",lx); text.setAttribute("y",ly); text.setAttribute("text-anchor","middle"); text.setAttribute("dominant-baseline","middle");
+                text.setAttribute("fill",colors[idxColor]); text.textContent=angleNames[idxColor];
+                labelsGroup.appendChild(text);
+                idxColor++;
+            });
+        });
+        let lineLabels=[
+            {x:line1.x2+17,y:line1.y2+17,tex:"l_1",color:isParallel?'#2980b9':'#2c3e50'},
+            {x:line2.x2+12,y:line2.y2-18,tex:"l_2",color:isParallel?'#27ae60':'#2c3e50'},
+            {x:line3.x2+18,y:line3.y2-8,tex:"l_3",color:"#e74c3c"}
+        ];
+        lineLabels.forEach(l=>{ let fo=document.createElementNS("http://www.w3.org/2000/svg","foreignObject"); fo.setAttribute("x",l.x-20); fo.setAttribute("y",l.y-15); fo.setAttribute("width",40); fo.setAttribute("height",30); let div=document.createElement("div"); div.style.color=l.color; div.style.fontSize="20px"; div.style.fontWeight="bold"; div.innerHTML=`\\(${l.tex}\\)`; fo.appendChild(div); labelsGroup.appendChild(fo); });
+        if(window.MathJax) MathJax.typeset();
+    }
+    function adjustAngleModel(angleId, delta){
+        let target, paired;
+        if(angleId==='1'){ target='angle1'; paired='angle2'; }
+        else if(angleId==='2'){ target='angle2'; paired='angle1'; }
+        else if(angleId==='6'){ target='angle8'; paired='angle6'; }
+        else { target='angle6'; paired='angle8'; }
+        let newVal=currentAngles[target]+delta;
+        if(newVal<15) newVal=15; if(newVal>165) newVal=165;
+        currentAngles[target]=newVal; currentAngles[paired]=180-newVal;
+        updateDisplays(); updateGeometry();
+    }
+    function showAnglePairModel(type){
+        resetHighlightModel(true);
+        let pairs=[];
+        if(type==='corresponding') pairs=['2','6'];
+        else if(type==='alternate') pairs=['1','8'];
+        else pairs=['2','8'];
+        Object.keys(angleData).forEach(k=>{ let data=angleData[k]; if(pairs.includes(k)){ data.path.setAttribute("stroke-width","9"); data.path.style.filter=`drop-shadow(0 0 8px ${data.color})`; data.path.style.opacity="1"; } else{ data.path.setAttribute("stroke-width","5"); data.path.style.opacity="0"; } });
+    }
+    function drawFShapeModel(){ shapeGroup.innerHTML=''; let p1=rotationCenters.p1, p2=rotationCenters.p2; let rad1=(BASE_CONFIG.l3.angle+currentAngles.angle1)*Math.PI/180, rad2=(BASE_CONFIG.l3.angle+currentAngles.angle6)*Math.PI/180; let topEnd={x:p1.x+80*Math.cos(rad1),y:p1.y+80*Math.sin(rad1)}; let midEnd={x:p2.x+80*Math.cos(rad2),y:p2.y+80*Math.sin(rad2)}; let extX=p2.x+80*Math.cos(rad2+Math.PI), extY=p2.y+80*Math.sin(rad2+Math.PI); [[p1,topEnd],[p1,p2],[p2,midEnd],[p2,{x:extX,y:extY}]].forEach(seg=>{ let line=document.createElementNS("http://www.w3.org/2000/svg","line"); line.setAttribute("x1",seg[0].x); line.setAttribute("y1",seg[0].y); line.setAttribute("x2",seg[1].x); line.setAttribute("y2",seg[1].y); line.setAttribute("stroke","#e74c3c"); line.setAttribute("stroke-width","9"); line.setAttribute("stroke-linecap","round"); shapeGroup.appendChild(line); }); }
+    function drawZShapeModel(){ shapeGroup.innerHTML=''; let p1=rotationCenters.p1, p2=rotationCenters.p2; let rad1=(BASE_CONFIG.l3.angle+currentAngles.angle1)*Math.PI/180, rad2=(BASE_CONFIG.l3.angle+currentAngles.angle6)*Math.PI/180; let topEnd={x:p1.x-80*Math.cos(rad1),y:p1.y-80*Math.sin(rad1)}; let bottomEnd={x:p2.x+80*Math.cos(rad2),y:p2.y+80*Math.sin(rad2)}; let path=document.createElementNS("http://www.w3.org/2000/svg","path"); path.setAttribute("d",`M ${topEnd.x} ${topEnd.y} L ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${bottomEnd.x} ${bottomEnd.y}`); path.setAttribute("fill","none"); path.setAttribute("stroke","#e74c3c"); path.setAttribute("stroke-width","9"); path.setAttribute("stroke-linecap","round"); shapeGroup.appendChild(path); }
+    function drawCShapeModel(){ shapeGroup.innerHTML=''; let p1=rotationCenters.p1, p2=rotationCenters.p2; let rad1=(BASE_CONFIG.l3.angle+currentAngles.angle1)*Math.PI/180, rad2=(BASE_CONFIG.l3.angle+currentAngles.angle6)*Math.PI/180; let topEnd={x:p1.x+80*Math.cos(rad1),y:p1.y+80*Math.sin(rad1)}; let bottomEnd={x:p2.x+80*Math.cos(rad2),y:p2.y+80*Math.sin(rad2)}; let path=document.createElementNS("http://www.w3.org/2000/svg","path"); path.setAttribute("d",`M ${topEnd.x} ${topEnd.y} L ${p1.x} ${p1.y} L ${p2.x} ${p2.y} L ${bottomEnd.x} ${bottomEnd.y}`); path.setAttribute("fill","none"); path.setAttribute("stroke","#e74c3c"); path.setAttribute("stroke-width","9"); shapeGroup.appendChild(path); }
+    function showLetterShapeModel(shape){
+        resetHighlightModel(true);
+        if(shape==='F'){ showAnglePairModel('corresponding'); drawFShapeModel(); }
+        else if(shape==='Z'){ showAnglePairModel('alternate'); drawZShapeModel(); }
+        else if(shape==='C'){ showAnglePairModel('consecutive'); drawCShapeModel(); }
+    }
+    function resetHighlightModel(keepShapeClear=false){
+        if(!keepShapeClear) shapeGroup.innerHTML='';
+        Object.keys(angleData).forEach(k=>{ let data=angleData[k]; data.path.setAttribute("stroke-width","5"); data.path.style.filter="none"; data.path.style.opacity="1"; });
+        document.querySelectorAll('.btn-model').forEach(btn=>btn.classList.remove('active'));
+    }
+    window.adjustAngleModel=adjustAngleModel; window.showAnglePairModel=showAnglePairModel; window.showLetterShapeModel=showLetterShapeModel; window.resetHighlightModel=resetHighlightModel;
+    slider1.addEventListener('input',function(){ currentAngles.angle1=parseInt(this.value); currentAngles.angle2=180-currentAngles.angle1; updateDisplays(); updateGeometry(); });
+    slider2.addEventListener('input',function(){ currentAngles.angle2=parseInt(this.value); currentAngles.angle1=180-currentAngles.angle2; updateDisplays(); updateGeometry(); });
+    slider6.addEventListener('input',function(){ currentAngles.angle8=parseInt(this.value); currentAngles.angle6=180-currentAngles.angle8; updateDisplays(); updateGeometry(); });
+    slider8.addEventListener('input',function(){ currentAngles.angle6=parseInt(this.value); currentAngles.angle8=180-currentAngles.angle6; updateDisplays(); updateGeometry(); });
+    initCenters(); updateGeometry();
+})();
+</script>
+</body>
+</html>

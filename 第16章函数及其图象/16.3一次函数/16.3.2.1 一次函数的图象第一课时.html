@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.2 一次函数的图象(第一课时) | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .graph-box{text-align:center;margin:1rem 0;}
+        .graph-box canvas{width:100%;max-width:480px;height:380px;background:white;border:2px solid #a7d8e0;border-radius:12px;}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;}
+        @media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.2 一次函数的图象（第一课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>会用描点法画正比例函数 $y=kx$ 的图象</div>
+            <div class="target-item"><span>2</span>理解正比例函数图象的特征（过原点的直线）</div>
+            <div class="target-item"><span>3</span>掌握正比例函数中 $k$ 对图象的影响</div>
+            <div class="target-item"><span>4</span>会用"两点法"快速画出一次函数图象</div>
+        </div>
+    </div>
+
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">📐 <strong>上节课我们学习了一次函数的概念。那么，一次函数的图象是什么形状呢？它有哪些特征？让我们通过作图来探究！</strong></p>
+    </div>
+
+    <!-- 正比例函数图象 -->
+    <div class="section-title">📈 正比例函数 $y = kx$ 的图象</div>
+
+    <div class="explore-card">
+        <h4>探究活动 — 画 $y = 2x$ 和 $y = -2x$ 的图象</h4>
+        <p>用描点法分别画出以下两个正比例函数的图象：</p>
+        <div class="two-col">
+            <div class="highlight-box">
+                <p style="text-align:center;"><strong>$y = 2x$</strong></p>
+                <table style="width:auto;margin:.5rem auto;">
+                    <tr><th>x</th><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td></tr>
+                    <tr><th>y</th><td>-4</td><td>-2</td><td>0</td><td>2</td><td>4</td></tr>
+                </table>
+                <div class="graph-box"><canvas id="canvasPos"></canvas></div>
+            </div>
+            <div class="highlight-box">
+                <p style="text-align:center;"><strong>$y = -2x$</strong></p>
+                <table style="width:auto;margin:.5rem auto;">
+                    <tr><th>x</th><td>-2</td><td>-1</td><td>0</td><td>1</td><td>2</td></tr>
+                    <tr><th>y</th><td>4</td><td>2</td><td>0</td><td>-2</td><td>-4</td></tr>
+                </table>
+                <div class="graph-box"><canvas id="canvasNeg"></canvas></div>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('disc1')">💡 观察发现</button>
+        <div id="disc1" class="answer-box">
+            <ol style="padding-left:1.5rem;line-height:2;">
+                <li>两个图象都是<strong>经过原点</strong> $(0,0)$ 的<strong>直线</strong>！</li>
+                <li>$y = 2x$（$k > 0$）的直线经过<strong>第一、三象限</strong>，从左下往右上走（上升）</li>
+                <li>$y = -2x$（$k < 0$）的直线经过<strong>第二、四象限</strong>，从左上往右下走（下降）</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 结论 -->
+    <div class="fact-card">
+        <h4>📌 正比例函数图象的性质</h4>
+        <div class="theorem-box">
+            <p><strong>结论：正比例函数 $y = kx$（$k \neq 0$）的图象是一条经过原点 $O(0,0)$ 的直线。</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;margin-top:.5rem;">
+                <li>当 $k > 0$ 时，直线经过<strong>第一、三象限</strong>，$y$ 随 $x$ 的增大而<strong>增大</strong></li>
+                <li>当 $k < 0$ 时，直线经过<strong>第二、四象限</strong>，$y$ 随 $x$ 的增大而<strong>减小</strong></li>
+                <li>$|k|$ 越大，直线越<strong>靠近 y 轴</strong>（越"陡"）；$|k|$ 越小，直线越<strong>靠近 x 轴</strong>（越"平缓"）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 两点法 -->
+    <div class="section-title">✏️ 两点法画一次函数图象</div>
+
+    <div class="explore-card">
+        <h4>为什么只需要两点就能确定一条直线？</h4>
+        <p>因为<strong>两点确定一条直线</strong>！既然一次函数的图象是直线，我们就不需要像之前那样描很多点了——<strong>只需找出两个特殊的点</strong>，然后连线即可！</p>
+        <button class="interact-btn" onclick="toggleAnswer('twoPt')">📌 两点法的具体操作</button>
+        <div id="twoPt" class="answer-box">
+            <p><strong>最常用的两点：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>与 $y$ 轴交点</strong>：令 $x = 0$ → 得到点 $(0, b)$</li>
+                <li><strong>与 $x$ 轴交点</strong>：令 $y = 0$ → 得到点 $\left(-\frac{b}{k}, 0\right)$</li>
+            </ul>
+            <p><strong>或者更简单的方法：</strong>任取两个容易计算的 $x$ 值（如 $x=0$ 和 $x=1$），求出对应的 $y$ 值，描出这两个点并连线即可！</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>⚡ 技巧：</strong>对于正比例函数 $y=kx$，只需取原点 $(0,0)$ 和另一点如 $(1,k)$ 即可！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 用两点法画函数图象</h4>
+        <p>用"两点法"在同一坐标系中画出下列函数的图象：</p>
+        <p>(1) $y = \dfrac{1}{2}x$ &nbsp;&nbsp;&nbsp; (2) $y = \dfrac{1}{2}x + 2$ &nbsp;&nbsp;&nbsp; (3) $y = \dfrac{1}{2}x - 2$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程 + 图象对比</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong>对每个函数取两个关键点：</p>
+            <table style="max-width:550px;">
+                <tr><th>函数</th><th>点1（$x=0$）</th><th>点2（$x=2$ 或其他）</th></tr>
+                <tr><td>$y=\frac{1}{2}x$</td><td>$(0, 0)$</td><td>$(2, 1)$</td></tr>
+                <tr><td>$y=\frac{1}{2}x+2$</td><td>$(0, 2)$</td><td>$(2, 3)$</td></tr>
+                <tr><td>$y=\frac{1}{2}x-2$</td><td>$(0, -2)$</td><td>$(2, -1)$</td></tr>
+            </table>
+            <div class="graph-box"><canvas id="compareCanvas"></canvas></div>
+            <p><strong>观察发现：</strong>这三个函数的斜率都是 $k = \frac{1}{2}$，所以三条直线<strong>互相平行</strong>！只是截距 $b$ 不同导致位置不同。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 根据条件判断函数值的大小</h4>
+        <p>已知正比例函数 $y = kx$ 经过点 $A(2, -6)$：</p>
+        <p>(1) 求该正比例函数的表达式</p>
+        <p>(2) 当 $x = -3$ 时，$y =$ ？</p>
+        <p>(3) 当 $x > 0$ 时，$y$ 的取值范围是什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 将 $A(2, -6)$ 代入 $y = kx$：$-6 = 2k$ → $k = -3$</p>
+            <p>∴ 表达式为 $y = -3x$</p>
+            <p><strong>(2)</strong> 当 $x = -3$ 时，$y = -3 \times (-3) =$ <strong>9</strong></p>
+            <p><strong>(3)</strong> ∵ $k = -3 < 0$，∴ $y$ 随 $x$ 的增大而减小</p>
+            <p>当 $x > 0$ 时，$y < 0$（即 $y$ 为负数）</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 思路总结：</strong>知道一个点就能确定正比例函数；利用增减性可以判断函数值的范围。
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 在同一坐标系中画出 $y = x$ 和 $y = -x$ 的图象。这两个图象有什么关系？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案提示</button>
+        <div id="pr1" class="answer-box">
+            <p>$y=x$ 是过一、三象限的对角线；$y=-x$ 是过二、四象限的对角线。<br>两条直线互相垂直，关于 $x$ 轴对称（也关于 $y$ 轴对称），交于原点。</p>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 已知一次函数 $y = (2m-1)x + m-3$：</p>
+        <p>&nbsp;&nbsp;(1) 若 $y$ 是正比例函数，则 $m$ = ______；此时函数表达式为 ______</p>
+        <p>&nbsp;&nbsp;(2) 若函数图象不经过第三象限，则 $m$ 的取值范围是 ______</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 正比例函数要求常数项为 0：$m - 3 = 0$ → $m = 3$<br>检验：$k = 2\times3-1 = 5 \neq 0$ ✓ → $y = 5x$</p>
+            <p><strong>(2)</strong> 不经过第三象限意味着：
+                <br>&nbsp;&nbsp;• 直线要么递减且在上方，要么递增且在右上方
+                <br>&nbsp;&nbsp;• 具体来说：需要 $k > 0$ 且 $b \geq 0$
+                <br>&nbsp;&nbsp;• 即 $2m-1 > 0$ → $m > \frac{1}{2}$，且 $m-3 \geq 0$ → $m \geq 3$
+                <br>∴ $m \geq 3$</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ol>
+            <li>正比例函数 $y=kx$ 的图象是<strong>过原点的直线</strong></li>
+            <li>$k > 0$ 时，过一、三象限，$y$ 随 $x$ 增大而增大；$k < 0$ 时相反</li>
+            <li><strong>"两点法"</strong>画一次函数图象：找两个关键点（通常是与坐标轴的交点），连线即可</li>
+            <li>$|k|$ 越大越陡，$|k|$ 越小越平缓；相同 $k$ 不同 $b$ 的直线互相<strong>平行</strong></li>
+        </ol>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}
+}
+// 绘制正比例函数
+function drawLinear(canvasId,k,b,color){
+    var cv=document.getElementById(canvasId);if(!cv)return;
+    var cx=cv.getContext('2d'),W=480,H=380,padL=45,padR=30,padT=30,padB=45,cW=W-padL-padR,cH=H-padT-padB,rX=6,rY=6;
+    cx.clearRect(0,0,W,H);
+    // 网格
+    for(var i=-rX;i<=rX;i++){var px=padL+(i+rX)/(2*rX)*cW;if(i!==0){cx.strokeStyle='#f0f9ff';cx.lineWidth=1;cx.beginPath();ctx.moveTo(px,padT);cx.lineTo(px,H-padB).ctx.stroke();cx.fillStyle='#94a3b8';cx.font='10px';cx.textAlign='center';cx.fillText(i,px,H-padB+14);}}
+    for(var i=-rY;i<=rY;i++){var py=padT+cH-(i+rY)/ (2*rY)*cH;if(i!==0){cx.strokeStyle='#f0f9ff';ctx.beginPath();cx.moveTo(padL,py);ctx.lineTo(W-padR,py).ctx.stroke();cx.textAlign='right';if(Math.abs(i)<=rY)cx.fillText(i,padL-6,py+4);}}
+    // 轴
+    var yAx=padT+cH-(0+rY)/(2*rY)*cH,xAx=padL+(0+rX)/(2*rX)*cW;
+    cx.strokeStyle='#334155';cx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(padL,yAx);ctx.lineTo(W-padR+10,yAx).ctx.stroke();
+    ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx,H-padB).ctx.stroke();
+    cx.fillStyle='#334155';
+    ctx.beginPath();ctx.moveTo(W-padR+10,yAx);ctx.lineTo(W-padR,yAx-4);ctx.lineTo(W-padR,yAx+4).ctx.fill();
+    ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx-4,padT);ctx.lineTo(xAx+4,padT).ctx.fill();
+    cx.font='11px';cx.fillStyle='#64748b';
+    cx.fillText('O',padL-14,yAx+14);
+    // 直线
+    cx.strokeStyle=color||'#0ea5e9';cx.lineWidth=3;cxCap='round';cx.beginPath();
+    var started=false;
+    for(var px=padL;px<=W-padR;px+=1){
+        var x=(px-padL)/cW*(2*rX)-rX,y=k*x+b,py=padT+cH-(y+rY)/(2*rY)*cH;
+        if(py<padT-15||py>H-padB+15){if(started){cx.stroke();started=false;}continue;}
+        if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+    }
+    cx.stroke();
+    // 数据点
+    [-2,-1,0,1,2].forEach(function(xi){var yi=k*xi+b,xj=padL+(xi+rX)/(2*rX)*cW,yj=padT+cH-(yi+rY)/(2*rY)*cH;if(yj>=padT && yj<=H-padB){ctx.beginPath();ctx.arc(xj,yj,4,0,Math.PI*2);ctx.fillStyle=color||'#0ea5e9';ctx.fill();}});
+}
+// 初始化三个画布
+window.addEventListener('load',function(){
+    drawLinear('canvasPos',2,0,'#10b981');
+    drawLinear('canvasNeg',-2,0,'#ef4444');
+});
+(function(){
+    var cv=document.getElementById('compareCanvas');if(!cv)return;
+    var cx=cv.getContext('2d',W=480,H=380,padL=45,padR=30,padT=30,padB=45,cW=W-padL-padR,cH=H-padT-padB,rX=5,rY=5;
+    function drawAll(){
+        cx.clearRect(0,0,W,H);
+        // 网格
+        for(var i=-rX;i<=rX;i++){var px=padL+(i+rX)/(2*rX)*cW;if(i!==0){cx.strokeStyle='#f0f9ff';cx.lineWidth=1;cx.beginPath();ctx.moveTo(px,padT);ctx.lineTo(px,H-padB).ctx.stroke();cx.fillStyle='#94a3b8';cx.font='10px';cx.textAlign='center';cx.fillText(i,px,H-padB+14);}}
+        for(var i=-rY;i<=rY;i++){var py=padT+cH-(i+rY)/(2*rY)*cH;if(i!==0){cx.strokeStyle='#f0f9ff';ctx.beginPath();cx.moveTo(padL,py);ctx.lineTo(W-padR,py).ctx.stroke();cx.textAlign='right';cx.fillText(i,padL-6,py+4);}}
+        var yAx=padT+cH-rY/(2*rY)*cH,xAx=padL+rX/(2*rX)*cW;
+        cx.strokeStyle='#334155';cx.lineWidth=2;
+        ctx.beginPath();ctx.moveTo(padL,yAx);ctx.lineTo(W-padR+10,yAx).ctx.stroke();
+        ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx,H-padB).ctx.stroke();
+        cx.fillStyle='#334155';
+        ctx.beginPath();ctx.moveTo(W-padR+10,yAx);ctx.lineTo(W-padR,yAx-4);ctx.lineTo(W-padR,yAx+4).ctx.fill();
+        ctx.beginPath();ctx.moveTo(xAx,padT-10);ctx.lineTo(xAx-4,padT);ctx.lineTo(xAx+4,padT).ctx.fill();
+        cx.font='11px';cx.fillText('O',padL-14,yAx+14);
+        // 三条线
+        [{k:0.5,b:0,c:'#10b981',l:'y=½x'},{k:0.5,b:2,c:'#0ea5e9',l:'y=½x+2'},{k:0.5,b:-2,c:'#f59e0b',l:'y=½x-2'}].forEach(function(f){
+            cx.strokeStyle=f.c;cx.lineWidth=3;cxCap='round';cx.beginPath();var s=false;
+            for(var px=padL;px<=W-padR;px+=1){
+                var x=(px-padL)/cW*(2*rX)-rX,y=f.k*x+f.b,py=padT+cH-(y+rY)/(2*rY)*cH;
+                if(py<padT-15||py>H-padB+15){if(s){cx.stroke();s=false;}continue;}
+                if(!s){cx.moveTo(px,py);s=true;}else{cx.lineTo(px,py);}
+            }
+            cx.stroke();
+            cx.fillStyle=f.c;cx.font='bold 11px';cx.textAlign='left';cx.fillText(f.l,W-padR-60,padT+cH-((f.k*(-rX)+f.b)+rY)/(2*rY)*cH-6);
+        });
+    }drawAll();
+})();
+</script>
+</body>
+</html>

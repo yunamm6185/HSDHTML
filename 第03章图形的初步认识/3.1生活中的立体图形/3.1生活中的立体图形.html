@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第38课时 生活中的立体图形（图片版）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #0a3144;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            font-size: 2rem;
+            color: #1e4660;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第38课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 从千姿百态的建筑与物体中，抽象出基本的几何图形，开启几何学习之门。</div>
+    <h2>3.1 生活中的立体图形</h2>
+    <div class="lesson-title">第38课时 柱体、锥体、球体</div>
+
+    <!-- 导入段落 -->
+    <div class="intro-block">
+        <p>我们生活在三维世界中，随时随地看到的和接触到的物体都是立体的。有些物体，像石头、植物等千姿百态，呈现出独特的形状。而有些物体具有较为规则的形状，如人们辛勤种植收获的苹果、西瓜等水果；又如人类从古至今创造的各种建筑——古代的草堂、金字塔、土楼，以及当代的空间站、水立方、东方明珠等。</p>
+        <p style="margin-top:0.8rem;">仔细观察这些物体，我们发现它们（或其一部分）可以抽象成某些立体图形。下面我们就来认识常见的柱体、锥体和球体。</p>
+    </div>
+
+    <!-- 图3.1.1 图片插入 -->
+    <div class="figure-box">
+        <img src="3.1.1.png" alt="图3.1.1 柱体、锥体、球体">
+        <div class="figcaption">图3.1.1 常见的立体图形</div>
+    </div>
+
+    <p>我们把图3.1.1中①②所表示的立体图形叫做<strong>柱体</strong>；④⑤叫做<strong>锥体</strong>；③叫做<strong>球体</strong>。你能找出和这些立体图形相类似的物体吗？</p>
+    <p>进一步观察：①②虽然都是柱体，但①是<strong>棱柱</strong>，②是<strong>圆柱</strong>；④⑤都是锥体，但④是<strong>圆锥</strong>，⑤是<strong>棱锥</strong>。它们的差别在哪里？</p>
+
+    <!-- 图3.1.2 图片插入 -->
+    <div class="figure-box">
+        <img src="3.1.2.png" alt="图3.1.2 常见的棱柱和棱锥">
+        <div class="figcaption">图3.1.2 常见的棱柱和棱锥</div>
+    </div>
+
+    <p>在棱柱和棱锥中，相邻两个面的交线叫做<strong>棱</strong>，两条棱的交点叫做<strong>顶点</strong>。</p>
+
+    <!-- 试一试 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <ol>
+            <li>指出图3.1.2中其他几个棱柱和棱锥的顶点与棱。</li>
+            <li>长方体和正方体是棱柱吗？</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('answerTry')">🔍 查看提示</button>
+        <div id="answerTry" class="answer-box">
+            <div>(1) 例如：五棱柱有10个顶点、15条棱；六棱锥有7个顶点、12条棱。</div>
+            <div>(2) 是，它们属于四棱柱（特殊棱柱）。</div>
+        </div>
+    </div>
+
+    <!-- 多面体概念 -->
+    <p>我们还可以发现，图3.1.1中的①⑤与②③④存在差异：围成①⑤的每一个面都是平的，像这样的立体图形又称为<strong>多面体</strong>。</p>
+
+    <!-- 思考 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>你能说出圆柱和棱柱的共同点与不同点吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('answerThink')">💡 参考</button>
+        <div id="answerThink" class="answer-box">
+            <div>共同点：都是柱体，有两个互相平行的底面。不同点：圆柱底面是圆，侧面是曲面；棱柱底面是多边形，侧面是平行四边形（平面）。</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P4） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习第1题（仅保留题目和图片） -->
+        <div class="exercise-item">
+            <p><strong>1.</strong> 本题的图中给出了一些实物图，也给出了一些立体图形。试找出实物图中与立体图形相类似的实物（或实物的一部分）。</p>
+            <div class="figure-box" style="margin:1rem 0;">
+                <img src="第1题.png" alt="练习第1题图" style="max-width:100%;">
+            </div>
+            <!-- 无答案按钮 -->
+        </div>
+
+        <!-- 练习第2题（答案已修正） -->
+        <div class="exercise-item">
+            <p><strong>2.</strong> 写出下列立体图形的名称。</p>
+            <div class="figure-box" style="margin:1rem 0;">
+                <img src="第2题.png" alt="练习第2题图" style="max-width:100%;">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('answerP2')">答案</button>
+            <div id="answerP2" class="answer-box">
+                <div>从左至右：圆柱，三棱柱，三棱锥，圆锥</div>
+            </div>
+        </div>
+
+        <!-- 练习第3题 -->
+        <div class="exercise-item">
+            <p><strong>3.</strong> 五棱柱、六棱柱各有多少个面？多少条棱？多少个顶点？</p>
+            <button class="interact-btn" onclick="toggleAnswer('answerP3')">答案</button>
+            <div id="answerP3" class="answer-box">
+                <div>五棱柱：7个面、15条棱、10个顶点；六棱柱：8个面、18条棱、12个顶点。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">常见的立体图形可分为柱体、锥体、球体</div>
+            <div class="summary-item">棱柱与圆柱：底面形状、侧面曲直不同</div>
+            <div class="summary-item">棱锥与圆锥：底面形状、侧面曲直不同</div>
+            <div class="summary-item">多面体：所有面都是平面（如棱柱、棱锥）</div>
+            <div class="summary-item">顶点、棱是多面体的基本元素</div>
+            <div class="note-tip">※ 立体图形种类丰富，本课仅学习最常见的三类。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 寻找身边的立体图形（至少5个），记录它们的名称和特征，与同伴交流。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第38课时</div>
+</div>
+
+<script>
+    // 答案切换
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 折叠小结
+    function toggleSummary() {
+        var content = document.getElementById('summaryContent');
+        var toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

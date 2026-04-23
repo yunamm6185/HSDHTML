@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3 实践与探索（第二课时） | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 8px solid #30829b;
+        }
+        .summary-box h4 { font-size: 1.5rem; color: #0f5669; margin-bottom: 0.8rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .table-mini {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1rem auto;
+        }
+        .table-mini td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+        }
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #333;
+            min-width: 4em;
+            height: 1.2em;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.3 实践与探索</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 通过探索实际问题，进一步体会方程是刻画现实世界的有效模型。</div>
+    <div class="lesson-title">5.3 实践与探索</div>
+    <div class="sub-title">第二课时 捐款问题与增长率问题</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析含有分数、百分比的等量关系</div>
+            <div class="target-item"><span>✔</span>会设未知数列方程解决分配、增长率问题</div>
+            <div class="target-item"><span>✔</span>体会多种设元方法，优化解题策略</div>
+        </div>
+    </div>
+
+    <!-- 问题2 -->
+    <div class="example-box">
+        <h4>问题2 新学年开始，某校三个年级为地震灾区捐款。经统计，七年级捐款数占全校三个年级捐款总数的 $\dfrac{2}{5}$，八年级捐款数是全校三个年级捐款数的平均数，九年级捐款数为1964元。求七、八年级的捐款数。</h4>
+        <p>在解决问题2时，你是怎样设元的？还有没有其他的设元方法？比较一下，哪种设元方法比较容易列出方程？</p>
+        <div class="btn-group">
+            <button class="interact-btn" onclick="toggleAnswer('q2a')">📐 解法一（设总数）</button>
+            <button class="interact-btn" onclick="toggleAnswer('q2b')">📐 解法二（设七年级）</button>
+            <button class="interact-btn" onclick="toggleAnswer('q2c')">📐 解法三（设八年级）</button>
+        </div>
+        <div id="q2a" class="answer-box">
+            <p><strong>解法一：设全校捐款总数为 $x$ 元。</strong></p>
+            <p>七年级：$\frac{2}{5}x$，八年级：$\frac{x}{3}$（平均数），九年级：1964元。</p>
+            <p>方程：$\frac{2}{5}x + \frac{x}{3} + 1964 = x$。</p>
+            <p>解得 $x = 7365$，七年级 $= \frac{2}{5} \times 7365 = 2946$ 元，八年级 $= \frac{7365}{3} = 2455$ 元。</p>
+        </div>
+        <div id="q2b" class="answer-box">
+            <p><strong>解法二：设七年级捐款数为 $x$ 元。</strong></p>
+            <p>由七年级占总数 $\frac{2}{5}$，得总数为 $\frac{5}{2}x$。八年级为平均数，即总数的 $\frac{1}{3}$，所以八年级为 $\frac{1}{3} \cdot \frac{5}{2}x = \frac{5}{6}x$。</p>
+            <p>九年级为1964元，列方程：$x + \frac{5}{6}x + 1964 = \frac{5}{2}x$。</p>
+            <p>解得 $x = 2946$，八年级 $= \frac{5}{6} \times 2946 = 2455$ 元。</p>
+        </div>
+        <div id="q2c" class="answer-box">
+            <p><strong>解法三：设八年级捐款数为 $x$ 元。</strong></p>
+            <p>因为八年级是平均数，所以总数 $= 3x$。七年级占总数 $\frac{2}{5}$，所以七年级 $= \frac{2}{5} \cdot 3x = \frac{6}{5}x$。</p>
+            <p>九年级为1964元，列方程：$\frac{6}{5}x + x + 1964 = 3x$。</p>
+            <p>解得 $x = 2455$，七年级 $= \frac{6}{5} \times 2455 = 2946$ 元。</p>
+        </div>
+    </div>
+
+    <!-- 练习填空 -->
+    <div class="example-box">
+        <h4>练习</h4>
+        <p>(1) 学校图书馆原有图书 $a$ 册，最近增加了 $20\%$，现在有图书 <span class="fill-blank"></span> 册；</p>
+        <p>(2) 某煤矿预计今年比去年增产 $15\%$，达到年产煤60万吨，设去年产煤 $x$ 万吨，则可列方程 <span class="fill-blank"></span>；</p>
+        <p>(3) 某商品按定价的八折出售，售价为14.80元，则原定价是 <span class="fill-blank"></span> 元。</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac21')">🔍 参考答案</button>
+        <div id="prac21" class="answer-box">
+            <p>(1) $1.2a$ 册。</p>
+            <p>(2) $1.15x = 60$。</p>
+            <p>(3) 18.5 元。</p>
+        </div>
+    </div>
+
+    <!-- 销售问题（网店） -->
+    <div class="example-box">
+        <h4>例（网店销售问题）</h4>
+        <p>为实现乡村振兴战略，某地政府帮助小强家开通了网店，将红枣、小米等土特产销往全国。已知相关的销售信息如下：</p>
+        <table class="table-mini">
+            <tr><td></td><td>红枣</td><td>小米</td></tr>
+            <tr><td>规格/(kg/袋)</td><td>1</td><td>2</td></tr>
+            <tr><td>成本/(元/袋)</td><td>40</td><td>38</td></tr>
+            <tr><td>售价/(元/袋)</td><td>60</td><td>54</td></tr>
+        </table>
+        <p>今年前5个月，该网店销售了红枣和小米共 $3000\,\text{kg}$，获得利润4.2万元。问：这5个月该网店销售红枣和小米各多少袋？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac22')">📌 显示解答</button>
+        <div id="prac22" class="answer-box">
+            <p>解：设销售红枣 $x$ 袋，则销售小米 $\frac{3000 - 1 \cdot x}{2} = \frac{3000 - x}{2}$ 袋（因为小米每袋2kg）。</p>
+            <p>红枣每袋利润 $60 - 40 = 20$ 元，小米每袋利润 $54 - 38 = 16$ 元。</p>
+            <p>总利润 $20x + 16 \cdot \frac{3000 - x}{2} = 42000$。</p>
+            <p>化简得 $20x + 8(3000 - x) = 42000$，$20x + 24000 - 8x = 42000$，$12x = 18000$，$x = 1500$。</p>
+            <p>小米袋数 $\frac{3000 - 1500}{2} = 750$ 袋。</p>
+            <p>答：销售红枣1500袋，小米750袋。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代的“衰分”问题 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 《九章算术》中的“衰分”</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>“衰分”是《九章算术》第三章的名称，主要讨论按一定比例分配物品的问题。例如：“今有大夫、不更、簪袅、上造、公士，凡五人，共猎得五鹿。欲以爵次分之，问各得几何？”爵位高低不同，分配比例也不同。这类问题可以通过设未知数、按比例列方程解决，与现代的按比例分配应用题一脉相承。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📌 课堂小结</h4>
+        <div class="summary-item">遇到分数、百分比问题，常设总量为未知数，再表示各部分</div>
+        <div class="summary-item">利润 = 售价 - 成本，总利润 = 各产品利润之和</div>
+        <div class="summary-item">多种设元方法中，选择能使方程简单的设元是关键</div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将实际情境中的数量关系抽象为方程。<br>
+        <strong>化归思想：</strong> 将复杂问题转化为解方程。<br>
+        <strong>应用意识：</strong> 数学在生活、经济中的广泛应用。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.3.2 第1、2、3题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 用方程的眼光看世界，复杂问题也会变得简单。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.3 第二课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

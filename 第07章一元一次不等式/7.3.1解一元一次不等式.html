@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.3 解一元一次不等式（第一课时） | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .image-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .image-item {
+            text-align: center;
+        }
+        .image-item img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .sub-example {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #b0d4ee;
+            padding-top: 1rem;
+        }
+        .sub-example p {
+            margin-bottom: 0.5rem;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 4em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        /* 数轴容器样式 */
+        .numberline-svg {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+        .image-item svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 7.3</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <h2>7.3 解一元一次不等式</h2>
+    <div class="chapter-intro">★ 掌握解一元一次不等式的基本步骤，能熟练求解并在数轴上表示解集。</div>
+    <div class="lesson-title">第一课时 解一元一次不等式</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解一元一次不等式的概念</div>
+            <div class="target-item"><span>✔</span>掌握解一元一次不等式的一般步骤</div>
+            <div class="target-item"><span>✔</span>会在数轴上表示不等式的解集</div>
+        </div>
+    </div>
+
+    <!-- 一元一次不等式概念 -->
+    <div class="intro-block">
+        <p>在前面我们遇到过一些含有未知数的不等式，例如 $5x > 1200$，$x+2>5$，$\frac12 x < -1$ 等。这些不等式有什么共同特点？</p>
+        <p><strong>一元一次不等式：</strong> 只含有一个未知数，左右两边都是整式，并且未知数的次数都是1的不等式。</p>
+    </div>
+
+    <!-- 例1 -->
+    <div class="example-box">
+        <h4>例1 解不等式：</h4>
+        <p>(1) $x - 7 < 8$</p>
+        <p>(2) $3x < 2x - 3$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> 两边都加上7，得 $x < 15$。</p>
+            <p><strong>(2)</strong> 两边都减去 $2x$，得 $x < -3$。</p>
+            <p>这里的不等式变形与方程中的移项类似。</p>
+        </div>
+    </div>
+
+    <!-- 例2 -->
+    <div class="example-box">
+        <h4>例2 解不等式：</h4>
+        <p>(1) $\frac12 x > -3$</p>
+        <p>(2) $-2x < 6$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 两边都乘以2，得 $x > -6$。</p>
+            <p><strong>(2)</strong> 两边都除以 $-2$（注意不等号方向改变），得 $x > -3$。</p>
+            <p>这里与方程中“系数化为1”类似，但要警惕乘除负数时方向改变。</p>
+        </div>
+    </div>
+
+    <!-- 例3 及数轴表示（使用SVG，已按反馈修改） -->
+    <div class="example-box">
+        <h4>例3 解下列不等式，并将解集在数轴上表示出来：</h4>
+        <p>(1) $2x - 1 < 4x + 13$</p>
+        <p>(2) $2(5x+3) \leq x - 3(1-2x)$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">📌 显示解答</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong></p>
+            \[
+            \begin{aligned}
+            2x - 1 &< 4x + 13 \\
+            2x - 4x &< 13 + 1 \\
+            -2x &< 14 \\
+            x &> -7
+            \end{aligned}
+            \]
+            <div class="image-item">
+                <!-- SVG 表示 x > -7，范围从-8到4，左侧无箭头但延长线段 -->
+                <div class="numberline-svg">
+                    <svg width="660" height="100" viewBox="-120 0 660 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 数轴主线：从-100到500，覆盖-8到4并有左侧延长 -->
+                        <line x1="-100" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                        <!-- 右侧箭头保留 -->
+                        <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+
+                        <!-- 绘制整数刻度 -8 到 4，0点位于250px，每单位40px -->
+                        <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                            <!-- -8: 250-8*40 = -70 -->
+                            <line x1="-70" y1="47" x2="-70" y2="53" stroke-width="2"/><text x="-70" y="70" fill="#333">-8</text>
+                            <!-- -7: 250-7*40 = -30 -->
+                            <line x1="-30" y1="47" x2="-30" y2="53" stroke-width="2"/><text x="-30" y="70" fill="#333">-7</text>
+                            <!-- -6: 10 -->
+                            <line x1="10" y1="47" x2="10" y2="53" stroke-width="2"/><text x="10" y="70" fill="#333">-6</text>
+                            <!-- -5: 50 -->
+                            <line x1="50" y1="47" x2="50" y2="53" stroke-width="2"/><text x="50" y="70" fill="#333">-5</text>
+                            <!-- -4: 90 -->
+                            <line x1="90" y1="47" x2="90" y2="53" stroke-width="2"/><text x="90" y="70" fill="#333">-4</text>
+                            <!-- -3: 130 -->
+                            <line x1="130" y1="47" x2="130" y2="53" stroke-width="2"/><text x="130" y="70" fill="#333">-3</text>
+                            <!-- -2: 170 -->
+                            <line x1="170" y1="47" x2="170" y2="53" stroke-width="2"/><text x="170" y="70" fill="#333">-2</text>
+                            <!-- -1: 210 -->
+                            <line x1="210" y1="47" x2="210" y2="53" stroke-width="2"/><text x="210" y="70" fill="#333">-1</text>
+                            <!-- 0: 250 -->
+                            <line x1="250" y1="45" x2="250" y2="55" stroke-width="3"/><text x="250" y="70" fill="#333">0</text>
+                            <!-- 1: 290 -->
+                            <line x1="290" y1="47" x2="290" y2="53" stroke-width="2"/><text x="290" y="70" fill="#333">1</text>
+                            <!-- 2: 330 -->
+                            <line x1="330" y1="47" x2="330" y2="53" stroke-width="2"/><text x="330" y="70" fill="#333">2</text>
+                            <!-- 3: 370 -->
+                            <line x1="370" y1="47" x2="370" y2="53" stroke-width="2"/><text x="370" y="70" fill="#333">3</text>
+                            <!-- 4: 410 -->
+                            <line x1="410" y1="47" x2="410" y2="53" stroke-width="2"/><text x="410" y="70" fill="#333">4</text>
+                        </g>
+
+                        <!-- 表示 x > -7：空心圆在 -7 处，线向右 -->
+                        <circle cx="-30" cy="50" r="4" fill="white" stroke="#333" stroke-width="2"/>
+                        <line x1="-30" y1="35" x2="500" y2="35" stroke="#333" stroke-width="2"/>
+                        <line x1="-30" y1="35" x2="-30" y2="50" stroke="#333" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="figcaption">图7.3.1 $x > -7$</div>
+            </div>
+
+            <p><strong>(2)</strong></p>
+            \[
+            \begin{aligned}
+            2(5x+3) &\leq x - 3(1-2x) \\
+            10x + 6 &\leq x - 3 + 6x \\
+            10x + 6 &\leq 7x - 3 \\
+            10x - 7x &\leq -3 - 6 \\
+            3x &\leq -9 \\
+            x &\leq -3
+            \end{aligned}
+            \]
+            <div class="image-item">
+                <!-- SVG 表示 x ≤ -3，左侧无箭头，右侧箭头保留 -->
+                <div class="numberline-svg">
+                    <svg width="660" height="100" viewBox="-120 0 660 100" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 数轴主线：从-100到500，覆盖-6到6并有左侧延长 -->
+                        <line x1="-100" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                        <!-- 右侧箭头保留 -->
+                        <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+
+                        <!-- 绘制整数刻度 -6 到 6，0点250px，单位40px -->
+                        <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                            <line x1="10" y1="47" x2="10" y2="53" stroke-width="2"/><text x="10" y="70" fill="#333">-6</text>
+                            <line x1="50" y1="47" x2="50" y2="53" stroke-width="2"/><text x="50" y="70" fill="#333">-5</text>
+                            <line x1="90" y1="47" x2="90" y2="53" stroke-width="2"/><text x="90" y="70" fill="#333">-4</text>
+                            <line x1="130" y1="47" x2="130" y2="53" stroke-width="2"/><text x="130" y="70" fill="#333">-3</text>
+                            <line x1="170" y1="47" x2="170" y2="53" stroke-width="2"/><text x="170" y="70" fill="#333">-2</text>
+                            <line x1="210" y1="47" x2="210" y2="53" stroke-width="2"/><text x="210" y="70" fill="#333">-1</text>
+                            <line x1="250" y1="45" x2="250" y2="55" stroke-width="3"/><text x="250" y="70" fill="#333">0</text>
+                            <line x1="290" y1="47" x2="290" y2="53" stroke-width="2"/><text x="290" y="70" fill="#333">1</text>
+                            <line x1="330" y1="47" x2="330" y2="53" stroke-width="2"/><text x="330" y="70" fill="#333">2</text>
+                            <line x1="370" y1="47" x2="370" y2="53" stroke-width="2"/><text x="370" y="70" fill="#333">3</text>
+                            <line x1="410" y1="47" x2="410" y2="53" stroke-width="2"/><text x="410" y="70" fill="#333">4</text>
+                            <line x1="450" y1="47" x2="450" y2="53" stroke-width="2"/><text x="450" y="70" fill="#333">5</text>
+                            <line x1="490" y1="47" x2="490" y2="53" stroke-width="2"/><text x="490" y="70" fill="#333">6</text>
+                        </g>
+
+                        <!-- 表示 x ≤ -3：实心圆在 -3 处，线向左 -->
+                        <circle cx="130" cy="50" r="4" fill="#333"/>
+                        <line x1="-100" y1="35" x2="130" y2="35" stroke="#333" stroke-width="2"/>
+                        <line x1="130" y1="35" x2="130" y2="50" stroke="#333" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="figcaption">图7.3.2 $x \leq -3$</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例4（梯等式） -->
+    <div class="example-box">
+        <h4>例4 当 $x$ 取何值时，代数式 $\frac{x+4}{3} - \frac{3x-1}{2}$ 的差大于1？</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">📌 显示解答</button>
+        <div id="ex4" class="answer-box">
+            <p>根据题意得</p>
+            \[
+            \frac{x+4}{3} - \frac{3x-1}{2} > 1
+            \]
+            <p>去分母（两边乘以6）：</p>
+            \[
+            2(x+4) - 3(3x-1) > 6
+            \]
+            <p>去括号：</p>
+            \[
+            2x + 8 - 9x + 3 > 6
+            \]
+            <p>合并同类项：</p>
+            \[
+            -7x + 11 > 6
+            \]
+            <p>移项：</p>
+            \[
+            -7x > -5
+            \]
+            <p>两边除以 $-7$（不等号方向改变）：</p>
+            \[
+            x < \frac{5}{7}
+            \]
+            <p>所以当 $x < \frac57$ 时，差大于1。</p>
+        </div>
+    </div>
+
+    <!-- 总结解不等式步骤 -->
+    <div class="think-box">
+        <h4>回顾与思考</h4>
+        <p>回顾例3和例4的解答过程，总结一下解一元一次不等式的基本步骤，与你的同伴讨论和交流。</p>
+        <button class="interact-btn" onclick="toggleAnswer('summaryStep')">💡 显示参考总结</button>
+        <div id="summaryStep" class="answer-box">
+            <ol>
+                <li><strong>去分母</strong>（如有分母，两边乘以各分母的最小公倍数，注意不要漏乘不含分母的项，若乘数为负数要改变不等号方向）；</li>
+                <li><strong>去括号</strong>（运用分配律，注意括号前是负号时各项要变号）；</li>
+                <li><strong>移项</strong>（将含未知数的项移到不等式一边，常数项移到另一边，移项要变号）；</li>
+                <li><strong>合并同类项</strong>（将不等式化为 $ax > b$ 或 $ax < b$ 的形式）；</li>
+                <li><strong>系数化为1</strong>（两边除以未知数的系数，若系数为负数，不等号方向改变）。</li>
+            </ol>
+            <p>这些步骤与解一元一次方程类似，但要注意第1步和第5步中，乘除负数时不等号方向要改变。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本第14页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 解下列不等式，并把解集在数轴上表示出来：</p>
+            <p>(1) $2x+1 > 3$</p>
+            <p>(2) $2 - x \leq 1$</p>
+            <p>(3) $2(x+1) < 3x$</p>
+            <p>(4) $3(x+2) \geq 4(x-1)+7$</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 参考答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) $x > 1$ (2) $x \geq 1$ (3) $x > 2$ (4) $x \leq 3$</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 解不等式：$\frac{2x-3}{3} > \frac{3x-2}{2}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 参考答案</button>
+            <div id="prac2" class="answer-box">
+                <p>去分母得 $2(2x-3) > 3(3x-2)$，即 $4x-6 > 9x-6$，移项得 $-5x > 0$，$x < 0$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：不等式符号的演变 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 不等号的演变</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>1631年，英国数学家哈里奥特创造了“>”和“<”。后来，为了表示“大于或等于”，人们将等号与大于号结合，得到“≥”；同理，“≤”也由此产生。这些符号简洁明了，成为数学中不可或缺的工具。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong> 与解一元一次方程类比，掌握解法。<br>
+        <strong>转化思想：</strong> 将不等式逐步转化为 $x > a$ 或 $x < a$ 的形式。<br>
+        <strong>数形结合：</strong> 用数轴表示解集，直观清晰。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">解一元一次不等式的步骤：去分母、去括号、移项、合并、系数化为1</div>
+            <div class="summary-item">乘除负数时不等号方向改变</div>
+            <div class="summary-item">解集在数轴上用实心或空心点表示</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题7.3 A组第1、2、3题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 每一步变形，都离解集更近一步 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第7章 7.3 第一课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

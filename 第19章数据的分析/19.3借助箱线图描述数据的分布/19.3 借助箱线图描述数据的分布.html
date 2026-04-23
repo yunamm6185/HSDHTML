@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>19.3 借助箱线图描述数据的分布 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500; line-height: 1.6; color: #1e3b5a;
+            padding: 1.5rem; font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(0,45,70,0.25);
+            padding: 2rem 2.5rem; border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid #b8d2e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem;
+            font-weight: 600; font-size: 1rem;
+        }
+        h1 { font-size: 2.4rem; color: #0f405e; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:#ff7043; border-radius:5px; margin-top:8px; }
+        .lesson-title {
+            text-align:center; font-size:2.2rem; color:#bf360c; background:#fbe9e7; padding:.6rem 1.2rem;
+            border-radius:60px; border:3px solid #ffab91; margin:1.2rem 0 1.8rem; font-weight:700;
+        }
+        .learning-targets {
+            background:linear-gradient(145deg,#ffebee,#ffcdd2); border-radius:2rem; padding:1.3rem 2rem;
+            margin:1rem 0 2rem; border:1px solid #ef9a9a; box-shadow:0 5px 0 #ef5350;
+        }
+        .learning-targets h3{margin:0 0 .8rem; font-size:1.5rem; border-left:6px solid #c62828; padding-left:1rem;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{
+            background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #ef5350;border:1px solid #ffcdd2;
+        }
+        .target-item span{background:#c62828;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#ffebee;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #e53935;font-weight:600;}
+        .explore-card{background:#e8f5e9;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #43a047;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#2e7d32;}
+        .fact-card{background:#fff8e1;border-left:8px solid #ffa000;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#e65100;}
+        .example-card{background:#e8f5e9;border-left:8px solid #43a047;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.4rem;color:#2e7d32;}
+        .reading-section{background:#fef9e6;border-left:8px solid #ffca28;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:500;}
+        .interact-btn{
+            background:#ecf3f9;border:none;color:#014682;padding:.5rem 1.5rem;border-radius:40px;
+            font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem .5rem .5rem 0;font-size:1rem;
+        }
+        .interact-btn:active{transform:translateY(2px);}
+        .interact-btn:hover{background:#d0e3f5;}
+        .answer-box{background:#f6fbfe;border-left:6px solid #ffa000;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}
+        .show-answer{display:block;}
+        .exercise-section{background:#f5f0fc;border-radius:2rem;padding:1.5rem 2rem;margin:2rem 0;}
+        .exercise-item{margin-bottom:1.5rem;}
+        .exercise-question{font-weight:700;color:#0a3e5f;font-size:1.05rem;margin-bottom:.4rem;}
+        .summary-section{background:#fff3e0;border-left:6px solid #fb8c00;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .math-idea{background:#fce4ec;border-left:8px solid #ec407a;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .homework-box{background:#ffccbc;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #ff7043;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        .highlight{background:#ffcdd2;padding:.5rem 1rem;border-radius:1rem;margin:.5rem 0;}
+        
+        /* Canvas容器 */
+        .canvas-container{
+            background:#fafafa;
+            border:2px solid #b8d2e9;
+            border-radius:1.2rem;
+            padding:1rem;
+            margin:1rem 0;
+            text-align:center;
+        }
+        canvas{
+            background:white;
+            border-radius:0.8rem;
+            max-width:100%;
+        }
+        
+        /* 数据表格 */
+        .data-table{
+            width:100%;
+            border-collapse:collapse;
+            margin:1rem 0;
+            font-size:1rem;
+        }
+        .data-table th{
+            background:#0f405e;
+            color:white;
+            padding:0.8rem;
+            font-weight:600;
+            border:2px solid #b8d2e9;
+        }
+        .data-table td{
+            padding:0.6rem;
+            border:1px solid #cbd5e1;
+            text-align:center;
+        }
+        
+        /* 交互区域 */
+        .interactive-area{
+            background:#f0f9ff;
+            border:2px dashed #0ea5e9;
+            border-radius:1.5rem;
+            padding:1.5rem;
+            margin:1rem 0;
+        }
+        .interactive-area textarea{
+            width:100%;
+            min-height:80px;
+            padding:0.8rem;
+            border:2px solid #b8d2e9;
+            border-radius:1rem;
+            font-size:1rem;
+            font-family:inherit;
+            resize:vertical;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第19章 数据的分析 · 19.3</span></div>
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.3 借助箱线图描述数据的分布</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解箱线图的结构和五数概括的含义</div>
+            <div class="target-item"><span>✔</span>掌握四分位数的计算方法</div>
+            <div class="target-item"><span>✔</span>会用箱线图分析数据的分布特征</div>
+            <div class="target-item"><span>✔</span>能够识别并解释数据中的异常值</div>
+        </div>
+    </div>
+
+    <!-- 情境引入 -->
+    <div class="intro-card">
+        <p><strong>情境引入：</strong></p>
+        <p style="margin-top: 0.8rem;">小明收集了班级40名同学的身高数据，想要了解班级身高的分布情况。如果只用平均数，只能知道"平均水平"，但看不出数据的分散程度和异常情况。</p>
+        <p style="margin-top: 0.8rem;">有没有一种图形，能够<strong>同时展示数据的最小值、最大值、中位数、以及数据的分散情况</strong>呢？</p>
+        <p style="margin-top: 0.8rem;">今天我们就来学习一种强大的统计图形——<strong>箱线图</strong>！</p>
+    </div>
+
+    <!-- 探索一：箱线图的结构 -->
+    <div class="explore-card">
+        <h4>探索一：认识箱线图</h4>
+        <p><strong>问题：</strong>观察下面的箱线图，你能说出它由哪些部分组成吗？</p>
+        
+        <div class="canvas-container">
+            <canvas id="boxplotStruct" width="900" height="450"></canvas>
+        </div>
+        
+        <button class="interact-btn" onclick="toggleAnswer('explore1')">💡 查看说明</button>
+        <div id="explore1" class="answer-box">
+            <p><strong>箱线图由五个关键数值组成：</strong></p>
+            <p style="margin-top:0.5rem;">• <strong>最小值（Minimum）：</strong>数据中的最小数值</p>
+            <p>• <strong>下四分位数（Q1）：</strong>将数据从小到大排列后，第25%位置的数值</p>
+            <p>• <strong>中位数（Q2）：</strong>数据中间位置的数值，即第50%位置</p>
+            <p>• <strong>上四分位数（Q3）：</strong>第75%位置的数值</p>
+            <p>• <strong>最大值（Maximum）：</strong>数据中的最大数值</p>
+            <p style="margin-top:0.5rem;color:#2e7d32;font-weight:600;">这五个数值称为<strong>"五数概括"</strong>，能够全面描述数据的分布特征！</p>
+        </div>
+    </div>
+
+    <!-- 探索二：四分位数的计算 -->
+    <div class="explore-card">
+        <h4>探索二：四分位数如何计算？</h4>
+        <p><strong>例题：</strong>某班20名学生的数学成绩（已从小到大排列）：</p>
+        <p style="margin:0.8rem 0;padding:0.8rem;background:#e8f5e9;border-radius:1rem;">
+            52, 55, 57, 58, 58, 58, 60, 62, 62, 65, 67, 67, 70, 70, 73, 73, 79, 80, 85, 86
+        </p>
+        
+        <p>请计算这组数据的四分位数。</p>
+        
+        <div class="canvas-container">
+            <canvas id="quartileCalc" width="900" height="400"></canvas>
+            <div style="margin-top:0.8rem;">
+                <button class="interact-btn" onclick="animateQuartileCalc()">▶️ 演示计算过程</button>
+                <button class="interact-btn" onclick="resetQuartileCalc()">🔄 重置</button>
+            </div>
+        </div>
+        
+        <button class="interact-btn" onclick="toggleAnswer('explore2')">📝 查看计算步骤</button>
+        <div id="explore2" class="answer-box">
+            <p><strong>计算步骤：</strong></p>
+            <p style="margin-top:0.5rem;"><strong>第一步：</strong>找出中位数Q2</p>
+            <p>数据有20个（偶数个），中位数是第10和第11个数的平均值</p>
+            <p>$$Q2 = \frac{65+67}{2} = 66$$</p>
+            
+            <p style="margin-top:0.5rem;"><strong>第二步：</strong>找出下四分位数Q1</p>
+            <p>取中位数左侧的10个数据，再找其中位数</p>
+            <p>$$Q1 = \frac{58+58}{2} = 58$$</p>
+            
+            <p style="margin-top:0.5rem;"><strong>第三步：</strong>找出上四分位数Q3</p>
+            <p>取中位数右侧的10个数据，再找其中位数</p>
+            <p>$$Q3 = \frac{70+73}{2} = 71.5$$</p>
+            
+            <p style="margin-top:0.5rem;color:#2e7d32;font-weight:600;">
+                因此，这组数据的五数概括为：最小值=52，Q1=58，Q2=66，Q3=71.5，最大值=86
+            </p>
+        </div>
+    </div>
+
+    <!-- 核心概念 -->
+    <div class="fact-card">
+        <h4>📌 四分位数的计算方法</h4>
+        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 2;">
+            <li><strong>排序：</strong>将数据从小到大排列</li>
+            <li><strong>求中位数Q2：</strong>若数据个数为奇数，取中间值；若为偶数，取中间两数的平均值</li>
+            <li><strong>求Q1：</strong>将中位数左侧的数据视为新数据集，求其中位数</li>
+            <li><strong>求Q3：</strong>将中位数右侧的数据视为新数据集，求其中位数</li>
+        </ol>
+        <p style="margin-top:1rem;padding:0.8rem;background:#fff;border-radius:1rem;border-left:4px solid #ff9800;">
+            💡 <strong>注意：</strong>四分位数的计算方法有多种，不同教材可能略有差异，但基本思想相同。
+        </p>
+    </div>
+
+    <!-- 应用一：空气质量分析 -->
+    <div class="explore-card">
+        <h4>应用一：空气质量分析</h4>
+        <p><strong>问题：</strong>某市去年7月31天的空气质量指数（AQI）数据如下：</p>
+        
+        <div class="canvas-container">
+            <canvas id="aqiBoxplot" width="900" height="450"></canvas>
+        </div>
+        
+        <p style="margin-top:0.8rem;">观察箱线图，回答下列问题：</p>
+        <p>(1) 该市7月AQI的最小值、最大值、中位数分别是多少？</p>
+        <p>(2) 箱体（Q1到Q3之间）包含了多少天的数据？这些数据的AQI在什么范围内？</p>
+        <p>(3) 图中的三个圆点代表什么？它们是否符合你对空气质量的认知？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('app1')">🔍 查看分析</button>
+        <div id="app1" class="answer-box">
+            <p><strong>分析：</strong></p>
+            <p style="margin-top:0.5rem;"><strong>(1)</strong> 最小值=52，最大值=107，中位数=67</p>
+            <p><strong>(2)</strong> 箱体包含了约50%的天数（约15-16天），AQI在58到85之间，这表示该市7月大部分时间的空气质量为"良"</p>
+            <p><strong>(3)</strong> 三个圆点是<strong>异常值</strong>：163、165、257</p>
+            <p style="margin-left:1.5rem;">• AQI=163、165属于"中度污染"</p>
+            <p style="margin-left:1.5rem;">• AQI=257属于"重度污染"</p>
+            <p style="margin-top:0.5rem;color:#c62828;font-weight:600;">
+                这些异常值说明该市7月有几天空气质量特别差，可能与气象条件、工业排放等因素有关。
+            </p>
+        </div>
+    </div>
+
+    <!-- 核心概念：异常值 -->
+    <div class="fact-card">
+        <h4>📌 如何识别异常值？</h4>
+        <p style="margin-top:0.5rem;"><strong>四分位距（IQR）法：</strong></p>
+        <p style="margin:0.5rem 0 0 1.5rem;">$$IQR = Q3 - Q1$$</p>
+        <p style="margin-top:0.8rem;"><strong>异常值的判定标准：</strong></p>
+        <p style="margin:0.5rem 0 0 1.5rem;">若某数据 $x$ 满足：$x < Q1 - 1.5 \times IQR$ 或 $x > Q3 + 1.5 \times IQR$，则 $x$ 为异常值。</p>
+        
+        <p style="margin-top:1rem;padding:0.8rem;background:#fff;border-radius:1rem;border-left:4px solid #ff9800;">
+            💡 <strong>应用：</strong>在上例中，IQR = 85-58 = 27，异常值判定边界为 [17.5, 125.5]<br>
+            因此163、165、257都超出了上边界，被识别为异常值。
+        </p>
+    </div>
+
+    <!-- 交互探索 -->
+    <div class="explore-card">
+        <h4>🔍 交互探索：制作你的箱线图</h4>
+        <p><strong>输入一组数据，自动生成箱线图并计算五数概括：</strong></p>
+        
+        <div class="interactive-area">
+            <label for="dataInput" style="font-weight:600;color:#0f405e;">数据输入（用逗号或空格分隔）：</label>
+            <textarea id="dataInput" placeholder="例如：52, 55, 57, 58, 58, 58, 60, 62, 62, 65">52, 55, 57, 58, 58, 58, 60, 62, 62, 65, 67, 67, 70, 70, 73, 73, 79, 80, 85, 86</textarea>
+            
+            <div style="margin-top:1rem;">
+                <button class="interact-btn" onclick="generateBoxplot()">📊 生成箱线图</button>
+                <button class="interact-btn" onclick="showFiveNumSummary()">📋 显示五数概括</button>
+                <button class="interact-btn" onclick="detectOutliers()">⚠️ 检测异常值</button>
+            </div>
+            
+            <div class="canvas-container" style="margin-top:1rem;">
+                <canvas id="interactiveBoxplot" width="900" height="450"></canvas>
+            </div>
+            
+            <div id="fiveNumDisplay" class="answer-box" style="margin-top:1rem;"></div>
+            <div id="outlierDisplay" style="display:none;margin-top:1rem;padding:1rem;background:#fff3cd;border-left:6px solid #ff9800;border-radius:0 1rem 1rem 0;"></div>
+        </div>
+    </div>
+
+    <!-- 应用二：班级身高分析 -->
+    <div class="explore-card">
+        <h4>应用二：班级身高分析</h4>
+        <p><strong>问题：</strong>某班40名学生的身高箱线图如下：</p>
+        
+        <div class="canvas-container">
+            <canvas id="heightBoxplot" width="800" height="400"></canvas>
+        </div>
+        
+        <p style="margin-top:0.8rem;">根据箱线图回答：</p>
+        <p>(1) 能从图中读出平均数和众数吗？能读出中位数吗？</p>
+        <p>(2) 中间50%的学生身高在什么范围内？</p>
+        <p>(3) 估计该班不低于170cm的学生约占百分之几？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('app2')">🔍 查看答案</button>
+        <div id="app2" class="answer-box">
+            <p><strong>解答：</strong></p>
+            <p style="margin-top:0.5rem;"><strong>(1)</strong> 不能从箱线图中直接读出平均数和众数，但可以直接读出中位数（165cm）。</p>
+            <p><strong>(2)</strong> 中间50%的学生身高在158cm到172cm之间（即Q1到Q3的范围）。</p>
+            <p><strong>(3)</strong> Q3=172cm，意味着75%的学生身高在172cm以下，因此不低于170cm的学生约占25%左右。</p>
+            <p style="margin-top:0.5rem;color:#2e7d32;font-weight:600;">
+                💡 箱线图的优势在于能直观展示数据的分布和分散程度，但不能显示所有统计量。
+            </p>
+        </div>
+    </div>
+
+    <!-- 方法总结 -->
+    <div class="fact-card">
+        <h4>📌 箱线图的优势与局限</h4>
+        <table class="data-table">
+            <tr>
+                <th style="width:50%;">✅ 优势</th>
+                <th style="width:50%;">⚠️ 局限</th>
+            </tr>
+            <tr>
+                <td style="text-align:left;padding-left:1rem;">
+                    • 能同时展示五个关键数值<br>
+                    • 直观显示数据的分布特征<br>
+                    • 容易识别异常值<br>
+                    • 便于比较多组数据
+                </td>
+                <td style="text-align:left;padding-left:1rem;">
+                    • 无法显示具体数据分布<br>
+                    • 不能直接读出平均数和众数<br>
+                    • 对于小样本数据不太适用<br>
+                    • 掩盖了数据的真实分布形态
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 某校八年级(1)班数学考试成绩的箱线图如下，Q1=72，Q2=85，Q3=92，最小值=58，最大值=98。请分析该班数学成绩的分布情况。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p><strong>分析：</strong></p>
+                <p style="margin-top:0.5rem;">• 中位数85分，说明全班一半学生的成绩在85分以上，整体成绩较好</p>
+                <p>• Q3=92分，说明25%的学生成绩在92分以上，优秀率较高</p>
+                <p>• Q1=72分，说明25%的学生成绩在72分以下，需要关注这部分学生</p>
+                <p>• IQR=92-72=20分，数据分散程度适中</p>
+                <p>• 无异常值，说明成绩分布较为合理</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 某品牌灯泡的使用寿命（小时）：1500, 1520, 1530, 1540, 1550, 1560, 1570, 1580, 1590, 2000。请画出箱线图并判断是否存在异常值。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p><strong>解答：</strong></p>
+                <p style="margin-top:0.5rem;">排序后：1500, 1520, 1530, 1540, 1550, 1560, 1570, 1580, 1590, 2000</p>
+                <p style="margin-top:0.5rem;"><strong>五数概括：</strong></p>
+                <p>• 最小值=1500</p>
+                <p>• Q1=(1530+1540)/2=1535</p>
+                <p>• Q2=(1550+1560)/2=1555</p>
+                <p>• Q3=(1570+1580)/2=1575</p>
+                <p>• 最大值=2000</p>
+                <p style="margin-top:0.5rem;"><strong>异常值检测：</strong></p>
+                <p>IQR=1575-1535=40</p>
+                <p>下界=1535-1.5×40=1475</p>
+                <p>上界=1575+1.5×40=1635</p>
+                <p style="margin-top:0.5rem;color:#c62828;font-weight:600;">2000 > 1635，因此2000是异常值。这个灯泡的使用寿命特别长。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#bf360c; border-left:6px solid #fb8c00; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div style="line-height:2;">
+            • <strong>五数概括：</strong>最小值、Q1、中位数Q2、Q3、最大值，全面描述数据分布</div>
+        <div>• <strong>四分位数计算：</strong>先求中位数，再分别求左右两部分的中位数</div>
+        <div>• <strong>箱线图结构：</strong>箱体（Q1~Q3）、触须（最小值~最大值）、中位数线、异常值点</div>
+        <div>• <strong>异常值识别：</strong>IQR法，超出 [Q1-1.5×IQR, Q3+1.5×IQR] 的数据为异常值</div>
+        <div>• <strong>应用价值：</strong>直观展示数据分布，便于比较和识别异常情况</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数据分析观念：</strong>从数据中提取有用信息，做出合理判断。<br>
+        <strong>统计思维：</strong>用样本推断总体，认识数据的随机性。<br>
+        <strong>可视化思维：</strong>将抽象数据转化为直观图形，便于理解和交流。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <div>
+            <strong>作业：</strong>课本习题19.3 第1~3题；<br>
+            <span style="margin-left:3rem;">收集班级同学的体重数据，绘制箱线图并分析数据的分布特征。</span>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 五数概括看分布，四分位数显特征；箱线图里全看遍，异常数值无处藏。✨</p>
+    </div>
+    
+    <div class="footer-note">八年级下册 · 第19章 数据的分析 · 19.3 借助箱线图描述数据的分布</div>
+</div>
+
+<script>
+// ===== 工具函数 =====
+function toggleAnswer(id) {
+    const box = document.getElementById(id);
+    if (box) box.classList.toggle('show-answer');
+}
+
+function parseData(input) {
+    return input.split(/[\s,，]+/)
+        .map(s => parseFloat(s.trim()))
+        .filter(v => !isNaN(v))
+        .sort((a, b) => a - b);
+}
+
+function calcQuartiles(sorted) {
+    var n = sorted.length;
+    if(n === 0) return null;
+    
+    var min = sorted[0];
+    var max = sorted[n - 1];
+    
+    // 中位数Q2
+    var q2Idx = Math.floor(n / 2);
+    var q2 = n % 2 === 0 ? (sorted[q2Idx - 1] + sorted[q2Idx]) / 2 : sorted[q2Idx];
+    
+    // 下四分位数Q1
+    var leftData = sorted.slice(0, Math.floor(n / 2));
+    var q1Idx = Math.floor(leftData.length / 2);
+    var q1 = leftData.length === 0 ? min : 
+        (leftData.length % 2 === 0 ? (leftData[q1Idx - 1] + leftData[q1Idx]) / 2 : leftData[q1Idx]);
+    
+    // 上四分位数Q3
+    var rightData = sorted.slice(Math.ceil(n / 2));
+    var q3Idx = Math.floor(rightData.length / 2);
+    var q3 = rightData.length === 0 ? max :
+        (rightData.length % 2 === 0 ? (rightData[q3Idx - 1] + rightData[q3Idx]) / 2 : rightData[q3Idx]);
+    
+    // 异常值检测
+    var iqr = q3 - q1;
+    var lowerBound = q1 - 1.5 * iqr;
+    var upperBound = q3 + 1.5 * iqr;
+    var outliers = sorted.filter(v => v < lowerBound || v > upperBound);
+    
+    return {min, max, q1, q2, q3, iqr, outliers, lowerBound, upperBound};
+}
+
+function drawBoxplot(canvasId, data, rangeMin, rangeMax, title) {
+    var canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width;
+    var H = canvas.height;
+    
+    // 清空画布
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, W, H);
+    
+    // 坐标转换
+    var padLeft = 70, padRight = 50, padTop = 80, padBottom = 100;
+    var chartW = W - padLeft - padRight;
+    var chartH = H - padTop - padBottom;
+    
+    function toX(val) {
+        return padLeft + (val - rangeMin) / (rangeMax - rangeMin) * chartW;
+    }
+    
+    // 绘制刻度
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.font = '20px sans-serif';
+    ctx.fillStyle = '#475569';
+    ctx.textAlign = 'center';
+    
+    var step = Math.ceil((rangeMax - rangeMin) / 10);
+    for(var i = Math.ceil(rangeMin / step) * step; i <= rangeMax; i += step) {
+        var x = toX(i);
+        ctx.beginPath();
+        ctx.moveTo(x, padTop);
+        ctx.lineTo(x, H - padBottom);
+        ctx.stroke();
+        ctx.fillText(i, x, H - padBottom + 25);
+    }
+    
+    // 箱线图参数
+    var boxY = padTop + chartH * 0.35;
+    var boxH = chartH * 0.3;
+    
+    // 触须线
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 3;
+    
+    // 左触须
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q1), boxY + boxH / 2);
+    ctx.lineTo(toX(data.min), boxY + boxH / 2);
+    ctx.stroke();
+    
+    // 右触须
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q3), boxY + boxH / 2);
+    ctx.lineTo(toX(data.max), boxY + boxH / 2);
+    ctx.stroke();
+    
+    // 触须端点
+    ctx.beginPath();
+    ctx.moveTo(toX(data.min), boxY + boxH * 0.3);
+    ctx.lineTo(toX(data.min), boxY + boxH * 0.7);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(toX(data.max), boxY + boxH * 0.3);
+    ctx.lineTo(toX(data.max), boxY + boxH * 0.7);
+    ctx.stroke();
+    
+    // 箱体
+    ctx.fillStyle = 'rgba(20, 184, 166, 0.3)';
+    ctx.strokeStyle = '#14b8a6';
+    ctx.lineWidth = 3;
+    ctx.fillRect(toX(data.q1), boxY, toX(data.q3) - toX(data.q1), boxH);
+    ctx.strokeRect(toX(data.q1), boxY, toX(data.q3) - toX(data.q1), boxH);
+    
+    // 中位数线
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q2), boxY);
+    ctx.lineTo(toX(data.q2), boxY + boxH);
+    ctx.stroke();
+    
+    // 异常值
+    if(data.outliers && data.outliers.length > 0) {
+        data.outliers.forEach(function(val) {
+            ctx.beginPath();
+            ctx.arc(toX(val), boxY + boxH / 2, 16, 0, Math.PI * 2);
+            ctx.fillStyle = '#f59e0b';
+            ctx.fill();
+            ctx.strokeStyle = '#d97706';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 20px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(val, toX(val), boxY + boxH / 2 + 7);
+        });
+    }
+    
+    // 标注
+    ctx.fillStyle = '#0e7490';
+    ctx.font = 'bold 22px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('最小值=' + data.min, toX(data.min), boxY - 15);
+    ctx.fillText('Q1=' + data.q1, toX(data.q1), boxY + boxH + 25);
+    ctx.fillText('Q2=' + data.q2, toX(data.q2), boxY - 15);
+    ctx.fillText('Q3=' + data.q3, toX(data.q3), boxY + boxH + 25);
+    ctx.fillText('最大值=' + data.max, toX(data.max), boxY - 15);
+    
+    // 标题
+    if(title) {
+        ctx.fillStyle = '#0f405e';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(title, W / 2, 40);
+    }
+}
+
+// ===== 图表1：箱线图结构示意图 =====
+function drawBoxplotStruct() {
+    var canvas = document.getElementById('boxplotStruct');
+    if(!canvas) return;
+    
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width;
+    var H = canvas.height;
+    
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, W, H);
+    
+    var data = {min: 10, q1: 25, q2: 45, q3: 70, max: 95, outliers: [5, 105]};
+    var rangeMin = 0, rangeMax = 110;
+    
+    var padLeft = 80, padRight = 60, padTop = 80, padBottom = 120;
+    var chartW = W - padLeft - padRight;
+    var chartH = H - padTop - padBottom;
+    
+    function toX(val) { return padLeft + (val - rangeMin) / (rangeMax - rangeMin) * chartW; }
+    
+    // 刻度
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.font = '20px sans-serif';
+    ctx.fillStyle = '#475569';
+    ctx.textAlign = 'center';
+    for(var i = 0; i <= 110; i += 10) {
+        var x = toX(i);
+        ctx.beginPath();
+        ctx.moveTo(x, padTop);
+        ctx.lineTo(x, H - padBottom);
+        ctx.stroke();
+        ctx.fillText(i, x, H - padBottom + 25);
+    }
+    
+    var boxY = padTop + chartH * 0.3;
+    var boxH = chartH * 0.35;
+    
+    // 触须线
+    ctx.strokeStyle = '#0ea5e9';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q1), boxY + boxH / 2);
+    ctx.lineTo(toX(data.min), boxY + boxH / 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q3), boxY + boxH / 2);
+    ctx.lineTo(toX(data.max), boxY + boxH / 2);
+    ctx.stroke();
+    
+    // 触须端点
+    ctx.beginPath();
+    ctx.moveTo(toX(data.min), boxY + boxH * 0.3);
+    ctx.lineTo(toX(data.min), boxY + boxH * 0.7);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(toX(data.max), boxY + boxH * 0.3);
+    ctx.lineTo(toX(data.max), boxY + boxH * 0.7);
+    ctx.stroke();
+    
+    // 箱体
+    ctx.fillStyle = 'rgba(20, 184, 166, 0.3)';
+    ctx.strokeStyle = '#14b8a6';
+    ctx.lineWidth = 3;
+    ctx.fillRect(toX(data.q1), boxY, toX(data.q3) - toX(data.q1), boxH);
+    ctx.strokeRect(toX(data.q1), boxY, toX(data.q3) - toX(data.q1), boxH);
+    
+    // 中位数线
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(toX(data.q2), boxY);
+    ctx.lineTo(toX(data.q2), boxY + boxH);
+    ctx.stroke();
+    
+    // 异常值
+    data.outliers.forEach(function(val) {
+        ctx.beginPath();
+        ctx.arc(toX(val), boxY + boxH / 2, 12, 0, Math.PI * 2);
+        ctx.fillStyle = '#f59e0b';
+        ctx.fill();
+        ctx.strokeStyle = '#d97706';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+    
+    // 标注
+    ctx.fillStyle = '#c62828';
+    ctx.font = 'bold 20px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('最小值', toX(data.min), boxY + boxH + 40);
+    ctx.fillText('(Minimum)', toX(data.min), boxY + boxH + 65);
+    
+    ctx.fillStyle = '#0e7490';
+    ctx.fillText('下四分位数(Q1)', toX(data.q1), boxY - 25);
+    ctx.fillText('中位数(Q2)', toX(data.q2), boxY + boxH + 40);
+    ctx.fillText('上四分位数(Q3)', toX(data.q3), boxY - 25);
+    ctx.fillText('最大值', toX(data.max), boxY + boxH + 40);
+    ctx.fillText('(Maximum)', toX(data.max), boxY + boxH + 65);
+    
+    // 异常值标注
+    ctx.fillStyle = '#b45309';
+    ctx.fillText('异常值', toX(5), boxY + boxH / 2 - 30);
+    ctx.fillText('异常值', toX(105), boxY + boxH / 2 - 30);
+    
+    // 标题
+    ctx.fillStyle = '#0f405e';
+    ctx.font = 'bold 26px sans-serif';
+    ctx.fillText('箱线图的结构示意图', W / 2, 45);
+}
+
+// ===== 图表2：四分位数计算演示 =====
+var quartileStep = 0;
+
+function animateQuartileCalc() {
+    quartileStep = 0;
+    var steps = [1, 2, 3, 4];
+    var delay = 1000;
+    
+    function next() {
+        if(quartileStep < steps.length) {
+            quartileStep++;
+            drawQuartileCalc(quartileStep);
+            setTimeout(next, delay);
+        }
+    }
+    next();
+}
+
+function resetQuartileCalc() {
+    quartileStep = 0;
+    drawQuartileCalc(0);
+}
+
+function drawQuartileCalc(step) {
+    var canvas = document.getElementById('quartileCalc');
+    if(!canvas) return;
+    
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width;
+    var H = canvas.height;
+    
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, W, H);
+    
+    var data = [52, 55, 57, 58, 58, 58, 60, 62, 62, 65, 67, 67, 70, 70, 73, 73, 79, 80, 85, 86];
+    var n = data.length;
+    
+    var padLeft = 50, padRight = 50, padTop = 80, padBottom = 100;
+    var chartW = W - padLeft - padRight;
+    var chartH = H - padTop - padBottom;
+    
+    // 计算四分位数
+    var q2Idx = Math.floor(n / 2);
+    var q2 = n % 2 === 0 ? (data[q2Idx - 1] + data[q2Idx]) / 2 : data[q2Idx];
+    
+    var leftData = data.slice(0, Math.floor(n / 2));
+    var rightData = data.slice(Math.ceil(n / 2));
+    
+    var q1Idx = Math.floor(leftData.length / 2);
+    var q1 = leftData.length % 2 === 0 ? (leftData[q1Idx - 1] + leftData[q1Idx]) / 2 : leftData[q1Idx];
+    
+    var q3Idx = Math.floor(rightData.length / 2);
+    var q3 = rightData.length % 2 === 0 ? (rightData[q3Idx - 1] + rightData[q3Idx]) / 2 : rightData[q3Idx];
+    
+    // 绘制数据点
+    var dataY = padTop + chartH / 2;
+    
+    data.forEach(function(val, i) {
+        var x = padLeft + (i + 0.5) / n * chartW;
+        
+        var color = '#94a3b8';
+        if(step >= 2 && i < n / 2) color = '#14b8a6';
+        if(step >= 2 && i >= Math.ceil(n / 2)) color = '#0ea5e9';
+        if(step >= 1 && (i === Math.floor(n / 2) - 1 || i === Math.floor(n / 2))) color = '#ef4444';
+        if(step >= 3 && i === q1Idx - 1) color = '#14b8a6';
+        if(step >= 4 && i === Math.ceil(n / 2) + q3Idx) color = '#f59e0b';
+        
+        ctx.beginPath();
+        ctx.arc(x, dataY, 16, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 18px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(val, x, dataY + 6);
+    });
+
+    // 分隔线和标注
+    ctx.setLineDash([5, 5]);
+    ctx.strokeStyle = '#ef4444';
+    ctx.lineWidth = 2;
+
+    if(step >= 1) {
+        var q2X = padLeft + chartW / 2;
+        ctx.beginPath();
+        ctx.moveTo(q2X, padTop);
+        ctx.lineTo(q2X, padTop + chartH);
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#ef4444';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('中位数 Q2 = ' + q2, q2X, padTop - 18);
+    }
+
+    if(step >= 2) {
+        ctx.fillStyle = '#14b8a6';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.fillText('左侧数据（求Q1）', padLeft + chartW * 0.25, padTop + chartH + 45);
+        ctx.fillStyle = '#0ea5e9';
+        ctx.fillText('右侧数据（求Q3）', padLeft + chartW * 0.75, padTop + chartH + 45);
+    }
+
+    if(step >= 3) {
+        var q1X = padLeft + (q1Idx - 0.5) / n * chartW;
+        ctx.setLineDash([3, 3]);
+        ctx.strokeStyle = '#14b8a6';
+        ctx.beginPath();
+        ctx.moveTo(q1X, padTop);
+        ctx.lineTo(q1X, padTop + chartH);
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#14b8a6';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillText('Q1 = ' + q1, q1X, padTop + chartH + 75);
+    }
+
+    if(step >= 4) {
+        var q3X = padLeft + (Math.ceil(n / 2) + q3Idx + 0.5) / n * chartW;
+        ctx.setLineDash([3, 3]);
+        ctx.strokeStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.moveTo(q3X, padTop);
+        ctx.lineTo(q3X, padTop + chartH);
+        ctx.stroke();
+
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 22px sans-serif';
+        ctx.fillText('Q3 = ' + q3, q3X, padTop + chartH + 75);
+    }
+
+    ctx.setLineDash([]);
+
+    // 标题
+    ctx.fillStyle = '#0f405e';
+    ctx.font = 'bold 24px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('四分位数计算演示', W / 2, 40);
+}
+
+// ===== 图表3：AQI箱线图 =====
+function drawAQIBoxplot() {
+    var data = {min: 52, q1: 58, q2: 67, q3: 85, max: 107, outliers: [163, 165, 257]};
+    drawBoxplot('aqiBoxplot', data, 0, 280, '某市去年7月空气质量指数（AQI）箱线图');
+}
+
+// ===== 图表4：身高箱线图 =====
+function drawHeightBoxplot() {
+    var data = {min: 150, q1: 158, q2: 165, q3: 172, max: 182, outliers: []};
+    drawBoxplot('heightBoxplot', data, 145, 190, '某班40名学生身高箱线图');
+}
+
+// ===== 交互功能 =====
+function generateBoxplot() {
+    var input = document.getElementById('dataInput').value;
+    var data = parseData(input);
+    
+    if(data.length < 5) {
+        alert('请输入至少5个数据！');
+        return;
+    }
+    
+    var stats = calcQuartiles(data);
+    if(!stats) return;
+    
+    // 确定范围
+    var allVals = data.concat([stats.lowerBound, stats.upperBound]);
+    var rangeMin = Math.floor(Math.min(...allVals) / 10) * 10 - 10;
+    var rangeMax = Math.ceil(Math.max(...allVals) / 10) * 10 + 10;
+    
+    drawBoxplot('interactiveBoxplot', stats, rangeMin, rangeMax, '你的箱线图 (n=' + data.length + ')');
+}
+
+function showFiveNumSummary() {
+    var input = document.getElementById('dataInput').value;
+    var data = parseData(input);
+    
+    if(data.length < 5) {
+        alert('请输入至少5个数据！');
+        return;
+    }
+    
+    var stats = calcQuartiles(data);
+    if(!stats) return;
+    
+    var display = document.getElementById('fiveNumDisplay');
+    display.classList.add('show-answer');
+    display.innerHTML = 
+        '<strong style="font-size:1.2rem;">五数概括：</strong><br><br>' +
+        '• 最小值：<strong>' + stats.min + '</strong><br>' +
+        '• 下四分位数(Q1)：<strong>' + stats.q1.toFixed(1) + '</strong><br>' +
+        '• 中位数(Q2)：<strong>' + stats.q2.toFixed(1) + '</strong><br>' +
+        '• 上四分位数(Q3)：<strong>' + stats.q3.toFixed(1) + '</strong><br>' +
+        '• 最大值：<strong>' + stats.max + '</strong><br><br>' +
+        '<span style="color:#2e7d32;font-weight:600;">四分位距 IQR = ' + stats.iqr.toFixed(1) + '</span>';
+}
+
+function detectOutliers() {
+    var input = document.getElementById('dataInput').value;
+    var data = parseData(input);
+    
+    if(data.length < 5) {
+        alert('请输入至少5个数据！');
+        return;
+    }
+    
+    var stats = calcQuartiles(data);
+    if(!stats) return;
+    
+    var display = document.getElementById('outlierDisplay');
+    display.style.display = 'block';
+    
+    if(stats.outliers.length === 0) {
+        display.innerHTML = '✅ <strong>未检测到异常值</strong><br>所有数据都在正常范围内 [' + 
+            stats.lowerBound.toFixed(1) + ', ' + stats.upperBound.toFixed(1) + ']。';
+        display.style.background = '#d4edda';
+        display.style.borderColor = '#28a745';
+    } else {
+        display.innerHTML = '⚠️ <strong>检测到 ' + stats.outliers.length + 
+            ' 个异常值：' + stats.outliers.join(', ') + '</strong><br><br>' +
+            'IQR = ' + stats.iqr.toFixed(1) + '<br>' +
+            '正常范围：[' + stats.lowerBound.toFixed(1) + ', ' + stats.upperBound.toFixed(1) + ']<br><br>' +
+            '<span style="color:#856404;font-weight:600;">这些数据偏离了大部分数据的分布范围，需要特别关注！</span>';
+        display.style.background = '#fff3cd';
+        display.style.borderColor = '#ff9800';
+    }
+}
+
+// ===== 页面加载完成后初始化 =====
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        drawBoxplotStruct();
+        drawQuartileCalc(0);
+        drawAQIBoxplot();
+        drawHeightBoxplot();
+        
+        // 初始化交互箱线图
+        var canvas = document.getElementById('interactiveBoxplot');
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#64748b';
+        ctx.font = '20px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('请输入数据并点击"生成箱线图"', canvas.width / 2, canvas.height / 2);
+    }, 100);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第26课时 列代数式 | 华师版·七上 第2章 整式及其加减</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.1 列代数式</h2>
+    <div class="lesson-title">第3课时 列代数式</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解列代数式的意义，能根据实际问题列出代数式</div>
+            <div class="target-item"><span>✔</span>掌握用代数式表示常见的数量关系（和、差、积、商、平方等）</div>
+            <div class="target-item"><span>✔</span>能用代数式表示简单的规律（如连续整数、偶数、奇数）</div>
+            <div class="target-item"><span>✔</span>体会数学模型思想</div>
+        </div>
+    </div>
+
+    <!-- 复习引入 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 回顾：代数式是由数和字母用运算符号连接而成的式子。用字母表示数后，我们可以把实际问题中的数量关系简洁地表达出来，这个过程叫做<strong>列代数式</strong>。</p>
+    </div>
+
+    <!-- 做一做（高山气温，课本P87） -->
+    <h3>📝 做一做</h3>
+    <div class="think-box">
+        <p>某地区夏季高山上的气温从山脚处开始每升高100 m降低0.6°C。如果山脚处的气温为28°C，那么比山脚高300 m处的气温为______；一般地，比山脚高 \(x\) m处的气温为______。</p>
+        <button class="interact-btn" onclick="toggleAnswer('mountain')">显示答案</button>
+        <div id="answerMountain" class="answer-box">
+            <div class="answer-line">300 m处气温：\(28 - 0.6 \times 3 = 26.2^\circ\text{C}\)</div>
+            <div class="answer-line">\(x\) m处气温：\(\left(28 - \dfrac{0.6}{100}x\right)^\circ\text{C}\)</div>
+        </div>
+    </div>
+
+    <!-- 新增：课本原句 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 在解决实际问题时，常常先把问题中有关的数量用代数式表示出来，即列出代数式，使问题变得简洁，更具一般性。</p>
+    </div>
+
+    <!-- 例3（课本P87） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex3">
+        <p><strong>例3</strong> 设某数为 \(x\)，用代数式表示：</p>
+        <p>(1) 比该数的3倍大1的数；</p>
+        <p>(2) 该数与它的 \(\frac{1}{3}\) 的和；</p>
+        <p>(3) 该数与 \(\frac{2}{5}\) 的和的3倍；</p>
+        <p>(4) 该数的倒数与5的差。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示答案</button>
+        <div id="exampleAnswer3" class="answer-box">
+            <div class="answer-line">(1) \(3x + 1\)</div>
+            <div class="answer-line">(2) \(x + \frac{1}{3}x\)</div>
+            <div class="answer-line">(3) \(3\left(x + \frac{2}{5}\right)\)</div>
+            <div class="answer-line">(4) \(\frac{1}{x} - 5\;(x \neq 0)\)</div>
+        </div>
+    </div>
+
+    <!-- 例4（课本P88） -->
+    <div class="example-box" id="ex4">
+        <p><strong>例4</strong> 用代数式表示：</p>
+        <p>(1) \(a,b\) 两数的平方和；</p>
+        <p>(2) \(a,b\) 两数的和的平方；</p>
+        <p>(3) \(a,b\) 两数的和与它们的差的乘积；</p>
+        <p>(4) 所有偶数，所有奇数。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示答案</button>
+        <div id="exampleAnswer4" class="answer-box">
+            <div class="answer-line">(1) \(a^2 + b^2\)</div>
+            <div class="answer-line">(2) \((a+b)^2\)</div>
+            <div class="answer-line">(3) \((a+b)(a-b)\)</div>
+            <div class="answer-line">(4) 偶数：\(2n\)（\(n\)为整数）；奇数：\(2n+1\)（\(n\)为整数）</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P88） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 用代数式表示：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(a\) 与 \(b\) 的差的2倍；</div>
+            <div class="sub-question">(2) \(a\) 与 \(b\) 的2倍的差；</div>
+            <div class="sub-question">(3) \(a\) 与 \(b,c\) 两数和的差；</div>
+            <div class="sub-question">(4) \(a,b\) 两数的差与 \(c\) 的和。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) \(2(a-b)\)</div>
+                <div class="answer-line">(2) \(a - 2b\)</div>
+                <div class="answer-line">(3) \(a - (b+c)\)</div>
+                <div class="answer-line">(4) \((a-b) + c\)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 填空：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) 三个连续整数，如果中间一个整数是 \(n\)，那么第一个整数和第三个整数分别是 ______、______；</div>
+            <div class="sub-question">(2) 三个连续偶数，如果中间一个偶数是 \(2n\)，那么它前一个偶数和后一个偶数分别是 ______、______。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) \(n-1\)，\(n+1\)</div>
+                <div class="answer-line">(2) \(2n-2\)，\(2n+2\)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：列代数式与数学模型 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 从实际问题到代数式——数学模型初探</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>列代数式是数学建模的起步。当我们用字母表示实际问题中的量，并用运算符号连接起来，就建立了一个数学模型。例如，高山气温的变化可以用 \(\left(28 - \dfrac{0.6}{100}x\right)^\circ\text{C}\) 来表示；连续整数可以用 \(n-1, n, n+1\) 来表示。这些代数式概括了问题的本质，使我们能方便地分析和计算。</p>
+            <p>在数学中，<strong>模型思想</strong>是指通过建立模型来描述现实世界中的数量关系、变化规律。列代数式就是最简单的数学模型，它为后续学习方程、不等式、函数等更复杂的模型打下基础。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 数学抽象 · 数学模型 · 符号意识</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">列代数式：把实际问题中的数量关系用代数式表示出来。</div>
+                <div class="summary-item">关键：理清运算顺序，正确使用括号。</div>
+                <div class="summary-item">常见表示：和、差、积、商、平方、连续整数等。</div>
+                <div class="summary-item">列代数式是数学建模的基础，体现了抽象和符号意识。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P89习题2.1 A组第5、6、7、8题；B组第6、7题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 数量关系化代数，模型思想从此始 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第26课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

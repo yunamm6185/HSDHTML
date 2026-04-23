@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.5 数学活动：质量百分比浓度问题| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f3e8fd; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif; font-weight: 500; line-height: 1.6; color: #2d1867; padding: 1.5rem; font-size: 18px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: white; border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(102,126,234,0.35); padding: 2rem 2.5rem; border: 1px solid #d4c4f8; }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #b8a5e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem; font-weight: 600; font-size: 1rem; }
+        h1 { font-size: 2.4rem; color: #5a3d9a; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:5px; margin-top:8px; }
+        .lesson-title { text-align:center; font-size:2.2rem; color:#5a3d9a; background:linear-gradient(145deg,#ede6fc,#ddd0f5); padding:.6rem 1.2rem; border-radius:60px; border:3px solid #c9b8ea; margin:1.2rem 0 1.8rem; font-weight:700; }
+
+        .learning-targets { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-radius:2rem; padding:1.3rem 2rem; margin:1rem 0 2rem; border:1px solid #c9b8ea; box-shadow:0 5px 0 #b8a0e0; }
+        .learning-targets h3 { margin:0 0 0.8rem; font-size:1.5rem; border-left:6px solid #667eea; padding-left:1rem; }
+        .target-grid { display:flex; flex-wrap:wrap; gap:0.8rem; }
+        .target-item { background:white; border-radius:40px; padding:.4rem 1.5rem .4rem .9rem; display:flex; align-items:center; gap:.5rem; font-weight:600; font-size:1rem; box-shadow:0 3px 0 #c4b5e8; border:1px solid #d4c4f8; }
+        .target-item span { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; }
+
+        .intro-card { background:#ede6fc; border-radius:2rem; padding:1.5rem 2rem; margin:1.2rem 0; border-left:8px solid #667eea; font-weight:600; }
+        .explore-card { background:#e8fdf4; border-radius:1.8rem; padding:1.5rem 1.8rem; margin:1.4rem 0; border-left:8px solid #34c77b; font-weight:600; }
+        .explore-card h4 { font-size:1.4rem; margin-bottom:0.7rem; color:#1a8a4a; } .explore-card h4::before { content:"🔍 "; }
+        .fact-card { background:#fff8e1; border-left:8px solid #f0b34b; border-radius:1.8rem; padding:1.4rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .fact-card h4 { font-size:1.5rem; margin-bottom:0.6rem; color:#b85c1a; }
+        .theorem-box { background:#fff3cd; border:3px solid #f0b34b; border-radius:1.5rem; padding:1.2rem 2rem; margin:1rem 0; text-align:center; font-size:1.25rem; font-weight:700; color:#7a3d00; }
+        .example-card { background:#e8fdf4; border-left:8px solid #34c77b; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .example-card h4 { font-size:1.4rem; color:#1a8a4a; }
+        .reading-section { background:#fef9e6; border-left:8px solid #e6b422; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:500; }
+
+        .interact-btn { background:#ede6fc; border:none; color:#5a3d9a; padding:.3rem 1.2rem; border-radius:40px; font-weight:700; cursor:pointer; box-shadow:0 4px 0 #c4b5e8; margin:.5rem 0 0; font-size:.9rem; }
+        .interact-btn:active { transform:translateY(2px); }
+        .answer-box { background:#faf8ff; border-left:6px solid #f0b34b; padding:.7rem 1.3rem; margin:.8rem 0; display:none; border-radius:0 1rem 1rem 0; font-size:.95rem; }
+        .show-answer { display:block; }
+
+        .exercise-section { background:#f5efff; border-radius:2rem; padding:1.5rem 2rem; margin:2rem 0; }
+        .exercise-item { margin-bottom:1.5rem; }
+        .exercise-question { font-weight:700; color:#5a3d9a; font-size:1.05rem; margin-bottom:0.4rem; }
+
+        .summary-section { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-left:6px solid #667eea; border-radius:1.8rem; padding:1.2rem 2rem; margin:1.5rem 0; }
+        .math-idea { background:#ede6fc; border-left:8px solid #667eea; border-radius:1.8rem; padding:1rem 1.8rem; margin:1rem 0; }
+        .homework-box { background:linear-gradient(145deg,#ddd0f5,#ede6fc); border-radius:60px; padding:1rem 2rem; display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; margin:1.5rem 0; }
+        .message-box { background:#f0ebff; text-align:center; font-style:italic; border-left:8px solid #764ba2; padding:1rem 1.8rem; border-radius:2rem; margin:1.5rem 0; }
+        .footer-note { text-align:right; color:#5a3d9a; border-top:2px solid #c9b8ea; padding-top:.8rem; margin-top:1.5rem; }
+        .highlight { background:#d4f4dd; padding:.5rem 1rem; border-radius:1rem; margin:.5rem 0; }
+
+        table { width:100%; border-collapse:collapse; margin:1rem 0; background:white; border-radius:10px; overflow:hidden; }
+        th,td { padding:12px 16px; text-align:center; border:2px solid #ddd0f5; }
+        th { background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; }
+        tr:nth-child(even) { background:#faf8ff; } tr:hover { background:#ede6fc; }
+
+        /* 探究卡片 */
+        .investigate-card {
+            background: linear-gradient(145deg, #f0ebff, #ede6fc);
+            border: 2px solid #c9b8ea;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.2rem 0;
+        }
+        .investigate-card h4 {
+            color: #5a3d9a;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第15章 分式 · 15.5</span></div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.5 数学活动：质量百分比浓度问题</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 活动目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解质量百分比浓度的概念和计算公式</div>
+            <div class="target-item"><span>✔</span>掌握溶液稀释与浓缩问题的分析方法</div>
+            <div class="target-item"><span>✔</span>能建立分式方程解决浓度配比问题</div>
+            <div class="target-item"><span>✔</span>体会数学在化学、生活中的实际应用</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p>在生活中，我们经常遇到<strong>溶液配制</strong>的问题。例如：</p>
+        <ul style="margin-left:1.5rem;">
+            <li>医院里需要配制一定浓度的药水</li>
+            <li>实验室中需要配置特定浓度的试剂</li>
+            <li>农业上需要调配农药的浓度</li>
+        </ul>
+        <p style="margin-top:0.5rem;">这些问题的核心都是<strong>浓度（concentration）的计算</strong>。而浓度的变化规律，恰好可以用<strong>分式方程</strong>来精确描述！</p>
+    </div>
+
+    <!-- 基本概念 -->
+    <div class="fact-card">
+        <h4>📌 质量百分比浓度</h4>
+        <div class="highlight">
+            <p><strong>定义：</strong><strong>溶质的质量</strong>占<strong>全部溶液质量</strong>的百分比，叫做该溶液的<strong>质量百分比浓度</strong>（简称浓度）。</p>
+        </div>
+        <div class="theorem-box">
+            $$\text{浓度} = \frac{\text{溶质质量}}{\text{溶液质量}} \times 100\% = \frac{\text{溶质质量}}{\text{溶质质量} + \text{溶剂质量}} \times 100\%$$
+        </div>
+
+        <table style="margin:1rem auto;">
+            <tr><th>名称</th><th>含义</th><th>关系</th></tr>
+            <tr><td>溶质（solute）</td><td>被溶解的物质</td><td rowspan="3">溶液质量 = 溶质 + 溶剂</td></tr>
+            <tr><td>溶剂（solvent）</td><td>溶解溶质的物质（通常是水）</td></tr>
+            <tr><td>溶液（solution）</td><td>溶质 + 溶剂形成的均匀混合物</td></tr>
+        </table>
+
+        <button class="interact-btn" onclick="toggleAnswer('conc_example')">💡 具体例子</button>
+        <div id="conc_example" class="answer-box">
+            <p><strong>例：</strong>将 $20\ \text{g}$ 食盐溶解在 $180\ \text{g}$ 水中，所得盐水的浓度为：</p>
+            <p style="text-align:center; font-size:1.1rem;">$\displaystyle \frac{20}{20+180} \times 100\% = \frac{20}{200} \times 100\% = \mathbf{10\%}$</p>
+        </div>
+    </div>
+
+    <!-- 探究一 -->
+    <div class="investigate-card">
+        <h4>🧪 探究一：稀释问题——加水</h4>
+        <p><strong>问题：</strong>现有浓度为 $20\%$ 的盐水 $300\ \text{g}$，要把它稀释成浓度为 $10\%$ 的盐水，需要加多少克水？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('inv1')">✍️ 分析与解答</button>
+        <div id="inv1" class="answer-box">
+            <p><strong>分析思路（等量关系）：</strong></p>
+            <p style="background:#e8fdf4; padding:0.8rem; border-radius:0.8rem; margin:0.5rem 0;">稀释前后，<strong style="color:#e74c3c;">溶质的质量保持不变</strong>！</p>
+
+            <p><strong>解法一（列方程）：</strong>设需要加水 $x\ \text{g}$</p>
+            <p>&nbsp;&nbsp;$\text{稀释前溶质} = \text{稀释后溶质}$</p>
+            <p>&nbsp;&nbsp;$300 \times 20\% = (300 + x) \times 10\%$</p>
+            <p>&nbsp;&nbsp;$60 = (300 + x) \times 0.1$</p>
+            <p>&nbsp;&nbsp;$600 = 300 + x$</p>
+            <p>&nbsp;&nbsp;<strong>$x = 300\ \text{g}$</strong></p>
+            <p style="color:#27ae60;">答：需要加水 300 克。</p>
+
+            <p style="margin-top:0.8rem;"><strong>解法二（算术方法）：</strong></p>
+            <p>• 稀释前含盐量：$300 \times 20\% = 60\ \text{g}$</p>
+            <p>• 稀释后总质量：$60 \div 10\% = 600\ \text{g}$</p>
+            <p>• 加水量：$600 - 300 = 300\ \text{g}$ ✓</p>
+        </div>
+    </div>
+
+    <!-- 探究二 -->
+    <div class="investigate-card">
+        <h4>🧪 探究二：浓缩问题——蒸发</h4>
+        <p><strong>问题：</strong>现有浓度为 $15\%$ 的盐水 $400\ \text{g}$，通过蒸发水分使其变为浓度为 $30\%$ 的盐水，需要蒸发掉多少克水？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('inv2')">✍️ 分析与解答</button>
+        <div id="inv2" class="answer-box">
+            <p><strong>关键：</strong>蒸发过程中<strong>溶质质量不变</strong></p>
+            <p>设需要蒸发掉 $x\ \text{g}$ 水。</p>
+            <p>$400 \times 15\% = (400 - x) \times 30\%$</p>
+            <p>$60 = (400 - x) \times 0.3$</p>
+            <p>$200 = 400 - x$</p>
+            <p><strong>$x = 200\ \text{g}$</strong></p>
+            <p style="color:#27ae60;">检验：$200 < 400$ ✅ 合理</p>
+            <p style="color:#27ae60;">答：需要蒸发掉 200 克水。</p>
+        </div>
+    </div>
+
+    <!-- 探究三 -->
+    <div class="investigate-card">
+        <h4>🧪 探究三：混合问题——两种不同浓度溶液混合</h4>
+        <p><strong>问题：</strong>有浓度为 $30\%$ 和 $70\%$ 的两种酒精溶液各若干克。要将它们混合成浓度为 $50\%$ 的酒精溶液 $500\ \text{g}$，两种溶液各需多少克？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('inv3')">✍️ 分析与解答</button>
+        <div id="inv3" class="answer-box">
+            <p><strong>等量关系：</strong></p>
+            <p>① 两种溶液的总质量 = $500\ \text{g}$</p>
+            <p>② 溶质的总质量 = $500 \times 50\% = 250\ \text{g}$</p>
+
+            <p>设取 $30\%$ 的溶液 $x\ \text{g}$，则 $70\%$ 的溶液为 $(500-x)\ \text{g}$</p>
+            <p>$30\%\cdot x + 70\%(500-x) = 250$</p>
+            <p>$0.3x + 350 - 0.7x = 250$</p>
+            <p>$-0.4x = -100$</p>
+            <p><strong>$x = 250\ \text{g}$</strong></p>
+            <p>则另一种为：$500 - 250 = 250\ \text{g}$</p>
+            <p style="color:#27ae60;"><strong>答：</strong>两种溶液各取 250 克。</p>
+            <p style="margin-top:0.5rem; color:#667eea; font-style:italic;">💡 有趣！因为 $50\%$ 正好是 $30\%$ 和 $70\%$ 的平均值，所以两种溶液等量混合即可。</p>
+        </div>
+    </div>
+
+    <!-- 探究四 -->
+    <div class="investigate-card">
+        <h4>🧪 探究四：加浓问题——加入溶质</h4>
+        <p><strong>问题：</strong>现有浓度为 $8\%$ 的糖水 $200\ \text{g}$，要使浓度达到 $20\%$，需要加入多少克糖？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('inv4')">✍️ 分析与解答</button>
+        <div id="inv4" class="answer-box">
+            <p><strong>注意：</strong>加入糖后，<strong>溶液质量和溶质质量都增加了</strong></p>
+            <p>设需要加入糖 $x\ \text{g}$。</p>
+            <p>$\text{原溶质} + \text{新加糖} = \text{新溶液中的溶质}$</p>
+            <p>$200 \times 8\% + x = (200 + x) \times 20\%$</p>
+            <p>$16 + x = 40 + 0.2x$</p>
+            <p>$0.8x = 24$</p>
+            <p><strong>$x = 30\ \text{g}$</strong></p>
+            <p style="color:#27ae60;">检验：加入30g后，总质量230g，溶质46g，$46/230=20\%$ ✅</p>
+            <p style="color:#27ae60;">答：需要加入 30 克糖。</p>
+        </div>
+    </div>
+
+    <!-- 例题讲解 -->
+    <div class="example-card">
+        <h4>综合例题</h4>
+        <p>某工厂要把浓度为 $95\%$ 的浓硫酸稀释为浓度为 $38\%$ 的稀硫酸用于生产。现有一桶 $95\%$ 浓硫酸 $500\ \text{kg}$，可以稀释出多少千克 $38\%$ 的稀硫酸？需要加水多少千克？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>分析：</strong>稀释过程中硫酸（溶质）的质量不变。</p>
+            <p><strong>解：</strong>设可得到 $38\%$ 的稀硫酸 $x\ \text{kg}$。</p>
+            <p>$500 \times 95\% = x \times 38\%$</p>
+            <p>$475 = 0.38x$</p>
+            <p>$x = \frac{475}{0.38} = \mathbf{1250}\ \text{kg}$</p>
+            <p style="margin-top:0.5rem;">需要加水：$1250 - 500 = \mathbf{750}\ \text{kg}$</p>
+            <p style="color:#27ae60;"><strong>答：</strong>可稀释出 1250 kg 38% 的稀硫酸，需加水 750 kg。</p>
+            <p style="color:#e74c3c; margin-top:0.5rem;">⚠️ 安全提示：稀释浓硫酸时一定要将浓硫酸慢慢倒入水中，并不断搅拌！绝不能将水倒入浓硫酸！</p>
+        </div>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.2rem;">✏️ 练习与思考</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 把 $50\ \text{g}$ 质量分数为 $98\%$ 的硫酸稀释为质量分数为 $20\%$ 的硫酸，需要加水多少克？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p>设加水 $x$ g。$50\times 98\%=(50+x)\times 20\%$ → $49=10+0.2x$ → $39=0.2x$ → $x=195\ \text{g}$</p>
+                <p style="color:#27ae60;">答：需要加水 195 克。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 有 $40\ \text{g}$ 质量分数为 $5\%$ 的盐水，要将其浓缩为质量分数为 $20\%$ 的盐水，需要蒸发掉多少克水？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p>设蒸发 $x$ g 水。$40\times 5\%=(40-x)\times 20\%$ → $2=8-0.2x$ → $0.2x=6$ → $x=30\ \text{g}$</p>
+                <p style="color:#27ae60;">答：需要蒸发掉 30 克水。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 思考：如果用 $m_1\%$ 和 $m_2\%$（$m_1<m_2$）两种浓度的溶液，要配制 $\frac{m_1+m_2}{2}\%$ 的溶液，两种溶液应该按什么比例混合？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案与思考</button>
+            <div id="p3" class="answer-box">
+                <p>设第一种取 $x$ 克，第二种取 $y$ 克。</p>
+                <p>$\frac{x\cdot m_1\% + y\cdot m_2\%}{x+y} = \frac{m_1+m_2}{2}\%$</p>
+                <p>$2(m_1 x + m_2 y) = (m_1+m_2)(x+y)$</p>
+                <p>$2m_1x+2m_2y = m_1x+m_1y+m_2x+m_2y$</p>
+                <p>$m_1x-m_2x = m_1y-m_2y$ → $(m_1-m_2)x=(m_1-m_2)y$ → $x=y$</p>
+                <p style="color:#27ae60;"><strong>结论：</strong>按 <strong>1:1</strong> 等质量混合即可！（这叫做"十字交叉法"的特例）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="reading-section">
+        <h4>📖 拓展阅读——十字交叉法（供学有余力的同学参考）</h4>
+        <p>对于两种不同浓度的溶液混合问题，有一种快捷的方法叫做<strong>十字交叉法</strong>：</p>
+        <p style="text-align:center; font-size:1.1rem; margin:0.8rem 0;">
+            $$
+            \begin{array}{ccc}
+            c_1 & & |c - c_2| \\
+            & \searrow & \swarrow \\
+            c & \longrightarrow & \text{质量比} \\
+            & \swarrow & \searrow \\
+            c_2 & & |c_1 - c|
+            \end{array}
+            $$
+        </p>
+        <p>其中 $c_1$、$c_2$ 为两种溶液的浓度，$c$ 为混合后的目标浓度。<br>
+        两种溶液的质量比为 $(c-c_2):(c_1-c)$。</p>
+        <p style="font-style:italic; color:#666; margin-top:0.5rem;">这种方法本质上是基于溶质守恒原理推导出的简便算法，有兴趣的同学可以进一步研究。</p>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">📌 活动小结</h3>
+        <div>• <strong>核心公式：</strong>浓度 = $\frac{\text{溶质}}{\text{溶液}} \times 100\%$</div>
+        <div style="margin-top:0.5rem;">• <strong>稀释/蒸发问题：</strong>溶质质量不变（最常用的等量关系）</div>
+        <div style="margin-top:0.5rem;">• <strong>加浓问题：</strong>溶质增加，溶液也增加</div>
+        <div style="margin-top:0.5rem;">• <strong>混合问题：</strong>溶质之和 = 混合液中的溶质；质量之和 = 总质量</div>
+        <div style="margin-top:0.5rem;">• <strong>建模步骤：</strong>找等量关系 → 设未知数 → 列分式方程 → 解方程 → 检验合理性</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 核心素养</h4>
+        <p><strong>模型思想：</strong>将实际问题抽象为分式方程数学模型。<br>
+        <strong>等量思维：</strong>准确识别问题中不变的量（如溶质守恒）。<br>
+        <strong>应用意识：</strong>感受数学在科学实验和日常生活中的广泛应用价值。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">🔬</span>
+        <span><strong>实践作业：</strong>查阅资料，了解生活中还有哪些地方会用到"浓度"这个概念？尝试自己设计一道浓度相关的应用题并与同学分享。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 溶质溶剂成溶液，浓度计算有门道；稀释蒸发溶质守，方程建模见奇效。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.5 数学活动：质量百分比浓度问题</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b)b.classList.toggle('show-answer');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.3.1 用相同的正多边形铺设地面 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box { margin: 2rem 0; text-align: center; }
+        .figcaption { font-size: 1rem; color: #144a6f; margin-top: 0.3rem; text-align: center; }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+            word-break: break-word;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .image-row .img-container {
+            flex: 1 1 250px;
+            min-width: 200px;
+        }
+        .step-proof {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: auto;
+            margin: 1rem auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 6px 12px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+
+        /* 互动模拟器样式 */
+        .simulator-container {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            background: #f5fafe;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 2px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .canvas-wrapper {
+            flex: 2;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn-sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .poly-btn {
+            background: white;
+            border: 2px solid #2b7a9c;
+            border-radius: 40px;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1b5370;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 4px 0 #9bb7d4;
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+        .poly-btn:hover {
+            background: #e3f0fd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #9bb7d4;
+        }
+        .poly-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #9bb7d4;
+        }
+        .poly-btn.clear {
+            background: #fff3cd;
+            border-color: #c49b3f;
+            color: #7a5a1a;
+            box-shadow: 0 4px 0 #dbb068;
+            margin-top: 10px;
+        }
+        .poly-btn.clear:hover {
+            background: #ffe8a8;
+        }
+        .simulator-info {
+            font-size: 0.9rem;
+            color: #144a6f;
+            margin-top: 10px;
+            padding: 10px;
+            background: #e2eaf3;
+            border-radius: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第8章 三角形 · 8.3.1</span>
+    </div>
+    <h1>第8章 三角形</h1>
+    <h2>8.3 用正多边形铺设地面</h2>
+    <div class="chapter-intro">★ 探索用相同的正多边形铺满地面的条件。</div>
+    <div class="lesson-title">8.3.1 用相同的正多边形铺设地面</div>
+
+    <!-- 问题导入 -->
+    <div class="intro-block">
+        <p>我们经常看到用各种形状的瓷砖铺成的地面或墙面，相邻的瓷砖平整贴合，没有空隙。这些形状的瓷砖为什么能铺满地面？这与正多边形的内角大小有关。今天我们先研究用相同的正多边形铺设地面的情况。</p>
+        <div class="img-container">
+            <img src="8.3.1.png" alt="图8.3.1 正三角形、正方形、正六边形铺设">
+            <div class="figcaption">图8.3.1</div>
+        </div>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解用相同正多边形铺满地面的条件</div>
+            <div class="target-item"><span>✔</span>掌握正多边形内角大小的计算</div>
+            <div class="target-item"><span>✔</span>能判断哪些正多边形可以单独铺满地面</div>
+        </div>
+    </div>
+
+    <!-- 探索：完成表格 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>使用给定的某种正多边形，它能否铺满地面，既不留下一丝空白，又不相互重叠？这与正多边形的内角大小有关。请根据图8.3.1，完成下表。</p>
+        <table>
+            <tr><th>正多边形的边数</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>…</th><th>$n$</th></tr>
+            <tr><td>正多边形的内角和</td><td>$180°$</td><td>$360°$</td><td></td><td></td><td></td><td></td><td>…</td><td></td></tr>
+            <tr><td>正多边形每个内角的大小</td><td>$60°$</td><td>$90°$</td><td></td><td></td><td></td><td></td><td>…</td><td></td></tr>
+        </table>
+        <button class="interact-btn" onclick="toggleAnswer('exploreTable')">🔍 显示答案</button>
+        <div id="exploreTable" class="answer-box">
+            <table>
+                <tr><th>正多边形的边数</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>…</th><th>$n$</th></tr>
+                <tr><td>正多边形的内角和</td><td>$180°$</td><td>$360°$</td><td>$540°$</td><td>$720°$</td><td>$900°$</td><td>$1080°$</td><td>…</td><td>$(n-2)\cdot180°$</td></tr>
+                <tr><td>正多边形每个内角的大小</td><td>$60°$</td><td>$90°$</td><td>$108°$</td><td>$120°$</td><td>$\approx128.57°$</td><td>$135°$</td><td>…</td><td>$\frac{(n-2)\cdot180°}{n}$</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 概括 -->
+    <div class="highlight">
+        <p><strong>概括：</strong>使用给定的某种正多边形，当围绕一点拼在一起的几个内角加在一起恰好组成一个周角（$360°$）时，就可以铺满地面。</p>
+    </div>
+
+    <!-- 做一做：观察图8.3.2 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>如图8.3.2，正五边形和正八边形为什么不能铺满地面？</p>
+        <div class="img-container">
+            <img src="8.3.2.png" alt="图8.3.2 正五边形和正八边形">
+            <div class="figcaption">图8.3.2</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">🔍 显示解释</button>
+        <div id="do1" class="answer-box">
+            <p>正五边形每个内角 $108°$，$360÷108$ 不是整数，不能拼成周角；正八边形每个内角 $135°$，$360÷135$ 也不是整数，因此不能铺满地面。</p>
+        </div>
+    </div>
+
+    <!-- 想一想：正三角形和正方形为什么能铺满 -->
+    <div class="think-box">
+        <h4>想一想</h4>
+        <p>如图8.1.1①、②，你能说明为什么正三角形和正方形能铺满地面吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('think1')">💡 显示解释</button>
+        <div id="think1" class="answer-box">
+            <p>正三角形每个内角 $60°$，$6×60°=360°$，6个正三角形拼在一起可形成周角；正方形每个内角 $90°$，$4×90°=360°$，4个正方形拼在一起可形成周角。</p>
+        </div>
+    </div>
+
+    <!-- 互动模拟器：放置正多边形 -->
+    <div style="margin: 2rem 0;">
+        <h3 style="color: #0b4b78; border-left: 8px solid #3f8ab3; padding-left: 1rem;">🔍 尝试放置正多边形（边长相同，自动贴合）</h3>
+        <div class="simulator-container">
+            <div class="canvas-wrapper">
+                <canvas id="tileCanvas" width="600" height="400"></canvas>
+            </div>
+            <div class="btn-sidebar">
+                <button class="poly-btn" data-type="triangle">🔺 正三角形</button>
+                <button class="poly-btn" data-type="square">⬛ 正方形</button>
+                <button class="poly-btn" data-type="pentagon">⬟ 正五边形</button>
+                <button class="poly-btn" data-type="hexagon">⬢ 正六边形</button>
+                <button class="poly-btn" data-type="heptagon">⏣ 正七边形</button>
+                <button class="poly-btn" data-type="octagon">⬡ 正八边形</button>
+                <button class="poly-btn" data-type="nonagon">🔟 正九边形</button>
+                <button class="poly-btn" data-type="decagon">🔯 正十边形</button>
+                <button class="poly-btn" data-type="dodecagon">🕛 正十二边形</button>
+                <button class="poly-btn" data-type="octodecagon">🔄 正十八边形</button>
+                <button class="poly-btn clear" id="clearCanvasBtn">🗑️ 清空画布</button>
+                <div class="simulator-info">
+                    <p>⚫ 边长均为 50px（为适应画布缩小）<br>
+                    ⚫ 点击按钮放置，会自动贴合已有图形的边<br>
+                    ⚫ 可连续放置，观察密铺可能性</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习（课本第24页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 试说明本节中几种正多边形能铺满地面的理由。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 参考答案</button>
+            <div id="prac1" class="answer-box">
+                <p>正三角形：内角60°，6个拼成360°；正方形：内角90°，4个拼成360°；正六边形：内角120°，3个拼成360°。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 任意剪出一些形状、大小相同的三角形纸板，拼拼看，它们能否铺满地面。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 提示</button>
+            <div id="prac2" class="answer-box">
+                <p>能。任意三角形（不一定正三角形）的内角和为180°，只要围绕一点拼成周角即可，实际操作中可以通过旋转、平移实现。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数形结合：</strong> 将几何问题转化为代数计算。<br>
+        <strong>分类讨论：</strong> 按边数讨论正多边形能否铺满。<br>
+        <strong>模型思想：</strong> 用内角拼成周角作为判断标准。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">用相同正多边形铺满地面的条件是：每个内角能整除360°</div>
+            <div class="summary-item">能单独铺满地面的正多边形有：正三角形、正方形、正六边形</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题8.3 A组第1、2题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 内角拼成周角，密铺之道 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第8章 8.3.1</div>
+</div>
+
+<!-- 互动模拟器脚本 -->
+<script>
+(function() {
+    const canvas = document.getElementById('tileCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const SIDE_LENGTH = 50; // 缩小边长以适应600x400画布
+    let polygons = [];
+
+    function getPolygonParams(sides) {
+        const n = sides;
+        const angleStep = (2 * Math.PI) / n;
+        const interiorAngle = (n - 2) * Math.PI / n;
+        const R = SIDE_LENGTH / (2 * Math.sin(Math.PI / n));
+        const apothem = R * Math.cos(Math.PI / n);
+        return { n, angleStep, interiorAngle, R, apothem };
+    }
+
+    function computeVertices(cx, cy, startAngle, sides) {
+        const { n, angleStep, R } = getPolygonParams(sides);
+        const vertices = [];
+        for (let i = 0; i < n; i++) {
+            const angle = startAngle + i * angleStep;
+            vertices.push({ x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) });
+        }
+        return vertices;
+    }
+
+    function isOverlapping(newCx, newCy, newSides, ignoreIndex = -1) {
+        const { R: newR, apothem: newApothem } = getPolygonParams(newSides);
+        for (let i = 0; i < polygons.length; i++) {
+            if (i === ignoreIndex) continue;
+            const p = polygons[i];
+            const { R: oldR, apothem: oldApothem } = getPolygonParams(p.sides);
+            const dx = newCx - p.cx;
+            const dy = newCy - p.cy;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < oldApothem + newApothem - 1) return true;
+        }
+        return false;
+    }
+
+    function tryPlaceNewPolygon(sides) {
+        if (polygons.length === 0) {
+            const cx = canvas.width / 2, cy = canvas.height / 2;
+            if (!isOverlapping(cx, cy, sides)) {
+                polygons.push({ cx, cy, startAngle: 0, sides });
+                return true;
+            }
+            return false;
+        }
+
+        for (let pIdx = 0; pIdx < polygons.length; pIdx++) {
+            const poly = polygons[pIdx];
+            const { n, apothem } = getPolygonParams(poly.sides);
+            const verts = computeVertices(poly.cx, poly.cy, poly.startAngle, poly.sides);
+
+            for (let i = 0; i < n; i++) {
+                const v1 = verts[i];
+                const v2 = verts[(i + 1) % n];
+
+                const mx = (v1.x + v2.x) / 2;
+                const my = (v1.y + v2.y) / 2;
+
+                const dx = v2.x - v1.x;
+                const dy = v2.y - v1.y;
+                const len = Math.sqrt(dx*dx + dy*dy);
+                if (len < 1e-6) continue;
+
+                const cxToMidX = mx - poly.cx;
+                const cxToMidY = my - poly.cy;
+                const perp1 = { x: -dy, y: dx };
+                const perp2 = { x: dy, y: -dx };
+                const dot1 = perp1.x * cxToMidX + perp1.y * cxToMidY;
+                const dot2 = perp2.x * cxToMidX + perp2.y * cxToMidY;
+                const normal = (dot1 > dot2) ? perp1 : perp2;
+                const normLen = Math.sqrt(normal.x*normal.x + normal.y*normal.y);
+                if (normLen < 1e-6) continue;
+                const nx = normal.x / normLen;
+                const ny = normal.y / normLen;
+
+                const { apothem: newApothem } = getPolygonParams(sides);
+                const newCx = mx + nx * newApothem;
+                const newCy = my + ny * newApothem;
+
+                const dxV = v2.x - newCx;
+                const dyV = v2.y - newCy;
+                const startAngle = Math.atan2(dyV, dxV);
+
+                if (!isOverlapping(newCx, newCy, sides, pIdx)) {
+                    polygons.push({ cx: newCx, cy: newCy, startAngle, sides });
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // 绘制浅色网格
+        ctx.strokeStyle = "#eaeef5";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= canvas.width; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+            ctx.stroke();
+        }
+        for (let i = 0; i <= canvas.height; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(0, i);
+            ctx.lineTo(canvas.width, i);
+            ctx.stroke();
+        }
+
+        polygons.forEach(poly => {
+            const verts = computeVertices(poly.cx, poly.cy, poly.startAngle, poly.sides);
+            ctx.beginPath();
+            ctx.moveTo(verts[0].x, verts[0].y);
+            for (let i = 1; i < verts.length; i++) ctx.lineTo(verts[i].x, verts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = getColor(poly.sides);
+            ctx.fill();
+            ctx.strokeStyle = "#1e3a5f";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+
+    function getColor(sides) {
+        const colors = {
+            3: "#f9d5a3", 4: "#b8d9f0", 5: "#c5e0b4", 6: "#f4b8a4",
+            7: "#d3b5e8", 8: "#f9e0a0", 9: "#b0d9b1", 10: "#f1b6c1",
+            12: "#b2c8e8", 18: "#d6c8b0"
+        };
+        return colors[sides] || "#cccccc";
+    }
+
+    function getChineseName(sides) {
+        const names = {3:"三角形",4:"正方形",5:"五边形",6:"六边形",7:"七边形",8:"八边形",9:"九边形",10:"十边形",12:"十二边形",18:"十八边形"};
+        return names[sides] || sides+"边形";
+    }
+
+    function handlePolygonClick(sides) {
+        if (tryPlaceNewPolygon(sides)) draw();
+        else alert(`当前无法放置正${getChineseName(sides)}，可能已无合适位置。`);
+    }
+
+    document.querySelectorAll('.poly-btn[data-type]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const type = btn.dataset.type;
+            let sides = 0;
+            switch (type) {
+                case 'triangle': sides = 3; break;
+                case 'square': sides = 4; break;
+                case 'pentagon': sides = 5; break;
+                case 'hexagon': sides = 6; break;
+                case 'heptagon': sides = 7; break;
+                case 'octagon': sides = 8; break;
+                case 'nonagon': sides = 9; break;
+                case 'decagon': sides = 10; break;
+                case 'dodecagon': sides = 12; break;
+                case 'octodecagon': sides = 18; break;
+            }
+            handlePolygonClick(sides);
+        });
+    });
+
+    document.getElementById('clearCanvasBtn').addEventListener('click', () => {
+        polygons = [];
+        draw();
+    });
+
+    // 初始化：放置一个正六边形
+    polygons.push({ cx: canvas.width/2, cy: canvas.height/2, startAngle: 0, sides: 6 });
+    draw();
+})();
+</script>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

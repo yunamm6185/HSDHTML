@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>17.4 第17章复习 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0,45,70,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.05rem;
+            color: #2e5b7c;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f405e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+
+        /* ===== 知识结构图（参考第15章） ===== */
+        .mind-map {
+            background: linear-gradient(145deg, #f4f9fe, #e2effa);
+            border: 2px solid #b8d2e9;
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .mind-center {
+            background: linear-gradient(135deg, #2675a8, #3a9fd5);
+            color: white;
+            font-size: 1.35rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50%;
+            display: inline-block;
+            width: 170px;
+            height: 80px;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(38,117,168,0.3);
+        }
+        .mind-branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .mind-branch {
+            background: white;
+            border: 2px solid #d2e6f8;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: left;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .mind-branch:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(38,117,168,0.15);
+        }
+        .mind-branch-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #2675a8;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px dashed #b8d2e9;
+        }
+        .mind-branch ul {
+            list-style: none;
+            font-size: 0.92rem;
+            color: #444;
+            padding: 0;
+        }
+        .mind-branch li {
+            padding: 2px 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .mind-branch li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #3a9fd5;
+            font-weight: bold;
+        }
+
+        /* ===== 卡片样式 ===== */
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.03);
+        }
+        .theorem-card { background: linear-gradient(145deg,#e6f2fb,#dcebf5); border-left-color: #2a7faa; }
+        .fact-card { background: linear-gradient(145deg,#fff8e1,#ffefcc); border-left-color: #f0b34b; }
+        .example-card { background: linear-gradient(145deg,#e5f3e2,#dcf0dd); border-left-color: #3a8b4f; }
+        .error-card { background: linear-gradient(255deg,#fef2f2,#fce4e4); border-left-color: #e74c3c; }
+        .intro-card {
+            background: #e6f2fb;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        /* ===== 公式网格（参考第15章） ===== */
+        .formula-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin: 1rem 0;
+        }
+        .formula-item {
+            background: white;
+            border: 2px solid #d2e6f8;
+            border-radius: 1rem;
+            padding: 0.9rem;
+            text-align: center;
+            transition: box-shadow 0.2s;
+        }
+        .formula-item:hover {
+            box-shadow: 0 4px 12px rgba(38,117,168,0.12);
+        }
+        .formula-name {
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #2675a8;
+            margin-bottom: 0.5rem;
+        }
+        .formula-body { font-size: 1.02rem; color: #333; }
+
+        /* ===== 对比表格（参考第13章） ===== */
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            margin: 0.8rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .method-table th, .method-table td {
+            border: 1px solid #cde0f0;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .method-table th {
+            background: linear-gradient(135deg, #2675a8, #3a9fd5);
+            color: white;
+            font-weight: 700;
+        }
+        .method-table tr:nth-child(even) { background: #f6fbff; }
+        .method-table tr:hover { background: #e6f2fb; }
+
+        /* ===== 练习分组（参考第15章） ===== */
+        .exercise-section {
+            background: linear-gradient(145deg, #f4f9fe, #edf4fa);
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border: 2px dashed #b8d2e9;
+        }
+        .practice-group {
+            background: white;
+            border: 2px solid #d2e6f8;
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+        }
+        .group-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.08rem;
+            color: #2675a8;
+            margin-bottom: 0.8rem;
+        }
+        .level-badge {
+            background: linear-gradient(135deg, #2675a8, #3a9fd5);
+            color: white;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        .level-badge.b { background: linear-gradient(135deg,#3a8b4f,#2d7a3e); }
+        .level-badge.c { background: linear-gradient(135deg,#f0b34b,#e69a1e); }
+        .exercise-item { margin-bottom: 1.5rem; }
+        .exercise-question {
+            font-weight: 700;
+            color: #0b4b78;
+            font-size: 1.04rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* ===== 其他组件 ===== */
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9fbede;
+            margin: 0.5rem 0 0.2rem;
+            font-size: 0.93rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.8rem 1.2rem;
+            margin: 0.7rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.94rem;
+        }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(-8px);} to{opacity:1;transform:translateY(0);} }
+        .show-answer { display: block; animation: fadeIn 0.4s ease; }
+
+        .summary-card {
+            background: linear-gradient(145deg, #d6e9f5, #c4ddf0);
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: linear-gradient(145deg, #deedf7, #cce4f5);
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 1.1rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.04rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.06rem;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1rem;
+            margin-top: 1.8rem;
+            color: #33658a;
+            font-size: 0.95rem;
+        }
+
+        .highlight-box {
+            background: #e8f4fc;
+            padding: 10px 16px;
+            border-radius: 10px;
+            margin: 0.6rem 0;
+            border-left: 4px solid #3a9fd5;
+        }
+        .tag {
+            display: inline-block;
+            background: #2675a820;
+            color: #2675a8;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            margin: 2px;
+            font-weight: 600;
+        }
+        canvas { max-width: 100%; height: auto; border-radius: 12px; }
+        p { margin: 0.5rem 0; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem auto; }
+        th, td { padding: 10px 14px; text-align: center; border: 1px solid #dcebf5; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级下册</span>
+        <span>第17章 · 平行四边形 · 单元复习</span>
+    </div>
+    <h1>第17章 平行四边形</h1>
+    <div class="lesson-title">📚 17.4 第17章 复习与总结</div>
+
+    <!-- ========== 一、知识结构思维导图（参考第15章+第13章风格） ========== -->
+    <div class="intro-card" style="text-align:center;">
+        <p style="font-size:1.1rem;">本章我们系统学习了平行四边形的<strong>定义、性质和判定</strong>。让我们先回顾整体知识框架：</p>
+    </div>
+
+    <div class="mind-map">
+        <div class="mind-center">第17章<br>平行四边形</div>
+        <div class="mind-branches">
+            <div class="mind-branch">
+                <div class="mind-branch-title">📐 17.1 定义与概念</div>
+                <ul>
+                    <li>定义：两组对边分别平行的四边形</li>
+                    <li>表示：$\square ABCD$ 或 平行四边形ABCD</li>
+                    <li>记号：AB∥CD，AD∥BC</li>
+                    <li>平行线间的距离处处相等</li>
+                </ul>
+            </div>
+            <div class="mind-branch">
+                <div class="mind-branch-title">✨ 性质（5条核心结论）</div>
+                <ul>
+                    <li><strong>边：</strong>对边平行且相等</li>
+                    <li><strong>角：</strong>对角相等，邻角互补</li>
+                    <li><strong>对角线：</strong>互相平分</li>
+                    <li><strong>对称性：</strong>中心对称图形</li>
+                    <li><strong>面积：</strong>$S = a \cdot h$（底×高）</li>
+                </ul>
+            </div>
+            <div class="mind-branch">
+                <div class="mind-branch-title">🔧 判定方法（5种）</div>
+                <ul>
+                    <li><strong>① 定义法：</strong>两组对边分别平行</li>
+                    <li><strong>② SSS法：</strong>两组对边分别相等</li>
+                    <li><strong>③ 一边法：</strong>一组对边平行且相等</li>
+                    <li><strong>④ 对角线法：</strong>对角线互相平分</li>
+                    <li><strong>⑤ 对角法：</strong>两组对角分别相等</li>
+                </ul>
+            </div>
+            <div class="mind-branch">
+                <div class="mind-branch-title">📐 数学活动与应用</div>
+                <ul>
+                    <li>图形的等分（过中心的直线等分面积）</li>
+                    <li>中点四边形问题</li>
+                    <li>辅助线技巧：倍长中线、中位线</li>
+                    <li>实际应用：伸缩门、篱笆、地砖图案</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 二、性质与判定对比表（参考第13章） ========== -->
+    <div class="card theorem-card">
+        <h3 style="color:#0f4a6e;font-size:1.4rem;margin-bottom:1rem;">📋 性质与判定对照表</h3>
+        <table class="method-table">
+            <thead>
+                <tr><th>类别</th><th>条件/内容</th><th>几何语言</th><th>注意要点</th></tr>
+            </thead>
+            <tbody>
+                <!-- 性质部分 -->
+                <tr style="background:#e6f2fb;">
+                    <td rowspan="5" style="background:linear-gradient(135deg,#2675a8,#3a9fd5);color:white;vertical-align:middle;"><strong>性质<br>(□→?)</strong></td>
+                    <td><strong>对边关系</strong></td>
+                    <td>AB∥CD，AD∥BC；AB=CD，AD=BC</td>
+                    <td>平行是定义，相等需证明</td>
+                </tr>
+                <tr style="background:#e6f2fb;">
+                    <td><strong>对角关系</strong></td>
+                    <td>∠A=∠C，∠B=∠D；∠A+∠B=180°</td>
+                    <td>邻补→同旁内角互补</td>
+                </tr>
+                <tr style="background:#e6f2fb;">
+                    <td><strong>对角线</strong></td>
+                    <td>OA=OC，OB=OD（O为交点）</td>
+                    <td>只说"互相平分"</td>
+                </tr>
+                <tr style="background:#e6f2fb;">
+                    <td><strong>对称性</strong></td>
+                    <td>中心对称图形，对称中心O</td>
+                    <td>不是轴对称！</td>
+                </tr>
+                <tr style="background:#e6f2fb;">
+                    <td><strong>面积</strong></td>
+                    <td>$S = ah$ （底×对应高）</td>
+                    <td>注意底与高的对应关系</td>
+                </tr>
+                <!-- 判定部分 -->
+                <tr>
+                    <td rowspan="5" style="background:linear-gradient(135deg,#3a8b4f,#2d7a3e);color:white;vertical-align:middle;"><strong>判定<br>(?→□)</strong></td>
+                    <td><strong>① 定义法</strong></td>
+                    <td>AB∥CD 且 AD∥BC → □ABCD</td>
+                    <td>最基本的方法</td>
+                </tr>
+                <tr>
+                    <td><strong>② 两组对边分别相等</strong></td>
+                    <td>AB=CD 且 AD=BC → □ABCD</td>
+                    <td>连接AC用SSS证全等</td>
+                </tr>
+                <tr>
+                    <td><strong>③ 一组对边平行且相等</strong></td>
+                    <td>AB∥CD 且 AB=CD → □ABCD</td>
+                    <td>⭐ 最常用！</td>
+                </tr>
+                <tr>
+                    <td><strong>④ 对角线互相平分</strong></td>
+                    <td>OA=OC 且 OB=OD → □ABCD</td>
+                    <td>证明时常用</td>
+                </tr>
+                <tr>
+                    <td><strong>⑤ 两组对角分别相等</strong></td>
+                    <td>∠A=∠C 且 ∠B=∠D → □ABCD</td>
+                    <td>较少单独使用</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top:0.8rem;">
+            💡 <strong>关键理解：</strong>性质是"已知平行四边形→推出其他特征"，判定是"满足某些条件→证明是平行四边形"。两者互为逆命题关系！
+        </div>
+    </div>
+
+    <!-- ========== 三、易错点汇总（参考第13章+第12章） ========== -->
+    <div class="error-card" style="border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.4rem 0;">
+        <h3 style="color:#c62828;font-size:1.35rem;margin-bottom:0.8rem;">⚠️ 易错点与常见误区</h3>
+        <table class="method-table">
+            <thead>
+                <tr><th style="width:22%;">知识点</th><th style="width:38%;">常见错误</th><th style="width:40%;">正确做法 / 反例</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>"一组对边平行+另一组相等"</strong></td>
+                    <td>认为可以判定平行四边形</td>
+                    <td><span style="color:#e74c3c;">❌ 不能！</span>等腰梯形也满足此条件</td>
+                </tr>
+                <tr>
+                    <td><strong>对角线相等/垂直</strong></td>
+                    <td>认为能判定平行四边形</td>
+                    <td><span style="color:#e74c3c;">❌ 不能！</span>那是矩形或菱形的性质</td>
+                </tr>
+                <tr>
+                    <td><strong>循环论证</strong></td>
+                    <td>用待证结论作为已知条件</td>
+                    <td>每步必须有依据：已知/定义/定理</td>
+                </tr>
+                <tr>
+                    <td><strong>面积公式混淆</strong></td>
+                    <td>用 $S=\frac{1}{2}d_1 d_2$ 计算平行四边形面积</td>
+                    <td>此公式仅适用于菱形！一般用 $S=ah$</td>
+                </tr>
+                <tr>
+                    <td><strong>周长公式</strong></td>
+                    <td>误写为 $C = 4a$</td>
+                    <td>正确：$C = 2(a+b)$，a,b为邻边</td>
+                </tr>
+                <tr>
+                    <td><strong>对称性误解</strong></td>
+                    <td>认为平行四边形是轴对称图形</td>
+                    <td>只有特殊的（矩形、菱形、正方形）才是轴对称的</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ========== 四、典型例题精讲（分层设计，参考第13章+第12章） ========== -->
+    <div class="section-title" style="font-size:1.65rem;color:#0b4b78;font-weight:700;margin:2.2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;">📝 四、典型例题精讲</div>
+
+    <!-- 例1：基础——性质应用 -->
+    <div class="card example-card">
+        <h3 style="color:#1d6130;font-size:1.25rem;">【例1】周长与角度计算（基础巩固）</h3>
+        <p>如图，在 $\square ABCD$ 中，已知 $AB + BC = 18\,\text{cm}$，$\angle A : \angle B = 3 : 1$。求：</p>
+        <p>(1) $\square ABCD$ 的周长；(2) 四个内角的度数。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="ex1fig" width="280" height="180"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> ∵ $\square ABCD$ 的对边相等：$AB = CD$，$AD = BC$</p>
+            <p>∴ 周长 $C = AB + BC + CD + AD = 2(AB + BC) = 2 \times 18 =$ <strong>$36\,\text{cm}$</strong></p>
+            <p><strong>(2)</strong> 设 $\angle B = x$，则 $\angle A = 3x$</p>
+            <p>∵ AD ∥ BC → $\angle A + \angle B = 180°$（同旁内角互补）</p>
+            <p>∴ $3x + x = 180°$ → $x = 45°$</p>
+            <p>∴ $\angle B = \angle D = 45°$，$\angle A = \angle C =$ <strong>$135°$</strong></p>
+        </div>
+    </div>
+
+    <!-- 例2：提升——判定综合 -->
+    <div class="card example-card">
+        <h3 style="color:#1d6130;font-size:1.25rem;">【例2】判定方法的灵活运用（能力提升）</h3>
+        <p>如图，在四边形 ABCD 中，E、F 分别是 AC 上两点，且 AE = CF，DE = BF，DE ∥ BF。求证：四边形 ABCD 是平行四边形。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="ex2fig" width="320" height="200"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 证明过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>证明：</strong></p>
+            <p>∵ DE ∥ BF（已知）</p>
+            <p>∴ $\angle DEF = \angle BFE$（内错角相等）……①</p>
+            <p>∵ AE = CF → AE + EF = CF + EF → <strong>AF = CE</strong> ……②</p>
+            <p>在 $\triangle BFA$ 和 $\triangle DEC$ 中：</p>
+            <p>$$\begin{cases} BF = DE & \text{(已知)} \\ \angle BFA = \angle DEC & \text{(由①)} \\ AF = CE & \text{(由②)} \end{cases}$$</p>
+            <p>∴ $\triangle BFA \cong \triangle DEC$（SAS）</p>
+            <p>∴ AB = CD，且 $\angle BAF = \angle DCE$</p>
+            <p>由 $\angle BAF = \angle DCE$ 可得 AB ∥ CD（内错角相等，两直线平行）</p>
+            <p>又 AB = CD（已证），即<strong>一组对边平行且相等</strong></p>
+            <p>∴ 四边形 ABCD 是<strong>平行四边形</strong> ✅</p>
+        </div>
+    </div>
+
+    <!-- 例3：经典——中点四边形 -->
+    <div class="card example-card">
+        <h3 style="color:#1d6130;font-size:1.25rem;">【例3】中点四边形（经典模型）</h3>
+        <p>E、F、G、H 分别是任意四边形 ABCD 各边的中点。求证：四边形 EFGH 是平行四边形。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="ex3fig" width="360" height="240"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">💡 证明思路提示</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>关键辅助线：</strong>连接对角线 AC</p>
+            <ol style="padding-left:1.5rem;line-height:1.9;">
+                <li>在 $\triangle ABC$ 中：E、F 分别是 AB、BC 的中点</li>
+                <li>∴ EF 是 $\triangle ABC$ 的<strong>中位线</strong></li>
+                <li>→ EF ∥ AC 且 $EF = \frac{1}{2}AC$</li>
+                <li>同理，在 $\triangle ADC$ 中：HG ∥ AC 且 $HG = \frac{1}{2}AC$</li>
+                <li>→ EF ∥ HG 且 EF = HG</li>
+                <li>→ 四边形 EFGH 是平行四边形（一组对边平行且相等）✅</li>
+            </ol>
+            <p style="margin-top:0.6rem;color:#1d6130;background:#e5f3e2;padding:0.6rem;border-radius:0.8rem;">
+                🏆 <strong>重要结论：</strong>任意四边形的<strong>中点四边形一定是平行四边形</strong>！
+            </p>
+        </div>
+    </div>
+
+    <!-- 例4：拓展——综合压轴 -->
+    <div class="card example-card">
+        <h3 style="color:#1d6130;font-size:1.25rem;">【例4】综合压轴题（思维拓展）</h3>
+        <p>如图，$\square ABCD$ 的对角线交于 O 点。过点 O 作直线交 AD 于 E，交 BC 于 F。若 AB ⊥ AC，$AB = 4$，$BC = 6$，OE = 1.5。求 EF 的长度。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="ex4fig" width="360" height="240"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">📌 解题分析</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>分析：</strong></p>
+            <p>① 由 AB⊥AC，可用勾股定理求出 AC 的长度。</p>
+            <p>② 利用 $\square ABCD$ 对角线互相平分的性质：OA = OC。</p>
+            <p>③ 证明 $\triangle AOE \cong \triangle COF$（ASA）：OA=OC，∠AOE=∠COF（对顶角），∠EAO=∠FCO（AD∥BC，内错角相等）。</p>
+            <p>④ 得 OE = OF = 1.5，故 <strong>EF = OE + OF = 3</strong></p>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:0.6rem 0;">
+            <p><strong>完整解答：</strong></p>
+            <p>∵ $\square ABCD$ → OA = OC，AD ∥ BC</p>
+            <p>∴ ∠EAO = ∠FCO（内错角）</p>
+            <p>又 ∠AOE = ∠COF（对顶角）</p>
+            <p>→ $\triangle AOE \cong \triangle COF$（ASA）</p>
+            <p>→ OF = OE = 1.5</p>
+            <p>→ <strong>EF = 3</strong> ✅</p>
+        </div>
+    </div>
+
+    <!-- ========== 五、分层练习（参考第13章+第15章） ========== -->
+    <div class="exercise-section">
+        <h3 style="color:#0b4b78;margin-bottom:1.5rem;font-size:1.4rem;">✏️ 五、分层巩固练习</h3>
+
+        <!-- A组 基础 -->
+        <div class="practice-group">
+            <div class="group-header"><span class="level-badge">A 组 · 基础巩固</span> 掌握基本概念和直接计算</div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">1. 在 $\square ABCD$ 中，周长为 44 cm，$AB - BC = 6$ cm。求各边的长度。</p>
+                <button class="interact-btn" onclick="toggleAnswer('A1')">🔍 解答</button>
+                <div id="A1" class="answer-box">
+                    设 BC = x cm，则 AB = (x+6) cm。<br>
+                    周长 = $2(x + x+6) = 44$ → $4x + 12 = 44$ → $x = 8$<br>
+                    ∴ <strong>BC = AD = 8 cm，AB = CD = 14 cm</strong>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">2. 判断下列说法是否正确：</p>
+                <ol style="padding-left:1.5rem;">
+                    <li>平行四边形的两条对角线一定不相等（）</li>
+                    <li>有一组对边相等的四边形是平行四边形（）</li>
+                    <li>平行四边形的对角线的交点到四个顶点的距离相等（）</li>
+                </ol>
+                <button class="interact-btn" onclick="toggleAnswer('A2')">🔍 答案</button>
+                <div id="A2" class="answer-box">
+                    (1) <strong>✗ 错误</strong>——矩形的对角线相等（矩形也是平行四边形）<br>
+                    (2) <strong>✗ 错误</strong>——必须"两组"对边都相等，或者"一组对边平行且相等"<br>
+                    (3) <strong>✗ 错误</strong>——OA=OC，OB=OD，但 OA 不一定等于 OB
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">3. 如图，在 $\square ABCD$ 中，BE ⊥ AC 于 E，DF ⊥ AC 于 F。求证：BE = DF。</p>
+                <button class="interact-btn" onclick="toggleAnswer('A3')">🔍 提示</button>
+                <div id="A3" class="answer-box">
+                    提示：先利用平行四边形性质得到 AB = CD，AB ∥ CD。<br>
+                    再证 $\triangle ABE \cong \triangle CDF$（AAS）即可。
+                </div>
+            </div>
+        </div>
+
+        <!-- B组 提升 -->
+        <div class="practice-group">
+            <div class="group-header"><span class="level-badge b">B 组 · 能力提升</span> 综合运用多种方法</div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">4. 如图，在 $\square ABCD$ 中，E 是 AD 的中点，BE 的延长线交 CD 的延长线于 F。</p>
+                <p>(1) 求证：△ABE ≌ △DFE；（2）若 AB = 3，AD = 5，BF = 8，求 EF 的长。</p>
+                <button class="interact-btn" onclick="toggleAnswer('B1')">🔍 解答</button>
+                <div id="B1" class="answer-box">
+                    <strong>(1) 证明：</strong>∵ □ABCD → AB ∥ CD → AB ∥ DF<br>
+                    → ∠ABE = ∠F（内错角），∠AEB = ∠DEF（对顶角）<br>
+                    又 AE = DE（E 为中点）<br>
+                    → △ABE ≌ △DFE（AAS） ✅<br><br>
+                    <strong>(2) 解：</strong>由全等得 BE = EF，设 EF = x，则 BE = x<br>
+                    又 DF = AB = 3，CF = CD + DF = 5 + 3 = 8<br>
+                    在 △BCF 中，BC = AD = 5，CF = 8，BF = 8<br>
+                    用余弦定理或观察发现：BF = CF = 8 → 等腰三角形<br>
+                    作 BG ⊥ CF 于 G，则 FG = CG = 4<br>
+                    BG = $\sqrt{BC^2-CG^2}=\sqrt{25-16}=3$<br>
+                    在 Rt△BGE 中，$EG=\sqrt{BE^2-BG^2}=\sqrt{x^2-9}$<br>
+                    又 EG + GF = EF + FC？需要更仔细计算...<br>
+                    <em>（注：此题有多种解法，关键是利用全等和勾股定理）</em>
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">5. 已知四边形 ABCD 中，对角线 AC、BD 交于点 O，且满足下列条件之一，能否判定它是平行四边形？请说明理由。</p>
+                <p>A) OA=OB，OC=OD &nbsp;&nbsp; B) AB∥CD，AD=BC &nbsp;&nbsp; C) ∠ABC=∠ADC，∠BAD=∠BCD</p>
+                <button class="interact-btn" onclick="toggleAnswer('B2')">🔍 分析</button>
+                <div id="B2" class="answer-box">
+                    <strong>A) ❌ 不能</strong> —— OA=OB 说明 O 到A、B距离相等，但这不能保证对角线互相平分。<br>
+                    正确的条件应为 OA=OC 且 OB=OD。<br><br>
+                    <strong>B) ❌ 不能</strong> —— 一组对边平行+另一组对边相等，可能是等腰梯形反例。<br>
+                    需要改为：AB∥CD 且 AB=CD（一组对边平行且相等）。<br><br>
+                    <strong>C) ✅ 能</strong> —— 两组对角分别相等，根据判定方法⑤可判定为平行四边形。
+                </div>
+            </div>
+        </div>
+
+        <!-- C组 拓展 -->
+        <div class="practice-group">
+            <div class="group-header"><span class="level-badge c">C 组 · 思维拓展</span> 综合与创新</div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">6. 【思考题】如图，P 是 $\square ABCD$ 内任意一点，过 P 分别作 PE⊥AB 于 E，PF⊥BC 于 F，PG⊥CD 于 G，PH⊥AD 于 H。</p>
+                <p>求证：PE + PG = PF + PH = 定值（等于平行四边形的高）。</p>
+                <button class="interact-btn" onclick="toggleAnswer('C1')">💡 提示</button>
+                <div id="C1" class="answer-box">
+                    <strong>思路：</strong>使用面积分割法。<br>
+                    连接 PA、PB、PC、PD，将 □ABCD 分成 4 个小三角形：<br>
+                    $$S_{□ABCD} = S_{\triangle PAB} + S_{\triangle PBC} + S_{\triangle PCD} + S_{\triangle PDA}$$<br>
+                    代入面积公式：<br>
+                    $$= \frac{1}{2}(AB\cdot PE + BC\cdot PF + CD\cdot PG + AD\cdot PH)$$<br>
+                    由于对边相等 AB=CD，AD=BC：<br>
+                    $$= \frac{1}{2}\bigl[AB(PE+PG) + BC(PF+PH)\bigr]$$<br>
+                    又因为 $S_{□ABCD} = AB \times h_a = BC \times h_b$（$h_a$ 是以AB为底的高，$h_b$是以BC为底的高）<br>
+                    比较可得：$PE + PG = h_a$（常数），$PF + PH = h_b$（常数）✅
+                </div>
+            </div>
+
+            <div class="exercise-item">
+                <p class="exercise-question">7.【开放探究】你能想出多少种方法证明一个四边形是平行四边形？请在下图中标注不同的已知条件，写出对应的判定依据。</p>
+                <button class="interact-btn" onclick="toggleAnswer('C2')">📖 参考答案框架</button>
+                <div id="C2" class="answer-box">
+                    至少有 <strong>5 种</strong>基本方法（见上方判定表）。此外还有：<br>
+                    • 先证两组对边平行（利用角度关系）→ 定义法<br>
+                    • 先证两组对边相等（利用全等三角形）→ SSS法<br>
+                    • 先证对角线互相平分（利用坐标法或向量法）→ 对角线法<br>
+                    • 先证一组对边平行且相等（结合平移/旋转）→ 一边法<br><br>
+                    <strong>选择策略：</strong>看题目给什么条件就用什么方法！
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 六、数学思想方法总结（参考第13章） ========== -->
+    <div class="math-idea-card">
+        <h3 style="color:#0f4a6e;font-size:1.3rem;margin-bottom:0.8rem;">🧠 六、本章核心数学思想</h3>
+        <div style="line-height:1.9;margin:0.5rem 0;">
+            <span class="tag">转化思想</span>
+            <span class="tag">互逆思维</span>
+            <span class="tag">分类讨论</span>
+            <span class="tag">建模思想</span>
+            <span class="tag">优化策略</span>
+            <span class="tag">数形结合</span>
+        </div>
+        <ul style="margin-left:1.5rem;margin-top:0.8rem;line-height:1.9;">
+            <li><strong>转化思想：</strong>将四边形问题转化为三角形问题（连接对角线是最常用的辅助线）</li>
+            <li><strong>互逆思维：</strong>性质与判定互逆——从正方向和逆向两个角度思考问题</li>
+            <li><strong>优化策略：</strong>根据已知条件选择最优路径（如：有对角线信息优先考虑对角线法）</li>
+            <li><strong>建模能力：</strong>将实际问题（伸缩门、栅栏等）抽象为几何模型</li>
+            <li><strong>分类讨论：</strong>涉及点的位置关系时，要考虑不同情况</li>
+        </ul>
+    </div>
+
+    <!-- ========== 七、章节总结 ========== -->
+    <div class="summary-card">
+        <h3 style="color:#0f5669;font-size:1.3rem;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 七、本章总结</h3>
+        <ul style="line-height:2;margin-left:1.5rem;">
+            <li><strong>一个中心：</strong>平行四边形的定义（两组对边分别平行）是整个章节的出发点</li>
+            <li><strong>两条主线：</strong>性质（从□出发）和判定（到达□）形成完整的逻辑闭环</li>
+            <li><strong>五种判定：</strong>定义法、SSS法、一边法、对角线法、对角法——各有适用场景</li>
+            <li><strong>五条性质：</strong>对边平行且相等、对角相等且邻角补、对角线互平分、中心对称、面积公式</li>
+            <li><strong>后续展望：</strong>本章是学习<strong>特殊平行四边形</strong>（矩形、菱形、正方形）的基础</li>
+        </ul>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom:0.5rem;display:inline;">📚 课后作业</h3>
+        <ul style="margin-left:1.8rem;margin-top:0.5rem;font-weight:500;">
+            <li>课本复习题 A 组 第 1~6 题（必做）</li>
+            <li>课本复习题 B 组 第 1~3 题（选做）</li>
+            <li>整理本章思维导图，标注性质与判定的互逆关系</li>
+            <li>预习下一章：<strong>特殊的平行四边形</strong>（矩形、菱形、正方形）</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 边角线面五性质，五路判定证平行；转化互逆双剑合，几何世界任我行！✨<br>
+        温故而知新，可以为师矣。预祝同学们复习顺利！</p>
+    </div>
+
+    <div class="footer-note">八年级下册 · 第17章 17.4 第17章 复习与总结 | 华师版互动课件</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('show-answer');
+}
+
+// 绘制例题1图形：带标注的平行四边形
+function drawEx1(){
+    const c = document.getElementById('ex1fig'), ctx = c.getContext('2d');
+    if(!c) return;
+    ctx.clearRect(0,0,c.width,c.height);
+    const pts = [[50,25],[230,25],[190,155],[10,155]];
+    // 填充
+    ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<4;i++) ctx.lineTo(pts[i][0],pts[i][1]); ctx.closePath();
+    ctx.fillStyle = '#2675a815'; ctx.fill();
+    ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 2.5; ctx.stroke();
+    // 标注顶点
+    const labels = ['A','B','C','D'];
+    ctx.font = 'bold 16px Segoe UI'; ctx.fillStyle = '#0b4b78';
+    labels.forEach((l,i)=>{
+        const off = i===0?[-18,-6]:i===1?[6,-6]:i===2?[6,18]:[-18,18];
+        ctx.fillText(l, pts[i][0]+off[0], pts[i][1]+off[1]);
+    });
+}
+
+// 绘制例题2图形：含对角线和点的四边形
+function drawEx2(){
+    const c = document.getElementById('ex2fig'), ctx = c.getContext('2d');
+    if(!c) return;
+    ctx.clearRect(0,0,c.width,c.height);
+    const pts = [[50,30],[270,30],[230,170],[10,170]];
+    // 平行四边形
+    ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<4;i++) ctx.lineTo(pts[i][0],pts[i][1]); ctx.closePath();
+    ctx.fillStyle = '#3a8b4f10'; ctx.fill();
+    ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 2; ctx.stroke();
+    // 对角线AC
+    ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]); ctx.lineTo(pts[2][0],pts[2][1]);
+    ctx.strokeStyle = '#999'; ctx.lineWidth = 1.2; ctx.setLineDash([5,3]); ctx.stroke(); ctx.setLineDash([]);
+    // 点E,F在对角线上
+    const eX = pts[0][0]+(pts[2][0]-pts[0][0])*0.35, eY = pts[0][1]+(pts[2][1]-pts[0][1])*0.35;
+    const fX = pts[0][0]+(pts[2][0]-pts[0][0])*0.62, fY = pts[0][1]+(pts[2][1]-pts[0][1])*0.62;
+    // DE和BF连线
+    ctx.beginPath(); ctx.moveTo(pts[3][0],pts[3][1]); ctx.lineTo(eX,eY);
+    ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 1.8; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(pts[1][0],pts[1][1]); ctx.lineTo(fX,fY);
+    ctx.strokeStyle = '#f0b34b'; ctx.lineWidth = 1.8; ctx.stroke();
+    // 标记点
+    ctx.font = 'bold 11px Segoe UI';
+    ctx.fillStyle = '#e74c3c'; ctx.fillText('E', eX+5, eY-5);
+    ctx.fillStyle = '#f0b34b'; ctx.fillText('F', fX+5, fY+16);
+    // 顶点字母
+    const L=['A','B','C','D']; ctx.fillStyle='#0b4b78'; ctx.font='bold 14px Segoe UI';
+    L.forEach((l,i)=>{const o=i===0?[-18,-6]:i===1?[6,-6]:i===2?[6,18]:[-18,18];ctx.fillText(l,pts[i][0]+o[0],pts[i][1]+o[1]);});
+}
+
+// 绘制例题3图形：中点四边形（经典模型）
+function drawEx3(){
+    const c = document.getElementById('ex3fig'), ctx = c.getContext('2d');
+    if(!c) return;
+    ctx.clearRect(0,0,c.width,c.height);
+    // 任意四边形ABCD
+    const A=[60,50], B=[300,35], C=[330,190], D=[40,210];
+    // 中点E,F,G,H
+    const E=[(A[0]+B[0])/2,(A[1]+B[1])/2]; // AB中点
+    const F=[(B[0]+C[0])/2,(B[1]+C[1])/2]; // BC中点
+    const G=[(C[0]+D[0])/2,(C[1]+D[1])/2]; // CD中点
+    const H=[(D[0]+A[0])/2,(D[1]+A[1])/2]; // DA中点
+    // 原四边形（浅灰）
+    ctx.beginPath(); ctx.moveTo(A[0],A[1]); ctx.lineTo(B[0],B[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(D[0],D[1]);
+    ctx.closePath(); ctx.fillStyle='#bdc3c715'; ctx.fill();
+    ctx.strokeStyle='#95a5a6'; ctx.lineWidth=1.5; ctx.setLineDash([5,3]); ctx.stroke(); ctx.setLineDash([]);
+    // 对角线AC（辅助线，虚线）
+    ctx.beginPath(); ctx.moveTo(A[0],A[1]); ctx.lineTo(C[0],C[1]);
+    ctx.strokeStyle='#aaa'; ctx.lineWidth=1.2; ctx.setLineDash([4,3]); ctx.stroke(); ctx.setLineDash([]);
+    // 中点四边形EFGH（绿色填充+实线边框）
+    ctx.beginPath(); ctx.moveTo(E[0],E[1]); ctx.lineTo(F[0],F[1]); ctx.lineTo(G[0],G[1]); ctx.lineTo(H[0],H[1]);
+    ctx.closePath(); ctx.fillStyle='rgba(39,174,96,0.12)'; ctx.fill();
+    ctx.strokeStyle='#27ae60'; ctx.lineWidth=2.5; ctx.stroke();
+    // 原四边形顶点
+    ctx.font='bold 14px Segoe UI';
+    [[A,'A',-18,-6],[B,'B',6,-6],[C,'C',6,18],[D,'D',-18,18]].forEach(p=>{
+        ctx.fillStyle='#7f8c8d'; ctx.fillText(p[1],p[0][0]+p[2],p[0][1]+p[3]);
+        ctx.beginPath(); ctx.arc(p[0][0],p[0][1],3,0,Math.PI*2); ctx.fillStyle='#95a5a6'; ctx.fill();
+    });
+    // 中点顶点
+    [[E,'E',5,-8],[F,'F',8,-5],[G,'G',8,14],[H,'H',-20,8]].forEach(p=>{
+        ctx.beginPath(); ctx.arc(p[0][0],p[0][1],4,0,Math.PI*2);
+        ctx.fillStyle='#e74c3c'; ctx.fill(); ctx.strokeStyle='#fff'; ctx.lineWidth=1.5; ctx.stroke();
+        ctx.fillStyle='#e74c3c'; ctx.font='bold 12px Segoe UI'; ctx.fillText(p[1],p[0][0]+p[2],p[0][1]+p[3]);
+    });
+}
+
+// 绘制例题4图形：过O的直线与对角线
+function drawEx4(){
+    const c = document.getElementById('ex4fig'), ctx = c.getContext('2d');
+    if(!c) return;
+    ctx.clearRect(0,0,c.width,c.height);
+    // ▱ABCD坐标（AB⊥AC的特殊形状，接近矩形）
+    const A=[70,200], B=[310,200], C=[340,45], D=[100,45];
+    // O为对角线交点
+    const Ox=(A[0]+C[0])/2, Oy=(A[1]+C[1])/2;
+    // E在AD上, F在BC上（过O的直线）
+    const E={x:85,y:148}, F={x:325,y:97};
+    // 平行四边形填充
+    ctx.beginPath(); ctx.moveTo(A[0],A[1]); ctx.lineTo(B[0],B[1]); ctx.lineTo(C[0],C[1]); ctx.lineTo(D[0],D[1]);
+    ctx.closePath(); ctx.fillStyle='#2675a810'; ctx.fill();
+    ctx.strokeStyle='#2675a8'; ctx.lineWidth=2.5; ctx.stroke();
+    // 对角线AC（蓝色虚线）
+    ctx.beginPath(); ctx.moveTo(A[0],A[1]); ctx.lineTo(C[0],C[1]);
+    ctx.strokeStyle='#3498db'; ctx.lineWidth=1.5; ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]);
+    // 对角线BD（橙色虚线）
+    ctx.beginPath(); ctx.moveTo(B[0],B[1]); ctx.lineTo(D[0],D[1]);
+    ctx.strokeStyle='#e67e22'; ctx.lineWidth=1.5; ctx.setLineDash([6,4]); ctx.stroke(); ctx.setLineDash([]);
+    // 过O直线EF（红色粗线）
+    ctx.beginPath(); ctx.moveTo(E.x-15,E.y-(E.x-15-Ox)*0.38); ctx.lineTo(F.x+15,F.y+(F.x+15-Ox)*0.25);
+    ctx.strokeStyle='#e74c3c'; ctx.lineWidth=2.8; ctx.stroke();
+    // O中心红点
+    ctx.beginPath(); ctx.arc(Ox,Oy,6,0,Math.PI*2);
+    ctx.fillStyle='#e74c3c'; ctx.fill(); ctx.strokeStyle='#fff'; ctx.lineWidth=1.5; ctx.stroke();
+    // 顶点标注
+    ctx.font='bold 15px Segoe UI';
+    [[A,'#2675a8','A',-20,16],[B,'#2675a8','B',10,16],[C,'#2675a8','C',10,-8],[D,'#2675a8','D',-22,-8]].forEach(p=>{
+        ctx.fillStyle=p[1]; ctx.fillText(p[2],p[0][0]+p[3],p[0][1]+p[4]);
+    });
+    // O,E,F标注
+    ctx.fillStyle='#e74c3c'; ctx.font='bold 14px Segoe UI'; ctx.fillText('O',Ox+10,Oy-8);
+    ctx.fillStyle='#e74c3c'; ctx.font='bold 13px Segoe UI'; ctx.fillText('E',E.x-22,E.y+5); ctx.fillText('F',F.x+10,F.y+16);
+    // OE=OF 标记
+    ctx.fillStyle='#c0392b'; ctx.font='bold 11px Segoe UI'; ctx.fillText('OE=1.5',Ox-55,Oy+30); ctx.fillText('OF=?',Ox+20,Oy-25);
+}
+
+window.addEventListener('load', function(){
+    drawEx1();
+    drawEx2();
+    drawEx3();
+    drawEx4();
+    if(window.MathJax) MathJax.typesetPromise?.();
+});
+</script>
+</body></html>

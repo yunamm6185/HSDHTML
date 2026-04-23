@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第47课时 角的比较和运算 | 华师版·七上 第3章</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 例题样式 */
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .example-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #accee5;
+        }
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        .example-graph {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .example-graph img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        /* 探索模块 */
+        .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #f4b84b;
+        }
+        .explore-box h4 {
+            font-size: 1.5rem;
+            color: #b45f1b;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔎"; margin-right: 0.5rem; }
+        .angle-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .angle-tag {
+            background: #fff;
+            border: 1px solid #47945b;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 1.1rem;
+            color: #1d6130;
+        }
+        /* 概念强调 */
+        .concept-highlight {
+            background-color: #fff3cd;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            border-left: 6px solid #f4b84b;
+            margin: 1rem 0;
+        }
+        .concept-highlight strong {
+            font-weight: 700;
+            background-color: #fcf2d9;
+            padding: 0 4px;
+        }
+        /* 超难预警 */
+        .hard-warning {
+            background-color: #ff5252;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(255,82,82,0.3);
+            animation: pulse 2s infinite;
+        }
+        .hard-warning::before {
+            content: "⚠️ ";
+            font-size: 1.2rem;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        /* 互动动画样式 */
+        .interactive-box {
+            background: #eef5f9;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #b8d2e8;
+        }
+        .interactive-box h4 {
+            color: #0f4a6f;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .angle-svg-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: center;
+        }
+        .angle-svg-container svg {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        .control-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 200px;
+        }
+        .control-panel .slider-container {
+            width: 100%;
+        }
+        .control-panel .slider-container input {
+            width: 100%;
+        }
+        .angle-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2a7faa;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第47课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 学会比较角的大小，掌握角的和差运算与角平分线。</div>
+    <h2>3.6 角</h2>
+    <div class="lesson-title">第2课时 角的比较和运算</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握比较角的大小的方法（度量法、叠合法）</div>
+            <div class="target-item"><span>✔</span>能用一副三角板画出特殊角</div>
+            <div class="target-item"><span>✔</span>理解角的和差关系，会进行简单计算</div>
+            <div class="target-item"><span>✔</span>理解角平分线的定义，并能进行相关计算</div>
+        </div>
+    </div>
+
+    <!-- 导入：观察三个角，哪个最大？ -->
+    <div class="intro-block">
+        <p>观察如图3.6.9所示的三个角，哪个角最大？你能从比较线段长短的方法中得到启示吗？</p>
+    </div>
+    <div class="figure-box">
+        <img src="3.6.9.png" alt="图3.6.9">
+        <div class="figcaption">图3.6.9 三个角</div>
+    </div>
+
+    <!-- 叠合法比较 -->
+    <p>从上图我们可以发现， \(\angle DEF\) 明显比 \(\angle AOB\) 和 \(\angle CGH\) 小，但 \(\angle AOB\) 与 \(\angle CGH\) 的大小关系不太明显。那么如何比较，才能得到准确的结果呢？</p>
+    <p>你还记得比较两条线段长短的方法吗？类似地，你一定会想到可以采用下面的方法：如图3.6.10所示，把一个角放到另一个角上，使它们的顶点重合，其中的一边也重合，并使两个角的另一边都在重合的这一条边的同侧。这时，角的大小关系就明显了。</p>
+    <div class="figure-box">
+        <img src="3.6.10.png" alt="图3.6.10">
+        <div class="figcaption">图3.6.10 叠合法比较角</div>
+    </div>
+    <p>可以记为 \(\angle CGH > \angle AOB\) 或 \(\angle AOB < \angle CGH\)。比较角的大小，也可以用量角器分别量出角的度数，然后加以比较。</p>
+
+    <!-- 一副三角板画特殊角 -->
+    <p>一副三角板上的角是一些常用的角，除了可以用它们直接画出 \(30^{\circ}\) 、 \(45^{\circ}\) 、 \(60^{\circ}\) 和 \(90^{\circ}\) 的角之外，还可以画出其他一些特殊的角。如图3.6.11所示，用两种方法放置一副三角板，可以画出 \(75^{\circ}\) 和 \(15^{\circ}\) 的角。</p>
+    <div class="figure-box">
+        <img src="3.6.11.png" alt="图3.6.11">
+        <div class="figcaption">图3.6.11 用三角板画75°和15°</div>
+    </div>
+
+    <!-- 探索：用一副三角板，还可以画出哪些特殊的角？ -->
+    <div class="explore-box">
+        <h4>🔍 探索</h4>
+        <p>用一副三角板（30°、60°、90°、45°），你还可以画出哪些特殊的角？试试看！</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansExplore')">💡 显示可能的角</button>
+        <div id="ansExplore" class="answer-box">
+            <p>除了15°和75°，还可以画出：</p>
+            <div class="angle-list">
+                <span class="angle-tag">105° (60°+45°)</span>
+                <span class="angle-tag">120° (90°+30° 或 60°+60°)</span>
+                <span class="angle-tag">135° (90°+45°)</span>
+                <span class="angle-tag">150° (90°+60°)</span>
+                <span class="angle-tag">165°</span>
+                <span class="angle-tag">15° (45°-30°)</span>
+            </div>
+            <p>165°可以通过两个直角三角板把直角重合拼得，此时两个斜边相交的最大夹角就是165°。通过相加或相减，可以得到很多15°倍数的角。</p>
+        </div>
+    </div>
+
+    <!-- 思考：尺规作一个角等于已知角 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>由角的大小比较方法我们可以看到，角的大小与它的开口大小有关，开口越大，角越大；开口一样大，角就相等。前面我们曾用直尺和圆规准确地作出了一条线段等于已知线段，那么我们能否用直尺和圆规准确地作出一个角等于已知角呢？</p>
+    </div>
+
+    <!-- 图3.6.12 角与弧长 -->
+    <p>在图3.6.12中， \(\angle 2 > \angle 1\) 。分别以两个角的顶点为圆心、相同长为半径作弧。可以发现， \(\angle 2\) 的开口大，圆弧长些，也就是说，圆弧与角两边的交点之间的线段也长些。从而想到，如果两个角中，所作圆弧与角两边的交点之间的线段相等，那么这两个角就应该相等。</p>
+    <div class="figure-box">
+        <img src="3.6.12.png" alt="图3.6.12">
+        <div class="figcaption">图3.6.12 角与弧长</div>
+    </div>
+
+    <!-- 做一做：尺规作角 -->
+    <div class="try-box">
+        <h4>做一做</h4>
+        <p>如图3.6.13， \(\angle AOB\) 为已知角，试用直尺和圆规按下列步骤准确地作一个角等于 \(\angle AOB\) 。</p>
+        <div class="figure-box">
+            <img src="3.6.13.png" alt="图3.6.13">
+            <div class="figcaption">图3.6.13 作一个角等于已知角</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansStep')">📌 显示步骤</button>
+        <div id="ansStep" class="answer-box">
+            <p>第一步：作射线 \(O^{\prime}A^{\prime}\)；</p>
+            <p>第二步：以点 \(O\) 为圆心、适当长为半径作弧，交射线 \(OA\) 于点 \(C\) ，交射线 \(OB\) 于点 \(D\)；</p>
+            <p>第三步：以点 \(O^{\prime}\) 为圆心、线段 \(OC\) 长为半径作弧，交射线 \(O^{\prime}A^{\prime}\) 于点 \(C^{\prime}\)；</p>
+            <p>第四步：以点 \(C^{\prime}\) 为圆心、线段 \(CD\) 长为半径作弧，交前一条弧于点 \(D^{\prime}\)；</p>
+            <p>第五步：经过点 \(D^{\prime}\) 作射线 \(O^{\prime}B^{\prime}\)；</p>
+            <p>\(\angle A^{\prime}O^{\prime}B^{\prime}\) 就是所要求作的角。</p>
+        </div>
+    </div>
+
+    <!-- 概括：尺规作图 -->
+    <h4>概括</h4>
+    <p>我们已经用直尺和圆规按一定步骤解决了如下两个作图问题：作一条线段等于已知线段；作一个角等于已知角。这里的“直尺”是一把没有刻度的直尺，“圆规”是一副可以“双腿”张开自如的圆规，它们可以用来作一些简单的图形。例如：过一点任作一条直线；过不同的两点作一条直线；以一点为圆心任作一个圆。如图3.6.14所示。</p>
+    <div class="figure-box">
+        <img src="3.6.14.png" alt="图3.6.14">
+        <div class="figcaption">图3.6.14 尺规作图基本操作</div>
+    </div>
+    <p>正是以这些基本作图为基础，我们作出了线段和角。人们将利用没有刻度的直尺和圆规这两种工具作几何图形的方法称为“尺规作图”。从古至今，众多数学家对于尺规作图有着极大的兴趣，对于哪些图形可以利用尺规作图作出、哪些图形又不可能利用尺规作图作出的思考和研究，推动了数学的发展。尺规作图是探索解决数学问题的有效工具。今后我们还将继续利用尺规作图解决其他的几何作图问题，直观地发现更多几何图形的内涵。</p>
+
+    <!-- 空行分隔 -->
+    <div style="margin-top: 2rem;"></div>
+
+    <!-- 角的加减运算 -->
+    <h4>角的加减运算</h4>
+    <p>我们可以对角进行简单的加减运算，如：</p>
+    <p style="margin-left:2rem;">
+        \((1) \; 34^{\circ}34^{\prime} + 21^{\circ}51^{\prime} = 55^{\circ}85^{\prime} = 56^{\circ}25^{\prime};\)<br>
+        \((2) \; 180^{\circ} - 52^{\circ}31^{\prime} = 179^{\circ}60^{\prime} - 52^{\circ}31^{\prime} = 127^{\circ}29^{\prime}.\)
+    </p>
+    <p>观察图3.6.15中的 \(\angle AOC\) 、 \(\angle COB\) 和 \(\angle AOB\) ，如何表示它们之间的关系呢？我们可以用熟悉的“和差”来表示：\(\angle AOC + \angle COB = \angle AOB\)，或 \(\angle AOB - \angle AOC = \angle COB\)，或 \(\angle AOB - \angle COB = \angle AOC\)。可见，两个角相加或相减，得到的和或差也是角。</p>
+    <div class="figure-box">
+        <img src="3.6.15.png" alt="图3.6.15">
+        <div class="figcaption">图3.6.15 角的和差</div>
+    </div>
+
+    <!-- 角平分线（互动动画版，已调整下移） -->
+    <div class="try-box">
+        <h4>做一做</h4>
+        <p>如图，拖动滑块改变 \(\angle AOB\) 的大小，观察角平分线 \(OC\) 始终将角平分。</p>
+        <div class="interactive-box">
+            <div class="angle-svg-container">
+                <!-- 修改 viewBox，增加上方空白，y坐标整体下移50 -->
+                <svg id="bisectorSvg" width="400" height="350" viewBox="0 -50 400 400">
+                    <!-- 顶点 O 下移至 (200,200) -->
+                    <circle cx="200" cy="200" r="5" fill="#000" />
+                    <!-- 射线 OA (固定水平向右) -->
+                    <line x1="200" y1="200" x2="350" y2="200" stroke="#000" stroke-width="3" />
+                    <!-- 射线 OB (可旋转) -->
+                    <line id="rayOB" x1="200" y1="200" x2="350" y2="200" stroke="#000" stroke-width="3" />
+                    <!-- 角平分线 OC (虚线) -->
+                    <line id="rayOC" x1="200" y1="200" x2="275" y2="200" stroke="#f00" stroke-width="3" stroke-dasharray="5 3" />
+                    
+                    <!-- 标记点 O 正下方 (y=225) -->
+                    <text x="200" y="225" text-anchor="middle" font-size="18">O</text>
+                    <!-- 标记点 A 正右方 -->
+                    <text x="360" y="200" text-anchor="start" font-size="18">A</text>
+                    <!-- 标记点 B 正上方（随动） -->
+                    <text id="labelB" x="350" y="180" text-anchor="middle" font-size="18">B</text>
+                    <!-- 标记点 C 正上方（随动） -->
+                    <text id="labelC" x="275" y="180" text-anchor="middle" font-size="18" fill="#f00">C</text>
+                </svg>
+                <div class="control-panel">
+                    <div class="slider-container">
+                        <input type="range" id="angleSliderBisector" min="0" max="180" value="60" step="1">
+                    </div>
+                    <div class="angle-display">
+                        ∠AOB = <span id="angleAOB">60</span>°<br>
+                        ∠AOC = <span id="angleAOC">30</span>°<br>
+                        ∠BOC = <span id="angleBOC">30</span>°
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="concept-highlight">
+            <p>从一个角的顶点引出的一条射线，把这个角分成两个相等的角，这条射线叫做这个角的<strong>角的平分线（angular bisector）</strong>。</p>
+        </div>
+    </div>
+
+    <script>
+        // 角平分线互动动画
+        const slider = document.getElementById('angleSliderBisector');
+        const rayOB = document.getElementById('rayOB');
+        const rayOC = document.getElementById('rayOC');
+        const labelB = document.getElementById('labelB');
+        const labelC = document.getElementById('labelC');
+        const spanAOB = document.getElementById('angleAOB');
+        const spanAOC = document.getElementById('angleAOC');
+        const spanBOC = document.getElementById('angleBOC');
+
+        function updateBisector(deg) {
+            const rad = deg * Math.PI / 180;
+            const length = 150; // 射线长度
+            const x2 = 200 + length * Math.cos(rad);
+            const y2 = 200 - length * Math.sin(rad); // y轴向下为正，故减去sin
+
+            rayOB.setAttribute('x2', x2);
+            rayOB.setAttribute('y2', y2);
+            labelB.setAttribute('x', x2);
+            labelB.setAttribute('y', y2 - 15);
+
+            // 角平分线方向：角度为 deg/2
+            const halfRad = deg * Math.PI / 360;
+            const xC = 200 + length * Math.cos(halfRad);
+            const yC = 200 - length * Math.sin(halfRad);
+            rayOC.setAttribute('x2', xC);
+            rayOC.setAttribute('y2', yC);
+            labelC.setAttribute('x', xC);
+            labelC.setAttribute('y', yC - 15);
+
+            spanAOB.textContent = deg;
+            spanAOC.textContent = deg/2;
+            spanBOC.textContent = deg/2;
+        }
+
+        slider.addEventListener('input', function(e) {
+            updateBisector(parseInt(e.target.value));
+        });
+
+        // 初始化
+        updateBisector(60);
+    </script>
+
+    <!-- 超难预警 + 例题1（双角平分线分类讨论模型） -->
+    <div class="hard-warning">超难预警</div>
+    <div class="example-box">
+        <h4>📐 例题1 · 双角平分线（分类讨论）</h4>
+        <div class="example-item">
+            <p>已知 \(\angle AOB = 90^{\circ}\)，过点 \(O\) 任意作一条射线 \(OC\)，\(OM\) 平分 \(\angle AOC\)，\(ON\) 平分 \(\angle BOC\)。求 \(\angle MON\) 的度数。</p>
+            <p><span style="color: #b45f1b;">※ 注：由于射线 \(OC\) 位置不确定，需要分类讨论。</span></p>
+            
+            <!-- 题目图，无说明文字 -->
+            <div class="figure-box">
+                <img src="角平分线例题1题目图.png" alt="例题1题目图">
+            </div>
+            
+            <button class="interact-btn" onclick="toggleAnswer('ansAngleEx1')">📌 显示分类讨论</button>
+            <div id="ansAngleEx1" class="answer-box">
+                <p><strong>解：</strong> 需分四种情况讨论，具体如图：</p>
+                
+                <p><strong>情况一：</strong> 如图所示，当 \(OC\) 在 \(\angle AOB\) 内部时：</p>
+                <div class="figure-box">
+                    <img src="角平分线例题1解答情况1.png" alt="情况1">
+                </div>
+                <p>\(\begin{aligned} \angle MON &= \angle MOC + \angle CON \\ &= \frac{1}{2}\angle AOC + \frac{1}{2}\angle BOC \\ &= \frac{1}{2}(\angle AOC + \angle BOC) \\ &= \frac{1}{2} \times 90^{\circ} = 45^{\circ} \end{aligned}\)</p>
+                
+                <p><strong>情况二：</strong> 如图所示，当 \(OC\) 在区域二（靠近 \(OA\) 外侧）时：</p>
+                <div class="figure-box">
+                    <img src="角平分线例题1解答情况2.png" alt="情况2">
+                </div>
+                <p>\(\begin{aligned} \angle MON &= \angle CON - \angle COM \\ &= \frac{1}{2}\angle BOC - \frac{1}{2}\angle AOC \\ &= \frac{1}{2}(\angle BOC - \angle AOC) \\ &= \frac{1}{2} \times 90^{\circ} = 45^{\circ} \end{aligned}\)</p>
+                
+                <p><strong>情况三：</strong> 如图所示，当 \(OC\) 在区域三（靠近 \(OB\) 外侧）时：</p>
+                <div class="figure-box">
+                    <img src="角平分线例题1解答情况3.png" alt="情况3">
+                </div>
+                <p>\(\begin{aligned} \angle MON &= \angle MOC + \angle CON \\ &= \frac{1}{2}\angle AOC + \frac{1}{2}\angle BOC \\ &= \frac{1}{2}(\angle AOC + \angle BOC) \\ &= \frac{1}{2}(360^{\circ} - 90^{\circ}) = 135^{\circ} \end{aligned}\)</p>
+                
+                <p><strong>情况四：</strong> 如图所示，当 \(OC\) 在区域四（与 \(OA\)、\(OB\) 均反向）时：</p>
+                <div class="figure-box">
+                    <img src="角平分线例题1解答情况4.png" alt="情况4">
+                </div>
+                <p>\(\begin{aligned} \angle MON &= \angle MOC - \angle CON \\ &= \frac{1}{2}\angle AOC - \frac{1}{2}\angle BOC \\ &= \frac{1}{2}(\angle AOC - \angle BOC) \\ &= \frac{1}{2} \times 90^{\circ} = 45^{\circ} \end{aligned}\)</p>
+                
+                <p><strong>结论：</strong> 当 \(OC\) 在情况三时，\(\angle MON = 135^{\circ}\)；其他情况均为 \(45^{\circ}\)。因此若没有图形，本题有两个答案；若有图形可根据 \(OC\) 位置确定唯一值。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 角平分线例题2（双角平分线计算模型） -->
+    <div class="example-box">
+        <h4>📐 例题2 · 角平分线计算</h4>
+        <div class="example-item">
+            <p>如图，\(OM\) 是 \(\angle AOB\) 的角平分线，\(ON\) 是 \(\angle BOC\) 的角平分线。已知 \(\angle AOC = 120^{\circ}\)，\(\angle CON = 38^{\circ}\)，求 \(\angle AOM\) 的度数。</p>
+            <div class="figure-box">
+                <img src="角平分线例题2计算图.png" alt="例题2图">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansAngleEx2')">📌 显示解答</button>
+            <div id="ansAngleEx2" class="answer-box">
+                <p>∵ \(ON\) 平分 \(\angle BOC\)，\(\angle CON = 38^{\circ}\)，</p>
+                <p>∴ \(\angle BOC = 2 \times \angle CON = 2 \times 38^{\circ} = 76^{\circ}\)。</p>
+                <p>∵ \(\angle AOC = 120^{\circ}\)，且 \(\angle AOC = \angle AOB + \angle BOC\)，</p>
+                <p>∴ \(\angle AOB = \angle AOC - \angle BOC = 120^{\circ} - 76^{\circ} = 44^{\circ}\)。</p>
+                <p>∵ \(OM\) 平分 \(\angle AOB\)，</p>
+                <p>∴ \(\angle AOM = \frac{1}{2} \times \angle AOB = \frac{1}{2} \times 44^{\circ} = 22^{\circ}\)。</p>
+                <p><strong>结论：</strong> \(\angle AOM = 22^{\circ}\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习（课本第39-40页对应练习） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>练习</h3>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>1.</strong> 先观察下列各组角，其中哪一个角较大？然后用量角器量一量每个角，看看你的观察结果是否正确。</p>
+            <div class="figure-box">
+                <img src="第1题.png" alt="第1题图">
+                <div class="figcaption">（第1题）</div>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>2.</strong> 请利用三角尺中的角估计下列角的度数，并按大小顺序用“>”号连接这四个角。</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>3.</strong> 如图，点 \(O\) 是直线 \(AB\) 上的一点， \(\angle AOC = 55^{\circ}\) 。画出 \(\angle BOC\) 的平分线 \(OD\) ，并计算 \(\angle AOD\) 的度数。</p>
+            <div class="figure-box">
+                <img src="第3题.png" alt="第3题图">
+                <div class="figcaption">（第3题）</div>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>4.</strong> 已知 \(\angle AOB\) ，利用尺规作图作一个角，使它等于已知角的2倍。</p>
+            <div class="figure-box">
+                <img src="第4题.png" alt="第4题图">
+                <div class="figcaption">（第4题）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">角的大小比较：度量法、叠合法</div>
+            <div class="summary-item">用三角板可画出15°倍数的特殊角（15°、30°、45°、60°、75°、90°、105°、120°、135°、150°、165°等）</div>
+            <div class="summary-item">尺规作图：作一个角等于已知角</div>
+            <div class="summary-item">角的和差计算：\(\angle AOB = \angle AOC + \angle COB\)</div>
+            <div class="summary-item">角平分线：将角分成两个相等角的射线</div>
+            <div class="summary-item">双角平分线模型：需注意射线位置，可能需分类讨论</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong> 将角的大小比较与线段大小比较进行类比。<br>
+        <strong>转化思想：</strong> 通过叠合法将角的大小比较转化为边的位置关系。<br>
+        <strong>数形结合：</strong> 用角度数刻画角的大小，进行运算。<br>
+        <strong>分类思想：</strong> 三角板拼角时考虑和与差两种情况，双角平分线问题需考虑射线位置分类讨论。</p>
+    </div>
+
+    <!-- 读一读：尺规作图的故事 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 尺规作图的魅力</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>尺规作图是古希腊数学家的伟大创造，他们发现只用没有刻度的直尺和圆规，就能作出许多复杂的图形，如正五边形、正六边形等。著名的“几何三大难题”就是用尺规作图无法解决的三个问题，它们的探索推动了数学的发展。今天，尺规作图仍是训练逻辑思维和几何直观的重要工具。</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本P162习题3.6 A组第1、2、3题；尝试用三角板拼出更多的角。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第47课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

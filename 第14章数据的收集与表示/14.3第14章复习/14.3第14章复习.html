@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>第14章 复习 | 华师版·八年级上册</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:#f0f2f5;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;
+            background-image: radial-gradient(circle at 20% 80%, rgba(91,110,174,0.06) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 20%, rgba(124,143,207,0.08) 0%, transparent 50%);
+        }
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(60,50,90,0.2);padding:2rem 2.5rem;border:1px solid #d4dae8;
+            position:relative;overflow:hidden;}
+        /* 装饰性背景 */
+        .textbook::before{content:'';position:absolute;top:-80px;right:-80px;width:200px;height:200px;background:radial-gradient(circle,rgba(91,110,174,0.1) 0%, transparent 70%);border-radius:50%;pointer-events:none;z-index:0;}
+        .textbook::after{content:'';position:absolute;bottom:-60px;left:-60px;width:160px;height:160px;background:radial-gradient(circle,rgba(124,143,207,0.12) 0%, transparent 70%);border-radius:50%;pointer-events:none;z-index:0;}
+
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8c4dc;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#3d4a6e;position:relative;z-index:1;}
+        h1{font-size:2.4rem;color:#2d3a5e;font-weight:700;position:relative;z-index:1;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#5b6eae;border-radius:5px;margin-top:8px;}
+
+        .lesson-title{text-align:center;font-size:2.2rem;color:#2d3a5e;background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;padding:.8rem 1.5rem;border-radius:60px;margin:1.2rem 0 1.8rem;font-weight:700;box-shadow:0 8px 20px rgba(91,110,174,0.3);
+            position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:.8rem;
+            background-image:linear-gradient(135deg,#5b6eae 0%,#7c8fcf 50%,#9aa8d4 100%);}
+        .lesson-title::before,.lesson-title::after{content:'✦';font-size:1.4rem;color:rgba(255,255,255,0.6);}
+
+        .learning-targets{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #c4cce0;box-shadow:0 5px 0 #a8b8cc;position:relative;z-index:1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #5b6eae;padding-left:1rem;color:#2d3a5e;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4c4d8;border:1px solid #c8d2e2;}
+        .target-item span{background:#5b6eae;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+
+        .intro-card{background:linear-gradient(135deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.8rem 2rem;margin:1.4rem 0;border-left:8px solid #5b6eae;font-weight:600;position:relative;z-index:1;}
+
+        /* 知识思维导图容器 - Canvas */
+        .mindmap-container{background:linear-gradient(135deg,#f5f7fa,#e8ecf4);border:2px solid #d4dae8;border-radius:1.5rem;padding:2rem;margin:1.5rem 0;text-align:center;position:relative;z-index:1;overflow:hidden;}
+        .mindmap-container::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#5b6eae,#7c8fcf,#9aa8d4,#7c8fcf,#5b6eae);border-radius:1.5rem 1.5rem 0 0;}
+        .mindmap-container h3{color:#2d3a5e;font-size:1.4rem;margin-bottom:1rem;font-weight:700;}
+        #mindmapCanvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:0 auto;background:white;}
+
+        /* 知识点卡片网格 */
+        .knowledge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin:1.5rem 0;position:relative;z-index:1;}
+        .knowledge-card{background:linear-gradient(145deg,#fff,#f8faff);border:2px solid #d4dae8;border-radius:1.5rem;padding:1.5rem;transition:transform .2s, box-shadow .2s;position:relative;overflow:hidden;}
+        .knowledge-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(91,110,174,0.15);}
+        .knowledge-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#5b6eae,#7c8fcf);}
+        .knowledge-card h4{color:#5b6eae;font-size:1.25rem;margin-bottom:.8rem;border-bottom:2px solid #e0e5ef;padding-bottom:.5rem;display:flex;align-items:center;gap:.5rem;}
+        .knowledge-card ul,.knowledge-card ol{margin-left:18px;line-height:1.9;font-size:.95rem;}
+
+        .fact-card{background:#fff8e1;border-left:8px solid #d4a017;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;position:relative;z-index:1;}
+        .example-card{background:#e8f4e8;border-left:8px solid #4a7c4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;position:relative;z-index:1;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;position:relative;z-index:1;}
+
+        .section-title{font-size:1.6rem;color:#2d3a5e;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #5b6eae;position:relative;z-index:1;display:flex;align-items:center;gap:.6rem;}
+        .section-title::before{content:'';display:inline-block;width:8px;height:28px;background:linear-gradient(180deg,#5b6eae,#7c8fcf);border-radius:4px;}
+
+        .summary-section{background:linear-gradient(145deg,#dce4f0,#e0e6f0);border-left:6px solid #5b6eae;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;position:relative;z-index:1;}
+
+        .footer-note{text-align:right;color:#3d4a6e;border-top:2px solid #c4cee0;padding-top:.8rem;margin-top:1.5rem;position:relative;z-index:1;}
+
+        table{width:100%;border-collapse:collapse;margin:1rem auto;}
+        th,td{padding:10px 14px;text-align:center;border:1px solid #d4dae8;}
+        th{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;}
+        tr:nth-child(even){background:#f8fafc;}tr:hover{background:#eef2f7;}
+
+        ul,ol{margin-left:25px;line-height:2;}
+        p{margin:.5rem 0;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;}
+
+        .interact-btn{background:linear-gradient(135deg,#5b6eae,#7c8fcf);border:none;color:white;padding:.5rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #3d4e7e;margin:.5rem 0;font-size:.95rem;transition:all .2s ease;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #3d4e7e;}
+        .interact-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #3d4e7e;}
+
+        .answer-box{background:#f8f9ff;border-left:6px solid #d4a017;padding:.8rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;}
+        .show-answer{display:block;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+
+        /* 复习课增强装饰 */
+        .decorative-line{height:3px;background:linear-gradient(90deg,transparent,#5b6eae,#7c8fcf,#5b6eae,transparent);margin:1.5rem auto;border-radius:3px;max-width:70%;}
+
+        /* 高亮要点卡片 */
+        .highlight-point{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.2rem 0;box-shadow:0 8px 24px rgba(91,110,174,0.25);position:relative;z-index:1;}
+        .highlight-point h4{font-size:1.15rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+        .highlight-point p{opacity:.95;line-height:1.8;}
+
+        /* 对比表格容器 */
+        .compare-table-wrap{overflow-x:auto;border-radius:1rem;margin:1rem 0;box-shadow:0 4px 16px rgba(91,110,174,0.1);}
+        .compare-table-wrap table{margin:0;}
+
+        /* 练习题卡片 */
+        .exercise-card{background:linear-gradient(145deg,#fff,#fafbff);border:2px solid #d4dae8;border-radius:1.5rem;padding:1.5rem 1.8rem;margin:1.2rem 0;position:relative;transition:all .2s;}
+        .exercise-card:hover{border-color:#7c8fcf;box-shadow:0 8px 20px rgba(91,110,174,0.12);}
+        .exercise-card h4{color:#5b6eae;font-size:1.15rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem;}
+
+        /* 思想方法标签 */
+        .method-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem;}
+        .method-tag{background:linear-gradient(135deg,#e8ecf4,#dde3ee);color:#2d3a5e;padding:.35rem 1rem;border-radius:30px;font-size:.88rem;font-weight:600;border:1px solid #c4cce0;}
+
+        /* 公式框 */
+        .formula-box{background:linear-gradient(145deg,#f0ebfa,#e8e2f5);border:2px solid #c4b8dc;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;text-align:center;}
+        .formula-box .formula-label{font-size:.9rem;color:#6b5b95;font-weight:600;margin-bottom:.4rem;}
+        .formula-box .formula-content{font-size:1.15rem;color:#2d3a5e;font-weight:700;}
+
+        /* 章节导航小卡片 */
+        .chapter-nav{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .nav-pill{padding:.45rem 1.3rem;border-radius:30px;font-weight:600;font-size:.92rem;cursor:pointer;transition:all .2s;border:2px solid #d4dae8;background:white;color:#3d4a6e;}
+        .nav-pill:hover{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;border-color:transparent;transform:translateY(-2px);}
+        .nav-pill.active{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;border-color:transparent;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <!-- 页头 -->
+    <div class="header-meta">
+        <span>📚 华师版 · 八年级上册</span>
+        <span>第14章 数据的收集与表示</span>
+    </div>
+
+    <h1>📊 第14章 总复习</h1>
+
+    <div class="lesson-title">数据的收集与表示 — 全章回顾与综合提升</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 本章学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握普查与抽样调查的选择方法</div>
+            <div class="target-item"><span>2</span>理解总体、个体、样本、样本容量的概念</div>
+            <div class="target-item"><span>3</span>理解频数、频率的含义及关系</div>
+            <div class="target-item"><span>4</span>能绘制和解读频数分布直方图</div>
+            <div class="target-item"><span>5</span>掌握条形图、折线图、扇形统计图的特点</div>
+            <div class="target-item"><span>6</span>识别并避免被误导性统计图误导</div>
+        </div>
+    </div>
+
+    <!-- 导入语 -->
+    <div class="intro-card">
+        💡 <strong>本章导读：</strong>在现实生活中，许多问题需要先做调查研究，收集数据，再通过分析给出回答。本章我们学习了如何收集数据（普查/抽样）、如何整理数据（频数/频率），以及如何用各种统计图表直观地表示数据。让我们一起回顾全章核心内容！
+    </div>
+
+    <!-- ===== 第一部分：知识结构图（Canvas） ===== -->
+    <div class="section-title">🧠 一、知识结构全景图</div>
+
+    <div class="mindmap-container">
+        <h3>📋 第14章 知识结构全景图</h3>
+        <canvas id="mindmapCanvas" width="960" height="600"></canvas>
+    </div>
+
+    <div class="decorative-line"></div>
+
+    <!-- ===== 第二部分：核心知识点回顾（卡片网格） ===== -->
+    <div class="section-title">📖 二、核心知识点回顾</div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <span class="nav-pill active" onclick="scrollToSection('sec-collect')">📡 数据的收集</span>
+        <span class="nav-pill" onclick="scrollToSection('sec-freq')">📊 频数与频率</span>
+        <span class="nav-pill" onclick="scrollToSection('sec-chart')">📈 数据的表示</span>
+    </div>
+
+    <!-- 数据收集部分 -->
+    <div id="sec-collect">
+        <h3 style="color:#5b6eae;margin:1.2rem 0 .8rem;font-size:1.3rem;">📡 §14.1 数据的收集</h3>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h4>🔍 普查 vs 抽样调查</h4>
+                <table style="font-size:.85rem;">
+                    <tr><th>方式</th><th>定义</th></tr>
+                    <tr><td><strong>普查</strong></td><td>对所有考察对象作的<strong>全面调查</strong></td></tr>
+                    <tr><td><strong>抽样调查</strong></td><td>对部分考察对象作的<strong>局部调查</strong></td></tr>
+                    <tr><td colspan="2" style="text-align:left;padding-left:10px;"><em>适用抽样：数量巨大 / 有破坏性 / 经费时间有限</em></td></tr>
+                </table>
+            </div>
+            <div class="knowledge-card">
+                <h4>📐 统计学基本概念</h4>
+                <ul>
+                    <li><strong>总体：</strong>所要考察对象的全体</li>
+                    <li><strong>个体：</strong>组成总体的每一个考察对象</li>
+                    <li><strong>样本：</strong>从总体中取出的一部分个体</li>
+                    <li><strong>样本容量：</strong>样本中个体的数量（无单位）</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>🎲 简单随机抽样</h4>
+                <p>用抽签的办法决定哪些个体进入样本，使<strong>每个个体被抽到的机会相等</strong>。</p>
+                <div style="background:#f5f7fa;border-radius:.8rem;padding:.8rem;margin-top:.6rem;">
+                    <p style="font-size:.9rem;">💬 <em>"简单随机抽样是一种很重要的抽样方法"</em></p>
+                </div>
+            </div>
+            <div class="knowledge-card">
+                <h4>📁 数据来源分类</h4>
+                <ul>
+                    <li><strong>一手数据：</strong>通过亲自调查、测量或实验直接获得的数据</li>
+                    <li><strong>二手数据：</strong>查阅文献资料、互联网等间接获得的数据</li>
+                </ul>
+                <p style="font-size:.88rem;color:#666;margin-top:.5rem;">⚠️ 使用二手数据时要注意数据的来源是否可靠</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 频数与频率部分 -->
+    <div id="sec-freq">
+        <h3 style="color:#5b6eae;margin:1.5rem 0 .8rem;font-size:1.3rem;">📊 频数与频率</h3>
+
+        <div class="formula-box">
+            <div class="formula-label">⭐ 核心公式</div>
+            <div class="formula-content">$$\text{频率} = \frac{\text{频数}}{\text{总次数}} = \frac{f_i}{n}, \quad \text{所有频率之和}=1$$</div>
+        </div>
+
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h4>🔢 频数 (Frequency)</h4>
+                <p>每个对象出现的<strong>次数</strong></p>
+                <ul style="margin-top:.5rem;">
+                    <li>频数为非负整数</li>
+                    <li>所有频数之和等于总次数 $n$</li>
+                    <li>反映对象出现的绝对频繁程度</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>📉 频率 (Relative Frequency)</h4>
+                <p>频数与总次数的<strong>比值（百分比）</strong></p>
+                <ul style="margin-top:.5rem;">
+                    <li>$0 \leq \text{频率} \leq 1$</li>
+                    <li>所有频率之和恒为 1</li>
+                    <li>反映相对频繁程度，便于比较不同总量的数据</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>💡 关键提醒</h4>
+                <p>当<strong>总次数不相等时</strong>，应比较<strong>频率</strong>而不是频数！</p>
+                <div style="background:#fef2f2;border-radius:.8rem;padding:.7rem;margin-top:.6rem;color:#991b1b;font-size:.9rem;">
+                    ❌ 错误做法：甲班喜欢篮球的有20人，乙班有15人 → 甲班更喜欢<br>
+                    ✅ 正确做法：比较两班的频率（百分比）
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数据的表示部分 -->
+    <div id="sec-chart">
+        <h3 style="color:#5b6eae;margin:1.5rem 0 .8rem;font-size:1.3rem;">📈 §14.2 数据的表示</h3>
+
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h4>📊 条形统计图</h4>
+                <ul>
+                    <li>用长方形的高度表示数据大小</li>
+                    <li>各长方形的宽度相同</li>
+                    <li>能清楚地显示<strong>具体数值</strong>的比较</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>📈 折线统计图</h4>
+                <ul>
+                    <li>用折线连接各数据点</li>
+                    <li>适合展示数据随时间变化的<strong>趋势</strong></li>
+                    <li>能直观反映增减变化情况</li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>🥧 扇形统计图</h4>
+                <ul>
+                    <li>整个圆代表总体（100%）</li>
+                    <li>扇形面积 = 该部分所占百分比</li>
+                    <li>圆心角公式：<br><strong>圆心角 = 360° × 百分比</strong></li>
+                </ul>
+            </div>
+            <div class="knowledge-card">
+                <h4>📉 频数分布直方图</h4>
+                <p><strong>绘制步骤：</strong></p>
+                <ol>
+                    <li>计算极差（最大值 − 最小值）</li>
+                    <li>决定组数和组距</li>
+                    <li>确定分点，列出频数分布表</li>
+                    <li>画频数分布直方图</li>
+                </ol>
+                <p style="font-size:.88rem;color:#5b6eae;margin-top:.5rem;">✨ 特点：长条之间<strong>没有空隙</strong>，反映数据整体分布形态</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="decorative-line"></div>
+
+    <!-- ===== 第三部分：易错点总结 ===== -->
+    <div class="section-title">⚠️ 三、易错点与常见误区</div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 1：混淆普查与抽样调查的适用场景</strong><br>
+        并非所有问题都适合普查。当考察对象数不胜数、有破坏性损伤、经费时间有限时，应选用抽样调查。
+    </div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 2：样本容量忘记不带单位</strong><br>
+        样本容量是样本中个体的<strong>数量</strong>，是一个数字，<strong>不附带任何单位</strong>。
+    </div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 3：总次数不等时误比频数</strong><br>
+        当两组数据的总次数（样本容量）不同时，必须比较<strong>频率</strong>而非频数。
+    </div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 4：直方图的组距选择不当</strong><br>
+        组距过大则丢失信息，组距过小则过于琐碎。一般取 5~12 个组为宜。
+    </div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 5：扇形图圆心角计算错误</strong><br>
+        圆心角 = 360° × 该部分的百分比。<strong>注意百分比要用小数形式参与计算</strong>，例如32%要写成0.32。
+    </div>
+
+    <div class="warn-box">
+        <strong>🚨 易错点 6：被误导性统计图欺骗</strong><br>
+        纵轴起点不是0、纵轴单位长度不一致、使用三维效果等手法都可能夸大差异。阅读统计图时要保持批判性眼光！
+    </div>
+
+    <div class="decorative-line"></div>
+
+    <!-- ===== 第四部分：综合例题 ===== -->
+    <div class="section-title">📝 四、综合例题精讲</div>
+
+    <!-- 例题1 -->
+    <div class="example-card">
+        <h4>📌 例题 1：选择合适的调查方式</h4>
+        <p>下列哪些考察适合用<strong>普查</strong>？哪些适合用<strong>抽样调查</strong>？请说明理由。</p>
+        <ol>
+            <li>考察一片试验田里某种大麦的穗长情况；</li>
+            <li>考察一个班级中的学生对建立班级生物角的看法；</li>
+            <li>考察人们保护海洋的意识；</li>
+            <li>考察某批次灯泡的使用寿命；</li>
+            <li>审查某公司本年度的全部财务账目。</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 查看答案与解析</button>
+        <div id="ex1" class="answer-box">
+            <strong>【解析】</strong><br><br>
+            (1) <strong>抽样调查</strong>——大麦数量多，难以逐一测量，且抽样即可了解整体情况。<br><br>
+            (2) <strong>普查</strong>——班级人数有限（通常40~50人），可以对每个学生进行调查。<br><br>
+            (3) <strong>抽样调查</strong>——人群数量庞大，无法逐一调查。<br><br>
+            (4) <strong>抽样调查</strong>——测试灯泡寿命具有<strong>破坏性</strong>（测试后灯泡报废）。<br><br>
+            (5) <strong>普查</strong>——财务审计要求全面准确，且账目总量有限。
+        </div>
+    </div>
+
+    <!-- 例题2 -->
+    <div class="example-card">
+        <h4>📌 例题 2：扇形统计图的综合计算</h4>
+        <p>某市民服务热线某日收到的诉求分类占比如下表所示：</p>
+        <table style="font-size:.9rem;">
+            <tr><th>诉求类型</th><th>求助</th><th>咨询</th><th>投诉</th><th>建议</th><th>其他</th></tr>
+            <tr><th>占比</th><td>25%</td><td>32.5%</td><td>20%</td><td>12.5%</td><td>10%</td></tr>
+        </table>
+        <p>已知<strong>求助类诉求为200件</strong>，求：</p>
+        <ol>
+            <li>当日收到的总诉求数量是多少？</li>
+            <li>咨询类诉求的数量？</li>
+            <li>投诉类诉求所对应的扇形圆心角的度数？</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 查看解答过程</button>
+        <div id="ex2" class="answer-box">
+            <strong>【解】</strong><br><br>
+            (1) 总诉求数量 = $200 \div 25\% = 800$（件）<br><br>
+            (2) 咨询类诉求数量 = $800 \times 32.5\% = 260$（件）<br><br>
+            (3) 投诉类圆心角 = $360^{\circ} \times 20\% = 72^{\circ}$<br><br>
+            <strong>答：</strong>总诉求800件，咨询类260件，投诉类圆心角为72°。
+        </div>
+    </div>
+
+    <!-- 例题3 -->
+    <div class="example-card">
+        <h4>📌 例题 3：频数分布表的制作与分析</h4>
+        <p>为了解八年级学生的课外阅读情况，随机抽取了50名学生，记录他们每周阅读时长（单位：小时）如下：</p>
+        <p style="font-size:.88rem;font-family:monospace;background:#f5f7fa;padding:.6rem;border-radius:.6rem;">
+            3, 5, 2, 7, 4, 6, 8, 3, 5, 4, 6, 9, 2, 4, 5, 7, 3, 6, 4, 8,<br>
+            5, 3, 7, 4, 6, 2, 5, 8, 3, 4, 6, 7, 5, 3, 9, 4, 6, 2, 5, 8,<br>
+            3, 7, 4, 5, 6, 3, 8, 4, 7, 5
+        </p>
+        <p>完成以下任务：</p>
+        <ol>
+            <li>计算极差，若分5组，确定每组的组距和分点；</li>
+            <li>列出频数分布表；</li>
+            <li>哪一组的人数最多？该组的频率是多少？</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 查看详细解答</button>
+        <div id="ex3" class="answer-box">
+            <strong>【解】</strong><br><br>
+            <strong>(1) 极差与分组：</strong>最大值=9，最小值=2，极差=$9-2=7$<br>
+            分5组：组距 $\approx 7 \div 5 = 1.4$，取<strong>组距 = 2</strong><br>
+            分点：$2 \le t < 4$, $4 \le t < 6$, $6 \le t < 8$, $8 \le t \le 9$<br>
+            （共4组已足够覆盖，或可调整为5组：$2\sim3$, $4\sim5$, $6\sim7$, $8\sim9$）<br><br>
+
+            <strong>(2) 频数分布表：</strong><br>
+            <table style="font-size:.88rem;">
+                <tr><th>组别</th><th>$2\le t&lt;4$</th><th>$4\le t&lt;6$</th><th>$6\le t&lt;8$</th><th>$8\le t\le 9$</th></tr>
+                <tr><th>频数</th><td>13</td><td>16</td><td>12</td><td>9</td></tr>
+                <tr><th>频率</th><td>0.26</td><td>0.32</td><td>0.24</td><td>0.18</td></tr>
+            </table><br>
+
+            <strong>(3)</strong> 第2组（$4 \le t < 6$）人数最多，频数为16，<br>
+            频率 = $16 \div 50 = 0.32$ = <strong>32%</strong>
+        </div>
+    </div>
+
+    <div class="decorative-line"></div>
+
+    <!-- ===== 第五部分：综合练习题 ===== -->
+    <div class="section-title">✏️ 五、巩固练习</div>
+
+    <div class="exercise-card">
+        <h4>📝 练习 1</h4>
+        <p>下列调查中，最适合采用全面调查（普查）的是（&nbsp;&nbsp;&nbsp;）</p>
+        <p>A. 调查全国中学生的视力情况 &nbsp;&nbsp; B. 调查某品牌电视机的使用寿命</p>
+        <p>C. 调查"神舟飞船"零部件的质量 &nbsp;&nbsp; D. 调查你所在班级同学的身高</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac1')">查看答案</button>
+        <div id="prac1" class="answer-box"><strong>答案：D</strong><br>解析：A和B适合抽样调查；C需要普查（质量要求高）；D班级人数有限，适合普查。但C和D相比，D更典型地体现"范围小→普查"，故选D。（注：C也常作为普查选项）</div>
+    </div>
+
+    <div class="exercise-card">
+        <h4>📝 练习 2</h4>
+        <p>为了解某校2000名学生对学校食堂饭菜的意见，从中随机抽取200名进行调查。在这个问题中：</p>
+        <p>①总体是2000名学生；②个体是每名学生对食堂饭菜的意见；③样本是抽取的200名学生；④样本容量是200。</p>
+        <p>以上说法正确的个数是（&nbsp;&nbsp;&nbsp;）</p>
+        <p>A. 1个 &nbsp; B. 2个 &nbsp; C. 3个 &nbsp; D. 4个</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">查看答案</button>
+        <div id="prac2" class="answer-box"><strong>答案：B（②④正确）</strong><br>解析：①错——总体是2000名学生对食堂饭菜的意见（全体考察对象的属性）；②正确；③错——样本是抽取的200名学生的意见；④正确。</div>
+    </div>
+
+    <div class="exercise-card">
+        <h4>📝 练习 3</h4>
+        <p>在一次"我最喜爱的体育项目"调查中，共有120人参加，其中喜爱篮球的频数为36人。</p>
+        <p>(1) 喜爱篮球的频率是多少？</p>
+        <p>(2) 如果在扇形统计图中表示篮球爱好者，对应的圆心角是多少度？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">查看答案</button>
+        <div id="prac3" class="answer-box">
+            <strong>【解】</strong><br>
+            (1) 频率 = $36 \div 120 = 0.3 =$ <strong>30%</strong><br><br>
+            (2) 圆心角 = $360^{\circ} \times 30\% = 360^{\circ} \times 0.3 =$ <strong>108°</strong>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h4>📝 练习 4</h4>
+        <p>右图（假设）是一个频数分布直方图，其中第二组的频率为0.25，第四组的频数为8。如果总共有40个数据，那么第三组的频数是多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac4')">查看答案</button>
+        <div id="prac4" class="answer-box"><strong>答案：需要更多信息</strong><br>解析：已知总数据n=40，第四组频数=8（频率=8/40=0.2），第二组频率=0.25（频数=10）。剩余第一组和第三组频数之和=40−10−8=22。如果题目给出四组频率之和为1，还需知道第一组频率才能确定第三组频数。<br><em>（此题为训练思路，实际考试通常会给出更多条件）</em></div>
+    </div>
+
+    <div class="decorative-line"></div>
+
+    <!-- ===== 第六部分：课堂小结 ===== -->
+    <div class="section-title">🎯 六、课堂小结</div>
+
+    <!-- 要点总结 -->
+    <div class="summary-section">
+        <h3 style="color:#2d3a5e;margin-bottom:1rem;">📋 通过本章学习，我们掌握了：</h3>
+        <div class="knowledge-grid">
+            <div class="knowledge-card" style="padding:1.2rem;">
+                <h4>🔍 数据收集</h4>
+                <ul style="font-size:.9rem;">
+                    <li>普查 vs 抽样调查</li>
+                    <li>总体、个体、样本</li>
+                    <li>简单随机抽样</li>
+                    <li>一手数据与二手数据</li>
+                </ul>
+            </div>
+            <div class="knowledge-card" style="padding:1.2rem;">
+                <h4>📊 数据整理</h4>
+                <ul style="font-size:.9rem;">
+                    <li>频数的含义</li>
+                    <li>频率的计算公式</li>
+                    <li>频数分布表</li>
+                    <li>频率之和恒为1</li>
+                </ul>
+            </div>
+            <div class="knowledge-card" style="padding:1.2rem;">
+                <h4>📈 数据表示</h4>
+                <ul style="font-size:.9rem;">
+                    <li>条形统计图</li>
+                    <li>折线统计图</li>
+                    <li>扇形统计图</li>
+                    <li>频数分布直方图</li>
+                </ul>
+            </div>
+            <div class="knowledge-card" style="padding:1.2rem;">
+                <h4>🛡️ 数据素养</h4>
+                <ul style="font-size:.9rem;">
+                    <li>识别不规范统计图</li>
+                    <li>批判性思维</li>
+                    <li>用数据说话</li>
+                    <li>解决实际问题</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想方法 -->
+    <div class="highlight-point">
+        <h4>💡 本章涉及的数学思想方法</h4>
+        <div class="method-tags">
+            <span class="method-tag">📊 统计思想 —— 用样本推断总体</span>
+            <span class="method-tag">📈 数形结合 —— 图表直观呈现数据规律</span>
+            <span class="method-tag">🔍 归纳概括 —— 从具体数据到一般结论</span>
+            <span class="method-tag">🛡️ 批判思维 —— 识别误导性信息</span>
+            <span class="method-tag">🎯 应用意识 —— 解决实际问题</span>
+        </div>
+    </div>
+
+    <!-- 高亮总结 -->
+    <div class="highlight-point" style="background:linear-gradient(135deg,#4a7c59,#6ba36a);">
+        <h4>✅ 核心口诀</h4>
+        <p style="text-align:center;font-size:1.05rem;line-height:2;">
+            收集数据选方式，普查抽样看情形。<br>
+            总体个体样本清，容量只写一个数。<br>
+            频数频率要区分，频率才是比得行。<br>
+            四种图表各有长，直方无缝最分明。
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <p>华师版数学 · 八年级上册 · 第14章 数据的收集与表示 · 复习课</p>
+    </div>
+</div>
+
+<script>
+// ===== 答案切换功能 =====
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if (el.classList.contains('show-answer')) {
+        el.classList.remove('show-answer');
+        setTimeout(function(){ el.style.display = 'none'; }, 300);
+    } else {
+        el.style.display = 'block';
+        // 触发重排以启动动画
+        void el.offsetWidth;
+        el.classList.add('show-answer');
+    }
+}
+
+// ===== 导航滚动 =====
+function scrollToSection(id) {
+    var el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // 更新激活状态
+    document.querySelectorAll('.nav-pill').forEach(function(pill){
+        pill.classList.remove('active');
+    });
+    event.target.classList.add('active');
+}
+
+// ===== Canvas 知识结构思维导图（重绘版） =====
+window.addEventListener('load', function(){
+    var canvas = document.getElementById('mindmapCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+
+    // 颜色方案
+    var colors = {
+        primary: '#5b6eae',
+        secondary: '#7c8fcf',
+        light: '#e8ecf4',
+        accent: '#d4a017',
+        text: '#1e3b5a',
+        white: '#ffffff',
+        branch1: '#5b8eae',   // 蓝色分支
+        branch2: '#6b9e6b',   // 绿色分支
+        branch3: '#ae7b5b',   // 橙色分支
+        branch4: '#8b6bae',   // 紫色分支
+        lineColor: '#a8b8cc'
+    };
+
+    // 圆角矩形
+    function roundRect(x, y, w, h, r, fill, stroke, lw) {
+        ctx.beginPath();
+        ctx.moveTo(x+r, y);
+        ctx.lineTo(x+w-r, y);
+        ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+        ctx.lineTo(x+w, y+h-r);
+        ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+        ctx.lineTo(x+r, y+h);
+        ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+        ctx.lineTo(x, y+r);
+        ctx.quadraticCurveTo(x, y, x+r, y);
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw||1; ctx.stroke(); }
+    }
+
+    // 绘制箭头连线
+    function drawArrow(x1, y1, x2, y2, color) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.strokeStyle = color || colors.lineColor;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+
+        // 箭头
+        var angle = Math.atan2(y2-y1, x2-x1);
+        var arrowLen = 8;
+        ctx.beginPath();
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 - arrowLen*Math.cos(angle-Math.PI/6), y2 - arrowLen*Math.sin(angle-Math.PI/6));
+        ctx.moveTo(x2, y2);
+        ctx.lineTo(x2 - arrowLen*Math.cos(angle+Math.PI/6), y2 - arrowLen*Math.sin(angle+Math.PI/6));
+        ctx.strokeStyle = color || colors.lineColor;
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+    }
+
+    // 文字居中
+    function drawText(text, x, y, font, color, align) {
+        ctx.font = font || '14px "Microsoft YaHei", sans-serif';
+        ctx.fillStyle = color || colors.text;
+        ctx.textAlign = align || 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(text, x, y);
+    }
+
+    // ====== 清空画布 ======
+    ctx.clearRect(0, 0, W, H);
+    roundRect(0, 0, W, H, 16, '#fafbff', null, 0);
+
+    // 布局参数
+    var cx = W / 2;
+    var mainW = 180, mainH = 44;
+    var subW = 130, subH = 36;
+
+    // ========== 主流程节点（居中垂直排列） ==========
+    var mainNodes = [
+        {text: '① 明确调查问题', y: 30},
+        {text: '② 确定调查对象', y: 90},
+        {text: '③ 选择调查方法', y: 150},
+        {text: '④ 展开调查·收集数据', y: 300},
+        {text: '⑤ 整理分析数据', y: 380},
+        {text: '⑥ 得出结论', y: 520}
+    ];
+
+    // 绘制主节点及连线
+    mainNodes.forEach(function(node, i) {
+        var nx = cx - mainW / 2;
+        var grad = ctx.createLinearGradient(nx, node.y, nx + mainW, node.y + mainH);
+        grad.addColorStop(0, colors.primary);
+        grad.addColorStop(1, colors.secondary);
+
+        // 阴影效果
+        ctx.save();
+        ctx.shadowColor = 'rgba(91,110,174,0.25)';
+        ctx.shadowBlur = 10;
+        ctx.shadowOffsetY = 4;
+        roundRect(nx, node.y, mainW, mainH, 22, grad, null, 0);
+        ctx.restore();
+
+        // 文字
+        drawText(node.text, cx, node.y + mainH / 2, 'bold 15px "Microsoft YaHei"', colors.white);
+
+        // 连线到下一节点（跳过④→⑤之间的断点区域）
+        if (i < 2) {
+            drawArrow(cx, node.y + mainH + 2, cx, mainNodes[i + 1].y - 2, colors.primary);
+        } else if (i === 3) {
+            drawArrow(cx, node.y + mainH + 2, cx, mainNodes[4].y - 2, colors.primary);
+        } else if (i === 4) {
+            drawArrow(cx, node.y + mainH + 2, cx, mainNodes[5].y - 2, colors.primary);
+        }
+    });
+
+    // ========== 分支：选择调查方法（从节点③展开） ==========
+    var branchStartY = 150 + mainH;
+    var methodY = branchStartY + 50;
+
+    // 左分支：普查 → 一手数据
+    drawArrow(cx - mainW * 0.35, branchStartY, cx - 160, methodY, colors.branch1);
+    roundRect(cx - 235, methodY, subW, subH, 17, '#e8f4fc', colors.branch1, 2.5);
+    drawText('普查', cx - 170, methodY + subH / 2, 'bold 14px "Microsoft YaHei"', colors.branch1);
+
+    drawArrow(cx - 170, methodY + subH + 2, cx - 170, methodY + subH + 28, colors.branch1);
+    roundRect(cx - 235, methodY + subH + 30, subW, subH - 2, 15, colors.light, colors.branch1, 1.5);
+    drawText('一手数据', cx - 170, methodY + subH + 47, '13px "Microsoft YaHei"', colors.text);
+
+    // 右分支：抽样调查 → 二手数据
+    drawArrow(cx + mainW * 0.35, branchStartY, cx + 160, methodY, colors.branch2);
+    roundRect(cx + 105, methodY, subW, subH, 17, '#e8fce8', colors.branch2, 2.5);
+    drawText('抽样调查', cx + 170, methodY + subH / 2, 'bold 14px "Microsoft YaHei"', colors.branch2);
+
+    drawArrow(cx + 170, methodY + subH + 2, cx + 170, methodY + subH + 28, colors.branch2);
+    roundRect(cx + 105, methodY + subH + 30, subW, subH - 2, 15, colors.light, colors.branch2, 1.5);
+    drawText('二手数据', cx + 170, methodY + subH + 47, '13px "Microsoft YaHei"', colors.text);
+
+    // 中间小分支：总体/个体/样本
+    drawArrow(cx, branchStartY, cx, methodY, colors.branch4);
+    roundRect(cx - subW / 2, methodY, subW, subH - 2, 15, '#f3effc', colors.branch4, 2);
+    drawText('总体·个体·样本', cx, methodY + (subH - 2) / 2, 'bold 12px "Microsoft YaHei"', colors.branch4);
+
+    // 从分支汇聚回节点④
+    drawArrow(cx - 170, methodY + subH + 34 + subH, cx - mainW * 0.25, 300 - 2, colors.lineColor);
+    drawArrow(cx + 170, methodY + subH + 34 + subH, cx + mainW * 0.25, 300 - 2, colors.lineColor);
+    drawArrow(cx, methodY + subH, cx, 300 - 2, colors.lineColor);
+
+    // ========== 分支：整理分析数据（从节点⑤展开） ==========
+    var analysisStartY = 380 + mainH;
+    var chartY = analysisStartY + 48;
+
+    // 四个图表分支（均匀分布）
+    var chartBranches = [
+        {xOff: -255, label: '条形统计图', color: colors.branch1, bg: '#e8f4fc'},
+        {xOff: -85, label: '折线统计图', color: colors.branch2, bg: '#e8fce8'},
+        {xOff: 85, label: '扇形统计图', color: colors.branch3, bg: '#fef8ec'},
+        {xOff: 255, label: '频数分布直方图', color: colors.branch4, bg: '#f3effc'}
+    ];
+
+    chartBranches.forEach(function(b) {
+        // 连线
+        drawArrow(cx + b.xOff * 0.42, analysisStartY, cx + b.xOff, chartY, b.color);
+        // 节点卡片
+        var cardW = subW + 10;
+        roundRect(cx + b.xOff - cardW / 2, chartY, cardW, subH, 16, b.bg, b.color, 2.5);
+        drawText(b.label, cx + b.xOff, chartY + subH / 2, 'bold 12px "Microsoft YaHei"', b.color);
+    });
+
+    // 汇聚线回到节点⑥
+    chartBranches.forEach(function(b) {
+        drawArrow(cx + b.xOff, chartY + subH + 2, cx + b.xOff * 0.55, 520 - 2, colors.lineColor);
+    });
+
+    // ========== 频数/频率概念框（在节点⑤左侧） ==========
+    roundRect(20, 365, 140, 52, 12, '#fff8e0', colors.accent, 2);
+    drawText('频数 & 频率', 90, 383, 'bold 12px "Microsoft YaHei"', colors.accent);
+    drawText('频率之和恒为1', 90, 402, '11px "Microsoft YaHei"', '#666');
+
+    drawArrow(160, 391, cx - mainW / 2, 391, '#ccc');
+
+    // ========== 底部装饰提示 ==========
+    roundRect(0, H - 26, W, 26, 0, colors.light, null, 0);
+    drawText('数据的收集与表示 — 完整知识体系', W / 2, H - 13, '12px "Microsoft YaHei"', '#7c8fcf');
+
+    // 角落装饰星标
+    function drawStar(x, y, r, color) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.fillStyle = color;
+        ctx.globalAlpha = 0.12;
+        ctx.beginPath();
+        for (var i = 0; i < 5; i++) {
+            ctx.lineTo(Math.cos((18 + i * 72) * Math.PI / 180) * r,
+                       -Math.sin((18 + i * 72) * Math.PI / 180) * r);
+            ctx.lineTo(Math.cos((54 + i * 72) * Math.PI / 180) * r * 0.4,
+                       -Math.sin((54 + i * 72) * Math.PI / 180) * r * 0.4);
+        }
+        ctx.closePath(); ctx.fill();
+        ctx.restore();
+    }
+
+    drawStar(W - 25, 22, 12, colors.primary);
+    drawStar(22, H - 45, 9, colors.secondary);
+    drawStar(W / 2, 8, 7, colors.accent);
+});
+</script>
+</body>
+</html>

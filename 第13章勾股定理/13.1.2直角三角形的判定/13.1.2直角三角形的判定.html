@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.1.2 直角三角形的判定 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+        }
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .explore-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: #1d6130;
+        }
+        .explore-card h4::before { content: "🔍 "; }
+        .fact-card {
+            background: #fff8e1;
+            border-left: 8px solid #f0b34b;
+            border-radius: 1.8rem;
+            padding: 1.4rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .fact-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #b85c1a;
+        }
+        .theorem-box {
+            background: #fff3cd;
+            border: 3px solid #f0b34b;
+            border-radius: 1.5rem;
+            padding: 1.2rem 2rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #7a3d00;
+        }
+        .example-card {
+            background: #e5f3e2;
+            border-left: 8px solid #3a8b4f;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .example-card h4 { font-size: 1.4rem; color: #1d6130; }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 8px solid #e6b422;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 500;
+        }
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+        }
+        .interact-btn:active { transform: translateY(2px); }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.95rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item { margin-bottom: 1.5rem; }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+        .summary-section {
+            background: #d6e9f5;
+            border-left: 6px solid #30829b;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .highlight {
+            background: #c5e0d4;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* 判定定理样式 */
+        .converse-theorem {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff9800;
+            border-radius: 1.8rem;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .converse-theorem::before {
+            content: "⚡";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 28px;
+            background: white;
+            padding: 0 8px;
+        }
+
+        /* 勾股数展示 */
+        .pythagorean-triple-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 1rem 0;
+        }
+        .triple-card {
+            background: white;
+            border: 2px solid #90caf9;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .truple-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第13章 勾股定理 · 13.1.2</span>
+    </div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">13.1.2 直角三角形的判定</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解并掌握勾股定理的逆定理</div>
+            <div class="target-item"><span>✔</span>能用勾股定理逆定理判断三角形是否为直角三角形</div>
+            <div class="target-item"><span>✔</span>了解勾股数的概念，能识别常见的勾股数</div>
+            <div class="target-item"><span>✔</span>能运用勾股定理逆定理解决简单的实际问题</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p><strong>思考：</strong>在上一节课中，我们学习了勾股定理：如果 $\triangle ABC$ 是直角三角形，$\angle C = 90°$，那么 $AC^2 + BC^2 = AB^2$。</p>
+        <p style="margin-top: 0.8rem;">那么反过来，如果一个三角形的三边长 $a$、$b$、$c$ 满足 $a^2 + b^2 = c^2$，这个三角形一定是直角三角形吗？这就是我们今天要研究的问题——<strong>直角三角形的判定</strong>。</p>
+    </div>
+
+    <!-- 探索活动 -->
+    <div class="explore-card">
+        <h4>观察与探究</h4>
+        <p>请分别计算下列三组数中的 $a^2 + b^2$ 和 $c^2$ 的值，看看有什么发现？</p>
+
+        <table style="width:100%; border-collapse:collapse; margin: 1rem 0; background:white; border-radius:1rem; overflow:hidden;">
+            <thead>
+                <tr style="background:#e3f2fd;">
+                    <th style="padding:10px; border:1px solid #bbdefb;">组别</th>
+                    <th style="padding:10px; border:1px solid #bbdefb;">$a$</th>
+                    <th style="padding:10px; border:1px solid #bbdefb;">$b$</th>
+                    <th style="padding:10px; border:1px solid #bbdefb;">$c$</th>
+                    <th style="padding:10px; border:1px solid #bbdefb;">$a^2+b^2$</th>
+                    <th style="padding:10px; border:1px solid #bbdefb;">$c^2$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding:10px; border:1px solid #bbdefb;">第①组</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">3</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">4</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">5</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">25</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">25</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border:1px solid #bbdefb;">第②组</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">5</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">12</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">13</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">169</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">169</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; border:1px solid #bbdefb;">第③组</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">6</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">8</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">11</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">100</td>
+                    <td style="padding:10px; border:1px solid #bbdefb; text-align:center;">121</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><strong>结论：</strong></p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li>第①组和第②组满足 $a^2 + b^2 = c^2$</li>
+            <li>第③组不满足 $a^2 + b^2 = c^2$</li>
+        </ul>
+        <p style="margin-top: 0.8rem;">通过实际作图验证：<strong>当三边满足 $a^2 + b^2 = c^2$ 时，以这三边为边长的三角形是直角三角形！</strong></p>
+    </div>
+
+    <!-- 勾股定理的逆定理 -->
+    <div class="converse-theorem">
+        <h4 style="color: #e65100; font-size: 1.5rem; margin-bottom: 0.8rem;">勾股定理的逆定理</h4>
+        <div class="highlight" style="background: #fff; margin: 0.8rem 0;">
+            <strong>如果三角形的三边长 $a$、$b$、$c$ 满足 $a^2 + b^2 = c^2$，那么这个三角形是直角三角形，且$c$ 边所对的角为直角。</strong>
+        </div>
+        <p style="margin-top: 0.8rem;"><strong>几何语言：</strong>在 $\triangle ABC$ 中，若 $AC^2 + BC^2 = AB^2$，则 $\angle C = 90°$。</p>
+    </div>
+
+    <!-- 逆定理的证明 -->
+    <div class="proof-card" style="background: linear-gradient(135deg, #fef9e6 0%, #fff3e0 100%); border: 3px solid #ffb74d; border-radius: 1.8rem; padding: 1.5rem 2rem; margin: 1.5rem 0;">
+        <h4 style="color: #e65100; font-size: 1.5rem; margin-bottom: 0.8rem;">📐 逆定理的证明（构造法）</h4>
+
+        <div style="display: flex; gap: 1.5rem; align-items: flex-start; flex-wrap: wrap;">
+            <!-- 左侧：证明文字 -->
+            <div style="flex: 1; min-width: 280px;">
+                <p style="margin-bottom: 0.5rem;"><strong>已知：</strong>如图，在 $\triangle ABC$ 中，$AB = c$，$BC = a$，$AC = b$，且 $a^2 + b^2 = c^2$。</p>
+                <p style="margin-bottom: 0.8rem;"><strong>求证：</strong>$\angle C = 90°$。</p>
+
+                <p style="margin-bottom: 0.4rem;"><strong>证明：</strong>如图 ②，作 $\triangle A'B'C'$，使 $\angle C' = 90°$，$A'C' = b$，$B'C' = a$。</p>
+                <p style="margin-bottom: 0.4rem;">由勾股定理得：$A'B'^2 = a^2 + b^2 = c^2$，即 $A'B' = c$。</p>
+
+                <div style="background: white; border-radius: 12px; padding: 0.8rem 1.2rem; margin: 0.8rem 0; border-left: 4px solid #1976d2;">
+                    <p style="margin-bottom: 0.3rem;">在 $\triangle ABC$ 和 $\triangle A'B'C'$ 中：</p>
+                    <p style="margin-bottom: 0.2rem; padding-left: 1rem;">$\because\ BC = a = B'C'$，</p>
+                    <p style="margin-bottom: 0.2rem; padding-left: 1rem;">$\quad AC = b = A'C'$，</p>
+                    <p style="margin-bottom: 0.4rem; padding-left: 1rem;">$\quad AB = c = A'B'$，</p>
+                    <p style="padding-left: 1rem;">$\therefore\ \triangle ABC \cong \triangle A'B'C'\ (\text{SSS})$。</p>
+                </div>
+
+                <p><strong>$\therefore\ \angle C = \angle C' = 90°$。</strong></p>
+            </div>
+
+            <!-- 右侧：配图 -->
+            <div style="text-align: center; min-width: 260px;">
+                <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 图① 原三角形ABC (左侧) - AC竖直，BC水平，C角无直角标记 -->
+                    <g transform="translate(20, 10)">
+                        <!-- B左下, C右下, A正上方偏右(AC竖直), 细长形状 -->
+                        <!-- BC水平, AC近似竖直 -->
+                        <polygon points="10,150 70,150 70,12" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- 边长标注：a=BC(底), b=AC(右边), c=AB(斜边) -->
+                        <text x="40" y="166" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">a</text>
+                        <text x="82" y="82" text-anchor="start" fill="#1565c0" font-size="14" font-weight="bold">b</text>
+                        <text x="32" y="78" text-anchor="end" fill="#1565c0" font-size="14" font-weight="bold">c</text>
+                        <!-- 顶点标签 -->
+                        <text x="4" y="166" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">B</text>
+                        <text x="76" y="168" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">C</text>
+                        <text x="70" y="6" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">A</text>
+                        <!-- 图号 -->
+                        <text x="40" y="198" text-anchor="middle" fill="#555" font-size="18" font-weight="bold">①</text>
+                    </g>
+
+                    <!-- 图② 构造的直角三角形A'B'C' (右侧) - C'处有直角标记 -->
+                    <g transform="translate(155, 10)">
+                        <!-- 同样形状：B'C'水平, A'C'竖直, 直角在C' -->
+                        <polygon points="10,150 70,150 70,12" fill="#e3f2fd" stroke="#1976d2" stroke-width="2.5" stroke-linejoin="round"/>
+                        <!-- 直角标记在C'处（沿B'C'和A'C'方向） -->
+                        <polyline points="58,150 58,138 70,138" fill="none" stroke="#1976d2" stroke-width="2"/>
+                        <!-- 边长标注 -->
+                        <text x="40" y="166" text-anchor="middle" fill="#1565c0" font-size="14" font-weight="bold">a</text>
+                        <text x="82" y="82" text-anchor="start" fill="#1565c0" font-size="14" font-weight="bold">b</text>
+                        <text x="32" y="78" text-anchor="end" fill="#1565c0" font-size="14" font-weight="bold">c</text>
+                        <!-- 顶点标签 -->
+                        <text x="0" y="166" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">B'</text>
+                        <text x="76" y="168" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">C'</text>
+                        <text x="70" y="6" text-anchor="middle" fill="#0f4a6e" font-size="15" font-weight="bold">A'</text>
+                        <!-- 图号 -->
+                        <text x="40" y="198" text-anchor="middle" fill="#555" font-size="18" font-weight="bold">②</text>
+                    </g>
+                </svg>
+                <p style="color: #666; font-size: 0.9rem; margin-top: 0.3rem;">图 13.1.8</p>
+            </div>
+        </div>
+
+        <div style="background: #fff8e1; border-radius: 12px; padding: 0.7rem 1.2rem; margin-top: 0.8rem; border: 2px dashed #ffc107;">
+            <strong style="color: #e65100;">💡 证明思路：</strong>
+            要证 $\angle C = 90°$，但 $\triangle ABC$ 不知道有没有直角。所以我们<strong>构造一个有直角的 $\triangle A'B'C'$</strong>，
+            让它的两条直角边分别等于 $a$ 和 $b$。由勾股定理算出斜边也是 $c$，这样两个三角形三边对应相等，
+            由 SSS 全等推出 $\angle C = \angle C' = 90°$。
+        </div>
+    </div>
+
+    <!-- 交互式验证器 -->
+    <div class="figure-container" style="background: linear-gradient(135deg, #f0f7ff, #e3f0fd); padding: 1.5rem;">
+        <h4 style="color: #1565c0; margin-bottom: 1rem;">🧪 勾股定理逆定理验证器</h4>
+        <p style="margin-bottom: 1rem; font-size: 0.95rem;">输入三角形三边长度，自动判断是否为直角三角形：</p>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
+            <label style="font-weight: 600;">边 a: <input type="number" id="side-a" value="3" min="0.1" step="0.1" style="width: 60px; padding: 5px; border: 2px solid #90caf9; border-radius: 8px; font-size: 1rem;"></label>
+            <label style="font-weight: 600;">边 b: <input type="number" id="side-b" value="4" min="0.1" step="0.1" style="width: 60px; padding: 5px; border: 2px solid #90caf9; border-radius: 8px; font-size: 1rem;"></label>
+            <label style="font-weight: 600;">边 c: <input type="number" id="side-c" value="5" min="0.1" step="0.1" style="width: 60px; padding: 5px; border: 2px solid #90caf9; border-radius: 8px; font-size: 1rem;"></label>
+            <button class="interact-btn" onclick="verifyTriangle()" style="background: linear-gradient(135deg, #1976d2, #42a5f5); color: white; padding: 8px 20px;">验证</button>
+        </div>
+
+        <canvas id="verifyCanvas" width="480" height="280" style="background: white; border-radius: 12px; border: 2px solid #bbdefb;"></canvas>
+
+        <div id="verify-result" style="margin-top: 1rem; font-size: 1.05rem; font-weight: 600;"></div>
+    </div>
+
+    <!-- 勾股数 -->
+    <div class="fact-card">
+        <h4>📌 勾股数</h4>
+        <p>能够成为<strong>直角三角形三条边长的正整数</strong>称为<strong>勾股数</strong>（或<strong>勾股数组</strong>）。</p>
+        <p>例如：$(3,4,5)$、$(5,12,13)$、$(6,8,10)$、$(7,24,25)$、$(8,15,17)$ 都是勾股数。</p>
+
+        <h4 style="color: #b85c1a; margin-top: 1rem; margin-bottom: 0.5rem;">常见的勾股数</h4>
+        <div class="pythagorean-triple-grid">
+            <div class="triple-card">3, 4, 5</div>
+            <div class="triple-card">5, 12, 13</div>
+            <div class="triple-card">6, 8, 10</div>
+            <div class="triple-card">7, 24, 25</div>
+            <div class="triple-card">8, 15, 17</div>
+            <div class="triple-card">9, 40, 41</div>
+            <div class="triple-card">10, 24, 26</div>
+            <div class="triple-card">12, 35, 37</div>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem;"><strong>注意：</strong>如果 $(a,b,c)$ 是一组勾股数，那么 $(ka,kb,kc)$（其中 $k$ 为正整数）也是一组勾股数。</p>
+    </div>
+
+    <!-- 例题（课本原版） -->
+    <div class="example-card">
+        <h4>例</h4>
+        <p>已知三角形的三边长分别为 $m^2-1$、$2m$、$m^2+1$（$m > 1$ 为整数），求证这个三角形是直角三角形。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解题过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>证明：</strong>因为 $m > 1$ 且为整数，所以三边长均为正数。</p>
+            <p>比较三边的大小：由于 $m^2+1 - 2m = (m-1)^2 > 0$（$m \neq 1$），所以 $m^2+1 > 2m$；且显然 $m^2+1 > m^2-1$。因此 $m^2+1$ 是最长边。</p>
+            <p>计算两较短边的平方和与最长边的平方：</p>
+            <p>$$(m^2-1)^2 + (2m)^2 = (m^4 - 2m^2 + 1) + 4m^2 = m^4 + 2m^2 + 1$$</p>
+            <p>$$(m^2+1)^2 = m^4 + 2m^2 + 1$$</p>
+            <p>所以 $$(m^2-1)^2 + (2m)^2 = (m^2+1)^2$$</p>
+            <p>由<strong>勾股定理的逆定理</strong>可知，以这三边为边长的三角形是直角三角形。</p>
+        </div>
+    </div>
+
+    <!-- 补充例题：常见勾股数判断 -->
+    <div class="example-card">
+        <h4>补充例</h4>
+        <p>判断以下各组数能否作为直角三角形的三边长：</p>
+        <p>(1) $9$, $12$, $15$；&nbsp;&nbsp;(2) $7$, $24$, $25$；&nbsp;&nbsp;(3) $1.5$, $2$, $2.5$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1b')">✍️ 解题过程</button>
+        <div id="ex1b" class="answer-box">
+            <p><strong>解：</strong>根据勾股定理的逆定理，判断最长边的平方是否等于其他两边的平方和。</p>
+            <p><strong>(1)</strong> $9^2 + 12^2 = 81 + 144 = 225 = 15^2$ ✓</p>
+            <p>所以 $9$，$12$，$15$ 能构成直角三角形（是 $(3,4,5)$ 的3倍）。</p>
+            <hr style="margin: 10px 0; border: none; border-top: 1px dashed #ccc;">
+            <p><strong>(2)</strong> $7^2 + 24^2 = 49 + 576 = 625 = 25^2$ ✓</p>
+            <p>所以 $7$，$24$，$25$ 能构成直角三角形。</p>
+            <hr style="margin: 10px 0; border: none; border-top: 1px dashed #ccc;">
+            <p><strong>(3)</strong> $1.5^2 + 2^2 = 2.25 + 4 = 6.25 = 2.5^2$ ✓</p>
+            <p>所以 $1.5$，$2$，$2.5$ 能构成直角三角形（是 $(3,4,5)$ 的0.5倍）。<br>
+            <em>注：勾股定理逆定理对任意正实数都适用，不仅限于整数。</em></p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 设三角形的三边长分别等于下列各组数，试判断各三角形是不是直角三角形。若是，指出哪一条边所对的角是直角。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;(1) $12$，$16$，$20$；&nbsp;&nbsp;&nbsp;&nbsp;(2) $1.5$，$2$，$2.5$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p><strong>解：</strong>根据勾股定理的逆定理，先确定最长边，再验证两较短边的平方和是否等于最长边的平方。</p>
+                <p><strong>(1)</strong> 三边为 $12$，$16$，$20$。</p>
+                <p>$12^2 + 16^2 = 144 + 256 = 400$，而 $20^2 = 400$。</p>
+                <p>所以 $12^2 + 16^2 = 20^2$，满足勾股定理的逆定理。</p>
+                <p style="color:#1d6130;"><strong>结论：</strong>该三角形<strong>是直角三角形</strong>，<strong>边长 $20$ 所对的角是直角</strong>。（注：是 $(3,4,5)$ 的 $4$ 倍）</p>
+                <hr style="margin: 10px 0; border: none; border-top: 1px dashed #ccc;">
+                <p><strong>(2)</strong> 三边为 $1.5$，$2$，$2.5$。</p>
+                <p>$1.5^2 + 2^2 = 2.25 + 4 = 6.25$，而 $2.5^2 = 6.25$。</p>
+                <p>所以 $1.5^2 + 2^2 = 2.5^2$，满足勾股定理的逆定理。</p>
+                <p style="color:#1d6130;"><strong>结论：</strong>该三角形<strong>是直角三角形</strong>，<strong>边长 $2.5$ 所对的角是直角</strong>。（注：是 $(3,4,5)$ 的 $0.5$ 倍）</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 若一个三角形的三边 $a$、$b$、$c$ 满足 $\displaystyle \frac{a}{c-b}=\frac{c+b}{a}$，则这个三角形是直角三角形吗？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p><strong>解：</strong>由已知条件 $\displaystyle \frac{a}{c-b}=\frac{c+b}{a}$，交叉相乘得：</p>
+                <p>$$a^2 = (c-b)(c+b)$$</p>
+                <p>$$a^2 = c^2 - b^2$$</p>
+                <p>移项得：$$a^2 + b^2 = c^2$$</p>
+                <p>这正好满足<strong>勾股定理的逆定理</strong>的条件（$c$ 为最长边）。</p>
+                <p style="color:#1d6130;"><strong>答：</strong>这个三角形<strong>是直角三角形</strong>，且 $c$ 边所对的角为直角。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 若一个三角形的三边 $a$、$b$、$c$ 满足 $a^2 + b^2 > c^2$，这个三角形一定是锐角三角形吗？如果满足 $a^2 + b^2 < c^2$ 呢？请举例说明。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案</button>
+            <div id="p3" class="answer-box">
+                <p><strong>答：</strong></p>
+                <p>若 $a^2+b^2 > c^2$（其中 $c$ 为最长边），则该三角形是<strong>锐角三角形</strong>（$c$ 边所对的角为锐角）。</p>
+                <p><strong>反例验证：</strong>取三边 $3, 3, 3$（等边三角形），$3^2+3^2=18 > 9=3^2$，每个角都是 $60°$（锐角）✓</p>
+                <p>若 $a^2 + b^2 < c^2$（其中 $c$ 为最长边），则该三角形是<strong>钝角三角形</strong>（$c$ 边所对的角为钝角）。</p>
+                <p><strong>例子：</strong>取三边 $2, 3, 4$，其中 $4$ 是最长边。$2^2+3^2=4+9=13 < 16=4^2$，这是钝角三角形 ✓</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">4. 想一想：有多少种方法可以判定一个三角形是直角三角形？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p4')">🔍 答案</button>
+            <div id="p4" class="answer-box">
+                <p><strong>判定直角三角形的方法主要有以下几种：</strong></p>
+                <ol style="margin-left: 1.5rem; margin-top:0.3rem;">
+                    <li><strong>角的定义：</strong>有一个内角等于 $90°$（直接测量或证明）</li>
+                    <li><strong>勾股定理的逆定理：</strong>三边 $a,b,c$ 满足 $a^2+b^2=c^2$</li>
+                    <li><strong>利用已知直角关系：</strong>如两直线垂直、直径所对的圆周角等</li>
+                    <li><strong>特殊图形性质：</strong>如矩形的四个角都是直角</li>
+                </ol>
+                <p>在本节中，我们主要学习的是方法<strong>②——勾股定理的逆定理</strong>，它是通过三边数量关系来判定形状的重要工具。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="reading-section">
+        <h4>📖 读一读——勾股数的历史与趣谈</h4>
+        <p><strong>古埃及人的方法：</strong>据记载，古埃及人用绳子来构造直角。他们取一根绳子打上等距离的结，将绳子分成12段，然后围成一个三边分别是3段、4段、5段的三角形，这样就能得到一个精确的直角三角形。这种方法被称为"<strong>埃及绳法</strong>"或"<strong>拉绳者</strong>"技术。</p>
+        <p><strong>《九章算术》：</strong>我国古代数学名著《九章算术》中就有关于勾股数的记载："今有池方一丈，葭生其中央，出水一尺。引葭赴岸，适与岸齐。问水深、葭长各几何？"这道经典问题就用到了勾股定理及其逆定理的思想。</p>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>勾股定理的逆定理：</strong>若 $a^2+b^2=c^2$，则该三角形是以 $c$ 为斜边的直角三角形。</div>
+        <div>• <strong>勾股数：</strong>满足 $a^2+b^2=c^2$ 的正整数 $(a,b,c)$ 称为勾股数。</div>
+        <div>• 用逆定理判定直角三角形时，先确定最长边 $c$，再验证 $a^2+b^2=c^2$ 是否成立。</div>
+        <div>• 勾股定理与其逆定理互为逆命题，前者用于"算边"，后者用于"定形"。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>逆向思维：</strong>从原命题的逆命题角度考虑问题。<br>
+        <strong>分类讨论：</strong>先找最长边，再进行验证。<br>
+        <strong>数形结合：</strong>代数关系式对应几何图形的性质。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本习题13.1 A组第3~6题；收集生活中的直角三角形实例，并用勾股定理逆定理加以验证。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 两边平方等于第三边方，直角由此定形状；逆推原论显智慧，数形相融见真章。✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第13章 13.1.2 直角三角形的判定</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // ===== 勾股定理逆定理验证器 =====
+    function verifyTriangle() {
+        const a = parseFloat(document.getElementById('side-a').value) || 0;
+        const b = parseFloat(document.getElementById('side-b').value) || 0;
+        const c = parseFloat(document.getElementById('side-c').value) || 0;
+
+        const canvas = document.getElementById('verifyCanvas');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width, H = canvas.height;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // 结果显示
+        const resultDiv = document.getElementById('verify-result');
+
+        if (a <= 0 || b <= 0 || c <= 0) {
+            resultDiv.innerHTML = '<span style="color: #d32f2f;">❌ 请输入正数！</span>';
+            drawError(ctx, W, H, '请输入正数！');
+            return;
+        }
+
+        // 检查是否能构成三角形（用原始顺序）
+        const sides = [a, b, c].sort(function(x, y) { return x - y; });
+        const short1 = sides[0], short2 = sides[1], longest = sides[2];
+        const canFormTriangle = short1 + short2 > longest;
+
+        if (!canFormTriangle) {
+            resultDiv.innerHTML = '<span style="color: #d32f2f;">❌ 这三边无法构成三角形！<br>（两边之和必须大于第三边）</span>';
+            drawError(ctx, W, H, '无法构成三角形');
+            return;
+        }
+
+        // 检查是否为直角三角形（排序后判断）
+        const sumSq = short1 * short1 + short2 * short2;
+        const longSqr = longest * longest;
+        const isRightTriangle = Math.abs(sumSq - longSqr) < 0.0001;
+
+        // 确定直角在哪个顶点：最长边所对的角为直角
+        // 边a对A角(BC边), 边b对B角(AC边), 边c对C角(AB边)
+        var rightAngleVertex = '';
+        if (Math.abs(longest - a) < 0.0001) rightAngleVertex = 'A';
+        else if (Math.abs(longest - b) < 0.0001) rightAngleVertex = 'B';
+        else if (Math.abs(longest - c) < 0.0001) rightAngleVertex = 'C';
+
+        // 绘制三角形（保持a->BC, b->AC, c->AB的对应关系）
+        drawTriangle(ctx, W, H, a, b, c, isRightTriangle, rightAngleVertex);
+
+        if (isRightTriangle) {
+            resultDiv.innerHTML =
+                '<span style="color: #2e7d32;">✅ 是直角三角形！</span><br>' +
+                '<span style="font-size: 0.95rem; color: #555;">' +
+                '验证：两较短边的平方和 = ' + String(short1) + '\u00b2 + ' + String(short2) + '\u00b2 = ' + String(sumSq) + ' = ' + String(longest) + '\u00b2 ✓<br>' +
+                '\u76F4\u89D4\u5728\u6700\u957F\u8FB9 ' + String(longest) + ' \u6240\u5BF9\u7684' + rightAngleVertex + '\u70B9' +
+                '</span>';
+        } else {
+            var diff = sumSq - longSqr;
+            var angleType = diff > 0 ? '\u9510\u89D2\u4E09\u89D2\u5F62' : '\u949D\u89D2\u4E09\u89D2\u5F62';
+            resultDiv.innerHTML =
+                '<span style="color: #e65100;">❌ \u4E0D\u662F\u76F4\u89D4\u4E09\u89D2\u5F62\uFF08\u662F' + angleType + '\uFF09</span><br>' +
+                '<span style="font-size: 0.95rem; color: #555;">' +
+                '\u9A8C\u8BC1\uFF1A' + String(short1) + '\u00b2 + ' + String(short2) + '\u00b2 = ' + String(sumSq.toFixed(2)) + ' ' + (diff > 0 ? '>' : '<') + ' ' + String(longest) + '\u00b2 = ' + String(longSq.toFixed(2)) +
+                '</span>';
+        }
+    }
+
+    function drawTriangle(ctx, W, H, a, b, c, isRight, rightVertex) {
+        // 参数对应关系（标准三角形记号）：
+        //   边a = BC（A角的对边），边b = AC（B角的对边），边c = AB（C角的对边）
+        //   顶点A、B、C 的位置固定：AB为底边，C为上方顶点
+        var cx = W / 2, cy = H / 2 + 10;
+
+        // 缩放比例
+        var maxSide = Math.max(a, b, c);
+        var scale = Math.min(140 / maxSide, 30);
+        var baseLen = c * scale;  // AB边 = c
+
+        // 底边AB的两端点
+        var Ax = cx - baseLen / 2, Ay = cy + 50;
+        var Bx = cx + baseLen / 2, By = cy + 50;
+
+        // 用余弦定理求顶点C的位置
+        // 已知: AC=b, BC=a, AB=c
+        var cosA_val = (b * b + c * c - a * a) / (2 * b * c);
+        cosA_val = Math.max(-1, Math.min(1, cosA_val));
+        var angleA = Math.acos(cosA_val);
+        var Cx = Ax + b * scale * Math.cos(angleA);
+        var Cy = Ay - b * scale * Math.sin(angleA);
+
+        // 绘制三角形
+        ctx.beginPath();
+        ctx.moveTo(Ax, Ay);
+        ctx.lineTo(Bx, By);
+        ctx.lineTo(Cx, Cy);
+        ctx.closePath();
+        ctx.fillStyle = isRight ? 'rgba(46, 125, 50, 0.2)' : 'rgba(230, 81, 0, 0.15)';
+        ctx.fill();
+        ctx.strokeStyle = isRight ? '#2e7d32' : '#e65100';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // 在对应的顶点绘制直角标记
+        if (isRight && rightVertex) {
+            drawRightAngleMark(ctx, rightVertex, Ax, Ay, Bx, By, Cx, Cy);
+        }
+
+        // ===== 标注边长（保持abc对应关系）=====
+        ctx.fillStyle = '#1565c0';
+        ctx.font = 'bold 16px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+
+        // 边a = BC
+        ctx.fillText(String(a), (Bx + Cx) / 2 + 22, (By + Cy) / 2 + 5);
+        // 边b = AC
+        ctx.fillText(String(b), (Ax + Cx) / 2 - 22, (Ay + Cy) / 2);
+        // 边c = AB（底边）
+        ctx.fillText(String(c), cx, Ay + 25);
+
+        // ===== 计算公式 =====
+        var sidesSorted = [a, b, c].sort(function(x,y){return x-y});
+        var s1 = sidesSorted[0], s2 = sidesSorted[1], sL = sidesSorted[2];
+        var sumSq_val = s1 * s1 + s2 * s2;
+
+        ctx.fillStyle = '#333';
+        ctx.font = '15px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+
+        var line1 = String(s1) + '\u00b2 + ' + String(s2) + '\u00b2 = ' + String(s1*s1) + ' + ' + String(s2*s2) + ' = ' + String(sumSq_val);
+        var line2 = String(sL) + '\u00b2 = ' + String(sL * sL);
+        ctx.fillText(line1, cx, 30);
+        ctx.fillText(line2, cx, 55);
+
+        // ===== 顶点标签 =====
+        ctx.font = 'bold 14px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#0f4a6e';
+        ctx.fillText('A', Ax - 12, Ay + 18);
+        ctx.fillText('B', Bx + 12, By + 18);
+        if (isRight && rightVertex === 'C') {
+            ctx.fillStyle = '#2e7d32';
+        }
+        ctx.fillText('C', Cx, Cy - 12);
+
+        // ===== 判定结果（显示具体在哪个顶点）=====
+        if (isRight) {
+            ctx.fillStyle = '#2e7d32';
+            ctx.font = 'bold 16px "Microsoft YaHei", sans-serif';
+            ctx.fillText('\u2713 \u76F4\u89D2\u5728' + rightVertex + '\u70B9', cx, H - 15);
+        } else {
+            ctx.fillStyle = '#e65100';
+            ctx.font = 'bold 16px "Microsoft YaHei", sans-serif';
+            ctx.fillText('\u2717 \u4E0D\u662F\u76F4\u89D4\u4E09\u89D2\u5F62', cx, H - 15);
+        }
+    }
+
+    // 在指定顶点绘制直角标记
+    function drawRightAngleMark(ctx, vertex, Ax, Ay, Bx, By, Cx, Cy) {
+        var markSize = 18;
+        var vx, vy;    // 直角顶点坐标
+        var p1x, p1y;  // 邻接点1
+        var p2x, p2y;  // 邻接点2
+
+        if (vertex === 'A') {
+            vx = Ax; vy = Ay; p1x = Bx; p1y = By; p2x = Cx; p2y = Cy;
+        } else if (vertex === 'B') {
+            vx = Bx; vy = By; p1x = Ax; p1y = Ay; p2x = Cx; p2y = Cy;
+        } else { // vertex === 'C'
+            vx = Cx; vy = Cy; p1x = Ax; p1y = Ay; p2x = Bx; p2y = By;
+        }
+
+        // 计算两个方向上的单位向量
+        var len1 = Math.sqrt((p1x - vx) * (p1x - vx) + (p1y - vy) * (p1y - vy));
+        var len2 = Math.sqrt((p2x - vx) * (p2x - vx) + (p2y - vy) * (p2y - vy));
+
+        var vec1 = { x: (p1x - vx) / len1, y: (p1y - vy) / len1 };
+        var vec2 = { x: (p2x - vx) / len2, y: (p2y - vy) / len2 };
+
+        ctx.beginPath();
+        ctx.moveTo(vx + vec1.x * markSize, vy + vec1.y * markSize);
+        ctx.lineTo(vx + vec1.x * markSize + vec2.x * markSize, vy + vec1.y * markSize + vec2.y * markSize);
+        ctx.lineTo(vx + vec2.x * markSize, vy + vec2.y * markSize);
+        ctx.strokeStyle = '#2e7d32';
+        ctx.lineWidth = 2.5;
+        ctx.stroke();
+    }
+
+    function drawError(ctx, W, H, msg) {
+        ctx.fillStyle = '#ffebee';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#d32f2f';
+        ctx.font = 'bold 20px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('❌ ' + msg, W / 2, H / 2);
+    }
+
+    // 页面加载时初始化
+    window.addEventListener('load', function() {
+        verifyTriangle();
+    });
+</script>
+</body>
+</html>

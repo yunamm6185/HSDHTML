@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.3 正方形 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#fffbeb;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#422006;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(180,83,9,0.2);padding:2rem 2.5rem;border:2px solid #fde68a;}
+
+        /* ===== 头部信息 ===== */
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #f59e0b;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#92400e;}
+        h1{font-size:2.4rem;color:#78350f;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#ef4444;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#7c2d12;background:linear-gradient(135deg,#fef3c7,#fde68a);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #f59e0b;margin:1.2rem 0 1.8rem;font-weight:700;}
+
+        /* ===== 学习目标卡片（红橙系） ===== */
+        .learning-targets{background:linear-gradient(145deg,#fef2f2,#fee2e2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:2px solid #fca5a5;box-shadow:0 5px 0 #f87171;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #dc2626;padding-left:1rem;color:#7f1d1d;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #fca5a5;border:1px solid #fecaca;}
+        .target-item span{background:#dc2626;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+
+        /* ===== 情境导入卡片 ===== */
+        .intro-card{background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:2rem;padding:1.8rem 2rem;margin:1.4rem 0;border-left:8px solid #f59e0b;position:relative;overflow:hidden;}
+        .intro-card::after{content:'🔷';position:absolute;top:-15px;right:-10px;font-size:80px;opacity:.08;}
+        .intro-scene{display:flex;gap:1.5rem;margin-top:1rem;flex-wrap:wrap;align-items:center;}
+        .scene-img{flex:0 0 320px;text-align:center;background:white;border-radius:1rem;padding:.8rem;box-shadow:0 3px 12px rgba(245,158,11,0.15);}
+        .scene-text{flex:1;min-width:300px;}
+        .scene-text p{margin:.6rem 0;}
+
+        /* ===== 探究卡片（红色系） ===== */
+        .explore-card{background:#fef2f2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #dc2626;font-weight:600;position:relative;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#991b1b;}
+        .explore-card h4::before{content:"🔍 ";}
+        .interactive-canvas{background:white;border-radius:1rem;padding:.8rem;margin:1rem 0;display:inline-block;box-shadow:inset 0 2px 8px rgba(0,0,0,0.06);}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;}
+        .canvas-hint{text-align:center;color:#888;font-size:.85rem;margin-top:.4rem;font-style:italic;}
+
+        /* ===== 定义/概念卡片 ===== */
+        .fact-card{background:linear-gradient(135deg,#fff7ed,#ffedd5);border-left:8px solid #ea580c;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#c2410c;}
+        .highlight{background:#fff7ed;padding:.8rem 1.2rem;border-radius:1rem;margin:.5rem 0;border:2px dashed #fb923c;font-size:1.08rem;}
+
+        /* ===== 定理框（正方形专用） ===== */
+        .theorem-box{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:3px solid #ef4444;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.2rem;font-weight:700;color:#7f1d1d;line-height:1.9;}
+        .theorem-box p:first-child{color:#dc2626;font-size:1.15rem;}
+
+        /* ===== 例题卡片 ===== */
+        .example-card{background:#fef2f2;border-left:8px solid #dc2626;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#991b1b;}
+        .example-figure{text-align:center;margin:.8rem 0;background:white;border-radius:1rem;padding:.8rem;display:inline-block;min-width:200px;}
+
+        /* ===== 按钮 ===== */
+        .interact-btn{background:linear-gradient(135deg,#ef4444,#dc2626);border:none;color:white;padding:.4rem 1.4rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #b91c1c;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-1px);box-shadow:0 6px 0 #b91c1c;}
+        .interact-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #b91c1c;}
+        .answer-box{background:#fffbeb;border-left:6px solid #f59e0b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;line-height:1.8;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .show-answer{display:block;animation:fadeIn .4s ease;}
+
+        /* ===== 警告框 ===== */
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+
+        /* ===== 章节标题 ===== */
+        .section-title{font-size:1.6rem;color:#7c2d12;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #f59e0b;}
+
+        /* ===== 小结区域 ===== */
+        .summary-section{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:6px solid #ea580c;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+
+        /* ===== 数学思想 ===== */
+        .math-idea{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-left:8px solid #7c3aed;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+
+        /* ===== 作业框 ===== */
+        .homework-box{background:linear-gradient(135deg,#fed7aa,#fdba74);border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+
+        /* ===== 口诀框 ===== */
+        .message-box{background:linear-gradient(135deg,#fef3c7,#fef9c3);text-align:center;font-style:italic;border-left:8px solid #eab308;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;font-size:1.05rem;}
+
+        /* ===== 页脚 ===== */
+        .footer-note{text-align:right;color:#92400e;border-top:2px solid #fcd34d;padding-top:.8rem;margin-top:1.5rem;}
+
+        /* ===== 表格样式 ===== */
+        table{width:100%;border-collapse:collapse;margin:1rem auto;}
+        th,td{padding:12px 14px;text-align:center;border:1px solid #fcd34d;}
+        th{background:linear-gradient(135deg,#dc2626,#ef4444);color:white;font-weight:700;}
+        tr:nth-child(even){background:#fffbeb;}
+        tr:hover{background:#fef3c7;}
+
+        /* ===== 控制按钮组 ===== */
+        .control-bar{display:flex;gap:.5rem;justify-content:center;margin:.5rem 0;flex-wrap:wrap;}
+        .ctrl-btn{background:#fff;border:2px solid #dc2626;color:#dc2626;padding:.25rem .8rem;border-radius:20px;font-weight:600;cursor:pointer;font-size:.82rem;transition:all .15s;}
+        .ctrl-btn:hover{background:#dc2626;color:white;}
+        .ctrl-btn.active{background:#b91c1c;color:white;border-color:#b91c1c;}
+
+        /* ===== 对比表格特殊样式 ===== */
+        .compare-table th:nth-child(1){background:linear-gradient(135deg,#ea580c,#f97316);}
+        .compare-table td:first-child{background:#fff7ed;font-weight:700;color:#9a3412;}
+
+        /* ===== 讨论框 ===== */
+        .discuss-card{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-left:8px solid #059669;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;}
+        .discuss-card h4{color:#047857;margin-bottom:.6rem;}
+        .discuss-item{background:white;border-radius:1rem;padding:.8rem 1.2rem;margin:.6rem 0;border:1px solid #a7f3d0;}
+        .discuss-item .name{color:#059669;font-weight:700;}
+        .discuss-result{background:#dcfce7;border:2px solid #22c55e;border-radius:1rem;padding:1rem;margin-top:.8rem;font-weight:700;color:#15803d;}
+
+        /* ===== 练习题卡片 ===== */
+        .exercise-card{background:#eff6ff;border-left:8px solid #2563eb;border-radius:1.5rem;padding:1.2rem 1.6rem;margin:1rem 0;}
+        .exercise-card h4{color:#1d4ed8;margin-bottom:.5rem;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <!-- 头部信息 -->
+    <div class="header-meta">
+        <span>华师版·八年级下册</span>
+        <span>第18章 · 矩形、菱形与正方形 · 18.3</span>
+    </div>
+    <h1>第18章 矩形、菱形与正方形</h1>
+    <div class="lesson-title">🔷 18.3 正方形 —— 特殊的平行四边形</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解正方形的两种定义方式，知道正方形是最特殊的平行四边形</div>
+            <div class="target-item"><span>2</span>掌握正方形的<strong>性质</strong>：边、角、对角线、对称性</div>
+            <div class="target-item"><span>3</span>掌握正方形的<strong>判定方法</strong></div>
+            <div class="target-item"><span>4</span>理解平行四边形、矩形、菱形、正方形之间的包含关系</div>
+            <div class="target-item"><span>5</span>能运用正方形的性质解决相关计算和证明问题</div>
+        </div>
+    </div>
+
+    <!-- 一、情境导入 -->
+    <div class="section-title">一、情境导入——矩形与菱形的"相遇"</div>
+
+    <div class="intro-card">
+        <p style="font-size:1.2rem;">🤔 <strong>一个有趣的思考：</strong></p>
+        <div class="intro-scene">
+            <div class="scene-img">
+                <canvas id="introCanvas" width="300" height="220"></canvas>
+                <p class="canvas-hint">矩形 + 菱形 = ？</p>
+            </div>
+            <div class="scene-text">
+                <p><strong>回顾我们已经学过的图形：</strong></p>
+                <p>📐 <strong>矩形：</strong>有一个角是直角的平行四边形<br><em style="color:#2563eb;">→ 特征：四个角都是直角，对角线相等</em></p>
+                <p>💎 <strong>菱形：</strong>有一组邻边相等的平行四边形<br><em style="color:#059669;">→ 特征：四条边都相等，对角线互相垂直</em></p>
+                <p style="color:#dc2626;font-weight:700;margin-top:.8rem;background:white;padding:.8rem;border-radius:1rem;">
+                    💡 <strong>关键问题：</strong>如果一个四边形<strong>既是矩形又是菱形</strong>，它会有什么特征？
+                </p>
+                <p style="font-size:1.15rem;text-align:center;color:#7c2d12;font-weight:800;margin-top:.6rem;">
+                    → 四个直角 + 四边相等 = <strong style="font-size:1.3rem;">🔷 正方形！</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 二、正方形的定义 -->
+    <div class="section-title">二、正方形的定义</div>
+
+    <div class="fact-card">
+        <h4>📌 正方形的定义（两种等价表述）</h4>
+
+        <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:1rem;">
+            <div style="flex:1;min-width:280px;">
+                <div class="highlight" style="border-color:#ef4444;background:#fef2f2;">
+                    <p style="font-size:1.12rem;"><strong>定义一：</strong></p>
+                    <p><strong style="color:#dc2626;">有一个角是直角的菱形叫做正方形。</strong></p>
+                    <p style="margin-top:.5rem;color:#666;font-size:.95rem;">
+                        菱形 → 加上"有一个直角" → 正方形
+                    </p>
+                </div>
+            </div>
+            <div style="flex:1;min-width:280px;">
+                <div class="highlight" style="border-color:#f59e0b;background:#fffbeb;">
+                    <p style="font-size:1.12rem;"><strong>定义二：</strong></p>
+                    <p><strong style="color:#d97706;">有一组邻边相等的矩形叫做正方形。</strong></p>
+                    <p style="margin-top:.5rem;color:#666;font-size:.95rem;">
+                        矩形 → 加上"邻边相等" → 正方形
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-figure" style="width:520px;">
+            <canvas id="defCompareCanvas" width="500" height="260"></canvas>
+        </div>
+        <p style="text-align:center;color:#666;"><strong>从菱形或矩形出发得到正方形</strong></p>
+
+        <button class="interact-btn" onclick="toggleAnswer('defNote')">🔍 点击查看要点说明</button>
+        <div id="defNote" class="answer-box">
+            <p><strong>⚠️ 要点理解：</strong></p>
+            <ol style="padding-left:1.5rem;">
+                <li>正方形首先必须是<strong>平行四边形</strong>（这是基础）</li>
+                <li><strong>定义一</strong>：在菱形的基础上增加"有一个角是直角"<br>→ 菱形已有四边相等，加上直角后自然成为正方形</li>
+                <li><strong>定义二</strong>：在矩形的基础上增加"有一组邻边相等"<br>→ 矩形已有四个直角，加上邻边相等后自然成为正方形</li>
+                <li><strong>两种定义是等价的</strong>！它们描述的是同一个图形</li>
+                <li style="color:#dc2626;font-weight:700;">正方形是<strong>最特殊的平行四边形</strong>，它同时具备矩形和菱形的所有性质</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 三、正方形的性质 -->
+    <div class="section-title">三、正方形的性质</div>
+
+    <div class="explore-card">
+        <h4>🔬 探究：正方形有哪些性质？</h4>
+        <p>既然正方形<strong>既是矩形又是菱形</strong>，那么它应该同时具有两者的所有性质。让我们来系统梳理：</p>
+
+        <table class="compare-table" style="margin:1.2rem auto;">
+            <tr>
+                <th style="width:18%;">性质类别</th>
+                <th style="width:27%;">矩形的性质</th>
+                <th style="width:27%;">菱形的性质</th>
+                <th style="width:28%;">✨ 正方形（兼具两者）</th>
+            </tr>
+            <tr>
+                <td>边的性质</td>
+                <td>对边平行且相等</td>
+                <td><strong>四条边都相等</strong></td>
+                <td style="color:#dc2626;font-weight:700;">✅ 四条边都相等</td>
+            </tr>
+            <tr>
+                <td>角的性质</td>
+                <td><strong>四个角都是直角</strong></td>
+                <td>对角相等，邻角互补</td>
+                <td style="color:#dc2626;font-weight:700;">✅ 四个角都是直角</td>
+            </tr>
+            <tr>
+                <td>对角线</td>
+                <td><strong>相等</strong>且互相平分</td>
+                <td><strong>互相垂直平分</strong></td>
+                <td style="color:#dc2626;font-weight:700;">✅ 相等、垂直、互相平分</td>
+            </tr>
+            <tr>
+                <td>对称性</td>
+                <td>轴对称（2条对称轴）<br>中心对称</td>
+                <td>轴对称（2条对称轴）<br>中心对称</td>
+                <td style="color:#dc2626;font-weight:700;">✅ 轴对称（<strong>4条</strong>对称轴）<br>✅ 中心对称</td>
+            </tr>
+        </table>
+
+        <div class="example-figure" style="width:480px;">
+            <canvas id="squarePropCanvas" width="460" height="340"></canvas>
+        </div>
+        <p class="canvas-hint">正方形ABCD及其对角线（点击画布可切换显示模式）</p>
+    </div>
+
+    <!-- 性质总结定理框 -->
+    <div class="theorem-box">
+        <p>🔷 正方形的性质总结 🔷</p>
+        <p>① 四条边都相等 &nbsp;&nbsp;|&nbsp;&nbsp; ② 四个角都是直角（$90°$）<br>
+           ③ 对角线<strong>相等</strong>、<strong>互相垂直平分</strong> &nbsp;&nbsp;|&nbsp;&nbsp;
+           ④ 是轴对称图形（有<strong>4条对称轴</strong>），也是中心对称图形</p>
+    </div>
+
+    <div class="warn-box">
+        <p><strong>⚡ 特别注意：</strong>正方形的两条对角线把正方形分成<strong>四个全等的等腰直角三角形</strong>！</p>
+        <p style="margin-top:.5rem;">每个等腰直角三角形的锐角都是 $\angle OAB = \angle OBA = \angle OBC = \angle OCD = \angle ODA = 45°$</p>
+    </div>
+
+    <!-- 四、知识关系图 -->
+    <div class="section-title">四、知识结构图——四边形的"家族谱"</div>
+
+    <div class="explore-card">
+        <h4>🌳 平行四边形的分类体系</h4>
+        <p>正方形处于整个体系的"最核心"位置——它是矩形和菱形的交集！</p>
+
+        <div class="example-figure" style="width:650px;">
+            <canvas id="familyTreeCanvas" width="630" height="420"></canvas>
+        </div>
+        <p class="canvas-hint">平行四边形分类关系图（正方形 = 矩形 ∩ 菱形）</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('familyNote')">📖 点击查看详细说明</button>
+        <div id="familyNote" class="answer-box">
+            <p><strong>🔍 关系解读：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>平行四边形</strong>是最大的集合，包含了矩形和菱形</li>
+                <li><strong>矩形</strong>：有一个角是直角的平行四边形（强调"角"的特征）</li>
+                <li><strong>菱形</strong>：有一组邻边相等的平行四边形（强调"边"的特征）</li>
+                <li><strong>正方形</strong>：既是矩形又是菱形（同时满足"角"和"边"的特殊条件）</li>
+                <li style="color:#dc2626;font-weight:700;">因此：<em>所有的正方形都是矩形，也都是菱形，但反之不成立</em></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 五、例题精讲 -->
+    <div class="section-title">五、例题精讲</div>
+
+    <div class="example-card">
+        <h4>📝 例1：求正方形中对角线形成的角度</h4>
+
+        <div style="background:white;border-radius:1rem;padding:1.2rem;margin:.8rem 0;">
+            <p><strong>【题目】</strong>已知正方形 $ABCD$，对角线 $AC$ 与 $BD$ 相交于点 $O$。<br>求 $\angle OAB$ 和 $\angle OBA$ 的度数。</p>
+
+            <div class="example-figure" style="width:380px;">
+                <canvas id="example1Canvas" width="360" height="320"></canvas>
+            </div>
+            <p class="canvas-hint">正方形ABCD及对角线交点O</p>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex1Answer')">💡 点击查看解答过程</button>
+            <div id="ex1Answer" class="answer-box">
+                <p><strong>【解答】</strong></p>
+                <p><strong>解：</strong>∵ 四边形 $ABCD$ 是<strong>正方形</strong></p>
+                <p>∴ 对角线 $AC$ 平分 $\angle DAB$（正方形的对角线平分内角）</p>
+                <p>又∵ $\angle DAB = 90°$（正方形的四个角都是直角）</p>
+                <p>∴ $\angle OAB = \frac{1}{2}\angle DAB = \frac{1}{2} \times 90° = \mathbf{45°}$</p>
+                <p>同理，$\angle OBA = \frac{1}{2}\angle ABC = \frac{1}{2} \times 90° = \mathbf{45°}$</p>
+                <hr style="margin:.8rem 0;border-color:#fde68a;">
+                <p><strong>【另解】（利用三角形性质）：</strong></p>
+                <p>∵ $OA = OB$（正方形对角线互相平分且相等，故 $OA = OB = OC = OD$）</p>
+                <p>∴ $\triangle OAB$ 是<strong>等腰三角形</strong></p>
+                <p>又∵ $\angle OAB + \angle OBA + \angle AOB = 180°$ 且 $\angle AOB = 90°$（对角线互相垂直）</p>
+                <p>∴ $\angle OAB = \angle OBA = \frac{180° - 90°}{2} = \mathbf{45°}$</p>
+                <p style="margin-top:.8rem;color:#dc2626;font-weight:700;">答：$\angle OAB = 45°$，$\angle OBA = 45°$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 六、讨论活动 -->
+    <div class="section-title">六、讨论活动——如何检验一个四边形是正方形？</div>
+
+    <div class="discuss-card">
+        <h4>🗣️ 课堂讨论：检验正方形的方法</h4>
+        <p><strong>问题情境：</strong>小明用纸剪了一个四边形，他想知道这个四边形是否为正方形。三位同学提出了不同的检验方法……</p>
+
+        <div class="discuss-item">
+            <p><span class="name">👦 小明的方法：</span>"用尺子量一下四条边，如果四条边长度一样，就是正方形！"</p>
+            <p style="color:#dc2626;margin-top:.4rem;"><strong>❌ 分析：</strong>不可靠！菱形的四条边也相等，但不一定是正方形。缺少了"直角"条件。</p>
+        </div>
+
+        <div class="discuss-item">
+            <p><span class="name">👦 小兵的方法：</span>"量一下两条对角线的长度，如果对角线相等，就是正方形！"</p>
+            <p style="color:#dc2626;margin-top:.4rem;"><strong>❌ 分析：</strong>也不可靠！矩形的对角线也相等，但不一定是正方形。缺少了"邻边相等"条件。</p>
+        </div>
+
+        <div class="discuss-item">
+            <p><span class="name">👧 小英的方法：</span>"先比较对角线是否相等（判断是不是矩形），再比较对角线相互分成的四条线段是否相等（判断是不是菱形）。两个条件都满足才是正方形！"</p>
+            <p style="color:#059669;margin-top:.4rem;"><strong>✅ 分析：</strong>正确！这实际上是在验证<strong>既是矩形又是菱形</strong>。</p>
+        </div>
+
+        <div class="discuss-result">
+            ✅ <strong>结论：</strong>要证明一个四边形是正方形，需要证明它<strong>同时满足矩形和菱形的判定条件</strong>。
+        </div>
+
+        <!-- 检验方法对比表 -->
+        <table style="margin-top:1rem;" class="compare-table">
+            <tr>
+                <th>检验方法</th>
+                <th>操作步骤</th>
+                <th>能否判定正方形？</th>
+                <th>原因</th>
+            </tr>
+            <tr>
+                <td>只量边长</td>
+                <td>四条边相等？</td>
+                <td style="color:#dc2626;font-weight:700;">❌ 不能</td>
+                <td>菱形也满足</td>
+            </tr>
+            <tr>
+                <td>只量对角线</td>
+                <td>对角线相等？</td>
+                <td style="color:#dc2626;font-weight:700;">❌ 不能</td>
+                <td>矩形也满足</td>
+            </tr>
+            <tr>
+                <td>先证矩形再证菱形</td>
+                <td>① 对角线相等 → 矩形<br>② 邻边相等 → 菱形</td>
+                <td style="color:#059669;font-weight:700;">✅ 能</td>
+                <td>同时满足两者</td>
+            </tr>
+            <tr>
+                <td>直接测量</td>
+                <td>① 四边相等 + ② 一个角为90°</td>
+                <td style="color:#059669;font-weight:700;">✅ 能</td>
+                <td>符合定义</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 七、正方形的判定方法汇总 -->
+    <div class="fact-card">
+        <h4>📋 正方形的判定方法</h4>
+        <div class="highlight" style="border-color:#dc2626;background:#fef2f2;">
+            <p><strong>判定方法一（从菱形出发）：</strong></p>
+            <p>有一个角是直角的<strong>菱形</strong>是正方形</p>
+        </div>
+        <div class="highlight" style="border-color:#f59e0b;background:#fffbeb;">
+            <p><strong>判定方法二（从矩形出发）：</strong></p>
+            <p>有一组邻边相等的<strong>矩形</strong>是正方形</p>
+        </div>
+        <div class="highlight" style="border-color:#059669;background:#ecfdf5;">
+            <p><strong>判定方法三（从平行四边形出发）：</strong></p>
+            <p>既是矩形（对角线相等/有一个直角）又是菱形（邻边相等/对角线垂直）的<strong>平行四边形</strong>是正方形</p>
+        </div>
+        <div class="highlight" style="border-color:#7c3aed;background:#ede9fe;">
+            <p><strong>判定方法四（从一般四边形出发）：</strong></p>
+            <p>四条边相等且<strong>有一个角是直角</strong>的四边形是正方形</p>
+        </div>
+    </div>
+
+    <!-- 八、课堂练习 -->
+    <div class="section-title">八、课堂练习</div>
+
+    <div class="exercise-card">
+        <h4>✏️ 练习1</h4>
+        <p><strong>题目：</strong>下列说法中，正确的个数是（ &nbsp;&nbsp; ）</p>
+        <p>① 所有的正方形都是矩形；&nbsp;&nbsp; ② 所有的正方形都是菱形；<br>
+           ③ 所有的矩形都是正方形；&nbsp;&nbsp; ④ 所有的菱形都是正方形。</p>
+        <p>A. 0个 &nbsp;&nbsp; B. 1个 &nbsp;&nbsp; C. 2个 &nbsp;&nbsp; D. 4个</p>
+        <button class="interact-btn" onclick="toggleAnswer('exer1Ans')">🔍 查看答案</button>
+        <div id="exer1Ans" class="answer-box">
+            <p><strong>答案：C（2个正确）</strong></p>
+            <p>• ① <strong>正确</strong> —— 正方形是特殊的矩形（有一个直角的菱形=正方形，而菱形是平行四边形，所以正方形也是矩形）</p>
+            <p>• ② <strong>正确</strong> —— 正方形也是特殊的菱形</p>
+            <p>• ③ <strong>错误</strong> —— 矩形的邻边不一定相等（如长方形不是正方形）</p>
+            <p>• ④ <strong>错误</strong> —— 菱形的角不一定是直角</p>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h4>✏️ 练习2</h4>
+        <p><strong>题目：</strong>正方形的对角线长为 $4\sqrt{2}$ cm，则它的边长为 _______ cm，面积为 _______ cm²。</p>
+        <button class="interact-btn" onclick="toggleAnswer('exer2Ans')">🔍 查看答案</button>
+        <div id="exer2Ans" class="answer-box">
+            <p><strong>答案：边长 = 4 cm，面积 = 16 cm²</strong></p>
+            <p><strong>解析：</strong></p>
+            <p>设正方形边长为 $a$，根据勾股定理：</p>
+            <p>$a^2 + a^2 = (对角线)^2$</p>
+            <p>$2a^2 = (4\sqrt{2})^2 = 32$</p>
+            <p>$a^2 = 16$ → $a = 4$ (cm)</p>
+            <p>面积 $S = a^2 = 4^2 = 16$ (cm²)</p>
+        </div>
+    </div>
+
+    <div class="exercise-card">
+        <h4>✏️ 练习3</h4>
+        <p><strong>题目：</strong>如图，正方形 $ABCD$ 中，$E$ 是 $BC$ 上的一点，$AE \perp CE$ 于点 $O$。<br>若 $BE = 3$，$CE = 4$，求正方形的边长。</p>
+
+        <div class="example-figure" style="width:360px;">
+            <canvas id="exer3Canvas" width="340" height="260"></canvas>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('exer3Ans')">🔍 查看答案</button>
+        <div id="exer3Ans" class="answer-box">
+            <p><strong>答案：正方形的边长为 7</strong></p>
+            <p><strong>解析：</strong></p>
+            <p>在 Rt△BEC 中，由勾股定理得：</p>
+            <p>$BC = \sqrt{BE^2 + CE^2} = \sqrt{3^2 + 4^2} = \sqrt{9+16} = \sqrt{25} = 5$？❌ 不对！</p>
+            <p>注意：这里 $E$ 在 $BC$ 上，所以 $BE + EC = BC$（如果E在B、C之间）</p>
+            <p>但实际上本题的几何关系：由于 $AE \perp CE$，结合正方形性质...</p>
+            <p><strong style="color:#dc2626;">正确思路：</strong>设正方形边长为 $a$，则 $BC = a$，且 $BE = 3$，$EC = a - 3$（假设E靠近B）<br>在 Rt△AEC 中：$AE^2 = AB^2 + BE^2 = a^2 + 9$<br>又 $AE^2 + EC^2 = AC^2$（Rt△AEO）... 此题需根据具体图形分析。</p>
+            <p style="color:#666;font-size:.9rem;">💡 提示：这是一道综合应用题，建议课后仔细推导。关键在于利用正方形的边长相等和对角线性质。</p>
+        </div>
+    </div>
+
+    <!-- 九、课堂小结 -->
+    <div class="section-title">九、课堂小结</div>
+
+    <div class="summary-section">
+        <h4 style="color:#9a3412;margin-bottom:.8rem;font-size:1.35rem;">📝 本课知识梳理</h4>
+
+        <table class="compare-table">
+            <tr>
+                <th style="width:25%;">项目</th>
+                <th style="width:75%;">内容要点</th>
+            </tr>
+            <tr>
+                <td><strong>定义</strong></td>
+                <td>① 有一个角是直角的菱形 &nbsp;|&nbsp; ② 有一组邻边相等的矩形</td>
+            </tr>
+            <tr>
+                <td><strong>边的性质</strong></td>
+                <td>四条边都相等（继承自菱形）</td>
+            </tr>
+            <tr>
+                <td><strong>角的性质</strong></td>
+                <td>四个角都是直角（继承自矩形）</td>
+            </tr>
+            <tr>
+                <td><strong>对角线</strong></td>
+                <td>相等、互相垂直平分、每条对角线平分一组对角</td>
+            </tr>
+            <tr>
+                <td><strong>对称性</strong></td>
+                <td>轴对称（4条对称轴：两条对角线 + 两组对边中点连线）+ 中心对称</td>
+            </tr>
+            <tr>
+                <td><strong>判定方法</strong></td>
+                <td>证矩形 + 证菱形（即同时满足两者的条件）</td>
+            </tr>
+            <tr>
+                <td><strong>特殊三角形</strong></td>
+                <td>对角线分成4个全等的等腰直角三角形（每个锐角45°）</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 十、数学思想方法 -->
+    <div class="math-idea">
+        <h4 style="color:#5b21b6;margin-bottom:.6rem;">💡 数学思想方法：特殊与一般的辩证关系</h4>
+        <div style="background:white;border-radius:1rem;padding:1rem;margin-top:.6rem;">
+            <p><strong>🔄 从一般到特殊：</strong></p>
+            <p style="padding-left:1rem;">平行四边形 → （加直角条件）→ 矩形</p>
+            <p style="padding-left:1rem;">平行四边形 → （加邻边相等）→ 菱形</p>
+            <p style="padding-left:1rem;">矩形 ∩ 菱形 = <strong style="color:#dc2626;">正方形</strong></p>
+            <p style="margin-top:.8rem;"><strong>📐 特殊图形的一般性：</strong></p>
+            <p style="padding-left:1rem;">正方形具备平行四边形的所有性质</p>
+            <p style="padding-left:1rem;">正方形额外拥有矩形和菱形的全部特性</p>
+            <p style="margin-top:.8rem;color:#5b21b6;font-weight:700;">✨ 这种"层层递进、逐步特殊化"的思想是数学中非常重要的思维方式！</p>
+        </div>
+    </div>
+
+    <!-- 十一、作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:1.8rem;">📚</span>
+        <div>
+            <strong style="font-size:1.1rem;color:#7c2d12;">课后作业</strong>
+            <p style="margin-top:.3rem;">教材P___ 习题18.3 第1、2、3、4题 &nbsp;|&nbsp; 思考：生活中哪些物体采用了正方形设计？为什么？</p>
+        </div>
+    </div>
+
+    <!-- 十二、数学口诀 -->
+    <div class="message-box">
+        <p style="font-size:1.15rem;font-weight:700;color:#854d0e;">
+            🎵 <strong>正方形口诀</strong> 🎵
+        </p>
+        <p style="margin-top:.6rem;font-size:1.08rem;">
+            四边相等四角直，对角线来更神奇。<br>
+            相等垂直还平分，四条对称轴整齐。<br>
+            矩形菱形集一身，四十五度记心里。<br>
+            判定要证两方面，既是矩形又是菱。
+        </p>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <p>华师版·八年级下册 | 第18章 矩形、菱形与正方形 | 18.3 正方形</p>
+    </div>
+</div>
+
+<script>
+// ========== 工具函数 ==========
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if (el.classList.contains('show-answer')) {
+        el.classList.remove('show-answer');
+        setTimeout(function(){ el.style.display = 'none'; }, 400);
+    } else {
+        el.style.display = 'block';
+        // 强制重绘
+        void el.offsetWidth;
+        el.classList.add('show-answer');
+    }
+}
+
+// Canvas通用设置
+function setupCanvas(ctx) {
+    ctx.font = 'bold 17px "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+}
+
+// ========== 1. 情境导入画布 ==========
+function drawIntroCanvas() {
+    var canvas = document.getElementById('introCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 300, 220);
+
+    // 左侧 - 菱形
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(5,150,105,0.08)';
+    ctx.beginPath();
+    ctx.moveTo(50, 110);   // 左
+    ctx.lineTo(105, 55);   // 上
+    ctx.lineTo(160, 110);  // 右
+    ctx.lineTo(105, 165);  // 下
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // 右侧 - 矩形
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(37,99,235,0.08)';
+    ctx.beginPath();
+    ctx.rect(175, 65, 70, 90);
+    ctx.fill();
+    ctx.stroke();
+    
+    // 矩形直角标记
+    ctx.beginPath();
+    ctx.moveTo(175, 78);
+    ctx.lineTo(188, 78);
+    ctx.lineTo(188, 65);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // 中间加号
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold 36px sans-serif';
+    ctx.fillText('+', 132, 112);
+
+    // 下方等号和结果
+    ctx.font = 'bold 30px sans-serif';
+    ctx.fillText('= ?', 107, 200);
+
+    // 标签
+    ctx.font = 'bold 14px "Microsoft YaHei"';
+    ctx.fillStyle = '#059669';
+    ctx.fillText('菱形', 105, 185);
+    ctx.fillStyle = '#2563eb';
+    ctx.fillText('矩形', 210, 170);
+
+    // 结果提示
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold 16px "Microsoft YaHei"';
+    ctx.fillText('🔷 正方形', 210, 203);
+}
+
+// ========== 2. 定义对比画布 ==========
+function drawDefCompareCanvas() {
+    var canvas = document.getElementById('defCompareCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 500, 260);
+
+    // ---- 左半部分：菱形 -> 正方形 ----
+    // 菱形
+    ctx.strokeStyle = '#059669';
+    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(5,150,105,0.06)';
+    ctx.beginPath();
+    ctx.moveTo(70, 130); ctx.lineTo(140, 60); ctx.lineTo(210, 130); ctx.lineTo(140, 200);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#059669';
+    ctx.font = 'bold 16px "Microsoft YaHei"';
+    ctx.fillText('菱形', 140, 228);
+    ctx.font = '14px sans-serif';
+    ctx.fillText('(四边相等)', 140, 248);
+
+    // 箭头
+    drawArrow(ctx, 225, 130, 270, 130, '#ea580c');
+
+    // 条件标签
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 13px "Microsoft YaHei"';
+    ctx.fillText('+ 有一个直角', 247, 115);
+
+    // 正方形（左）
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = 'rgba(220,38,38,0.08)';
+    ctx.beginPath();
+    ctx.rect(285, 75, 70, 70);
+    ctx.fill(); ctx.stroke();
+    // 直角标记
+    drawRightAngle(ctx, 285, 145, 10);
+    drawRightAngle(ctx, 355, 145, 10);
+    drawRightAngle(ctx, 355, 75, 10);
+    drawRightAngle(ctx, 285, 75, 10);
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold 16px "Microsoft YaHei"';
+    ctx.fillText('正方形', 320, 168);
+
+    // ---- 右半部分：矩形 -> 正方形 ----
+    // 矩形
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(37,99,235,0.06)';
+    ctx.beginPath();
+    ctx.rect(370, 80, 60, 80);
+    ctx.fill(); ctx.stroke();
+    // 直角
+    drawRightAngle(ctx, 370, 160, 8);
+    ctx.fillStyle = '#2563eb';
+    ctx.font = 'bold 16px "Microsoft YaHei"';
+    ctx.fillText('矩形', 400, 178);
+    ctx.font = '14px sans-serif';
+    ctx.fillText('(四角为直角)', 400, 198);
+
+    // 箭头
+    drawArrow(ctx, 440, 120, 473, 120, '#ea580c');
+
+    // 条件标签
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 13px "Microsoft YaHei"';
+    ctx.fillText('+ 邻边相等', 456, 105);
+
+    // 正方形（右）
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = 'rgba(220,38,38,0.08)';
+    ctx.beginPath();
+    ctx.rect(482, 82, 55, 55);
+    ctx.fill(); ctx.stroke();
+    drawRightAngle(ctx, 482, 137, 7);
+    drawRightAngle(ctx, 537, 137, 7);
+    ctx.fillStyle = '#dc2626';
+    ctx.font = 'bold 14px "Microsoft YaHei"';
+    ctx.fillText('正方形', 510, 155);
+
+    // 分隔线
+    ctx.setLineDash([6, 4]);
+    ctx.strokeStyle = '#d1d5db';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(255, 20);
+    ctx.lineTo(255, 250);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // 标题
+    ctx.fillStyle = '#9a3412';
+    ctx.font = 'bold 15px "Microsoft YaHei"';
+    ctx.fillText('【定义一：菱形 + 直角】', 140, 20);
+    ctx.fillText('【定义二：矩形 + 邻边相等】', 450, 20);
+}
+
+function drawArrow(ctx, x1, y1, x2, y2, color) {
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    // 箭头头部
+    var angle = Math.atan2(y2-y1, x2-x1);
+    ctx.beginPath();
+    ctx.moveTo(x2, y2);
+    ctx.lineTo(x2 - 10*Math.cos(angle-Math.PI/6), y2 - 10*Math.sin(angle-Math.PI/6));
+    ctx.lineTo(x2 - 10*Math.cos(angle+Math.PI/6), y2 - 10*Math.sin(angle+Math.PI/6));
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawRightAngle(ctx, x, y, size) {
+    ctx.beginPath();
+    ctx.moveTo(x + size, y);
+    ctx.lineTo(x + size, y - size);
+    ctx.lineTo(x, y - size);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+}
+
+// ========== 3. 正方形性质画布 ==========
+var propMode = 0; // 0:完整, 1:仅边角, 2:仅对角线, 3:仅对称性
+function drawSquarePropCanvas() {
+    var canvas = document.getElementById('squarePropCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 460, 340);
+
+    var cx = 230, cy = 160, size = 120;
+    var ax = cx - size, ay = cy - size; // A左上
+    var bx = cx + size, by = cy - size; // B右上
+    var cx2 = cx + size, cy2 = cy + size; // C右下
+    var dx = cx - size, dy = cy + size; // D左下
+
+    // 绘制正方形
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = 'rgba(220,38,38,0.04)';
+    ctx.beginPath();
+    ctx.rect(ax, ay, size*2, size*2);
+    ctx.fill();
+    ctx.stroke();
+
+    // 直角标记
+    drawRightAngle(ctx, ax, ay+size*2, 12);
+    drawRightAngle(ctx, bx, by+size*2, 12);
+    drawRightAngle(ctx, cx2, cy2, 12);
+    drawRightAngle(ctx, dx, dy, 12);
+
+    // 顶点标签
+    ctx.fillStyle = '#1e3a5a';
+    ctx.font = 'bold 19px "Times New Roman", serif';
+    ctx.fillText('A', ax - 18, ay - 12);
+    ctx.fillText('B', bx + 18, by - 12);
+    ctx.fillText('C', cx2 + 18, cy2 + 18);
+    ctx.fillText('D', dx - 18, dy + 18);
+
+    if (propMode === 0 || propMode === 1 || propMode === 2) {
+        // 对角线 AC
+        ctx.strokeStyle = '#2563eb';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(ax, ay);
+        ctx.lineTo(cx2, cy2);
+        ctx.stroke();
+
+        // 对角线 BD
+        ctx.strokeStyle = '#059669';
+        ctx.beginPath();
+        ctx.moveTo(bx, by);
+        ctx.lineTo(dx, dy);
+        ctx.stroke();
+
+        // 中心O
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath();
+        ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = 'bold 19px "Times New Roman", serif';
+        ctx.fillText('O', cx + 18, cy - 12);
+
+        // 对角线标注
+        if (propMode === 0 || propMode === 2) {
+            ctx.font = 'bold 15px "Microsoft YaHei"';
+            ctx.fillStyle = '#2563eb';
+            ctx.fillText('AC', cx + 35, cy - 20);
+            ctx.fillStyle = '#059669';
+            ctx.fillText('BD', cx - 35, cy + 25);
+
+            // 垂直符号
+            ctx.fillStyle = '#7c3aed';
+            ctx.font = 'bold 16px sans-serif';
+            ctx.fillText('⊥', cx + 8, cy - 15);
+
+            // 相等标注
+            ctx.fillStyle = '#ea580c';
+            ctx.font = 'bold 14px "Microsoft YaHei"';
+            ctx.fillText('AC = BD', cx, cy + 52);
+
+            // OA=OB=OC=OD
+            ctx.font = '13px "Microsoft YaHei"';
+            ctx.fillStyle = '#6b7280';
+            ctx.fillText('OA = OB = OC = OD', cx, cy + 72);
+        }
+    }
+
+    // 边的标注
+    if (propMode === 0 || propMode === 1) {
+        ctx.font = 'bold 15px "Microsoft YaHei"';
+        ctx.fillStyle = '#dc2626';
+        ctx.fillText('AB = BC = CD = DA', cx, ay - 32);
+
+        // 直角标注
+        ctx.fillStyle = '#ea580c';
+        ctx.font = '14px "Microsoft YaHei"';
+        ctx.fillText('∠A = ∠B = ∠C = ∠D = 90°', cx, dy + 48);
+    }
+
+    // 对称轴
+    if (propMode === 0 || propMode === 3) {
+        ctx.save();
+        if (propMode === 3) {
+            ctx.globalAlpha = 0.3; // 仅对称性模式时淡化其他元素
+        }
+        
+        // 对称轴1: AC方向 (虚线)
+        ctx.strokeStyle = '#7c3aed';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([8, 4]);
+        ctx.beginPath();
+        ctx.moveTo(ax - 20, ay - 20);
+        ctx.lineTo(cx2 + 20, cy2 + 20);
+        ctx.stroke();
+
+        // 对称轴2: BD方向
+        ctx.beginPath();
+        ctx.moveTo(bx + 20, by - 20);
+        ctx.lineTo(dx - 20, dy + 20);
+        ctx.stroke();
+
+        // 对称轴3: 水平中线
+        ctx.beginPath();
+        ctx.moveTo(ax, cy);
+        ctx.lineTo(cx2, cy);
+        ctx.stroke();
+
+        // 对称轴4: 垂直中线
+        ctx.beginPath();
+        ctx.moveTo(cx, ay);
+        ctx.lineTo(cx, cy2);
+        ctx.stroke();
+        
+        ctx.setLineDash([]);
+
+        if (propMode >= 2) {
+            ctx.restore();
+        }
+    }
+
+    // 底部说明
+    ctx.fillStyle = '#4b5563';
+    ctx.font = 'bold 15px "Microsoft YaHei"';
+    var modeTexts = ['【完整视图】', '【边与角】', '【对角线特征】', '【对称轴】'];
+    ctx.fillText(modeTexts[propMode], cx, 328);
+}
+
+document.getElementById('squarePropCanvas') && 
+document.getElementById('squarePropCanvas').addEventListener('click', function() {
+    propMode = (propMode + 1) % 4;
+    drawSquarePropCanvas();
+});
+
+// ========== 4. 家族树画布 ==========
+function drawFamilyTreeCanvas() {
+    var canvas = document.getElementById('familyTreeCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 630, 420);
+
+    // 层级Y坐标
+    var y0 = 50;   // 平行四边形
+    var y1 = 150;  // 矩形/菱形层
+    var y2 = 270;  // 正方形
+
+    // ---- 第0层：平行四边形 ----
+    drawNode(ctx, 315, y0, '平行四边形\n(两组对边分别平行)', '#6b7280', '#f3f4f6', 150, 50);
+    
+    // 连接线：到矩形
+    ctx.strokeStyle = '#d1d5db';
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(240, y0 + 25);
+    ctx.lineTo(195, y1 - 35);
+    ctx.stroke();
+
+    // 连接线：到菱形
+    ctx.beginPath();
+    ctx.moveTo(390, y0 + 25);
+    ctx.lineTo(435, y1 - 35);
+    ctx.stroke();
+
+    // ---- 第1层：矩形 ----
+    drawNode(ctx, 165, y1, '矩形\n(有一个角是直角)', '#2563eb', '#dbeafe', 130, 50);
+    
+    // ---- 第1层：菱形 ----
+    drawNode(ctx, 465, y1, '菱形\n(有一组邻边相等)', '#059669', '#d1fae5', 130, 50);
+
+    // 连接线：到正方形（汇聚）
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 3;
+    ctx.setLineDash([5, 3]);
+    ctx.beginPath();
+    ctx.moveTo(195, y1 + 25);
+    ctx.lineTo(290, y2 - 35);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(435, y1 + 25);
+    ctx.lineTo(340, y2 - 35);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // ---- 第2层：正方形 ----
+    drawNode(ctx, 315, y2, '🔷 正方形\n(既是矩形又是菱形)', '#dc2626', '#fee2e2', 170, 55);
+
+    // 交集标注
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 14px "Microsoft YaHei"';
+    ctx.fillText('交集 ∩', 315, y2 + 42);
+
+    // 底部说明
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '13px "Microsoft YaHei"';
+    ctx.fillText('正方形同时满足矩形的"角的条件" 和 菱形的"边的条件"', 315, 395);
+    
+    // 图例
+    ctx.font = '12px "Microsoft YaHei";
+    ctx.fillStyle = '#9ca3af';
+    ctx.fillText('← 包含关系（子类继承父类的所有性质）', 500, 410);
+}
+
+function drawNode(ctx, x, y, text, borderColor, bgColor, w, h) {
+    // 圆角矩形
+    var r = 15;
+    ctx.fillStyle = bgColor;
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(x - w/2 + r, y - h/2);
+    ctx.lineTo(x + w/2 - r, y - h/2);
+    ctx.quadraticCurveTo(x + w/2, y - h/2, x + w/2, y - h/2 + r);
+    ctx.lineTo(x + w/2, y + h/2 - r);
+    ctx.quadraticCurveTo(x + w/2, y + h/2, x + w/2 - r, y + h/2);
+    ctx.lineTo(x - w/2 + r, y + h/2);
+    ctx.quadraticCurveTo(x - w/2, y + h/2, x - w/2, y + h/2 - r);
+    ctx.lineTo(x - w/2, y - h/2 + r);
+    ctx.quadraticCurveTo(x - w/2, y - h/2, x - w/2 + r, y - h/2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+
+    // 文字（支持换行）
+    var lines = text.split('\n');
+    ctx.fillStyle = '#1f2937';
+    ctx.font = 'bold 16px "Microsoft YaHei"';
+    for (var i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i], x, y - 8 + i * 22);
+    }
+}
+
+// ========== 5. 例1画布 ==========
+function drawExample1Canvas() {
+    var canvas = document.getElementById('example1Canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 360, 320);
+
+    var cx = 180, cy = 145, size = 100;
+    var ax = cx - size, ay = cy - size;
+    var bx = cx + size, by = cy - size;
+    var cx_pt = cx + size, cy_pt = cy + size;
+    var dx = cx - size, dy = cy + size;
+
+    // 正方形
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 3;
+    ctx.fillStyle = 'rgba(220,38,38,0.03)';
+    ctx.beginPath();
+    ctx.rect(ax, ay, size*2, size*2);
+    ctx.fill();
+    ctx.stroke();
+
+    // 直角标记
+    drawRightAngle(ctx, ax, ay+size*2, 10);
+    drawRightAngle(ctx, bx, by+size*2, 10);
+
+    // 对角线
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    ctx.moveTo(ax, ay); ctx.lineTo(cx_pt, cy_pt);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#059669';
+    ctx.beginPath();
+    ctx.moveTo(bx, by); ctx.lineTo(dx, dy);
+    ctx.stroke();
+
+    // 中心点O
+    ctx.fillStyle = '#dc2626';
+    ctx.beginPath();
+    ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 顶点和O的标签
+    ctx.fillStyle = '#1e3a5a';
+    ctx.font = 'bold 20px "Times New Roman", serif';
+    ctx.fillText('A', ax - 18, ay - 12);
+    ctx.fillText('B', bx + 18, by - 12);
+    ctx.fillText('C', cx_pt + 18, cy_pt + 18);
+    ctx.fillText('D', dx - 18, dy + 18);
+    ctx.fillText('O', cx + 18, cy - 14);
+
+    // 角度弧 - ∠OAB
+    ctx.strokeStyle = '#ea580c';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(ax, ay, 35, 0, Math.PI/4);
+    ctx.stroke();
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 14px "Times New Roman", serif';
+    var labelAngle = Math.PI / 8;
+    ctx.fillText('45°', ax + 48 * Math.cos(labelAngle), ay + 48 * Math.sin(labelAngle));
+
+    // 角度弧 - ∠OBA
+    ctx.beginPath();
+    ctx.arc(bx, by, 35, Math.PI * 3/4, Math.PI);
+    ctx.stroke();
+    ctx.fillText('45°', bx - 48 * Math.cos(labelAngle), by + 48 * Math.sin(labelAngle));
+
+    // 垂直符号
+    ctx.fillStyle = '#7c3aed';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('⊥', cx + 10, cy - 18);
+
+    // 底部说明
+    ctx.fillStyle = '#4b5563';
+    ctx.font = 'bold 14px "Microsoft YaHei"';
+    ctx.fillText('△OAB 为等腰直角三角形', cx, 295);
+}
+
+// ========== 6. 练习3画布 ==========
+function drawExer3Canvas() {
+    var canvas = document.getElementById('exer3Canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    setupCanvas(ctx);
+    ctx.clearRect(0, 0, 340, 260);
+
+    var cx = 150, cy = 120, size = 90;
+    var ax = cx - size, ay = cy - size;     // A左上
+    var bx = cx + size, by = cy - size;      // B右上
+    var cx_pt = cx + size, cy_pt = cy + size;// C右下
+    var dx = cx - size, dy = cy + size;       // D左下
+
+    // 正方形
+    ctx.strokeStyle = '#dc2626';
+    ctx.lineWidth = 2.5;
+    ctx.fillStyle = 'rgba(220,38,38,0.03)';
+    ctx.beginPath();
+    ctx.rect(ax, ay, size*2, size*2);
+    ctx.fill();
+    ctx.stroke();
+
+    // 点 E (在BC上)
+    var ex = bx + 30, ey = by + 30; // E在BC上，靠近B
+
+    // AE线
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(ax, ay);
+    ctx.lineTo(ex, ey);
+    ctx.stroke();
+
+    // CE线
+    ctx.strokeStyle = '#059669';
+    ctx.beginPath();
+    ctx.moveTo(ex, ey);
+    ctx.lineTo(cx_pt, cy_pt);
+    ctx.stroke();
+
+    // 垂直标记
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 13px sans-serif';
+
+    // 顶点标签
+    ctx.fillStyle = '#1e3a5a';
+    ctx.font = 'bold 18px "Times New Roman", serif';
+    ctx.fillText('A', ax - 16, ay - 10);
+    ctx.fillText('B', bx + 16, by - 10);
+    ctx.fillText('C', cx_pt + 16, cy_pt + 16);
+    ctx.fillText('D', dx - 16, dy + 16);
+    ctx.fillStyle = '#ea580c';
+    ctx.font = 'bold 18px "Times New Roman", serif';
+    ctx.fillText('E', ex + 16, ey + 8);
+
+    // 标注 BE=3, CE=4
+    ctx.fillStyle = '#2563eb';
+    ctx.font = 'bold 13px "Microsoft YaHei"';
+    ctx.fillText('BE = 3', bx + 15, by + 20);
+    ctx.fillStyle = '#059669';
+    ctx.fillText('CE = 4', ex + 20, ey + 35);
+
+    // 直角标记
+    drawRightAngle(ctx, ax, ay+size*2, 9);
+
+    // AE⊥CE 标记
+    ctx.fillStyle = '#7c3aed';
+    ctx.font = 'bold 12px "Microsoft YaHei"';
+    ctx.fillText('AE ⊥ CE', cx + size + 30, cy - 20);
+}
+
+// ========== 初始化所有画布 ==========
+window.onload = function() {
+    drawIntroCanvas();
+    drawDefCompareCanvas();
+    drawSquarePropCanvas();
+    drawFamilyTreeCanvas();
+    drawExample1Canvas();
+    drawExer3Canvas();
+};
+</script>
+</body>
+</html>

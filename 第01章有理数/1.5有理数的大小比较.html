@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7课时 有理数的大小比较 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+
+        /* 学习目标卡片 - 柔和的蓝色 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入块 - 极浅蓝 */
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 探究模块 - 暖白 */
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+
+        .svg-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #cbdbe9;
+        }
+
+        .axis-label {
+            font-size: 0.9rem;
+            fill: #023b60;
+            font-weight: 500;
+            text-anchor: middle;
+        }
+
+        .point-text {
+            font-size: 1.2rem;
+            fill: #b13e3e;
+            font-weight: 600;
+            text-anchor: middle;
+            dominant-baseline: hanging;
+        }
+
+        /* 高亮语句 */
+        .highlight-statement {
+            background-color: #fff9c4;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 1.2rem;
+            border-radius: 50px;
+            border: 2px solid #f5c542;
+            box-shadow: 0 5px 0 #e0a800;
+            color: #0b4b78;
+            margin: 2rem 0;
+        }
+
+        /* 例题框 - 加深蓝灰色 */
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.4rem;
+        }
+
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        /* 答案框紧凑 */
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.4rem 1.5rem;
+            margin: 0.5rem 0 0.3rem 1.5rem;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            word-break: break-word;
+            white-space: pre-wrap;
+            line-height: 1.3;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 练习区 - 浅紫灰 */
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        /* 读一读 - 浅绿 */
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .emph-orange { color: #a13e00; font-weight: 600; }
+
+        /* 加大法则标题 */
+        .rule-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0f4a6f;
+            margin-bottom: 1.2rem;
+            border-left: 8px solid #30829b;
+            padding-left: 1.2rem;
+        }
+        /* 法则列表 */
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        .rule-list li {
+            background-color: #ffe599;
+            border-radius: 40px;
+            padding: 0.8rem 1.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            border: 1px solid #f5c542;
+            box-shadow: 0 3px 0 #e0a800;
+            color: #0b4b78;
+            font-weight: 500;
+        }
+        /* 特别强调 */
+        .rule-emphasis {
+            background-color: #f4b084;
+            border-radius: 40px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.3rem;
+            border: 1px solid #e07c3c;
+            box-shadow: 0 3px 0 #c85e1e;
+            color: #0b4b78;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* 作业布置 */
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">
+        ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+    </div>
+
+    <h2>1.5 有理数的大小比较</h2>
+    <div class="lesson-title">第七课时 有理数的大小比较</div>
+
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解两个负数大小比较的法则</div>
+            <div class="target-item"><span>✔</span>能熟练比较两个有理数的大小</div>
+            <div class="target-item"><span>✔</span>会运用绝对值比较负数大小</div>
+            <div class="target-item"><span>✔</span>能综合运用法则解决简单问题</div>
+        </div>
+    </div>
+
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📏 由数轴可知：正数大于0，负数小于0，正数大于负数。那么两个负数如何比较大小呢？比如 \(-3\) 与 \(-5\) 哪个大？ \(-1.3\) 与 \(-3\) 呢？</p>
+    </div>
+
+    <!-- 新知探究 -->
+    <h3>🔍 探究：两个负数的大小比较</h3>
+    <div class="axis-showcase">
+        <p><strong>在数轴上观察 \(-3\) 和 \(-5\)：</strong></p>
+        <div class="svg-container">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="xMidYMid meet">
+                <line x1="40" y1="60" x2="560" y2="60" stroke="#1c5682" stroke-width="2" />
+                <polygon points="560,60 545,55 545,65" fill="#1c5682" />
+                <!-- 刻度 -6 到 1，两端留空，箭头附近无刻度线 -->
+                <line x1="100" y1="60" x2="100" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="100" y="80" class="axis-label">-6</text>
+                <line x1="140" y1="60" x2="140" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="140" y="80" class="axis-label">-5</text>
+                <line x1="180" y1="60" x2="180" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="180" y="80" class="axis-label">-4</text>
+                <line x1="220" y1="60" x2="220" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="220" y="80" class="axis-label">-3</text>
+                <line x1="260" y1="60" x2="260" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="260" y="80" class="axis-label">-2</text>
+                <line x1="300" y1="60" x2="300" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="300" y="80" class="axis-label">-1</text>
+                <line x1="340" y1="60" x2="340" y2="45" stroke="#1c5682" stroke-width="2" /><text x="340" y="80" class="axis-label">0</text>
+                <line x1="380" y1="60" x2="380" y2="50" stroke="#1c5682" stroke-width="1.5" /><text x="380" y="80" class="axis-label">1</text>
+                <!-- 标出 -3 和 -5 -->
+                <circle cx="220" cy="60" r="5" fill="#e63946" /><text x="220" y="35" class="point-text">-3</text>
+                <circle cx="140" cy="60" r="5" fill="#e63946" /><text x="140" y="35" class="point-text">-5</text>
+            </svg>
+        </div>
+        <p>观察发现：\(-5\) 在 \(-3\) 的左边，所以 \(-5 < -3\)。这说明，两个负数比较，绝对值大的反而小。</p>
+        <div class="rule-emphasis">
+            ⚡ 两个负数比较大小，绝对值大的反而小。 ⚡
+        </div>
+    </div>
+
+    <!-- 例题1（课本例1） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 比较下列各对数的大小：<br>
+        (1) \(-1\) 与 \(-0.01\)； (2) \(-| -2|\) 与 \(0\)； (3) \(-(-\frac{1}{9})\) 与 \(-|-\frac{1}{10}|\)； (4) \(-\frac{3}{4}\) 与 \(-\frac{2}{3}\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            <strong>(1)</strong> \(|-1|=1,\ |-0.01|=0.01,\ 1>0.01\)，所以 \(-1 < -0.01\)；<br>
+            <strong>(2)</strong> \(-| -2| = -2\)，负数小于0，所以 \(-| -2| < 0\)；<br>
+            <strong>(3)</strong> \(-(-\frac{1}{9})=\frac{1}{9},\ -|-\frac{1}{10}|=-\frac{1}{10}\)，正数大于负数，所以 \(\frac{1}{9} > -\frac{1}{10}\)；<br>
+            <strong>(4)</strong> \(\left|-\frac{3}{4}\right|=\frac{3}{4}=0.75,\ \left|-\frac{2}{3}\right|\approx0.667,\ 0.75>0.667\)，所以 \(-\frac{3}{4} < -\frac{2}{3}\)。
+        </div>
+    </div>
+
+    <!-- 例题2（补充例题） -->
+    <div class="example-box" id="example2">
+        <p><strong>例2</strong> 比较下列各对数的大小：<br>
+        (1) \(-\frac{5}{6}\) 与 \(-\frac{7}{8}\)； (2) \(-0.618\) 与 \(-\frac{5}{8}\)； (3) \(-(-2)\) 与 \(-| -3 |\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            <strong>(1)</strong> \(\left|-\frac{5}{6}\right|=\frac{5}{6}\approx0.833,\ \left|-\frac{7}{8}\right|=0.875,\ 0.833<0.875\)，所以 \(-\frac{5}{6} > -\frac{7}{8}\)；<br>
+            <strong>(2)</strong> \(\left|-\frac{5}{8}\right|=0.625,\ |-0.618|=0.618,\ 0.625>0.618\)，所以 \(-\frac{5}{8} < -0.618\)；<br>
+            <strong>(3)</strong> \(-(-2)=2,\ -| -3| = -3,\ 2 > -3\)。
+        </div>
+    </div>
+
+    <!-- 巩固练习（完全按照课本1.5节练习） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习1（课本第1题） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 用“<”号或“>”号填空：<br>
+                (1) 因为 \(\left|-\dfrac{5}{3}\right| \_\_\_ \left|-3\right|\)，所以 \(-\dfrac{5}{3} \_\_\_ -3\)；<br>
+                (2) 因为 \(|-10| \_\_\_ |-100|\)，所以 \(-10 \_\_\_ -100\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box" style="line-height: 1.3;">
+                (1) \(\left|-\frac{5}{3}\right| = \frac{5}{3} \approx 1.67,\ | -3| = 3\)，所以 \(|-\frac{5}{3}| < | -3|\)，从而 \(-\frac{5}{3} > -3\)；<br>
+                (2) \(|-10| = 10,\ |-100| = 100\)，所以 \(|-10| < |-100|\)，从而 \(-10 > -100\)。
+            </div>
+        </div>
+
+        <!-- 练习2（课本第2题） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 判断下列有理数的大小比较是否正确，并说明理由：<br>
+                (1) \(-7 < -5\)； (2) \(2 > -3\)； (3) \(-3.14 > -\pi\)； (4) \(-\dfrac{1}{3} > -\dfrac{1}{2}\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div id="answer1" class="answer-box" style="line-height: 1.3;">
+                (1) 正确，因为两个负数，绝对值小的反而大，\(|-7|=7,\ |-5|=5,\ 7>5\)，所以 \(-7 < -5\)；<br>
+                (2) 正确，正数大于负数；<br>
+                (3) 错误，因为 \(|\,\!-\pi|=\pi\approx3.14,\ |-3.14|=3.14\)，两者绝对值相等，实际 \(-\pi \approx -3.1416 < -3.14\)，所以 \(-3.14 > -\pi\) 不正确，应为 \(-3.14 < -\pi\)；<br>
+                (4) 正确，因为 \(\left|-\frac{1}{3}\right|=\frac{1}{3},\ \left|-\frac{1}{2}\right|=\frac{1}{2},\ \frac{1}{3}<\frac{1}{2}\)，所以 \(-\frac{1}{3} > -\frac{1}{2}\)。
+            </div>
+        </div>
+
+        <!-- 练习3（课本第3题） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 比较下列各对数的大小：<br>
+                (1) \(-\dfrac{3}{4}\) 与 \(-\dfrac{4}{5}\)； (2) \(-\dfrac{5}{8}\) 与 \(-0.618\)； (3) \(-(-3)\) 与 \(-| -4 |\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div id="answer2" class="answer-box" style="line-height: 1.3;">
+                (1) \(\left|-\frac{3}{4}\right|=\frac{3}{4}=0.75,\ \left|-\frac{4}{5}\right|=0.8,\ 0.75<0.8\)，所以 \(-\frac{3}{4} > -\frac{4}{5}\)；<br>
+                (2) \(\left|-\frac{5}{8}\right|=0.625,\ |-0.618|=0.618,\ 0.625>0.618\)，所以 \(-\frac{5}{8} < -0.618\)；<br>
+                (3) \(-(-3)=3,\ -|-4|=-4,\ 3 > -4\)。
+            </div>
+        </div>
+
+        <!-- 练习4（课本第4题） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">4. 回答下列问题：<br>
+                (1) 大于-4的负整数有哪几个？<br>
+                (2) 小于4的正整数有哪几个？<br>
+                (3) 大于-4且小于4的整数有哪几个？</span>
+                <button class="interact-btn" onclick="toggleAnswer(3)">显示答案</button>
+            </div>
+            <div id="answer3" class="answer-box" style="line-height: 1.3;">
+                (1) 大于-4的负整数有：\(-3, -2, -1\)；<br>
+                (2) 小于4的正整数有：\(1, 2, 3\)；<br>
+                (3) 大于-4且小于4的整数有：\(-3, -2, -1, 0, 1, 2, 3\)。
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：数学文化 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 负数大小比较的历史</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>古代数学家对负数的认识经历了漫长过程。印度数学家婆罗摩笈多（7世纪）曾提出负数的运算法则，但直到16世纪，欧洲数学家才逐渐接受负数。法国数学家笛卡尔发明坐标系后，负数的大小关系在数轴上变得一目了然。我国古代《九章算术》中也有正负数的记载。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-wrapper">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+        </div>
+        <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">正数 > 0 > 负数</div>
+                <div class="summary-item">两个负数比较，绝对值大的反而小</div>
+                <div class="summary-item">先化简再比较（如多重符号）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P22 练习第1、2、3题；习题1.5 A组第1、2题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 两个负数比较大小，绝对值大的反而小 ✨</p>
+
+    <div class="footer-note">
+        数学 七年级上册 · 第7课时
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById('answer' + index);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+            content.style.maxHeight = '300px';
+            toggle.textContent = '▼';
+        } else {
+            content.style.maxHeight = '0';
+            toggle.textContent = '▶';
+        }
+    }
+</script>
+</body>
+</html>

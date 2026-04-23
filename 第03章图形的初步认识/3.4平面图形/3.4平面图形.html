@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第43课时 平面图形 | 华师版·七上 第3章</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 探索模块特殊样式 */
+        .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #f4b84b;
+        }
+        .explore-box h4 {
+            font-size: 1.5rem;
+            color: #b45f1b;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔎"; margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第43课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 从立体图形到平面图形，认识多边形与圆，体会图形构成之美。</div>
+    <h2>3.4 平面图形</h2>
+    <div class="lesson-title">平面图形</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能区分平面图形与立体图形</div>
+            <div class="target-item"><span>✔</span>理解多边形和圆的定义，认识常见多边形</div>
+            <div class="target-item"><span>✔</span>能将多边形分割成三角形，探索规律</div>
+            <div class="target-item"><span>✔</span>从生活图案中识别平面图形，感受几何之美</div>
+        </div>
+    </div>
+
+    <!-- 导入（课本18页） -->
+    <div class="intro-block">
+        <p>通过前几节的学习，我们认识了由实际生活中所存在的各种物体抽象而成的许多立体图形，其中不少立体图形都是由平面图形围成的，而且可以通过某些平面图形描述它们的形状和特性，因此研究立体图形往往从平面图形开始。</p>
+        <p>观察图3.4.1中所示的各物体，你能画出它们的表面轮廓线的形状吗？</p>
+    </div>
+    <div class="figure-box">
+        <img src="3.4.1.png" alt="图3.4.1">
+        <div class="figcaption">图3.4.1 生活中的物体</div>
+    </div>
+
+    <!-- 图3.4.2 表面轮廓 -->
+    <p>把你画的图形和图3.4.2所示的图形相比较，看看你所画的是否也是这几个平面图形？</p>
+    <div class="figure-box">
+        <img src="3.4.2.png" alt="图3.4.2">
+        <div class="figcaption">图3.4.2 平面图形</div>
+    </div>
+
+    <!-- 多边形定义 -->
+    <p>这里的三角形、长方形和圆是我们早就熟悉的图形。圆（circle）是由曲线围成的封闭图形，而其他由线段围成的封闭图形叫做<strong>多边形</strong>（polygon）。按照组成多边形的边的条数，多边形可分为三角形（三边形）、四边形、五边形、六边形……</p>
+
+    <!-- 思考：图3.4.3 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>图3.4.3中的几个图形是多边形吗？</p>
+        <div class="figure-box">
+            <img src="3.4.3.png" alt="图3.4.3">
+            <div class="figcaption">图3.4.3</div>
+        </div>
+    </div>
+
+    <!-- 图3.4.4 四边形判断 -->
+    <p>图3.4.4所示的图形中，哪几个是四边形？说说“是”或“不是”的理由。</p>
+    <div class="figure-box">
+        <img src="3.4.4.png" alt="图3.4.4">
+        <div class="figcaption">图3.4.4</div>
+    </div>
+
+    <!-- 多边形分割成三角形（图3.4.5） -->
+    <p>在多边形中，三角形是最基本的图形，如图3.4.5所示，每个多边形都可以分割成若干个三角形。</p>
+    <div class="figure-box">
+        <img src="3.4.5.png" alt="图3.4.5">
+        <div class="figcaption">图3.4.5 多边形分割成三角形</div>
+    </div>
+
+    <!-- 探索模块：数一数每个多边形中三角形的个数，你能发现什么规律？ -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>数一数图3.4.5中每个多边形所分割成的三角形个数，你能发现什么规律？</p>
+        <button class="interact-btn" onclick="toggleHint()">提示</button>
+        <div id="hintMessage" class="answer-box" style="margin-top:1rem;"></div>
+    </div>
+
+    <!-- 试一试：生活中的平面图形图案 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <p>生活中，经常可以看到由一些多边形或圆组成的优美图案。图3.4.6至图3.4.9是一些布料和交通标志等的图案，请你在照片上找一找你熟悉的平面图形。</p>
+        <div class="figure-box">
+            <img src="3.4.6至3.4.9.png" alt="图3.4.6至3.4.9">
+            <div class="figcaption">图3.4.6 - 图3.4.9 生活图案</div>
+        </div>
+        <p>图3.4.6中有长方形、正方形、五角星形和圆；图3.4.7中有长方形、六边形和八边形；图3.4.8中有长方形、梯形和圆；图3.4.9中有三角形和长方形。</p>
+    </div>
+
+    <!-- 图3.4.10 古典园林窗格 -->
+    <p>如图3.4.10所示，古典园林里一些窗格的图案中，有不少简单的几何图形，试找出这些图形。</p>
+    <div class="figure-box">
+        <img src="3.4.10.png" alt="图3.4.10">
+        <div class="figcaption">图3.4.10 古典窗格</div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>练习</h3>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>1.</strong> 分别举出有一个表面是圆和有一个表面是四边形的两个物体的例子。</p>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>2.</strong> 按照图3.4.5的方式分割下面的多边形，使其由多个三角形组成。</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="练习第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">平面图形：圆（曲线围成）和多边形（线段围成）</div>
+            <div class="summary-item">多边形按边数分为三角形、四边形、五边形……</div>
+            <div class="summary-item">多边形可分割为三角形，n边形可分成(n-2)个三角形</div>
+            <div class="summary-item">生活中许多图案由基本平面图形组合而成</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块（放在课堂小结之后） -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从物体表面轮廓抽象出平面图形（圆、多边形）。<br>
+        <strong>分类思想：</strong> 按边数对多边形进行分类。<br>
+        <strong>转化思想：</strong> 将多边形分割为三角形，化繁为简。<br>
+        <strong>几何直观：</strong> 从生活图案中识别图形，感受数学之美。</p>
+    </div>
+
+    <!-- 读一读：七巧板（可折叠，内容精简） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 七巧板</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>七巧板是我国古代的一种智力玩具，由七块板组成：5个等腰直角三角形（2大、1中、2小）、1个正方形和1个平行四边形。用这七块板可以拼出千变万化的图形，如人物、动物、建筑等。七巧板蕴含了丰富的几何关系——面积、角度、边长，是培养空间想象力和创造力的绝佳工具。你能用七巧板拼出三角形、长方形吗？试试看！</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成练习第2题；用纸剪一个七巧板，拼出两个不同的图案并画下来。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第43课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleHint() {
+        var hintDiv = document.getElementById('hintMessage');
+        if (hintDiv.classList.contains('show-answer')) {
+            // 如果已显示，则隐藏并清空内容
+            hintDiv.classList.remove('show-answer');
+            hintDiv.innerHTML = '';
+        } else {
+            // 如果未显示，则设置内容并显示
+            hintDiv.innerHTML = '从一个顶点出发的对角线，将n边形分成(n-2)个三角形。';
+            hintDiv.classList.add('show-answer');
+        }
+    }
+</script>
+</body>
+</html>

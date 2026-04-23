@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>14.1.1 数据有用吗 | 华师版·八年级上册</title>
+    <!-- MathJax 3.x 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)'], ['$$', '$$'], ['\\[', '\\]']],
+                displayMath: []
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* ========== 全局重置与基础样式 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html{font-size:20px;}
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* ========== 主容器 ========== */
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 28px;
+        }
+
+        /* ========== 头部元信息栏 ========== */
+        .header-meta {
+            background: linear-gradient(135deg, #5b6eae 0%, #7c8fcf 100%);
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            border-radius: 12px 12px 0 0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(91, 110, 174, 0.35);
+        }
+
+        /* ========== 章节标题 ========== */
+        .chapter-title {
+            background: linear-gradient(135deg, #5b6eae 0%, #7c8fcf 100%);
+            color: #fff;
+            text-align: center;
+            padding: 36px 24px;
+            margin-top: 0;
+            position: relative;
+        }
+
+        .chapter-title h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            letter-spacing: 4px;
+        }
+
+        .chapter-title h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #fff, transparent);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ========== 课时标题（胶囊状） ========== */
+        .lesson-title {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 30px;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 24px auto 0;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            letter-spacing: 2px;
+        }
+
+        /* ========== 内容区域 ========== */
+        .content-body {
+            background: #fff;
+            border-radius: 0 0 12px 12px;
+            padding: 40px 44px 48px;
+            box-shadow: 0 6px 25px rgba(91, 110, 174, 0.15);
+        }
+
+        /* ========== 学习目标模块 ========== */
+        .learning-targets h3 {
+            color: #5b6eae;
+            font-size: 1.7em;
+            margin-bottom: 18px;
+            padding-left: 12px;
+            border-left: 5px solid #5b6eae;
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .target-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: #e8ecf4;
+            padding: 16px 18px;
+            border-radius: 12px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .target-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(91, 110, 174, 0.18);
+        }
+
+        .target-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #5b6eae, #7c8fcf);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .target-text {
+            color: #444;
+            font-size: 1.15em;
+            padding-top: 4px;
+        }
+
+        /* ========== 情境导入卡片（左侧彩色边框） ========== */
+        .intro-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef1fb 100%);
+            border-left: 6px solid #5b6eae;
+            padding: 22px 26px;
+            border-radius: 0 12px 12px 0;
+            margin: 24px 0;
+            box-shadow: 0 3px 12px rgba(91, 110, 174, 0.1);
+        }
+
+        .intro-card h3 {
+            color: #5b6eae;
+            font-size: 1.5em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .intro-card p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .intro-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .intro-card ul li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+            color: #555;
+        }
+
+        .intro-card ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #7c8fcf;
+            font-weight: bold;
+        }
+
+        /* ========== 探究/概念卡片 ========== */
+        .explore-card, .fact-card {
+            background: #e8ecf4;
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin: 22px 0;
+            border: 1px solid #d0d6e8;
+        }
+
+        .explore-card h3, .fact-card h3 {
+            color: #5b6eae;
+            font-size: 1.45em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #fef9f0 0%, #fef3e0 100%);
+            border-color: #f0dca0;
+        }
+
+        .fact-card h3 {
+            color: #c77d00;
+        }
+
+        /* ========== 例题卡片 ========== */
+        .example-card {
+            background: #f7f9fc;
+            border: 2px solid #dce2f0;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 24px 0;
+            box-shadow: 0 4px 14px rgba(91, 110, 174, 0.08);
+        }
+
+        .example-card h3 {
+            color: #5b6eae;
+            font-size: 1.45em;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #d0d6e8;
+        }
+
+        /* ========== 重点知识框 ========== */
+        .theorem-box {
+            background: linear-gradient(135deg, #eef4ff 0%, #e0e8fa 100%);
+            border: 2px solid #7c8fcf;
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin: 22px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theorem-box::before {
+            content: '★';
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            font-size: 1.8em;
+            color: rgba(124, 143, 207, 0.2);
+        }
+
+        .theorem-box h3 {
+            color: #5b6eae;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+        }
+
+        .theorem-box p {
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .theorem-box strong {
+            color: #5b6eae;
+        }
+
+        /* ========== 数据表格统一样式 ========== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(91, 110, 174, 0.12);
+            font-size: 1.15em;
+        }
+
+        .data-table thead th {
+            background: linear-gradient(135deg, #5b6eae 0%, #7c8fcf 100%);
+            color: #fff;
+            padding: 14px 16px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .data-table tbody td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #e8ecf4;
+            color: #444;
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background: #f5f7fb;
+        }
+
+        .data-table tbody tr:hover {
+            background: #eef1fb;
+            transition: background 0.25s ease;
+        }
+
+        /* ========== Canvas 图表容器 ========== */
+        .chart-container {
+            background: #fafbff;
+            border: 2px solid #e0e5ef;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .chart-container canvas {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .chart-container h4 {
+            color: #5b6eae;
+            margin-bottom: 14px;
+            font-size: 1.25em;
+        }
+
+        /* ========== 高亮文字 ========== */
+        .highlight {
+            background: linear-gradient(120deg, #c7d4fe 0%, #ddd6fe 100%);
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: #4338ca;
+        }
+
+        /* ========== 练习区域 ========== */
+        .practice-section {
+            margin: 28px 0;
+        }
+
+        .practice-section > h3 {
+            color: #5b6eae;
+            font-size: 1.6em;
+            margin-bottom: 18px;
+            padding-left: 12px;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .exercise-item {
+            background: #f8f9ff;
+            border: 1px solid #dde2f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+
+        .exercise-item h4 {
+            color: #5b6eae;
+            font-size: 1.25em;
+            margin-bottom: 12px;
+        }
+
+        .exercise-item p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .exercise-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .exercise-item ul li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+            color: #555;
+        }
+
+        .exercise-item ul li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #7c8fcf;
+            font-size: 0.75em;
+        }
+
+        /* ========== 答案交互按钮 ========== */
+        .answer-toggle {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 20px;
+            background: linear-gradient(135deg, #7c8fcf, #5b6eae);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .answer-toggle:hover {
+            background: linear-gradient(135deg, #5b6eae, #4a5a94);
+            box-shadow: 0 4px 12px rgba(91, 110, 174, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .answer-content {
+            display: none;
+            background: #f0f4ff;
+            border: 1px solid #c5cee8;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-top: 12px;
+            color: #444;
+            line-height: 1.9;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .answer-content.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== 课堂小结 ========== */
+        .summary-section {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7fd 100%);
+            border: 2px solid #7c8fcf;
+            border-radius: 14px;
+            padding: 28px 32px;
+            margin-top: 34px;
+        }
+
+        .summary-section h3 {
+            color: #5b6eae;
+            font-size: 1.4em;
+            margin-bottom: 18px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .summary-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list > li {
+            padding: 12px 0 12px 38px;
+            position: relative;
+            color: #444;
+            font-size: 1.15em;
+            border-bottom: 1px dashed #c5cee8;
+        }
+
+        .summary-list > li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list > li::before {
+            content: '✓';
+            position: absolute;
+            left: 8px;
+            color: #5b6eae;
+            font-weight: bold;
+            font-size: 1.45em;
+        }
+
+        .summary-list ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .summary-list ul li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #666;
+        }
+
+        .summary-list ul li::before {
+            content: '·';
+            position: absolute;
+            left: 0;
+            color: #7c8fcf;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        /* ========== 页脚 ========== */
+        .footer-note {
+            text-align: center;
+            padding: 18px 20px;
+            color: #8892a8;
+            font-size: 1.05em;
+            margin-top: 10px;
+            border-top: 2px solid #e0e5ef;
+            letter-spacing: 1px;
+        }
+
+        /* ========== 分节标题 ========== */
+        .section-heading {
+            color: #5b6eae;
+            font-size: 1.4em;
+            margin: 32px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #d0d6e8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ========== 通用段落与列表 ========== */
+        .content-body > p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        .content-body ul {
+            margin: 10px 0 10px 24px;
+            line-height: 2;
+        }
+
+        .content-body ul li {
+            color: #555;
+        }
+
+        /* ========== 响应式适配 ========== */
+        @media (max-width: 768px) {
+            .content-body { padding: 20px 18px; }
+            .chapter-title h1 { font-size: 1.7em; }
+            .target-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 1em; }
+            .data-table thead th, .data-table td { padding: 8px 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="textbook">
+        <!-- 头部信息栏 -->
+        <div class="header-meta">
+            华师版·八年级上册 &nbsp;|&nbsp; 第14章·数据的收集与表示
+        </div>
+
+        <!-- 章节标题 + 课时标题 -->
+        <div class="chapter-title">
+            <h1>第十四章 数据的收集与表示</h1>
+            <div style="margin-top: 12px;">14.1 数据的收集</div>
+            <span class="lesson-title">14.1.1 数据有用吗</span>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="content-body">
+
+            <!-- ===== 学习目标 ===== -->
+            <section class="learning-targets">
+                <h3>🎯 学习目标</h3>
+                <div class="target-grid">
+                    <div class="target-item">
+                        <span class="target-num">1</span>
+                        <span class="target-text">理解数据在解决实际问题中的重要作用，体会数据的价值</span>
+                    </div>
+                    <div class="target-item">
+                        <span class="target-num">2</span>
+                        <span class="target-text">了解收集数据的必要性和意义，知道数据从哪里来</span>
+                    </div>
+                    <div class="target-item">
+                        <span class="target-num">3</span>
+                        <span class="target-text">理解普查与抽样调查的区别，能区分一手数据与二手数据</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== 问题情境：球赛解说员如何点评比赛？ ===== -->
+            <h2 class="section-heading">🏀 问题1：球赛解说员如何点评比赛？</h2>
+
+            <div class="intro-card">
+                <h3>💭 情境导入</h3>
+                <p>你喜欢看球赛吗？有没有注意过解说员是怎样点评一场球赛的？</p>
+                <p>解说员常常在比赛间隙对双方的表现进行评价，比如：</p>
+                <ul>
+                    <li>领先的队为什么能取得优势？</li>
+                    <li>落后的队问题出在哪里？</li>
+                    <li>教练是否应该调整比赛策略？</li>
+                </ul>
+            </div>
+
+            <p>通常，在比赛开始之前，解说员会准备一些双方球队的<span class="highlight">数据资料</span>，比如：</p>
+            <ul>
+                <li>每位队员的身高、体重、年龄</li>
+                <li>球队以往的战绩</li>
+                <li>用于记录本场比赛攻守情况的统计表格</li>
+            </ul>
+
+            <!-- ===== 实例分析：2022年中国女足亚洲杯夺冠 ===== -->
+            <h2 class="section-heading">🏆 实例分析：2022年中国女足亚洲杯夺冠</h2>
+
+            <p>2022年中国女足时隔16年重夺亚洲杯冠军！下面是2022年女足亚洲杯决赛双方技术统计：</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>中国</th>
+                        <th>韩国</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>最终得分</strong></td>
+                        <td><strong style="color: #dc2626; font-size: 1.3em;">3</strong></td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>控球率</td>
+                        <td>62%</td>
+                        <td>38%</td>
+                    </tr>
+                    <tr>
+                        <td>射门次数</td>
+                        <td>13</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>射正球门</td>
+                        <td>5</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>角球</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>黄牌</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>红牌</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Canvas 交互柱状图 -->
+            <div class="chart-container">
+                <h4>📊 女足决赛技术统计对比图（点击切换指标）</h4>
+                <canvas id="footballChart" width="750" height="400"></canvas>
+                <div style="margin-top: 14px;">
+                    <button class="answer-toggle" onclick="switchChartData('possession')">控球率</button>
+                    <button class="answer-toggle" onclick="switchChartData('shots')">射门次数</button>
+                    <button class="answer-toggle" onclick="switchChartData('onTarget')">射正球门</button>
+                    <button class="answer-toggle" onclick="switchChartData('corners')">角球</button>
+                    <button class="answer-toggle" onclick="switchChartData('cards')">黄牌</button>
+                </div>
+            </div>
+
+            <div class="theorem-box">
+                <h3>💡 分析结论</h3>
+                <p>从整场比赛来看，中国队的控球率和射门次数都高于对方，这些良好的技术指标，来自中国女足的奋力拼搏！面对先失两球的逆境，<strong>"铿锵玫瑰"</strong>依然敢拼敢赢，实现反超，最终夺得冠军！</p>
+            </div>
+
+            <!-- ===== 问题2：人口普查数据的价值 ===== -->
+            <h2 class="section-heading">👨‍👩‍👧‍👦 问题2：人口普查数据的价值</h2>
+
+            <div class="intro-card">
+                <h3>🤔 思考</h3>
+                <p>下表汇总了最近四次全国人口普查所获得的我国各省市自治区（不含港澳台地区）关于家庭户人口变化的一些数据。</p>
+                <p>回顾过去三十余年，说说你从该表中读出了哪些信息？这样的数据信息有用吗？</p>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>次序</th>
+                        <th>第四次</th>
+                        <th>第五次</th>
+                        <th>第六次</th>
+                        <th>第七次</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>年份</strong></td>
+                        <td>1990年</td>
+                        <td>2000年</td>
+                        <td>2010年</td>
+                        <td>2020年</td>
+                    </tr>
+                    <tr>
+                        <td>家庭户数（万户）</td>
+                        <td>27691</td>
+                        <td>34049</td>
+                        <td>40152</td>
+                        <td>49416</td>
+                    </tr>
+                    <tr>
+                        <td>平均每个家庭户的人口数</td>
+                        <td>3.96人</td>
+                        <td>3.44人</td>
+                        <td>3.10人</td>
+                        <td>2.62人</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 人口普查趋势图 -->
+            <div class="chart-container">
+                <h4>📈 家庭户数量与平均人口变化趋势（1990—2020）</h4>
+                <canvas id="censusChart" width="750" height="380"></canvas>
+            </div>
+
+            <div class="fact-card">
+                <h3>📊 数据信息</h3>
+                <p>很明显，在过去三十余年中，我国家庭户的数量一直在增加，但是平均每个家庭户的人口数却在一路下滑，从1990年的 $3.96$ 人降为2020年的 $2.62$ 人。</p>
+            </div>
+
+            <!-- ===== 数据背后的社会现象 ===== -->
+            <h2 class="section-heading">🔍 数据背后的社会现象</h2>
+
+            <div class="explore-card">
+                <p>我们看到，每年春运潮都会如期而至，那么多人赶去与家人团聚过年，感受其乐融融大家庭的温暖。我们还看到，哪怕与父母同在一个城市生活，不少年轻人工作或者结婚后也会从父母家搬出来，自己另立门户。</p>
+            </div>
+
+            <p>全国人口普查得到的数据能够让我们感受到<span class="highlight">家庭户增多、家庭规模缩小</span>这一社会现象，从数量上更好地认识基本国情，从而把握社会变迁的趋势，便于国家民政部门科学地管理，解决诸如<strong>"空巢老人"、"单身社会"、"少子化"</strong>等现实问题。</p>
+
+            <!-- ===== 核心概念 ===== -->
+            <h2 class="section-heading">📖 核心概念</h2>
+
+            <div class="example-card">
+                <h3>概念一：普查</h3>
+                <p>像全国人口普查这样，为特定目的而对所有考察对象作的全面调查叫做<strong>普查</strong>。</p>
+                <p>但是其工作量极大，我国一般每十年进行一次。</p>
+            </div>
+
+            <div class="example-card">
+                <h3>概念二：抽样调查</h3>
+                <p>为特定目的而对部分考察对象作的调查叫做<strong>抽样调查</strong>。</p>
+                <p>我国一般每五年进行一次全国 <strong>$1\%$</strong> 人口的抽样调查，它是指从全国总人口中抽取 <strong>$1\%$</strong> 的人口，然后对这部分人进行调查。</p>
+            </div>
+
+            <!-- ===== 总体、个体、样本 ===== -->
+            <div class="theorem-box">
+                <h3>📖 总体、个体与样本</h3>
+                <p>在统计学中，需要明确以下几个核心概念：</p>
+                <p style="margin-top:12px;"><strong style="color:#5b6eae;">① 总体</strong>：所要考察的<strong>对象的全体</strong>叫做总体。</p>
+                <p style="margin-top:10px;"><strong style="color:#5b6eae;">② 个体</strong>：把组成总体的<strong>每一个</strong>考察对象叫做个体。</p>
+                <p style="margin-top:10px;"><strong style="color:#5b6eae;">③ 样本</strong>：从总体中取出的<strong>一部分</strong>个体叫做这个总体的一个样本。</p>
+                <p style="margin-top:12px; font-size:0.93em; color:#666;">例如：要了解全国八年级学生的平均身高，全国所有八年级学生是<strong>总体</strong>，其中每一个八年级学生是<strong>个体</strong>，从中抽取1000人进行调查，这1000人就是一个<strong>样本</strong>。</p>
+            </div>
+
+            <!-- ===== 一手数据与二手数据 ===== -->
+            <div class="theorem-box">
+                <h3>📚 数据的来源</h3>
+                <p>收集数据有两种基本方式：</p>
+                <p style="margin-top:10px;"><strong style="color:#5b6eae;">一手数据：</strong>经过<strong>亲自调查</strong>获取的数据。例如：你自己做问卷调查得到的结果就是一手数据。</p>
+                <p style="margin-top:8px;"><strong style="color:#c77d00;">二手数据：</strong>经过<strong>查阅文献</strong>等从现有可用的数据资料中检索到的数据。例如：从国家统计局网站下载的人口普查数据就是二手数据。</p>
+            </div>
+
+            <!-- ===== 例题精讲 ===== -->
+            <h2 class="section-heading">💡 例题精讲</h2>
+
+            <div class="example-card">
+                <h3>例1 · 调查要有代表性</h3>
+                <p><strong>题目：</strong>老师布置给每个小组一个任务，用抽样调查的方法估计全班学生的平均身高。坐在教室最后排的小亮为了争速度，立即就近对他周围的 8 位同学作调查，计算出他们 9 个人的平均身高后，就举手向老师示意已经完成任务了。他这样选择样本合适吗？</p>
+                <div style="margin-top:14px; padding:12px 16px; background:#eef4ff; border-radius:8px; border-left:4px solid #5b6eae;">
+                    <p><strong style="color:#5b6eae;">⚠️ 分析：</strong></p>
+                    <p>因为小亮他们 9 个人坐在教室靠后面的位置，所以他们身高的平均数就很可能会<strong>大于</strong>整个班级学生身高的平均数。这样，样本就不具有<strong>代表性</strong>了。</p>
+                </div>
+                <div style="margin-top:12px; background:#fff3cd; border-radius:8px; padding:10px 16px; border-left:4px solid #ffc107;">
+                    <p><strong style="color:#c77d00;">📌 关键提示：</strong></p>
+                    <p>你调查的对象在总体中<strong>必须要有代表性</strong>！</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>例2 · 样本容量要足够大</h3>
+                <p><strong>题目：</strong>在投掷正方体骰子时，同学甲说："啊，真的是 5 ！你只要一直想某个数，就会掷出那个数！"同学乙说："不对，我发现我越是想要某个数就越得不到那个数，倒是不想它反而会掷出那个数。"这两位同学的说法正确吗？</p>
+                <div style="margin-top:14px; padding:12px 16px; background:#eef4ff; border-radius:8px; border-left:4px solid #5b6eae;">
+                    <p><strong style="color:#5b6eae;">⚠️ 分析：</strong></p>
+                    <p>这两位同学的说法都<strong>不正确</strong>，因为几次经验说明不了什么问题。</p>
+                </div>
+                <div style="margin-top:12px; background:#fff3cd; border-radius:8px; padding:10px 16px; border-left:4px solid #ffc107;">
+                    <p><strong style="color:#c77d00;">📌 关键提示：</strong></p>
+                    <p>你的样本容量要<strong>足够大</strong>！</p>
+                </div>
+            </div>
+
+            <div class="example-card">
+                <h3>例3 · 调查质量比数量更重要</h3>
+                <p><strong>题目：</strong>小强想了解所在地区每个家庭使用智能语音控制家电的情况，为此，他和同学一起，调查了<strong>全校每个学生</strong>所在家庭使用的智能语音控制家电的数量。这样抽样调查合适吗？</p>
+                <div style="margin-top:14px; padding:12px 16px; background:#eef4ff; border-radius:8px; border-left:4px solid #5b6eae;">
+                    <p><strong style="color:#5b6eae;">⚠️ 分析：</strong></p>
+                    <p>这样抽样调查是<strong>不合适</strong>的。虽然他们调查的人数很多，但是因为排除了所在地区那些<strong>没有中学生的家庭</strong>，所以调查结果不能推广到所在地区的所有家庭。</p>
+                </div>
+                <div style="margin-top:12px; background:#fff3cd; border-radius:8px; padding:10px 16px; border-left:4px solid #ffc107;">
+                    <p><strong style="color:#c77d00;">📌 关键提示：</strong></p>
+                    <p>仅仅增加调查人数<strong>不一定</strong>能够提高调查质量！</p>
+                </div>
+            </div>
+
+            <!-- ===== 课堂练习 ===== -->
+            <section class="practice-section">
+                <h3>✍️ 课堂练习 · 思考与讨论</h3>
+
+                <div class="exercise-item">
+                    <h4>练习 1</h4>
+                    <p>请举出一些需要抽样调查的例子。</p>
+                    <button class="answer-toggle" onclick="toggleAnswer(this)">查看参考答案</button>
+                    <div class="answer-content">
+                        <strong>参考答案：</strong>以下情况通常需要抽样调查：<br>
+                        • 调查某品牌电视机的使用寿命（不能破坏全部产品）<br>
+                        • 了解全国初中生的视力状况（人数太多难以逐一测量）<br>
+                        • 检测一批灯泡的合格率（抽样检验更高效经济）<br>
+                        • 调查市民对某政策的满意度（全面调查成本过高）
+                    </div>
+                </div>
+
+                <div class="exercise-item">
+                    <h4>练习 2</h4>
+                    <p>在以下情况中，你认为应该用普查还是抽样调查？</p>
+                    <ul>
+                        <li>了解你们班每位同学所穿鞋子的尺码情况</li>
+                        <li>了解你们学校同学所穿鞋子的尺码情况，对你们班的全体同学作调查</li>
+                        <li>了解你们班的同学每天的睡眠时间</li>
+                    </ul>
+                    <button class="answer-toggle" onclick="toggleAnswer(this)">查看参考答案</button>
+                    <div class="answer-content">
+                        <strong>参考答案：</strong><br>
+                        (1) <strong>普查</strong>——班内人数少，容易逐个了解<br>
+                        (2) <strong>抽样调查</strong>——八年级同学人数较多，抽样即可获得有效信息<br>
+                        (3) <strong>普查</strong>——一个班的人数不多，可以逐个调查
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== 课堂小结 ===== -->
+            <section class="summary-section">
+                <h3>📝 课堂小结</h3>
+                <ul class="summary-list">
+                    <li>数据有助于我们发现一些有趣的现象和事实，进而作出合理的判断</li>
+                    <li>普查和抽样调查是两种重要的调查方式：
+                        <ul>
+                            <li><strong>普查</strong>：对所有考察对象作全面调查（如全国人口普查，每十年一次）</li>
+                            <li><strong>抽样调查</strong>：对部分考察对象作调查（如 $1\%$ 人口抽样调查，每五年一次）</li>
+                        </ul>
+                    </li>
+                    <li>抽样调查的三大要点：
+                        <ul>
+                            <li>调查对象在总体中<strong>必须要有代表性</strong>（例1）</li>
+                            <li>样本容量要<strong>足够大</strong>（例2）</li>
+                            <li>仅仅增加调查人数<strong>不一定</strong>能够提高调查质量（例3）</li>
+                        </ul>
+                    </li>
+                    <li>收集数据有两种基本方式：
+                        <ul>
+                            <li><strong>一手数据</strong>：经过亲自调查获取的数据</li>
+                            <li><strong>二手数据</strong>：经过查阅文献等从现有可用数据资料中检索的数据</li>
+                        </ul>
+                    </li>
+                    <li>统计学基本概念：
+                        <ul>
+                            <li><strong>总体</strong>：考察对象的全体</li>
+                            <li><strong>个体</strong>：总体中的每一个对象</li>
+                            <li><strong>样本</strong>：从总体中抽取的部分个体</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+        </div><!-- /content-body -->
+
+        <!-- 页脚 -->
+        <div class="footer-note">
+            华师版·数学 八年级上册 · 第14章 数据的收集与表示 · 14.1.1 数据有用吗
+        </div>
+    </div><!-- /textbook -->
+
+    <!-- ==================== JavaScript 交互逻辑 ==================== -->
+    <script>
+    // 答案显示/隐藏
+    function toggleAnswer(btn) {
+        var content = btn.nextElementSibling;
+        if (content.classList.contains('show')) {
+            content.classList.remove('show');
+            btn.textContent = '查看参考答案';
+        } else {
+            content.classList.add('show');
+            btn.textContent = '隐藏参考答案';
+        }
+    }
+
+    // ============ 女足决赛技术统计柱状图 ============
+    var footballData = {
+        possession:   { china: 62, korea: 38, label: '控球率 (%)', max: 80 },
+        shots:        { china: 13, korea: 12, label: '射门次数', max: 18 },
+        onTarget:     { china: 5,  korea: 4,  label: '射正球门', max: 8 },
+        corners:      { china: 3,  korea: 4,  label: '角球', max: 6 },
+        cards:        { china: 2,  korea: 3,  label: '黄牌', max: 5 }
+    };
+
+    var currentChartKey = 'possession';
+
+    function drawFootballChart(key) {
+        var canvas = document.getElementById('footballChart');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var d = footballData[key];
+        var W = canvas.width, H = canvas.height;
+
+        // 清除画布
+        ctx.clearRect(0, 0, W, H);
+
+        // 参数设置
+        var padLeft = 70, padRight = 40, padTop = 50, padBottom = 60;
+        var chartW = W - padLeft - padRight;
+        var chartH = H - padTop - padBottom;
+        var barWidth = chartW * 0.25;
+        var gap = barWidth * 0.6;
+
+        // 背景
+        ctx.fillStyle = '#fafbff';
+        ctx.fillRect(0, 0, W, H);
+
+        // 标题
+        ctx.fillStyle = '#5b6eae';
+        ctx.font = 'bold 17px Microsoft YaHei, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(d.label, W / 2, 28);
+
+        // Y轴网格线与刻度
+        ctx.strokeStyle = '#e0e5ef';
+        ctx.lineWidth = 1;
+        var steps = 5;
+        for (var i = 0; i <= steps; i++) {
+            var y = padTop + (chartH / steps) * i;
+            ctx.beginPath();
+            ctx.moveTo(padLeft, y);
+            ctx.lineTo(W - padRight, y);
+            ctx.stroke();
+
+            var val = Math.round(d.max - (d.max / steps) * i);
+            ctx.fillStyle = '#8892a8';
+            ctx.font = '13px sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(val.toString(), padLeft - 10, y + 4);
+        }
+
+        // Y轴标题（图表顶部已有标题，此处省略以避免重叠）
+        // ctx.save();
+        // ctx.translate(18, H / 2);
+        // ctx.rotate(-Math.PI / 2);
+        // ctx.fillStyle = '#5b6eae';
+        // ctx.font = '13px Microsoft YaHei, sans-serif';
+        // ctx.textAlign = 'center';
+        // ctx.fillText(d.label, 0, 0);
+        // ctx.restore();
+
+        // X轴基线
+        ctx.strokeStyle = '#5b6eae';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, padTop + chartH);
+        ctx.lineTo(W - padRight, padTop + chartH);
+        ctx.stroke();
+
+        // 中国队柱子
+        var chinaH = (d.china / d.max) * chartH;
+        var xChina = padLeft + chartW * 0.28 - barWidth / 2;
+        var gradC = ctx.createLinearGradient(xChina, padTop + chartH - chinaH, xChina, padTop + chartH);
+        gradC.addColorStop(0, '#dc2626');
+        gradC.addColorStop(1, '#f87171');
+        ctx.fillStyle = gradC;
+        roundRect(ctx, xChina, padTop + chartH - chinaH, barWidth, chinaH, 6);
+
+        // 数值标签
+        ctx.fillStyle = '#dc2626';
+        ctx.font = 'bold 15px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(d.china.toString(), xChina + barWidth / 2, padTop + chartH - chinaH - 8);
+        // 队名
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 14px Microsoft YaHei, sans-serif';
+        ctx.fillText('中国 🇨🇳', xChina + barWidth / 2, padTop + chartH + 22);
+
+        // 韩国队柱子
+        var koreaH = (d.korea / d.max) * chartH;
+        var xKorea = padLeft + chartW * 0.72 - barWidth / 2;
+        var gradK = ctx.createLinearGradient(xKorea, padTop + chartH - koreaH, xKorea, padTop + chartH);
+        gradK.addColorStop(0, '#2563eb');
+        gradK.addColorStop(1, '#60a5fa');
+        ctx.fillStyle = gradK;
+        roundRect(ctx, xKorea, padTop + chartH - koreaH, barWidth, koreaH, 6);
+
+        // 数值标签
+        ctx.fillStyle = '#2563eb';
+        ctx.font = 'bold 15px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(d.korea.toString(), xKorea + barWidth / 2, padTop + chartH - koreaH - 8);
+        // 队名
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 14px Microsoft YaHei, sans-serif';
+        ctx.fillText('韩国 🇰🇷', xKorea + barWidth / 2, padTop + chartH + 22);
+    }
+
+    function switchChartData(key) {
+        currentChartKey = key;
+        drawFootballChart(key);
+    }
+
+    // 圆角矩形辅助函数
+    function roundRect(ctx, x, y, w, h, r) {
+        if (h <= 0) return;
+        r = Math.min(r, h / 2, w / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h);
+        ctx.lineTo(x, y + h);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    // ============ 人口普查趋势双轴图（重写：解决图注堆叠） ============
+    function drawCensusChart() {
+        var canvas = document.getElementById('censusChart');
+        if (!canvas) return;
+        var ctx = canvas.getContext('2d');
+        var W = canvas.width, H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        // 布局参数
+        var padLeft = 68, padRight = 90, padTop = 68, padBottom = 48;
+        var chartW = W - padLeft - padRight;
+        var chartH = H - padTop - padBottom;
+        var axisX = W - padRight;   // 右Y轴 x=750-90=660
+
+        // 数据
+        var years = ['1990', '2000', '2010', '2020'];
+        var households = [27691, 34049, 40152, 49416]; // 万户
+        var avgPersons = [3.96, 3.44, 3.10, 2.62];     // 人
+        var maxHH = 50000, minAP = 2.0, maxAP = 4.5;
+
+        // === 背景 ===
+        ctx.fillStyle = '#fafbff';
+        ctx.fillRect(0, 0, W, H);
+
+        // === 标题（独立一行，居中）===
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 14px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('家庭户数量与平均人口变化趋势（1990—2020）', W / 2, 18);
+
+        // === 图例（标题下方，独立一行）===
+        var lx = 72, ly = 40;
+        ctx.fillStyle = '#5b6eae';
+        ctx.fillRect(lx, ly - 10, 16, 12);
+        ctx.fillStyle = '#333';
+        ctx.font = '11px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('家庭户数（万户）', lx + 20, ly + 1);
+
+        ctx.fillStyle = '#ea580c';
+        ctx.fillRect(lx + 160, ly - 10, 16, 12);
+        ctx.fillStyle = '#333';
+        ctx.fillText('平均人口（人）', lx + 180, ly + 1);
+
+        // === 左Y轴（家庭户数） ===
+        ctx.strokeStyle = '#5b6eae';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, padTop);
+        ctx.lineTo(padLeft, padTop + chartH);
+        ctx.stroke();
+
+        for (var i = 0; i <= 5; i++) {
+            var val = Math.round(maxHH - (maxHH / 5) * i);           // 50000,40000,...,0
+            var y = padTop + (chartH / 5) * i;
+            ctx.fillStyle = '#5b6eae';
+            ctx.font = '11px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText((val / 10000).toFixed(0) + '万', padLeft - 6, y + 4);
+        }
+
+        // === 右Y轴（平均人口，放在图例行右侧，不进图表区） ===
+        ctx.strokeStyle = '#ea580c';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(axisX, ly - 14);
+        ctx.lineTo(axisX, padTop + chartH);
+        ctx.stroke();
+
+        // 右轴标签放在图例行高度（ly = 40），分6个刻度
+        for (var i = 0; i <= 5; i++) {
+            var val = maxAP - ((maxAP - minAP) / 5) * i;  // 4.5, 4.0, 3.5, 3.0, 2.5, 2.0
+            var y = padTop + (chartH / 5) * i;
+            ctx.fillStyle = '#ea580c';
+            ctx.font = '11px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(val.toFixed(1), axisX + 4, y + 4);
+        }
+
+        // 右轴单位
+        ctx.fillStyle = '#ea580c';
+        ctx.font = '11px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('人', axisX + 30, ly + 1);
+
+        // === 网格线 ===
+        ctx.strokeStyle = '#e8ecf4';
+        ctx.lineWidth = 1;
+        for (var i = 0; i <= 5; i++) {
+            var y = padTop + (chartH / 5) * i;
+            ctx.beginPath();
+            ctx.moveTo(padLeft, y);
+            ctx.lineTo(axisX, y);
+            ctx.stroke();
+        }
+
+        // === X轴 ===
+        ctx.strokeStyle = '#333';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, padTop + chartH);
+        ctx.lineTo(axisX, padTop + chartH);
+        ctx.stroke();
+
+        // === 柱状图（家庭户数）===
+        var barW = 40;
+        var stepX = (chartW - barW) / (years.length - 1); // 柱间距，让首尾柱不越界
+
+        for (var i = 0; i < years.length; i++) {
+            var x = padLeft + barW / 2 + i * stepX; // 柱心：首柱从左Y轴右侧开始
+            var hh = (households[i] / maxHH) * chartH;
+            var grad = ctx.createLinearGradient(x - barW / 2, padTop + chartH - hh, x - barW / 2, padTop + chartH);
+            grad.addColorStop(0, '#5b6eae');
+            grad.addColorStop(1, '#7c8fcf');
+            ctx.fillStyle = grad;
+            roundRect(ctx, x - barW / 2, padTop + chartH - hh, barW, hh, 4);
+
+            // 柱顶数值（柱内上方）
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 10px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(households[i], x, padTop + chartH - hh + 14);
+
+            // 年份标签
+            ctx.fillStyle = '#555';
+            ctx.font = '12px "Microsoft YaHei", sans-serif';
+            ctx.fillText(years[i] + '年', x, padTop + chartH + 18);
+        }
+
+        // === 折线图（平均人口）===
+        ctx.strokeStyle = '#ea580c';
+        ctx.lineWidth = 2.5;
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        for (var i = 0; i < years.length; i++) {
+            var x = padLeft + barW / 2 + i * stepX; // 与柱心对齐
+            var y = padTop + chartH - ((avgPersons[i] - minAP) / (maxAP - minAP)) * chartH;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // 折线数据点（橙色小圆点 + 数值，数值在点左侧）
+        for (var i = 0; i < years.length; i++) {
+            var x = padLeft + barW / 2 + i * stepX; // 与柱心对齐
+            var y = padTop + chartH - ((avgPersons[i] - minAP) / (maxAP - minAP)) * chartH;
+
+            // 圆点
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#fff';
+            ctx.fill();
+            ctx.strokeStyle = '#ea580c';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // 数值标签（点左侧，textAlign=right，避免遮挡右Y轴标签）
+            ctx.fillStyle = '#b84a00';
+            ctx.font = '10px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(avgPersons[i] + '人', x - 6, y + 4);
+        }
+    }
+
+    // ============ 页面加载完成后绘制图表 ============
+    window.addEventListener('DOMContentLoaded', function() {
+        // 确保 DOM 已就绪后再渲染
+        setTimeout(function() {
+            drawFootballChart('possession');
+            drawCensusChart();
+        }, 200);
+    });
+
+    // 监听窗口大小变化，重新绘制图表
+    window.addEventListener('resize', function() {
+        drawFootballChart(currentChartKey);
+        drawCensusChart();
+    });
+</script>
+
+</body>
+</html>

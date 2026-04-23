@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第13课时 有理数的乘法法则 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+
+        /* 学习目标卡片 - 柔和的蓝色 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入块 - 极浅蓝 */
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 探究模块 - 暖白 */
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+
+        /* 探究卡片网格 */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .step-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #d0e3f0;
+            box-shadow: 0 4px 0 #c0d6e6;
+            transition: 0.1s;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+        }
+        .step-card .card-header {
+            font-weight: 700;
+            color: #0f4a6f;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .card-header .number {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-right: 0.3rem;
+        }
+        .step-card .math {
+            font-size: 1.3rem;
+            background: #fff9c4;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem 0;
+            border: 1px solid #f5c542;
+        }
+        .step-card .conclusion {
+            margin-top: 0.5rem;
+            background: #d9eaf5;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            color: #023b60;
+            border-left: 4px solid #2a7faa;
+        }
+
+        /* 高亮语句 */
+        .highlight-statement {
+            background-color: #fff9c4;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 50px;
+            border: 2px solid #f5c542;
+            box-shadow: 0 5px 0 #e0a800;
+            color: #0b4b78;
+            margin: 2rem 0;
+        }
+
+        /* 法则列表（统一底色，带序号） */
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            background-color: #ffe599;
+            border-radius: 40px;
+            padding: 1.2rem 2rem;
+            border: 1px solid #f5c542;
+            box-shadow: 0 3px 0 #e0a800;
+        }
+        .rule-list li {
+            font-size: 1.2rem;
+            color: #0b4b78;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            counter-increment: rule-counter;
+        }
+        .rule-list {
+            counter-reset: rule-counter;
+        }
+        .rule-list li::before {
+            content: counter(rule-counter) ". ";
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* 例题框 - 加深蓝灰色 */
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        /* 答案框 - 用于递等式，无缩进 */
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.8rem 2rem;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            word-break: break-word;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 练习区 - 浅紫灰 */
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        /* 练习网格布局（每行4个，序号对齐） */
+        .grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem 1rem;
+            margin: 1rem 0;
+        }
+        .grid-item {
+            text-align: left;
+            font-size: 1.05rem;
+            background: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 30px;
+        }
+
+        /* 读一读 - 浅绿（数学文化） */
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .emph-orange { color: #a13e00; font-weight: 600; }
+
+        /* 作业布置 */
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">
+        ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+    </div>
+
+    <h2>1.9 有理数的乘法</h2>
+    <div class="lesson-title">第一课时 有理数的乘法法则</div>
+
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数乘法法则</div>
+            <div class="target-item"><span>✔</span>掌握同号得正、异号得负的规律</div>
+            <div class="target-item"><span>✔</span>能熟练进行有理数乘法运算</div>
+            <div class="target-item"><span>✔</span>理解0乘以任何数都得0</div>
+        </div>
+    </div>
+
+    <!-- 导入：小虫爬行问题 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">🐛 一只小虫沿一条东西向的路线，以每分钟3米的速度向东爬行2分钟，它现在位于原来位置的哪个方向？相距多少米？</p>
+        <p>规定向东为正，向西为负。如果小虫向西爬行呢？</p>
+    </div>
+
+    <!-- 新知探究：有理数的乘法法则（卡片式排版，带序号） -->
+    <h3>🔍 探究：有理数的乘法法则</h3>
+    <div class="axis-showcase">
+        <div class="step-grid">
+            <div class="step-card">
+                <div class="card-header"><span class="number">1</span> 正数 × 正数</div>
+                <div class="math">\((+3) \times (+2) = +6\)</div>
+                <div class="conclusion">向东爬行2分钟，位置在原点的东边6米处。</div>
+            </div>
+            <div class="step-card">
+                <div class="card-header"><span class="number">2</span> 负数 × 正数</div>
+                <div class="math">\((-3) \times (+2) = -6\)</div>
+                <div class="conclusion">向西爬行2分钟，位置在原点的西边6米处。</div>
+            </div>
+            <div class="step-card">
+                <div class="card-header"><span class="number">3</span> 正数 × 负数</div>
+                <div class="math">\((+3) \times (-2) = ?\)</div>
+                <div class="conclusion">与第1种相比，把乘数“+2”换成相反数“-2”，积应为+6的相反数 \(-6\)。所以 \((+3) \times (-2) = -6\)。</div>
+            </div>
+            <div class="step-card">
+                <div class="card-header"><span class="number">4</span> 负数 × 负数</div>
+                <div class="math">\((-3) \times (-2) = ?\)</div>
+                <div class="conclusion">与第2种相比，把乘数“+2”换成相反数“-2”，积应为-6的相反数 \(+6\)。所以 \((-3) \times (-2) = +6\)。</div>
+            </div>
+        </div>
+        <p>此外，任何数与0相乘，都得0，例如 \((-3) \times 0 = 0\)，\(0 \times (-2) = 0\)。</p>
+        <div class="highlight-statement">
+            ⚡ 两数相乘，同号得正，异号得负，绝对值相乘 ⚡
+        </div>
+    </div>
+
+    <!-- 归纳法则 -->
+    <div class="axis-showcase" style="margin-top:0;">
+        <div style="font-size:1.5rem; font-weight:600; margin-bottom:1rem;">📏 有理数的乘法法则</div>
+        <ul class="rule-list">
+            <li>两数相乘，同号得正，异号得负，并把绝对值相乘。</li>
+            <li>任何数与0相乘，都得0。</li>
+        </ul>
+    </div>
+
+    <!-- 例题（课本例1） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 计算：<br>
+        (1) \((-5) \times (-6)\)； (2) \(\left(-\dfrac{1}{2}\right) \times \dfrac{1}{4}\)。</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示(1)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示(2)答案</button>
+        </div>
+        <div id="exampleAnswer1" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            \((-5) \times (-6) = +(5 \times 6) = 30\)
+        </div>
+        <div id="exampleAnswer2" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            \(\left(-\dfrac{1}{2}\right) \times \dfrac{1}{4} = -\left(\dfrac{1}{2} \times \dfrac{1}{4}\right) = -\dfrac{1}{8}\)
+        </div>
+    </div>
+
+    <!-- 巩固练习（课本P41-42练习） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习1：确定符号 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 确定下列各乘积的正负号：</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div class="grid-4col">
+                <div class="grid-item">(1) \(5 \times (-3)\)</div>
+                <div class="grid-item">(2) \((-3) \times 3\)</div>
+                <div class="grid-item">(3) \((-2) \times (-7)\)</div>
+                <div class="grid-item">(4) \(\dfrac{1}{2} \times \dfrac{1}{3}\)</div>
+            </div>
+            <div id="answer0" class="answer-box">
+                (1) 负号； (2) 负号； (3) 正号； (4) 正号。
+            </div>
+        </div>
+
+        <!-- 练习2：计算（10个小题，每行4个） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div class="grid-4col">
+                <div class="grid-item">(1) \(3 \times (-4)\)</div>
+                <div class="grid-item">(2) \(2 \times (-6)\)</div>
+                <div class="grid-item">(3) \((-6) \times 2\)</div>
+                <div class="grid-item">(4) \(6 \times (-2)\)</div>
+                <div class="grid-item">(5) \((-6) \times 0\)</div>
+                <div class="grid-item">(6) \(0 \times (-6)\)</div>
+                <div class="grid-item">(7) \((-4) \times 0.25\)</div>
+                <div class="grid-item">(8) \((-0.5) \times (-8)\)</div>
+                <div class="grid-item">(9) \(\dfrac{2}{3} \times \left(-\dfrac{3}{4}\right)\)</div>
+                <div class="grid-item">(10) \((-2) \times \left(-\dfrac{1}{2}\right)\)</div>
+            </div>
+            <div id="answer1" class="answer-box">
+                (1) \(-12\) &nbsp;&nbsp; (2) \(-12\) &nbsp;&nbsp; (3) \(-12\) &nbsp;&nbsp; (4) \(-12\)<br>
+                (5) \(0\) &nbsp;&nbsp; (6) \(0\) &nbsp;&nbsp; (7) \(-1\) &nbsp;&nbsp; (8) \(4\)<br>
+                (9) \(-\dfrac{1}{2}\) &nbsp;&nbsp; (10) \(1\)
+            </div>
+        </div>
+
+        <!-- 练习3：与1、-1相乘（8个小题，每行4个） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div class="grid-4col">
+                <div class="grid-item">(1) \(3 \times (-1)\)</div>
+                <div class="grid-item">(2) \((-5) \times (-1)\)</div>
+                <div class="grid-item">(3) \(\dfrac{1}{4} \times (-1)\)</div>
+                <div class="grid-item">(4) \(0 \times (-1)\)</div>
+                <div class="grid-item">(5) \((-6) \times 1\)</div>
+                <div class="grid-item">(6) \(2 \times 1\)</div>
+                <div class="grid-item">(7) \(0 \times 1\)</div>
+                <div class="grid-item">(8) \(1 \times (-1)\)</div>
+            </div>
+            <div id="answer2" class="answer-box">
+                (1) \(-3\) &nbsp;&nbsp; (2) \(5\) &nbsp;&nbsp; (3) \(-\dfrac{1}{4}\) &nbsp;&nbsp; (4) \(0\)<br>
+                (5) \(-6\) &nbsp;&nbsp; (6) \(2\) &nbsp;&nbsp; (7) \(0\) &nbsp;&nbsp; (8) \(-1\)
+            </div>
+        </div>
+
+        <!-- 练习4：规律总结 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">4. 做完第3题，你能发现什么规律？一个数与-1相乘，积是什么？一个数与1相乘呢？</span>
+                <button class="interact-btn" onclick="toggleAnswer(3)">显示答案</button>
+            </div>
+            <div id="answer3" class="answer-box">
+                一个数与 \((-1)\) 相乘，积是它的相反数；<br>
+                一个数与 \(1\) 相乘，积是它本身。
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：负数乘法的历史趣闻 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · “负负得正”的由来</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>“负负得正”这一规则，在古代数学中经过了漫长的探索。印度数学家婆罗摩笈多（7世纪）在著作中提到了负数的乘法：负×负=正，负×正=负。阿拉伯数学家也接受了这一规则。然而在欧洲，直到16世纪，许多数学家仍不接受负数，认为“负负得正”难以理解。</p>
+            <p>法国数学家笛卡尔发明坐标系后，负数的几何意义逐渐清晰，乘法规则也随之被广泛接受。中国古代数学虽然没有明确提出“负负得正”的表述，但在《九章算术》的“正负术”中，通过“同名相益，异名相除”等法则，已经隐含了负数的乘法思想。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+        </div>
+        <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">两数相乘，同号得正，异号得负，绝对值相乘</div>
+                <div class="summary-item">任何数乘0都得0</div>
+                <div class="summary-item">一个数与-1相乘得它的相反数</div>
+                <div class="summary-item">一个数与1相乘得它本身</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P42 练习第2、3题；习题1.9 A组第1、2题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 同号得正异号负，绝对值相乘要记住 ✨</p>
+
+    <div class="footer-note">
+        数学 七年级上册 · 第13课时
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById('answer' + index);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+            content.style.maxHeight = '300px';
+            toggle.textContent = '▼';
+        } else {
+            content.style.maxHeight = '0';
+            toggle.textContent = '▶';
+        }
+    }
+</script>
+</body>
+</html>

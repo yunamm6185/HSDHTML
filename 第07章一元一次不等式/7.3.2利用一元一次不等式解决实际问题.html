@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.3 解一元一次不等式（第二课时） | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .image-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .image-item {
+            text-align: center;
+        }
+        .image-item img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .sub-example {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #b0d4ee;
+            padding-top: 1rem;
+        }
+        .sub-example p {
+            margin-bottom: 0.5rem;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 4em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .ans-card {
+            background: #f9fefe;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-left: 4px solid #47945b;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .think-section {
+            margin-top: 1.5rem;
+            border-top: 2px dashed #b0d4ee;
+            padding-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 7.3</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <h2>7.3 解一元一次不等式</h2>
+    <div class="chapter-intro">★ 学会从实际问题中抽象出一元一次不等式，并求解。</div>
+    <div class="lesson-title">第二课时 利用一元一次不等式解决实际问题</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析实际问题中的不等关系，列出不等式</div>
+            <div class="target-item"><span>✔</span>掌握列不等式解应用题的一般步骤</div>
+            <div class="target-item"><span>✔</span>能根据实际意义确定答案的范围</div>
+        </div>
+    </div>
+
+    <!-- 例5 工程队挖土 -->
+    <div class="example-box">
+        <h4>例5 一个工程队原定在10天内至少要挖土 $600\,\mathrm{m}^3$，前两天一共完成了 $120\,\mathrm{m}^3$，由于整个工程调整工期，要求提前两天完成挖土任务。问：后6天内平均每天至少要挖土多少立方米？</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex5')">📌 显示解答</button>
+        <div id="ex5" class="answer-box">
+            <p>设后6天内平均每天挖土 $x\,\mathrm{m}^3$。</p>
+            <p>根据题意，前2天完成 $120\,\mathrm{m}^3$，后6天完成 $6x$，总挖土量不少于 $600\,\mathrm{m}^3$：</p>
+            <p>$120 + 6x \geq 600$，</p>
+            <p>解得 $6x \geq 480$，$x \geq 80$。</p>
+            <p>所以后6天内平均每天至少要挖土 $80\,\mathrm{m}^3$。</p>
+        </div>
+    </div>
+
+    <!-- 问题 知识竞赛 + 思考整合 -->
+    <div class="example-box">
+        <h4>问题 在“科学与艺术”知识竞赛的预选赛中共有20道题，对于每一道题，答对得10分，答错或不答扣5分，总得分不少于80分者能通过预选赛。育才中学有25名学生通过了预选赛，通过者至少应答对多少道题？有哪些可能情形？</h4>
+        <button class="interact-btn" onclick="toggleAnswer('prob')">📌 显示解答</button>
+        <div id="prob" class="answer-box">
+            <p>设答对 $x$ 道题，则答错或不答 $20-x$ 道题。</p>
+            <p>得分：$10x - 5(20-x) \geq 80$，</p>
+            <p>化简得 $10x -100 +5x \geq 80$，即 $15x \geq 180$，$x \geq 12$。</p>
+            <p>因此，通过者至少应答对12道题。可能的情形有：答对12、13、14、15、16、17、18、19、20道题。</p>
+        </div>
+
+        <!-- 思考部分（整合在此） -->
+        <div class="think-section">
+            <p><strong>思考 (1)</strong> 试解决这个问题。你是用什么方法解决的？有没有其他方法？与你的同伴讨论和交流一下。</p>
+            <button class="interact-btn" onclick="toggleAnswer('think1')">💡 讨论一</button>
+            <div id="think1" class="answer-box">
+                <div class="ans-card">
+                    <p>可以用不等式求解，也可以用方程先求出临界值（等于80分时）再结合题意取整。另外，也可以尝试用尝试检验法，但效率较低。与同伴交流时，可以比较不同方法的优劣。</p>
+                </div>
+            </div>
+
+            <p><strong>思考 (2)</strong> 如果你是利用不等式的知识解决这个问题的，那么在得到不等式的解集后，如何给出原问题的答案？应该如何表述？</p>
+            <button class="interact-btn" onclick="toggleAnswer('think2')">💡 讨论二</button>
+            <div id="think2" class="answer-box">
+                <div class="ans-card">
+                    <p>解集 $x \geq 12$ 表示答对题数至少为12。由于题数是整数，答案应表述为“至少应答对12道题”，并列出所有可能值（12,13,…,20）。在表述时，要明确说明符合条件的具体数值范围，并注意检查是否满足实际意义（如人数、题数等）。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习（课本第15页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 求下列不等式的所有正整数解：</p>
+            <p>(1) $-4x \geq -12$</p>
+            <p>(2) $3x - 11 < 0$</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 参考答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) $x \leq 3$，正整数解为 $1,2,3$。</p>
+                <p>(2) $x < \frac{11}{3}$，正整数解为 $1,2,3$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 一次智力测验，有20道选择题。评分标准为：对1题给5分，错1题扣2分，不答题不给分也不扣分。小明有2道题未答，则他至少要答对几道题，总分才不会低于60分？</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 参考答案</button>
+            <div id="prac2" class="answer-box">
+                <p>设答对 $x$ 道题，则答错 $20-2-x = 18-x$ 道题。</p>
+                <p>得分：$5x - 2(18-x) \geq 60$，即 $5x -36 +2x \geq 60$，$7x \geq 96$，$x \geq 13.7$，</p>
+                <p>所以 $x \geq 14$。他至少要答对14道题。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 习题7.3 A组（替换为实际应用题） -->
+    <div class="exercises" style="background-color: #eef4fa; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b9d6ef;">
+        <h3>📚 习题7.3 A组</h3>
+        <div class="exercise-item">
+            <p><strong>6.</strong> 某高速公路工地需要实施爆破，操作人员点燃导火线后，要在炸药爆炸前跑到 $400\,\mathrm{m}$ 以外的安全区域。已知导火线的燃烧速度是 $0.8\,\mathrm{cm/s}$，人跑步的速度是 $5\,\mathrm{m/s}$。问：导火线必须超过多长，才能保证操作人员的安全？</p>
+            <button class="interact-btn" onclick="toggleAnswer('exer6')">🔍 显示解答</button>
+            <div id="exer6" class="answer-box">
+                <p>设导火线长度为 $x\,\mathrm{cm}$，则导火线燃烧时间为 $\frac{x}{0.8}\,\mathrm{s}$，人跑到安全区所需时间为 $\frac{400}{5}=80\,\mathrm{s}$。</p>
+                <p>要保证安全，需燃烧时间大于人跑的时间：</p>
+                <p>$\frac{x}{0.8} > 80$</p>
+                <p>$x > 80 \times 0.8 = 64$。</p>
+                <p>所以导火线必须超过 $64\,\mathrm{cm}$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>7.</strong> 某次知识竞赛共有20道题，每一题答对得10分，答错或不答都扣5分。小明得分要超过90分，他至少要答对多少道题？</p>
+            <button class="interact-btn" onclick="toggleAnswer('exer7')">🔍 显示解答</button>
+            <div id="exer7" class="answer-box">
+                <p>设答对 $x$ 道题，则答错或不答 $20-x$ 道题。</p>
+                <p>得分：$10x - 5(20-x) > 90$</p>
+                <p>$10x - 100 + 5x > 90$</p>
+                <p>$15x > 190$</p>
+                <p>$x > 12.\overline{6}$</p>
+                <p>由于 $x$ 是整数，所以 $x \geq 13$。</p>
+                <p>他至少要答对13道题。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：古人的“盈不足” -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 古人的“盈不足”</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》中的“盈不足”问题，实际上就是利用两次假设的结果（盈与不足）来求符合要求的数值，其中蕴含着朴素的“大于”“小于”思想。例如“今有人共买物，人出八，盈三；人出七，不足四，问人数、物价各几何？”通过比较两种分配方案，可以列出方程（组）求解，这正是不等式思想的雏形。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将实际问题中的不等关系抽象为不等式模型。<br>
+        <strong>化归思想：</strong> 将实际问题转化为解不等式的问题。<br>
+        <strong>应用意识：</strong> 用不等式解决生活中的方案选择、范围确定等问题。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">列不等式解应用题的关键：找出不等关系</div>
+            <div class="summary-item">步骤：审、设、找、列、解、验、答</div>
+            <div class="summary-item">注意解集的实际意义，常取整数或符合条件的值</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题7.3 A组第6、7题，B组第7题（选做）。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 不等式是解决现实问题的利器，从实际中来，到实际中去 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第7章 7.3 第二课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

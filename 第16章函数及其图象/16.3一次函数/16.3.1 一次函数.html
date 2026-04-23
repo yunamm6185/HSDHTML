@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.1 一次函数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);} .interact-btn:active{transform:translateY(3px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 一次函数交互区 */
+        .func-demo{background:#f0fdff;border-radius:1.5rem;padding:1.5rem;margin:1.2rem 0;border:2px solid #a7d8e0;text-align:center;}
+        #linearCanvas{width:100%;max-width:500px;height:380px;border-radius:12px;background:white;border:2px solid #a7d8e0;}
+        .slider-row{display:flex;align-items:center;justify-content:center;gap:1rem;margin:.8rem 0;flex-wrap:wrap;}
+        .slider-label{font-weight:700;font-size:1rem;color:#0e7490;min-width:80px;text-align:right;}
+        input[type=range]{width:200px;height:8px;-webkit-appearance:none;background:#b2ebf2;border-radius:4px;outline:none;}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#14b8a6);cursor:pointer;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+        .formula-display{font-size:1.4rem;font-weight:700;color:#0f766e;padding:.5rem 1.5rem;background:white;border-radius:12px;display:inline-block;margin:.5rem 0;border:2px solid #80deea;}
+        .compare-table{margin:1rem 0;}
+        .compare-table th:first-child{width:25%;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.1 一次函数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解正比例函数和一次函数的概念</div>
+            <div class="target-item"><span>2</span>能判断一个函数是否为正比例函数或一次函数</div>
+            <div class="target-item"><span>3</span>理解正比例函数与一次函数的关系</div>
+            <div class="target-item"><span>4</span>能用待定系数法确定正比例函数和一次函数的表达式</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🔗 <strong>前面我们学习了函数的一般概念。现在我们来研究一类最基本、最重要的函数——<strong>一次函数</strong>。</strong></p>
+        <p>生活中很多问题都涉及两个量之间的<strong>线性关系</strong>：弹簧伸长量与所挂重物的关系、匀速运动中路程与时间的关系、购物时总价与数量的关系……这些都可用<strong>一次函数</strong>来刻画！</p>
+    </div>
+
+    <!-- 正比例函数 -->
+    <div class="section-title">📐 正比例函数</div>
+
+    <div class="fact-card">
+        <h4>📌 问题引入 — 弹簧的伸长</h4>
+        <p>一根弹簧不挂重物时长 10 cm，挂上重物后每增加 1 kg 重物，弹簧就伸长 0.5 cm（在弹性限度内）。设所挂重物质量为 $x$ kg，弹簧总长度为 $y$ cm：</p>
+        <button class="interact-btn" onclick="toggleAnswer('springQ')">💡 建立函数关系式</button>
+        <div id="springQ" class="answer-box">
+            <p><strong>分析：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>弹簧原长：10 cm（固定值）</li>
+                <li>挂 $x$ kg 重物后的伸长量：$0.5x$ cm</li>
+                <li>总长度：$y =$ 原长 + 伸长量 $= 10 + 0.5x$</li>
+            </ul>
+            <p style="margin-top:.5rem;">∴ 函数关系式为：$$y = 0.5x + 10 \quad (x \geq 0)$$</p>
+            <p>这个函数表达式中，自变量 $x$ 的最高次数是 <strong>1</strong>，且表达式是一个<strong>关于 $x$ 的整式</strong>。</p>
+        </div>
+    </div>
+
+    <div class="fact-card">
+        <h4>📌 正比例函数的定义</h4>
+        <div class="theorem-box">
+            <p><strong>正比例函数：</strong>形如 <strong>$y = kx$</strong>（$k$ 为常数，$k \neq 0$）的函数叫做<strong>正比例函数</strong>。其中 $k$ 叫做<strong>比例系数</strong>。</p>
+        </div>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>⚡ 正比例函数的关键特征：</strong></p>
+            <ol style="padding-left:1.5rem;line-height:1.9;">
+                <li>是关于 $x$ 的<strong>一次式</strong>（$x$ 的次数为 1）</li>
+                <li><strong>常数项为零</strong>（没有单独的常数项 $b$）</li>
+                <li>比例系数 $k \neq 0$</li>
+            </ol>
+        </div>
+        <div style="margin-top:1rem;">
+            <p><strong>判断下列哪些是正比例函数？如果是，指出比例系数 $k$：</strong></p>
+            <table class="compare-table" style="max-width:550px;">
+                <tr><th>函数</th><td>$y = -3x$</td><td>$y = \frac{x}{2}$</td><td>$y = x^2$</td><td>$y = 2x + 1$</td><td>$y = -\frac{x}{5}$</td></tr>
+                <tr><th>是否正比例</th><td>✅ 是 ($k=-3$)</td><td>✅ 是 ($k=\frac12$)</td><td>❌ 否(二次)</td><td>❌ 否(有常数)</td><td>✅ 是 ($k=-\frac15$)</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 一次函数 -->
+    <div class="section-title">📈 一次函数</div>
+
+    <div class="fact-card">
+        <h4>📌 一次函数的定义</h4>
+        <div class="theorem-box">
+            <p><strong>一次函数：</strong>形如 <strong>$y = kx + b$</strong>（$k$, $b$ 为常数，$k \neq 0$）的函数叫做<strong>一次函数</strong>。</p>
+            <p style="margin-top:.5rem;">其中：<strong>$k$</strong> 叫做一次项系数（或斜率），<strong>$b$</strong> 叫做常数项（或截距）。</p>
+        </div>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>⚡ 正比例函数与一次函数的关系：</strong></p>
+            <p style="text-align:center;font-size:1.2rem;">当 $b = 0$ 时，$y = kx + b$ 变成 $y = kx$</p>
+            <p style="text-align:center;"><strong>→ 正比例函数是一次函数的特例！</strong> 🎯</p>
+            <p style="margin-top:.5rem;">可以用集合表示：$\{\text{正比例函数}\} \subset \{\text{一次函数}\}$</p>
+        </div>
+    </div>
+
+    <!-- 对比表格 -->
+    <div class="explore-card">
+        <h4>正比例函数 vs 一般一次函数</h4>
+        <table class="compare-table">
+            <tr><th>比较项目</th><th>正比例函数 $y=kx$</th><th>一般一次函数 $y=kx+b$</th></tr>
+            <tr><td>表达式特征</td><td>无常数项（过原点）</td><td>有常数项 $b$</td></tr>
+            <tr><td>图象特征</td><td>过原点的直线</td><td>不过原点的直线（除非 $b=0$）</td></tr>
+            <tr><td>与 y 轴交点</td><td>$(0, 0)$</td><td>$(0, b)$</td></tr>
+            <tr><td>特例关系</td><td colspan="2" style="color:#ef4444;">正比例函数是 $b=0$ 时的一次函数</td></tr>
+        </table>
+    </div>
+
+    <!-- 交互演示 -->
+    <div class="func-demo">
+        <h4 style="color:#0e7490;margin-bottom:.8rem;">🎮 动态探究 — 调整参数观察一次函数变化</h4>
+        <canvas id="linearCanvas"></canvas>
+        <div class="slider-row">
+            <span class="slider-label">斜率 $k$：</span>
+            <input type="range" id="sliderK" min="-5" max="5" step="0.5" value="2">
+            <span id="valK" style="font-weight:700;color:#0ea5e9;width:35px;">2</span>
+        </div>
+        <div class="slider-row">
+            <span class="slider-label">截距 $b$：</span>
+            <input type="range" id="sliderB" min="-5" max="5" step="0.5" value="1">
+            <span id="valB" style="font-weight:700;color:#10b981;width:35px;">1</span>
+        </div>
+        <div class="formula-display" id="formulaDisplay">$y = 2x + 1$</div>
+        <div style="display:flex;justify-content:center;gap:1rem;margin-top:.5rem;">
+            <button class="interact-btn" onclick="setPreset(1,0)" style="font-size:.85rem;">正比例($k>0$)</button>
+            <button class="interact-btn" onclick="setPreset(-1,0)" style="font-size:.85rem;">正比例($k<0$)</button>
+            <button class="interact-btn" onclick="setPreset(2,3)" style="font-size:.85rem;">递增直线</button>
+            <button class="interact-btn" onclick="setPreset(-1,4)" style="font-size:.85rem;">递减直线</button>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 判断函数类型</h4>
+        <p>下列函数中，哪些是一次函数？哪些是正比例函数？</p>
+        <p>(1) $y = -2x+3$ &nbsp;&nbsp; (2) $y = \frac{x}{\pi}$ &nbsp;&nbsp; (3) $y = 3-x^2$ &nbsp;&nbsp; (4) $y = \frac{3}{x}$ &nbsp;&nbsp; (5) $y = (m-2)x$ ($m \neq 2$)</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：逐一判断：</strong></p>
+            <p><strong>(1)</strong> $y = -2x+3$ → 形如 $y=kx+b$，$k=-2 \neq 0$ → ✅ <strong>是一次函数</strong>，不是正比例函数（因为 $b=3 \neq 0$）</p>
+            <p><strong>(2)</strong> $y = \frac{x}{\pi} = \frac{1}{\pi}x$ → 形如 $y=kx+b$，$k=\frac{1}{\pi} \neq 0$，$b=0$ → ✅ <strong>既是正比例函数也是一次函数</strong></p>
+            <p><strong>(3)</strong> $y = 3-x^2$ → 含有 $x^2$ 项，不是关于 $x$ 的一次式 → ❌ <strong>不是一次函数</strong></p>
+            <p><strong>(4)</strong> $y = \frac{3}{x} = 3x^{-1}$ → 自变量在分母上，不是整式 → ❌ <strong>不是一次函数</strong>（这是反比例函数！）</p>
+            <p><strong>(5)</strong> $y = (m-2)x$ → 当 $m \neq 2$ 时，$k=m-2 \neq 0$，$b=0$ → ✅ <strong>既是正比例函数也是一次函数</strong></p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 用待定系数法求一次函数表达式</h4>
+        <p>已知一次函数 $y = kx + b$ 的图象经过点 $A(1, 3)$ 和点 $B(3, -1)$，求这个函数的表达式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong>将两点的坐标分别代入 $y = kx + b$：</p>
+            <p>把 $A(1, 3)$ 代入得：$k + b = 3$ &nbsp;&nbsp;……①</p>
+            <p>把 $B(3, -1)$ 代入得：$3k + b = -1$ &nbsp;&nbsp;……②</p>
+            <p>由 ② − ① 得：$2k = -4$ → $\boldsymbol{k = -2}$</p>
+            <p>代入①：$-2 + b = 3$ → $\boldsymbol{b = 5}$</p>
+            <p>∴ 所求的一次函数表达式为：$\boxed{y = -2x + 5}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 待定系数法的步骤：</strong></p>
+                <ol style="padding-left:1.5rem;line-height:1.9;">
+                    <li><strong>设</strong>出含有待定系数的函数表达式（如 $y = kx + b$）</li>
+                    <li><strong>代</strong>入已知条件（点的坐标），得到方程组</li>
+                    <li><strong>解</strong>方程组，求出待定系数</li>
+                    <li><strong>写</td>出最终表达式</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 求正比例函数表达式</h4>
+        <p>已知正比例函数的图象经过点 $(-2, 6)$，求该正比例函数的表达式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong>设正比例函数表达式为 $y = kx$（$k \neq 0$）</p>
+            <p>∵ 图象经过点 $(-2, 6)$</p>
+            <p>∴ 将 $x = -2$, $y = 6$ 代入：$6 = k \times (-2)$</p>
+            <p>解得：$k = -3$</p>
+            <p>∴ 该正比例函数的表达式为 $\boxed{y = -3x}$</p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                ⚠️ 正比例函数只有一个待定系数 $k$，所以只需<strong>一个条件</strong>就能确定！而一般一次函数有两个待定系数（$k$ 和 $b$），需要<strong>两个条件</strong>。
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 若 $y = (m-2)x^{m^2-3}$ 是正比例函数，则 $m$ = ______</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>要使 $y=(m-2)x^{m^2-3}$ 成为正比例函数，需满足：</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>指数 $= 1$：$m^2 - 3 = 1$ → $m^2 = 4$ → $m = \pm 2$</li>
+                <li>系数 $\neq 0$：$m - 2 \neq 0$ → $m \neq 2$</li>
+            </ul>
+            <p>综上：$m = \boldsymbol{-2}$（排除 $m=2$）</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 已知一次函数 $y = kx + b$ 经过 $(1, 5)$ 和 $(-1, 1)$ 两点：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(1) 求该一次函数的表达式</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(2) 求当 $x = 3$ 时 $y$ 的值</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(3) 求 $y = 0$ 时 $x$ 的值</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 代入两点：
+                <br>$k + b = 5$ ……①
+                <br>$-k + b = 1$ ……②
+                <br>①+②：$2b = 6$ → $b = 3$
+                <br>代入①：$k = 2$
+                <br>∴ $y = 2x + 3$
+            </p>
+            <p><strong>(2)</strong> 当 $x = 3$ 时，$y = 2\times3+3 =$ <strong>9</strong></p>
+            <p><strong>(3)</strong> 当 $y = 0$ 时，$2x + 3 = 0$ → $x = -\frac{3}{2}$</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>正比例函数</strong>：$y = kx$（$k \neq 0$），图象过原点的直线</li>
+            <li><strong>一次函数</strong>：$y = kx + b$（$k \neq 0$），图象是一条直线</li>
+            <li><strong>关系</strong>：正比例函数是 $b=0$ 时的特殊一次函数</li>
+            <li><strong>待定系数法</strong>：设→代→解→写（正比例需1个条件，一般一次函数需2个条件）</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}
+}
+
+// 一次函数动态绘制
+(function(){
+    var cv=document.getElementById('linearCanvas'),cx=cv.getContext('2d');
+    var K=2,B=1;
+    function resize(){var r=cv.parentElement.getBoundingClientRect();var s=Math.min(r.width,500);cv.width=s*(window.devicePixelRatio||1);cv.height=380*(window.devicePixelRatio||1);cx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);draw(s);}
+    function draw(size){
+        var W=size,H=380,padL=50,padR=30,padT=30,padB=50,cW=W-padL-padR,cH=H-padT-padB;
+        cx.clearRect(0,0,W,H);
+
+        // 网格
+        cx.strokeStyle='#f0f9ff';cx.lineWidth=1;
+        for(var i=-6;i<=6;i++){
+            var px=padL+(i+6)/12*cW;
+            if(i!==0){cx.beginPath();cx.moveTo(px,padT);cx.lineTo(px,H-padB);ctx.stroke();}
+            cx.fillStyle='#94a3b8';cx.font='11px';cx.textAlign='center';
+            if(i!==0)cx.fillText(i,px,H-padB+16);
+        }
+        for(var i=-5;i<=5;i++){
+            var py=padT+cH-(i+5)/10*cH;
+            if(i!==0){cx.strokeStyle='#f0f9ff';cx.beginPath();cx.moveTo(padL,py);cx.lineTo(W-padR,py).ctx.stroke();}
+            cx.textAlign='right';if(i!==0)cx.fillText(i,padL-6,py+4);
+        }
+
+        // 坐标轴
+        cx.strokeStyle='#334155';cx.lineWidth=2;
+        var yAxisPos=padT+cH-(0+5)/10*cH,xAxisPos=padL+(0+6)/12*cW;
+        cx.beginPath();cx.moveTo(padL,yAxisPos);cx.lineTo(W-padR+10,yAxisPos);cx.stroke();
+        cx.beginPath();cx.moveTo(xAxisPos,padT-10);cx.lineTo(xAxisPos,H-padB);ctx.stroke();
+        // 箭头
+        cx.fillStyle='#334155';
+        ctx.beginPath();ctx.moveTo(W-padR+10,yAxisPos);ctx.lineTo(W-padR,yAxisPos-4);ctx.lineTo(W-padR,yAxisPos+4).ctx.fill();
+        cx.beginPath();ctx.moveTo(xAxisPos,padT-10);ctx.lineTo(xAxisPos-4,padT);ctx.lineTo(xAxisPos+4,padT).ctx.fill();
+        cx.font='11px';cx.fillStyle='#64748b';
+        cx.fillText('O',padL-14,yAxisPos+14);
+        cx.fillStyle='#0e7490';cx.font='bold 13px';cx.textAlign='center';
+        cx.fillText('x',W-padR+14,yAxisPos+14);cx.save();cx.translate(xAxisPos+14,H/2);cx.rotate(-Math.PI/2);cx.fillText('y',0,0);cx.restore();
+
+        // 直线 y=Kx+B
+        cx.strokeStyle='#0ea5e9';cx.lineWidth=3;cxCap='round';cx.beginPath();
+        var started=false;
+        for(var px=padL;px<=W-padR;px+=1){
+            var x=(px-padL)/(cW)*(12)-6;
+            var y=K*x+B;
+            var py=padT+cH-(y+5)/10*cH;
+            if(py<padT-20||py>H-padB+20){if(started){cx.stroke();started=false;}continue;}
+            if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+        }
+        cx.stroke();
+
+        // 关键点
+        // 与y轴交点(0,B)
+        var p0x=xAxisPos,p0y=padT+cH-(B+5)/10*cH;
+        if(p0y>=padT && p0y<=H-padB){
+            cx.beginPath();cx.arc(p0x,p0y,6,0,Math.PI*2);cx.fillStyle='#10b981';cx.fill();cx.strokeStyle='white';cx.lineWidth=2;cx.stroke();
+            cx.fillStyle='#065f46';cx.font='bold 11px';cx.textAlign='left';cx.fillText('(0,'+B+')',p0x+10,p0y-6);
+        }
+        // 与x轴交点
+        if(K!==0){
+            var rootX=-B/K;
+            var rx=padL+(rootX+6)/12*cW;
+            if(rx>=padL && rx<=W-padR){
+                cx.beginPath();cx.arc(rx,yAxisPos,6,0,Math.PI*2);cx.fillStyle='#f59e0b';cx.fill();cx.stroke();
+                cx.fillStyle='#92400e';cx.textAlign='center';cx.fillText('('+rootX.toFixed(1)+',0)',rx,yAxisPos-12);
+            }
+        }
+    }
+    // 滑块事件
+    var sk=document.getElementById('sliderK'),sb=document.getElementById('sliderB');
+    sk.addEventListener('input',function(){K=parseFloat(this.value);document.getElementById('valK').textContent=K;document.getElementById('formulaDisplay').innerHTML='$y='+K+'x+'+B+'$';if(MathJax) MathJax.typesetPromise([document.getElementById('formulaDisplay')]).catch(function(){});draw(cv.width/(window.devicePixelRatio||1));});
+    sb.addEventListener('input',function(){B=parseFloat(this.value);document.getElementById('valB').textContent=B;document.getElementById('formulaDisplay').innerHTML='$y='+K+'x+'+B+'$';if(MathJax) MathJax.typesetPromise([document.getElementById('formulaDisplay')]).catch(function(){});draw(cv.width/(window.devicePixelRatio||1));});
+    window.setPreset=function(k,b){sk.value=k;sb.value=b;K=k;B=b;document.getElementById('valK').textContent=k;document.getElementById('valB').textContent=b;document.getElementById('formulaDisplay').innerHTML='$y='+k+'x+'+b+'$';if(MathJax)MathJax.typesetPromise([document.getElementById('formulaDisplay')]).catch(function(){});draw(cv.width/(window.devicePixelRatio||1));};
+    window.addEventListener('resize',resize);resize();
+})();
+</script>
+</body>
+</html>

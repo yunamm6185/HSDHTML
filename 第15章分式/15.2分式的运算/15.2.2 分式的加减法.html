@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.2.2 分式的加减法| 华师版·八年级下册</title>
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/copy-tex.min.js"></script>
+    <script>
+        function reRenderMath(el) {
+            if (window.renderMathInElement) {
+                renderMathInElement(el || document.body, {
+                    delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}],
+                    strict: false, trust: true, throwOnError: false
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            reRenderMath();
+        });
+        window.addEventListener('load', function() {
+            setTimeout(reRenderMath, 300);
+        });
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f3e8fd; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif; font-weight: 500; line-height: 1.6; color: #2d1867; padding: 1.5rem; font-size: 22px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: white; border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(102,126,234,0.35); padding: 2rem 2.5rem; border: 1px solid #d4c4f8; }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #b8a5e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem; font-weight: 600; font-size: 1.2rem; }
+        h1 { font-size: 2.4rem; color: #5a3d9a; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:5px; margin-top:8px; }
+        .lesson-title { text-align:center; font-size:2.2rem; color:#5a3d9a; background:linear-gradient(145deg,#ede6fc,#ddd0f5); padding:.6rem 1.2rem; border-radius:60px; border:3px solid #c9b8ea; margin:1.2rem 0 1.8rem; font-weight:700; }
+
+        .learning-targets { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-radius:2rem; padding:1.3rem 2rem; margin:1rem 0 2rem; border:1px solid #c9b8ea; box-shadow:0 5px 0 #b8a0e0; }
+        .learning-targets h3 { margin:0 0 0.8rem; font-size:1.5rem; border-left:6px solid #667eea; padding-left:1rem; }
+        .target-grid { display:flex; flex-wrap:wrap; gap:0.8rem; }
+        .target-item { background:white; border-radius:40px; padding:.4rem 1.5rem .4rem .9rem; display:flex; align-items:center; gap:.5rem; font-weight:600; font-size:1.1rem; box-shadow:0 3px 0 #c4b5e8; border:1px solid #d4c4f8; }
+        .target-item span { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; }
+
+        .intro-card { background:#ede6fc; border-radius:2rem; padding:1.5rem 2rem; margin:1.2rem 0; border-left:8px solid #667eea; font-weight:600; }
+        .explore-card { background:#e8fdf4; border-radius:1.8rem; padding:1.5rem 1.8rem; margin:1.4rem 0; border-left:8px solid #34c77b; font-weight:600; }
+        .explore-card h4 { font-size:1.4rem; margin-bottom:0.7rem; color:#1a8a4a; } .explore-card h4::before { content:"🔍 "; }
+        .fact-card { background:#fff8e1; border-left:8px solid #f0b34b; border-radius:1.8rem; padding:1.4rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .fact-card h4 { font-size:1.5rem; margin-bottom:0.6rem; color:#b85c1a; }
+        .theorem-box { background:#fff3cd; border:3px solid #f0b34b; border-radius:1.5rem; padding:1.2rem 2rem; margin:1rem 0; text-align:center; font-size:1.25rem; font-weight:700; color:#7a3d00; }
+        .example-card { background:#e8fdf4; border-left:8px solid #34c77b; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .example-card h4 { font-size:1.4rem; color:#1a8a4a; }
+        .reading-section { background:#fef9e6; border-left:8px solid #e6b422; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:500; }
+
+        .interact-btn { background:#ede6fc; border:none; color:#5a3d9a; padding:.5rem 1.4rem; border-radius:40px; font-weight:700; cursor:pointer; box-shadow:0 4px 0 #c4b5e8; margin:.5rem 0 0; font-size:1.2rem; }
+        .interact-btn:active { transform:translateY(2px); }
+        .answer-box { background:#faf8ff; border-left:6px solid #f0b34b; padding:.7rem 1.3rem; margin:.8rem 0; display:none; border-radius:0 1rem 1rem 0; font-size:1.25rem; }
+        .show-answer { display:block; }
+
+        .exercise-section { background:#f5efff; border-radius:2rem; padding:1.5rem 2rem; margin:2rem 0; }
+        .exercise-item { margin-bottom:1.5rem; }
+        .exercise-question { font-weight:700; color:#5a3d9a; font-size:1.2rem; margin-bottom:0.4rem; }
+
+        .summary-section { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-left:6px solid #667eea; border-radius:1.8rem; padding:1.2rem 2rem; margin:1.5rem 0; }
+        .math-idea { background:#ede6fc; border-left:8px solid #667eea; border-radius:1.8rem; padding:1rem 1.8rem; margin:1rem 0; }
+        .homework-box { background:linear-gradient(145deg,#ddd0f5,#ede6fc); border-radius:60px; padding:1rem 2rem; display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; margin:1.5rem 0; }
+
+        /* KaTeX 公式字体统一为 1.55em */
+        .katex { font-size: 1.55em !important; }
+        .katex-display { font-size: 1.55em !important; margin: 0.8rem 0 !important; }
+        .interact-btn .katex { font-size: 1.6em !important; }
+        .answer-box .katex { font-size: 1.55em !important; }
+        .example-card .katex { font-size: 1.55em !important; }
+        .fact-card .katex { font-size: 1.55em !important; }
+        .explore-card .katex { font-size: 1.55em !important; }
+        .exercise-item .katex { font-size: 1.55em !important; }
+        .message-box { background:#f0ebff; text-align:center; font-style:italic; border-left:8px solid #764ba2; padding:1rem 1.8rem; border-radius:2rem; margin:1.5rem 0; }
+        .footer-note { text-align:right; color:#5a3d9a; border-top:2px solid #c9b8ea; padding-top:.8rem; margin-top:1.5rem; }
+        .highlight { background:#d4f4dd; padding:.5rem 1rem; border-radius:1rem; margin:.5rem 0; }
+
+        table { width:100%; border-collapse:collapse; margin:1rem 0; background:white; border-radius:10px; overflow:hidden; }
+        th,td { padding:12px 16px; text-align:center; border:2px solid #ddd0f5; }
+        th { background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; }
+        tr:nth-child(even) { background:#faf8ff; } tr:hover { background:#ede6fc; }
+
+        .formula-compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1rem 0; }
+        @media(max-width:700px){ .formula-compare{grid-template-columns:1fr;} }
+
+        .step-card { background:linear-gradient(135deg,#faf8ff,#f5eeff); border:2px solid #ddd0f5; border-radius:1.2rem; padding:1rem 1.5rem; text-align:center; position:relative; }
+        .step-num { background:linear-gradient(135deg,#667eea,#764ba2); color:white; width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; font-size:.95rem; position:absolute; top:-14px; left:50%; transform:translateX(-50%); }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第15章 分式 · 15.2.2</span></div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.2.2 分式的加减法</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握同分母分式加减法的法则</div>
+            <div class="target-item"><span>✔</span>掌握异分母分式加减法的法则</div>
+            <div class="target-item"><span>✔</span>能熟练进行分式的加减混合运算</div>
+            <div class="target-item"><span>✔</span>能运用分式加减解决实际问题</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p>我们已经学习了分数的加减法，例如：</p>
+        <p style="text-align:center; font-size:1.15rem; margin:0.8rem 0;">
+            $\frac{1}{5} + \frac{2}{5} = \frac{3}{5}$ &nbsp;&nbsp;&nbsp;
+            $\frac{3}{4} - \frac{1}{4} = \frac{2}{4} = \frac{1}{2}$ &nbsp;&nbsp;&nbsp;
+            $\frac{1}{2} + \frac{1}{3} = \frac{3}{6} + \frac{2}{6} = \frac{5}{6}$
+        </p>
+        <ul style="margin-left:1.5rem; margin-top:0.5rem;">
+            <li><strong>同分母分数相加减：</strong>分母不变，分子相加减</li>
+            <li><strong>异分母分数相加减：</strong>先通分，再按同分母规则计算</li>
+        </ul>
+        <p><strong>那么，分式的加减法是否也遵循同样的法则呢？</strong></p>
+    </div>
+
+    <!-- 探究 -->
+    <div class="explore-card">
+        <h4>探究与发现</h4>
+        <p>计算下列各题（先观察规律）：</p>
+
+        <table style="margin:1rem auto;">
+            <tr><th>类型</th><th>题目</th><th>计算过程</th><th>结果</th></tr>
+            <tr>
+                <td rowspan="2">同分母</td>
+                <td>$\frac{a}{c}+\frac{b}{c}$</td>
+                <td>$\frac{a+b}{c}$</td>
+                <td style="color:#27ae60;">✅</td>
+            </tr>
+            <tr>
+                <td>$\frac{x}{y}-\frac{z}{y}$</td>
+                <td>$\frac{x-z}{y}$</td>
+                <td style="color:#27ae60;">✅</td>
+            </tr>
+            <tr>
+                <td rowspan="2">异分母</td>
+                <td>$\frac{1}{x}+\frac{1}{y}$</td>
+                <td>$\frac{y+x}{xy}$</td>
+                <td style="color:#27ae60;">✅</td>
+            </tr>
+            <tr>
+                <td>$\frac{a}{b}-\frac{c}{d}$</td>
+                <td>$\frac{ad-cb}{bd}$</td>
+                <td style="color:#27ae60;">✅</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 同分母法则 -->
+    <div class="fact-card">
+        <h4>📌 同分母分式加减法法则</h4>
+        <div class="highlight">
+            <p><strong>法则：</strong>同分母的分式相加减，<strong>分母不变，分子相加减</strong>。</p>
+        </div>
+        <div class="theorem-box">
+            $$\frac{A}{C} \pm \frac{B}{C} = \frac{A \pm B}{C}$$
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('same_note')">📝 注意事项</button>
+        <div id="same_note" class="answer-box">
+            <ul style="margin-left:1.5rem;">
+                <li>运算结果要<strong>约分化为最简分式</strong></li>
+                <li>如果分子是多项式，相加减时要加括号！</li>
+                <li>注意符号：减去一个多项式等于加上它的相反数</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 异分母法则 -->
+    <div class="fact-card">
+        <h4>📌 异分母分式加减法法则</h4>
+        <div class="highlight">
+            <p><strong>法则：</strong>异分母的分式相加减，<strong>先通分，变为同分母的分式，再加减</strong>。</p>
+        </div>
+        <div class="theorem-box" style="font-size:1.1rem;">
+            $$\frac{A}{B} \pm \frac{C}{D} = \frac{AD}{BD} \pm \frac{CB}{BD} = \frac{AD \pm CB}{BD}$$
+        </div>
+        <p style="margin-top:0.8rem;"><strong>关键步骤：</strong></p>
+        <ol style="margin-left:1.5rem; font-size:0.98rem;">
+            <li>确定各分母的<strong>最简公分母</strong>（LCD）</li>
+            <li>将每个分式化为以 LCD 为分母的同分母分式</li>
+            <li>按同分母法则进行加减运算</li>
+            <li>结果化为最简分式或整式</li>
+        </ol>
+    </div>
+
+    <!-- 步骤对比 -->
+    <div class="explore-card">
+        <h4>两种类型对比</h4>
+        <div class="formula-compare">
+            <div class="step-card">
+                <div class="step-num">①</div>
+                <p style="margin-top:0.8rem;"><strong>同分母加减</strong></p>
+                <hr style="margin:0.6rem 0; border:none; border-top:2px dashed #ddd0f5;">
+                <p style="font-size:0.95rem;">$\frac{A}{C} + \frac{B}{C} = \frac{A+B}{C}$</p>
+                <p style="font-size:0.92rem; color:#666; margin-top:0.5rem;">→ 分母不变<br>→ 分子相加减<br>→ 约分化简</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">②</div>
+                <p style="margin-top:0.8rem;"><strong>异分母加减</strong></p>
+                <hr style="margin:0.6rem 0; border:none; border-top:2px dashed #ddd0f5;">
+                <p style="font-size:0.95rem;">$\frac{A}{B} + \frac{C}{D}$ → 通分 → $\frac{AD+BC}{BD}$</p>
+                <p style="font-size:0.92rem; color:#666; margin-top:0.5rem;">→ 找最简公分母<br>→ 通分为同分母<br>→ 按同分母计算</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例1 - 同分母 -->
+    <div class="example-card">
+        <h4>例1 计算（同分母）：</h4>
+        <p><strong>(1)</strong> $\frac{5x+3}{x-1} - \frac{2x-1}{x-1}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1_1')">✍️ 解答过程</button>
+        <div id="ex1_1" class="answer-box">
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{(5x+3)-(2x-1)}{x-1}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{5x+3-2x+1}{x-1}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3x+4}{x-1}$</p>
+            <p style="color:#e74c3c; font-size:0.92rem;">⚠️ 注意：分子相减时，$-(2x-1)$ 要加括号！</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>(2)</strong> $\frac{a+2b}{a+b} + \frac{b-2a}{a+b}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1_2')">✍️ 解答过程</button>
+        <div id="ex1_2" class="answer-box">
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{(a+2b)+(b-2a)}{a+b}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{a+2b+b-2a}{a+b}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{-a+3b}{a+b}$</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>(3)</strong> $\frac{m^2-n^2}{mn} - \frac{m+n}{m}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1_3')">✍️ 解答过程</button>
+        <div id="ex1_3" class="answer-box">
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{m^2-n^2}{mn} - \frac{n(m+n)}{mn}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{m^2-n^2-mn-n^2}{mn}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{m^2-mn-2n^2}{mn}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{(m-2n)(m+n)}{mn}$</p>
+        </div>
+    </div>
+
+    <!-- 例2 - 异分母 -->
+    <div class="example-card">
+        <h4>例2 计算（异分母）：</h4>
+        <p><strong>(1)</strong> $\frac{1}{2x} + \frac{1}{3x}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2_1')">✍️ 解答过程</button>
+        <div id="ex2_1" class="answer-box">
+            <p>最简公分母为 $6x$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3}{6x} + \frac{2}{6x}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{5}{6x}$</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>(2)</strong> $\frac{2a}{a-b} - \frac{b}{a+b}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2_2')">✍️ 解答过程</button>
+        <div id="ex2_2" class="answer-box">
+            <p>最简公分母为 $(a-b)(a+b)=a^2-b^2$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{2a(a+b)-b(a-b)}{(a-b)(a+b)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{2a^2+2ab-ab+b^2}{a^2-b^2}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{2a^2+ab+b^2}{a^2-b^2}$</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>(3)</strong> $\frac{1}{x-2} - \frac{1}{x+2}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2_3')">✍️ 解答过程</button>
+        <div id="ex2_3" class="answer-box">
+            <p>最简公分母为 $(x-2)(x+2)=x^2-4$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{(x+2)-(x-2)}{(x-2)(x+2)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{4}{x^2-4}$</p>
+        </div>
+    </div>
+
+    <!-- 例3 - 混合运算 -->
+    <div class="example-card">
+        <h4>例3 计算（混合运算）：</h4>
+        <p>$\left(\frac{1}{x-1} + \frac{1}{x+1}\right) \cdot \frac{x^2-1}{x}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong>先算括号内，再乘</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \left[\frac{x+1+(x-1)}{(x-1)(x+1)}\right] \cdot \frac{(x+1)(x-1)}{x}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{2x}{(x-1)(x+1)} \cdot \frac{(x+1)(x-1)}{x}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{2x(x+1)(x-1)}{x(x-1)(x+1)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = 2$</p>
+            <p style="color:#27ae60; margin-top:0.4rem;">✅ 结果为整式 2</p>
+        </div>
+    </div>
+
+    <!-- 例4 - 异分母加减（图片中的例题） -->
+    <div class="example-card">
+        <h4>例4 计算：</h4>
+        <p>$\frac{3}{x-4} - \frac{24}{x^2-16}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">✍️ 解答过程</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>分析：</strong>两个分式的分母不同，要先通分。为此，先找出它们的最简公分母。注意到 $x^2-16=(x+4)(x-4)$，所以最简公分母是 $(x+4)(x-4)$。</p>
+            <p style="margin-top:0.5rem;"><strong>解：</strong></p>
+            <p>&nbsp;&nbsp;$\displaystyle \frac{3}{x-4} - \frac{24}{x^2-16}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3}{x-4} - \frac{24}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3(x+4)}{(x+4)(x-4)} - \frac{24}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3(x+4)-24}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3x+12-24}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3x-12}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3(x-4)}{(x+4)(x-4)}$</p>
+            <p>&nbsp;&nbsp;$\displaystyle = \frac{3}{x+4}$</p>
+        </div>
+    </div>
+
+    <!-- 读一读 类比 -->
+    <div class="reading-section">
+        <h4>📖 读一读——类比</h4>
+        <p>在数学中，类比是一种重要的思想方法。当我们学习新的知识时，常常可以与已经学过的、熟悉的内容进行类比，从而帮助我们理解和掌握新知识。</p>
+        <p style="margin-top:0.5rem;"><strong>分数与分式的类比：</strong></p>
+        <table style="margin:0.5rem 0;">
+            <tr><th>分数</th><th>分式</th></tr>
+            <tr><td>$\frac{1}{2} + \frac{1}{3} = \frac{3+2}{6} = \frac{5}{6}$</td><td>$\frac{1}{a} + \frac{1}{b} = \frac{b+a}{ab}$</td></tr>
+            <tr><td>$\frac{2}{5} - \frac{1}{5} = \frac{2-1}{5} = \frac{1}{5}$</td><td>$\frac{2}{x} - \frac{1}{x} = \frac{2-1}{x} = \frac{1}{x}$</td></tr>
+        </table>
+        <p style="margin-top:0.5rem; color:#5a3d9a;"><strong>类比的关键：</strong>分数和分式在运算规则上有着惊人的相似性！掌握了分数的运算法则，通过类比，我们就能轻松理解和运用分式的运算法则。</p>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 计算：</p>
+            <p><strong>(1)</strong> $\frac{2a}{a+b} + \frac{2b}{a+b}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1_1')">🔍 答案</button>
+            <div id="p1_1" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2a+2b}{a+b}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2(a+b)}{a+b}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = 2$</p>
+            </div>
+            <p style="margin-top:0.8rem;"><strong>(2)</strong> $\frac{x^2-y^2}{xy} - \frac{x-y}{x}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1_2')">🔍 答案</button>
+            <div id="p1_2" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{(x+y)(x-y)}{xy} - \frac{y(x-y)}{xy}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{(x-y)(x+y-y)}{xy}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{x(x-y)}{xy}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{x-y}{y}$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：</p>
+            <p><strong>(1)</strong> $\frac{1}{x-3} + \frac{1}{x+3}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2_1')">🔍 答案</button>
+            <div id="p2_1" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{(x+3)+(x-3)}{(x-3)(x+3)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2x}{x^2-9}$</p>
+            </div>
+            <p style="margin-top:0.8rem;"><strong>(2)</strong> $\frac{2}{a+1} - \frac{1}{a-1}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2_2')">🔍 答案</button>
+            <div id="p2_2" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2(a-1)-(a+1)}{(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2a-2-a-1}{a^2-1}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{a-3}{a^2-1}$</p>
+            </div>
+            <p style="margin-top:0.8rem;"><strong>(3)</strong> $\frac{4}{a^2-1} - \frac{2}{a^2+a}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2_3')">🔍 答案</button>
+            <div id="p2_3" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4}{(a+1)(a-1)} - \frac{2}{a(a+1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4a}{a(a+1)(a-1)} - \frac{2(a-1)}{a(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4a-2(a-1)}{a(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4a-2a+2}{a(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2a+2}{a(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2(a+1)}{a(a+1)(a-1)}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{2}{a(a-1)}$</p>
+            </div>
+            <p style="margin-top:0.8rem;"><strong>(4)</strong> $\frac{4}{a+2} + a - 2$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2_4')">🔍 答案</button>
+            <div id="p2_4" class="answer-box">
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4}{a+2} + \frac{(a-2)(a+2)}{a+2}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4}{a+2} + \frac{a^2-4}{a+2}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{4+a^2-4}{a+2}$</p>
+                <p>&nbsp;&nbsp;$\displaystyle = \frac{a^2}{a+2}$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实际应用 -->
+    <div class="reading-section">
+        <h4>🏆 实际应用——行程问题</h4>
+        <p><strong>问题：</strong>一艘轮船在静水中的速度为 $v$ km/h，水流速度为 $u$ km/h。该船从 A 港出发，顺流航行到 B 港再返回，往返一次的平均速度是多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('app')">✍️ 解答过程</button>
+        <div id="app" class="answer-box">
+            <p><strong>分析：</strong></p>
+            <p>• 顺流速度 = $v + u$（km/h）</p>
+            <p>• 逆流速度 = $v - u$（km/h）（假设 $v > u$）</p>
+            <p>• 设单程距离为 $S$ km</p>
+            <p>• 往返总时间 = $\frac{S}{v+u} + \frac{S}{v-u} = \frac{S(v-u)+S(v+u)}{v^2-u^2} = \frac{2Sv}{v^2-u^2}$</p>
+            <p><strong>平均速度</strong> = 总路程 ÷ 总时间 = $\dfrac{2S}{\frac{2Sv}{v^2-u^2}} = \dfrac{v^2-u^2}{v}$（km/h）</p>
+        </div>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>同分母：</strong>$\frac{A}{C} \pm \frac{B}{C} = \frac{A \pm B}{C}$ — 分母不变，分子相加减</div>
+        <div style="margin-top:0.5rem;">• <strong>异分母：</strong>先通分（找最简公分母），再按同分母法则计算</div>
+        <div style="margin-top:0.5rem;">• <strong>混合运算顺序：</strong>先算括号内，再算乘除，最后算加减</div>
+        <div style="margin-top:0.5rem;">• <strong>易错点：</strong>分子相减时别忘了给被减的多项式加括号；代入求值前检查定义域</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong>由分数加减法类比到分式加减法。<br>
+        <strong>转化思想：</strong>异分母问题通过"通分"转化为同分母问题。<br>
+        <strong>整体观念：</strong>分子作为整体参与运算，注意符号变化。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P17 练习第1~4题；思考：分式加减的结果一定还是分式吗？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 同分分母不动摇，分子加减记牢靠；异分通分变同道，细心计算错不了。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.2.2 分式的加减法</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b)b.classList.toggle('show-answer');
+}
+</script>
+</body>
+</html>

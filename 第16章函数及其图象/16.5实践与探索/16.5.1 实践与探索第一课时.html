@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.1 实践与探索(第一课时) | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .reading-section{background:#fefce8;border-left:8px solid #eab308;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:500;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.5.1 实践与探索（第一课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>能用一次函数模型解决简单的实际问题</div>
+            <div class="target-item"><span>2</span>掌握从实际问题中抽象出一次函数模型的方法</div>
+            <div class="target-item"><span>3</span>能结合函数图象分析实际问题的最优解</div>
+            <div class="target-item"><span>4</span>体会数学建模的思想方法</div>
+        </div>
+    </div>
+
+    <!-- 问题1：电话费用 -->
+    <div class="section-title">📞 探究一：电话费方案选择问题</div>
+
+    <div class="explore-card">
+        <h4>问题情境</h4>
+        <p>某市有两种手机计费方案：</p>
+        <table style="max-width:500px;">
+            <tr><th>方案</th><td>月租费（元）</td><td>通话费（元/分钟）</td></tr>
+            <tr><td>A方案</td><td>20</td><td>0.15</td></tr>
+            <tr><td>B方案</td><td>0</td><td>0.30</td></tr>
+        </table>
+        <p>(1) 分别写出两种方案的月话费 $y$ 与通话时间 $x$（分钟）的函数关系式</p>
+        <p>(2) 如果每月通话时间为 100 分钟，选哪种更划算？</p>
+        <p>(3) 通话多少分钟时两种方案费用相同？何时选A划算？何时选B划算？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prob1')">💡 详细解答</button>
+        <div id="prob1" class="answer-box">
+            <p><strong>(1)</strong></p>
+            <p>$y_A = 0.15x + 20$（$x \geq 0$）</p>
+            <p>$y_B = 0.30x$（$x \geq 0$）</p>
+            <p><strong>(2)</strong> 当 $x = 100$ 时：</p>
+            <p>$y_A = 0.15\times100 + 20 =$ <strong>35 元</strong></p>
+            <p>$y_B = 0.30\times100 =$ <strong>30 元</strong></p>
+            <p>∴ 选 B 方案更划算（省 5 元）</p>
+            <p><strong>(3)</strong> 令 $y_A = y_B$：</p>
+            <p>$0.15x + 20 = 0.30x$ → $0.15x = 20$ → $\boldsymbol{x = \frac{400}{3} \approx 133.33}$ 分钟</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>$x < \frac{400}{3}$ 时，$y_A > y_B$ → <strong>选 B 划算</strong></li>
+                <li>$x = \frac{400}{3}$ 时，两者一样</li>
+                <li>$x > \frac{400}{3}$ 时，$y_A < y_B$ → <strong>选 A 划算</strong></li>
+            </ul>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 实用建议：</strong>月通话量少于约133分钟的用户适合无月租的B方案；超过133分钟的"话务达人"则应选择有月租但单价低的A方案。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题2：行程中的追及问题 -->
+    <div class="section-title">🏃 探究二：行程问题中的函数建模</div>
+
+    <div class="explore-card">
+        <h4>问题情境 — 追及问题</h4>
+        <p>甲、乙两人分别从相距 36 km 的 A、B 两地同时出发，相向而行。甲从 A 地出发前往 B 地，速度为 4 km/h；乙从 B 地出发前往 A 地，速度为 5 km/h。两人出发后经过多长时间相遇？相遇时距离 A 地多远？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prob2')">💡 建模求解</button>
+        <div id="prob2" class="answer-box">
+            <p><strong>方法一：方程法（传统做法）</strong></p>
+            <p>设出发后 $t$ 小时相遇。相遇时两人走的路程之和等于总距离：</p>
+            <p>$$4t + 5t = 36$$</p>
+            <p>$$9t = 36$$</p>
+            <p>$$t = 4 \text{ 小时}$$</p>
+            <p>此时甲距 A 地：$4 \times 4 =$ <strong>16 km</strong>（或乙距 A 地：$36 - 5\times4 = 16$ km）</p>
+            <hr style="border:none;border-top:2px dashed #a7d8e0;margin:1rem 0;">
+            <p><strong>方法二：函数法（新思路）</strong></p>
+            <p>设甲距 A 地的距离为 $s_甲$（km），乙距 A 地的距离为 $s_乙$（km），时间 $t$（h）：</p>
+            <p>$s_{甲} = 4t$（从A出发向B走）</p>
+            <p>$s_{乙} = 36 - 5t$（从B出发向A走，距离A越来越近）</p>
+            <p>相遇时 $s_{甲} = s_{乙}$：$4t = 36 - 5t$ → 同样得 $t = 4$ 小时</p>
+        </div>
+    </div>
+
+    <!-- 综合应用 -->
+    <div class="section-title">🔧 综合探究 — 分段计费的函数模型</div>
+
+    <div class="example-card">
+        <h4>例 出租车分段计费问题</h4>
+        <p>某城市出租车收费标准如下：起步价 10 元（不超过 3 km），超出部分每千米收费 2 元（不足 1 km 按 1 km 计）。设行驶路程为 $x$ km，应付车费为 $y$ 元。</p>
+        <p>(1) 当 $0 < x \leq 3$ 时，$y$ 关于 $x$ 的表达式是什么？</p>
+        <p>(2) 当 $x > 3$ 时，$y$ 关于 $x$ 的表达式是什么？（提示：不足1km按1km计，即取整处理）</p>
+        <p>(3) 小明打车行驶了 6.5 km，需要付多少钱？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> 在起步范围内（$0 < x \leq 3$）：$\boxed{y = 10}$（常数函数）</p>
+            <p><strong>(2)</strong> 超出 3 km 后：
+                <br>超出的路程为 $(x-3)$ km
+                <br>按向上取整规则，实际计费路程为 $\lceil x-3 \rceil$ km
+                <br>总费用：$\boxed{y = 10 + 2\lceil x-3 \rceil}$（$x > 3$）
+            </p>
+            <p>如果简化处理（不按取整，按实际里程）：$y = 2x + 4$（$x > 3$）</p>
+            <p><strong>(3)</strong> 行驶 6.5 km：
+                <br>前 3 km：10 元
+                <br>后 3.5 km → 按规则计 4 km：$4 \times 2 = 8$ 元
+                <br>总计：<strong>18 元</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 某工厂生产一种产品，每件成本 40 元，出厂价为 60 元。该厂为促销决定：凡一次性订购超过 100 件者，每多一件全部产品的出厂价降低 0.02 元（最低不低于 50 元/件）。写出利润 $y$ 与订购量 $x$（$x > 100$）之间的函数关系式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案提示</button>
+        <div id="pr1" class="answer-box">
+            <p>单件利润 = 售价 - 成本</p>
+            <p>当订购量为 $x$（$x > 100$）时：</p>
+            <p>降价幅度 = $0.02(x - 100)$ 元/件</p>
+            <p>实际售价 = $60 - 0.02(x-100) = 62 - 0.02x$ 元/件</p>
+            <p>单件利润 = $(62 - 0.02x) - 40 = 22 - 0.02x$</p>
+            <p>总利润：$y = x(22 - 0.02x) = 22x - 0.02x^2$（注意这是二次函数！）</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 一根弹簧原长 15 cm，挂上物体后的长度 $y$（cm）与物重 $x$（kg）满足一次函数关系。测得挂 2 kg 时长 17 cm，挂 5 kg 时长 22.5 cm：</p>
+        <p>&nbsp;&nbsp;(1) 求 $y$ 与 $x$ 的函数关系式 &nbsp;&nbsp;(2) 弹簧长度为 25 cm 时所挂物重是多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 设 $y = kx + b$</p>
+            <p>b = 原长 = 15（当 $x=0$ 时 $y=15$）→ $b = 15$</p>
+            <p>代入 $(2, 17)$：$2k + 15 = 17$ → $k = 1$</p>
+            <p>验证：$(5, 22.5)$ → $1\times5+15=20 \neq 22.5$ ❌</p>
+            <p>重新计算：用两点法——$(2,17)$ 和 $(5,22.5)$</p>
+            <p>斜率 $k = (22.5-17)/(5-2) = 5.5/3 = 11/6$</p>
+            <p>代入 $(2,17)$：$(11/6)\times2 + b = 17$ → $b = 17 - 11/3 = 40/3$</p>
+            <p>∴ $y = \frac{11}{6}x + \frac{40}{3}$（注意：这不是过原点的正比例关系！弹簧不一定过原点。）</p>
+            <p><strong>(2)</strong> $25 = \frac{11}{6}x + \frac{40}{3}$ → $\frac{11}{6}x = 25 - \frac{40}{3} = \frac{35}{3}$ → $x = \frac{70}{11} \approx 6.36$ kg</p>
+        </div>
+    </div>
+
+    <!-- 数学文化 -->
+    <div class="reading-section">
+        <h4 style="color:#a16207;font-size:1.3rem;">📖 数学阅读 — 数学建模的意义</h4>
+        <p><strong>数学建模</strong>是指将实际问题转化为数学问题的过程。它通常包括以下步骤：</p>
+        <ol style="padding-left:1.5rem;line-height:2;">
+            <li><strong>理解问题</strong>：明确已知条件和待求目标</li>
+            <li><strong>建立模型</strong>：引入变量，找出变量之间的关系（如一次函数、反比例函数等）</li>
+            <li><strong>求解模型</strong>：利用数学工具解方程或不等式</li>
+            <li><strong>解释结果</strong>：将数学解还原到实际问题中，检验合理性</li>
+        </ol>
+        <p>本章学习的<strong>一次函数</strong>和<strong>反比例函数</strong>是最基本的数学模型之一，在工程、经济、物理等领域有着极其广泛的应用。</p>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ol>
+            <li><strong>实际问题建模的关键</strong>：找准常量和变化率，写出正确的函数关系式</li>
+            <li><strong>一次函数的实际应用</strong>：费用比较、行程问题、方案选择等</li>
+            <li><strong>注意自变量的取值范围</strong>：实际问题中要考虑非负性、整数性等约束</li>
+            <li>建模四步曲：<strong>审题 → 设元 → 建模 → 求解 → 验证</strong></li>
+        </ol>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

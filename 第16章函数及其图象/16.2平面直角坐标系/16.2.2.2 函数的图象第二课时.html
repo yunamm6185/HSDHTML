@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.2.2 函数的图象(第二课时) | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;} .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}
+        tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 图象交互 */
+        .graph-area{position:relative;width:100%;max-width:520px;margin:1.2rem auto;text-align:center;}
+        #mainCanvas{width:100%;height:420px;border-radius:12px;background:white;border:2px solid #a7d8e0;}
+        .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;}
+        .compare-card{padding:1rem;border-radius:12px;text-align:center;}
+        .card-a{background:#dcfce7;border:2px solid #86efac;}
+        .card-b{background:#dbeafe;border:2px solid #93c5fd;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.2.2 函数的图象（第二课时）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>进一步熟练描点法，能画出较复杂函数的图象</div>
+            <div class="target-item"><span>2</span>理解函数的三种表示方法之间的相互转化</div>
+            <div class="target-item"><span>3</span>能从函数图象分析函数的性质和变化趋势</div>
+            <div class="target-item"><span>4</span>能用函数的图象解决简单的实际问题</div>
+        </div>
+    </div>
+
+    <!-- 复习引入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🔄 <strong>上节课我们学习了用"描点法"画函数图象的基本步骤：列表→描点→连线。</strong></p>
+        <p>本节课我们将深入探讨：<strong>三种表示方法的相互转换</strong>以及<strong>利用函数图象解决实际问题</strong>。</p>
+    </div>
+
+    <!-- 三种表示法的相互转化 -->
+    <div class="section-title">🔄 函数三种表示法的相互转化</div>
+
+    <div class="fact-card">
+        <h4>📌 解析法 ↔ 列表法 ↔ 图象法</h4>
+        <table>
+            <tr><th style="width:22%;">转化方向</th><th>方法</th><th>示例</th></tr>
+            <tr><td>解析法 → 列表法</td><td>取 $x$ 值，代入解析式计算 $y$</td><td>$y=x^2$ → 取 $x=-2,-1,0,1,2$ 得 $y=4,1,0,1,4$</td></tr>
+            <tr><td>列表法 → 图象法</td><td>以 $(x,y)$ 为坐标描点、连线</td><td>表格数据 → 在坐标系中标出各点并连线</td></tr>
+            <tr><td>图象法 → 列表法</td><td>从图象中读取若干点的坐标</td><td>从曲线图上读出关键点的 $(x,y)$ 值</td></tr>
+            <tr><td>图象法 → 解析法</td><td>根据图象特征猜测或推导关系式</td><td>观察过原点的直线，推测 $y=kx$</td></tr>
+        </table>
+    </div>
+
+    <div class="explore-card">
+        <h4>例1 从图象写出函数表达式</h4>
+        <p>已知一个函数的图象是经过原点和点 $(2, 6)$ 的直线，求这个函数的表达式，并画出它的图象。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong>设这个函数的表达式为 $y = kx + b$（$k \neq 0$）</p>
+            <p>∵ 图象经过原点 $O(0, 0)$ ∴ 当 $x = 0$ 时，$y = 0$，即 $b = 0$</p>
+            <p>∵ 图象经过点 $(2, 6)$ ∴ 代入 $y = kx$ 得：$6 = k \times 2$ → $k = 3$</p>
+            <p>∴ 函数表达式为 $\boxed{y = 3x}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法总结：</strong>"两点确定一条直线"——知道直线上两个点的坐标，就可以确定直线对应的函数表达式！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 实际应用：行程问题 -->
+    <div class="section-title">🚗 实际应用：行程问题的函数图象</div>
+
+    <div class="explore-card">
+        <h4>例2 行程问题 — 小明的骑车之旅</h4>
+        <p>下图反映了小明骑自行车离家的距离 $s$（km）与时间 $t$（min）之间的函数关系：</p>
+        <div class="graph-area">
+            <canvas id="tripCanvas"></canvas>
+        </div>
+        <p>(1) 小明到达离家最远的地方需要多长时间？此时离家多远？</p>
+        <p>(2) 小明在途中停留了多久？在什么时间段？</p>
+        <p>(3) 小明从最远的地方返回到家总共用了多长时间？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">💡 详细分析</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>图象解读：</strong>这是一段分段函数的图象</p>
+            <ol style="padding-left:1.5rem;line-height:2;">
+                <li><strong>0~20 min</strong>：距离从 0 增加到 6 km → 骑车去程，速度为 $6\div20=$ 0.18 km/min</li>
+                <li><strong>20~30 min</strong>：距离保持 6 km 不变 → 停留休息，停留时间 <strong>10 分钟</strong></li>
+                <li><strong>30~50 min</strong>：距离从 6 km 减少到 0 → 骑车返程，速度为 $6\div20=$ 0.18 km/min</li>
+            </ol>
+            <p><strong>(1)</strong> 到达最远处需 <strong>20 分钟</strong>，此时离家 <strong>6 km</strong></p>
+            <p><strong>(2)</strong> 停留了 <strong>10 分钟</strong>（第 20~30 分钟）</p>
+            <p><strong>(3)</strong> 返回用了 <strong>20 分钟</strong>（第 30~50 分钟），总行程用时 <strong>50 分钟</strong></p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 读图技巧：</strong></p>
+                <ul style="padding-left:1.5rem;line-height:1.8;">
+                    <li><strong>水平线段</strong> → 停留/静止状态</li>
+                    <li><strong>上升线段</strong> → 远离出发点</li>
+                    <li><strong>下降线段</strong> → 回到出发点</li>
+                    <li><strong>斜率越大</strong> → 速度越快</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分段函数 -->
+    <div class="section-title">📊 认识分段函数</div>
+
+    <div class="fact-card">
+        <h4>📌 什么是分段函数？</h4>
+        <div class="theorem-box">
+            <p>有些函数在<strong>自变量的不同取值范围内</strong>，<strong>对应法则不同</strong>。这种函数称为<strong>分段函数</strong>。分段函数的图象通常由<strong>几段不同的曲线（或线段）组成</strong>。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 出租车计费问题</h4>
+        <p>某市出租车的收费标准为：不超过 3 km 收费 10 元；超过 3 km 的部分每千米收费 2 元。写出车费 $y$（元）与行驶路程 $x$（km）之间的函数关系式，并画出大致图象。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong>这是一个典型的分段函数问题。</p>
+            <p><strong>当 $0 &lt; x \leq 3$ 时：</strong>$y = 10$（起步价）</p>
+            <p><strong>当 $x > 3$ 时：</strong>$y = 10 + 2(x - 3) = 2x + 4$</p>
+            <div class="highlight-box">
+                <p>综上：</p>
+                <p style="text-align:center;">$$ y = \begin{cases} 10, & 0 < x \leq 3 \\ 2x+4, & x > 3 \end{cases} $$</p>
+            </div>
+            <p>图象特征：第一段是水平线段 $y=10$（$0<x\leq3$）；第二段是从 $(3,10)$ 开始向右上方延伸的射线。</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;margin-top:.5rem;">
+                <li>特殊点：$(3, 10)$ 是转折点（两段的连接点）</li>
+                <li>当行驶 5 km 时：$y = 2\times5+4 =$ <strong>14 元</strong></li>
+                <li>当行驶 8 km 时：$y = 2\times8+4 =$ <strong>20 元</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 某水池的容积为 1000 m³，现向池内注水，注水量 $V$（m³）与时间 $t$（min）的关系如图所示。请回答：</p>
+        <ul style="padding-left:1.5rem;line-height:2;">
+            <li>注满整个水池需要多少分钟？</li>
+            <li>前 20 分钟注入了多少水？后 20 分钟呢？</li>
+        </ul>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案提示</button>
+        <div id="pr1" class="answer-box">
+            <p>这类题目关键是看横轴终点对应的时间值，以及不同时段纵坐标的变化量。通常注水速度不恒定时图象不是一条直线。</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 已知函数 $y = -\frac{1}{2}x + 3$：</p>
+        <p>(1) 用列表法列出 $x = -2, 0, 2, 4, 6$ 对应的 $y$ 值</p>
+        <p>(2) 描点画出该函数的图象</p>
+        <p>(3) 从图象上看，$y$ 随 $x$ 的增大如何变化？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 表格如下：</p>
+            <table style="max-width:350px;display:inline-table;"><tr><th>x</th><td>-2</td><td>0</td><td>2</td><td>4</td><td>6</td></tr><tr><th>y</th><td>4</td><td>3</td><td>2</td><td>1</td><td>0</td></tr></table>
+            <p><strong>(2)</strong> 描点连线得到一条<strong>从左上方到右下方</strong>的直线</p>
+            <p><strong>(3)</strong> 从图象可以看出：随着 $x$ 增大，$y$ 逐渐<strong>减小</strong>（直线向下倾斜）</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li>函数三种表示法可以<strong>互相转化</strong>：
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• 解析式 → 取值计算 → 表格
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• 表格 → 描点连线 → 图象
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;• 图象 → 读取坐标 → 表格 / 观察规律 → 解析式
+            </li>
+            <li><strong>读图的要点</strong>：看起点、终点、转折点、变化趋势（上升/下降/水平）、特殊意义</li>
+            <li><strong>分段函数</strong>：自变量在不同范围有不同的表达式，图象由多段组成</li>
+            <li>实际应用中的常见类型：<strong>行程问题</strong>、<strong>计费问题</strong>、<strong>注水/放水问题</strong>等</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}
+}
+
+// 行程图象绘制
+(function(){
+    var cv=document.getElementById('tripCanvas');if(!cv)return;
+    var cx=cv.getContext('2d');
+    function resize(){var r=cv.parentElement.getBoundingClientRect();var s=Math.min(r.width,500);cv.width=s*(window.devicePixelRatio||1);cv.height=400*(window.devicePixelRatio||1);cx.scale(window.devicePixelRatio||1,window.devicePixelRatio||1);draw(s);}
+    function draw(size){
+        var W=size,H=400,padL=55,padR=25,padT=30,padB=50,cW=W-padL-padR,cH=H-padT-padB;
+        cx.clearRect(0,0,W,H);
+        // 网格
+        cx.strokeStyle='#f0f9ff';cx.lineWidth=1;
+        for(var i=0;i<=60;i+=10){var x=padL+i/60*cW;cx.beginPath();cx.moveTo(x,padT);cx.lineTo(x,H-padB);cx.stroke();cx.fillStyle='#94a3b8';cx.font='11px';cx.textAlign='center';if(i>0)cx.fillText(i+'分',x,H-padB+16);}
+        for(var i=0;i<=8;i+=2){var y=H-padB-i/8*cH;cx.beginPath();cx.moveTo(padL,y);ctx.lineTo(W-padR,y);cx.stroke();cx.textAlign='right';cx.fillText(i+'km',padL-8,y+4);}
+
+        // 轴
+        cx.strokeStyle='#334155';cx.lineWidth=2;
+        cx.beginPath();cx.moveTo(padL,H-padB);cx.lineTo(W-padR+10,H-padB);cx.stroke();
+        cx.beginPath();cx.moveTo(padL,padT-10);cx.lineTo(padL,H-padB);cx.stroke();
+        cx.fillStyle='#334155';
+        cx.beginPath();cx.moveTo(W-padR+10,H-padB);cx.lineTo(W-padR,H-padB-4);cx.lineTo(W-padR,H-padB+4).cx.fill();
+        cx.fillStyle='#64748b';cx.font='11px';
+        cx.fillText('O',padL-12,H-padB+16);
+        cx.fillStyle='#0e7490';cx.font='bold 13px';cx.textAlign='center';cx.fillText('时间 t (min)',W/2,H-4);
+        cx.save();cx.translate(16,H/2);cx.rotate(-Math.PI/2);cx.fillText('距离 s (km)',0,0);cx.restore();
+
+        // 数据: [0,0]→[20,6]→[30,6]→[50,0]
+        var data=[{t:0,s:0},{t:20,s:6},{t:30,s:6},{t:50,s:0}];
+        // 填充区域
+        var grad=cx.createLinearGradient(0,padT,0,H-padB);
+        grad.addColorStop(0,'rgba(14,165,233,0.15)');
+        grad.addColorStop(1,'rgba(14,165,233,0.02)');
+        cx.fillStyle=grad;cx.beginPath();
+        cx.moveTo(padL+data[0].t/60*cW,H-padB-data[0].s/8*cH);
+        data.forEach(function(d){cx.lineTo(padL+d.t/60*cW,H-padB-d.s/8*cH);});
+        cx.lineTo(padL+data[3].t/60*cW,H-padB);cx.fill();
+
+        // 线条
+        cx.strokeStyle='#0ea5e9';cx.lineWidth=3;cxCap='round';cxJoin='round';cx.beginPath();
+        data.forEach(function(d,i){var x=padL+d.t/60*cW,y=H-padB-d.s/8*cH;if(i===0)cx.moveTo(x,y);else cx.lineTo(x,y);});
+        cx.stroke();
+        // 关键点标注
+        var labels=['家(0,0)','最远(20min,6km)','开始返回(30min,6km)','到家(50min,0)'];
+        data.forEach(function(d,i){var x=padL+d.t/60*cW,y=H-padB-d.s/8*cH;
+            cx.beginPath();cx.arc(x,y,6,0,Math.PI*2);cx.fillStyle='#ef4444';cx.fill();cx.strokeStyle='white';cx.lineWidth=2;cx.stroke();
+            cx.fillStyle='#1e293b';cx.font='bold 11px';cx.textAlign=i%2===0?'left':'right';
+            if(i===0)cx.fillText(labels[i],x+10,y-8);else if(i===1)cx.fillText(labels[i],x+8,y-12);
+            else if(i===2)cx.fillText(labels[i],x-8,y-12);else cx.fillText(labels[i],x-10,y+18);
+        });
+        // 段说明
+        cx.fillStyle='#0891b2';cx.font='bold 12px';
+        cx.fillText('去程',padL+10/60*cW,H-padB-25);
+        cx.fillText('停留',padL+25/60*cW,H-padB-45);
+        cx.fillText('返程',padL+40/60*cW,H-padB-35);
+    }
+    window.addEventListener('resize',resize);resize();
+})();
+</script>
+</body>
+</html>

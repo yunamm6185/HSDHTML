@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.4.2 反比例函数的图象和性质 | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 双曲线对比 */
+        .hyper-canvas{text-align:center;margin:1rem 0;}
+        .hyper-canvas canvas{width:100%;max-width:450px;height:380px;background:white;border:2px solid #a7d8e0;border-radius:12px;display:inline-block;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.4.2 反比例函数的图象和性质</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>会用描点法画反比例函数 $y=\frac{k}{x}$ 的图象</div>
+            <div class="target-item"><span>2</span>掌握反比例函数图象的特征（双曲线）和分布规律</div>
+            <div class="target-item"><span>3</span>理解并掌握反比例函数的性质（增减性、对称性等）</div>
+            <div class="target-item"><span>4</span>能利用反比例函数的性质解决相关问题</div>
+        </div>
+    </div>
+
+    <!-- 描点画图 -->
+    <div class="section-title">📈 用描点法画反比例函数的图象</div>
+
+    <div class="explore-card">
+        <h4>探究活动 — 画出 $y = \frac{6}{x}$ 和 $y = -\frac{6}{x}$ 的图象</h4>
+        <p><strong>$y = \frac{6}{x}$（$k = 6 > 0$）</strong></p>
+        <table style="width:auto;margin:.5rem auto;">
+            <tr><th>x</th><td>-6</td><td>-3</td><td>-2</td><td>-1</td><td>1</td><td>2</td><td>3</td><td>6</td></tr>
+            <tr><th>y</th><td>-1</td><td>-2</td><td>-3</td><td>-6</td><td>6</td><td>3</td><td>2</td><td>1</td></tr>
+        </table>
+        <p><strong>$y = -\frac{6}{x}$（$k = -6 < 0$）</strong></p>
+        <table style="width:auto;margin:.5rem auto;">
+            <tr><th>x</th><td>-6</td><td>-3</td><td>-2</td><td>-1</td><td>1</td><td>2</td><td>3</td><td>6</td></tr>
+            <tr><th>y</th><td>1</td><td>2</td><td>3</td><td>6</td><td>-6</td><td>-3</td><td>-2</td><td>-1</td></tr>
+        </table>
+
+        <button class="interact-btn" onclick="toggleAnswer('disc1')">💡 观察发现</button>
+        <div id="disc1" class="answer-box">
+            <ol style="padding-left:1.5rem;line-height:2.2;">
+                <li>反比例函数的图象是<strong>双曲线</strong>，由<strong>两支组成</strong></li>
+                <li>当 $k > 0$ 时：两支分别在<strong>第一、三象限</strong>；在每个象限内 $y$ 随 $x$ 增大而减小</li>
+                <li>当 $k < 0$ 时：两支分别在<strong>第二、四象限</strong>；在每个象限内 $y$ 随 $x$ 增大而增大</li>
+                <li>图象关于<strong>原点对称</strong></li>
+                <li>图象<strong>不经过原点</strong>，且<strong>与坐标轴没有交点</strong>（无限接近但不相交）</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 性质总结 -->
+    <div class="section-title">📊 反比例函数的性质总结</div>
+
+    <div class="fact-card">
+        <h4>📌 反比例函数 $\displaystyle y = \frac{k}{x}$ ($k \neq 0$) 的图象与性质</h4>
+        <table>
+            <tr><th>性质</th><th>$k > 0$</th><th>$k < 0$</th></tr>
+            <tr><td>图象位置</td><td>第一、三象限</td><td>第二、四象限</td></tr>
+            <tr><td>各象限内增减性</td><td>$y$ 随 $x$ 增大而<strong>减小</strong></td><td>$y$ 随 $x$ 增大而<strong>增大</strong></td></tr>
+            <tr><td>对称性</td><td colspan="2" style="color:#ef4444;">关于原点中心对称</td></tr>
+            <tr><td>与坐标轴关系</td><td colspan="2">不经过原点，不与坐标轴相交（渐近线为 x 轴和 y 轴）</td></tr>
+            <tr><td>$|k|$ 对形状的影响</td><td colspan="2">$|k|$ 越大 → 离原点越远；$|k|$ 越小 → 越靠近坐标轴</td></tr>
+        </table>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 利用增减性比较大小</h4>
+        <p>(1) 已知点 $P_1(x_1, y_1)$、$P_2(x_2, y_2)$ 在 $y = \dfrac{5}{x}$ 的图象上，且 $x_1 > x_2 > 0$，比较 $y_1$ 与 $y_2$。</p>
+        <p>(2) 已知点 $A(x_1, y_1)$、$B(x_2, y_2)$ 在 $y = -\dfrac{3}{x}$ 的图象上，且 $x_1 < x_2 < 0$，比较 $y_1$ 与 $y_2$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong> ∵ $y = \dfrac{5}{x}$ 中 $k = 5 > 0$<br>∴ 在每个象限内 $y$ 随 $x$ 增大而<strong>减小</strong></p>
+            <p>又 ∵ $x_1 > x_2 > 0$（都在第一象限）<br>∴ $\boxed{y_1 < y_2}$</p>
+            <p><strong>(2)</strong> ∵ $y = -\dfrac{3}{x}$ 中 $k = -3 < 0$<br>∴ 在每个象限内 $y$ 随 $x$ 增大而<strong>增大</strong></p>
+            <p>又 ∵ $x_1 < x_2 < 0$（都在第三象限）<br>∴ $x_1$ 较小 → $y_1$ 也较小 → $\boxed{y_1 < y_2}$</p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                ⚠️ <strong>重要提醒：</strong>比较反比例函数值时，<strong>两个点必须在同一个象限内</strong>！如果不在同一象限，无法直接用增减性比较。
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 求满足条件的自变量范围</h4>
+        <p>已知反比例函数 $y = \dfrac{4}{x}$：</p>
+        <p>(1) 当 $x > 0$ 且 $y < 2$ 时，求 $x$ 的取值范围</p>
+        <p>(2) 当 $-2 < y < 2$ 时，求 $x$ 的取值范围</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> ∵ $k = 4 > 0$ → 在第一象限递减<br>先求 $y = 2$ 时的 $x$ 值：$2 = \dfrac{4}{x}$ → $x = 2$</p>
+            <p>要使 $y < 2$（比 $y=2$ 更低），由于递减：<br>x 越大 y 越小 → 需要 $x > 2$</p>
+            <p>又已知 $x > 0$ → 综合得 $\boxed{x > 2}$</p>
+            <p><strong>(2)</strong> 先找边界：
+                <br>$y = 2$ 时 $x = 2$；$y = -2$ 时 $x = -2$
+            </p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>在第一象限（$x > 0$）：要使 $0 < y < 2$ → $x > 2$</li>
+                <li>在第三象限（$x < 0$）：要使 $-2 < y < 0$ → $x < -2$</li>
+            </ul>
+            <p>∴ $\boxed{x > 2 \text{ 或 } x < -2}$</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 实际应用 — 面积问题</h4>
+        <p>如图，点 $A(m, n)$ 在反比例函数 $y = \dfrac{k}{x}$（$k > 0, x > 0$）的图象上。过点 $A$ 分别作 $x$ 轴、$y$ 轴的垂线，垂足分别为 $B$、$C$。求矩形 $OBAC$ 的面积。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong>∵ 点 $A(m, n)$ 在 $y = \dfrac{k}{x}$ 上<br>∴ $\displaystyle n = \frac{k}{m}$ → $mn = k$</p>
+            <p>矩形 $OBAC$ 的面积 = $|OB| \times |OC| = |m| \times |n|$</p>
+            <p>∵ $k > 0$, $x > 0$（第一象限）→ $m > 0$, $n > 0$</p>
+            <p>∴ 矩形面积 $S = m \times n = mn = \boxed{|k| = k}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 重要结论：</strong>对于反比例函数 $y = \frac{k}{x}$ 图象上任意一点作两坐标轴的垂线，所得矩形的面积恒等于 $|k|$！这是一个非常常用的结论！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 若 $A(x_1, y_1)$、$B(x_2, y_2)$ 是 $y = -\dfrac{2}{x}$ 图象上的两点，且 $x_1 > x_2 > 0$，则下列正确的是（&nbsp;&nbsp;）</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;A. $y_1 > y_2$ &nbsp;&nbsp;&nbsp;&nbsp; B. $y_1 < y_2$ &nbsp;&nbsp;&nbsp;&nbsp; C. $y_1 = y_2$ &nbsp;&nbsp;&nbsp;&nbsp; D. 无法确定</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>选 <strong>A</strong>。$k=-2<0$，在一、三象限内 $y$ 随 $x$ 增大而<strong>增大</strong>。$x_1 > x_2$ → $y_1 > y_2$。</p>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 已知反比例函数 $y = \dfrac{k}{x}$ 的图象在第二、四象限，且经过点 $(2, m)$。若 $m < n$，试比较 $n$ 与 的大小。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p>∵ 图象在第二、四象限 → $k < 0$</p>
+            <p>点 $(2, m)$：$x=2>0$ 应该在第四象限 → $m < 0$</p>
+            <p>代入得 $m = \dfrac{k}{2} < 0$ ✓</p>
+            <p>又 $m < n$ → 要比较的是 $n$ 与什么？题目似乎缺少条件。通常此类问题会给出另一个点或具体数值。</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ol>
+            <li><strong>图象形状</strong>：双曲线，有两支，关于原点对称</li>
+            <li><strong>$k > 0$</strong>→ 一、三象限；各象限内 $y$ 随 $x$ 增大而减小</li>
+            <li><strong>$k < 0$</strong>→ 二、四象限；各象限内 $y$ 随 $x$ 增大而增大</li>
+            <li><strong>注意</strong>：讨论增减性时必须限定在<strong>同一象限内</strong></li>
+            <li><重要结论</strong>：曲线上任一点向两轴作垂线形成的矩形面积 = $|k|$</li>
+        </ol>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

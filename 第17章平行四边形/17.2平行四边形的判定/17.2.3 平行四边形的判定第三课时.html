@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<title>17.2.3 平行四边形的判定（第三课时）| 华师版·八年级下册</title>
+<script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+.textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+.learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+.learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+.target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #2a7faa;font-weight:600;}
+.explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+.explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+.fact-card{background:#fff8e1;border-left:8px solid #f0b34b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b85c1a;}
+.theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+.example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.example-card h4{font-size:1.35rem;color:#1d6130;}
+.interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;}.interact-btn:active{transform:translateY(2px);}
+.answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+.section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+.summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+.math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+.homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+.message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+.footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}p{margin:.5rem 0;}canvas{max-width:100%;height:auto;border-radius:12px;}
+table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #dcebf5;}th{background:linear-gradient(135deg,#2675a8,#3a9fd5);color:white;}tr:nth-child(even){background:#f6fbff;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.2.3</span></div>
+<h1>第17章 平行四边形</h1>
+<div class="lesson-title">17.2.3 平行四边形的判定（第三课时）——两组对角/综合</div>
+
+<div class="learning-targets"><h3>🎯 学习目标</h3><div class="target-grid">
+<div class="target-item"><span>1</span>掌握"两组对角分别相等"的判定方法</div>
+<div class="target-item"><span>2</span>系统掌握全部5种平行四边形判定方法</div>
+<div class="target-item"><span>3</span>能根据条件灵活选择最优判定方法</div>
+<div class="target-item"><span>4</span>解决较复杂的平行四边形证明题</div>
+:</div></div>
+
+<!-- 复习 -->
+<div class="intro-card"><p style="font-size:1.15rem;">📋 <strong>已学4种判定方法</strong></p><table style="margin:.5rem auto;">
+<tr><th>#</th><th>名称</th><th>条件</th></tr>
+<tr><td>1</td><td>定义法</td><td>两组对边分别平行</td></tr>
+<tr><td>2</td><td>SSS法</td><td>两组对边分别相等</td></tr>
+<tr><td>3</td><td>一边法</td><td>一组对边平行且相等</td></tr>
+<tr><td>4</td><td>对角线法</td><td>对角线互相平分</td></tr>
+<tr style="background:#fff8e1;"><td><strong>5</strong></td><td><strong>本节：对角法</strong></td><td>两组对角分别相等</td></tr>
+</table></div>
+
+<!-- 判定方法5 -->
+<div class="section-title">一、判定方法5：两组对角分别相等</div>
+
+<div class="explore-card"><h4>探究活动</h4>
+<p><strong>猜想：</strong>如果四边形的<strong>两组对角分别相等</strong>，它是平行四边形吗？</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="exploreFig" width="320" height="200"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('proof')">查看证明</button>
+<div id="proof" class="answer-box">
+<p><strong>已知：</strong>在四边形ABCD中，∠A=∠C，∠B=∠D</p>
+<p><strong>求证：</strong>四边形ABCD是平行四边形</p><hr style="border:none;border-top:1px dashed #ccc;margin:.5rem 0;">
+<p><strong>证明：</strong></p>
+<p>∵ 四边形内角和为360° → ∠A+∠B+∠C+∠D = 360°</p>
+<p>又 ∠A=∠C，∠B=∠D → 2∠A + 2∠B = 360°</p>
+<p>→ ∠A + ∠B = 180°</p>
+<p>→ AD ∥ BC（同旁内角互补）……①</p>
+<p>同理：∠B + ∠C = 180° → AB ∥ CD ……②</p>
+<p>由①②得：两组对边分别平行 → $\square$ABCD ✅</p>
+</div></div>
+
+<div class="theorem-box">
+<p><strong>判定定理5：两组对角分别相等的四边形是平行四边形。</strong></p>
+<p>∵ ∠A=∠C 且 ∠B=∠D ∴ 四边形ABCD是平行四边形</p>
+</div>
+
+<!-- 例题 -->
+<div class="section-title">二、例题讲解</div>
+
+<div class="example-card"><h4>例1 综合运用多种判定方法</h4>
+<p>如图，E、F分别是▱ABCD的对角线AC上的两点，且AE=CF。求证：四边形BFDE是平行四边形。</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex1Fig" width="380" height="260"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答（多种方法）</button>
+<div id="ex1" class="answer-box">
+<p><strong>证法一（对角线法）：</strong></p>
+<p>连接BD、EF交于O。∵ ▱ABCD → 对角线互相平分</p>
+<p>→ O是AC的中点。又 AE=CF → E、F关于O对称</p>
+<p>→ OE=OF 且 OB=OD → 四边形BFDE是$\square$ ✅</p>
+<hr style="border:none;border-top:1px dashed #eee;margin:.5rem 0;">
+<p><strong>证法二（一边法）：</strong>证明DE∥BF且DE=BF</p>
+<hr style="border:none;border-top:1px dashed #eee;margin:.5rem 0;">
+<p><strong>证法三（SSS法）：</strong>证明BE=DF且DE=BF</p>
+</div></div>
+
+<div class="example-card"><h4>例2 角度条件的转化</h4>
+<p>在四边形ABCD中，∠A : ∠B : ∠C : ∠D = 3 : 2 : 3 : 2，求证：四边形ABCD是平行四边形。</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex2Fig" width="340" height="220"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答</button>
+<div id="ex2" class="answer-box">
+<p><strong>解：</strong>设∠A=3x，则∠B=2x，∠C=3x，∠D=2x</p>
+<p>内角和：3x+2x+3x+2x=360° → 10x=360° → x=36°</p>
+<p>∴ ∠A=∠C=108°，∠B=∠D=72°</p>
+<p>即<strong>两组对角分别相等</strong> → 四边形ABCD是<strong>平行四边形</strong> ✅</p>
+</div></div>
+
+<div class="example-card"><h4>例3 实际应用——木工问题</h4>
+<p>木匠师傅要制作一个平行四边形的桌面，他测量了四个角，发现相对的两个角都是85°和95°。这个桌面合格吗？为什么？</p>
+<div style="text-align:center;margin:1rem 0;"><canvas id="ex3Fig" width="360" height="210"></canvas></div>
+<button class="interact-btn" onclick="toggleAnswer('ex3')">分析</button>
+<div id="ex3" class="answer-box">
+<p><strong>答：</strong>不合格！因为四个角的度数应该是：<br>
+• 两组对角相等：两个85°，两个95°<br>
+• 但如果测量结果是"相邻两角分别为85°和95°"，那说明两组对角相等（85°=85°，95°=95°），<strong>应该是合格的</strong>。</p>
+<p style="color:#991b1b;">⚠️ 关键要看<strong>相对</strong>的两个角是否相等！</p>
+</div></div>
+
+<!-- 练习 -->
+<div class="section-title">三、课堂练习</div>
+<div class="example-card"><h4>练习1</h4>
+<p>下列哪个条件不能单独判定平行四边形？<br>A) 两组对角分别相等 &nbsp;&nbsp; B) 一组对角相等且一组邻角互补<br>C) 邻角都互补 &nbsp;&nbsp; D) 一个角的两边被对角线平分</p>
+<button class="interact-btn" onclick="toggleAnswer('p1')">答案</button>
+<div id="p1" class="answer-box"><strong>B</strong>。"一组对角相等+一组邻角互补"不能保证另一组对角也相等。C选项等价于两组对边平行。</div></div>
+
+<div class="example-card"><h4>练习2</h4>
+<p>▱ABCD中，E是BC的中点，F是CD上一点，满足DF:FC=1:2。若EF交BD于G，求EG:GF。</p>
+<button class="interact-btn" onclick="toggleAnswer('p2')">提示</button>
+<div id="p2" class="answer-box">提示：作辅助线或利用相似三角形。过F作FK∥CD交BG于K，或延长FE交AB延长线于H。</div></div>
+
+<!-- 易错点 -->
+<div class="warn-box">
+<strong>⚠️ 易错提醒</strong>
+<ul style="margin-top:.5rem;padding-left:1.5rem;"><li>"<strong>两组对角相等</strong>"可以判定，但"<strong>一组对角相等</strong>"不行</li><li>"<strong>邻角互补</strong>"（所有邻角都补）等价于"两组对角分别相等"</li><li>角度条件和边/对角线条件要<strong>配合使用</strong>才能高效解题</li></ul>
+</div>
+
+<!-- 小结 -->
+<div class="summary-section"><h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 全部5种判定方法汇总</h3>
+<table style="margin:.5rem auto;"><tr><th>方法</th><th>条件</th><th>核心思路</th></tr>
+<tr><td>①定义法</td><td>两组对边分别平行</td><td>直接应用定义</td></tr>
+<tr><td>②SSS法</td><td>两组对边分别相等</td><td>证全等→得平行</td></tr>
+<tr><td>③一边法</td><td>一组对边平行且相等</td><td>SAS全等→得另一组相等</td></tr>
+<tr><td>④对角线法</td><td>对角线互相平分</td><td>SAS全等→得一边平行且相等</td></tr>
+<tr><td>⑤对角法</td><td>两组对角分别相等</td><td>邻角互补→得两组对边平行</td></tr>
+</table></div>
+
+<div class="math-idea"><h4>🧠 数学思想·核心素养</h4>
+<p><strong>系统思维：</strong>建立完整的知识体系，理解各种方法的内在联系。<br><strong>优化策略：</strong>根据已知条件选择最优判定路径。<br><strong>逻辑推理：</strong>每步证明都要严谨，培养数学表达能力。</p></div>
+
+<div class="homework-box"><span style="font-size:2rem;">📚</span><span><strong>作业：</strong>课本P108 练习第1~3题；习题17.2 第6~8题；绘制平行四边形性质与判定的对比表。</span></div>
+
+<div class="message-box"><p>✨ 五种判定记心间，灵活选择是关键；边角线面各有法，平行四边形任我辨！✨</p></div>
+<div class="footer-note">八年级下册 · 第17章 17.2.3 平行四边形的判定（第三课时）</div>
+</div>
+
+<script>
+function toggleAnswer(id){const b=document.getElementById(id);if(b)b.classList.toggle('show-answer');}
+
+/* ========== 探究活动图形：平行四边形 + 角度标注（∠A=∠C红色, ∠B=∠D蓝色弧线）========== */
+function drawExploreFig(){
+    const c=document.getElementById('exploreFig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    // 平行四边形顶点 A(左上) B(右上) C(右下) D(左下)
+    const A=[55,35], B=[275,35], C=[265,165], D=[45,165];
+    
+    // 填充 + 描边
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#2675a818';ctx.fill();
+    ctx.strokeStyle='#2675a8';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 绘制角度弧线辅助函数
+    function drawAngleArc(vertex, p1, p2, radius, color, label) {
+        let a1=Math.atan2(p1[1]-vertex[1],p1[0]-vertex[0]);
+        let a2=Math.atan2(p2[1]-vertex[1],p2[0]-vertex[0]);
+        // 确保逆时针方向
+        if(a2 < a1) a2 += Math.PI*2;
+        ctx.beginPath();ctx.arc(vertex[0],vertex[1],radius,a1,a2);
+        ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();
+        // 标签位置
+        let midAngle=(a1+a2)/2;
+        let lx=vertex[0]+(radius+16)*Math.cos(midAngle),ly=vertex[1]+(radius+16)*Math.sin(midAngle);
+        ctx.fillStyle=color;ctx.font='bold 13px Segoe UI';ctx.textAlign='center';ctx.fillText(label,lx,ly);
+    }
+
+    // ∠A = ∠C (红色)
+    drawAngleArc(A, D, B, 30, '#e74c3c', '∠A');
+    drawAngleArc(C, B, D, 30, '#e74c3c', '∠C');
+    // ∠B = ∠D (蓝色)
+    drawAngleArc(B, A, C, 28, '#3a9fd5', '∠B');
+    drawAngleArc(D, C, A, 28, '#3a9fd5', '∠D');
+
+    // 图例
+    ctx.font='bold 11px Segoe UI';
+    ctx.fillStyle='#e74c3c';ctx.fillRect(c.width-90,8,12,12);ctx.fillText('= 红色组',c.width-72,19);
+    ctx.fillStyle='#3a9fd5';ctx.fillRect(c.width-90,26,12,12);ctx.fillText('= 蓝色组',c.width-72,37);
+
+    // 顶点标签
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#0b4b78';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-10,A[1]+5);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+8,B[1]+5);
+    ctx.fillText('C',C[0]+8,C[1]+5);
+    ctx.textAlign='right';ctx.fillText('D',D[0]-10,D[1]+5);
+
+    // 标注等式
+    ctx.font='bold 12px Segoe UI';
+    ctx.fillStyle='#e74c3c';ctx.textAlign='center';ctx.fillText('∠A = ∠C', c.width/2, c.height-8);
+}
+
+/* ========== 例1图形：▱ABCD + 对角线AC + E,F在AC上 + BFDE四边形 ========== */
+function drawEx1Fig(){
+    const c=document.getElementById('ex1Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    // ▱ABCD 顶点
+    const A=[60,25], B=[330,25], C=[310,225], D=[40,225];
+    
+    // 画平行四边形ABCD
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#e8f0f8';ctx.fill();
+    ctx.strokeStyle='#2675a8';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 对角线AC
+    ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(C[0],C[1]);
+    ctx.strokeStyle='#999';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+
+    // E、F在AC上（AE=CF，即E和F关于中心对称）
+    const O=[(A[0]+C[0])/2,(A[1]+C[1])/2]; // AC中点
+    const E=[A[0]+(O[0]-A[0])*0.38,A[1]+(O[1]-A[1])*0.38];
+    const F=[O[0]+(C[0]-O[0])*0.38,O[1]+(C[1]-O[1])*0.38];
+
+    // 连接 BF 和 DE 形成四边形BFDE
+    ctx.beginPath();ctx.moveTo(B[0],B[1]);ctx.lineTo(F[0],F[1]);ctx.lineTo(D[0],D[1]);ctx.lineTo(E[0],E[1]);ctx.closePath();
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.stroke();ctx.setLineDash([]);
+
+    // 点标记
+    [[A,'A',-18,-5],[B,'B',8,-5],[C,'C',8,18],[D,'D',-18,18],[E,'E',-20,5],[F,'F',8,-8]].forEach(pt=>{
+        ctx.beginPath();ctx.arc(pt[0][0],pt[0][1],4,0,Math.PI*2);
+        ctx.fillStyle='#e74c3c';ctx.fill();
+        ctx.font='bold 14px Segoe UI';ctx.fillStyle='#0b4b78';ctx.textAlign=pt[2]>0?'left':'right';
+        ctx.fillText(pt[1], pt[0][0]+pt[2], pt[0][1]+pt[3]);
+    });
+
+    // 标注AE=CF
+    ctx.font='bold 11px Segoe UI';ctx.fillStyle='#e74c3c';ctx.textAlign='center';
+    ctx.fillText('AE=CF', (A[0]+E[0])/2-20, (A[1]+E[1])/2-5);
+    ctx.fillText('(关于O对称)', c.width/2, c.height-10);
+
+    // 图例
+    ctx.font='bold 11px Segoe UI';
+    ctx.strokeStyle='#2675a8';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(c.width-100,c.height-28);ctx.lineTo(c.width-70,c.height-28);ctx.stroke();
+    ctx.fillStyle='#0b4b78';ctx.textAlign='left';ctx.fillText('▱ABCD',c.width-65,c.height-23);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.beginPath();ctx.moveTo(c.width-100,c.height-12);ctx.lineTo(c.width-70,c.height-12);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#e74c3c';ctx.fillText('四边形BFDE',c.width-65,c.height-7);
+}
+
+/* ========== 例2图形：角度比例3:2:3:2的平行四边形 ========== */
+function drawEx2Fig(){
+    const c=document.getElementById('ex2Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+    // 按比例画平行四边形（∠A=∠C=108°, ∠B=∠D=72°）
+    const A=[55,30], B=[295,30], C=[275,185], D=[35,185];
+
+    // 填充 + 描边
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#fff8e1';ctx.fill();
+    ctx.strokeStyle='#2675a8';ctx.lineWidth=2.5;ctx.stroke();
+
+    // 绘制带数值的角度标注
+    function drawLabeledAngle(vertex, p1, p2, radius, color, text) {
+        let a1=Math.atan2(p1[1]-vertex[1],p1[0]-vertex[0]);
+        let a2=Math.atan2(p2[1]-vertex[1],p2[0]-vertex[0]);
+        if(a2 < a1) a2 += Math.PI*2;
+        // 弧线
+        ctx.beginPath();ctx.arc(vertex[0],vertex[1],radius,a1,a2);
+        ctx.strokeStyle=color;ctx.lineWidth=2;ctx.stroke();
+        // 角度值
+        let midAngle=(a1+a2)/2;
+        let lx=vertex[0]+(radius+18)*Math.cos(midAngle);
+        let ly=vertex[1]+(radius+18)*Math.sin(midAngle);
+        ctx.fillStyle=color;ctx.font='bold 13px Segoe UI';ctx.textAlign='center';ctx.fillText(text,lx,ly);
+    }
+
+    // ∠A=∠C=108° (红)
+    drawLabeledAngle(A, D, B, 32, '#e74c3c', '108°');
+    drawLabeledAngle(C, B, D, 32, '#e74c3c', '108°');
+    // ∠B=∠D=72° (蓝)
+    drawLabeledAngle(B, A, C, 28, '#3a9fd5', '72°');
+    drawLabeledAngle(D, C, A, 28, '#3a9fd5', '72°');
+
+    // 顶点标签
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#0b4b78';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-8,A[1]+5);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+8,B[1]+5);
+    ctx.fillText('C',C[0]+8,C[1]+5);
+    ctx.textAlign='right';ctx.fillText('D',D[0]-8,D[1]+5);
+
+    // 底部比例说明
+    ctx.font='bold 12px Segoe UI';ctx.textAlign='center';
+    ctx.fillStyle='#333';ctx.fillText('∠A:∠B:∠C:∠D = 3:2:3:2', c.width/2, c.height-6);
+}
+
+/* ========== 例3图形：木工测量角度示意图 ========== */
+function drawEx3Fig(){
+    const c=document.getElementById('ex3Fig'),ctx=c.getContext('2d');
+    ctx.clearRect(0,0,c.width,c.height);
+
+    // 木工桌面示意图 — 平行四边形木板
+    const margin=45;
+    const A=[margin,40], B=[c.width-margin,40], C=[c.width-margin-30,c.height-55], D=[margin-30,c.height-55];
+
+    // 木纹效果填充
+    ctx.beginPath();
+    ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.lineTo(D[0],D[1]);ctx.closePath();
+    ctx.fillStyle='#f5e6c8';ctx.fill();
+    ctx.strokeStyle='#8b6914';ctx.lineWidth=3;ctx.stroke();
+
+    // 木纹线条
+    ctx.strokeStyle='#d4b86a';ctx.lineWidth=0.8;
+    for(let i=0;i<6;i++){
+        let t=(i+1)/7;
+        let x1=A[0]+(D[0]-A[0])*t, y1=A[1]+(D[1]-A[1])*t;
+        let x2=B[0]+(C[0]-B[0])*t, y2=B[1]+(C[1]-B[1])*t;
+        ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+    }
+
+    // 角度测量工具（量角器示意）
+    function drawProtractorAngle(vertex, p1, p2, radius, angleVal, color) {
+        let a1=Math.atan2(p1[1]-vertex[1],p1[0]-vertex[0]);
+        let a2=Math.atan2(p2[1]-vertex[1],p2[0]-vertex[0]);
+        if(a2 < a1) a2 += Math.PI*2;
+        // 半透明量角器扇形
+        ctx.beginPath();ctx.moveTo(vertex[0],vertex[1]);
+        ctx.arc(vertex[0],vertex[1],radius,a1,a2);ctx.closePath();
+        ctx.fillStyle=color+'30';ctx.fill();
+        // 弧线
+        ctx.beginPath();ctx.arc(vertex[0],vertex[1],radius,a1,a2);
+        ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();
+        // 刻度短线
+        for(let i=1;i<=4;i++){
+            let ang=a1+(a2-a1)*i/5;
+            let ix1=vertex[0]+(radius-6)*Math.cos(ang), iy1=vertex[1]+(radius-6)*Math.sin(ang);
+            let ix2=vertex[0]+radius*Math.cos(ang), iy2=vertex[1]+radius*Math.sin(ang);
+            ctx.beginPath();ctx.moveTo(ix1,iy1);ctx.lineTo(ix2,iy2);
+            ctx.strokeStyle=color;ctx.lineWidth=1;ctx.stroke();
+        }
+        // 角度值标签
+        let midAng=(a1+a2)/2;
+        let tx=vertex[0]+(radius+22)*Math.cos(midAng), ty=vertex[1]+(radius+22)*Math.sin(midAng);
+        ctx.fillStyle=color;ctx.font='bold 14px Segoe UI';ctx.textAlign='center';ctx.fillText(angleVal+'°',tx,ty);
+    }
+
+    // 四个角的测量值
+    drawProtractorAngle(A, D, B, 42, 108, '#e74c3c');   // ∠A=108°
+    drawProtractorAngle(B, A, C, 38, 72, '#3a9fd5');     // ∠B=72°
+    drawProtractorAngle(C, B, D, 42, 108, '#e74c3c');   // ∠C=108°
+    drawProtractorAngle(D, C, A, 38, 72, '#3a9fd5');     // ∠D=72°
+
+    // 顶点标签
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#5a3e0a';
+    ctx.textAlign='right';ctx.fillText('A',A[0]-8,A[1]+5);
+    ctx.textAlign='left';ctx.fillText('B',B[0]+8,B[1]+5);
+    ctx.fillText('C',C[0]+8,C[1]+5);
+    ctx.textAlign='right';ctx.fillText('D',D[0]-8,D[1]+5);
+
+    // 工具图标（量角器）
+    ctx.font='20px Segoe UI';ctx.textAlign='center';
+    ctx.fillStyle='#e74c3c';ctx.fillText('📐', c.width-35, 22);
+    ctx.font='bold 10px Segoe UI';ctx.fillStyle='#666';ctx.fillText('测量', c.width-35, 38);
+}
+
+// 页面加载时绘制所有图形
+window.onload=function(){
+    drawExploreFig();
+    drawEx1Fig();
+    drawEx2Fig();
+    drawEx3Fig();
+};
+</script>
+</body></html>

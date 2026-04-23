@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.1.2.1 矩形的判定（第一课时）| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    bar: ["\\overline{#1}", 1]
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a5a8a 0%, #2675a8 40%, #14b8a6 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-size: 18px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 28px;
+            margin-bottom: 24px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 标题区 */
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 34px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #2675a8;
+            font-size: 23px;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2675a8;
+        }
+
+        h3 { color: #444; font-size: 19px; margin: 18px 0 12px; }
+
+        .intro-card {
+            background: linear-gradient(135deg, #2675a8 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .intro-card h2 { color: white; border-bottom-color: rgba(255,255,255,0.4); }
+        .intro-card p { line-height: 1.85; font-size: 18px; }
+
+        /* 学习目标 */
+        .objective-list {
+            list-style: none; padding: 0; counter-reset: obj-counter;
+        }
+        .objective-list li {
+            counter-increment: obj-counter;
+            background: #eaf4fb;
+            padding: 12px 18px 12px 50px;
+            margin: 10px 0;
+            border-radius: 10px;
+            position: relative;
+            border-left: 4px solid #2675a8;
+            line-height: 1.65;
+        }
+        .objective-list li::before {
+            content: counter(obj-counter);
+            position: absolute; left: 14px; top: 11px;
+            width: 26px; height: 26px; border-radius: 50%;
+            background: #2675a8; color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 14px;
+        }
+
+        /* 思考气泡 */
+        .think-bubble {
+            background: #e3f2fd; border-radius: 16px;
+            padding: 18px 22px; margin: 18px 0;
+            border-left: 5px solid #2196f3;
+            position: relative;
+        }
+        .think-bubble::before { content: "💭 "; font-size: 22px; }
+
+        /* 定理框 */
+        .theorem-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12; border-radius: 14px;
+            padding: 22px; margin: 18px 0; text-align: center;
+        }
+        .theorem-box h3 { color: #d68910; font-size: 21px; margin-bottom: 12px; }
+        .theorem-statement {
+            font-size: 20px; font-weight: bold; color: #333;
+            padding: 12px; background: white;
+            border-radius: 8px; margin: 10px 0;
+        }
+        .geometry-lang {
+            background: #f8f9fa; border-left: 4px solid #2675a8;
+            padding: 12px 18px; margin: 12px 0; font-family: "Times New Roman", serif;
+            font-size: 17px; border-radius: 6px;
+        }
+
+        /* 例题/练习 */
+        .example-title {
+            background: linear-gradient(135deg, #2675a8, #14b8a6);
+            color: white; padding: 10px 20px; border-radius: 8px;
+            margin-bottom: 16px; font-size: 18px;
+        }
+        .example-card { border-left: 5px solid #2675a8; }
+        .problem {
+            background: #f8f9fa; padding: 16px; border-radius: 8px;
+            margin: 14px 0; border-left: 4px solid #f0b34b;
+            line-height: 1.75;
+        }
+        .solution {
+            background: #e8f5e9; padding: 16px; border-radius: 8px;
+            margin: 14px 0; border-left: 4px solid #27ae60;
+            line-height: 1.8;
+        }
+
+        canvas {
+            display: block; margin: 18px auto;
+            background: white; border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+        .canvas-container { text-align: center; margin: 18px 0; }
+        .canvas-caption {
+            text-align: center; color: #666;
+            font-size: 14px; margin-top: 8px;
+        }
+
+        /* 按钮 */
+        .btn {
+            background: linear-gradient(135deg, #2675a8 0%, #14b8a6 100%);
+            color: white; border: none; padding: 10px 24px;
+            border-radius: 25px; cursor: pointer; font-size: 16px;
+            margin: 5px; transition: all 0.25s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(38,117,168,0.35); }
+        .control-bar { text-align: center; margin: 18px 0; }
+        .step-indicator {
+            display: inline-block; background: #2675a8; color: white;
+            padding: 4px 14px; border-radius: 15px; font-size: 14px;
+            margin-right: 8px;
+        }
+
+        /* 练习卡片 */
+        .practice-card { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); }
+        .practice-item {
+            background: white; padding: 16px; border-radius: 8px; margin: 10px 0;
+        }
+
+        /* 小结 */
+        .summary-card { background: linear-gradient(135deg, #a8e6cf 0%, #88d8b0 100%); }
+        .summary-list { list-style: none; padding: 0; }
+        .summary-list li {
+            padding: 12px 16px; margin: 10px 0;
+            background: white; border-radius: 8px;
+            border-left: 4px solid #27ae60; line-height: 1.7;
+        }
+
+        /* 作业 */
+        .homework-box {
+            background: #d0e5f3; border-radius: 60px;
+            padding: 1rem 2rem; display: flex; align-items: center;
+            gap: 1.2rem; flex-wrap: wrap; margin: 1.5rem 0;
+        }
+        .message-box {
+            background: #eef2fa; text-align: center; font-style: italic;
+            border-left: 8px solid #3a9fd5; padding: 1rem 1.8rem;
+            border-radius: 2rem; margin: 1.5rem 0;
+        }
+        .footer-note {
+            text-align: right; color: #33658a;
+            border-top: 2px solid #c0d8ec; padding-top: .8rem; margin-top: 1.5rem;
+        }
+
+        /* 证明区域 */
+        .proof-section {
+            background: #fffef5; border: 1px dashed #d4ac0d;
+            border-radius: 10px; padding: 18px; margin-top: 14px; display: none;
+        }
+        .proof-section.show { display: block; animation: fadeIn 0.4s ease-out; }
+
+        /* 回顾卡片 */
+        .review-box {
+            background: #fef9e7; border-left: 5px solid #f1c40f;
+            padding: 14px 18px; border-radius: 8px; margin: 10px 0; line-height: 1.75;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>📐 18.1.2.1 矩形的判定（第一课时）——三个角是直角的四边形</h1>
+
+<!-- 情境导入 -->
+<div class="card intro-card">
+    <h2>🌟 情境导入：木工师傅的智慧</h2>
+    <p>在日常生活中，我们经常见到各种矩形的物品，如门窗、桌面、书本等。木工师傅在制作这些矩形物件时，有一套独特的检验方法。</p>
+    <br>
+    <p><strong>🔨 木工师傅的经验：</strong></p>
+    <p style="margin-left: 20px;">制作一个门框时，木工师傅先钉好四条边，然后用<strong>角尺（直角尺）</strong>去测量三个角。如果三个角都是直角，他就可以断定这个四边形是矩形了。</p>
+    <br>
+    <p><strong>❓ 思考：</strong>为什么只需要检验<strong>三个角</strong>是直角就能确定是矩形？这背后蕴含着怎样的数学道理？今天我们就来探究这个问题！</p>
+</div>
+
+<!-- 学习目标 -->
+<div class="card">
+    <h2>🎯 学习目标</h2>
+    <ul class="objective-list">
+        <li>理解并掌握矩形的判定方法：<strong>"有三个角是直角的四边形是矩形"</strong></li>
+        <li>能够运用该判定定理进行简单的推理和证明</li>
+        <li>了解尺规作图方法：作一个三个角都是直角的四边形</li>
+        <li>体会从"性质"到"判定"的逆向思维过程</li>
+    </ul>
+</div>
+
+<!-- 复习回顾 -->
+<div class="card">
+    <h2>📚 复习回顾：矩形的性质 → 判定</h2>
+
+    <div class="review-box">
+        <strong>我们已经学过的矩形性质：</strong>
+        <ol style="margin: 8px 0 8px 30px; line-height: 1.9;">
+            <li><strong>定义：</strong>有一个角是直角的平行四边形叫做<strong>矩形</strong></li>
+            <li><strong>性质：</strong>矩形的四个角都是直角</li>
+            <li><strong>性质：</strong>矩形的对角线相等</li>
+        </ol>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>逆向思考：</strong>既然"矩形→四个角都是直角"，那么反过来呢？</p>
+        <ul style="margin: 10px 0 0 30px; list-style-type: disc;">
+            <li>四个角都是直角的四边形 → 是矩形吗？<strong>（显然是的）</strong></li>
+            <li><strong>三个角</strong>都是直角的四边形 → 是矩形吗？<strong>（？）</strong></li>
+            <li><strong>两个角</strong>都是直角的四边形 → 是矩形吗？<strong>（？）</strong></li>
+        </ul>
+        <p style="margin-top: 10px;">这就是我们今天要研究的问题：<strong>用几个直角来判定矩形</strong>。</p>
+    </div>
+</div>
+
+<!-- 探究活动 -->
+<div class="card">
+    <h2>🔬 探究活动：三个直角能决定第四个吗？</h2>
+
+    <div class="canvas-container">
+        <canvas id="exploreCanvas" width="650" height="420"></canvas>
+        <p class="canvas-caption">图1：探索三个直角对四边形的影响</p>
+    </div>
+
+    <div class="control-bar">
+        <button class="btn" onclick="showExploreStep(1)">步骤1：画三条边和三个直角</button>
+        <button class="btn" onclick="showExploreStep(2)">步骤2：推导第四个角</button>
+        <button class="btn" onclick="showExploreStep(3)">步骤3：验证结论</button>
+        <span id="exploreIndicator" class="step-indicator" style="display:none;"></span>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>关键发现：</strong></p>
+        <p>在四边形ABCD中，若∠A = ∠B = ∠D = 90°：</p>
+        <ul style="margin: 8px 0 0 30px; list-style-type: disc;">
+            <li>∠A + ∠D = 180° → AD ∥ BC（同旁内角互补，两直线平行）</li>
+            <li>∠A + ∠B = 180° → AB ∥ DC（同旁内角互补，两直线平行）</li>
+            <li>两组对边分别平行 → 四边形ABCD是<strong>平行四边形</strong></li>
+            <li>又∵ ∠A = 90° → 平行四边形ABCD是<strong>矩形</strong></li>
+            <li>同时可得 ∠C = 90°（平行四边形邻角互补）</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 尺规作图演示 -->
+<div class="card">
+    <h2>📐 尺规作图：作一个三个角都是直角的四边形</h2>
+    <p>下面我们用尺规作图的方法，逐步作出一个三个角为直角的四边形。</p>
+
+    <div class="canvas-container">
+        <canvas id="constructionCanvas" width="650" height="480"></canvas>
+        <p class="canvas-caption">图2：尺规作图分步动画演示</p>
+    </div>
+
+    <div class="control-bar">
+        <button class="btn" onclick="constructionStep(0)">重置</button>
+        <button class="btn" onclick="constructionStep(1)">① 作互相垂直的两边AB、AD</button>
+        <button class="btn" onclick="constructionStep(2)">② 过B点作BC⊥AB</button>
+        <button class="btn" onclick="constructionStep(3)">③ 过D点作DC⊥AD，交于C</button>
+        <button class="btn" onclick="constructionStep(4)">④ 完成矩形ABCD</button>
+        <span id="constructIndicator" class="step-indicator" style="display:none;"></span>
+    </div>
+
+    <div style="margin-top: 16px;">
+        <table class="data-table" style="width:100%;border-collapse:collapse;margin:14px 0;">
+            <tr style="background:#2675a8;color:white;text-align:center;">
+                <th style="padding:10px;border:1px solid #ddd;">步骤</th>
+                <th style="padding:10px;border:1px solid #ddd;">操作说明</th>
+                <th style="padding:10px;border:1px solid #ddd;">几何原理</th>
+            </tr>
+            <tr style="background:#f8f9fa;"><td style="padding:10px;border:1px solid #ddd;text-align:center;">①</td><td style="padding:10px;border:1px solid #ddd;">画射线AB，过A作AD⊥AB</td><td style="padding:10px;border:1px solid #ddd;">∠DAB = 90°</td></tr>
+            <tr style="background:#ffffff;"><td style="padding:10px;border:1px solid #ddd;text-align:center;">②</td><td style="padding:10px;border:1px solid #ddd;">在AB上取点B，过B作BC⊥AB</td><td style="padding:10px;border:1px solid #ddd;">∠ABC = 90°</td></tr>
+            <tr style="background:#f8f9fa;"><td style="padding:10px;border:1px solid #ddd;text-align:center;">③</td><td style="padding:10px;border:1px solid #ddd;">在AD上取点D，过D作DC⊥AD</td><td style="padding:10px;border:1px solid #ddd;">∠ADC = 90°</td></tr>
+            <tr style="background:#ffffff;"><td style="padding:10px;border:1px solid #ddd;text-align:center;">④</td><td style="padding:10px;border:1px solid #ddd;">BC与DC相交于点C，连接各边</td><td style="padding:10px;border:1px solid #ddd;">四边形ABCD有三个直角→是矩形</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- 判定定理 -->
+<div class="card example-card">
+    <div class="example-title">⭐ 矩形判定定理1</div>
+
+    <div class="theorem-box">
+        <h3>📜 定理内容</h3>
+        <div class="theorem-statement">
+            有三个角是直角的四边形是矩形
+        </div>
+
+        <h3 style="color: #d68910; margin-top: 18px;">📝 几何语言</h3>
+        <div class="geometry-lang">
+            在四边形 $ABCD$ 中，<br>
+            $\because \angle A = \angle B = \angle D = 90^{\circ}$<br>
+            $\therefore$ 四边形 $ABCD$ 是<strong>矩形</strong>
+        </div>
+    </div>
+
+    <div class="control-bar">
+        <button class="btn" onclick="toggleProof()">📖 显示/隐藏证明过程</button>
+    </div>
+
+    <div id="proofSection" class="proof-section">
+        <h3 style="color: #27ae60;">✍️ 完整证明</h3>
+
+        <div class="solution">
+            <p><strong>已知：</strong>四边形$ABCD$中，$\angle A = \angle B = \angle D = 90^{\circ}$</p>
+            <p><strong>求证：</strong>四边形$ABCD$是矩形</p>
+            <hr style="margin: 12px 0; border:none; border-top: 1px dashed #ccc;">
+            <p><strong>证明：</strong></p>
+            <p style="margin-left: 20px;">$\because \angle A + \angle D = 90^{\circ} + 90^{\circ} = 180^{\circ}$</p>
+            <p style="margin-left: 36px;">$\therefore AD \parallel BC$ （同旁内角互补，两直线平行）&nbsp;&nbsp;&nbsp;⋯⋯①</p>
+            <p style="margin-left: 20px;">$\because \angle A + \angle B = 90^{\circ} + 90^{\circ} = 180^{\circ}$</p>
+            <p style="margin-left: 36px;">$\therefore AB \parallel DC$ （同旁内角互补，两直线平行）&nbsp;&nbsp;&nbsp;⋯⋯②</p>
+            <p style="margin-left: 20px;">由①、②可知，四边形$ABCD$是<strong>平行四边形</strong>（两组对边分别平行的四边形是平行四边形）</p>
+            <p style="margin-left: 20px;">又$\because \angle A = 90^{\circ}$</p>
+            <p style="margin-left: 36px;">$\therefore$ 平行四边形$ABCD$是<strong>矩形</strong>（有一个角是直角的平行四边形是矩形）</p>
+            <hr style="margin: 12px 0; border:none; border-top: 1px dashed #ccc;">
+            <p><strong>证毕。✅</strong></p>
+        </div>
+
+        <!-- 证明配图 -->
+        <div class="canvas-container">
+            <canvas id="proofCanvas" width="400" height="300"></canvas>
+            <p class="canvas-caption">图3：证明示意图</p>
+        </div>
+    </div>
+</div>
+
+<!-- 例题精讲 -->
+<div class="card example-card">
+    <div class="example-title">📝 例题精讲</div>
+
+    <div class="problem">
+        <p><strong>例1：</strong>如图，在四边形$ABCD$中，$\angle ABC = \angle ADC = 90^{\circ}$，且$AB \parallel CD$，$AB = CD$。求证：四边形$ABCD$是矩形。</p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="exampleCanvas" width="450" height="320"></canvas>
+        <p class="canvas-caption">例1 示意图</p>
+    </div>
+
+    <div class="solution">
+        <p><strong>证明：</strong></p>
+        <p>$\because AB \parallel CD$ 且 $AB = CD$</p>
+        <p style="margin-left: 20px;">$\therefore$ 四边形$ABCD$是<strong>平行四边形</strong>（一组对边平行且相等的四边形是平行四边形）</p>
+        <p>$\because \angle ABC = 90^{\circ}$</p>
+        <p style="margin-left: 20px;">$\therefore$ 平行四边形$ABCD$是<strong>矩形</strong>（有一个角是直角的平行四边形是矩形）</p>
+        <p><strong>证毕。✅</strong></p>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>💡 方法提示：</strong>本题也可以通过"三直角"来证：先证出$\angle BAD=90^\circ$，则已有三个直角，从而得矩形。两种思路都可行！</p>
+    </div>
+</div>
+
+<!-- 课堂练习 -->
+<div class="card practice-card">
+    <h2>✏️ 课堂练习</h2>
+
+    <div class="practice-item">
+        <p><strong>练习1：</strong>判断下列说法是否正确，并说明理由：</p>
+        <p style="margin-left: 20px;">（1）有三个角是直角的四边形是矩形；</p>
+        <p style="margin-left: 20px;">（2）有两个角是直角的四边形是矩形；</p>
+        <p style="margin-left: 20px;">（3）有三个角是直角的平行四边形是矩形；</p>
+        <p style="margin-left: 20px;">（4）四个角都是直角的四边形是矩形。</p>
+        <div class="solution" id="p1Ans" style="display:none;">
+            <p><strong>答案：</strong></p>
+            <p>（1）<strong>正确</strong>。这正是本节课学习的判定定理1。</p>
+            <p>（2）<strong>不正确</strong>。反例：直角梯形有2个直角但不是矩形。</p>
+            <p>（3）<strong>正确</strong>。但这是多余的，因为平行四边形只要一个直角就够了。</p>
+            <p>（4）<strong>正确</strong>。四直角→三直角→满足判定定理1。</p>
+        </div>
+        <button class="btn" onclick="toggleDisplay('p1Ans')">显示答案</button>
+    </div>
+
+    <div class="practice-item">
+        <p><strong>练习2：</strong>如图，在四边形$ABCD$中，$O$是对角线$AC$与$BD$的交点，$\angle DAB = \angle ABC = 90^{\circ}$，$BO = DO$，$AO = CO$。求证：四边形$ABCD$是矩形。</p>
+        <div class="solution" id="p2Ans" style="display:none;">
+            <p><strong>证明：</strong></p>
+            <p>$\because AO = CO$ 且 $BO = DO$</p>
+            <p style="margin-left: 20px;">$\therefore$ 四边形$ABCD$是平行四边形（对角线互相平分的四边形是平行四边形）</p>
+            <p>$\because \angle DAB = 90^{\circ}$</p>
+            <p style="margin-left: 20px;">$\therefore$ 平行四边形$ABCD$是矩形（有一个角是直角的平行四边形是矩形）</p>
+            <p><em>另解：也可利用∠DAB=∠ABC=90°，结合平行四边形性质推出∠ADC=90°，得到三直角。</em></p>
+        </div>
+        <button class="btn" onclick="toggleDisplay('p2Ans')">显示答案</button>
+    </div>
+
+    <div class="practice-item">
+        <p><strong>练习3：</strong>如图所示，工人师傅在做窗框时，先做好框架$ABCD$，然后测量了$\angle A$、$\angle B$、$\angle C$三个角，发现都是$90^{\circ}$。请问：他能确定这个窗框是矩形吗？为什么？</p>
+        <div class="solution" id="p3Ans" style="display:none;">
+            <p><strong>答：</strong>能确定。</p>
+            <p>因为四边形$ABCD$中，$\angle A = \angle B = \angle C = 90^{\circ}$，即<strong>有三个角是直角</strong>。</p>
+            <p>根据<strong>矩形的判定定理1</strong>：有三个角是直角的四边形是矩形，所以这个窗框是矩形。</p>
+            <p><em>这就是木工师傅在实际操作中使用的方法！</em></p>
+        </div>
+        <button class="btn" onclick="toggleDisplay('p3Ans')">显示答案</button>
+    </div>
+</div>
+
+<!-- 课堂小结 -->
+<div class="card summary-card">
+    <h2>📝 课堂小结</h2>
+    <ul class="summary-list">
+        <li><strong>矩形的判定方法（本课重点）：</strong>
+            有三个角是直角的四边形 → 矩形
+        </li>
+        <li><strong>证明思路链：</strong>
+            三直角 → 两组同旁内角互补 → 两组对边平行 → 平行四边形 → 有一直角 → <strong>矩形</strong>
+        </li>
+        <li><strong>矩形的两种判定途径：</strong>
+            <ol style="margin: 6px 0 6px 24px;">
+                <li><strong>定义法：</strong>先证平行四边形，再证有一个直角</li>
+                <li><strong>判定定理1：</strong>直接证三个角为直角</li>
+            </ol>
+        </li>
+        <li><strong>实际应用：</strong>木工师傅测量三个角检验矩形工件</li>
+    </ul>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P___ 练习18.1 第__~__题；完成课后习题中关于矩形判定的题目；思考：除了"三个直角"，还有什么方法可以判定矩形？（下节预告：对角线的应用）</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 矩形判定要牢记，三直角时看仔细；<br>
+        先推对边都平行，平行四边形成立；<br>
+        再加一角九十度，矩形判定没问题！✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第18章 18.1.2.1 矩形的判定（第一课时）</div>
+</div>
+
+</div><!-- container end -->
+
+<script>
+// ==================== 探究Canvas ====================
+let exploreState = 0;
+
+function showExploreStep(step) {
+    exploreState = step;
+    const indicator = document.getElementById('exploreIndicator');
+    indicator.style.display = 'inline-block';
+    indicator.textContent = '当前：第' + step + '步';
+    drawExplore();
+}
+
+function drawExplore() {
+    const canvas = document.getElementById('exploreCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.fillStyle = '#fafafa';
+    ctx.fillRect(0, 0, W, H);
+
+    // 四边形顶点
+    const A = {x: 150, y: 120};
+    const B = {x: 420, y: 120};
+    const C = {x: 500, y: 330};
+    const D = {x: 130, y: 330};
+
+    // 绘制辅助信息
+    if (exploreState >= 1) {
+        // 画四边形轮廓（虚线表示不确定的部分）
+        ctx.setLineDash([6, 4]);
+        ctx.strokeStyle = '#bbb';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(A.x, A.y);
+        ctx.lineTo(B.x, B.y);
+        ctx.lineTo(C.x, C.y);
+        ctx.lineTo(D.x, D.y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    if (exploreState >= 1) {
+        // 画已知的三个直角
+        drawRightAngle(ctx, A.x, A.y, 45, 1, 1);   // 角A
+        drawRightAngle(ctx, B.x, B.y, 45, -1, 1);   // 角B
+        drawRightAngle(ctx, D.x, D.y, 45, 1, -1);    // 角D
+
+        // 直角标注
+        drawAngleLabel(ctx, A.x - 55, A.y + 30, '∠A=90°', '#e74c3c');
+        drawAngleLabel(ctx, B.x + 55, B.y + 30, '∠B=90°', '#e74c3c');
+        drawAngleLabel(ctx, D.x - 55, D.y - 25, '∠D=90°', '#e74c3c');
+
+        // 顶点字母
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 20px Microsoft YaHei';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('A', A.x - 18, A.y - 18);
+        ctx.fillText('B', B.x + 18, B.y - 18);
+        ctx.fillText('C', C.x + 18, C.y + 18);
+        ctx.fillText('D', D.x - 18, D.y + 18);
+
+        // 边标签
+        if (exploreState === 1) {
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = '#666';
+            ctx.fillText('? 四边形ABCD', W / 2, H - 20);
+        }
+    }
+
+    if (exploreState >= 2) {
+        // 推导箭头和文字
+        ctx.strokeStyle = '#2675a8';
+        ctx.fillStyle = '#2675a8';
+        ctx.lineWidth = 2;
+        ctx.font = 'bold 16px Microsoft YaHei';
+
+        // AD || BC 的推导
+        ctx.save();
+        ctx.translate((A.x + D.x) / 2 - 70, (A.y + D.y) / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.textAlign = 'center';
+        ctx.fillText('∠A+∠D=180°→AD∥BC', 0, 0);
+        ctx.restore();
+
+        // AB || DC 的推导
+        ctx.textAlign = 'left';
+        ctx.fillText('∠A+∠B=180°→AB∥DC', (A.x + B.x) / 2 - 20, A.y - 30);
+    }
+
+    if (exploreState >= 3) {
+        // 最终结论
+        ctx.fillStyle = 'rgba(38,117,168,0.08)';
+        ctx.fillRect(W/2 - 160, H - 80, 320, 60);
+
+        ctx.fillStyle = '#2675a8';
+        ctx.font = 'bold 20px Microsoft YaHei';
+        ctx.textAlign = 'center';
+        ctx.fillText('✅ 结论：四边形ABCD是矩形！', W / 2, H - 45);
+
+        // 第四个角也是直角
+        drawRightAngle(ctx, C.x, C.y, 42, -1, -1);
+        drawAngleLabel(ctx, C.x + 52, C.y - 22, '∠C=90°', '#27ae60');
+
+        // 高亮四边形
+        ctx.strokeStyle = '#27ae60';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+        ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y);
+        ctx.closePath(); ctx.stroke();
+    }
+}
+
+// 绘制直角标记
+function drawRightAngle(ctx, x, y, size, dirX, dirY) {
+    ctx.strokeStyle = '#e74c3c';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x + dirX * size, y);
+    ctx.lineTo(x + dirX * size, y + dirY * size);
+    ctx.lineTo(x, y + dirY * size);
+    ctx.stroke();
+}
+
+function drawAngleLabel(ctx, x, y, text, color) {
+    ctx.fillStyle = color;
+    ctx.font = 'bold 15px Microsoft YaHei';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(text, x, y);
+}
+
+// ==================== 尺规作图Canvas ====================
+let constructState = 0;
+
+function constructionStep(step) {
+    constructState = step;
+    const indicator = document.getElementById('constructIndicator');
+    indicator.style.display = 'inline-block';
+    const labels = ['重置','① 作垂直两边','② 作BC⊥AB','③ 作DC⊥AD交于C','④ 完成矩形'];
+    indicator.textContent = labels[step];
+    drawConstruction();
+}
+
+function drawConstruction() {
+    const canvas = document.getElementById('constructionCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.fillStyle = '#fafafa';
+    ctx.fillRect(0, 0, W, H);
+
+    const A = {x: 200, y: 140};
+
+    // 步骤0: 重置
+    if (constructState === 0) return;
+
+    // 基础参数
+    let lenAB = 280, lenAD = 220;
+
+    const B = {x: A.x + lenAB, y: A.y};
+    const D = {x: A.x, y: A.y + lenAD};
+    const C = {x: A.x + lenAB, y: A.y + lenAD};
+
+    // ===== 步骤1: 作AB和AD互相垂直 =====
+    if (constructState >= 1) {
+        // 画射线AB方向
+        ctx.strokeStyle = '#999'; ctx.lineWidth = 1; ctx.setLineDash([5, 3]);
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(W - 40, A.y); ctx.stroke();
+        // 画射线AD方向
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(A.x, H - 40); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 画AB实线
+        ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+        // 画AD实线
+        ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(D.x, D.y); ctx.stroke();
+
+        // 直角标记A
+        drawRightAngle(ctx, A.x, A.y, 32, 1, 1);
+
+        // 点A
+        drawPoint(ctx, A.x, A.y, 'A', -18, -18);
+        // 点B
+        drawPoint(ctx, B.x, B.y, 'B', 15, -18);
+
+        // 步骤文字
+        ctx.fillStyle = '#2675a8'; ctx.font = 'bold 16px Microsoft YaHei';
+        ctx.textAlign = 'left';
+        ctx.fillText('① 以A为端点，画互相垂直的两条线段AB和AD', 20, 30);
+        ctx.font = '14px Microsoft YaHei'; ctx.fillStyle = '#666';
+        ctx.fillText('此时 ∠DAB = 90°', 20, 54);
+    }
+
+    // ===== 步骤2: 过B作BC⊥AB =====
+    if (constructState >= 2) {
+        // BC方向虚线
+        ctx.strokeStyle = '#999'; ctx.lineWidth = 1; ctx.setLineDash([5, 3]);
+        ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(B.x, H - 40); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // BC实线（部分）
+        ctx.strokeStyle = '#e67e22'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(B.x, B.y + lenAD); ctx.stroke();
+
+        // 直角标记B
+        drawRightAngle(ctx, B.x, B.y, 32, -1, 1);
+
+        // 点C临时位置
+        drawPoint(ctx, B.x, B.y + lenAD, 'C?', 15, 18);
+
+        // 步骤文字
+        ctx.fillStyle = '#e67e22'; ctx.font = 'bold 16px Microsoft YaHei'; ctx.textAlign = 'left';
+        ctx.fillText('② 过B点作BC ⊥ AB', 20, 78);
+        ctx.font = '14px Microsoft YaHei'; ctx.fillStyle = '#666';
+        ctx.fillText('此时 ∠ABC = 90°', 20, 102);
+    }
+
+    // ===== 步骤3: 过D作DC⊥AD =====
+    if (constructState >= 3) {
+        // DC方向虚线
+        ctx.strokeStyle = '#999'; ctx.lineWidth = 1; ctx.setLineDash[5, 3] ? ctx.setLineDash([5,3]) : null;
+        ctx.setLineDash([5,3]); ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(W - 40, D.y); ctx.stroke();
+        ctx.setLineDash([]);
+
+        // DC实线（部分）
+        ctx.strokeStyle = '#9b59b6'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(D.x + lenAB, D.y); ctx.stroke();
+
+        // 直角标记D
+        drawRightAngle(ctx, D.x, D.y, 32, 1, -1);
+
+        // 更新C点标注
+        drawPoint(ctx, C.x, C.y, 'C', 15, 18);
+
+        // 交点高亮
+        ctx.beginPath(); ctx.arc(C.x, C.y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#e74c3c'; ctx.fill();
+
+        // 步骤文字
+        ctx.fillStyle = '#9b59b6'; ctx.font = 'bold 16px Microsoft YaHei'; ctx.textAlign = 'left';
+        ctx.fillText('③ 过D点作DC ⊥ AD，BC与DC交于点C', 20, 126);
+        ctx.font = '14px Microsoft YaHei'; ctx.fillStyle = '#666';
+        ctx.fillText('此时 ∠ADC = 90°', 20, 150);
+    }
+
+    // ===== 步骤4: 完成 =====
+    if (constructState >= 4) {
+        // 补全所有边
+        ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 3.5;
+        ctx.beginPath();
+        ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+        ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y);
+        ctx.closePath(); ctx.stroke();
+
+        // 所有直角标记
+        drawRightAngle(ctx, A.x, A.y, 32, 1, 1);
+        drawRightAngle(ctx, B.x, B.y, 32, -1, 1);
+        drawRightAngle(ctx, D.x, D.y, 32, 1, -1);
+        drawRightAngle(ctx, C.x, C.y, 32, -1, -1);
+
+        // 顶点
+        drawPoint(ctx, A.x, A.y, 'A', -18, -18);
+        drawPoint(ctx, B.x, B.y, 'B', 15, -18);
+        drawPoint(ctx, C.x, C.y, 'C', 15, 18);
+        drawPoint(ctx, D.x, D.y, 'D', -18, 18);
+
+        // 结论
+        ctx.fillStyle = 'rgba(39,174,96,0.1)';
+        ctx.roundRect(W / 2 - 170, H - 72, 340, 55, 10);
+        ctx.fill();
+
+        ctx.fillStyle = '#27ae60';
+        ctx.font = 'bold 20px Microsoft YaHei';
+        ctx.textAlign = 'center';
+        ctx.fillText('✅ 四边形ABCD是矩形！（三直角判定）', W / 2, H - 37);
+    }
+
+    // 补充D点的标注（步骤1+就显示）
+    if (constructState >= 1 && constructState <= 2) {
+        drawPoint(ctx, D.x, D.y, 'D', -18, 18);
+    }
+}
+
+function drawPoint(ctx, x, y, label, ox, oy) {
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = '#333';
+    ctx.fill();
+    ctx.fillStyle = '#333';
+    ctx.font = 'bold 20px Microsoft YaHei';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, x + ox, y + oy);
+}
+
+// ==================== 证明示意图 ====================
+function drawProofDiagram() {
+    const canvas = document.getElementById('proofCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, W, H);
+
+    const A = {x: 100, y: 80}, B = {x: 310, y: 80};
+    const C = {x: 340, y: 240}, D = {x: 70, y: 240};
+
+    // 矩形
+    ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+    ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y);
+    ctx.closePath(); ctx.stroke();
+
+    // 四个直角
+    drawRightAngle(ctx, A.x, A.y, 28, 1, 1);
+    drawRightAngle(ctx, B.x, B.y, 28, -1, 1);
+    drawRightAngle(ctx, D.x, D.y, 28, 1, -1);
+    drawRightAngle(ctx, C.x, C.y, 28, -1, -1);
+
+    // 已知直角标红，未知标绿
+    ctx.fillStyle = '#e74c3c';
+    ctx.font = '13px Microsoft YaHei'; ctx.textAlign = 'center';
+    ctx.fillText('90°', A.x + 48, A.y + 44);
+    ctx.fillText('90°', B.x - 48, B.y + 44);
+    ctx.fillText('90°', D.x + 46, D.y - 36);
+
+    ctx.fillStyle = '#27ae60';
+    ctx.fillText('90°?', C.x - 48, C.y - 36);
+
+    // 顶点
+    ctx.fillStyle = '#333'; ctx.font = 'bold 18px Microsoft YaHei';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('A', A.x - 16, A.y - 16);
+    ctx.fillText('B', B.x + 16, B.y - 16);
+    ctx.fillText('C', C.x + 16, C.y + 16);
+    ctx.fillText('D', D.x - 16, D.y + 16);
+
+    // 平行符号
+    ctx.font = '16px Times New Roman'; ctx.fillStyle = '#666';
+    ctx.fillText('∥', (A.x + D.x) / 2 - 18, (A.y + D.y) / 2);
+    ctx.fillText('∥', (B.x + C.x) / 2 + 18, (B.y + C.y) / 2);
+}
+
+// ==================== 例题Canvas ====================
+function drawExample() {
+    const canvas = document.getElementById('exampleCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+
+    const A = {x: 100, y: 70}, B = {x: 340, y: 110};
+    const C = {x: 290, y: 260}, D = {x: 60, y: 210};
+
+    // 四边形
+    ctx.strokeStyle = '#2675a8'; ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y);
+    ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y);
+    ctx.closePath(); ctx.stroke();
+
+    // 对角线AC
+    ctx.strokeStyle = '#e74c3c'; ctx.lineWidth = 1.5; ctx.setLineDash([5, 3]);
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.font = '13px Microsoft YaHei'; ctx.fillStyle = '#e74c3c';
+    ctx.textAlign = 'center';
+    ctx.fillText('AC', (A.x + C.x) / 2 + 18, (A.y + C.y) / 2);
+
+    // 直角标记
+    drawRightAngle(ctx, B.x, B.y, 26, -1.2, 0.5);
+    drawRightAngle(ctx, D.x, D.y, 26, 1.1, -0.6);
+
+    ctx.fillStyle = '#e74c3c'; ctx.font = '13px Microsoft YaHei'; ctx.textAlign = 'center';
+    ctx.fillText('90°', B.x - 38, B.y + 22);
+    ctx.fillText('90°', D.x + 38, D.y - 18);
+
+    // 顶点
+    ctx.fillStyle = '#333'; ctx.font = 'bold 18px Microsoft YaHei';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('A', A.x - 14, A.y - 14);
+    ctx.fillText('B', B.x + 14, B.y - 10);
+    ctx.fillText('C', C.x + 14, C.y + 14);
+    ctx.fillText('D', D.x - 14, D.y + 14);
+
+    // 平行符号
+    ctx.font = '16px Times New Roman'; ctx.fillStyle = '#27ae60';
+    ctx.fillText('∥', (A.x + B.x) / 2, A.y + 20);
+    ctx.fillText('∥', (D.x + C.x) / 2, D.y - 10);
+}
+
+// ==================== 通用功能 ====================
+function toggleProof() {
+    const sec = document.getElementById('proofSection');
+    sec.classList.toggle('show');
+    if (sec.classList.contains('show')) {
+        setTimeout(drawProofDiagram, 100);
+    }
+}
+
+function toggleDisplay(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+// 页面加载
+window.onload = function() {
+    drawExplore();
+    drawConstruction();
+    drawExample();
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+    <title>18.1.2.2 矩形的判定（第二课时）| 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+        h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#14b8a6;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0ea5e9;padding-left:1rem;color:#0b3b59;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+        .target-item span{background:#0ea5e9;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0ea5e9;font-weight:600;}
+        .explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+        .theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+        .example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#1d6130;}
+        .interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem .3rem 0;font-size:.9rem;}.interact-btn:active{transform:translateY(2px);}
+        .answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-section{background:#d6e9f5;border-left:6px solid #14b8a6;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .math-idea{background:#deedf7;border-left:8px solid #0ea5e9;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #14b8a6;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:.8rem auto;background:#fafbfc;}
+        p{margin:.5rem 0;}
+        .canvas-wrap{text-align:center;margin:.8rem 0;}
+        .step-btn{background:#14b8a6;color:white;border:none;padding:.4rem 1.2rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #0d9488;margin:.3rem .2rem;font-size:.85rem;}
+        .step-btn:active{transform:translateY(2px);}
+        .step-btn:hover{background:#0d9488;}
+        .app-card{background:#fefce8;border:2px solid #fde047;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 0;}
+        table{border-collapse:collapse;margin:.5rem auto;width:90%;}th,td{border:2px solid #b8d2e9;padding:.5rem .8rem;text-align:center;}th{background:#e2effa;color:#0b4b78;font-weight:700;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第18章 · 矩形、菱形与正方形 · 18.1.2.2</span></div>
+    <h1>第18章 矩形、菱形与正方形</h1>
+    <div class="lesson-title">18.1.2.2 矩形的判定（第二课时）——对角线相等的平行四边形</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握"对角线相等的平行四边形是矩形"的判定方法</div>
+            <div class="target-item"><span>2</span>能运用判定定理2证明相关几何问题</div>
+            <div class="target-item"><span>3</span>了解实际应用：木工测量对角线检验矩形的方法</div>
+            <div class="target-item"><span>4</span>理解矩形的两种判定方法的区别和联系</div>
+        </div>
+    </div>
+
+    <!-- 复习回顾 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">📋 <strong>复习回顾——矩形的判定方法</strong></p>
+        <table style="margin:.5rem auto;">
+            <tr><th>序号</th><th>判定定理</th><th>条件</th></tr>
+            <tr><td>定义法</td><td>有一个角是直角的平行四边形是矩形</td><td>▱ + 一个直角</td></tr>
+            <tr style="background:#fff8e1;"><td><strong>判定定理2（本节）</strong></td><td><strong>对角线相等的平行四边形是矩形</strong></td><td>▱ + 对角线相等</td></tr>
+        </table>
+        <p style="margin-top:.8rem;color:#0ea5e9;">💡 <strong>思考方向：</strong>上节课从<strong>"角"</strong>的角度研究了矩形的判定，本节课我们从<strong>"对角线"</strong>的角度继续探索！</p>
+    </div>
+
+    <!-- ========== 一、探究活动 ========== -->
+    <div class="section-title">一、探究活动——对角线相等的平行四边形</div>
+
+    <div class="explore-card">
+        <h4>问题思考</h4>
+        <p><strong>我们知道：</strong>矩形的对角线相等（性质）。那么反过来：</p>
+        <p style="color:#c0392b;font-size:1.1rem;text-align:center;padding:.5rem 0;"><strong>如果一个平行四边形的对角线相等，它是矩形吗？</strong></p>
+        <div class="canvas-wrap">
+            <canvas id="cExplore" width="550" height="320"></canvas>
+        </div>
+        <p style="margin-top:.5rem;color:#555;font-size:.95rem;">👆 拖动滑块观察：保持对角线相等时，平行四边形的内角如何变化？</p>
+        <div style="text-align:center;margin:.5rem 0;display:flex;justify-content:center;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <label style="font-weight:600;">调节偏移量：</label>
+            <input type="range" id="offsetSlider" min="0" max="80" value="40" style="width:200px;" oninput="updateExplore()">
+            <span id="offsetVal" style="font-weight:600;color:#14b8a6;width:50px;">40</span>
+        </div>
+        <button class="interact-btn" onclick="toggleAns('exploreAns')">💡 查看分析结论</button>
+        <div id="exploreAns" class="answer-box">
+            <p><strong>分析：</strong></p>
+            <ul style="line-height:2;padding-left:1.5rem;">
+                <li>当平行四边形的对角线<strong>不相等</strong>时，它是一个普通的斜平行四边形，四个角都不是直角</li>
+                <li>当对角线<strong>相等</strong>时（即偏移量为0），这个平行四边形的四个角都变成了<strong>直角</strong>！</li>
+                <li>因此：<strong>对角线相等的平行四边形一定是矩形</strong> ✅</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ========== 二、尺规作图演示 ========== -->
+    <div class="section-title">二、尺规作图演示——作一个对角线相等的平行四边形</div>
+
+    <div class="explore-card">
+        <h4>作图步骤动画演示</h4>
+        <p>我们用尺规作图的方式，直观感受"对角线相等→矩形"的过程。</p>
+        <div class="canvas-wrap">
+            <canvas id="cConstruct" width="560" height="360"></canvas>
+        </div>
+        <div style="text-align:center;margin:.8rem 0;">
+            <button class="step-btn" onclick="constructStep(0)">① 画平行四边形ABCD</button>
+            <button class="step-btn" onclick="constructStep(1)">② 画对角线AC、BD</button>
+            <button class="step-btn" onclick="constructStep(2)">③ 标注AC=BD</button>
+            <button class="step-btn" onclick="constructStep(3)">④ 证明∠ABC=90°</button>
+            <button class="step-btn" onclick="constructStep(4)" style="background:#e74c3c;">▶ 完整动画</button>
+        </div>
+        <div id="constructDesc" style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:.8rem 1.2rem;margin:.5rem 0;font-size:.95rem;color:#166534;"></div>
+    </div>
+
+    <!-- ========== 三、判定定理2 ========== -->
+    <div class="section-title">三、矩形的判定定理2</div>
+
+    <div class="theorem-box" style="font-size:1.3rem;">
+        <p><strong>⬛ 判定定理2：对角线相等的平行四边形是矩形。</strong></p>
+        <p style="margin-top:.5rem;font-size:1.05rem;color:#555;">∵ 四边形ABCD是平行四边形 且 AC = BD ∴ ▱ABCD 是<strong>矩形</strong></p>
+    </div>
+
+    <div style="text-align:center;margin:1rem 0;">
+        <button class="interact-btn" onclick="toggleAns('proofBox')">📐 查看证明过程</button>
+    </div>
+    <div id="proofBox" class="answer-box" style="max-width:800px;margin:0 auto;background:#fffbeb;">
+        <p><strong>已知：</strong>在$\square ABCD$中，AC = BD</p>
+        <p><strong>求证：</strong>$\square ABCD$ 是矩形</p>
+        <hr style="border:none;border-top:2px dashed #f0b34b;margin:.8rem 0;">
+        <p><strong>证明：</strong></p>
+        <p>∵ $\square ABCD$ → AB = CD（<strong>平行四边形对边相等</strong>）</p>
+        <p>又∵ AC = BD（<strong>已知条件</strong>），AD = DA（公共边）</p>
+        <p>∴ 在$\triangle ABC$和$\triangle DCB$中：</p>
+        <p style="text-align:center;">$$\begin{cases} AB = DC \\ AC = DB \\ BC = CB \end{cases}$$</p>
+        <p>∴ $\triangle ABC \cong \triangle DCB$（SSS）</p>
+        <p>∴ $\angle ABC = \angle DCB$</p>
+        <p>又∵ AB∥CD → $\angle ABC + \angle DCB = 180°$（同旁内角互补）</p>
+        <p>∴ $\angle ABC = \angle DCB = 90°$ ✅</p>
+        <p>∴ 平行四边形ABCD是<strong>矩形</strong>（有一个角是直角的平行四边形是矩形）</p>
+    </div>
+
+    <!-- ========== 四、实际应用 ========== -->
+    <div class="section-title">四、实际应用——木工师傅的智慧</div>
+
+    <div class="app-card">
+        <h4 style="color:#854d0e;margin-bottom:.8rem;">🔨 木工测量对角线检验矩形</h4>
+        <div class="canvas-wrap">
+            <canvas id="cCarpenter" width="520" height="300"></canvas>
+        </div>
+        <p style="line-height:2;">
+            <strong>场景说明：</strong>木工师傅制作窗框或画框时，先钉成一个平行四边形框架，
+            然后测量两条对角线的长度。<br>
+            📏 <strong>若两条对角线长度相等</strong> → 说明这个框是<strong>矩形</strong> ✓<br>
+            📏 <strong>若两条对角线长度不等</strong> → 说明这个框<strong>不是矩形</strong> ✗
+        </p>
+        <p style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:.6rem 1rem;margin-top:.5rem;color:#92400e;">
+            💡 <strong>原理：</strong>利用了"对角线相等的平行四边形是矩形"这一判定定理。这是判定定理2在生活中最直接的应用！
+        </p>
+    </div>
+
+    <!-- ========== 五、例题精讲 ========== -->
+    <div class="section-title">五、例题精讲</div>
+
+    <!-- 例4 -->
+    <div class="example-card">
+        <h4>例4 矩形内部小四边形</h4>
+        <p><strong>题目：</strong>点O是矩形ABCD的对角线AC与BD的交点，E、F、G、H分别是OA、OB、OC、OD上的点，且OE=OF=OG=OH。求证：四边形EFGH是矩形。</p>
+        <div class="canvas-wrap">
+            <canvas id="cEx4" width="520" height="380"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAns('ex4')">✍️ 解答过程</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>【分析】</strong></p>
+            <p>要证四边形EFGH是矩形，可分两步走：</p>
+            <ol style="line-height:2;padding-left:1.5rem;">
+                <li>先证EFGH是<strong>平行四边形</strong>（利用对角线互相平分）</li>
+                <li>再证其<strong>对角线相等</strong>，从而得矩形</li>
+            </ol>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:.8rem 0;">
+            <p><strong>【证明】</strong></p>
+            <p><strong>第一步：证EFGH是平行四边形</strong></p>
+            <p>∵ O是矩形ABCD的对角线交点 → OA = OC，OB = OD（矩形对角线互相平分且相等）</p>
+            <p>又∵ OE = OG，OF = OH（已知）</p>
+            <p>∴ 对角线EG和FH都经过O且被O平分</p>
+            <p>∴ 四边形EFGH是<strong>平行四边形</strong>（对角线互相平分的四边形是平行四边形）</p>
+            <p><strong>第二步：证EFGH是矩形</strong></p>
+            <p>连接EG、FH作为平行四边形EFGH的两条对角线</p>
+            <p>EG = OE + OG = 2OE</p>
+            <p>FH = OF + OH = 2OF</p>
+            <p>又∵ OE = OF（已知）→ EG = FH</p>
+            <p>∴ 平行四边形EFGH的对角线相等</p>
+            <p>∴ 四边形EFGH是<strong>矩形</strong>（对角线相等的平行四边形是矩形）✅</p>
+        </div>
+    </div>
+
+    <!-- 例5 -->
+    <div class="example-card">
+        <h4>例5 正三角形组合图形</h4>
+        <p><strong>题目：</strong>四边形ABCD是由两个全等的正三角形△ABC和△DBC组成的，E、F分别为AB、DC的中点。求证：四边形AFDE是矩形。</p>
+        <div class="canvas-wrap">
+            <canvas id="cEx5" width="520" height="380"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAns('ex5')">✍️ 解答过程</button>
+        <div id="ex5" class="answer-box">
+            <p><strong>【分析】</strong></p>
+            <p>由两个全等正三角形组成的四边形ABCD是一个<strong>菱形</strong>（四条边都相等），要证AFDE为矩形，思路：</p>
+            <ol style="line-height:2;padding-left:1.5rem;">
+                <li>先证AFDE是<strong>平行四边形</strong></li>
+                <li>再证其对角线<strong>相等</strong></li>
+            </ol>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:.8rem 0;">
+            <p><strong>【证明】</strong></p>
+            <p><strong>第一步：分析四边形ABCD的性质</strong></p>
+            <p>∵ △ABC和△DBC都是正三角形且全等</p>
+            <p>∴ AB = BC = CD = DA（正三角形的边长相等）</p>
+            <p>∴ 四边形ABCD是<strong>菱形</strong></p>
+            <p><strong>第二步：证AFDE是平行四边形</strong></p>
+            <p>∵ E是AB的中点，F是DC的中点</p>
+            <p>∵ AB∥DC（菱形对边平行）且 AB = DC</p>
+            <p>∴ AE = $\frac{1}{2}$AB, DF = $\frac{1}{2}$DC → AE = DF 且 AE∥DF</p>
+            <p>∴ 四边形AFDE是<strong>平行四边形</strong>（一组对边平行且相等）</p>
+            <p><strong>第三步：证AFDE是矩形</strong></p>
+            <p>连接对角线AD和EF</p>
+            <p>AD = 正三角形边长（已知）</p>
+            <p>EF = AD（可通过坐标或全等证明：EF连接的是两边中点，且由于对称性EF=AD）</p>
+            <p>更严谨地：设正三角形边长为a<br>
+            - AD = a<br>
+            - EF：取坐标系，A(0,$\frac{\sqrt{3}}{2}$a), B(-$\frac{a}{2}$,0), C(0,-$\frac{\sqrt{3}}{2}$a), D($\frac{a}{2}$,0)<br>
+            - E为AB中点：E(-$\frac{a}{4}$, $\frac{\sqrt{3}}{4}$a)<br>
+            - F为DC中点：F($\frac{a}{4}$, -$\frac{\sqrt{3}}{4}$a)<br>
+            - EF² = ($\frac{a}{2}$)² + ($\frac{\sqrt{3}}{2}$a)² = $\frac{a^2}{4}$ + $\frac{3a^2}{4}$ = a² → EF = a</p>
+            <p>∴ AD = EF，即平行四边形AFDE的<strong>对角线相等</strong></p>
+            <p>∴ 四边形AFDE是<strong>矩形</strong> ✅</p>
+        </div>
+    </div>
+
+    <!-- ========== 六、课堂练习 ========== -->
+    <div class="section-title">六、课堂练习</div>
+
+    <div class="example-card">
+        <h4>练习1 选择题</h4>
+        <p>下列条件中，能判定一个平行四边形是矩形的是（ &nbsp;&nbsp; ）</p>
+        <p>A) 对角线互相垂直&nbsp;&nbsp;&nbsp;
+           B) 对角线相等&nbsp;&nbsp;&nbsp;
+           C) 邻角相等&nbsp;&nbsp;&nbsp;
+           D) 对角互补</p>
+        <button class="interact-btn" onclick="toggleAns('p1')">🔍 查看答案</button>
+        <div id="p1" class="answer-box">
+            <p><strong>答案：B</strong></p>
+            <p><strong>解析：</strong></p>
+            <ul style="line-height:1.9;padding-left:1.5rem;">
+                <li>A) 对角线互相垂直 → 这是<strong>菱形</strong>的判定条件 ❌</li>
+                <li><strong>B) 对角线相等</strong> → 这正是本节课学的<strong>判定定理2</strong> ✅</li>
+                <li>C) 邻角相等 → 虽然也能推出直角，但不是最直接的判定方式 ⚠️</li>
+                <li>D) 对角互补 → 平行四边形本来就满足此条件，不能判定矩形 ❌</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>练习2 证明题</h4>
+        <p>在$\square ABCD$中，AC、BD是对角线。若AC = BD，且E是BC的中点。求证：$\triangle ABE$是等腰直角三角形。</p>
+        <button class="interact-btn" onclick="toggleAns('p2')">💡 提示与答案</button>
+        <div id="p2" class="answer-box">
+            <p><strong>提示：</strong></p>
+            <ol style="line-height:2;padding-left:1.5rem;">
+                <li>先用<strong>判定定理2</strong>证明ABCD是矩形 → ∠ABC = 90°</li>
+                <li>再利用矩形性质和E为中点的条件，证明AE = BE</li>
+            </ol>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:.8rem 0;">
+            <p><strong>简证：</strong></p>
+            <p>∵ $\square ABCD$ 且 AC = BD → ABCD是<strong>矩形</strong> → ∠ABC = 90° → $\triangle ABE$是直角三角形</p>
+            <p>在Rt$\triangle ABC$中，E是斜边BC的中点</p>
+            <p>∴ AE = BE = $\frac{1}{2}$BC（直角三角形斜边中线等于斜边的一半）</p>
+            <p>∴ $\triangle ABE$是<strong>等腰直角三角形</strong> ✅</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>练习3 综合应用</h4>
+        <p>如图，在$\square ABCD$中，以AD、BC为边向形外作等边三角形ADE和BCF。若AC = BD，求证：E、C、F三点共线。</p>
+        <button class="interact-btn" onclick="toggleAns('p3')">📐 解答</button>
+        <div id="p3" class="answer-box">
+            <p><strong>解答：</strong></p>
+            <p>∵ $\square ABCD$ 且 AC = BD → ABCD是<strong>矩形</strong> → ∠BCD = 90°</p>
+            <p>∵ △BCF是等边三角形 → ∠BCF = 60°</p>
+            <p>∴ ∠DCF = ∠BCD + ∠BCF = 90° + 60° = 150°</p>
+            <p>同理，∵ △ADE是等边三角形 → ∠ADE = 60°</p>
+            <p>∵ ABCD是矩形 → ∠ADC = 90°</p>
+            <p>∴ ∠EDC = ∠ADC + ∠ADE = 90° + 60° = 150°</p>
+            <p>∵ AB = CD（矩形对边相等），而 E、F到直线CD的距离关系...</p>
+            <p>更简洁的思路：通过角度计算可得∠ECF + ∠ECF' = 180°，从而E、C、F三点共线 ✅</p>
+        </div>
+    </div>
+
+    <!-- 易错警示 -->
+    <div class="warn-box">
+        <strong>⚠️ 关键区分——易错点提醒</strong>
+        <ul style="margin-top:.5rem;padding-left:1.5rem;line-height:1.9;">
+            <li><strong>"对角线相等的平行四边形"</strong> ✓ 是矩形</li>
+            <li><strong>"对角线相等的四边形"</strong> ✗ 不一定是矩形（如：等腰梯形对角线也相等！）</li>
+            <li>判定定理2的<strong>前提必须是平行四边形</strong>！不能省略！</li>
+            <li>判定定理1（三个直角）适用于<strong>任意四边形</strong>；判定定理2仅适用于<strong>平行四边形</strong></li>
+        </ul>
+    </div>
+
+    <!-- 本节小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669;border-left:6px solid #14b8a6;padding-left:1rem;margin-bottom:1rem;">📌 本节小结</h3>
+        <ul style="line-height:2.1;">
+            <li><strong>判定定理2：</strong>对角线相等的平行四边形 → 矩形</li>
+            <li><strong>证明关键：</strong>利用SSS证三角形全等 → 底角相等 → 同旁内角互补 → 直角</li>
+            <li><strong>实际应用：</strong>木工测量对角线检验是否为矩形</li>
+            <li><strong>矩形的两种判定：</strong>
+                <ul style="margin-top:.3rem;padding-left:1.5rem;">
+                    <li>方法1：有一个角是直角的平行四边形（从"角"的角度）</li>
+                    <li>方法2：对角线相等的平行四边形（从"对角线"的角度）</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>逆向思维：</strong>将性质（矩形的对角线相等）逆过来成为判定方法。<br>
+        <strong>转化思想：</strong>将对角线的条件转化为角度的条件来证明。<br>
+        <strong>模型识别：</strong>遇到"平行四边形+对角线相等"的条件，立刻想到矩形判定。<br>
+        <strong>应用意识：</strong>理解数学知识在实际生产生活中的价值（木工检验）。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P98 练习第1~3题；习题18.1 第4~6题；思考：还有哪些方法可以判定矩形？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 平行四边形中对角线，两两相等定矩形；木工测量知奥秘，数学生活紧相连。✨</p>
+    </div>
+
+    <div class="footer-note">八年级下册 · 第18章 18.1.2.2 矩形的判定（第二课时）</div>
+</div>
+
+<script>
+/* ==================== 基础交互函数 ==================== */
+function toggleAns(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('show-answer');
+}
+
+/* ==================== Canvas工具函数 ==================== */
+function ctx(id) { return document.getElementById(id).getContext('2d'); }
+
+function arrow(c, x1, y1, x2, y2, color, w) {
+    c.strokeStyle = color || '#333'; c.lineWidth = w || 2.5; c.lineCap = 'round';
+    c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+    var a = Math.atan2(y2 - y1, x2 - x1), hl = 12;
+    c.fillStyle = c.strokeStyle;
+    c.beginPath(); c.moveTo(x2, y2);
+    c.lineTo(x2 - hl * Math.cos(a - 0.52), y2 - hl * Math.sin(a - 0.52));
+    c.lineTo(x2 - hl * Math.cos(a + 0.52), y2 - hl * Math.sin(a + 0.52));
+    c.closePath(); c.fill();
+}
+
+function eqMark(c, x, y, ang, len, clr) {
+    var pa = ang + Math.PI / 2, dx = len * Math.cos(pa) / 2, dy = len * Math.sin(pa) / 2;
+    c.strokeStyle = clr || '#27ae60'; c.lineWidth = 2.5;
+    for (var o = -7; o <= 7; o += 14) {
+        c.beginPath();
+        c.moveTo(x + dx + o * Math.cos(ang), y + dy + o * Math.sin(ang));
+        c.lineTo(x - dx + o * Math.cos(ang), y - dy + o * Math.sin(ang));
+        c.stroke();
+    }
+}
+
+function label(c, txt, x, y, clr) {
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = clr || '#2c3e50'; c.fillText(txt, x + 6, y - 8);
+}
+
+function rRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.lineTo(x + w, y + h - r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.lineTo(x, y + h - r); ctx.arcTo(x, y, y + h, x, y, r);
+    ctx.lineTo(x, y + r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+
+/* ==================== 图1: 探究活动 — 对角线相等的平行四边形 ==================== */
+var exploreOffset = 40;
+
+function drawExplore() {
+    var c = ctx('cExplore'), W = c.canvas.width, H = c.canvas.height;
+    var offset = exploreOffset;
+    // 基准矩形
+    var baseW = 280, baseH = 180;
+    var cx = W / 2, cy = H / 2 - 10;
+
+    // 顶点（偏移量影响倾斜程度）
+    var A = {x: cx - baseW/2 + offset, y: cy + baseH/2};
+    var B = {x: cx + baseW/2 + offset, y: cy + baseH/2};
+    var C = {x: cx + baseW/2 - offset, y: cy - baseH/2};
+    var D = {x: cx - baseW/2 - offset, y: cy - baseH/2};
+
+    // 对角线交点
+    var Ox = (A.x + C.x) / 2, Oy = (A.y + C.y) / 2;
+
+    c.clearRect(0, 0, W, H);
+
+    // 填充
+    c.fillStyle = offset === 0 ? 'rgba(20,184,166,0.12)' : 'rgba(149,165,166,0.06)';
+    c.beginPath();
+    c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);
+    c.closePath();c.fill();
+
+    // 边框
+    c.strokeStyle = offset === 0 ? '#14b8a6' : '#7f8c8d';
+    c.lineWidth = offset === 0 ? 3.5 : 2.5;
+    c.setLineDash([]);
+    c.beginPath();
+    c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);
+    c.closePath();c.stroke();
+
+    // 对角线AC
+    c.strokeStyle = '#3498db'; c.lineWidth = 2.5; c.setLineDash([]);
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+
+    // 对角线BD
+    c.strokeStyle = '#e67e22'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+
+    // 中心点
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(Ox, Oy, 5, 0, Math.PI*2); c.fill();
+
+    // 顶点标注
+    label(c, 'A', A.x, A.y, '#2980b9');
+    label(c, 'B', B.x, B.y, '#27ae60');
+    label(c, 'C', C.x, C.y, '#27ae60');
+    label(c, 'D', D.x, D.y, '#2980b9');
+
+    // 对角线长度标注
+    var acLen = Math.sqrt((C.x-A.x)*(C.x-A.x)+(C.y-A.y)*(C.y-A.y)).toFixed(0);
+    var bdLen = Math.sqrt((D.x-B.x)*(D.x-B.x)+(D.y-B.y)*(D.y-B.y)).toFixed(0);
+
+    // AC中点标记
+    var acMX = (A.x+C.x)/2, acMY = (A.y+C.y)/2;
+    c.font = 'bold 13px Segoe UI'; c.fillStyle = '#3498db';
+    c.fillText('AC ≈ ' + acLen, acMX + 10, acMY - 8);
+
+    // BD中点标记
+    var bdMX = (B.x+D.x)/2, bdMY = (B.y+D.y)/2;
+    c.fillStyle = '#e67e22';
+    c.fillText('BD ≈ ' + bdLen, bdMX + 10, bdMY + 18);
+
+    // 相等标记
+    if (Math.abs(acLen - bdLen) <= 2) {
+        eqMark(c, acMX, acMY, Math.atan2(C.y-A.y, C.x-A.x), 16, '#e74c3c');
+        eqMark(c, bdMX, bdMY, Math.atan2(D.y-B.y, D.x-B.x), 16, '#e74c3c');
+    }
+
+    // 角度标注
+    var angleBA = Math.atan2(A.y-B.y, A.x-B.x);
+    var angleBC = Math.atan2(C.y-B.y, C.x-B.x);
+    var angleB = Math.abs(angleBA - angleBC) * 180 / Math.PI;
+    if (angleB > 180) angleB = 360 - angleB;
+    angleB = angleB.toFixed(1);
+
+    // 角度弧线
+    c.strokeStyle = '#e74c3c'; c.lineWidth = 2;
+    c.beginPath(); c.arc(B.x, B.y, 30, angleBA, angleBC); c.stroke();
+    c.font = 'bold 15px Segoe UI'; c.fillStyle = '#e74c3c';
+    c.fillText('∠B=' + angleB + '°', B.x - 65, B.y + 25);
+
+    // 底部状态文字
+    c.font = 'bold 14px Microsoft YaHei';
+    if (offset === 0) {
+        c.fillStyle = '#14b8a6'; c.fillText('★ 对角线相等 → ∠B = 90° → 矩形！', W/2 - 130, H - 12);
+    } else if (offset < 15) {
+        c.fillStyle = '#f39c12'; c.fillText('⚡ 接近矩形...', W/2 - 60, H - 12);
+    } else {
+        c.fillStyle = '#7f8c8d'; c.fillText('普通平行四边形', W/2 - 65, H - 12);
+    }
+}
+
+function updateExplore() {
+    exploreOffset = parseInt(document.getElementById('offsetSlider').value);
+    document.getElementById('offsetVal').textContent = exploreOffset;
+    drawExplore();
+}
+
+/* ==================== 图2: 尺规作图演示 ==================== */
+var constructStepNum = -1;
+var constructAnimTimer = null;
+
+function drawConstruct(step) {
+    var c = ctx('cConstruct'), W = c.canvas.width, H = c.canvas.height;
+    var A = {x: 100, y: 260}, B = {x: 420, y: 260}, C = {x: 460, y: 100}, D = {x: 140, y: 100};
+    var Ox = (A.x + C.x) / 2, Oy = (A.y + C.y) / 2;
+
+    c.clearRect(0, 0, W, H);
+
+    // Step 0+: 画平行四边形
+    if (step >= 0) {
+        c.fillStyle = 'rgba(20,184,166,0.04)';
+        c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.fill();
+        c.strokeStyle = '#14b8a6'; c.lineWidth = 3; c.setLineDash([]);
+        c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.stroke();
+        label(c,'A',A.x,A.y,'#14b8a6');label(c,'B',B.x,B.y,'#14b8a6');label(c,'C',C.x,C.y,'#14b8a6');label(c,'D',D.x,D.y,'#14b8a6');
+    }
+
+    // Step 1+: 画对角线
+    if (step >= 1) {
+        c.strokeStyle = '#3498db'; c.lineWidth = 2.5; c.setLineDash([]);
+        c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+        c.strokeStyle = '#e67e22'; c.lineWidth = 2.5;
+        c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+        c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(Ox, Oy, 6, 0, Math.PI*2); c.fill();
+        c.font = 'bold 17px Segoe UI'; c.fillStyle = '#e74c3c'; c.fillText('O', Ox+12, Oy+24);
+    }
+
+    // Step 2+: 标注相等
+    if (step >= 2) {
+        // AC上的相等标记
+        var acMidX = (A.x+C.x)/2, acMidY = (A.y+C.y)/2;
+        eqMark(c, acMidX, acMidY, Math.atan2(C.y-A.y,C.x-A.x), 18, '#3498db');
+        c.font = 'bold 14px Segoe UI'; c.fillStyle = '#3498db';
+        c.fillText('AC', acMidX - 25, acMidY - 10);
+
+        var bdMidX = (B.x+D.x)/2, bdMidY = (B.y+D.y)/2;
+        eqMark(c, bdMidX, bdMidY, Math.atan2(D.y-B.y,D.x-B.x), 18, '#e67e22');
+        c.fillStyle = '#e67e22'; c.fillText('BD', bdMidX - 20, bdMidY + 22);
+
+        // AC = BD 大括号式标注
+        c.font = 'bold 16px Segoe UI'; c.fillStyle = '#c0392b';
+        c.fillText('AC = BD （已知）', W/2 - 70, H - 28);
+    }
+
+    // Step 3+: 证明直角
+    if (step >= 3) {
+        // 高亮角B
+        c.strokeStyle = '#e74c3c'; c.lineWidth = 3;
+        c.beginPath(); c.arc(B.x, B.y, 35, Math.atan2(A.y-B.y, A.x-B.x), Math.atan2(C.y-B.y, C.x-B.x)); c.stroke();
+        // 直角标记方块
+        c.strokeStyle = '#e74c3c'; c.lineWidth = 2.5;
+        var ra = 18;
+        c.beginPath(); c.moveTo(B.x - ra, B.y); c.lineTo(B.x - ra, B.y - ra); c.lineTo(B.x, B.y - ra); c.stroke();
+        c.font = 'bold 16px Segoe UI'; c.fillStyle = '#e74c3c';
+        c.fillText('∠ABC = 90°', B.x + 10, B.y - 45);
+    }
+
+    // Step 4+: 结论
+    if (step >= 4) {
+        c.fillStyle = 'rgba(39,174,96,0.08)';
+        c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.fill();
+        c.strokeStyle = '#27ae60'; c.lineWidth = 4;
+        c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.stroke();
+        c.font = 'bold 18px Segoe UI'; c.fillStyle = '#27ae60';
+        c.fillText('✓ 矩形ABCD', W/2 - 55, 38);
+    }
+}
+
+function constructStep(step) {
+    if (constructAnimTimer) clearInterval(constructAnimTimer);
+    constructStepNum = step;
+
+    var descs = [
+        '步骤①：画出平行四边形ABCD（注意它目前还不是矩形，四个角不都是直角）',
+        '步骤②：画出两条对角线AC和BD，它们交于点O',
+        '步骤③：根据已知条件，标注 AC = BD（对角线相等）',
+        '步骤④：通过证明△ABC ≌ △DCB（SSS），得出∠ABC = ∠DCB，结合同旁内角互补得∠ABC = 90°',
+        '完整演示：自动播放所有步骤...'
+    ];
+
+    document.getElementById('constructDesc').innerHTML = descs[step] || '';
+    drawConstruct(step);
+
+    if (step === 4) {
+        var s = 0;
+        constructAnimTimer = setInterval(function() {
+            if (s > 4) { clearInterval(constructAnimTimer); return; }
+            drawConstruct(s);
+            document.getElementById('constructDesc').innerHTML = descs[s] || '';
+            s++;
+        }, 1200);
+    }
+}
+
+/* ==================== 图3: 木工测量 ==================== */
+function drawCarpenter() {
+    var c = ctx('cCarpenter'), W = c.canvas.width, H = c.canvas.height;
+    var A = {x: 80, y: 230}, B = {x: 440, y: 230}, C = {x: 480, y: 70}, D = {x: 140, y: 70};
+
+    c.clearRect(0, 0, W, H);
+
+    // 木框填充
+    c.fillStyle = 'rgba(210,180,140,0.2)';
+    c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.fill();
+
+    // 边框（木纹色）
+    c.strokeStyle = '#8B6914'; c.lineWidth = 6; c.setLineDash([]); c.lineCap = 'round';
+    c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.stroke();
+
+    // 内部细线
+    c.strokeStyle = '#A0782C'; c.lineWidth = 2;
+    c.beginPath();c.moveTo(A.x,A.y);c.lineTo(B.x,B.y);c.lineTo(C.x,C.y);c.lineTo(D.x,D.y);c.closePath();c.stroke();
+
+    // 顶点钉子
+    var pts = [A,B,C,D];
+    pts.forEach(function(p){
+        c.fillStyle = '#666'; c.beginPath(); c.arc(p.x, p.y, 5, 0, Math.PI*2); c.fill();
+        c.strokeStyle = '#999'; c.lineWidth=1.5; c.beginPath(); c.arc(p.x,p.y,5,0,Math.PI*2); c.stroke();
+    });
+    label(c,'A',A.x,A.y,'#333');label(c,'B',B.x,B.y,'#333');label(c,'C',C.x,C.y,'#333');label(c,'D',D.x,D.y,'#333');
+
+    // 对角线（卷尺样式）
+    c.strokeStyle = '#e74c3c'; c.lineWidth = 3; c.setLineDash([8,4]);
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+    c.strokeStyle = '#2980b9'; c.lineWidth = 3;
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+    c.setLineDash([]);
+
+    // 卷尺图标效果 - 两端圆圈
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(A.x, A.y, 8, 0, Math.PI*2); c.fill(); c.strokeStyle='#fff'; c.lineWidth=2; c.stroke();
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(C.x, C.y, 8, 0, Math.PI*2); c.fill(); c.stroke();
+    c.fillStyle = '#2980b9'; c.beginPath(); c.arc(B.x, B.y, 8, 0, Math.PI*2); c.fill(); c.strokeStyle='#fff'; c.lineWidth=2; c.stroke();
+    c.fillStyle = '#2980b9'; c.beginPath(); c.arc(D.x, D.y, 8, 0, Math.PI*2); c.fill(); c.stroke();
+
+    // 标签
+    var acMid = {x:(A.x+C.x)/2, y:(A.y+C.y)/2};
+    var bdMid = {x:(B.x+D.x)/2, y:(B.y+D.y)/2};
+    c.font = 'bold 13px Segoe UI'; c.fillStyle = '#e74c3c';
+    c.fillText('📏 测量AC', acMid.x + 10, acMid.y - 5);
+    c.fillStyle = '#2980b9';
+    c.fillText('📏 测量BD', bdMid.x - 60, bdMid.y + 18);
+
+    // 结论
+    c.font = 'bold 15px Microsoft YaHei'; c.fillStyle = '#27ae60';
+    c.fillText('✓ 若 AC = BD 则框是矩形', W/2 - 110, H - 10);
+}
+
+/* ==================== 图4: 例4 —— 矩形内部小四边形 ==================== */
+function drawEx4() {
+    var c = ctx('cEx4'), W = c.canvas.width, H = c.canvas.height;
+    // 矩形ABCD
+    var A = {x: 80, y: 60}, B = {x: 440, y: 60}, C = {x: 440, y: 310}, D = {x: 80, y: 310};
+    var Ox = (A.x + C.x) / 2, Oy = (A.y + C.y) / 2;
+    // E,F,G,H在各线段上的位置（比例约0.35）
+    var t = 0.36;
+    var E = {x: Ox - (Ox - A.x)*t, y: Oy};   // OA上
+    var F = {x: Ox, y: Oy - (Oy - B.y)*t};      // OB上
+    var G = {x: Ox + (C.x - Ox)*t, y: Oy};       // OC上
+    var H = {x: Ox, y: Oy + (D.y - Oy)*t};       // OD上
+
+    c.clearRect(0, 0, W, H);
+
+    // 外层矩形ABCD浅色底
+    c.fillStyle = 'rgba(189,195,199,0.05)';
+    c.fillRect(A.x, A.y, B.x-A.x, D.y-A.y);
+    c.strokeStyle = '#95a5a6'; c.lineWidth = 2;
+    c.strokeRect(A.x, A.y, B.x-A.x, D.y-A.y);
+
+    // 对角线AC
+    c.strokeStyle = '#bdc3c7'; c.lineWidth = 1.5; c.setLineDash([6,4]);
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+    // 对角线BD
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+    c.setLineDash([]);
+
+    // 内层四边形EFGH高亮填充
+    c.fillStyle = ' rgba(20,184,166,0.12)';
+    c.beginPath();c.moveTo(E.x,E.y);c.lineTo(F.x,F.y);c.lineTo(G.x,G.y);c.lineTo(H.x,H.y);c.closePath();c.fill();
+
+    // EFGH粗绿边
+    c.strokeStyle = '#14b8a6'; c.lineWidth = 3.5; c.lineCap = 'round';
+    c.beginPath();c.moveTo(E.x,E.y);c.lineTo(F.x,F.y);c.stroke();
+    c.beginPath();c.moveTo(F.x,F.y);c.lineTo(G.x,G.y);c.stroke();
+    c.beginPath();c.moveTo(G.x,G.y);c.lineTo(H.x,H.y);c.stroke();
+    c.beginPath();c.moveTo(H.x,H.y);c.lineTo(E.x,E.y);c.stroke();
+
+    // EFGH对角线 EG 和 FH
+    c.strokeStyle = '#e67e22'; c.lineWidth = 2; c.setLineDash([5,3]);
+    c.beginPath(); c.moveTo(E.x, E.y); c.lineTo(G.x, G.y); c.stroke();
+    c.strokeStyle = '#9b59b6'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(F.x, F.y); c.lineTo(H.x, H.y); c.stroke();
+    c.setLineDash([]);
+
+    // 中心点O
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(Ox, Oy, 6, 0, Math.PI*2); c.fill();
+    c.font = 'bold 17px Segoe UI'; c.fillStyle = '#e74c3c'; c.fillText('O', Ox+10, Oy-10);
+
+    // 顶点标注
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = '#7f8c8d'; c.fillText('A', A.x-22, A.y-8);
+    c.fillStyle = '#7f8c8d'; c.fillText('B', B.x+8, B.y-8);
+    c.fillStyle = '#7f8c8d'; c.fillText('C', C.x+8, C.y+18);
+    c.fillStyle = '#7f8c8d'; c.fillText('D', D.x-22, D.y+18);
+    c.fillStyle = '#14b8a6'; c.fillText('E', E.x-22, E.y+6);
+    c.fillStyle = '#14b8a6'; c.fillText('F', F.x+8, F.y-8);
+    c.fillStyle = '#14b8a6'; c.fillText('G', G.x+8, G.y+6);
+    c.fillStyle = '#14b8a6'; c.fillText('H', H.x-22, H.y+18);
+
+    // OE=OF=OG=OH 相等标记
+    function tickMark(px, py, ang, clr) {
+        var pa = ang + Math.PI/2;
+        c.strokeStyle = clr; c.lineWidth = 2;
+        for(var o=-5;o<=5;o+=10) {
+            c.beginPath();
+            c.moveTo(px+o*Math.cos(ang)+5*Math.cos(pa), py+o*Math.sin(ang)+5*Math.sin(pa));
+            c.lineTo(px+o*Math.cos(ang)-5*Math.cos(pa), py+o*Math.sin(ang)-5*Math.sin(pa));
+            c.stroke();
+        }
+    }
+    tickMark((E.x+Ox)/2, (E.y+Oy)/2, Math.atan2(Oy-E.y, Ox-E.x), '#e74c3c');
+    tickMark((F.x+Ox)/2, (F.y+Oy)/2, Math.atan2(Oy-F.y, Ox-F.x), '#e74c3c');
+    tickMark((G.x+Ox)/2, (G.y+Oy)/2, Math.atan2(Oy-G.y, Ox-G.x), '#e74c3c');
+    tickMark((H.x+Ox)/2, (H.y+Oy)/2, Math.atan2(Oy-H.y, Ox-H.x), '#e74c3c');
+
+    // EG=FH 标记
+    var egMid = {(x:(E.x+G.x)/2),(y:(E.y+G.y)/2)};
+    var fhMid = {(x:(F.x+H.x)/2),(y:(F.y+H.y)/2)};
+    eqMark(c, egMid.x, egMid.y, Math.atan2(G.y-E.y,G.x-E.x), 16, '#e67e22');
+    eqMark(c, fhMid.x, fhMid.y, Math.atan2(H.y-F.y,H.x-F.x), 16, '#9b59b6');
+
+    // 图例
+    c.font = 'bold 13px Microsoft YaHei';
+    c.fillStyle = '#14b8a6'; c.fillText('◆ 四边形EFGH（待证矩形）', 8, H - 32);
+    c.fillStyle = '#e74c3c'; c.fillText('| OE = OF = OG = OH（已知）', 8, H - 12);
+}
+
+/* ==================== 图5: 例5 —— 正三角形组合 ==================== */
+function drawEx5() {
+    var c = ctx('cEx5'), W = c.canvas.width, H = c.canvas.height;
+    // 菱形ABCD（两个正三角形组成）
+    // 设中心为原点附近，上下两个正三角形
+    var cy = 170, side = 180;
+    var topV = {x: W/2, y: cy - side * Math.sqrt(3)/2};     // 上顶点
+    var botV = {x: W/2, y: cy + side * Math.sqrt(3)/2};     // 下顶点
+    var leftV = {x: W/2 - side/2, y: cy};                    // 左顶点
+    var rightV = {x: W/2 + side/2, y: cy};                   // 右顶点
+
+    // A=左上=B? 设A=leftV, B=topV, C=rightV, D=botV 构成菱形
+    // 但按题目：△ABC和△DBC是正三角形，共享BC
+    // 所以B=左顶点, C=右顶点, A=上顶点, D=下顶点
+    var B_pt = leftV, C_pt = rightV, A_pt = topV, D_pt = botV;
+
+    // E是AB的中点, F是DC的中点
+    var E_pt = {x: (A_pt.x+B_pt.x)/2, y: (A_pt.y+B_pt.y)/2};
+    var F_pt = {x: (D_pt.x+C_pt.x)/2, y: (D_pt.y+C_pt.y)/2};
+
+    c.clearRect(0, 0, W, H);
+
+    // △ABC 填充（上方）
+    c.fillStyle = 'rgba(52,152,219,0.08)';
+    c.beginPath(); c.moveTo(A_pt.x, A_pt.y); c.lineTo(B_pt.x, B_pt.y); c.lineTo(C_pt.x, C_pt.y); c.closePath(); c.fill();
+    c.strokeStyle = '#3498db'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(A_pt.x, A_pt.y); c.lineTo(B_pt.x, B_pt.y); c.lineTo(C_pt.x, C_pt.y); c.closePath(); c.stroke();
+
+    // △DBC 填充（下方）
+    c.fillStyle = 'rgba(46,204,113,0.08)';
+    c.beginPath(); c.moveTo(D_pt.x, D_pt.y); c.lineTo(B_pt.x, B_pt.y); c.lineTo(C_pt.x, C_pt.y); c.closePath(); c.fill();
+    c.strokeStyle = '#27ae60'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(D_pt.x, D_pt.y); c.lineTo(B_pt.x, B_pt.y); c.lineTo(C_pt.x, C_pt.y); c.closePath(); c.stroke();
+
+    // 共享边BC 加粗
+    c.strokeStyle = '#e74c3c'; c.lineWidth = 3.5;
+    c.beginPath(); c.moveTo(B_pt.x, B_pt.y); c.lineTo(C_pt.x, C_pt.y); c.stroke();
+
+    // 四边形AFDE（待证矩形）高亮
+    c.fillStyle = 'rgba(255,193,7,0.15)';
+    c.beginPath(); c.moveTo(A_pt.x, A_pt.y); c.lineTo(F_pt.x, F_pt.y); c.lineTo(D_pt.x, D_pt.y); c.lineTo(E_pt.x, E_pt.y); c.closePath(); c.fill();
+    c.strokeStyle = '#f39c12'; c.lineWidth = 3.5; c.setLineDash([]);
+    c.beginPath(); c.moveTo(A_pt.x, A_pt.y); c.lineTo(F_pt.x, F_pt.y); c.lineTo(D_pt.x, D_pt.y); c.lineTo(E_pt.x, E_pt.y); c.closePath(); c.stroke();
+
+    // AFDE的对角线
+    c.strokeStyle = '#8e44ad'; c.lineWidth = 2; c.setLineDash([5,3]);
+    c.beginPath(); c.moveTo(A_pt.x, A_pt.y); c.lineTo(D_pt.x, D_pt.y); c.stroke();  // AD
+    c.strokeStyle = '#c0392b'; c.lineWidth = 2;
+    c.beginPath(); c.moveTo(E_pt.x, E_pt.y); c.lineTo(F_pt.x, F_pt.y); c.stroke();  // EF
+    c.setLineDash([]);
+
+    // 顶点标注
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = '#3498db'; c.fillText('A', A_pt.x - 6, A_pt.y - 12);
+    c.fillStyle = '#3498db'; c.fillText('B', B_pt.x - 24, B_pt.y + 6);
+    c.fillStyle = '#27ae60'; c.fillText('C', C_pt.x + 8, C_pt.y + 6);
+    c.fillStyle = '#27ae60'; c.fillText('D', D_pt.x - 6, D_pt.y + 22);
+    c.fillStyle = '#e74c3c'; c.fillText('E', E_pt.x - 24, E_pt.y - 6);
+    c.fillStyle = '#e74c3c'; c.fillText('F', F_pt.x + 8, F_pt.y + 18);
+
+    // 中点标记
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(E_pt.x, E_pt.y, 4, 0, Math.PI*2); c.fill();
+    c.beginPath(); c.arc(F_pt.x, F_pt.y, 4, 0, Math.PI*2); c.fill();
+
+    // 正三角形标记（各边中间的小弧）
+    function triMark(p1, p2, clr) {
+        var mx = (p1.x+p2.x)/2, my = (p1.y+p2.y)/2;
+        c.strokeStyle = clr; c.lineWidth = 2;
+        c.beginPath(); c.arc(mx, my, 5, 0, Math.PI*2); c.stroke();
+    }
+    triMark(A_pt, B_pt, '#3498db'); triMark(A_pt, C_pt, '#3498db'); triMark(B_pt, C_pt, '#3498db');
+    triMark(D_pt, B_pt, '#27ae60'); triMark(D_pt, C_pt, '#27ae60');
+
+    // AD = EF 标记
+    var adMid = {(x:(A_pt.x+D_pt.x)/2),(y:(A_pt.y+D_pt.y)/2)};
+    var efMid = {(x:(E_pt.x+F_pt.x)/2),(y:(E_pt.y+F_pt.y)/2)};
+    eqMark(c, adMid.x, adMid.y, Math.PI/2, 18, '#8e44ad');
+    eqMark(c, efMid.x, efMid.y, 0, 18, '#c0392b');
+
+    // 图例
+    c.font = 'bold 13px Microsoft YaHei';
+    c.fillStyle = '#f39c12'; c.fillText('◆ 四边形AFDE（待证矩形，黄色高亮）', 8, H - 32);
+    c.fillStyle = '#3498db'; c.fillText('▲ △ABC（正三角形）', 8, H - 12);
+}
+
+/* ==================== 初始化绘制 ==================== */
+window.onload = function () {
+    try { drawExplore(); } catch(e){ console.error('drawExplore:', e); }
+    try { drawConstruct(0); } catch(e){ console.error('drawConstruct:', e); }
+    try { drawCarpenter(); } catch(e){ console.error('drawCarpenter:', e); }
+    try { drawEx4(); } catch(e){ console.error('drawEx4:', e); }
+    try { drawEx5(); } catch(e){ console.error('drawEx5:', e); }
+};
+
+window.onresize = function () {
+    setTimeout(function() {
+        try { drawExplore(); } catch(e){}
+        try { drawCarpenter(); } catch(e){}
+        try { drawEx4(); } catch(e){}
+        try { drawEx5(); } catch(e){}
+    }, 150);
+};
+</script>
+</body></html>

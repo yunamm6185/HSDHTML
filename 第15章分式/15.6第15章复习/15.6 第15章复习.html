@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.6 第15章复习 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f3e8fd; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif; font-weight: 500; line-height: 1.6; color: #2d1867; padding: 1.5rem; font-size: 22px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: white; border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(102,126,234,0.35); padding: 2rem 2.5rem; border: 1px solid #d4c4f8; word-wrap: break-word; overflow-wrap: break-word; }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #b8a5e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem; font-weight: 600; font-size: 1.1rem; }
+        h1 { font-size: 2.6rem; color: #5a3d9a; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:5px; margin-top:8px; }
+        .lesson-title { text-align:center; font-size:2.4rem; color:#5a3d9a; background:linear-gradient(145deg,#ede6fc,#ddd0f5); padding:.6rem 1.2rem; border-radius:60px; border:3px solid #c9b8ea; margin:1.2rem 0 1.8rem; font-weight:700; }
+
+        .intro-card { background:#ede6fc; border-radius:2rem; padding:1.5rem 2rem; margin:1.2rem 0; border-left:8px solid #667eea; font-weight:600; }
+        .fact-card { background:#fff8e1; border-left:8px solid #f0b34b; border-radius:1.8rem; padding:1.4rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .fact-card h4 { font-size:1.55rem; margin-bottom:0.6rem; color:#b85c1a; }
+        .example-card { background:#e8fdf4; border-left:8px solid #34c77b; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .example-card h4 { font-size:1.5rem; color:#1a8a4a; }
+
+        .interact-btn { background:#ede6fc; border:none; color:#5a3d9a; padding:.4rem 1.4rem; border-radius:40px; font-weight:700; cursor:pointer; box-shadow:0 4px 0 #c4b5e8; margin:.5rem 0 0; font-size:1rem; }
+        .interact-btn:active { transform:translateY(2px); }
+        .answer-box { background:#faf8ff; border-left:6px solid #f0b34b; padding:.8rem 1.5rem; margin:.8rem 0; display:none; border-radius:0 1rem 1rem 0; font-size:1.05rem; }
+        .show-answer { display:block; }
+
+        .exercise-section { background:#f5efff; border-radius:2rem; padding:1.5rem 2rem; margin:2rem 0; }
+        .exercise-item { margin-bottom:1.5rem; }
+        .exercise-question { font-weight:700; color:#5a3d9a; font-size:1.15rem; margin-bottom:0.4rem; }
+
+        .summary-section { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-left:6px solid #667eea; border-radius:1.8rem; padding:1.2rem 2rem; margin:1.5rem 0; }
+        .math-idea { background:#ede6fc; border-left:8px solid #667eea; border-radius:1.8rem; padding:1rem 1.8rem; margin:1rem 0; }
+        .homework-box { background:linear-gradient(145deg,#ddd0f5,#ede6fc); border-radius:60px; padding:1rem 2rem; display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; margin:1.5rem 0; }
+        .message-box { background:#f0ebff; text-align:center; font-style:italic; border-left:8px solid #764ba2; padding:1rem 1.8rem; border-radius:2rem; margin:1.5rem 0; }
+        .footer-note { text-align:right; color:#5a3d9a; border-top:2px solid #c9b8ea; padding-top:.8rem; margin-top:1.5rem; }
+        .highlight { background:#d4f4dd; padding:.5rem 1rem; border-radius:1rem; margin:.5rem 0; }
+
+        table { width:100%; border-collapse:collapse; margin:1rem 0; background:white; border-radius:10px; overflow:hidden; }
+        th,td { padding:12px 16px; text-align:center; border:2px solid #ddd0f5; }
+        th { background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; }
+        tr:nth-child(even) { background:#faf8ff; } tr:hover { background:#ede6fc; }
+
+        /* KaTeX 公式字体大小 */
+        .katex { font-size: 1.55em !important; }
+        .katex-display { font-size: 1.55em !important; margin: 0.5rem 0 !important; }
+        .interact-btn .katex { font-size: 1.6em !important; }
+        .answer-box .katex { font-size: 1.55em !important; }
+        table .katex { font-size: 1.45em !important; }
+        .example-card .katex { font-size: 1.55em !important; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第15章 分式 · 15.6</span></div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.6 第15章复习</div>
+
+    <!-- 知识结构 -->
+    <div class="intro-card">
+        <p style="text-align:center; font-size:1.15rem;">本章我们系统学习了分式的概念、运算、方程以及相关的指数知识。让我们先回顾整体知识框架：</p>
+    </div>
+
+    <div class="fact-card">
+        <h4>一、知识结构</h4>
+        <table style="margin:1rem auto;">
+            <tr><th>章节</th><th>主要内容</th></tr>
+            <tr><td>15.1 分式及其基本性质</td><td>分式的定义、有意义的条件、基本性质、约分、通分</td></tr>
+            <tr><td>15.2 分式的运算</td><td>乘法、除法、加减法、乘方</td></tr>
+            <tr><td>15.3 分式方程</td><td>解法、增根、验根、应用</td></tr>
+            <tr><td>15.4 零指数幂与负整数指数幂</td><td>$a^0=1$、$a^{-n}=\frac{1}{a^n}$、科学记数法</td></tr>
+        </table>
+    </div>
+
+    <!-- 核心公式 -->
+    <div class="fact-card">
+        <h4>二、核心公式与法则</h4>
+        <table style="margin:1rem auto;">
+            <tr><th>知识点</th><th>公式/法则</th></tr>
+            <tr><td>分式的基本性质</td><td>$\frac{A}{B}=\frac{AM}{BM}=\frac{A\div M}{B\div M}$（$M\neq 0$）</td></tr>
+            <tr><td>分式乘法</td><td>$\frac{A}{B}\cdot\frac{C}{D}=\frac{AC}{BD}$</td></tr>
+            <tr><td>分式除法</td><td>$\frac{A}{B}\div\frac{C}{D}=\frac{AD}{BC}$</td></tr>
+            <tr><td>同分母加减</td><td>$\frac{A}{C}\pm\frac{B}{C}=\frac{A\pm B}{C}$</td></tr>
+            <tr><td>异分母加减</td><td>$\frac{A}{B}\pm\frac{C}{D}=\frac{AD\pm BC}{BD}$</td></tr>
+            <tr><td>分式乘方</td><td>$\left(\frac{A}{B}\right)^n=\frac{A^n}{B^n}$</td></tr>
+            <tr><td>零指数幂</td><td>$a^0=1$（$a\neq 0$）</td></tr>
+            <tr><td>负整数指数幂</td><td>$a^{-n}=\frac{1}{a^n}$（$a\neq 0$，$n$为正整数）</td></tr>
+        </table>
+    </div>
+
+    <!-- 易错点 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">三、易错点与注意事项</h3>
+        <table style="margin:1rem auto;">
+            <tr><th style="width:25%;">知识点</th><th style="width:40%;">常见错误</th><th style="width:35%;">正确做法</th></tr>
+            <tr><td><strong>分式的意义</strong></td><td>忽略分母不能为零</td><td>始终关注分母 $B \neq 0$</td></tr>
+            <tr><td><strong>约分</strong></td><td>约去系数但漏掉字母</td><td>先分解因式，再找公因式</td></tr>
+            <tr><td><strong>通分</strong></td><td>最简公分母找错</td><td>取各因式最高次幂之积</td></tr>
+            <tr><td><strong>增根</strong></td><td>解完不检验</td><td><strong style="color:#e74c3c;">必须检验！</strong></td></tr>
+            <tr><td><strong>零次幂</strong></td><td>认为 $0^0 = 1$</td><td>$a^0=1$ 前提是 $a \neq 0$</td></tr>
+        </table>
+    </div>
+
+    <!-- 例题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.5rem;">四、例题讲解</h3>
+
+        <div class="example-card">
+            <h4>例1 计算</h4>
+            <p>(1) $\frac{a^2}{b} \cdot \frac{b^2}{a}$ &nbsp;&nbsp; (2) $\frac{x^2-1}{x} \div \frac{x+1}{x}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答</button>
+            <div id="ex1" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>(1) $\frac{a^2}{b} \cdot \frac{b^2}{a} = \frac{a^2 \cdot b^2}{b \cdot a} = ab$</p>
+                <p style="margin-top:0.5rem;">(2) $\frac{x^2-1}{x} \div \frac{x+1}{x} = \frac{(x+1)(x-1)}{x} \cdot \frac{x}{x+1} = x-1$</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <h4>例2 计算</h4>
+            <p>$\frac{1}{x-y} + \frac{1}{y-x}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 详细解答</button>
+            <div id="ex2" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>$\frac{1}{x-y} + \frac{1}{y-x} = \frac{1}{x-y} + \frac{1}{-(x-y)} = \frac{1}{x-y} - \frac{1}{x-y} = 0$</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <h4>例3 解方程</h4>
+            <p>$\frac{1}{x-2} = \frac{1-x}{2-x} - 3$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 详细解答</button>
+            <div id="ex3" class="answer-box">
+                <p><strong>解：</strong>注意到 $2-x = -(x-2)$</p>
+                <p>方程可化为：$\frac{1}{x-2} = \frac{x-1}{x-2} - 3$</p>
+                <p>方程两边同乘 $(x-2)$，得</p>
+                <p>$1 = (x-1) - 3(x-2)$</p>
+                <p>$1 = x - 1 - 3x + 6$</p>
+                <p>$1 = -2x + 5$</p>
+                <p>$2x = 4$</p>
+                <p>$x = 2$</p>
+                <p style="margin-top:0.5rem;"><strong>检验：</strong>当 $x = 2$ 时，$x-2 = 0$，分母为零</p>
+                <p><strong>∴ $x = 2$ 是增根，原方程无解</strong></p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <h4>例4 用科学记数法表示</h4>
+            <p>普朗克常数约为 $0.0000000000000000000000000000006626$ J·s</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex4')">✍️ 详细解答</button>
+            <div id="ex4" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>$0.0000000000000000000000000000006626 = 6.626 \times 10^{-34}$ J·s</p>
+            </div>
+        </div>
+
+        <div class="example-card">
+            <h4>例5 应用题</h4>
+            <p>甲、乙两人做某种机器零件，已知甲每小时比乙多做 $6$ 个，甲做 $90$ 个零件所用的时间与乙做 $60$ 个零件所用的时间相等。甲、乙两人每小时各做多少个零件？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex5')">✍️ 详细解答</button>
+            <div id="ex5" class="answer-box">
+                <p><strong>解：</strong>设乙每小时做 $x$ 个零件，则甲每小时做 $(x+6)$ 个零件</p>
+                <p>根据题意，得 $\frac{90}{x+6} = \frac{60}{x}$</p>
+                <p>方程两边同乘 $x(x+6)$，得</p>
+                <p>$90x = 60(x+6)$</p>
+                <p>$90x = 60x + 360$</p>
+                <p>$30x = 360$</p>
+                <p>$x = 12$</p>
+                <p style="margin-top:0.5rem;"><strong>检验：</strong>当 $x = 12$ 时，$x(x+6) = 12 \times 18 = 216 \neq 0$</p>
+                <p>甲每小时做：$x+6 = 12+6 = 18$（个）</p>
+                <p><strong>答：甲每小时做 18 个零件，乙每小时做 12 个零件。</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">本章要点</h3>
+        <div>• 分式的基本性质及分式的运算与分数类似，要注意与分数进行类比</div>
+        <div style="margin-top:0.5rem;">• 解分式方程的基本思想是把含有未知数的分母去掉，将分式方程转化为整式方程来解</div>
+        <div style="margin-top:0.5rem;">• 解分式方程可能出现增根，必须进行检验，要理解增根产生的原因</div>
+        <div style="margin-top:0.5rem;">• 引进零指数幂与负整数指数幂后，幂的概念和运算性质扩充到了整数指数幂的范围</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong>分式的概念和运算与分数进行类比学习<br>
+        <strong>转化思想：</strong>将分式方程转化为整式方程求解<br>
+        <strong>建模能力：</strong>从实际问题中抽象出分式方程模型</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>完成课本P26-28复习题</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 分式学习要细心，约分通分记心间；方程求解须检验，指数运算扩范围。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.6 第15章复习</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b)b.classList.toggle('show-answer');
+}
+
+window.addEventListener('load', function() {
+    if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left:'$$', right:'$$', display:true},
+                {left:'$', right:'$', display:false}
+            ],
+            strict: false,
+            trust: true,
+            throwOnError: false
+        });
+    }
+});
+</script>
+</body>
+</html>

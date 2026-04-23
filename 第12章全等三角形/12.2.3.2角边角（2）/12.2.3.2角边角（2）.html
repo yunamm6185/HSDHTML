@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>12.2.3.2 AAS的应用 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+        }
+        .example-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .example-card h4 {
+            font-size: 1.4rem;
+            color: #1d6130;
+        }
+        .example-card h4::before {
+            content: "📐 ";
+        }
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.3rem;
+        }
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+        }
+        .interact-btn:active { transform: translateY(2px); }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.9rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #c0d2e8;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .summary-section, .math-idea, .reading-section, .homework-box, .message-box {
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+        .summary-section {
+            background: #d6e9f5;
+            border-left: 6px solid #30829b;
+        }
+        .math-idea {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+        }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 8px solid #e6b422;
+        }
+        .reading-section h4 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #b87c00;
+        }
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+        }
+        .highlight {
+            background: #c5e0d4;
+            padding: 0.6rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+        .deduction-card {
+            background: #e1eff9;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.2.3.2</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.2.3.2 AAS的应用与练习</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能熟练运用AAS证明三角形全等</div>
+            <div class="target-item"><span>✔</span>会证明全等三角形对应边上的高、中线、角平分线相等</div>
+            <div class="target-item"><span>✔</span>掌握证明线段相等或角相等的常用方法</div>
+        </div>
+    </div>
+
+    <!-- 导入：AAS的应用背景 -->
+    <div class="intro-card">
+        <p>我们已经学习了判定三角形全等的“角边角”（ASA）和“角角边”（AAS）定理。其中，AAS是在ASA的基础上，利用三角形内角和推导得出的。本节我们将通过几个典型例题，进一步体会AAS在证明线段相等、角相等以及几何推理中的重要作用，并学习如何将实际问题转化为全等三角形问题。</p>
+    </div>
+
+    <!-- 例4：AAS应用 -->
+    <div class="example-card">
+        <h4>例4</h4>
+        <p>如图12.2.15，在 $\triangle ABC$ 中，$D$ 是边 $BC$ 的中点，过点 $C$ 作直线 $CE$，使 $CE // AB$，交 $AD$ 的延长线于点 $E$。求证：$AD = ED$。</p>
+        <div class="figure-container">
+            <img src="12.2.15.png" alt="图12.2.15" style="max-width:300px;">
+            <div class="figure-caption">图12.2.15</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">📌 显示证明</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>证明：</strong><br>
+            $\because CE // AB$ (已知)，<br>
+            $\therefore \angle ABD = \angle ECD$，$\angle BAD = \angle CED$ (两直线平行，内错角相等)。<br>
+            在 $\triangle ABD$ 和 $\triangle ECD$ 中，<br>
+            $\angle ABD = \angle ECD$ (已证)，<br>
+            $\angle BAD = \angle CED$ (已证)，<br>
+            $BD = CD$ (已知，D是中点)，<br>
+            $\therefore \triangle ABD \cong \triangle ECD$ (AAS)。<br>
+            $\therefore AD = ED$ (全等三角形的对应边相等)。</p>
+        </div>
+    </div>
+
+    <!-- 概括：证明线段相等的常用方法 -->
+    <div class="highlight" style="margin:1rem 0;">
+        <p><strong>概括</strong> 要证明两条线段相等，可考虑它们分别属于两个三角形，若能证明这两个三角形全等，便可利用全等三角形的对应边相等得到结论。这是证明线段相等的一个重要方法。同样，证明角相等也可采用类似的思路。</p>
+    </div>
+
+    <!-- 例5：证明全等三角形对应边上的高相等 -->
+    <div class="example-card">
+        <h4>例5</h4>
+        <p>证明：全等三角形对应边上的高相等。</p>
+        <div class="figure-container">
+            <img src="12.2.16.png" alt="图12.2.16" style="max-width:300px;">
+            <div class="figure-caption">图12.2.16</div>
+        </div>
+        <p><strong>已知：</strong>如图12.2.16，$\triangle ABC \cong \triangle A'B'C'$，$AD$、$A'D'$ 分别是 $\triangle ABC$ 的边 $BC$ 和 $\triangle A'B'C'$ 的边 $B'C'$ 上的高。<br>
+        <strong>求证：</strong>$AD = A'D'$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex5')">📌 显示证明</button>
+        <div id="ex5" class="answer-box">
+            <p><strong>证明：</strong><br>
+            $\because \triangle ABC \cong \triangle A'B'C'$ (已知)，<br>
+            $\therefore AB = A'B'$，$\angle B = \angle B'$ (全等三角形的对应边、对应角相等)。<br>
+            在 $\triangle ABD$ 和 $\triangle A'B'D'$ 中，<br>
+            $\angle ADB = \angle A'D'B' = 90^\circ$ (已知)，<br>
+            $\angle B = \angle B'$ (已证)，<br>
+            $AB = A'B'$ (已证)，<br>
+            $\therefore \triangle ABD \cong \triangle A'B'D'$ (AAS)。<br>
+            $\therefore AD = A'D'$ (全等三角形的对应边相等)。</p>
+        </div>
+    </div>
+
+    <!-- 思考：对应边上的中线相等（独立模块，不再重复） -->
+    <div class="deduction-card">
+        <h4 style="font-size:1.3rem; margin-bottom:0.5rem;">🤔 思考</h4>
+        <p>如图，$\triangle ABC \cong \triangle A'B'C'$，$AM$、$A'M'$ 分别是 $\triangle ABC$ 的边 $BC$ 和 $\triangle A'B'C'$ 的边 $B'C'$ 上的中线。你能证明 $AM = A'M'$ 吗？</p>
+        <p>类似地，对应角的平分线也相等。请尝试写出证明过程。</p>
+        <button class="interact-btn" onclick="toggleAnswer('think')">💡 提示</button>
+        <div id="think" class="answer-box">
+            <p><strong>证明提示：</strong><br>
+            $\because \triangle ABC \cong \triangle A'B'C'$，<br>
+            $\therefore AB = A'B'$，$\angle B = \angle B'$，$BC = B'C'$。<br>
+            $\because AM$、$A'M'$ 分别是中线，$\therefore BM = \dfrac{1}{2}BC$，$B'M' = \dfrac{1}{2}B'C'$，<br>
+            $\therefore BM = B'M'$。<br>
+            在 $\triangle ABM$ 和 $\triangle A'B'M'$ 中，<br>
+            $AB = A'B'$，$\angle B = \angle B'$，$BM = B'M'$，<br>
+            $\therefore \triangle ABM \cong \triangle A'B'M'$ (SAS)，<br>
+            $\therefore AM = A'M'$。</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习（例5后的三个练习，对应课本P80第1-3题） -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <!-- 练习1 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 如图，$\angle 1 = \angle 2$，$\angle C = \angle D$。求证：$AC = AD$。</p>
+            <div class="figure-container">
+                <img src="练习1.png" alt="练习1图" style="max-width:300px;">
+                <div class="figure-caption">第1题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p><strong>证明：</strong><br>
+                在 $\triangle ABC$ 和 $\triangle ABD$ 中，<br>
+                $\angle 1 = \angle 2$ (已知)，<br>
+                $\angle C = \angle D$ (已知)，<br>
+                $AB = AB$ (公共边)，<br>
+                $\therefore \triangle ABC \cong \triangle ABD$ (AAS)。<br>
+                $\therefore AC = AD$ (全等三角形的对应边相等)。</p>
+            </div>
+        </div>
+
+        <!-- 练习2（ASA） -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如图，$AB // CD$，$AE // CF$，$BF = DE$。试找出图中其他的相等关系，并给出证明。</p>
+            <div class="figure-container">
+                <img src="练习2.png" alt="练习2图" style="max-width:300px;">
+                <div class="figure-caption">第2题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>可得 $AB = CD$，$AE = CF$，$\triangle ABE \cong \triangle CDF$ 等。<br>
+                <strong>证明：</strong><br>
+                $\because AB // CD$，$\therefore \angle B = \angle D$ (两直线平行，内错角相等)。<br>
+                $\because AE // CF$，$\therefore \angle AEB = \angle CFD$ (两直线平行，内错角相等)。<br>
+                $\because BF = DE$，$\therefore BF + EF = DE + EF$，即 $BE = DF$。<br>
+                在 $\triangle ABE$ 和 $\triangle CDF$ 中，<br>
+                $\angle B = \angle D$ (已证)，<br>
+                $BE = DF$ (已证)，<br>
+                $\angle AEB = \angle CFD$ (已证)，<br>
+                $\therefore \triangle ABE \cong \triangle CDF$ (ASA)。<br>
+                $\therefore AB = CD$，$AE = CF$ (全等三角形的对应边相等)。</p>
+            </div>
+        </div>
+
+        <!-- 练习3 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 如图，点 $B, D$ 分别在线段 $AC, EC$ 上，$\angle A = \angle E$，$AD = EB$。求证：$AC = EC$。</p>
+            <div class="figure-container">
+                <img src="练习3.png" alt="练习3图" style="max-width:300px;">
+                <div class="figure-caption">第3题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p><strong>证明：</strong><br>
+               
+在 $\triangle ACD$ 和 $\triangle ECB$ 中：
+            <li>$\angle A = \angle E$（已知）</li>
+            <li>$\angle C = \angle C$（公共角）</li>
+            <li>$AD = EB$（已知）</li>
+        </ul>
+           根据 <strong>AAS（角角边）</strong> 全等判定定理，可得：
+        \[
+        \triangle ACD \cong \triangle ECB
+        \]
+           由全等三角形的对应边相等，因此：
+        \[
+        AC = EC
+        \]</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div style="margin:0.5rem 0;">• 两角分别相等且其中一组等角的对边相等的两个三角形全等（AAS）。</div>
+        <div style="margin:0.5rem 0;">• 证明线段相等或角相等时，常通过构造全等三角形实现。</div>
+        <div style="margin:0.5rem 0;">• 全等三角形对应边上的高、中线、角平分线分别相等。</div>
+    </div>
+
+    <!-- 数学思想方法 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将线段相等问题转化为三角形全等证明。<br>
+        <strong>模型思想：</strong> 全等三角形是几何证明的基本模型。<br>
+        <strong>逻辑推理：</strong> 从已知条件出发，逐步推导，培养严谨的逻辑思维。</p>
+    </div>
+
+    <!-- 读一读（标题居中） -->
+    <div class="reading-section">
+        <h4>📖 读一读</h4>
+        <p style="text-align:center; font-weight:600;">全等三角形在生活中的应用</p>
+        <p>全等三角形的判定不仅用于数学证明，还广泛应用于实际生活，如测量距离、制作模具、建筑设计等。例如，工人师傅用“边角边”检验两个零件是否完全相同；测量河宽时，构造全等三角形间接得到数据。全等是“形变而质不变”的典范。</p>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong> 课本习题12.2 A组第6、7题，B组第8、9题；完成练习册对应课时。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-box">
+        <p>✨ 角角边来定全等，推理严密显智慧。勤学善思多练习，几何之美在心间！ ✨</p>
+    </div>
+
+    <div class="footer-note">八年级上册 · 第12章 12.2.3.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8章 三角形 章末复习 | 华师版·七下</title>
+    <!-- MathJax 配置：使用 \lt 和 \gt 避免 HTML 标签冲突 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+            word-break: break-word;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .badge-icon {
+            background: #2675a8;
+            color: white;
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        .knowledge-tag {
+            display: inline-block;
+            background: #e1f0de;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            margin: 0.3rem;
+            font-size: 0.95rem;
+            border: 1px solid #47945b;
+            color: #1d6130;
+        }
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .knowledge-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 8px 16px rgba(0,40,60,0.1);
+            border: 1px solid #b9d6ef;
+            transition: transform 0.2s;
+        }
+        .knowledge-card:hover {
+            transform: translateY(-4px);
+        }
+        .knowledge-card h4 {
+            font-size: 1.4rem;
+            color: #0b4b78;
+            border-bottom: 2px solid #58a9d4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .step-proof {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第8章 三角形 · 章末复习</span>
+    </div>
+    <h1>第8章 三角形</h1>
+    <div class="chapter-intro">★ 系统梳理三角形的概念、性质、分类与相关应用，提升几何推理与空间想象能力。</div>
+    <div class="lesson-title">章末复习</div>
+
+    <!-- 知识结构图（卡片式） -->
+    <div class="learning-targets">
+        <h3>📚 知识结构图</h3>
+        <div class="knowledge-grid">
+            <div class="knowledge-card">
+                <h4><span>📌</span> 三角形的定义与要素</h4>
+                <div>
+                    <span class="knowledge-tag">顶点、边、内角</span>
+                    <span class="knowledge-tag">外角</span>
+                    <span class="knowledge-tag">中线</span>
+                    <span class="knowledge-tag">角平分线</span>
+                    <span class="knowledge-tag">高</span>
+                </div>
+                <p style="margin-top:0.5rem;">三条线段首尾相连组成</p>
+            </div>
+            <div class="knowledge-card">
+                <h4><span>⚖️</span> 三角形的分类</h4>
+                <div>
+                    <span class="knowledge-tag">按角：锐角、直角、钝角</span>
+                    <span class="knowledge-tag">按边：不等边、等腰、等边</span>
+                </div>
+            </div>
+            <div class="knowledge-card">
+                <h4><span>📐</span> 三角形的内角和与外角和</h4>
+                <div>
+                    <span class="knowledge-tag">内角和 $180^\circ$</span>
+                    <span class="knowledge-tag">外角等于不相邻两内角和</span>
+                    <span class="knowledge-tag">外角和 $360^\circ$</span>
+                </div>
+            </div>
+            <div class="knowledge-card">
+                <h4><span>🔗</span> 三边关系</h4>
+                <div>
+                    <span class="knowledge-tag">任意两边之和大于第三边</span>
+                    <span class="knowledge-tag">任意两边之差小于第三边</span>
+                </div>
+                <p style="margin-top:0.5rem;">判断能否构成三角形</p>
+            </div>
+            <div class="knowledge-card">
+                <h4><span>🧩</span> 多边形</h4>
+                <div>
+                    <span class="knowledge-tag">内角和 $(n-2)\cdot180^\circ$</span>
+                    <span class="knowledge-tag">外角和 $360^\circ$</span>
+                    <span class="knowledge-tag">对角线</span>
+                </div>
+            </div>
+            <div class="knowledge-card">
+                <h4><span>🪜</span> 用正多边形铺设地面</h4>
+                <div>
+                    <span class="knowledge-tag">相同正多边形：三角形、正方形、正六边形</span>
+                    <span class="knowledge-tag">多种组合：内角和为 $360^\circ$</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心概念回顾（表格） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSection('coreContent', 'coreToggle')">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📖 核心概念回顾</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="coreToggle">▼</span>
+        </div>
+        <div id="coreContent" style="overflow:hidden; transition: max-height 0.3s ease; max-height: 2000px;">
+            <table>
+                <tr><th>概念</th><th>定义/性质</th><th>示例/符号</th></tr>
+                <tr><td>三角形</td><td>三条线段首尾顺次连结</td><td>$\triangle ABC$</td></tr>
+                <tr><td>内角</td><td>每两条边所组成的角</td><td>$\angle A,\angle B,\angle C$</td></tr>
+                <tr><td>外角</td><td>内角的一边与另一边的反向延长线组成的角</td><td>$\angle ACD$</td></tr>
+                <tr><td>中线</td><td>顶点与对边中点的线段</td><td>三条中线交于一点</td></tr>
+                <tr><td>角平分线</td><td>内角平分线与对边的线段</td><td>三条角平分线交于一点</td></tr>
+                <tr><td>高</td><td>顶点到对边的垂线段</td><td>三条高（或延长线）交于一点</td></tr>
+                <tr><td>锐角三角形</td><td>三个内角均为锐角</td><td>$\angle A,\angle B,\angle C \lt 90^\circ$</td></tr>
+                <tr><td>直角三角形</td><td>有一个内角为直角</td><td>$\angle C = 90^\circ$</td></tr>
+                <tr><td>钝角三角形</td><td>有一个内角为钝角</td><td>$\angle C \gt 90^\circ$</td></tr>
+                <tr><td>等腰三角形</td><td>两条边相等</td><td>$AB=AC$</td></tr>
+                <tr><td>等边三角形</td><td>三边都相等</td><td>$AB=BC=CA$</td></tr>
+                <tr><td>三角形内角和</td><td>等于 $180^\circ$</td><td>$\angle A+\angle B+\angle C=180^\circ$</td></tr>
+                <tr><td>三角形外角性质</td><td>等于不相邻两内角和</td><td>$\angle ACD = \angle A+\angle B$</td></tr>
+                <tr><td>三角形外角和</td><td>等于 $360^\circ$</td><td>$\angle 1+\angle 2+\angle 3 = 360^\circ$</td></tr>
+                <tr><td>三边关系</td><td>任意两边之和大于第三边</td><td>$a+b>c,\ a+c>b,\ b+c>a$</td></tr>
+                <tr><td>多边形内角和</td><td>$(n-2)\cdot180^\circ$</td><td>$n$ 边形内角和</td></tr>
+                <tr><td>多边形外角和</td><td>恒为 $360^\circ$</td><td>与边数无关</td></tr>
+                <tr><td>密铺条件</td><td>围绕一点的内角和为 $360^\circ$</td><td>正三角形、正方形、正六边形等</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 题型1：三角形的中线、角平分线、高 -->
+    <div class="example-box">
+        <h4>📐 题型1 · 三角形的中线、角平分线、高</h4>
+        <p><strong>例1</strong> 在 $\triangle ABC$ 中，$AD$ 是中线，$AE$ 是角平分线，$AF$ 是高。</p>
+        <p>(1) 若 $AB=AC$，$\angle BAC=80^\circ$，求 $\angle BAD$ 的度数；<br>
+        (2) 若 $AE$ 平分 $\angle BAC$，$\angle BAC=70^\circ$，求 $\angle BAE$ 的度数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <div class="step-proof">
+                <p>(1) $\because AB=AC$，$\triangle ABC$ 是等腰三角形，且 $AD$ 是中线，根据等腰三角形“三线合一”，$AD$ 也是顶角平分线。<br>
+                $\therefore \angle BAD = \frac{1}{2} \angle BAC = 40^\circ$。</p>
+                <p>(2) $\because AE$ 平分 $\angle BAC$，$\therefore \angle BAE = \frac{1}{2} \angle BAC = 35^\circ$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 题型2：三角形内角和 -->
+    <div class="example-box">
+        <h4>📐 题型2 · 三角形内角和</h4>
+        <p><strong>例2</strong> 如图，$AD$ 是 $\triangle ABC$ 的边 $BC$ 上的高，$\angle 1 = 45^\circ$，$\angle C = 65^\circ$。求 $\angle BAC$ 的度数。</p>
+        <div class="img-container">
+            <img src="例题2.png" alt="例题2图">
+            <div class="figcaption">图 例题2</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ans2')">📌 显示解答</button>
+        <div id="ans2" class="answer-box">
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\text{在 Rt}\triangle ABD \text{中，} \angle 1 + \angle B = 90^\circ, \\
+                &\therefore \angle B = 90^\circ - 45^\circ = 45^\circ. \\
+                &\text{在 }\triangle ABC \text{中，} \angle BAC = 180^\circ - \angle B - \angle C, \\
+                &\therefore \angle BAC = 180^\circ - 45^\circ - 65^\circ = 70^\circ.
+                \end{aligned}
+                \]
+            </div>
+        </div>
+    </div>
+
+    <!-- 题型3：三角形外角性质 -->
+    <div class="example-box">
+        <h4>📐 题型3 · 三角形外角的灵活运用</h4>
+        <p><strong>例3</strong> 如图，$D$ 是 $\triangle ABC$ 的边 $BC$ 上一点，$\angle B = \angle BAD$，$\angle ADC = 80^\circ$，$\angle BAC = 70^\circ$。求 $\angle B$ 和 $\angle C$ 的度数。</p>
+        <div class="img-container">
+            <img src="例题3.png" alt="例题3图">
+            <div class="figcaption">图 例题3</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ans3')">📌 显示解答</button>
+        <div id="ans3" class="answer-box">
+            <div class="step-proof">
+                \[
+                \begin{aligned}
+                &\because \angle ADC \text{ 是 } \triangle ABD \text{ 的外角},\\
+                &\therefore \angle B + \angle BAD = \angle ADC = 80^\circ.\\
+                &\because \angle B = \angle BAD,\\
+                &\therefore \angle B = 40^\circ.\\[1em]
+                &\text{在 } \triangle ABC \text{ 中},\\
+                &\angle C = 180^\circ - \angle B - \angle BAC = 180^\circ - 40^\circ - 70^\circ = 70^\circ.
+                \end{aligned}
+                \]
+            </div>
+        </div>
+    </div>
+
+    <!-- 题型4：三边关系 -->
+    <div class="example-box">
+        <h4>📐 题型4 · 三角形三边关系</h4>
+        <p><strong>例4</strong> 已知三角形三边长分别为 $3$，$4$，$x$，求 $x$ 的取值范围。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans4')">📌 显示解答</button>
+        <div id="ans4" class="answer-box">
+            <p>根据三角形三边关系：$4-3 < x < 4+3$，即 $1 < x < 7$。</p>
+        </div>
+    </div>
+
+    <!-- 题型5：多边形内角和与外角和 -->
+    <div class="example-box">
+        <h4>📐 题型5 · 多边形内角和与外角和</h4>
+        <p><strong>例5</strong> 已知一个多边形的内角和是外角和的 $3$ 倍，求这个多边形的边数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans5')">📌 显示解答</button>
+        <div id="ans5" class="answer-box">
+            <p>设边数为 $n$，则内角和为 $(n-2)\cdot180^\circ$，外角和为 $360^\circ$。</p>
+            <p>由题意得 $(n-2)\cdot180 = 3\times 360$，即 $n-2 = 6$，$n=8$。</p>
+            <p>所以这个多边形是八边形。</p>
+        </div>
+    </div>
+
+    <!-- 题型6：正多边形铺地面 -->
+    <div class="example-box">
+        <h4>📐 题型6 · 用正多边形铺设地面</h4>
+        <p><strong>例6</strong> 用正三角形和正六边形组合能否铺满地面？若能，请说明理由；若不能，请说明需要怎样的组合。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans6')">📌 显示解答</button>
+        <div id="ans6" class="answer-box">
+            <p>正三角形内角 $60^\circ$，正六边形内角 $120^\circ$。设一个顶点周围有 $x$ 个正三角形和 $y$ 个正六边形，则</p>
+            <p>$60x + 120y = 360$，即 $x + 2y = 6$。</p>
+            <p>非负整数解有 $(6,0)$、$(4,1)$、$(2,2)$、$(0,3)$。所以可以铺满，例如 $4$ 个正三角形和 $1$ 个正六边形。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：从三角形到多边形——转化与归纳的思想 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 从三角形到多边形——转化与归纳的思想</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>在探索多边形内角和时，我们通过添加对角线将多边形分割成若干个三角形，从而将未知的多边形内角和问题转化为已知的三角形内角和问题。这种“转化”思想是数学中非常重要的方法。</p>
+            <p>例如，从一个顶点出发，$n$ 边形可以被分成 $(n-2)$ 个三角形，因此内角和为 $(n-2)\times180^\circ$。我们还可以在多边形内部取一点，与各顶点相连，得到 $n$ 个三角形，再减去一个周角 $360^\circ$，同样得到内角和公式。</p>
+            <p>从三角形到四边形、五边形……，我们通过归纳推理发现了多边形内角和的规律，这体现了从特殊到一般的数学思想。无论是转化还是归纳，都帮助我们更深刻地理解几何图形的内在联系。</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 课堂练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 在 $\triangle ABC$ 中，$\angle A : \angle B : \angle C = 1:2:3$，求 $\triangle ABC$ 各内角的度数，并判断三角形的形状。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 答案</button>
+            <div id="ex1" class="answer-box">
+                <p>设 $\angle A=x$，则 $\angle B=2x$，$\angle C=3x$，由 $x+2x+3x=180^\circ$ 得 $x=30^\circ$。</p>
+                <p>所以 $\angle A=30^\circ$，$\angle B=60^\circ$，$\angle C=90^\circ$，为直角三角形。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 等腰三角形的一边长为 $5$，另一边长为 $8$，求它的周长。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 答案</button>
+            <div id="ex2" class="answer-box">
+                <p>若腰长为 $5$，底为 $8$，则周长为 $5+5+8=18$；若腰长为 $8$，底为 $5$，则周长为 $8+8+5=21$。两者均满足三角形三边关系，所以周长为 $18$ 或 $21$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 一个多边形的内角和比四边形的内角和多 $540^\circ$，求这个多边形的边数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 答案</button>
+            <div id="ex3" class="answer-box">
+                <p>四边形内角和 $360^\circ$，则这个多边形内角和为 $360+540=900^\circ$。</p>
+                <p>由 $(n-2)\cdot180=900$ 得 $n-2=5$，$n=7$。</p>
+                <p>所以是七边形。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>4.</strong> 用正五边形和正十边形能否铺满地面？若能，请给出方案；若不能，请说明理由。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex4')">🔍 答案</button>
+            <div id="ex4" class="answer-box">
+                <p>正五边形内角 $108^\circ$，正十边形内角 $144^\circ$。设 $x$ 个正五边形和 $y$ 个正十边形，则 $108x+144y=360$。</p>
+                <p>化简为 $3x+4y=10$，非负整数解有 $(2,1)$（$3\times2+4\times1=10$）。所以可以铺满：两个正五边形和一个正十边形。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类思想：</strong> 按角、按边对三角形分类。<br>
+        <strong>转化思想：</strong> 将多边形内角和转化为三角形内角和问题。<br>
+        <strong>数形结合：</strong> 利用图形直观理解角度关系。<br>
+        <strong>建模思想：</strong> 用方程解决多边形内角和、密铺问题。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">三角形内角和等于180°，外角和等于360°</div>
+            <div class="summary-item">三角形的一个外角等于不相邻两内角和</div>
+            <div class="summary-item">三角形的三边关系：两边之和大于第三边</div>
+            <div class="summary-item">等腰三角形底边上三线合一，直角三角形两锐角互余</div>
+            <div class="summary-item">n边形的内角和为 $(n-2)\cdot180^\circ$，外角和恒为 $360^\circ$</div>
+            <div class="summary-item">用正多边形铺满地面，需围绕一点的内角和为 $360^\circ$</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 整理本章错题，完成复习题A组、B组，并尝试设计一个用正多边形密铺的图案。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 三角形虽简单，却是几何大厦的基石 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第8章 复习</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSection(contentId, toggleId) {
+        var c = document.getElementById(contentId);
+        var t = document.getElementById(toggleId);
+        if (c.style.maxHeight !== '0px' && c.style.maxHeight !== '0') {
+            c.style.maxHeight = '0';
+            t.textContent = '▶';
+        } else {
+            c.style.maxHeight = '2000px';
+            t.textContent = '▼';
+        }
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

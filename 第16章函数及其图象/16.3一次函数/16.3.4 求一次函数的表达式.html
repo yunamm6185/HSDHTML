@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.4 求一次函数的表达式 | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        /* 步骤流程 */
+        .step-flow{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap;margin:1rem 0;padding:1rem;background:#f0fdff;border-radius:14px;}
+        .step-num{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.1rem;flex-shrink:0;}
+        .step-text{font-weight:700;color:#0e7490;font-size:1rem;padding:.3rem .6rem;background:white;border-radius:10px;border:2px solid #a7d8e0;}
+        .step-arrow{color:#94a3b8;font-size:1.5rem;font-weight:bold;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.4 求一次函数的表达式</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>熟练掌握用待定系数法求正比例函数表达式</div>
+            <div class="target-item"><span>2</span>熟练掌握用待定系数法求一次函数表达式</div>
+            <div class="target-item"><span>3</span>能从实际问题中抽象出函数模型并求表达式</div>
+            <div class="target-item"><span>4</span>理解"已知两点确定一条直线"的原理</div>
+        </div>
+    </div>
+
+    <!-- 方法总结 -->
+    <div class="section-title">🛠️ 待定系数法的完整步骤</div>
+
+    <div class="fact-card">
+        <h4>📌 待定系数法 — 四步走</h4>
+        <div class="step-flow">
+            <div class="step-num">1</div><div class="step-text">设</div>
+            <div class="step-arrow">→</div>
+            <div class="step-num">2</div><div class="step-text">代</div>
+            <div class="step-arrow">→</div>
+            <div class="step-num">3</div><div class="step-text">解</div>
+            <div class="step-arrow">→</div>
+            <div class="step-num">4</div><div class="step-text">写</div>
+        </div>
+
+        <table style="margin-top:1rem;">
+            <tr><th>步骤</th><th>操作</th><th>说明</th></tr>
+            <tr><td><strong>设</strong></td><td>设出含待定系数的解析式</td><td>正比例：$y=kx$；一般：$y=kx+b$</td></tr>
+            <tr><td><strong>代</strong></td><td>将已知条件代入解析式</td><td>点的坐标 $(x,y)$ 代入得到方程/方程组</td></tr>
+            <tr><td><strong>解</strong></td><td>解方程（组）求待定系数</td><td>注意检验 $k \neq 0$</td></tr>
+            <tr><td><strong>写</strong></td><td>写出最终表达式</td><td>将求出的系数代回原式</td></tr>
+        </table>
+    </div>
+
+    <!-- 例题1：正比例 -->
+    <div class="example-card">
+        <h4>例1 已知一点求正比例函数</h4>
+        <p>已知正比例函数 $y = kx$ 的图象经过点 $P(-3, 6)$：</p>
+        <p>(1) 求该函数表达式 &nbsp;&nbsp; (2) 点 $Q(2, -4)$ 是否在该函数图象上？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>设：</strong>$y = kx$（$k \neq 0$）</li>
+                <li><strong>代：</strong>∵ 图象过 $P(-3, 6)$，∴ $6 = k \times (-3)$</li>
+                <li><strong>解：</strong>$k = -2$</li>
+                <li><strong>写：</strong>∴ 函数表达式为 $\boxed{y = -2x}$</li>
+            </ul>
+            <p><strong>(2)</strong> 将 $Q(2, -4)$ 的坐标代入 $y = -2x$：<br>右边 $= -2 \times 2 = -4$ = 左边<br>∴ 点 $Q(2, -4)$ <strong>在该函数图象上</strong> ✓</p>
+        </div>
+    </div>
+
+    <!-- 例题2：一般一次函数 -->
+    <div class="example-card">
+        <h4>例2 已知两点求一次函数表达式</h4>
+        <p>已知一次函数 $y = kx + b$ 的图象经过 $A(-1, 8)$ 和 $B(2, -1)$ 两点，求这个函数的表达式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>设：</strong>$y = kx + b$（$k \neq 0$）</li>
+                <li><strong>代：</strong>
+                    <br>&nbsp;&nbsp;将 $A(-1, 8)$ 代入 → $-k + b = 8$ ……①
+                    <br>&nbsp;&nbsp;将 $B(2, -1)$ 代入 → $2k + b = -1$ ……②
+                </li>
+                <li><strong>解方程组：</strong>
+                    <br>&nbsp;&nbsp;② − ① 得：$(2k+b)-(-k+b) = -1-8$
+                    <br>&nbsp;&nbsp;→ $3k = -9$ → $k = -3$
+                    <br>&nbsp;&nbsp;将 $k=-3$ 代入① → $-(-3)+b=8$ → $3+b=8$ → $b = 5$
+                </li>
+                <li><strong>写：</strong>$\boxed{y = -3x + 5}$</li>
+            </ul>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 验证：</strong>把两个已知点代回验证！<br>A: $-3\times(-1)+5 = 3+5 = 8$ ✓&nbsp;&nbsp; B: $-3\times 2+5 = -6+5 = -1$ ✓</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题3：实际应用 -->
+    <div class="example-card">
+        <h4>例3 实际问题建模 — 弹簧问题</h4>
+        <p>一根弹簧不挂物体时长度为 12 cm。挂上物体后，每增加 1 kg 物体，弹簧伸长 0.5 cm（在弹性限度内）。设所挂物体重为 $x$ kg，弹簧长度为 $y$ cm。</p>
+        <p>(1) 求 $y$ 关于 $x$ 的函数关系式</p>
+        <p>(2) 求自变量 $x$ 的取值范围</p>
+        <p>(3) 当弹簧长度为 18 cm 时，所挂物体重多少 kg？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 详细解答</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong> 分析数量关系：</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>原长（常数项）：$b = 12$ cm</li>
+                <li>每增加 1 kg 伸长 0.5 cm → 斜率 $k = 0.5$</li>
+                <li>总长 = 原长 + 伸长量 = $12 + 0.5x$</li>
+            </ul>
+            <p>∴ 函数关系式：$\boxed{y = 0.5x + 12}$（$x \geq 0$）</p>
+            <p><strong>(2)</strong> 自变量的取值范围：
+                <br>&nbsp;&nbsp;• 实际意义：$x \geq 0$（重量非负）
+                <br>&nbsp;&nbsp;• 弹性限度：假设最大承重为 $m$ kg，则 $0 \leq x \leq m$
+                <br>∴ 取决于具体弹性限度
+            </p>
+            <p><strong>(3)</strong> 当 $y = 18$ 时：$0.5x + 12 = 18$ → $0.5x = 6$ → $\boldsymbol{x = 12}$ kg</p>
+            <p>即当弹簧长 18 cm 时，所挂物体重 <strong>12 kg</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 例题4：综合 -->
+    <div class="example-card">
+        <h4>例4 综合应用 — 从图象获取信息再求表达式</h4>
+        <p>已知一次函数 $y = kx + b$ 的图象如图所示（经过 $(-2, 0)$ 和 $(0, 3)$）。</p>
+        <p>(1) 求此函数的表达式</p>
+        <p>(2) 当 $-4 \leq x \leq 2$ 时，求 $y$ 的取值范围</p>
+        <p>(3) 当 $y \leq 3$ 时，求 $x$ 的取值范围</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">✍️ 解答过程</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>(1)</strong> ∵ 过 $(0, 3)$ → $b = 3$</p>
+            <p>过 $(-2, 0)$ → $-2k + 3 = 0$ → $k = \frac32$</p>
+            <p>∴ 表达式为 $\boxed{y = \frac32 x + 3}$</p>
+            <p><strong>(2)</strong> ∵ $k = \frac32 > 0$ → 增函数，$y$ 随 $x$ 增大而增大</p>
+            <p>当 $x = -4$ 时，$y = \frac32\times(-4)+3 = -6+3 = -3$</p>
+            <p>当 $x = 2$ 时，$y = \frac32\times2+3 = 3+3 = 6$</p>
+            <p>∴ 当 $-4 \leq x \leq 2$ 时，$\boxed{-3 \leq y \leq 6}$</p>
+            <p><strong>(3)</strong> 先求 $y = 3$ 时 $x$ 的值：$\frac32 x + 3 = 3$ → $x = 0$</p>
+            <p>∵ 增函数且 $y \leq 3$ → 需要 $x \leq 0$</p>
+            <p>∴ $\boxed{x \leq 0}$</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 已知 $y-2$ 与 $x$ 成正比例，且当 $x = 3$ 时 $y = 8$。求 $y$ 与 $x$ 的函数关系式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>"$y-2$ 与 $x$ 成正比例" → 设 $y - 2 = kx$（$k \neq 0$）</p>
+            <p>当 $x=3$, $y=8$：$8 - 2 = 3k$ → $k = 2$</p>
+            <p>∴ $y - 2 = 2x$ → $\boxed{y = 2x + 2}$</p>
+            <div class="warn-box" style="margin-top:.5rem;">⚠️ 注意审题！不是 "$y$ 与 $x$ 成正比例"，而是 "$y-2$ 与 $x$" 成正比例。这是常见的易错点！</div>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 如图，直线 $l$ 是一次函数 $y=kx+b$ 的图象，填空：</p>
+        <p>&nbsp;&nbsp;$k =$ ______，$b =$ ______；当 $x = 30$ 时，$y =$ ______。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案提示</button>
+        <div id="pr2" class="answer-box">
+            <p>需要从图中读取两个关键点的坐标（通常是与两坐标轴的交点），然后使用待定系数法求解。</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ol>
+            <li><strong>待定系数法四步</strong>：设 → 代 → 解 → 写</li>
+            <li><strong>正比例函数</strong>只需 1 个条件（1个未知量 $k$）；<strong>一般一次函数</strong>需 2 个条件（2个未知量 $k$ 和 $b$）</li>
+            <li>实际问题的建模：先分析常量和变化率，再写出表达式</li>
+            <li>求完表达式后要<strong>验证</strong>——把已知条件代入检查是否正确</li>
+        </ol>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

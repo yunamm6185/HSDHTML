@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第25课时 代数式 | 华师版·七上 第2章 整式及其加减</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.1 列代数式</h2>
+    <div class="lesson-title">第2课时 代数式</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解代数式的概念，能识别代数式</div>
+            <div class="target-item"><span>✔</span>掌握代数式的书写规范</div>
+            <div class="target-item"><span>✔</span>能根据简单的数量关系列出代数式</div>
+            <div class="target-item"><span>✔</span>体会数学抽象与符号意识</div>
+        </div>
+    </div>
+
+    <!-- 复习引入（保留） -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 回顾：上一课时我们学习了用字母表示数，例如：</p>
+        <p style="text-align:center;">\(a + b = b + a\)， \(4.8n\)， \(\frac{1}{2}b\)， \(\pi r^2\)</p>
+        <p>这些式子都是由数、表示数的字母用运算符号连接而成的，它们有一个共同的名字——<strong>代数式</strong>。</p>
+    </div>
+
+    <!-- 做一做（课本P85） -->
+    <h3>📝 做一做</h3>
+    <div class="think-box">
+        <p>填空：</p>
+        <p>(1) 某种瓜子的单价为16元/kg，购买 \(n\) kg 需 <span style="display:inline-block; width:60px; border-bottom:1px solid #000;"></span> 元；</p>
+        <p>(2) 小刚上学的步行速度为5 km/h，从小刚家到学校的路程为 \(s\) km，他步行上学需走 <span style="display:inline-block; width:60px; border-bottom:1px solid #000;"></span> h；</p>
+        <p>(3) 每支钢笔 \(a\) 元，每支铅笔 \(b\) 元，买2支钢笔和3支铅笔共需 <span style="display:inline-block; width:80px; border-bottom:1px solid #000;"></span> 元。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do')">显示答案</button>
+        <div id="answerDo" class="answer-box">
+            <div class="answer-line">(1) \(16n\)</div>
+            <div class="answer-line">(2) \(\dfrac{s}{5}\)</div>
+            <div class="answer-line">(3) \(2a + 3b\)</div>
+        </div>
+    </div>
+
+    <!-- 代数式定义（删去标题行，只保留定义内容） -->
+    <div class="rule-box">
+        <p><strong>由数或表示数的字母用运算符号连接所成的式子，叫做代数式。</strong> 单独一个数或一个字母也是代数式。</p>
+        <p>例如：\(a+b\)、\(ab\)、\(4.8n\)、\(\frac{1}{2}(a+b)h\)、\(5m-2m\)、\(\frac{1500}{t}\) 等都是代数式。</p>
+    </div>
+
+    <!-- 例2（课本P86） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex2">
+        <p><strong>例2</strong> 用代数式表示：</p>
+        <p>(1) 长为 \(a\) cm、宽为 \(b\) cm 的长方形的周长是多少？</p>
+        <p>(2) 开学时爸爸给小强 \(a\) 元，小强买文具用去了 \(b\) 元 \((a > b)\)，还剩多少元？</p>
+        <p>(3) 某机关单位原有工作人员 \(m\) 人，被抽调 \(20\%\) 下基层工作后，留在该机关单位工作的还有多少人？</p>
+        <p>(4) 甲每小时走 \(a\) km，乙每小时走 \(b\) km，两人同时同地出发反向行走，\(t\) h后，他们之间的距离是多少？</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box">
+            <div class="answer-line">(1) \(2(a+b)\) cm</div>
+            <div class="answer-line">(2) \((a-b)\) 元</div>
+            <div class="answer-line">(3) \(\left(m - \frac{1}{5}m\right)\) 人或 \(\frac{4}{5}m\) 人</div>
+            <div class="answer-line">(4) \((at + bt)\) km 或 \((a+b)t\) km</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P86，根据用户提供的图片） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 填空：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) 配制 \(a\,\text{kg}\) 浓度为10%的盐水需要盐 \(\underline{\qquad}\) kg；</div>
+            <div class="sub-question">(2) 某同学军训期间打靶成绩为10环、8环、8环、7环、\(a\)环，则他的平均成绩为 \(\underline{\qquad}\) 环；</div>
+            <div class="sub-question">(3) 甲以 \(a\,\text{km/h}\)、乙以 \(b\,\text{km/h}\) (\(a > b\)) 的速度同时同地出发，同向行走，\(t\) h后他们之间的距离是 \(\underline{\qquad}\) km；</div>
+            <div class="sub-question">(4) 一枚古币的正面是一个半径为 \(r\,\text{cm}\) 的圆形，中间有一个边长为 \(a\,\text{cm}\) 的正方形孔，则这枚古币正面的面积为 \(\underline{\qquad}\)。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) 盐的质量 = \(10\% \times a = 0.1a\) kg，即 \(\dfrac{a}{10}\) kg</div>
+                <div class="answer-line">(2) 平均成绩 = \(\dfrac{10+8+8+7+a}{5} = \dfrac{33+a}{5}\) 环</div>
+                <div class="answer-line">(3) 同向行走，速度差为 \((a-b)\) km/h，距离 = \((a-b)t\) km</div>
+                <div class="answer-line">(4) 古币正面面积 = 圆面积 - 正方形面积 = \((\pi r^2 - a^2)\) cm²</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> (1) 某种电视机每台定价为 \(m\) 元，商店在节日搞促销活动，降价20%，促销期间每台实际售价多少元？</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(2) 将小题(1)的解答与例2中小题(3)的解答比较一下，你有什么发现？有什么想法？</div>
+            <div class="sub-question">(3) 请尝试编制一道与小题(1)的解答类似的题目，与同伴交流。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) 降价20%，即实际售价为 \(m \times (1 - 20\%) = 0.8m\) 元，也可写作 \(\dfrac{4}{5}m\) 元。</div>
+                <div class="answer-line">(2) 例2(3)中，机关单位抽调20%，剩下 \((1-20\%)m = 0.8m\) 人。两者都表示“减少20%后的量”，形式相同，只是实际意义不同。这体现了代数式的普遍性——同一个代数式可以表示不同的实际问题。</div>
+                <div class="answer-line">(3) 示例：某种商品原价 \(x\) 元，先提价20%，再降价20%，最后售价是多少？答案：\((1+20\%)(1-20\%)x = 0.96x\) 元。（开放题，答案不唯一）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：符号意识与代数思维 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 符号意识——代数的心脏</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>代数式的核心是符号。用字母代替数，用运算符号连接，就形成了代数式。这种符号化的表达方式，让我们能概括数量关系、揭示一般规律。</p>
+            <p>在数学中，<strong>符号意识</strong>是指能够理解并运用符号表示数、数量关系和变化规律，这是数学抽象的重要体现。从具体数字到字母符号，是数学思维的一次飞跃。</p>
+            <p>笛卡尔曾说：“用字母表示数，使数学变得简洁而优美。” 正是这种符号化，让代数成为解决实际问题的有力工具。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 符号意识 · 数学抽象 · 数学模型</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">代数式：由数和字母用运算符号连接而成的式子，单独一个数或字母也是代数式。</div>
+                <div class="summary-item">书写规范：数字在前、乘号省略、带分数化假分数、除法写分数、带单位加括号。</div>
+                <div class="summary-item">用代数式可以简明地表示数量关系，体现符号意识和数学抽象。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P89习题2.1 A组第5、6、7、8题；B组第6、7题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 符号抽象建模型，代数思维由此生 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第25课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

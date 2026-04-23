@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.1.1 变量与函数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.2rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .table-container{width:100%;margin:1.2rem 0;border-radius:16px;box-shadow:0 6px 20px rgba(13,148,136,0.15);}
+        table{width:100%;border-collapse:separate;border-spacing:0;font-size:1.15rem;border-radius:16px;overflow:hidden;border:2px solid #14b8a6;}
+        th{background:linear-gradient(135deg,#0891b2,#14b8a6);color:white;padding:0.9rem 0.5rem;font-size:1.15rem;font-weight:700;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,0.2);border-right:1px solid rgba(255,255,255,0.3);}
+        th:last-child{border-right:none;}
+        td{padding:0.9rem 0.4rem;text-align:center;border-bottom:2px solid #e0f7fa;border-right:1px solid #e0f7fa;white-space:nowrap;font-weight:600;background:#fff;color:#0f766e;}
+        td:last-child{border-right:none;}
+        tr:last-child td{border-bottom:none;}
+        tr:nth-child(even) td{background:#f0fdfa;}
+        td:hover{background:#ccfbf1;transition:background 0.2s;cursor:default;}
+        .explore-card .table-container{box-shadow:0 6px 20px rgba(13,148,136,0.15);}
+        .explore-card table{font-size:1.2rem;}
+        .explore-card td,.explore-card th{padding:0.9rem 0.5rem;}
+        .example-card .table-container{box-shadow:0 6px 20px rgba(16,185,129,0.15);}
+        .example-card table{border-color:#10b981;}
+        .example-card th{background:linear-gradient(135deg,#059669,#10b981);}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul{padding-left:1.5rem;line-height:2;}
+        .summary-box li{margin:.3rem 0;}
+        p{margin:.5rem 0;}
+        .temp-chart-container{position:relative;width:100%;max-width:800px;margin:1rem auto;}
+        #tempCanvas{width:100%;height:350px;border-radius:12px;background:linear-gradient(to bottom,#e0f7fa,#ffffff);}
+        .chart-info{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;margin-top:.8rem;}
+        .info-item{background:white;border-radius:12px;padding:.6rem 1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);border:2px solid #a7d8e0;text-align:center;min-width:120px;}
+        .info-item .label{font-size:.85rem;color:#64748b;}
+        .info-item .value{font-size:1.3rem;font-weight:700;color:#0e7490;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.1.1 变量与函数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解常量、变量的概念，能区分常量和变量</div>
+            <div class="target-item"><span>2</span>理解自变量、因变量（函数）的概念</div>
+            <div class="target-item"><span>3</span>能判断两个变量之间是否具有函数关系</div>
+            <div class="target-item"><span>4</span>能确定简单函数中自变量的取值范围</div>
+        </div>
+    </div>
+
+    <!-- 章节导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🌍 <strong>世界处在不停的运动变化中！如何研究这些运动变化规律呢？</strong></p>
+        <p>数学上常用<strong>变量与函数</strong>来刻画各种运动变化。本章将学习有关<strong>函数及其图象</strong>的初步知识，重点研究两类常见的函数——<strong>一次函数和反比例函数</strong>。</p>
+    </div>
+
+    <!-- 问题情境1：气温变化 -->
+    <div class="explore-card">
+        <h4>问题1 — 某地一天内的气温变化</h4>
+        <p>图16.1.1是某地一天内的气温变化图。</p>
+
+        <div class="temp-chart-container">
+            <canvas id="tempCanvas"></canvas>
+            <div class="chart-info" id="chartInfo">
+                <div class="info-item"><div class="label">当前时刻</div><div class="value" id="curTime">--:--</div></div>
+                <div class="info-item"><div class="label">当前气温</div><div class="value" id="curTemp">--°C</div></div>
+                <div class="info-item"><div class="label">最高气温</div><div class="value">32°C</div></div>
+                <div class="info-item"><div class="label">最低气温</div><div class="value">18°C</div></div>
+            </div>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>看图回答：</strong></p>
+        <p>(1) 这天的6时、10时和14时的气温分别是多少？任意给出这天中的某一时刻，说出这一时刻的气温。</p>
+        <p>(2) 这一天中，最高气温是多少？最低气温是多少？</p>
+        <p>(3) 这一天中，哪些时段的气温在逐渐升高？哪些时段的气温在逐渐降低？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('q1')">💡 提示与答案</button>
+        <div id="q1" class="answer-box">
+            <p>(1) 这天 6 时、10时和14时的气温分别是 <strong>-4°C</strong>、<strong>0°C</strong> 和 <strong>4°C</strong>。</p>
+            <p>任意给出这天中的某一时刻 $t$，都能从图中找到对应的气温 $T$ —— 气温随时间的变化而变化。</p>
+            <p>(2) 最高气温约 <strong>5°C</strong>（约在14时），最低气温约 <strong>-4°C</strong>（约在6时）。</p>
+            <p>(3) 从图中可以看出：<strong>6~14时气温逐渐升高，0~6时和14~24时气温逐渐降低</strong>。</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 关键发现：</strong>随着时间 $t$ 的变化，气温 $T$ 也随之变化。<br>
+                这里出现了两个<strong>数值会发生变化的量</strong>——时间 $t$ 和气温 $T$。
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题情境2：体重表 -->
+    <div class="explore-card">
+        <h4>问题2 — 小蕾各周岁时的体重</h4>
+        <p>小蕾在过14岁生日的时候，看到了爸爸为她记录的各周岁时的体重，如下表：</p>
+        <div class="table-container">
+            <table>
+                <tr><th>周岁</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+                <tr><th>体重/kg</th><td>7.9</td><td>12.2</td><td>15.6</td><td>18.4</td><td>20.7</td><td>23.0</td><td>25.6</td><td>28.5</td><td>31.2</td><td>34.0</td><td>37.6</td><td>41.2</td><td>44.9</td></tr>
+            </table>
+        </div>
+        <p style="margin-top:1rem;"><strong>观察上表，说一说随着年龄的增长，小蕾的体重是如何变化的？在哪一段时间内体重增加较快？</strong></p>
+        <button class="interact-btn" onclick="toggleWeightChart()">📊 显示体重变化曲线图</button>
+        <div id="weightChartContainer" style="display:none;margin-top:1rem;padding:1rem;background:linear-gradient(145deg,#fefefe,#f8fafc);border-radius:16px;border:2px solid #e2e8f0;">
+            <canvas id="weightCanvas" style="width:100%;height:350px;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('q2')" style="margin-top:0.5rem;">💡 观察分析</button>
+        <div id="q2" class="answer-box">
+            <p>✅ 随着年龄的增长，小蕾的体重<strong>持续增加</strong>。</p>
+            <p style="margin-top:0.8rem;"><strong>各年龄段体重增长对比：</strong></p>
+            <div class="table-container">
+                <table style="font-size:1.15rem;">
+                    <tr><th>年龄段</th><td>1~2岁</td><td>2~3岁</td><td>3~4岁</td><td>4~5岁</td><td>5~6岁</td><td>6~7岁</td><td>7~8岁</td><td>8~9岁</td><td>9~10岁</td><td>10~11岁</td><td>11~12岁</td><td>12~13岁</td></tr>
+                    <tr><th>增长(kg)</th><td><strong style="color:#dc2626;">4.3</strong></td><td>3.4</td><td>2.8</td><td>2.3</td><td>2.3</td><td>2.6</td><td>2.9</td><td>2.7</td><td>2.8</td><td>3.6</td><td>3.6</td><td><strong style="color:#dc2626;">3.7</strong></td></tr>
+                </table>
+            </div>
+            <p>📈 <strong>1~2岁</strong>是婴儿期快速生长期，体重增长最快（4.3kg）；</p>
+            <p>📈 <strong>11~13岁</strong>进入青春期，体重再次加速增长（年均3.6kg以上）。</p>
+            <div class="highlight-box" style="margin-top:0.8rem;font-size:0.95rem;">
+                <strong>💡 数学思考：</strong>从表格中可以<strong>精确计算</strong>出每年龄段的具体增长量，但体重变化曲线图只能<strong>粗略看出</strong>增长趋势。这说明：<strong>列表法便于精确计算，图象法便于直观观察趋势</strong>，两种表示方法各有优势。
+            </div>
+            <p style="margin-top:0.5rem;">这里也出现了两个<strong>变化的量</strong>：<strong>年龄</strong>和<strong>体重</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 问题情境3：波长与频率 -->
+    <div class="explore-card">
+        <h4>问题3 — 收音机波长与频率的关系</h4>
+        <p>收音机刻度盘上的波长和频率分别是用米(m)和千赫兹(kHz)为单位标刻的。下面是一些对应的数值：</p>
+        <div class="table-container">
+            <table>
+                <tr><th>波长 $\lambda$/m</th><td>300</td><td>500</td><td>600</td><td>1000</td><td>1500</td></tr>
+                <tr><th>频率 $f$/kHz</th><td>1000</td><td>600</td><td>500</td><td>300</td><td>200</td></tr>
+            </table>
+        </div>
+        <p style="margin-top:1rem;"><strong>细心的同学可能会发现：每一列 $\lambda$ 与 $f$ 的对应值的乘积是一个定值，即</strong></p>
+        <p style="text-align:center;">$$\lambda f = 300000$$</p>
+        <p style="text-align:center;">或者说 $\displaystyle f = \frac{300000}{\lambda}$</p>
+        <p style="margin-top:1rem;"><strong>可以看出：波长 $\lambda$ 越大，频率 $f$ 就 ______。</strong></p>
+        <button class="interact-btn" onclick="toggleAnswer('q3')">💡 发现规律</button>
+        <div id="q3" class="answer-box">
+            <p>可以看出：<strong>波长 $\lambda$ 越大，频率 $f$ 就越<strong>小</strong></strong>（成反比关系）。</p>
+            <p>这也是两个互相依赖的变化的量。</p>
+        </div>
+    </div>
+
+    <!-- 问题情境4：圆的面积 -->
+    <div class="explore-card">
+        <h4>问题4 — 圆的面积公式</h4>
+        <p>圆的面积随着半径的增大而增大。如果用 $r$ 表示圆的半径，用 $S$ 表示圆的面积，则 $S$ 与 $r$ 之间满足下列关系：</p>
+        <div class="theorem-box" style="background:#f0f9ff; border:2px dashed #0ea5e9;">$$S = \text{______}$$</div>
+        <p>利用这个关系式，试求出半径为 1 cm、1.5 cm、2 cm、2.6 cm、3.2 cm 时圆的面积，并将结果填入下表：</p>
+        <div class="table-container">
+            <table>
+                <tr><th>半径 $r$/cm</th><td>1</td><td>1.5</td><td>2</td><td>2.6</td><td>3.2</td><td>...</td></tr>
+                <tr><th>圆面积 $S$/cm²</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>...</td></tr>
+            </table>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('q4')">💡 查看答案</button>
+        <div id="q4" class="answer-box">
+            <p><strong>关系式：</strong>$S = \pi r^2$</p>
+            <p style="margin-top:0.5rem;"><strong>填表结果：</strong></p>
+            <div class="table-container">
+                <table>
+                    <tr><th>半径 $r$/cm</th><td>1</td><td>1.5</td><td>2</td><td>2.6</td><td>3.2</td></tr>
+                    <tr><th>圆面积 $S$/cm²</th><td>$\pi$</td><td>$2.25\pi$</td><td>$4\pi$</td><td>$6.76\pi$</td><td>$10.24\pi$</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心概念一：常量与变量 -->
+    <div class="fact-card">
+        <h4>📌 核心概念一：常量与变量</h4>
+        <div class="highlight-box">
+            <p><strong>🔹 常量：</strong>在某一变化过程中，取值始终保持不变的量。</p>
+            <p><strong>🔹 变量：</strong>在某一变化过程中，可以取不同数值的量。</p>
+        </div>
+        <div style="margin-top:1rem;">
+            <p><strong>举例说明：</strong></p>
+            <ul style="padding-left:2rem;line-height:2;">
+                <li>问题1中：$t$ 和 $T$ 都是<strong>变量</strong></li>
+                <li>问题2中：<strong>年龄</strong>和<strong>体重</strong>都是变量</li>
+                <li>问题3中：$\lambda$ 和 $f$ 都是变量，而 <strong>$300000$ 是常量</strong></li>
+                <li>问题4中：$r$ 和 $S$ 都是变量，而 <strong>$\pi$ 是常量</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 核心概念二：自变量与因变量（函数） -->
+    <div class="fact-card">
+        <h4>📌 核心概念二：自变量、因变量与函数</h4>
+        <div class="theorem-box" style="font-size:1.15rem;">
+            <p>一般地，如果在一个变化过程中有<strong>两个变量</strong>（例如 $x$ 与 $y$），对于 $x$ 的每一个值，$y$ 都有<strong>唯一确定的值</strong>与之对应，我们就说：</p>
+            <p style="margin-top:.8rem;">$x$ 是<strong>自变量</strong>，$y$ 是<strong>因变量</strong>，此时也称 <strong>$y$ 是 $x$ 的函数</strong>。</p>
+        </div>
+
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>⚡ 函数的两个关键要素：</strong></p>
+            <ol style="padding-left:2rem;line-height:2;">
+                <li><strong>有两个变量</strong>——不是任意多个，而是明确的一对一或一对多关系中的两个</li>
+                <li><strong>对于自变量的每一个值，因变量都有唯一确定的值与之对应</strong></li>
+            </ol>
+        </div>
+
+        <div style="margin-top:1rem;">
+            <p><strong>上面四个问题中的自变量分别是什么？</strong></p>
+            <button class="interact-btn" onclick="toggleAnswer('varAns')">🔍 查看答案</button>
+            <div id="varAns" class="answer-box">
+                <div class="table-container">
+                    <table>
+                        <tr><th>问题</th><th>自变量</th><th>因变量（函数）</th><th>理由</th></tr>
+                        <tr><td>问题1</td><td>$t$（时间）</td><td>$T$（气温）</td><td>每个时刻对应唯一气温</td></tr>
+                        <tr><td>问题2</td><td>年龄</td><td>体重</td><td>每个年龄对应一个体重</td></tr>
+                        <tr><td>问题3</td><td>$\lambda$（波长）</td><td>$f$（频率）</td><td>每个波长对应唯一频率</td></tr>
+                        <tr><td>问题4</td><td>$r$（半径）</td><td>$S$（面积）</td><td>每个半径对应唯一面积</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 函数的三种表示法 -->
+    <div class="fact-card">
+        <h4>📌 表示函数关系的常用方法</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-top:.8rem;">
+            <div class="highlight-box" style="flex:1;min-width:250px;">
+                <p><strong>① 解析法（公式法）</strong></p>
+                <p>用表达式表示函数关系式</p>
+                <p style="color:#0891b2;">例：$S = \pi r^2$，$f = \frac{300000}{\lambda}$</p>
+            </div>
+            <div class="highlight-box" style="flex:1;min-width:250px;">
+                <p><strong>② 列表法（表格法）</strong></p>
+                <p>列出对应的数值表格</p>
+                <p style="color:#0891b2;">例：问题2的小蕾体重表、问题3的波长-频率表</p>
+            </div>
+            <div class="highlight-box" style="flex:1;min-width:250px;">
+                <p><strong>③ 图象法</strong></p>
+                <p>用坐标系中的图形表示</p>
+                <p style="color:#0891b2;">例：问题1的气温变化曲线图</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="example-card">
+        <h4>例1 判断下列关系中哪些是函数关系</h4>
+        <p>(1) $y = x^2 + 1$ &nbsp;&nbsp;&nbsp; (2) $y^2 = x$（$y \geq 0$）&nbsp;&nbsp;&nbsp; (3) $|y| = x$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> ✅ <strong>是函数关系</strong>。对于 $x$ 的每一个值，$y = x^2+1$ 都有唯一确定的值与之对应。自变量是 $x$，$y$ 是 $x$ 的函数。</p>
+            <p><strong>(2)</strong> ✅ <strong>是函数关系</strong>（在限定条件下）。当限定 $y \geq 0$ 时，$y = \sqrt{x}$ 对于每一个 $x \geq 0$ 都有唯一的 $y$ 值与之对应。</p>
+            <p><strong>(3)</strong> ❌ <strong>不是函数关系</strong>。例如当 $x = 4$ 时，$|y| = 4$ 有 $y = 2$ 或 $y = -2$ 两个值，不满足"唯一确定"的条件。</p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                ⚠️ <strong>关键提醒：</strong>判断是否为函数关系，核心看——对于自变量的<strong>每一个</strong>值，因变量是否有<strong>唯一确定</strong>的值！
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 求函数关系式及自变量取值范围</h4>
+        <p>写出下列问题的函数关系式，并指出自变量的取值范围：</p>
+        <p>(1) 圆的周长 $C$ 是半径 $r$ 的函数</p>
+        <p>(2) 火车以 60 km/h 的速度行驶，路程 $s$ 是时间 $t$ 的函数</p>
+        <p>(3) $n$ 边形内角和的度数 $S$ 是边数 $n$ 的函数</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> $C = 2\pi r$，自变量 $r > 0$（半径必须为正数）</p>
+            <p><strong>(2)</strong> $s = 60t$，自变量 $t \geq 0$（时间非负）</p>
+            <p><strong>(3)</strong> $S = (n-2) \times 180^\circ$，自变量 $n \geq 3$ 且 $n$ 为整数（边数至少为3）</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 确定自变量取值范围的要点：</strong>
+                <ul style="padding-left:1.5rem;margin-top:.5rem;line-height:1.8;">
+                    <li>使<strong>函数解析式有意义</strong>：分母不为零、偶次根号内非负等</li>
+                    <li>符合<strong>实际意义</strong>：长度/面积为正、人数为正整数等</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 下表是某市2021年统计的中小学男学生各年龄组的平均身高：</p>
+        <div class="table-container">
+            <table>
+                <tr><th>年龄组/岁</th><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td></tr>
+                <tr><th>平均身高/cm</th><td>124</td><td>130</td><td>135</td><td>141</td><td>145</td><td>151</td><td>159</td><td>165</td><td>168</td><td>170</td><td>171</td><td>172</td></tr>
+            </table>
+        </div>
+        <p style="margin-top:1rem;"><strong>观察此表，回答下列问题：</strong></p>
+        <p>(1) 该市14岁男学生的平均身高是多少？</p>
+        <p>(2) 该市男学生的平均身高从哪一岁开始增加特别迅速？</p>
+        <p>(3) 这里反映了哪些变量之间的函数关系？其中哪个是自变量？哪个是因变量？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p>(1) 该市14岁男学生的平均身高为 <strong>165 cm</strong></p>
+            <p>(2) 从 <strong>11岁到14岁</strong>（青春期）增加特别迅速。</p>
+            <p>(3) 反映了<strong>年龄</strong>与<strong>平均身高</strong>之间的函数关系。其中<strong>年龄是自变量</strong>，<strong>平均身高是因变量</strong>。</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 写出下列各问题中的函数关系式，指出自变量的取值范围：</p>
+        <p>(1) 在匀速运动中，速度 $v = 5$ m/s，运动路程 $s$ 是时间 $t$ 的函数</p>
+        <p>(2) 学校要辟出一块面积 $S = 200$ m² 的长方形花圃，长 $x$ 是宽 $y$ 的函数</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p>(1) $s = 5t$，$t \geq 0$</p>
+            <p>(2) $xy = 200$，即 $\displaystyle y = \frac{200}{x}$，其中 $x > 0$</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>常量</strong>：变化过程中取值不变的量；<strong>变量</strong>：变化过程中可取不同值的量</li>
+            <li><strong>函数的定义</strong>：两个变量中，对于自变量 $x$ 的每一个值，因变量 $y$ 都有<strong>唯一确定</strong>的值与之对应</li>
+            <li>函数的三种表示方法：<strong>解析法、列表法、图象法</strong></li>
+            <li>求自变量取值范围要考虑两方面：<strong>使解析式有意义</strong> + <strong>符合实际意义</strong></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if(el.style.display === 'block' || el.style.display === '') {
+        var computed = window.getComputedStyle(el).display;
+        if(computed === 'block' || el.dataset.shown === 'yes') {
+            el.style.display = 'none';
+            return;
+        }
+    }
+    el.style.display = 'block';
+    el.dataset.shown = 'yes';
+    if(window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([el]).catch(function(err){console.log('err',err)});
+    }
+}
+
+// 气温变化图交互绘制
+(function() {
+    var canvas = document.getElementById('tempCanvas');
+    var ctx = canvas.getContext('2d');
+
+    function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width = rect.width * (window.devicePixelRatio || 1);
+        canvas.height = 350 * (window.devicePixelRatio || 1);
+        ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+        draw();
+    }
+
+    var hoveredHour = null;
+
+    var tempData = [
+        {h:0,t:21},{h:1,t:20},{h:2,t:19},{h:3,t:18.5},{h:4,t:18},
+        {h:5,t:18.5},{h:6,t:20},{h:7,t:22},{h:8,t:24},{h:9,t:26},
+        {h:10,t:28},{h:11,t:29.5},{h:12,t:31},{h:13,t:31.5},
+        {h:14,t:32},{h:15,t:31.5},{h:16,t:30.5},{h:17,t:29},
+        {h:18,t:27},{h:19,t:25.5},{h:20,t:24},{h:21,t:23},
+        {h:22,t:22},{h:23,t:21.5},{h:24,t:21}
+    ];
+
+    function draw(highlightH) {
+        highlightH = highlightH === undefined ? hoveredHour : highlightH;
+        var W = canvas.width / (window.devicePixelRatio||1);
+        var H = canvas.height / (window.devicePixelRatio||1);
+        ctx.clearRect(0,0,W,H);
+
+        var padLeft = 45, padRight = 25, padTop = 25, padBottom = 40;
+        var chartW = W - padLeft - padRight;
+        var chartH = H - padTop - padBottom;
+
+        // 背景网格
+        ctx.strokeStyle = '#e0f2fe';
+        ctx.lineWidth = 1;
+        for(var i=16;i<=36;i+=2){
+            var y = padTop + chartH - (i-16)*chartH/20;
+            ctx.beginPath(); ctx.moveTo(padLeft,y); ctx.lineTo(W-padRight,y); ctx.stroke();
+            ctx.fillStyle='#94a3b8'; ctx.font='12px sans-serif'; ctx.textAlign='right';
+            ctx.fillText(i+'°',padLeft-6,y+4);
+        }
+        for(var i=0;i<=24;i+=4){
+            var x = padLeft + i*chartW/24;
+            ctx.beginPath(); ctx.moveTo(x,padTop); ctx.lineTo(x,H-padBottom); ctx.stroke();
+            ctx.fillStyle='#94a3b8'; ctx.textAlign='center';
+            ctx.fillText(i+'时',x,H-padBottom+18);
+        }
+
+        // 曲线
+        ctx.strokeStyle = '#0ea5e9';
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.beginPath();
+        for(var i=0;i<tempData.length;i++){
+            var x = padLeft + tempData[i].h*chartW/24;
+            var y = padTop + chartH - (tempData[i].t-16)*chartH/20;
+            if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+
+        // 渐变填充
+        var grad = ctx.createLinearGradient(0,padTop,0,H-padBottom);
+        grad.addColorStop(0,'rgba(14,165,233,0.3)');
+        grad.addColorStop(1,'rgba(14,165,233,0.02)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(padLeft + tempData[0].h*chartW/24, H-padBottom);
+        for(var i=0;i<tempData.length;i++){
+            var x = padLeft + tempData[i].h*chartW/24;
+            var y = padTop + chartH - (tempData[i].t-16)*chartH/20;
+            ctx.lineTo(x,y);
+        }
+        ctx.lineTo(padLeft + 24*chartW/24, H-padBottom);
+        ctx.fill();
+
+        // 数据点
+        for(var i=0;i<tempData.length;i++){
+            var x = padLeft + tempData[i].h*chartW/24;
+            var y = padTop + chartH - (tempData[i].t-16)*chartH/20;
+            if(highlightH !== null && Math.abs(tempData[i].h - highlightH) < 1){
+                ctx.beginPath(); ctx.arc(x,y,8,0,Math.PI*2);
+                ctx.fillStyle='#ef4444'; ctx.fill();
+                ctx.strokeStyle='white'; ctx.lineWidth=2; ctx.stroke();
+                ctx.fillStyle='#1e293b'; ctx.font='bold 13px sans-serif';
+                ctx.textAlign='center';
+                ctx.fillText(tempData[i].h+':00 → '+tempData[i].t.toFixed(1)+'°C',x,y-14);
+            } else {
+                ctx.beginPath(); ctx.arc(x,y,4,0,Math.PI*2);
+                ctx.fillStyle='#0ea5e9'; ctx.fill();
+            }
+        }
+
+        // 坐标轴标签
+        ctx.fillStyle='#0e7490'; ctx.font='bold 14px sans-serif'; ctx.textAlign='center';
+        ctx.fillText('时间 t (时)', W/2, H-2);
+        ctx.save(); ctx.translate(14, H/2); ctx.rotate(-Math.PI/2);
+        ctx.fillText('气温 T (°C)', 0, 0); ctx.restore();
+    }
+
+    canvas.addEventListener('mousemove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        var mx = e.clientX - rect.left;
+        var padLeft = 45, padRight = 25;
+        var W = rect.width;
+        var chartW = W - padLeft - padRight;
+        var hour = ((mx - padLeft)/chartW*24);
+        hour = Math.max(0, Math.min(24, hour));
+        hoveredHour = hour;
+        var closest = tempData[0], minDiff = 999;
+        for(var i=0;i<tempData.length;i++){
+            var diff = Math.abs(tempData[i].h - hour);
+            if(diff < minDiff){ minDiff=diff; closest=tempData[i]; }
+        }
+        document.getElementById('curTime').textContent = closest.h + ':00';
+        document.getElementById('curTemp').textContent = closest.t.toFixed(1) + '°C';
+        draw(hour);
+    });
+
+    canvas.addEventListener('mouseleave', function() {
+        hoveredHour = null;
+        document.getElementById('curTime').textContent = '--:--';
+        document.getElementById('curTemp').textContent = '--°C';
+        draw(null);
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 体重曲线图
+var weightChartDrawn = false;
+function toggleWeightChart() {
+    var container = document.getElementById('weightChartContainer');
+    if (container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block';
+        if (!weightChartDrawn) {
+            drawWeightChart();
+            weightChartDrawn = true;
+        }
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+function drawWeightChart() {
+    var canvas = document.getElementById('weightCanvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    
+    var weightData = [
+        {age:1, weight:7.9}, {age:2, weight:12.2}, {age:3, weight:15.6},
+        {age:4, weight:18.4}, {age:5, weight:20.7}, {age:6, weight:23.0},
+        {age:7, weight:25.6}, {age:8, weight:28.5}, {age:9, weight:31.2},
+        {age:10, weight:34.0}, {age:11, weight:37.6}, {age:12, weight:41.2},
+        {age:13, weight:44.9}
+    ];
+    
+    var rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width * (window.devicePixelRatio || 1);
+    canvas.height = 400 * (window.devicePixelRatio || 1);
+    ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    
+    var W = rect.width;
+    var H = 400;
+    var padLeft = 60, padRight = 80, padTop = 50, padBottom = 50;
+    var chartW = W - padLeft - padRight;
+    var chartH = H - padTop - padBottom;
+    
+    // Y轴范围：0-50kg
+    var yMin = 0, yMax = 50;
+    var yRange = yMax - yMin;
+    
+    ctx.clearRect(0, 0, W, H);
+    
+    // 标题
+    ctx.fillStyle = '#0f766e';
+    ctx.font = 'bold 18px "Microsoft YaHei", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('小蕾 1~13 岁体重变化曲线', W / 2, 30);
+    
+    // 水平网格线（淡色）
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+    for (var w = 0; w <= 50; w += 10) {
+        var y = padTop + chartH - ((w - yMin) / yRange) * chartH;
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(W - padRight, y);
+        ctx.stroke();
+        ctx.fillStyle = '#64748b';
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'right';
+        ctx.fillText(w, padLeft - 8, y + 4);
+    }
+    
+    // 垂直网格线
+    for (var a = 1; a <= 13; a += 2) {
+        var x = padLeft + (a - 1) / 12 * chartW;
+        ctx.beginPath();
+        ctx.moveTo(x, padTop);
+        ctx.lineTo(x, H - padBottom);
+        ctx.stroke();
+    }
+    
+    // 坐标轴
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padLeft, padTop - 5);
+    ctx.lineTo(padLeft, H - padBottom);
+    ctx.lineTo(W - padRight + 5, H - padBottom);
+    ctx.stroke();
+    
+    // X轴刻度标签
+    for (var a = 1; a <= 13; a += 2) {
+        var x = padLeft + (a - 1) / 12 * chartW;
+        ctx.fillStyle = '#334155';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(a, x, H - padBottom + 22);
+    }
+    
+    // 曲线 - 使用平滑曲线
+    ctx.strokeStyle = '#e11d48';
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    for (var i = 0; i < weightData.length; i++) {
+        var x = padLeft + (weightData[i].age - 1) / 12 * chartW;
+        var y = padTop + chartH - ((weightData[i].weight - yMin) / yRange) * chartH;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    
+    // 数据点
+    for (var i = 0; i < weightData.length; i++) {
+        var x = padLeft + (weightData[i].age - 1) / 12 * chartW;
+        var y = padTop + chartH - ((weightData[i].weight - yMin) / yRange) * chartH;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#e11d48';
+        ctx.fill();
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+    
+    // 坐标轴标签
+    ctx.fillStyle = '#475569';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('年龄（周岁）', W / 2, H - 12);
+    ctx.save();
+    ctx.translate(25, H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('体重（kg）', 0, 0);
+    ctx.restore();
+}
+</script>
+</body>
+</html>

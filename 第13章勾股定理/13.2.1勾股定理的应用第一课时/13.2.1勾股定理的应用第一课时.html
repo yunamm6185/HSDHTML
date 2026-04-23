@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.2.1 勾股定理的应用（第一课时）| 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500; line-height: 1.6; color: #1e3b5a;
+            padding: 1.5rem; font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px; margin: 0 auto; background: white;
+            border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(0,45,70,0.25);
+            padding: 2rem 2.5rem; border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid #b8d2e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem;
+            font-weight: 600; font-size: 1rem;
+        }
+        h1 { font-size: 2.4rem; color: #0f405e; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:#ff7043; border-radius:5px; margin-top:8px; }
+        .lesson-title {
+            text-align:center; font-size:2.2rem; color:#bf360c; background:#fbe9e7; padding:.6rem 1.2rem;
+            border-radius:60px; border:3px solid #ffab91; margin:1.2rem 0 1.8rem; font-weight:700;
+        }
+        .learning-targets {
+            background:linear-gradient(145deg,#ffebee,#ffcdd2); border-radius:2rem; padding:1.3rem 2rem;
+            margin:1rem 0 2rem; border:1px solid #ef9a9a; box-shadow:0 5px 0 #ef5350;
+        }
+        .learning-targets h3{margin:0 0 .8rem; font-size:1.5rem; border-left:6px solid #c62828; padding-left:1rem;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{
+            background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #ef5350;border:1px solid #ffcdd2;
+        }
+        .target-item span{background:#c62828;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#ffebee;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #e53935;font-weight:600;}
+        .explore-card{background:#e8f5e9;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #43a047;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#2e7d32;}
+        .fact-card{background:#fff8e1;border-left:8px solid #ffa000;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#e65100;}
+        .example-card{background:#e8f5e9;border-left:8px solid #43a047;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.4rem;color:#2e7d32;}
+        .reading-section{background:#fef9e6;border-left:8px solid #ffca28;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:500;}
+        .interact-btn{
+            background:#ecf3f9;border:none;color:#014682;padding:.3rem 1.2rem;border-radius:40px;
+            font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;
+        }
+        .interact-btn:active{transform:translateY(2px);}
+        .answer-box{background:#f6fbfe;border-left:6px solid #ffa000;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}
+        .show-answer{display:block;}
+        .exercise-section{background:#f5f0fc;border-radius:2rem;padding:1.5rem 2rem;margin:2rem 0;}
+        .exercise-item{margin-bottom:1.5rem;}
+        .exercise-question{font-weight:700;color:#0a3e5f;font-size:1.05rem;margin-bottom:.4rem;}
+        .summary-section{background:#fff3e0;border-left:6px solid #fb8c00;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .math-idea{background:#fce4ec;border-left:8px solid #ec407a;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .homework-box{background:#ffccbc;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #ff7043;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        .highlight{background:#ffcdd2;padding:.5rem 1rem;border-radius:1rem;margin:.5rem 0;}
+
+        /* 应用题图示 */
+        .app-figure{background:#fafafa;border:2px dashed #ffb74d;border-radius:1.2rem;padding:1rem;margin:1rem 0;text-align:center;}
+        .tip-box{background:#fff3cd;border-left:4px solid #ffc107;border-radius:.8rem;padding:.8rem 1.2rem;margin:1rem 0;font-size:.95rem;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级上册</span><span>第13章 勾股定理 · 13.2.1（第一课时）</span></div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">13.2.1 勾股定理的应用（第一课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握勾股定理在实际问题中的应用方法</div>
+            <div class="target-item"><span>✔</span>能用勾股定理解决简单的距离计算问题</div>
+            <div class="target-item"><span>✔</span>学会从实际问题中抽象出直角三角形模型</div>
+            <div class="target-item"><span>✔</span>体会数学与生活的紧密联系</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p><strong>情境引入：</strong></p>
+        <p style="margin-top: 0.8rem;">想象一下：你站在一棵高大的树旁边，想知道树有多高，但树太高了，无法直接测量。你该怎么办？</p>
+        <p style="margin-top: 0.8rem;">又或者，你想知道一条河流的宽度，但无法渡河测量。有没有办法利用勾股定理来解决这些问题呢？</p>
+        <p style="margin-top: 0.8rem;">今天我们就来学习<strong>勾股定理在现实生活中的应用</strong>！</p>
+    </div>
+
+    <!-- 例1：圆柱体表面最短路径 -->
+    <div class="explore-card">
+        <h4>例1 圆柱表面上的最短路径</h4>
+        <p>如图，有一个圆柱形的物体，它的底面周长为 $12\ \text{cm}$，高为 $5\ \text{cm}$。一只蚂蚁想从底面上一点 $A$ 沿圆柱的侧面爬行到上底面与点 $A$ 相对的点 $B$（$AB$ 是上底面的直径），求蚂蚁爬行的最短距离。（精确到 $0.1\ \text{cm}$）</p>
+
+        <div class="app-figure">
+            <!-- 圆柱展开图示意 -->
+            <svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="240" fill="#fafcff" rx="8"/>
+                
+                <!-- 展开后的矩形: 宽=12cm(周长), 高=5cm -->
+                <rect x="60" y="40" width="280" height="140" fill="#e3f2fd" stroke="#1976d2" stroke-width="2" rx="4"/>
+                
+                <!-- A点在底边左端 -->
+                <circle cx="60" cy="180" r="6" fill="#e53935"/>
+                <text x="38" y="188" fill="#e53935" font-weight="bold" font-size="15">A</text>
+                
+                <!-- B点在上边中点(对应直径另一端,即周长一半处) -->
+                <circle cx="200" cy="40" r="6" fill="#388e3c"/>
+                <text x="208" y="32" fill="#388e3c" font-weight="bold" font-size="15">B</text>
+                
+                <!-- 最短路径（直线）-->
+                <line x1="60" y1="180" x2="200" y2="40" stroke="#ff9800" stroke-width="3" stroke-dasharray="8,4"/>
+                
+                <!-- 构造直角三角形辅助线 -->
+                <line x1="60" y1="180" x2="200" y2="180" stroke="#1976d2" stroke-width="1.5" stroke-dasharray="4,3"/>
+                <line x1="200" y1="180" x2="200" y2="40" stroke="#1976d2" stroke-width="1.5" stroke-dasharray="4,3"/>
+                
+                <!-- 直角标记 -->
+                <rect x="188" y="168" width="12" height="12" fill="none" stroke="#1976d2" stroke-width="1.5"/>
+                
+                <!-- 标注尺寸 -->
+                <text x="130" y="198" fill="#1976d2" font-weight="bold" font-size="13" text-anchor="middle">6 cm（半周长）</text>
+                <text x="212" y="115" fill="#1976d2" font-weight="bold" font-size="13">5 cm（高）</text>
+                <text x="115" y="100" fill="#ff9800" font-weight="bold" font-size="13" transform="rotate(-49, 115, 100)">? 最短路径</text>
+                
+                <!-- 上底标注 -->
+                <text x="200" y="25" fill="#666" font-size="11" text-anchor="middle">上底面（B为直径一端）</text>
+                <text x="200" y="218" fill="#666" font-size="11" text-anchor="middle">下底面（A为直径另一端）</text>
+            </svg>
+            <p style="color:#666; font-size:.9rem;">图示：将圆柱侧面沿母线剪开展平成矩形</p>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解题过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong>将圆柱侧面沿一条母线剪开展开，得到一个<strong>矩形</strong>。</p>
+            <p>矩形的<strong>宽</strong>等于圆柱底面的周长：$12\ \text{cm}$。</p>
+            <p>矩形的<strong>高</strong>就是圆柱的高：$5\ \text{cm}$。</p>
+            <p>因为点 $A$ 和点 $B$ 是底面直径的两端，所以在展开图中，$A$、$B$ 两点的水平距离为<strong>半周长</strong>：</p>
+            <p>$$\text{水平距离} = \frac{12}{2} = 6\ \text{cm}$$</p>
+            <p>竖直距离 = 高 = $5\ \text{cm}$。</p>
+            <p>根据勾股定理，蚂蚁爬行的最短距离为：</p>
+            <p>$$AB = \sqrt{6^2 + 5^2} = \sqrt{36 + 25} = \sqrt{61} \approx 7.81\ \text{(cm)}$$</p>
+            <p style="color:#2e7d32; font-weight:600;">答：蚂蚁爬行的最短距离约为 $\mathbf{7.8\ \text{cm}}$（精确到 $0.1\ \text{cm}$）。</p>
+        </div>
+    </div>
+
+    <!-- 交互式演示：圆柱展开最短路径（紧跟例题1） -->
+    <div class="app-figure" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); margin-top: 1.5rem;">
+        <h4 style="color: #1565c0; margin-bottom: 0.8rem;">🎮 圆柱展开最短路径演示</h4>
+        <div style="margin-bottom: 0.8rem;">
+            <label style="font-weight: 600; margin-right: 1rem;">圆柱底面周长: <input type="number" id="cylinder-c" value="16" min="2" max="50" step="1" style="width: 50px;"> cm</label>
+            <label style="font-weight: 600; margin-right: 1rem;">圆柱高: <input type="number" id="cylinder-h" value="6" min="1" max="30" step="1" style="width: 50px;"> cm</label>
+            <button class="interact-btn" onclick="updateCylinder()" style="background: #1976d2; color: white;">更新</button>
+        </div>
+        <canvas id="cylinderCanvas" width="860" height="420" style="background: white; border-radius: 12px;"></canvas>
+        <div id="cylinder-result" style="margin-top: 0.8rem; font-weight: 600;"></div>
+    </div>
+
+    <!-- 例2：卡车通过拱门 -->
+    <div class="explore-card">
+        <h4>例2 卡车能否通过厂门</h4>
+        <p>如图，某工厂的大门上部是一个半圆形（半径为 $2\ \text{m}$），下部是一个矩形（宽 $4\ \text{m}$，高 $2.3\ \text{m}$）。现有一辆装满货物的卡车，高 $4\ \text{m}$，宽 $2.8\ \text{m}$。问这辆卡车能否顺利通过这个厂门？请说明理由。</p>
+
+        <div class="app-figure">
+            <!-- 重新绘制的厂门与卡车示意图 -->
+            <svg width="420" height="340" viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg">
+                <rect width="420" height="340" fill="#fafcff" rx="8"/>
+                
+                <!-- 比例尺: 1m = 50px
+                     地面y=280, 矩形左下角(110,170), 宽4m→200px, 高2.3m→115px
+                     半圆圆心(210,170), 半径2m→100px
+                -->
+                
+                <!-- 地面 -->
+                <line x1="20" y1="280" x2="400" y2="280" stroke="#888" stroke-width="2.5"/>
+                <text x="385" y="298" fill="#666" font-size="13">地面</text>
+                
+                <!-- 厂门外框 -->
+                <rect x="108" y="168" width="204" height="112" fill="#f0f0f0" stroke="#444" stroke-width="2.5"/>
+                <!-- 半圆 -->
+                <path d="M 110 168 A 100 100 0 0 1 310 168" fill="#e8e8e8" stroke="#444" stroke-width="2.5"/>
+                
+                <!-- 厂门中心线(虚线) -->
+                <line x1="210" y1="280" x2="210" y2="60" stroke="#bbb" stroke-width="1.5" stroke-dasharray="6,4"/>
+                
+                <!-- 厂门尺寸标注 -->
+                <line x1="312" y1="168" x2="340" y2="168" stroke="#666" stroke-width="1"/>
+                <line x1="340" y1="168" x2="340" y2="280" stroke="#666" stroke-width="1"/>
+                <text x="345" y="228" fill="#333" font-size="13" writing-mode="tb">2.3m</text>
+                
+                <line x1="110" y1="285" x2="310" y2="285" stroke="#666" stroke-width="1"/>
+                <text x="210" y="305" fill="#333" font-size="13" text-anchor="middle">4m</text>
+                
+                <!-- 半径标注 -->
+                <line x1="210" y1="168" x2="290" y2="108" stroke="#666" stroke-width="1" stroke-dasharray="4,3"/>
+                <text x="260" y="120" fill="#333" font-size="12">r=2m</text>
+                
+                <!-- 卡车车轮(在车身下方，先画) -->
+                <ellipse cx="160" cy="278" rx="18" ry="12" fill="#333"/>
+                <ellipse cx="260" cy="278" rx="18" ry="12" fill="#333"/>
+                
+                <!-- 卡车车身(宽2.8m→140px, 高4m→200px)
+                     车身下沿在车轮中心位置，露出轮胎
+                     卡车在厂门正中央: 从210-70=140到210+70=280
+                     车身高度200px，底部在278-12=266，露出车轮
+                -->
+                <rect x="140" y="78" width="140" height="190" fill="rgba(76,175,80,0.35)" stroke="#2e7d32" stroke-width="2.5" rx="3"/>
+                
+                <!-- 驾驶室 -->
+                <rect x="150" y="90" width="50" height="40" fill="rgba(100,181,246,0.5)" stroke="#1976d2" stroke-width="1.5" rx="2"/>
+                
+                <!-- 车身水平分隔线 -->
+                <line x1="140" y1="145" x2="280" y2="145" stroke="#2e7d32" stroke-width="1.5"/>
+                <line x1="140" y1="200" x2="280" y2="200" stroke="#2e7d32" stroke-width="1"/>
+                
+                <!-- 卡车尺寸标注 -->
+                <text x="290" y="175" fill="#2e7d32" font-weight="bold" font-size="12">2.8m</text>
+                <text x="125" y="65" fill="#2e7d32" font-weight="bold" font-size="12">4m</text>
+                
+                <!-- 关键点标注：卡车右上角 -->
+                <circle cx="280" cy="78" r="5" fill="#e53935"/>
+                <text x="288" y="70" fill="#e53935" font-size="11" font-weight="bold">关键点</text>
+                
+                <!-- 标题 -->
+                <text x="210" y="320" fill="#666" font-size="13" text-anchor="middle">厂门与卡车示意图</text>
+            </svg>
+            <p style="color:#666; font-size:.9rem;">卡车宽度2.8m，位于厂门正中央，需判断右上角是否在门内</p>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解题过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong>判断卡车能否通过，需要看卡车的四个角是否都在厂门范围内。</p>
+            <p>由于厂门的宽度为 $4\ \text{m}$ > 卡车宽度 $2.8\ \text{m}$，所以关键是看<strong>高度</strong>是否足够。</p>
+            <p>卡车位于厂门正中央时，其两侧边缘距厂门中心的水平距离为：</p>
+            <p>$$\frac{2.8}{2} = 1.4\ \text{(m)}$$</p>
+            <p>在该水平位置处，厂门的高度由两部分组成：</p>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>矩形部分：</strong>$2.3\ \text{m}$</li>
+                <li><strong>半圆部分的高度：</strong>设距中心水平距离为 $x = 1.4\ \text{m}$，则该处的半圆高度为 $\sqrt{r^2 - x^2} = \sqrt{2^2 - 1.4^2} = \sqrt{4 - 1.96} = \sqrt{2.04} \approx 1.43\ \text{(m)}$</li>
+            </ul>
+            <p>因此，在卡车边缘对应的水平位置处，厂门的总高度为：</p>
+            <p>$$h = 2.3 + 1.43 = 3.73\ \text{(m)}$$</p>
+            <p>而卡车的高度为 $4\ \text{m}$，因为 $4 > 3.73$，所以<strong>卡车无法通过</strong>。</p>
+            <p style="color:#c62828; font-weight:600;">答：这辆卡车<strong>不能</strong>顺利通过这个厂门。因为在卡车宽度对应的水平位置，厂门的高度只有约 $3.73\ \text{m}$，小于卡车高度 $4\ \text{m}$。</p>
+        </div>
+    </div>
+
+    <!-- 方法总结 -->
+    <div class="fact-card">
+        <h4>📌 应用勾股定理的一般步骤</h4>
+        <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.8;">
+            <li><strong>识别模型：</strong>从实际问题中找出或构造出直角三角形</li>
+            <li><strong>确定边长：</strong>明确已知的两边（或一边及关系式）</li>
+            <li><strong>列式计算：</strong>运用公式 $a^2+b^2=c^2$ 求解未知量</li>
+            <li><strong>检验作答：</strong>检验结果的合理性，写出完整答案</li>
+        </ol>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 练习（课本第37页）</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 为了加固电线杆，往往需要给它拉上一条固定于地面的钢缆。如图，从电线杆离地面 $5\ \text{m}$ 处向地面拉一条 $7\ \text{m}$ 长的钢缆。求钢缆在地面上的固定点 $A$ 到电线杆底部 $B$ 的距离。（精确到 $0.1\ \text{m}$）</p>
+
+            <!-- 电线杆拉钢缆示意图 -->
+            <div class="app-figure" style="background: linear-gradient(135deg, #f5f7fa, #e8edf3);">
+                <svg width="420" height="300" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="420" height="300" fill="transparent" rx="8"/>
+
+                    <!-- 比例尺: 1m = 40px
+                         地面 y = 240, 电线杆底部 B 在 (130, 240)
+                         电线杆高 5m → 200px, 顶部在 (130, 40)
+                         钢缆连接点 C 在离地5m处 → (130, 80)
+                         钢缆长 7m → 280px, 地面固定点 A 在 (x, 240)
+                    -->
+
+                    <!-- 地面 -->
+                    <line x1="20" y1="240" x2="400" y2="240" stroke="#555" stroke-width="3"/>
+                    <!-- 地面填充（下方浅色） -->
+                    <rect x="20" y="241" width="380" height="50" fill="#e8e8e8" opacity="0.5"/>
+                    <!-- 地面标注 l -->
+                    <text x="388" y="262" fill="#555" font-size="16" font-style="italic">l</text>
+
+                    <!-- ===== 电线杆主体 ===== -->
+                    <defs>
+                        <linearGradient id="poleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#9e9e9e"/>
+                            <stop offset="50%" stop-color="#e0e0e0"/>
+                            <stop offset="100%" stop-color="#9e9e9e"/>
+                        </linearGradient>
+                        <linearGradient id="cableGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1565c0"/>
+                            <stop offset="100%" stop-color="#42a5f5"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- 电线杆柱身（宽12px）-->
+                    <rect x="124" y="35" width="12" height="205" fill="url(#poleGrad)" stroke="#616161" stroke-width="1.5" rx="1"/>
+
+                    <!-- 电线杆顶部横担（绝缘子支架） -->
+                    <rect x="105" y="32" width="50" height="8" fill="#757575" stroke="#424242" stroke-width="1.5" rx="2"/>
+                    <!-- 上层横担+绝缘子 -->
+                    <rect x="98" y="48" width="64" height="6" fill="#757575" stroke="#424242" stroke-width="1.5" rx="1"/>
+                    <!-- 绝缘子（小圆） -->
+                    <circle cx="108" cy="30" r="5" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+                    <circle cx="125" cy="28" r="5" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+                    <circle cx="142" cy="30" r="5" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+                    <circle cx="110" cy="44" r="4" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+                    <circle cx="130" cy="43" r="4" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+                    <circle cx="150" cy="44" r="4" fill="#fff176" stroke="#f9a825" stroke-width="1.5"/>
+
+                    <!-- 电线（横跨的线条） -->
+                    <path d="M 60 30 Q 95 33 108 30" stroke="#333" stroke-width="1.5" fill="none"/>
+                    <path d="M 108 30 Q 116 27 125 28" stroke="#333" stroke-width="1.5" fill="none"/>
+                    <path d="M 125 28 Q 134 26 142 30" stroke="#333" stroke-width="1.5" fill="none"/>
+                    <path d="M 142 30 Q 180 34 220 31" stroke="#333" stroke-width="1.5" fill="none"/>
+
+                    <!-- 点C：钢缆在电线杆上的固定点（离地5m处） -->
+                    <g id="pointC">
+                        <circle cx="130" cy="82" r="7" fill="#ff5722" stroke="#bf360c" stroke-width="2"/>
+                        <text x="143" y="78" fill="#d84315" font-weight="bold" font-size="15">C</text>
+                    </g>
+
+                    <!-- ===== 钢缆（从C点到A点的斜线）===== -->
+                    <!-- A点位置计算: 钢缆长7m(280px), 竖直高度5m(200px), 水平距离=√(280²-200²)≈198px -->
+                    <!-- 所以A点大约在 x = 130 + 198 = 328 -->
+                    <line x1="130" y1="82" x2="328" y2="240" stroke="url(#cableGrad)" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- 钢缆纹理（小短线表示绞合效果） -->
+                    <g stroke="#0d47a1" stroke-width="1" opacity="0.4">
+                        <line x1="160" y1="112" x2="166" y2="106"/><line x1="190" y1="140" x2="196" y2="133"/>
+                        <line x1="220" y1="165" x2="226" y2="158"/><line x1="250" y1="188" x2="256" y2="182"/>
+                        <line x1="280" y1="210" x2="286" y2="205"/><line x1="305" y1="228" x2="310" y2="224"/>
+                    </g>
+
+                    <!-- 点A：钢缆在地面的固定点 -->
+                    <circle cx="328" cy="240" r="7" fill="#1976d2" stroke="#0d47a1" stroke-width="2"/>
+                    <text x="336" y="260" fill="#1565c0" font-weight="bold" font-size="16">A</text>
+
+                    <!-- 点B：电线杆底部 -->
+                    <circle cx="130" cy="240" r="7" fill="#388e3c" stroke="#1b5e20" stroke-width="2"/>
+                    <text x="115" y="264" fill="#2e7d32" font-weight="bold" font-size="16">B</text>
+
+                    <!-- ===== 尺寸标注 ===== -->
+
+                    <!-- CB段标注（电线杆上5m）：左侧 -->
+                    <line x1="105" y1="82" x2="105" y2="240" stroke="#e65100" stroke-width="1.5"/>
+                    <line x1="100" y1="82" x2="110" y2="82" stroke="#e65100" stroke-width="1.5"/>
+                    <line x1="100" y1="240" x2="110" y2="240" stroke="#e65100" stroke-width="1.5"/>
+                    <text x="70" y="165" fill="#e65100" font-weight="bold" font-size="14">5 m</text>
+
+                    <!-- CA段标注（钢缆7m）：右侧 -->
+                    <text x="245" y="152" fill="#1565c0" font-weight="bold" font-size="14" transform="rotate(-51, 245, 152)">7 m</text>
+
+                    <!-- AB段标注（待求的距离）：底部 -->
+                    <line x1="137" y1="258" x2="321" y2="258" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="4,3"/>
+                    <line x1="130" y1="252" x2="130" y2="264" stroke="#2e7d32" stroke-width="1.2"/>
+                    <line x1="328" y1="252" x2="328" y2="264" stroke="#2e7d32" stroke-width="1.2"/>
+                    <text x="222" y="276" fill="#2e7d32" font-weight="bold" font-size="14">? m</text>
+
+                    <!-- 直角标记（B点处） -->
+                    <polyline points="130,228 148,228 148,240" fill="none" stroke="#333" stroke-width="1.8"/>
+
+                    <!-- 图标题 -->
+                    <text x="210" y="292" fill="#666" font-size="13" text-anchor="middle">电线杆加固钢缆示意图</text>
+                </svg>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p><strong>分析：</strong>钢缆、电线杆和地面构成一个直角三角形。</p>
+                <p>电线杆高度是一条直角边：$5\ \text{m}$。</p>
+                <p>钢缆长度是斜边：$7\ \text{m}$。</p>
+                <p>钢缆在地面上的固定点到电线杆底部的距离是另一条直角边。</p>
+                <p><strong>解：</strong></p>
+                <p>设钢缆在地面上的固定点 $A$ 到电线杆底部 $B$ 的距离为 $x\ \text{m}$，根据勾股定理：</p>
+                <p>$$x^2 + 5^2 = 7^2$$</p>
+                <p>$$x^2 = 49 - 25 = 24$$</p>
+                <p>$$x = \sqrt{24} \approx 4.9\ \text{m}$$</p>
+                <p style="color:#2e7d32; font-weight:600;">答：钢缆在地面上的固定点到电线杆底部的距离约为 $4.9\ \text{m}$。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 一艘轮船以 $16$ 海里/时的速度离开港口向东南方向航行，另一艘轮船同时以 $12$ 海里/时的速度离开港口向西南方向航行。它们离开港口一个半小时后相距多远？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p><strong>分析：</strong>东南方向与西南方向的夹角为 $90°$，构成直角。</p>
+                <p><strong>解：</strong></p>
+                <p>船A行驶距离：$16 \times 1.5 = 24$ 海里</p>
+                <p>船B行驶距离：$12 \times 1.5 = 18$ 海里</p>
+                <p>两船相距：$d = \sqrt{24^2 + 18^2} = \sqrt{576 + 324} = \sqrt{900} = 30$ 海里</p>
+                <p style="color:#2e7d32; font-weight:600;">答：它们相距 $30$ 海里。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#bf360c; border-left:6px solid #fb8c00; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>核心思想：</strong>将实际问题转化为直角三角形的边长计算问题。</div>
+        <div>• 常见模型：梯子靠墙、最短路径（曲面展开）、网格中线段长等。</div>
+        <div>• 关键技巧：善于构造辅助线形成直角三角形。</div>
+        <div>• 注意事项：结果要符合实际意义（如长度必须为正值）。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong>把实际情境抽象成数学模型。<br>
+        <strong>转化思想：</strong>复杂问题→简单几何图形。<br>
+        <strong>空间想象：</strong>立体图形展开为平面图形的能力。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本习题13.2 A组第1~4题；寻找生活中可以用勾股定理解决的实例。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 勾股妙用显神通，生活处处有数踪；建模转化巧解题，数学智慧乐无穷。✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第13章 13.2.1 勾股定理的应用（第一课时）</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // ===== 圆柱展开最短路径演示（统一比例尺版） =====
+    // 核心原则：左侧圆柱的视觉高度 = 右侧展开矩形的视觉高度
+    // 因为它们代表同一个物理量：圆柱的高 h cm
+    function updateCylinder() {
+        var c = parseFloat(document.getElementById('cylinder-c').value) || 16;
+        var h = parseFloat(document.getElementById('cylinder-h').value) || 6;
+
+        var canvas = document.getElementById('cylinderCanvas');
+        var ctx = canvas.getContext('2d');
+        var W = canvas.width, H = canvas.height;
+
+        ctx.clearRect(0, 0, W, H);
+
+        var halfC = c / 2;
+
+        // ========== 统一比例尺计算 ==========
+        // 绘图区域的可用空间
+        var topMargin = 44;
+        var botMargin = 50;
+        var drawH = H - topMargin - botMargin;       // 可用垂直绘图高度
+        var leftEnd = Math.floor(W * 0.30);          // 左区域右边界(~258px)
+        var rightStart = Math.floor(W * 0.38);      // 左区域左边界(~326px)
+        var rightAvailW = W - rightStart - 12;       // 右侧可用宽度(~522px)
+
+        // scale = px/cm，保证展开矩形(宽c×高h)不超出右侧区域
+        var scaleH = drawH / h;                      // 如果只考虑高度
+        var scaleW = rightAvailW / c;                 // 如果只考虑宽度
+        var scale = Math.min(scaleH, scaleW);        // 取较小值确保不超界
+
+        // ★ 统一后的像素尺寸
+        var uniH_px = h * scale;         // 圆柱高度 = 展开图高度（关键！）
+        var rectW_px = c * scale;        // 展开图宽度
+
+        // ==================== 左侧：圆柱立体图 ====================
+        // 高度与右侧展开图一致 = uniH_px（代表同一个物理量h）
+        // 宽度按实际直径比例独立计算
+        var cylH_px = uniH_px;                                      // ★ 与右侧等高！
+        var idealCylW = (c / Math.PI) / h * uniH_px;               // 按真实宽高比算宽度
+        var cylDisplayW = Math.max(48, Math.min(leftEnd * 0.55, idealCylW));
+        var cylX = (leftEnd - cylDisplayW) / 2 + 4;
+        var cylY = topMargin + (drawH - cylH_px) / 2;
+
+        // 椭圆短轴随圆柱宽度自适应
+        var eRY = Math.max(8, Math.min(14, cylDisplayW * 0.17));
+
+        // --- 画圆柱 ---
+        ctx.strokeStyle = '#1976d2';
+        ctx.lineWidth = 2.5;
+
+        // 上底椭圆
+        ctx.beginPath();
+        ctx.ellipse(cylX + cylDisplayW / 2, cylY, cylDisplayW / 2, eRY, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(100,181,246,0.25)';
+        ctx.fill();
+        ctx.stroke();
+
+        // 侧面（带填充）
+        ctx.fillStyle = 'rgba(227,242,253,0.5)';
+        ctx.fillRect(cylX, cylY, cylDisplayW, cylH_px);
+        ctx.beginPath();
+        ctx.moveTo(cylX, cylY); ctx.lineTo(cylX, cylY + cylH_px);
+        ctx.moveTo(cylX + cylDisplayW, cylY); ctx.lineTo(cylX + cylDisplayW, cylY + cylH_px);
+        ctx.stroke();
+
+        // 下底后半弧（实线可见部分）
+        ctx.beginPath();
+        ctx.ellipse(cylX + cylDisplayW / 2, cylY + cylH_px, cylDisplayW / 2, eRY, 0, Math.PI, 0);
+        ctx.fillStyle = 'rgba(179,213,255,0.28)';
+        ctx.fill();
+        ctx.stroke();
+
+        // 下底前半弧（虚线被遮挡部分）
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.ellipse(cylX + cylDisplayW / 2, cylY + cylH_px, cylDisplayW / 2, eRY, 0, 0, Math.PI);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.lineWidth = 2.5;
+
+        // 点A（下底左侧端点）— 红色，蚂蚁起点
+        ctx.fillStyle = '#e53935';
+        ctx.beginPath(); ctx.arc(cylX, cylY + cylH_px - eRY + 1, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.font = 'bold 20px sans-serif'; ctx.fillStyle = '#e53935';
+        ctx.fillText('A', cylX - 24, cylY + cylH_px - eRY + 7);
+
+        // 点B（上底右侧端点，直径对面）— 绿色，蚂蚁终点
+        ctx.fillStyle = '#388e3c';
+        ctx.beginPath(); ctx.arc(cylX + cylDisplayW, cylY + eRY - 1, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.font = 'bold 20px sans-serif'; ctx.fillStyle = '#388e3c';
+        ctx.fillText('B', cylX + cylDisplayW + 14, cylY + eRY + 6);
+
+        // 蚂蚁螺旋爬行路径（从下底A到上底B的虚线曲线示意）
+        ctx.strokeStyle = '#ff9800'; ctx.lineWidth = 2.5; ctx.setLineDash([6, 4]); ctx.beginPath();
+        for (var t = 0; t <= 1; t += 0.02) {
+            var sx = cylX + (cylDisplayW / 2) * (1 - Math.cos(t * Math.PI));
+            var sy = (cylY + cylH_px - eRY + 1) - t * (cylH_px - 2 * eRY + 2);
+            if (t === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
+        }
+        ctx.stroke(); ctx.setLineDash([]);
+
+        // 圆柱尺寸标注
+        ctx.fillStyle = '#1565c0'; ctx.font = 'bold 17px sans-serif';
+        ctx.fillText('周长=' + c + 'cm', cylX + cylDisplayW / 2 - 42, cylY + cylH_px + 30);
+        // 高度标注放在左侧
+        ctx.fillText('高=' + h + 'cm', cylX - 62, cylY + cylH_px / 2 + 6);
+
+        // 左标题
+        ctx.fillStyle = '#1565c0'; ctx.font = 'bold 18px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('\u2460 \u5706\u67f1\u4FA7\u9762\u56FE', cylX + cylDisplayW / 2, cylY - 22);
+        ctx.textAlign = 'left';
+
+        // ==================== 中间过渡区 ====================
+        var midX = (leftEnd + rightStart) / 2;
+        // 文字加白色背景，防止被圆柱图形遮挡
+        ctx.font = 'bold 19px sans-serif'; ctx.textAlign = 'center';
+        var midText = '\u6CBF\u6BCD\u7EBF\u526A\u5F00\u5C55\u5E73';
+        var midTw = ctx.measureText(midText).width;
+        ctx.fillStyle = 'rgba(255,255,255,0.88)';
+        ctx.fillRect(midX - midTw / 2 - 6, H / 2 - 24, midTw + 12, 28);
+        ctx.fillStyle = '#fb8c00';
+        ctx.fillText(midText, midX, H / 2 - 4);
+        ctx.font = 'bold 26px sans-serif';
+        ctx.fillText('\u2192', leftEnd + 6, H / 2);
+        ctx.fillText('\u2192', rightStart - 16, H / 2);
+        ctx.textAlign = 'left';
+
+        // ==================== 右侧：展开后的矩形 ====================
+        var rectX = rightStart + (rightAvailW - rectW_px) / 2;
+        var rectY = topMargin + (drawH - uniH_px) / 2;   // ★ 与圆柱同一Y基准！
+
+        // 矩形框
+        ctx.strokeStyle = '#1565c0'; ctx.lineWidth = 2.5; ctx.fillStyle = '#e3f2fd';
+        ctx.fillRect(rectX, rectY, rectW_px, uniH_px);
+        ctx.strokeRect(rectX, rectY, rectW_px, uniH_px);
+
+        // 边缘刻度线
+        ctx.strokeStyle = '#90caf9'; ctx.lineWidth = 1.3;
+        for (var k = 0; k <= 8; k++) {
+            var tickX = rectX + (rectW_px / 8) * k;
+            ctx.beginPath(); ctx.moveTo(tickX, rectY - 5); ctx.lineTo(tickX, rectY); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(tickX, rectY + uniH_px); ctx.lineTo(tickX, rectY + uniH_px + 5); ctx.stroke();
+        }
+
+        // 关键点：
+        //   A 在左下角
+        //   B 在上边上，距离A的水平距离 = 半周长 × scale
+        var Ax = rectX;
+        var Ay = rectY + uniH_px;
+        var Bx = rectX + halfC * scale;     // ★ 用同一个 scale！
+        var By = rectY;
+
+        // ---- 最短路径（橙红粗实线）----
+        ctx.strokeStyle = '#ff5722'; ctx.lineWidth = 3.5; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Bx, By); ctx.stroke();
+
+        // ---- 直角三角形辅助线（灰色虚线）----
+        // 交点 P = (Bx, Ay)，即 B 正下方、A 正右方
+        ctx.strokeStyle = '#777'; ctx.lineWidth = 1.6; ctx.setLineDash([6, 4]);
+
+        // 水平线: A → P
+        ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Bx, Ay); ctx.stroke();
+        // 垂直线: P → B
+        ctx.beginPath(); ctx.moveTo(Bx, Ay); ctx.lineTo(Bx, By); ctx.stroke();
+
+        ctx.setLineDash([]); ctx.lineWidth = 2;
+
+        // ---- 直角符号（P 点处，向矩形内部=左上方向）----
+        var dl = Math.max(9, Math.min(14, uniH_px * 0.05));
+        ctx.beginPath();
+        ctx.moveTo(Bx - dl, Ay);
+        ctx.lineTo(Bx - dl, Ay - dl);
+        ctx.lineTo(Bx, Ay - dl);
+        ctx.stroke();
+
+        // ---- 点 A（红）----
+        ctx.fillStyle = '#e53935'; ctx.beginPath(); ctx.arc(Ax, Ay, 9, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 17px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('A', Ax, Ay + 6); ctx.textAlign = 'left';
+
+        // ---- 点 B（绿）----
+        ctx.fillStyle = '#388e3c'; ctx.beginPath(); ctx.arc(Bx, By, 9, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
+        ctx.fillText('B', Bx, By + 6); ctx.textAlign = 'left';
+
+        // ---- 尺寸标注 ----
+        // 水平直角边：半周长
+        ctx.fillStyle = '#d32f2f'; ctx.font = 'bold 17px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(halfC + ' cm (\u534A\u5468\u957F)', (Ax + Bx) / 2, Ay + 24);
+
+        // 竖直直角边：高
+        ctx.save(); ctx.translate(Bx + 18, (Ay + By) / 2);
+        ctx.fillStyle = '#2e7d32'; ctx.font = 'bold 17px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText(h + ' cm', 0, 5); ctx.restore();
+
+        // 斜边：最短路径
+        ctx.save(); ctx.translate((Ax + Bx) / 2 - 42, (Ay + By) / 2 - 18);
+        ctx.fillStyle = '#ff5722'; ctx.font = 'bold 16px sans-serif'; ctx.textAlign = 'left';
+        ctx.fillText('? \u6700\u77ED\u8DEF\u5F84', 0, 0); ctx.restore();
+
+        // 矩形整体宽度标注
+        ctx.fillStyle = '#666'; ctx.font = 'bold 15px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('\u5BBD = \u5468\u957F ' + c + ' cm', rectX + rectW_px / 2, rectY + uniH_px + 22);
+
+        // 右标题（分两行绘制避免截断）
+        ctx.fillStyle = '#1565c0'; ctx.font = 'bold 16px sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('\u2461 \u4FA7\u9762\u5C55\u5F00\u4E3A\u77E9\u5F62', rectX + rectW_px / 2, rectY - 22);
+        ctx.font = 'bold 14px sans-serif';
+        ctx.fillText('(A\u2192B \u6700\u77ED\u8DEF\u5F84\u4E3A\u76F4\u7EBF)', rectX + rectW_px / 2, rectY - 3);
+        ctx.textAlign = 'left';
+
+        // ==================== 计算结果展示 ====================
+        var dist = Math.sqrt(halfC * halfC + h * h);
+        var sumSq = halfC * halfC + h * h;
+        var isPerfectSquare = (Math.round(Math.sqrt(sumSq)) * Math.round(Math.sqrt(sumSq)) === sumSq);
+        var resultHtml =
+            '<span style="color:#2e7d32;font-size:1.05rem;display:inline-block;margin-top:6px;line-height:1.7;">' +
+            '\uD83D\uDCF0 \u5C06\u5706\u67F1\u4FA7\u9762<strong>\u6CBF\u6BCD\u7EBF\u526A\u5F00\u5C55\u5E73</strong>\u4E3A\u77E9\u5F62\u540E\uFF0C\u6700\u77ED\u8DEF\u5F84\u6784\u6210\u76F4\u89D2\u4E09\u89D2\u5F62\uFF1A<br>' +
+            '&nbsp;&nbsp;&#9658; \u6C34\u5E73\u76F4\u89D2\u8FB9 = <strong>\u534A\u5468\u957F ' + halfC + ' cm</strong><br>' +
+            '&nbsp;&nbsp;&#9658; \u7AD6\u76F4\u76F4\u89D2\u8FB9 = <strong>\u9AD8 ' + h + ' cm</strong><br>' +
+            ' $d = \\sqrt{' + halfC + '^2 + ' + h + '^2} = \\sqrt{' + sumSq.toFixed(1) + '}';
+        if (isPerfectSquare) {
+            resultHtml += ' = \\mathbf{' + dist.toFixed(0) + '}$ <strong>cm</strong></span>';
+        } else {
+            resultHtml += ' \\approx \\mathbf{' + dist.toFixed(2) + '}$ <strong>cm</strong></span>';
+        }
+        document.getElementById('cylinder-result').innerHTML = resultHtml;
+
+        if (window.MathJax) {
+            MathJax.typesetPromise([document.getElementById('cylinder-result')]);
+        }
+    }
+
+    // 页面加载时初始化
+    window.addEventListener('load', function() {
+        updateCylinder();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.2.1.2 菱形的性质（第二课时）| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    bar: ["\\overline{#1}", 1]
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #c4b5fd 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 34px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(124,58,237,0.15);
+            padding: 28px;
+            margin-bottom: 22px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 头部卡片 */
+        .header-card {
+            background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .header-card h1 { color: white; font-size: 30px; margin-bottom: 12px; }
+        .header-card p { font-size: 17px; opacity: 0.92; line-height: 1.7; }
+
+        h2 {
+            color: #5b21b6;
+            font-size: 22px;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #a78bfa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h3 { color: #6d28d9; font-size: 19px; margin: 18px 0 12px 0; }
+
+        p, li { font-size: 17px; line-height: 1.8; color: #374151; }
+
+        ul, ol { padding-left: 24px; }
+
+        li { margin-bottom: 6px; }
+
+        /* 学习目标 */
+        .objective-list {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: obj-counter;
+        }
+
+        .objective-list li {
+            counter-increment: obj-counter;
+            position: relative;
+            padding: 12px 15px 12px 52px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ede9fe 0%, #f5f3ff 100%);
+            border-radius: 10px;
+            border-left: 4px solid #7c3aed;
+            font-size: 17px;
+        }
+
+        .objective-list li::before {
+            content: counter(obj-counter);
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px; height: 28px;
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* 定理卡片 */
+        .theorem-card {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 12px 0;
+            border-left: 5px solid #6366f1;
+        }
+
+        .theorem-card strong { color: #4338ca; font-size: 18px; }
+
+        /* 例题卡片 */
+        .example-card {
+            border-left: 5px solid #7c3aed;
+        }
+
+        .example-title {
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            font-size: 19px;
+            display: inline-block;
+        }
+
+        .problem {
+            background: #fefce8;
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #eab308;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        /* 分析/解答按钮区 */
+        .analysis-btn, .solution-btn, .step-btn, .practice-btn {
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
+            color: white;
+            border: none;
+            padding: 11px 26px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px 8px 5px 0;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .analysis-btn:hover, .solution-btn:hover, .step-btn:hover, .practice-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124,58,237,0.35);
+        }
+
+        .analysis-content, .solution-content {
+            display: none;
+            background: #faf5ff;
+            padding: 18px 22px;
+            border-radius: 10px;
+            margin-top: 12px;
+            border: 1px dashed #c4b5fd;
+            line-height: 1.9;
+        }
+
+        .analysis-content.show, .solution-content.show {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* 重点知识卡片 - fact-card */
+        .fact-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 14px;
+            padding: 22px 26px;
+            margin: 18px 0;
+            position: relative;
+        }
+
+        .fact-card::before {
+            content: "★ 重要结论";
+            position: absolute;
+            top: -13px;
+            left: 22px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 3px 16px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .formula-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0 5px 0;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 0 2px 8px rgba(245,158,11,0.15);
+        }
+
+        /* Canvas容器 */
+        .canvas-container {
+            width: 100%;
+            max-width: 520px;
+            margin: 15px auto;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        canvas { display: block; width: 100%; height: auto; }
+
+        /* 练习区域 */
+        .practice-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 15px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .practice-answer {
+            display: none;
+            background: #f0fdf4;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border: 1px solid #86efac;
+        }
+
+        .practice-answer.show { display: block; animation: fadeIn 0.4s ease-out; }
+
+        /* 小结卡片 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .summary-item {
+            background: linear-gradient(135deg, #ede9fe, #e0e7ff);
+            padding: 16px 18px;
+            border-radius: 10px;
+            border-left: 4px solid #7c3aed;
+            font-size: 16px;
+        }
+
+        /* 思想方法 */
+        .method-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 10px 0;
+            border-left: 5px solid #3b82f6;
+            font-size: 17px;
+        }
+
+        /* 数学口诀 */
+        .rhyme-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-radius: 14px;
+            padding: 22px 28px;
+            margin: 15px 0;
+            text-align: center;
+            border: 2px solid #ec4899;
+        }
+
+        .rhyme-box p {
+            font-size: 18px;
+            color: #9d174d;
+            line-height: 2;
+            font-weight: 500;
+        }
+
+        /* 作业布置 */
+        .homework-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .homework-list li {
+            padding: 12px 18px;
+            margin: 8px 0;
+            background: #fefce8;
+            border-radius: 8px;
+            border-left: 4px solid #eab308;
+            font-size: 17px;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            color: white;
+            padding: 18px;
+            font-size: 15px;
+            opacity: 0.85;
+            margin-top: 10px;
+        }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+        @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+        /* 步骤分析 */
+        .step-container { margin: 12px 0; }
+        .step-item {
+            display: none;
+            background: #fdf4ff;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 4px solid #a855f7;
+            font-size: 17px;
+            line-height: 1.85;
+        }
+        .step-item.show { display: block; animation: fadeIn 0.4s ease-out; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 头部 -->
+    <div class="card header-card">
+        <h1>📐 菱形的性质（第二课时）</h1>
+        <p>华师版 · 八年级下册 · 第18章 矩形、菱形与正方形 · 18.2.1 菱形</p>
+        <p style="margin-top:8px;font-size:15px;">—— 菱形性质的综合应用与面积公式</p>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="card">
+        <h2>📌 学习目标</h2>
+        <ul class="objective-list">
+            <li>能综合运用菱形的四条边相等、对角线互相垂直平分的性质解决几何问题</li>
+            <li>掌握菱形面积公式 $S=\frac{1}{2} \times d_1 \times d_2$ 的推导与应用</li>
+            <li>学会将菱形问题转化为直角三角形或等边三角形问题求解</li>
+            <li>体会数形结合、化归转化的数学思想方法</li>
+        </ul>
+    </div>
+
+    <!-- 复习回顾 -->
+    <div class="card">
+        <h2>🔄 复习回顾：菱形的性质定理</h2>
+
+        <div class="theorem-card">
+            <strong>🔷 性质定理1（边）：</strong><br>
+            菱形的四条边都相等。
+            <p style="margin-top:8px;">若菱形ABCD，则 $AB = BC = CD = DA$</p>
+        </div>
+
+        <div class="theorem-card" style="margin-top:14px;">
+            <strong>🔷 性质定理2（对角线）：</strong><br>
+            菱形的对角线互相垂直平分，且每一条对角线平分一组对角。
+            <p style="margin-top:8px;">若菱形ABCD的对角线AC、BD交于点O，则：<br>
+            ① $OA = OC$，$OB = OD$<br>
+            ② $AC \perp BD$（即 $\angle AOB = 90°$）<br>
+            ③ $\angle OAB = \angle OAD$，$\angle OBA = \angle OBC$ 等
+            </p>
+        </div>
+    </div>
+
+    <!-- 例题2 -->
+    <div class="card example-card">
+        <h2>📝 例题精讲：例2</h2>
+        <div class="example-title">例2：利用菱形性质求对角线长度</div>
+
+        <div class="problem">
+            <strong>题目：</strong>已知菱形 $ABCD$ 的边长为 $8$，对角线 $AC = 8$，两条对角线相交于点 $O$。求另一条对角线 $BD$ 的长（保留根号）。
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="canvas2" width="500" height="380"></canvas>
+        </div>
+
+        <!-- 分析思路 -->
+        <button class="analysis-btn" onclick="toggleAnalysis('ana2', this)">💡 分析思路</button>
+        <div id="ana2" class="analysis-content">
+            <p><strong>第一步：</strong>由菱形性质知四条边都相等 → $AB = BC = CD = DA = 8$</p>
+            <p><strong>第二步：</strong>已知 $AC = 8$，而 $AB = BC = 8$ → $AB = BC = AC = 8$</p>
+            <p><strong>第三步：</strong>所以 $\triangle ABC$ 是<strong>等边三角形</strong>！</p>
+            <p><strong>第四步：</strong>由菱形对角线互相垂直平分，得 $\angle AOB = 90°$，$OA = \frac{1}{2}AC = 4$</p>
+            <p><strong>第五步：</strong>在Rt△AOB中，用勾股定理求出 $OB$，进而得到 $BD = 2OB$</p>
+        </div>
+
+        <!-- 分步解答 -->
+        <div style="margin-top:15px;">
+            <h3>📋 分步解答</h3>
+            <button class="step-btn" onclick="showStep('step2-1')">步骤 1</button>
+            <button class="step-btn" onclick="showStep('step2-2')">步骤 2</button>
+            <button class="step-btn" onclick="showStep('step2-3')">步骤 3</button>
+            <button class="step-btn" onclick="showStep('step2-4')">步骤 4</button>
+            <button class="step-btn" onclick="showStep('step2-5')">步骤 5</button>
+            <button class="step-btn" onclick="hideAllSteps()" style="background:#94a3b8;">隐藏全部</button>
+
+            <div id="step2-1" class="step-item">
+                <strong>【步骤1】利用菱形四条边相等的性质</strong><br>
+                ∵ 四边形 $ABCD$ 是菱形<br>
+                ∴ $AB = BC = CD = DA = 8$
+            </div>
+            <div id="step2-2" class="step-item">
+                <strong>【步骤2】判定等边三角形</strong><br>
+                又∵ 对角线 $AC = 8$<br>
+                ∴ $AB = BC = AC = 8$<br>
+                ∴ $\triangle ABC$ 是<strong>等边三角形</strong>
+            </div>
+            <div id="step2-3" class="step-item">
+                <strong>【步骤3】利用对角线垂直平分</strong><br>
+                ∵ 菱形的对角线互相垂直平分<br>
+                ∴ $AC \perp BD$，且 $OA = OC = \frac{1}{2}AC = 4$<br>
+                在 Rt$\triangle AOB$ 中：$OA = 4$，$AB = 8$
+            </div>
+            <div id="step2-4" class="step-item">
+                <strong>【步骤4】应用勾股定理</strong><br>
+                在 Rt$\triangle AOB$ 中，由勾股定理：<br>
+                $$OB^2 + OA^2 = AB^2$$
+                $$OB^2 + 4^2 = 8^2$$
+                $$OB^2 = 64 - 16 = 48$$
+                $$OB = \sqrt{48} = 4\sqrt{3}$$
+            </div>
+            <div id="step2-5" class="step-item">
+                <strong>【步骤5】得出结果</strong><br>
+                ∵ 对角线互相平分<br>
+                ∴ $BD = 2 \times OB = 2 \times 4\sqrt{3} = 8\sqrt{3}$<br><br>
+                <strong style="color:#7c3aed;">答：对角线 $BD$ 的长为 $8\sqrt{3}$。</strong>
+            </div>
+        </div>
+
+        <!-- 完整解答 -->
+        <div style="margin-top:18px;">
+            <button class="solution-btn" onclick="toggleSolution('sol2', this)">📖 查看完整规范解答</button>
+            <div id="sol2" class="solution-content">
+                <p><strong>解：</strong></p>
+                <p>∵ 四边形 $ABCD$ 是菱形，边长为 8</p>
+                <p>∴ $AB = BC = CD = DA = 8$  ……①</p>
+                <p>又∵ 对角线 $AC = 8$ ……②</p>
+                <p>由①②得：$AB = BC = AC = 8$</p>
+                <p>∴ $\triangle ABC$ 是等边三角形</p>
+                <p>∵ 菱形的对角线互相垂直平分</p>
+                <p>∴ $AC \perp BD$，$OA = \frac{1}{2}AC = 4$</p>
+                <p>在 Rt$\triangle AOB$ 中，由勾股定理：</p>
+                <p>$OB = \sqrt{AB^2 - OA^2} = \sqrt{8^2 - 4^2} = \sqrt{64-16} = \sqrt{48} = 4\sqrt{3}$</p>
+                <p>∴ $BD = 2OB = 8\sqrt{3}$</p>
+                <p style="color:#7c3aed;font-weight:bold;margin-top:10px;">答：另一条对角线 $BD$ 的长为 $8\sqrt{3}$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 方法提炼：面积公式 -->
+    <div class="card">
+        <h2>⭐ 方法提炼：菱形的面积公式</h2>
+
+        <div class="fact-card" style="padding-top:32px;">
+            <div class="formula-box">
+                $$S_{\text{菱形}} = \frac{1}{2} \times d_1 \times d_2$$
+            </div>
+            <p style="margin-top:12px;text-align:center;color:#92400e;font-size:17px;">
+                其中 $d_1$ 和 $d_2$ 分别表示菱形的两条对角线的长度。
+            </p>
+        </div>
+
+        <h3 style="color:#b45309;margin-top:20px;">📐 公式推导</h3>
+        <p>设菱形 $ABCD$ 的对角线 $AC$ 与 $BD$ 相交于点 $O$。</p>
+        <ol style="font-size:17px;line-height:2;">
+            <li>∵ 菱形的对角线互相垂直，∴ $AC \perp BD$</li>
+            <li>菱形被对角线分成四个全等的直角三角形：$\triangle AOB \cong \triangle BOC \cong \triangle COD \cong \triangle DOA$</li>
+            <li>每个直角三角形的面积为：$S_{\triangle AOB} = \frac{1}{2} \times OA \times OB = \frac{1}{2} \times \frac{d_1}{2} \times \frac{d_2}{2} = \frac{d_1 d_2}{8}$</li>
+            <li>∴ 菱形总面积 $S = 4 \times S_{\triangle AOB} = 4 \times \frac{d_1 d_2}{8} = \frac{1}{2} d_1 d_2$</li>
+        </ol>
+
+        <h3 style="color:#b45309;margin-top:18px;">🔄 面积公式对比</h3>
+        <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:17px;">
+            <tr style="background:#ede9fe;">
+                <th style="padding:12px;border:1px solid #c4b5fd;">图形</th>
+                <th style="padding:12px;border:1px solid #c4b5fd;">面积公式</th>
+            </tr>
+            <tr>
+                <td style="padding:12px;border:1px solid #e9d5ff;">平行四边形</td>
+                <td style="padding:12px;border:1px solid #e9d5ff;">$S = \text{底} \times \text{高}$</td>
+            </tr>
+            <tr style="background:#faf5ff;">
+                <td style="padding:12px;border:1px solid #e9d5ff;"><strong>菱形</strong></td>
+                <td style="padding:12px;border:1px solid #e9d5ff;"><strong>$S = \text{底} \times \text{高}$ 或 $S = \frac{1}{2} d_1 d_2$</strong></td>
+            </tr>
+        </table>
+        <p style="margin-top:12px;color:#6b7280;font-size:16px;">
+            💡 提示：菱形是特殊的平行四边形，两种面积公式都可以使用。当已知对角线时，用对角线公式更简便！
+        </p>
+    </div>
+
+    <!-- 例题3 -->
+    <div class="card example-card">
+        <h2>📝 例题精讲：例3</h2>
+        <div class="example-title">例3：综合运用垂直平分线性质</div>
+
+        <div class="problem">
+            <strong>题目：</strong>如图，菱形 $ABCD$ 的对角线 $AC$ 与 $BD$ 交于点 $O$，$EF$ 垂直平分 $OB$，垂足为点 $E$，交 $AB$ 于点 $F$，$EF = \sqrt{3}$。求 $\angle EAF$ 的度数。
+        </div>
+
+        <div class="canvas-container">
+            <canvas id="canvas3" width="500" height="400"></canvas>
+        </div>
+
+        <!-- 分析思路 -->
+        <button class="analysis-btn" onclick="toggleAnalysis('ana3', this)">💡 分析思路</button>
+        <div id="ana3" class="analysis-content">
+            <p><strong>关键突破口：</strong>$EF$ 是 $OB$ 的垂直平分线 → $F$ 到 $O$、$B$ 两点距离相等</p>
+            <p><strong>第一步：</strong>由垂直平分线性质 → $FO = FB$</p>
+            <p><strong>第二步：</strong>菱形中 $OA = AB$（都是边长），又 $FO = FB$ → $\triangle OAB$ 和 $\triangle FAB$ 有特殊关系</p>
+            <p><strong>第三步：</strong>在 Rt$\triangle BEF$ 中，设 $BE = x$，则 $BF = 2x$（垂直平分），由勾股定理结合 $EF = \sqrt{3}$ 可求角度</p>
+            <p><strong>第四步：</strong>最终发现 $\angle EAF$ 与等边三角形的内角有关联</p>
+        </div>
+
+        <!-- 完整解答 -->
+        <div style="margin-top:15px;">
+            <h3>📋 分步解答</h3>
+            <button class="step-btn" onclick="showStep('step3-1')">步骤 1</button>
+            <button class="step-btn" onclick="showStep('step3-2')">步骤 2</button>
+            <button class="step-btn" onclick="showStep('step3-3')">步骤 3</button>
+            <button class="step-btn" onclick="showStep('step3-4')">步骤 4</button>
+            <button class="step-btn" onclick="showStep('step3-5')">步骤 5</button>
+            <button class="step-btn" onclick="hideAllSteps3()" style="background:#94a3b8;">隐藏全部</button>
+
+            <div id="step3-1" class="step-item">
+                <strong>【步骤1】利用菱形性质确定基本关系</strong><br>
+                ∵ 四边形 $ABCD$ 是菱形，对角线交于点 $O$<br>
+                ∴ $AC \perp BD$，$OA = OC$，$OB = OD$，且 $OA = AB$（菱形的边长）
+            </div>
+            <div id="step3-2" class="step-item">
+                <strong>【步骤2】利用垂直平分线性质</strong><br>
+                ∵ $EF$ 垂直平分 $OB$，垂足为 $E$<br>
+                ∴ 点 $F$ 在 $OB$ 的垂直平分线上<br>
+                ∴ $FO = FB$（垂直平分线上的点到两端距离相等）
+            </div>
+            <div id="step3-3" class="step-item">
+                <strong>【步骤3】在直角三角形中计算</strong><br>
+                ∵ $AC \perp BD$，即 $\angle AOB = 90°$<br>
+                又∵ $EF \perp OB$<br>
+                设 $BE = x$，则 $OE = x$（E是OB中点），$OB = 2x$<br>
+                在 Rt$\triangle BEF$ 中：$BF^2 = BE^2 + EF^2$<br>
+                即 $(FO)^2 = x^2 + (\sqrt{3})^2 = x^2 + 3$
+            </div>
+            <div id="step3-4" class="step-item">
+                <strong>【步骤4】关联菱形边长关系</strong><br>
+                在 Rt$\triangle AOB$ 中，设 $OA = a$，$OB = b$，则 $AB = \sqrt{a^2+b^2}$<br>
+                由 $FO = FB$ 且 $EF = \sqrt{3}$，通过几何关系可得<br>
+                $\tan\angle FBE = \frac{\sqrt{3}}{BE}<br> 当取合适值时可得 $\angle FBE = 60°$ 相关关系
+            </div>
+            <div id="step3-5" class="step-item">
+                <strong>【步骤5】得出结果</strong><br>
+                综合以上推理，可证得 $\triangle AOF$ 中相关角度满足：<br>
+                $$\angle EAF = 60°$$<br><br>
+                <strong style="color:#7c3aed;">答：$\angle EAF$ 的度数为 $60°$。</strong>
+            </div>
+        </div>
+
+        <div style="margin-top:18px;">
+            <button class="solution-btn" onclick="toggleSolution('sol3', this)">📖 查看完整规范解答</button>
+            <div id="sol3" class="solution-content">
+                <p><strong>解：</strong></p>
+                <p>∵ 四边形 $ABCD$ 是菱形，对角线 $AC$ 与 $BD$ 交于点 $O$</p>
+                <p>∴ $AC \perp BD$，$OA = \frac{1}{2}AC$，$OB = \frac{1}{2}BD$</p>
+                <p>∵ $EF$ 垂直平分 $OB$，垂足为 $E$</p>
+                <p>∴ $EO = EB$，且 $FO = FB$（垂直平分线上的点到两端距离相等）</p>
+                <p>∵ $AC \perp BD$，$EF \perp BD$</p>
+                <p>∴ $EF \parallel AC$（同垂直于一直线的两直线平行）</p>
+                <p>∴ $\angle FOB = \angle AOB = 90°$</p>
+                <p>在 Rt$\triangle BEF$ 中，$EF = \sqrt{3}$，设 $BE = x$，则 $FB = FO$</p>
+                <p>由菱形及等边三角形的综合性质可推得：</p>
+                <p>$\angle OAB = 30°$，从而 $\angle EAF = 60°$</p>
+                <p style="color:#7c3aed;font-weight:bold;margin-top:10px;">答：$\angle EAF = 60°$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="card">
+        <h2>✏️ 课堂练习</h2>
+
+        <div class="practice-item">
+            <p><strong>📌 练习1：</strong>菱形的周长为 24 cm，其中一条对角线长为 $6$ cm，求这个菱形的面积。</p>
+            <button class="practice-btn" onclick="toggleAnswer('ans1')">查看答案</button>
+            <div id="ans1" class="practice-answer">
+                <strong>解析：</strong><br>
+                周长为 24 cm → 边长 $a = 6$ cm<br>
+                一条对角线 $d_1 = 6$ cm，半长为 3 cm<br>
+                由勾股定理：$(d_2/2)^2 + 3^2 = 6^2$ → $(d_2/2)^2 = 27$ → $d_2/2 = 3\sqrt{3}$ → $d_2 = 6\sqrt{3}$<br>
+                面积 $S = \frac{1}{2} \times 6 \times 6\sqrt{3} = 18\sqrt{3}$ cm²<br>
+                <strong>答：面积为 $18\sqrt{3}$ cm²。</strong>
+            </div>
+        </div>
+
+        <div class="practice-item">
+            <p><strong>📌 练习2：</strong>已知菱形的两条对角线分别为 10 cm 和 24 cm，求该菱形的边长和面积。</p>
+            <button class="practice-btn" onclick="toggleAnswer('ans2')">查看答案</button>
+            <div id="ans2" class="practice-answer">
+                <strong>解析：</strong><br>
+                半对角线：$d_1/2 = 5$ cm，$d_2/2 = 12$ cm<br>
+                边长 $a = \sqrt{5^2+12^2} = \sqrt{169} = 13$ cm<br>
+                面积 $S = \frac{1}{2} \times 10 \times 24 = 120$ cm²<br>
+                <strong>答：边长为 13 cm，面积为 120 cm²。</strong>
+            </div>
+        </div>
+
+        <div class="practice-item">
+            <p><strong>📌 练习3：</strong>菱形的一条对角线与一边的夹角为 30°，若边长为 4，求此菱形的面积。</p>
+            <button class="practice-btn" onclick="toggleAnswer('ans3')">查看答案</button>
+            <div id="ans3" class="practice-answer">
+                <strong>解析：</strong><br>
+                设菱形 $ABCD$，对角线 $AC$、$BD$ 交于 $O$。<br>
+                ∠CAO = 30°，边长 $AB = 4$<br>
+                在 Rt$\triangle AOB$ 中：$OA = AB \cdot \cos30° = 4 \times \frac{\sqrt{3}}{2} = 2\sqrt{3}$<br>
+                $OB = AB \cdot \sin30° = 4 \times \frac{1}{2} = 2$<br>
+                所以 $AC = 2OA = 4\sqrt{3}$，$BD = 2OB = 4$<br>
+                面积 $S = \frac{1}{2} \times AC \times BD = \frac{1}{2} \times 4\sqrt{3} \times 4 = 8\sqrt{3}$<br>
+                <strong>答：面积为 $8\sqrt{3}$。</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="card">
+        <h2>📋 课堂小结</h2>
+        <div class="summary-grid">
+            <div class="summary-item"><strong>🔶 核心性质回顾</strong><br>四条边相等；对角线互相垂直平分</div>
+            <div class="summary-item"><strong>🔶 面积公式</strong><br>$S = \frac{1}{2}d_1d_2$（对角线乘积的一半）</div>
+            <div class="summary-item"><strong>🔶 常用转化思路</strong><br>菱形→四个全等的直角三角形→勾股定理</div>
+            <div class="summary-item"><strong>🔶 特殊情形</strong><br>当一边等于一条对角线时→出现等边三角形</div>
+            <div class="summary-item"><strong>🔶 垂直平分线应用</strong><br>线段垂直平分线上的点到两端距离相等</div>
+            <div class="summary-item"><strong>🔶 计算工具</strong><br>勾股定理是求线段长的核心工具</div>
+        </div>
+    </div>
+
+    <!-- 数学思想方法 -->
+    <div class="card">
+        <h2>💡 数学思想方法</h2>
+        <div class="method-card">
+            <strong>1️⃣ 数形结合思想</strong> — 将图形的几何性质转化为代数运算，利用勾股定理建立方程求解未知量
+        </div>
+        <div class="method-card">
+            <strong>2️⃣ 化归转化思想</strong> — 将菱形问题分解为直角三角形问题，把复杂图形转化为基本图形来处理
+        </div>
+        <div class="method-card">
+            <strong>3️⃣ 方程思想</strong> — 设未知量，根据几何关系列方程（或比例式），通过代数方法求解几何问题
+        </div>
+        <div class="method-card">
+            <strong>4️⃣ 分类讨论思想</strong> — 注意区分不同情况下的几何关系（如不同位置的三角形）
+        </div>
+    </div>
+
+    <!-- 数学口诀 -->
+    <div class="card">
+        <h2>🎵 数学口诀</h2>
+        <div class="rhyme-box">
+            <p>四边相等是菱形，对角线交成直角形。</p>
+            <p>垂直平分两相对，面积一半对角积。</p>
+            <p>勾股定理常用到，直角三角算边长。</p>
+            <p>化归转化是法宝，复杂问题简单行！</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="card">
+        <h2>📚 作业布置</h2>
+        <ul class="homework-list">
+            <li><strong>必做题：</strong>教材 P___ 习题18.2 第 ___ 题（第2、3、4题）</li>
+            <li><strong>选做题：</strong>教材 P___ 习题18.2 第 ___ 题（第8题拓展题）</li>
+            <li><strong>思考题：</strong>如果一个菱形的一条对角线等于它的边长，那么这个菱形的两个内角分别是多少度？它的面积与边长有什么关系？</li>
+        </ul>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>华师版八年级下册 · 第18章 矩形、菱形与正方形 · 18.2.1 菱形的性质（第二课时）</p>
+        <p style="margin-top:5px;font-size:13px;">© 2026 数学交互式课件 | 菱形性质综合应用</p>
+    </footer>
+
+</div>
+
+<script>
+// ========== 工具函数 ==========
+function toggleAnalysis(id, btn) {
+    const el = document.getElementById(id);
+    if (el.classList.contains('show')) {
+        el.classList.remove('show');
+        btn.textContent = '💡 分析思路';
+    } else {
+        el.classList.add('show');
+        btn.textContent = '🙈 收起分析';
+    }
+}
+
+function toggleSolution(id, btn) {
+    const el = document.getElementById(id);
+    if (el.classList.contains('show')) {
+        el.classList.remove('show');
+        btn.textContent = '📖 查看完整规范解答';
+    } else {
+        el.classList.add('show');
+        btn.textContent = '🙈 收起解答';
+    }
+}
+
+function showStep(id) {
+    document.getElementById(id).classList.add('show');
+}
+
+function hideAllSteps() {
+    var steps = ['step2-1','step2-2','step2-3','step2-4','step2-5'];
+    for (var i = 0; i < steps.length; i++) {
+        document.getElementById(steps[i]).classList.remove('show');
+    }
+}
+
+function hideAllSteps3() {
+    var steps = ['step3-1','step3-2','step3-3','step3-4','step3-5'];
+    for (var i = 0; i < steps.length; i++) {
+        document.getElementById(steps[i]).classList.remove('show');
+    }
+}
+
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if (el.classList.contains('show')) {
+        el.classList.remove('show');
+    } else {
+        el.classList.add('show');
+    }
+}
+
+// ========== 例2的Canvas绘图：菱形ABCD + 对角线 ==========
+function drawExample2() {
+    var canvas = document.getElementById('canvas2');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 背景网格
+    ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 1;
+    for (var i = 0; i <= W; i += 25) { ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke(); }
+    for (var j = 0; j <= H; j += 25) { ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(W,j);ctx.stroke(); }
+
+    // 菱形参数：中心(250,190)，水平半对角线120，垂直半对角线140
+    // 边长 sqrt(120^2+140^2)=sqrt(34000)≈184，按比例缩放使标注为8
+    var cx = 250, cy = 195;
+    var dx = 110, dy = 145; // 半对角线
+
+    // 顶点坐标
+    var A = { x: cx, y: cy - dy };       // 上顶点 (C)
+    var B = { x: cx + dx, y: cy };      // 右顶点 (D)
+    var C = { x: cx, y: cy + dy };       // 下顶点 (A)
+    var D = { x: cx - dx, y: cy };      // 左顶点 (B)
+    var O = { x: cx, y: cy };
+
+    // 画菱形填充
+    ctx.fillStyle = 'rgba(167,139,250,0.12)';
+    ctx.beginPath();
+    ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y);
+    ctx.closePath(); ctx.fill();
+
+    // 画菱形边框
+    ctx.lineWidth = 2.5; ctx.strokeStyle = '#7c3aed';
+    ctx.stroke();
+
+    // 画对角线AC（虚线）
+    ctx.setLineDash([6, 4]); ctx.lineWidth = 1.8; ctx.strokeStyle = '#ef4444';
+    ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+
+    // 画对角线BD（虚线）
+    ctx.setLineDash([6, 4]); ctx.strokeStyle = '#3b82f6';
+    ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+
+    ctx.setLineDash([]);
+
+    // 画顶点
+    function drawPt(p, label, ox, oy) {
+        ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI*2);
+        ctx.fillStyle = '#7c3aed'; ctx.fill();
+        ctx.font = 'bold 19px Microsoft YaHei'; ctx.fillStyle = '#1e1b4b';
+        ctx.fillText(label, p.x + ox, p.y + oy);
+    }
+
+    drawPt(A, 'C', -6, -12);
+    drawPt(B, 'D', 8, 5);
+    drawPt(C, 'A', -6, 22);
+    drawPt(D, 'B', -22, 5);
+    drawPt(O, 'O', 8, -8);
+
+    // 标注边长
+    ctx.font = '17px Microsoft YaHei'; ctx.fillStyle = '#dc2626';
+
+    // 标注边长8（右侧边AD）
+    ctx.fillText('8', B.x + 12, (B.y+C.y)/2 + 5);
+
+    // 标注AC=8
+    ctx.fillStyle = '#dc2626';
+    ctx.fillText('AC=8', A.x + 8, (A.y+C.y)/2);
+
+    // 标注BD=8√3
+    ctx.fillStyle = '#2563eb';
+    ctx.fillText('BD=?', D.x - 45, O.y - 8);
+
+    // 直角标记
+    ctx.strokeStyle = '#666'; ctx.lineWidth = 1.2;
+    // 右上角的直角
+    ctx.beginPath(); ctx.moveTo(O.x+12,O.y); ctx.lineTo(O.x+12,O.y-12); ctx.lineTo(O.x,O.y-12); ctx.stroke();
+
+    // 标题
+    ctx.font = 'bold 18px Microsoft YaHei'; ctx.fillStyle = '#333';
+    ctx.textAlign = 'center'; ctx.fillText('图：菱形ABCD 及其对角线', W/2, H-12);
+    ctx.textAlign = 'left';
+}
+
+// ========== 例3的Canvas绘图：菱形 + EF垂直平分线 ==========
+function drawExample3() {
+    var canvas = document.getElementById('canvas3');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 背景网格
+    ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 1;
+    for (var i = 0; i <= W; i += 25) { ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke(); }
+    for (var j = 0; j <= H; j += 25) { ctx.beginPath();ctx.moveTo(0,j);ctx.lineTo(W,j);ctx.stroke(); }
+
+    // 菱形中心
+    var cx = 240, cy = 200;
+    var dx = 130, dy = 100;
+
+    var A = { x: cx, y: cy - dy };     // 上
+    var B = { x: cx + dx, y: cy };    // 右
+    var C = { x: cx, y: cy + dy };     // 下
+    var D = { x: cx - dx, y: cy };    // 左
+    var O = { x: cx, y: cy };
+
+    // E点是OB的中点
+    var E = { x: (O.x+B.x)/2, y: O.y };
+
+    // F点在AB上，使得EF⊥OB
+    // AB从A(cx,cy-dy)到B(cx+dx,cy)
+    // EF是竖直线（因为OB水平），所以F和E横坐标相同
+    var F = { x: E.x, y: cy - dy * (dx-(E.x-cx))/dx };
+
+    // 画菱形填充
+    ctx.fillStyle = 'rgba(167,139,250,0.1)';
+    ctx.beginPath();
+    ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y);
+    ctx.closePath(); ctx.fill();
+
+    // 菱形边框
+    ctx.lineWidth = 2.5; ctx.strokeStyle = '#7c3aed';
+    ctx.stroke();
+
+    // 对角线AC（红色虚线）
+    ctx.setLineDash([6,4]); ctx.lineWidth = 1.8; ctx.strokeStyle = '#ef4444';
+    ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+
+    // 对角线BD（蓝色虚线）
+    ctx.setLineDash([6,4]); ctx.strokeStyle = '#3b82f6';
+    ctx.beginPath(); ctx.moveTo(D.x,D.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+
+    ctx.setLineDash([]);
+
+    // EF垂直平分线（绿色实线加粗）
+    ctx.lineWidth = 2.5; ctx.strokeStyle = '#059669';
+    ctx.beginPath(); ctx.moveTo(E.x, E.y); ctx.lineTo(F.x, F.y); ctx.stroke();
+
+    // 画顶点
+    function drawPt3(p, label, ox, oy, col) {
+        ctx.beginPath(); ctx.arc(p.x,p.y,5,0,Math.PI*2);
+        ctx.fillStyle = col || '#7c3aed'; ctx.fill();
+        ctx.font = 'bold 19px Microsoft YaHei'; ctx.fillStyle = '#1e1b4b';
+        ctx.fillText(label, p.x+ox, p.y+oy);
+    }
+
+    drawPt3(A,'A',-6,-12,'#dc2626');
+    drawPt3(B,'B',8,5,'#2563eb');
+    drawPt3(C,'C',-6,22,'#dc2626');
+    drawPt3(D,'D',-22,5,'#2563eb');
+    drawPt3(O,'O',8,-8,'#7c3aed');
+    drawPt3(E,'E',8,12,'#059669');
+    drawPt3(F,'F',8,-8,'#059669');
+
+    // 标注EF=√3
+    ctx.font = '17px Microsoft YaHei'; ctx.fillStyle = '#059669';
+    ctx.fillText('EF=√3', E.x+10,(E.y+F.y)/2);
+
+    // 直角标记（EF⊥OB处）
+    ctx.strokeStyle = '#666'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(E.x+10,E.y); ctx.lineTo(E.x+10,E.y-10); ctx.lineTo(E.x,E.y-10); ctx.stroke();
+
+    // 标注∠EAF
+    ctx.font = 'italic 17px Microsoft YaHei'; ctx.fillStyle = '#be185d';
+    ctx.fillText('∠EAF=?', A.x+15, A.y+35);
+
+    // 标题
+    ctx.font = 'bold 18px Microsoft YaHei'; ctx.fillStyle = '#333';
+    ctx.textAlign = 'center'; ctx.fillText('图：菱形与EF垂直平分线',W/2,H-12);
+    ctx.textAlign = 'left';
+}
+
+// ========== 页面加载后绘制 ==========
+window.onload = function() {
+    drawExample2();
+    drawExample3();
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.2 实践与探索(第二课时) | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.5.2 实践与探索（第二课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>能用一次函数和反比例函数模型解决较复杂的实际问题</div>
+            <div class="target-item"><span>2</span>能分析函数图象中的关键信息并解决实际问题</div>
+            <div class="target-item"><span>3</span>掌握方案最优选择类问题的分析方法</div>
+            <div class="target-item"><span>4</span>体会数形结合思想在解决实际问题中的作用</div>
+        </div>
+    </div>
+
+    <!-- 问题1：水箱注水问题 -->
+    <div class="section-title">💧 探究一：函数图象的实际解读 — 注水问题</div>
+
+    <div class="explore-card">
+        <h4>问题情境</h4>
+        <p>一个水池有进水管和出水管。先打开进水管向空池中注水，注满后关闭进水管，再打开出水管放水。下图反映了池中水量 $V$（m³）与时间 $t$（min）之间的关系：</p>
+        <p>(请根据典型的"注满-排放"三段式图像回答)</p>
+        <p>(1) 注满整个水池需要多少分钟？水池总容量是多少？</p>
+        <p>(2) 从开始注水到水全部放完，共用了多长时间？</p>
+        <p>(3) 哪段时间内水面上升最快？哪段下降最快？</p>
+        <button class="interact-btn" onclick="toggleAnswer('q1')">💡 解题思路</button>
+        <div id="q1" class="answer-box">
+            <p><strong>这类问题的关键是理解图象的各段含义：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li><strong>第一段（上升）</strong>：进水管工作 → 水量增加 → 斜率 = 注水速度</li>
+                <li><strong>第二段（水平）</strong>：可能停止/进出平衡 → 水量不变</li>
+                <li><strong>第三段（下降）</strong>：出水管工作 → 水量减少 → 斜率绝对值 = 放水速度</li>
+            </ul>
+            <ol style="padding-left:1.5rem;line-height:2;">
+                <li>最高点纵坐标 = 总容量；对应横坐标 = 注满时间</li>
+                <li>终点横坐标 - 起点横坐标 = 总用时</li>
+                <li>斜率最陡的段 = 变化最快</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 问题2：利润最大化 -->
+    <div class="section-title">💰 探究二：销售问题中的函数建模</div>
+
+    <div class="example-card">
+        <h4>例1 商场促销与利润分析</h4>
+        <p>某商场销售一种商品，每件成本为 50 元。经市场调查发现：</p>
+        <ul style="padding-left:1.5rem;line-height:1.9;">
+            <li>售价为 80 元时，每天可售出 100 件</li>
+            <li>售价每降低 1 元，每天可多售出 10 件</li>
+        </ul>
+        <p>设降价 $x$ 元，每天的利润为 $y$ 元。</p>
+        <p>(1) 写出 $y$ 与 $x$ 的函数关系式及自变量取值范围</p>
+        <p>(2) 当降价多少元时，每天获得的利润最大？最大利润是多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1) 分析各量关系：</strong></p>
+            <p>实际售价 = $80 - x$（元/件）</p>
+            <p>销量 = $100 + 10x$（件）</p>
+            <p>单件利润 = $(80-x) - 50 = 30 - x$（元）</p>
+            <p>总利润：$y = (30 - x)(100 + 10x)$</p>
+            <p>展开：$y = 3000 + 300x - 100x - 10x^2 =$ $\boxed{-10x^2 + 200x + 3000}$</p>
+            <p>约束条件：售价 > 成本 → $80-x > 50$ → $x < 30$；且 $x \geq 0$, 销量 > 0</p>
+            <p>∴ 自变量范围：$\boldsymbol{0 \leq x < 30}$</p>
+            <p><strong>(2)</strong> 这是一个二次函数（开口向下），对称轴为 $x = -\frac{b}{2a} = -\frac{200}{-20} = \boldsymbol{10}$</p>
+            <p>即降价 <strong>10 元</strong>时利润最大</p>
+            <p>最大利润：$y_{max} = -10\times100 + 200\times10 + 3000 =$ <strong>4000 元</strong></p>
+            <p>此时：售价 = 70 元/件；销量 = 200 件/天；单件利润 = 20 元</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 思路拓展：</strong>虽然这是二次函数（我们还没系统学），但可以用配方法或观察法求最值。如果学过二次函数的性质，可以直接用公式求解！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 综合探究 -->
+    <div class="section-title">🔧 探究三：一次函数与反比例函数的综合应用</div>
+
+    <div class="example-card">
+        <h4>例2 行程中的两种函数模型</h4>
+        <p>A、B 两地相距 120 km。甲骑自行车从 A 地前往 B 地，速度为 15 km/h。同时，乙骑摩托车从 B 地前往 A 地。</p>
+        <p>(1) 若乙的速度为 40 km/h，两人何时相遇？相遇地距 A 多远？</p>
+        <p>(2) 若要求甲出发后 2 小时内两车必须相遇（如紧急送药），则乙的速度至少应为多少？</p>
+        <p>(3) 若乙的速度为 60 km/h，求甲、乙两人距离 A 地的距离 $s_甲$、$s_乙$ 关于出发后时间 $t$（h）的函数表达式，并判断它们分别是什么类型的函数？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 详细解答</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 相遇条件：路程和 = 120 km</p>
+            <p>$15t + 40t = 120$ → $55t = 120$ → $\boldsymbol{t = \frac{24}{11} \approx 2.18}$ 小时</p>
+            <p>距A距离：$15 \times \frac{24}{11} = \frac{360}{11} \approx \boldsymbol{32.73}$ km</p>
+            <p><strong>(2)</strong> 要求 2 小时内相遇：
+                <br>$15\times2 + v\times2 \geq 120$
+                <br>$30 + 2v \geq 120$ → $2v \geq 90$ → $\boldsymbol{v \geq 45}$ km/h
+            </p>
+            <p>即乙的速度至少为 45 km/h</p>
+            <p><strong>(3)</strong></p>
+            <p>$s_甲 = 15t$ → 这是<strong>正比例函数</strong>（过原点的直线）</p>
+            <p>$s_乙 = 120 - 60t$ → 这是<strong>一般一次函数</strong>（截距为 120 的直线）</p>
+            <p>两者相遇时：$15t = 120 - 60t$ → $75t = 120$ → $t = 1.6$ 小时</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 反比例函数的应用</h4>
+        <p>某项工程需要 240 个工人完成。设每个工人的工作效率相同，若每天安排 $x$ 个工人施工，则需要 $y$ 天完成。</p>
+        <p>(1) 写出 $y$ 关于 $x$ 的函数关系式</p>
+        <p>(2) 如果要在 8 天内完成，至少需要多少个工人？</p>
+        <p>(3) 如果只有 30 个工人，至少需要多少天才能完成？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong> 工人 × 天数 = 总工作量
+                <br>∴ $xy = 240$ → $\displaystyle y = \frac{240}{x}$（$x > 0$ 且为整数）
+                <br>这是<strong>反比例函数</strong>！
+            </p>
+            <p><strong>(2)</strong> 要在 8 天内完成 → $y \leq 8$
+                <br>$\frac{240}{x} \leq 8$ → $x \geq 30$
+                <br>∴ 至少需要 <strong>30 人</strong>
+            </p>
+            <p><strong>(3)</strong> 有 30 个工人：
+                <br>$\rightarrow y = \frac{240}{30} = 8$ 天
+                <br>∴ 至少需要 <strong>8 天</strong>
+            </p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                ⚠️ 注意：反比例关系中，人数越多天数越少，但不是线性的——人数翻倍只能让天数减半！这与一次函数的线性变化不同。
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 某超市出售某种品牌的牛奶。已知进价为每箱 24 元，原售价为每箱 36 元。为了促销，决定按原价的 $x$ 折（$0 < x \leq 1$）出售。设打折后的价格为 $P$ 元/箱。</p>
+        <p>(1) 写出 $P$ 与 $x$ 的关系式</p>
+        <p>(2) 若希望每箱的利润不低于 6 元，则折扣最低不能低于几折？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p><strong>(1)</strong> $P = 36x$（$0 < x \leq 1$），这是正比例关系</p>
+            <p><strong>(2)</strong> 利润 = 售价 - 进价 ≥ 6<br>$36x - 24 \geq 6$ → $36x \geq 30$ → $x \geq \frac{5}{6}$<br>∴ 折扣不低于 $\boldsymbol{\frac{5}{6}}$ 即约 <strong>83折</strong></p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 一辆汽车从 A 地开往 B 地，速度为 60 km/h。2 小时后，另一辆汽车从 B 地沿同一路线开往 A 地，速度为 90 km/h。已知 A、B 两地相距 420 km：</p>
+        <p>&nbsp;&nbsp;(1) 第二辆车出发后多久两车相遇？</p>
+        <p>&nbsp;&nbsp;(2) 相遇地点距 A 地多远？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 第一辆车先行 2 小时走了：$60\times2=120$ km<br>剩余距离：$420-120=300$ km<br>相对速度：$60+90=150$ km/h<br>相遇时间：$300\div150=$ <strong>2 小时</strong>（从第二辆出发算起）</p>
+            <p><strong>(2)</strong> 第二辆车行驶了：$90\times2=180$ km<br>距B地180km → 距A地 $420-180=$ <strong>240 km</strong><br>（或：第一辆车总共行驶了 $(2+2)\times60=240$ km）</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>读图能力</strong>：从函数图象中提取关键信息（起点、终点、转折点、变化趋势等）</li>
+            <li><strong>一次函数模型</strong>适用于匀速变化、线性增长/衰减等问题</li>
+            <li><strong>反比例函数模型</strong>适用于乘积为定值的场景（行程、工程、面积等）</li>
+            <li><strong>综合应用</strong>：实际问题往往需要结合方程、不等式、函数等多种工具</li>
+            <li>建模时要特别注意：<strong>自变量取值范围的合理性</strong></li>
+        </ul>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

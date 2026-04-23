@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+    <title>17.2.2 平行四边形的判定（第二课时）| 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+        h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+        .target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #2a7faa;font-weight:600;}
+        .explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+        .theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+        .example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#1d6130;}
+        .interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;}.interact-btn:active{transform:translateY(2px);}
+        .answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+        .summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+        .math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+        .homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;margin:.8rem auto;background:#fafbfc;}
+        p{margin:.5rem 0;}
+        .canvas-wrap{text-align:center;margin:.8rem 0;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.2.2</span></div>
+    <h1>第17章 平行四边形</h1>
+    <div class="lesson-title">17.2.2 平行四边形的判定（第二课时）——一组对边+对角/对角线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握"一组对边平行且相等"的判定方法</div>
+            <div class="target-item"><span>2</span>掌握"对角线互相平分"的判定方法</div>
+            <div class="target-item"><span>3</span>能用多种方法灵活判定平行四边形</div>
+            <div class="target-item"><span>4</span>理解各判定方法之间的联系与区别</div>
+        </div>
+    </div>
+
+    <!-- 复习回顾 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">📋 <strong>已学判定方法回顾</strong></p>
+        <table style="margin:.5rem auto;">
+            <tr><th>方法</th><th>条件</th></tr>
+            <tr><td>定义法</td><td>两组对边分别平行</td></tr>
+            <tr><td>SSS法</td><td>两组对边分别相等</td></tr>
+            <tr style="background:#fff8e1;"><td><strong>本节学习</strong></td><td>一组对边平行且相等 / 对角线互相平分</td></tr>
+        </table>
+    </div>
+
+    <!-- ========== 一、判定方法3 ========== -->
+    <div class="section-title">一、判定方法3：一组对边平行且相等</div>
+
+    <div class="explore-card">
+        <h4>探究活动</h4>
+        <p><strong>问题：</strong>如果四边形的一组对边既<strong>平行</strong>又<strong>相等</strong>，能判定它是平行四边形吗？</p>
+        <div class="canvas-wrap"><canvas id="cMethod3" width="520" height="300"></canvas></div>
+        <button class="interact-btn" onclick="toggleAns('explore')">查看证明过程</button>
+        <div id="explore" class="answer-box">
+            <p><strong>已知：</strong>在四边形ABCD中，AB∥CD 且 AB = CD</p>
+            <p><strong>求证：</strong>四边形ABCD是平行四边形</p>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:.5rem 0;">
+            <p><strong>证明：</strong>连接AC</p>
+            <p>∵ AB ∥ CD → $\angle BAC = \angle DCA$（内错角相等）</p>
+            <p>在$\triangle ABC$和$\triangle CDA$中：<br>$\begin{cases} \angle BAC = \angle DCA \\ AB = CD & \text{(已知)} \\ AC = CA & \text{(公共边)} \end{cases}$</p>
+            <p>∴ $\triangle ABC \cong \triangle CDA$（SAS）→ BC = AD</p>
+            <p>∴ 两组对边分别相等 → 四边形ABCD是<strong>平行四边形</strong> ✅</p>
+        </div>
+    </div>
+
+    <div class="theorem-box">
+        <p><strong>判定定理3：一组对边平行且相等的四边形是平行四边形。</strong></p>
+        <p>∵ AB∥CD 且 AB=CD ∴ $\square ABCD$</p>
+    </div>
+
+    <!-- ========== 二、判定方法4 ========== -->
+    <div class="section-title">二、判定方法4：对角线互相平分</div>
+
+    <div class="explore-card">
+        <h4>探究：对角线的条件</h4>
+        <p><strong>思考：</strong>如果一个四边形的两条对角线<strong>互相平分</strong>，它是平行四边形吗？</p>
+        <div class="canvas-wrap"><canvas id="cMethod4" width="520" height="340"></canvas></div>
+        <button class="interact-btn" onclick="toggleAns('proof')">查看证明</button>
+        <div id="proof" class="answer-box">
+            <p><strong>已知：</strong>四边形ABCD的对角线AC、BD交于点O，OA=OC且OB=OD</p>
+            <p><strong>求证：</strong>四边形ABCD是平行四边形</p>
+            <hr style="border:none;border-top:1px dashed #ccc;margin:.5rem 0;">
+            <p><strong>证明：</strong></p>
+            <p>在$\triangle AOB$和$\triangle COD$中：<br>$\begin{cases} OA=OC & \text{(已知)} \\ \angle AOB=\angle COD & \text{(对顶角相等)} \\ OB=OD & \text{(已知)} \end{cases}$</p>
+            <p>∴ $\triangle AOB \cong \triangle COD$（SAS）→ AB = CD，$\angle OAB=\angle OCD$</p>
+            <p>→ AB∥CD（内错角相等则两直线平行）</p>
+            <p>∴ 一组对边平行且相等 → $\square ABCD$ ✅</p>
+        </div>
+    </div>
+
+    <div class="theorem-box">
+        <p><strong>判定定理4：对角线互相平分的四边形是平行四边形。</strong></p>
+        <p>∵ OA=OC 且 OB=OD ∴ 四边形ABCD是平行四边形</p>
+    </div>
+
+    <!-- ========== 三、例题讲解 ========== -->
+    <div class="section-title">三、例题讲解</div>
+
+    <!-- 例1 -->
+    <div class="example-card">
+        <h4>例1 利用"一组对边平行且相等"</h4>
+        <p>如图，E、F分别是$\square ABCD$的边AD、BC上的点，且AE=CF。求证：四边形BFDE是平行四边形。</p>
+        <div class="canvas-wrap"><canvas id="cEx1" width="540" height="360"></canvas></div>
+        <button class="interact-btn" onclick="toggleAns('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>证明：</strong>利用"一组对边平行且相等"</p>
+            <p>∵ $\square ABCD$ → AD∥BC 且 AD=BC（平行四边形性质）</p>
+            <p>∴ DE∥BF（AD∥BC的部分线段也平行）</p>
+            <p>又∵ AE=CF → AD - AE = BC - CF → DE=BF</p>
+            <p>即 DE∥BF 且 DE=BF → 四边形BFDE是<strong>平行四边形</strong> ✅</p>
+        </div>
+    </div>
+
+    <!-- 例2 -->
+    <div class="example-card">
+        <h4>例2 利用"对角线互相平分"</h4>
+        <p>在四边形ABCD中，对角线AC、BD交于点O，若O是AC的中点也是BD的中点。求证：四边形ABCD是平行四边形。</p>
+        <div class="canvas-wrap"><canvas id="cEx2" width="500" height="340"></canvas></div>
+        <button class="interact-btn" onclick="toggleAns('ex2')">✍️ 简要解答</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>直接应用判定定理4！</strong></p>
+            <p>∵ O是AC的中点 → OA = OC</p>
+            <p>O是BD的中点 → OB = OD</p>
+            <p>∴ 对角线互相平分 → 四边形ABCD是<strong>平行四边形</strong> ✅</p>
+            <p style="color:#1d6130;">💡 这是判定平行四边形最简洁的方法之一！</p>
+        </div>
+    </div>
+
+    <!-- 例3 -->
+    <div class="example-card">
+        <h4>例3 综合选择最佳方法</h4>
+        <p>下列哪个条件能最简捷地判定四边形是平行四边形？<br>A) 两组对角分别相等 &nbsp;&nbsp; B) 对角线互相平分 &nbsp;&nbsp; C) 一组对边平行且相等 &nbsp;&nbsp; D) 邻角互补</p>
+        <div class="canvas-wrap"><canvas id="cEx3" width="540" height="330"></canvas></div>
+        <button class="interact-btn" onclick="toggleAns('ex3')">📊 分析</button>
+        <div id="ex3" class="answer-box">
+            <p>答案取决于题目给出的<strong>已知条件</strong>类型：</p>
+            <ul style="padding-left:1.5rem;line-height:1.9;">
+                <li>若给出的是<strong>对角线</strong>相关条件 → 选<strong>B</strong>最快</li>
+                <li>若给出的是<strong>一组对边</strong>的条件 → 选<strong>C</strong>最快</li>
+                <li>若给出的是<strong>角度</strong>条件 → 可能需要先进行转化</li>
+                <li>若直接给两组条件 → 可用定义法或SSS法</li>
+            </ul>
+            <p style="color:#991b1b;">⚠️ 核心策略：根据<strong>已知条件</strong>选择<strong>最优路径</strong>！</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">四、课堂练习</div>
+    <div class="example-card">
+        <h4>练习1</h4>
+        <p>下列条件<strong>不能</strong>判定四边形是平行四边形的是（ &nbsp;&nbsp; ）<br>
+        A) AB=CD, AD=BC &nbsp;&nbsp;
+        B) AB∥CD, AB=CD &nbsp;&nbsp;
+        C) AB∥CD, AD∥BC &nbsp;&nbsp;
+        D) AB∥CD, AD=BC</p>
+        <button class="interact-btn" onclick="toggleAns('p1')">🔍 查看答案</button>
+        <div id="p1" class="answer-box"><strong>D</strong>。D选项是"一组对边平行 + 另一组对边相等"，这是<strong>等腰梯形</strong>也满足的条件，不能保证是平行四边形！</div>
+    </div>
+    <div class="example-card">
+        <h4>练习2</h4>
+        <p>$\square ABCD$的对角线AC、BD交于点O，直线l过点O分别交AD、BC于E、F两点。求证：OE=OF。</p>
+        <button class="interact-btn" onclick="toggleAns('p2')">💡 提示</button>
+        <div id="p2" class="answer-box">提示：证明△AOE ≌ △COF（ASA），关键利用平行四边形对角线互相平分的性质得OA=OC，再结合内错角相等即可证出全等。</div>
+    </div>
+
+    <!-- 易错警示 -->
+    <div class="warn-box">
+        <strong>⚠️ 关键区分——易错点提醒</strong>
+        <ul style="margin-top:.5rem;padding-left:1.5rem;line-height:1.9;">
+            <li>"<strong>一组对边平行且相等</strong>" ✓ <strong>可以</strong>判定为平行四边形</li>
+            <li>"<strong>一组对边平行，另一组对边相等</strong>" ✗ <strong>不能</strong>判定（反例：等腰梯形）</li>
+            <li>"<strong>对角线互相平分</strong>" ✓ 最简洁的判定方法</li>
+            <li>"<strong>对角线相等</strong>" 或 "<strong>对角线垂直</strong>" ✗ 不能单独判定平行四边形（矩形/菱形特例）</li>
+        </ul>
+    </div>
+
+    <!-- 本节小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 本节小结</h3>
+        <ul style="line-height:2.1;">
+            <li><strong>判定方法3：</strong>一组对边平行且相等 → $\square$</li>
+            <li><strong>判定方法4：</strong>对角线互相平分 → $\square$</li>
+            <li><strong>目前已学的4种判定方法：</strong>① 定义法 ② SSS法 ③ 一边平行且相等法 ④ 对角线法</li>
+        </ul>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>优化思维：</strong>从多种方法中选择最优路径。<br>
+        <strong>逆向思维：</strong>从结论倒推需要的条件。<br>
+        <strong>分类讨论：</strong>根据不同条件选择不同的判定策略。<br>
+        <strong>模型思想：</strong>建立"条件→方法"对应关系模型。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P106 练习第1~3题；习题17.2 第3~5题；整理四种判定方法的适用场景和典型例题。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 一边平行又相等，判定平行四边形；对角线若互平分，同样也能定乾坤。✨</p>
+    </div>
+
+    <div class="footer-note">八年级下册 · 第17章 17.2.2 平行四边形的判定（第二课时）</div>
+</div>
+
+<script>
+/* ==================== 基础交互函数 ==================== */
+function toggleAns(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('show-answer');
+}
+
+/* ==================== Canvas绘图工具函数 ==================== */
+
+function ctx(id) { return document.getElementById(id).getContext('2d'); }
+
+// 绘制带箭头的线段
+function arrow(c, x1, y1, x2, y2, color, w) {
+    c.strokeStyle = color || '#333';
+    c.lineWidth = w || 2.5;
+    c.lineCap = 'round';
+    c.beginPath(); c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+    var a = Math.atan2(y2 - y1, x2 - x1), hl = 12;
+    c.fillStyle = c.strokeStyle;
+    c.beginPath();
+    c.moveTo(x2, y2);
+    c.lineTo(x2 - hl * Math.cos(a - 0.52), y2 - hl * Math.sin(a - 0.52));
+    c.lineTo(x2 - hl * Math.cos(a + 0.52), y2 - hl * Math.sin(a + 0.52));
+    c.closePath();
+    c.fill();
+}
+
+// 相等标记（双竖短线）
+function eqMark(c, x, y, ang, len, clr) {
+    var pa = ang + Math.PI / 2, dx = len * Math.cos(pa) / 2, dy = len * Math.sin(pa) / 2;
+    c.strokeStyle = clr || '#27ae60';
+    c.lineWidth = 2.5;
+    for (var o = -7; o <= 7; o += 14) {
+        c.beginPath();
+        c.moveTo(x + dx + o * Math.cos(ang), y + dy + o * Math.sin(ang));
+        c.lineTo(x - dx + o * Math.cos(ang), y - dy + o * Math.sin(ang));
+        c.stroke();
+    }
+}
+
+// 标注字母
+function label(c, txt, x, y, clr) {
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = clr || '#2c3e50';
+    c.fillText(txt, x + 6, y - 8);
+}
+
+/* ==================== 图1: 判定方法3 —— 一组对边平行且相等 ==================== */
+function drawM3() {
+    var c = ctx('cMethod3'), W = c.canvas.width, H = c.canvas.height;
+    var A = {x: 100, y: 210}, B = {x: 400, y: 210}, C = {x: 440, y: 80}, D = {x: 140, y: 80};
+    c.clearRect(0, 0, W, H);
+
+    // 填充
+    c.fillStyle = 'rgba(52,152,219,0.06)';
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.fill();
+
+    // 边框
+    c.strokeStyle = '#2980b9'; c.lineWidth = 3; c.setLineDash([]);
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.stroke();
+
+    // 辅助线AC
+    c.strokeStyle = '#95a5a6'; c.lineWidth = 1.5; c.setLineDash([6, 4]);
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+    c.setLineDash([]);
+
+    // 顶点标注
+    label(c, 'A', A.x, A.y, '#e74c3c');
+    label(c, 'B', B.x, B.y, '#27ae60');
+    label(c, 'C', C.x, C.y, '#27ae60');
+    label(c, 'D', D.x, D.y, '#e74c3c');
+
+    // AB和CD上的平行箭头（红色）
+    arrow(c, A.x + 35, A.y, B.x - 35, A.y, '#e74c3c', 2.5);
+    arrow(c, D.x + 35, D.y, C.x - 35, D.y, '#e74c3c', 2.5);
+
+    // AB=CD 相等标记（绿色双竖线）
+    eqMark(c, (A.x + B.x) / 2, A.y + 22, 0, 20, '#27ae60');
+    eqMark(c, (D.x + C.x) / 2, D.y - 20, 0, 20, '#27ae60');
+
+    // 图例文字
+    c.font = 'bold 14px Microsoft YaHei';
+    c.fillStyle = '#e74c3c'; c.fillText('▶ AB ∥ CD （红色箭头表示平行）', W / 2 - 110, H - 25);
+    c.fillStyle = '#27ae60'; c.fillText('║ AB = CD （绿色双竖线表示相等）', W / 2 - 115, H - 5);
+}
+
+/* ==================== 图2: 判定方法4 —— 对角线互相平分 ==================== */
+function drawM4() {
+    var c = ctx('cMethod4'), W = c.canvas.width, H = c.canvas.height;
+    var A = {x: 140, y: 55}, B = {x: 420, y: 135}, C = {x: 280, y: 285}, D = {x: 55, y: 185};
+    var Ox = (A.x + C.x) / 2, Oy = (A.y + C.y) / 2;
+
+    c.clearRect(0, 0, W, H);
+
+    // 填充
+    c.fillStyle = 'rgba(155,89,182,0.05)';
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.fill();
+
+    // 边框紫色
+    c.strokeStyle = '#8e44ad'; c.lineWidth = 3; c.setLineDash([]);
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.stroke();
+
+    // 对角线AC蓝色
+    c.strokeStyle = '#3498db'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+
+    // 对角线BD橙色
+    c.strokeStyle = '#e67e22'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+
+    // O中心红点
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(Ox, Oy, 7, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = '#fff'; c.lineWidth = 2; c.beginPath(); c.arc(Ox, Oy, 7, 0, Math.PI * 2); c.stroke();
+    c.font = 'bold 19px Segoe UI'; c.fillStyle = '#e74c3c'; c.fillText('O', Ox + 12, Oy + 24);
+
+    // 顶点
+    label(c, 'A', A.x, A.y, '#3498db');
+    label(c, 'B', B.x, B.y, '#e67e22');
+    label(c, 'C', C.x, C.y, '#3498db');
+    label(c, 'D', D.x, D.y, '#e67e22');
+
+    // OA=OC 蓝色圆圈标记
+    var oaX = (A.x + Ox) / 2, oaY = (A.y + Oy) / 2;
+    var ocX = (Ox + C.x) / 2, ocY = (Oy + C.y) / 2;
+    c.strokeStyle = '#3498db'; c.lineWidth = 2.5;
+    c.beginPath(); c.arc(oaX, oaY, 6, 0, Math.PI * 2); c.stroke();
+    c.beginPath(); c.arc(ocX, ocY, 6, 0, Math.PI * 2); c.stroke();
+
+    // OB=OD 橙色叉号
+    var obX = (B.x + Ox) / 2, obY = (B.y + Oy) / 2;
+    var odX = (Ox + D.x) / 2, odY = (Oy + D.y) / 2;
+    c.strokeStyle = '#e67e22'; c.lineWidth = 2.5;
+
+    c.beginPath(); c.moveTo(obX - 6, obY - 6); c.lineTo(obX + 6, obY + 6);
+    c.moveTo(obX - 6, obY + 6); c.lineTo(obX + 6, obY - 6); c.stroke();
+
+    c.beginPath(); c.moveTo(odX - 6, odY - 6); c.lineTo(odX + 6, odY + 6);
+    c.moveTo(odX - 6, odY + 6); c.lineTo(odX + 6, odY - 6); c.stroke();
+
+    // 图例
+    c.font = 'bold 14px Microsoft YaHei';
+    c.fillStyle = '#3498db'; c.fillText('● OA = OC （蓝色圆圈标记）', 15, H - 38);
+    c.fillStyle = '#e67e22'; c.fillText('✕ OB = OD （橙色叉号标记）', 15, H - 14);
+}
+
+/* ==================== 图3: 例1 —— E、F在边上证BFDE为平行四边形 ==================== */
+function drawE1() {
+    var c = ctx('cEx1'), W = c.canvas.width, H = c.canvas.height;
+    // ▱ABCD
+    var A = {x: 70, y: 290}, B = {x: 450, y: 290}, C = {x: 490, y: 95}, D = {x: 110, y: 95};
+    // E在AD上距A约65%
+    var t = 0.65;
+    var Ex = A.x + (D.x - A.x) * t, Ey = A.y + (D.y - A.y) * t;
+    // F在BC上距C同样比例
+    var Fx = C.x + (B.x - C.x) * t, Fy = C.y + (B.y - C.y) * t;
+
+    c.clearRect(0, 0, W, H);
+
+    // ▱ABCD浅灰底+虚线
+    c.fillStyle = 'rgba(189,195,199,0.05)';
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.fill();
+    c.strokeStyle = '#bdc3c7'; c.lineWidth = 2; c.setLineDash([7, 4]);
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.stroke();
+    c.setLineDash([]);
+
+    // 目标四边形BFDE 高亮填充
+    c.fillStyle = 'rgba(39,174,96,0.12)';
+    c.beginPath();
+    c.moveTo(B.x, B.y); c.lineTo(Fx, Fy); c.lineTo(D.x, D.y); c.lineTo(Ex, Ey);
+    c.closePath(); c.fill();
+
+    // BFDE 四条粗绿边
+    c.strokeStyle = '#27ae60'; c.lineWidth = 3.5;
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(Fx, Fy); c.stroke();   // BF
+    c.beginPath(); c.moveTo(Fx, Fy); c.lineTo(D.x, D.y); c.stroke();     // FD
+    c.beginPath(); c.moveTo(D.x, D.y); c.lineTo(Ex, Ey); c.stroke();     // DE
+    c.beginPath(); c.moveTo(Ex, Ey); c.lineTo(B.x, B.y); c.stroke();     // EB
+
+    // 顶点标注
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = '#7f8c8d'; c.fillText('A', A.x - 24, A.y + 6);
+    c.fillStyle = '#27ae60'; c.fillText('B', B.x + 10, B.y + 6);
+    c.fillStyle = '#7f8c8d'; c.fillText('C', C.x + 10, C.y - 8);
+    c.fillStyle = '#27ae60'; c.fillText('D', D.x - 26, D.y - 8);
+    c.fillStyle = '#e74c3c'; c.fillText('E', Ex - 24, Ey + 6);
+    c.fillStyle = '#e74c3c'; c.fillText('F', Fx + 10, Fy + 6);
+
+    // AE=CF 红色单竖线标记
+    c.strokeStyle = '#e74c3c'; c.lineWidth = 2.5;
+    var aeMX = (A.x + Ex) / 2, aeMY = (A.y + Ey) / 2;
+    c.beginPath(); c.moveTo(aeMX - 7, aeMY - 10); c.lineTo(aeMX + 7, aeMY + 10); c.stroke();
+    var cfMX = (C.x + Fx) / 2, cfMY = (C.y + Fy) / 2;
+    c.beginPath(); c.moveTo(cfMX - 7, cfMY - 10); c.lineTo(cfMX + 7, cfMY + 10); c.stroke();
+
+    // DE∥BF 绿色平行标记
+    var deAng = Math.atan2(Ey - D.y, Ex - D.x);
+    c.strokeStyle = '#27ae60'; c.lineWidth = 2.5;
+    var deMX = (D.x + Ex) / 2, deMY = (D.y + Ey) / 2;
+    // DE上的短斜线
+    c.beginPath();
+    c.moveTo(deMX - 11 * Math.cos(deAng) - 6 * Math.sin(deAng), deMY - 11 * Math.sin(deAng) + 6 * Math.cos(deAng));
+    c.lineTo(deMX + 11 * Math.cos(deAng) + 6 * Math.sin(deAng), deMY + 11 * Math.sin(deAng) - 6 * Math.cos(deAng));
+    c.stroke();
+    // BF上的短斜线
+    var bfMX = (B.x + Fx) / 2, bfMY = (B.y + Fy) / 2;
+    c.beginPath();
+    c.moveTo(bfMX - 11 * Math.cos(deAng) - 6 * Math.sin(deAng), bfMY - 11 * Math.sin(deAng) + 6 * Math.cos(deAng));
+    c.lineTo(bfMX + 11 * Math.cos(deAng) + 6 * Math.sin(deAng), bfMY + 11 * Math.sin(deAng) - 6 * Math.cos(deAng));
+    c.stroke();
+
+    // 底部图例
+    c.font = 'bold 14px Microsoft YaHei';
+    c.fillStyle = '#27ae60'; c.fillText('◆ 四边形BFDE（绿色高亮，待证平行四边形）', 10, H - 28);
+    c.fillStyle = '#e74c3c'; c.fillText('| AE = CF （已知相等条件）', 10, H - 6);
+}
+
+/* ==================== 图4: 例2 —— 对角线互相平分 ==================== */
+function drawE2() {
+    var c = ctx('cEx2'), W = c.canvas.width, H = c.canvas.height;
+    var A = {x: 130, y: 50}, B = {x: 420, y: 125}, C = {x: 290, y: 285}, D = {x: 50, y: 195};
+    var Ox = (A.x + C.x) / 2, Oy = (A.y + C.y) / 2;
+
+    c.clearRect(0, 0, W, H);
+
+    // 填充
+    c.fillStyle = 'rgba(142,68,173,0.06)';
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.fill();
+
+    // 边框
+    c.strokeStyle = '#9b59b6'; c.lineWidth = 3; c.setLineDash([]);
+    c.beginPath();
+    c.moveTo(A.x, A.y); c.lineTo(B.x, B.y); c.lineTo(C.x, C.y); c.lineTo(D.x, D.y);
+    c.closePath(); c.stroke();
+
+    // AC蓝色对角线
+    c.strokeStyle = '#2980b9'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(A.x, A.y); c.lineTo(C.x, C.y); c.stroke();
+
+    // BD橙色对角线
+    c.strokeStyle = '#d35400'; c.lineWidth = 2.5;
+    c.beginPath(); c.moveTo(B.x, B.y); c.lineTo(D.x, D.y); c.stroke();
+
+    // O中心点
+    c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(Ox, Oy, 8, 0, Math.PI * 2); c.fill();
+    c.strokeStyle = '#fff'; c.lineWidth = 2; c.beginPath(); c.arc(Ox, Oy, 8, 0, Math.PI * 2); c.stroke();
+    c.font = 'bold 19px Segoe UI'; c.fillStyle = '#e74c3c'; c.fillText('O', Ox + 14, Oy + 24);
+
+    // 顶点
+    c.font = 'bold 17px Segoe UI, Microsoft YaHei';
+    c.fillStyle = '#2980b9'; c.fillText('A', A.x - 6, A.y - 12);
+    c.fillStyle = '#d35400'; c.fillText('B', B.x + 10, B.y + 6);
+    c.fillStyle = '#2980b9'; c.fillText('C', C.x - 6, C.y + 22);
+    c.fillStyle = '#d35400'; c.fillText('D', D.x - 24, D.y + 6);
+
+    // OA=OC 蓝色圆圈
+    var oaX = (A.x + Ox) / 2, oaY = (A.y + Oy) / 2;
+    var ocX = (Ox + C.x) / 2, ocY = (Oy + C.y) / 2;
+    c.strokeStyle = '#2980b9'; c.lineWidth = 2.5;
+    c.beginPath(); c.arc(oaX, oaY, 6, 0, Math.PI * 2); c.stroke();
+    c.fillStyle = '#2980b9'; c.beginPath(); c.arc(oaX, oaY, 2, 0, Math.PI * 2); c.fill();
+    c.beginPath(); c.arc(ocX, ocY, 6, 0, Math.PI * 2); c.stroke();
+    c.beginPath(); c.arc(ocX, ocY, 2, 0, Math.PI * 2); c.fill();
+
+    // OB=OD 橙色叉号
+    var obX = (B.x + Ox) / 2, obY = (B.y + Oy) / 2;
+    var odX = (Ox + D.x) / 2, odY = (Oy + D.y) / 2;
+    c.strokeStyle = '#d35400'; c.lineWidth = 2.5;
+
+    c.beginPath(); c.moveTo(obX - 6, obY - 6); c.lineTo(obX + 6, obY + 6);
+    c.moveTo(obX - 6, obY + 6); c.lineTo(obX + 6, obY - 6); c.stroke();
+
+    c.beginPath(); c.moveTo(odX - 6, odY - 6); c.lineTo(odX + 6, odY + 6);
+    c.moveTo(odX - 6, odY + 6); c.lineTo(odX + 6, odY - 6); c.stroke();
+
+    // 标注文字
+    c.font = 'bold 15px Segoe UI';
+    c.fillStyle = '#2980b9'; c.fillText('OA = OC', (oaX + ocX) / 2 - 25, oaY + 32);
+    c.fillStyle = '#d35400'; c.fillText('OB = OD', (obX + odX) / 2 - 25, obY + 28);
+
+    // 结论
+    c.font = 'bold 14px Microsoft YaHei'; c.fillStyle = '#27ae60';
+    c.fillText('✓ 对角线互相平分 ⇒ 四边形ABCD是平行四边形', W / 2 - 150, H - 12);
+}
+
+/* ==================== 图5: 例3 —— 四种判定方法对比 ==================== */
+function drawE3() {
+    var c = ctx('cEx3'), W = c.canvas.width, H = c.canvas.height;
+
+    c.clearRect(0, 0, W, H);
+
+    // 标题
+    c.font = 'bold 17px Microsoft YaHei'; c.fillStyle = '#2c3e50';
+    c.fillText('▶ 平行四边形四种判定方法对比 ◀', W / 2 - 155, 30);
+
+    // 四个卡片数据
+    var cards = [
+        { x: 60, y: 60, title: '① 定义法', desc: '两组对边分别平行', clr: '#3498bc', bg: 'rgba(52,152,188,0.07)' },
+        { x: 300, y: 60, title: '② SSS法', desc: '两组对边分别相等', clr: '#27ae60', bg: 'rgba(39,174,96,0.07)' },
+        { x: 60, y: 200, title: '③ 边法', desc: '一组对边平行且相等', clr: '#e74c3c', bg: 'rgba(231,76,60,0.08)' },
+        { x: 300, y: 200, title: '④ 对角线法', desc: '对角线互相平分', clr: '#e67e22', bg: 'rgba(230,126,34,0.08)' }
+    ];
+
+    cards.forEach(function(card, i) {
+        var cw = 210, ch = 120;
+        // 卡片背景圆角矩形
+        c.fillStyle = card.bg;
+        rRect(c, card.x, card.y, cw, ch, 10); c.fill();
+        c.strokeStyle = card.clr; c.lineWidth = 2;
+        rRect(c, card.x, card.y, cw, ch, 10); c.stroke();
+
+        // 内部小平行四边形示意
+        var cx = card.x + cw / 2, cy = card.y + 45, s = 30;
+        var pts = [
+            { x: cx - s, y: cy + s * 0.6 },
+            { x: cx + s * 0.5, y: cy + s * 0.6 },
+            { x: cx + s, y: cy - s * 0.4 },
+            { x: cx - s * 0.5, y: cy - s * 0.4 }
+        ];
+        c.globalAlpha = 0.25;
+        c.fillStyle = card.clr;
+        c.beginPath(); c.moveTo(pts[0].x, pts[0].y);
+        pts.forEach(function(p) { c.lineTo(p.x, p.y); });
+        c.closePath(); c.fill();
+        c.globalAlpha = 1;
+        c.strokeStyle = card.clr; c.lineWidth = 2;
+        c.beginPath(); c.moveTo(pts[0].x, pts[0].y);
+        pts.forEach(function(p) { c.lineTo(p.x, p.y); });
+        c.closePath(); c.stroke();
+
+        // 方法4画对角线和中心点
+        if (i === 3) {
+            c.strokeStyle = card.clr; c.lineWidth = 1.5; c.setLineDash([4, 3]);
+            c.beginPath(); c.moveTo(pts[0].x, pts[0].y); c.lineTo(pts[2].x, pts[2].y); c.stroke();
+            c.beginPath(); c.moveTo(pts[1].x, pts[1].y); c.lineTo(pts[3].x, pts[3].y); c.stroke();
+            c.setLineDash([]);
+            c.fillStyle = '#e74c3c'; c.beginPath(); c.arc(cx, cy, 4, 0, Math.PI * 2); c.fill();
+        }
+
+        // 文字
+        c.font = 'bold 15px Microsoft YaHei'; c.fillStyle = card.clr;
+        c.fillText(card.title, card.x + 16, card.y + 86);
+        c.font = '13px Microsoft YaHei'; c.fillStyle = '#555';
+        c.fillText(card.desc, card.x + 16, card.y + 108);
+    });
+
+    // 右侧策略面板
+    c.fillStyle = 'rgba(44,62,80,0.04)';
+    rRect(c, 430, 55, 100, 270, 10); c.fill();
+    c.strokeStyle = '#bdc3c7'; c.lineWidth = 1;
+    rRect(c, 430, 55, 100, 270, 10); c.stroke();
+
+    c.font = 'bold 14px Microsoft YaHei'; c.fillStyle = '#2c3e50';
+    c.fillText('📋 选择策略', 445, 78);
+    c.font = '12px Microsoft YaHei'; c.fillStyle = '#555';
+    c.fillText('• 给边的条件→用①②③', 438, 102);
+    c.fillText('• 给对角线→用④最快', 438, 124);
+    c.fillText('• 给角度→先转化', 438, 146);
+    c.fillText('• 最简捷优先!', 438, 168);
+
+    c.font = 'bold 12px Microsoft YaHei'; c.fillStyle = '#e74c3c';
+    c.fillText('⚠ 易错警示', 440, 198);
+    c.font = '11px Microsoft YaHei'; c.fillStyle = '#777';
+    c.fillText('"平行+另边相等"', 436, 220);
+    c.fillText('≠ "平行且相等"', 436, 238);
+    c.fillStyle = '#c0392b'; c.font = 'bold 11px Microsoft YaHei';
+    c.fillText('(等腰梯形反例!)', 438, 260);
+    c.fillStyle = '#27ae60'; c.font = 'bold 11px Microsoft YaHei';
+    c.fillText('本课重点: ③④新方法', 438, 282);
+    c.fillText('最实用的是④对角线法', 438, 302);
+}
+
+/* 圆角矩形辅助函数 */
+function rRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.lineTo(x, y + h - r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.lineTo(x, y + r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+}
+
+/* ==================== 初始化绘制 ==================== */
+window.onload = function () {
+    try { drawM3(); } catch (e) { console.error('drawM3:', e); }
+    try { drawM4(); } catch (e) { console.error('drawM4:', e); }
+    try { drawE1(); } catch (e) { console.error('drawE1:', e); }
+    try { drawE2(); } catch (e) { console.error('drawE2:', e); }
+    try { drawE3(); } catch (e) { console.error('drawE3:', e); }
+};
+
+window.onresize = function () {
+    setTimeout(function () {
+        try { drawM3(); } catch (e) {}
+        try { drawM4(); } catch (e) {}
+        try { drawE1(); } catch (e) {}
+        try { drawE2(); } catch (e) {}
+        try { drawE3(); } catch (e) {}
+    }, 150);
+};
+</script>
+</body></html>

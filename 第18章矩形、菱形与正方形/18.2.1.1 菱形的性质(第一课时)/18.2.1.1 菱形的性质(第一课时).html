@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.2.1.1 菱形的性质（第一课时）| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    bar: ["\\overline{#1}", 1]
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-bottom: 25px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+        }
+
+        .intro-card h2 {
+            font-size: 28px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .intro-card p { font-size: 18px; line-height: 1.8; }
+
+        h1 {
+            text-align: center; color: white; font-size: 36px;
+            margin-bottom: 30px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: #333; font-size: 24px; margin-bottom: 20px;
+            padding-bottom: 10px; border-bottom: 3px solid #7c3aed;
+        }
+
+        h3 { color: #555; font-size: 20px; margin: 20px 0 15px 0; }
+
+        .example-card { border-left: 5px solid #7c3aed; }
+
+        .example-title {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white; padding: 10px 20px; border-radius: 8px;
+            margin-bottom: 20px; font-size: 18px;
+        }
+
+        .problem {
+            background: #f8f9fa; padding: 15px; border-radius: 8px;
+            margin: 15px 0; border-left: 4px solid #f0b34b;
+        }
+
+        .solution {
+            background: #ede9fe; padding: 15px; border-radius: 8px;
+            margin: 15px 0; border-left: 4px solid #7c3aed;
+        }
+
+        canvas {
+            display: block; margin: 20px auto; background: white;
+            border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .canvas-container { text-align: center; margin: 20px 0; }
+
+        .canvas-caption {
+            text-align: center; color: #666; font-size: 14px; margin-top: 10px;
+        }
+
+        /* 定义框 */
+        .definition-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 25px; border-radius: 12px; margin: 20px 0;
+            border-left: 6px solid #f59e0b; font-size: 19px; line-height: 1.9;
+        }
+
+        .definition-box strong { color: #d97706; font-size: 21px; }
+
+        /* 定理框 */
+        .theorem-box {
+            background: linear-gradient(135deg, #ddd6fe 0%, #c4b5fd 100%);
+            padding: 22px; border-radius: 12px; margin: 20px 0;
+            border: 2px solid #7c3aed; position: relative;
+        }
+
+        .theorem-box::before {
+            content: "📐 定理"; display: inline-block;
+            background: #7c3aed; color: white; padding: 5px 15px;
+            border-radius: 6px; font-weight: bold; font-size: 16px;
+            position: absolute; top: -14px; left: 20px;
+        }
+
+        .theorem-title { font-size: 20px; font-weight: bold; color: #5b21b6; margin-top: 10px; }
+
+        /* 公式框 */
+        .formula-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            padding: 20px; border-radius: 12px; margin: 15px 0;
+            text-align: center; font-size: 20px;
+        }
+
+        /* 关键点 */
+        .key-point {
+            background: #fff3cd; border-left: 5px solid #f0ad4e;
+            padding: 15px; margin: 20px 0; border-radius: 8px; font-size: 17px;
+        }
+
+        .key-point::before { content: "🔑 "; font-weight: bold; }
+
+        /* 思考气泡 */
+        .think-bubble {
+            background: #ede9fe; border-radius: 20px; padding: 20px;
+            margin: 20px 0; border-left: 4px solid #7c3aed;
+        }
+
+        .think-bubble::before { content: "💭 "; font-size: 24px; }
+
+        /* 练习卡片 */
+        .practice-card { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+
+        .practice-item {
+            background: white; padding: 15px; border-radius: 8px; margin: 10px 0;
+        }
+
+        /* 按钮 */
+        .btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white; border: none; padding: 10px 25px; border-radius: 25px;
+            cursor: pointer; font-size: 16px; margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(124,58,237,0.4); }
+
+        .control-bar { text-align: center; margin: 20px 0; }
+
+        /* 数据表格 */
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+
+        .data-table th, .data-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center; font-size: 17px;
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+        }
+
+        .data-table tr:nth-child(even) { background: #faf5ff; }
+        .data-table tr:hover { background: #ede9fe; }
+
+        /* 小结卡片 */
+        .summary-card { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); }
+
+        .summary-list { list-style: none; padding: 0; }
+
+        .summary-list li {
+            padding: 10px 15px; margin: 10px 0; background: white;
+            border-radius: 8px; border-left: 4px solid #059669;
+        }
+
+        /* 数学思想 */
+        .math-idea {
+            background: linear-gradient(135deg, #cffafe 0%, #a5f3fc 100%);
+            padding: 20px; border-radius: 12px; margin: 20px 0;
+            border-left: 5px solid #0891b2;
+        }
+
+        /* 口诀框 */
+        .rhyme-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border: 3px dashed #db2777; border-radius: 15px;
+            padding: 25px; text-align: center; margin: 20px 0;
+        }
+
+        .rhyme-box h3 { color: #be185d; }
+
+        .rhyme-text {
+            font-size: 20px; line-height: 2.2; color: #9d174d;
+            font-family: 'KaiTi', 'SimSun', serif; letter-spacing: 2px;
+        }
+
+        /* 作业框 */
+        .homework-box {
+            background: #ede9fe; border-radius: 60px;
+            padding: 1rem 2rem; display: flex; align-items: center;
+            gap: 1.2rem; flex-wrap: wrap; margin: 1.5rem 0;
+        }
+
+        .message-box {
+            background: #f3e8ff; text-align: center; font-style: italic;
+            border-left: 8px solid #7c3aed; padding: 1rem 1.8rem;
+            border-radius: 2rem; margin: 1.5rem 0;
+        }
+
+        .footer-note {
+            text-align: right; color: #5b21b6;
+            border-top: 2px solid #c4b5fd; padding-top: .8rem; margin-top: 1.5rem;
+        }
+
+        /* 目标列表 */
+        .objective-list { list-style: none; padding: 0; }
+
+        .objective-list li {
+            padding: 12px 18px; margin: 10px 0; background: #faf5ff;
+            border-radius: 8px; border-left: 4px solid #a855f7;
+            font-size: 17px; line-height: 1.6;
+        }
+
+        .objective-list li::before { content: "✅ "; margin-right: 8px; }
+
+        /* 对比表格高亮 */
+        .highlight-cell { background: #fef3c7 !important; font-weight: bold; color: #d97706; }
+
+        /* 答案区域 */
+        .answer-area { display: none; margin-top: 15px; padding: 15px; background: #ecfdf5; border-radius: 8px; border-left: 4px solid #059669; }
+        .answer-area.show { display: block; }
+
+        /* 生活实例网格 */
+        .life-examples {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px; margin: 15px 0;
+        }
+
+        .life-example-item {
+            background: #faf5ff; padding: 15px; border-radius: 10px;
+            text-align: center; border: 2px solid #e9d5ff; transition: all 0.3s;
+        }
+
+        .life-example-item:hover {
+            border-color: #a855f7; transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(124,58,237,0.2);
+        }
+
+        .life-example-item .emoji { font-size: 36px; display: block; margin-bottom: 8px; }
+
+        /* 证明步骤 */
+        .proof-step {
+            background: white; padding: 12px 18px; margin: 10px 0;
+            border-radius: 8px; border-left: 3px solid #8b5cf6;
+            line-height: 1.8; font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<h1>💎 18.2.1.1 菱形的性质（第一课时）</h1>
+
+<!-- ==================== 学习目标 ==================== -->
+<div class="card intro-card">
+    <h2>🎯 学习目标</h2>
+    <ul class="objective-list">
+        <li>理解菱形的定义，知道菱形是特殊的平行四边形</li>
+        <li>掌握菱形的对称性（既是中心对称图形，也是轴对称图形）</li>
+        <li>掌握并会证明菱形的性质定理1：菱形的四条边都相等</li>
+        <li>掌握并会证明菱形的性质定理2：菱形的对角线互相垂直</li>
+        <li>能运用菱形的性质解决简单的几何计算和证明问题</li>
+    </ul>
+</div>
+
+<!-- ==================== 情境导入：折纸活动 ==================== -->
+<div class="card">
+    <h2>📐 情境导入——折纸中的数学</h2>
+    
+    <div class="problem">
+        <p><strong>做一做：</strong></p>
+        <p>将一张矩形纸片<strong>对折</strong>，再沿与折痕垂直的方向<strong>再次对折</strong>，然后用剪刀沿着一条斜向的虚线剪开。展开后，你得到了一个什么图形？</p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="paperFoldCanvas" width="700" height="320"></canvas>
+        <p class="canvas-caption">图1：矩形纸对折剪裁过程示意图</p>
+    </div>
+
+    <div style="text-align:center;margin:15px 0;">
+        <button class="btn" onclick="playFoldAnimation()">▶️ 播放折纸动画</button>
+        <button class="btn" onclick="resetFoldAnimation()">🔄 重置</button>
+    </div>
+
+    <div class="key-point">
+        通过折纸活动我们发现：<strong>这样得到的四边形四条边都相等！</strong>这就是我们今天要学习的特殊平行四边形——<strong>菱形</strong>。
+    </div>
+
+    <h3>🌸 生活中的菱形</h3>
+    <div class="life-examples">
+        <div class="life-example-item"><span class="emoji">👕</span><strong>伸缩衣帽架</strong></div>
+        <div class="life-example-item"><span class="emoji">🪁</span><strong>风筝骨架</strong></div>
+        <div class="life-example-item"><span class="emoji">💎</span><strong>钻石图案</strong></div>
+        <div class="life-example-item"><span class="emoji">🏮</span><strong>装饰窗花</strong></div>
+    </div>
+</div>
+
+<!-- ==================== 菱形的定义 ==================== -->
+<div class="card">
+    <h2>📖 菱形的定义</h2>
+
+    <div class="definition-box">
+        <p><strong>菱形的定义：</strong></p>
+        <p style="margin-top:10px;text-align:center;font-size:22px;color:#92400e;">
+            有一组邻边相等的平行四边形叫做<strong style="font-size:24px;">菱形</strong>（Rhombus）
+        </p>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>理解要点：</strong></p>
+        <ol style="margin-left:20px;line-height:2;font-size:17px;">
+            <li>首先，菱形是<strong>平行四边形</strong>（具有平行四边形的一切性质）</li>
+            <li>其次，它有一组<strong>邻边相等</strong>（这是菱形独有的特征条件）</li>
+            <li>因此，菱形是<strong>特殊的平行四边形</strong></li>
+        </ol>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="compareCanvas" width="650" height="350"></canvas>
+        <p class="canvas-caption">图2：一般平行四边形 vs 菱形对比</p>
+    </div>
+
+    <div class="formula-box">
+        用符号表示：若 $\square ABCD$ 是平行四边形，且 $AB = AD$，
+        <br>则 $\square ABCD$ 是<strong>菱形</strong>
+    </div>
+</div>
+
+<!-- ==================== 探究：菱形的性质 ==================== -->
+<div class="card">
+    <h2>🔍 探究——菱形有哪些特殊性质？</h2>
+    <p>让我们通过填表的方式，系统地比较一般平行四边形和菱形的性质：</p>
+
+    <table class="data-table">
+        <tr>
+            <th style="width:18%;">比较项目</th>
+            <th style="width:41%;">平行四边形的一般性质</th>
+            <th style="width:41%;">菱形的特殊性质</th>
+        </tr>
+        <tr>
+            <td><strong>边</strong></td>
+            <td>对边平行且相等</td>
+            <td class="highlight-cell">四条边都相等 ✨</td>
+        </tr>
+        <tr>
+            <td><strong>角</strong></td>
+            <td>对角相等；邻角互补</td>
+            <td>同左（无新增）</td>
+        </tr>
+        <tr>
+            <td><strong>对角线</strong></td>
+            <td>对角线互相平分</td>
+            <td class="highlight-cell">对角线互相垂直 ✨</td>
+        </tr>
+        <tr>
+            <td><strong>对称性</strong></td>
+            <td>中心对称图形</td>
+            <td class="highlight-cell">既是中心对称图形<br>又是轴对称图形（2条对称轴）✨</td>
+        </tr>
+    </table>
+
+    <div class="key-point">
+        从上表可以看出，菱形除了具备平行四边形的所有性质外，还有三个独特的性质：
+        <br>① 四条边相等 &nbsp;&nbsp; ② 对角线互相垂直 &nbsp;&nbsp; ③ 有两条对称轴
+    </div>
+
+    <!-- 菱形对称性图示 -->
+    <div class="canvas-container">
+        <canvas id="symmetryCanvas" width="600" height="400"></canvas>
+        <p class="canvas-caption">图3：菱形的对称性（轴对称 + 中心对称）</p>
+    </div>
+
+    <div style="text-align:center;margin:15px 0;">
+        <button class="btn" onclick="toggleSymmetryAxis()">🔄 切换显示对称轴</button>
+    </div>
+</div>
+
+<!-- ==================== 性质定理1：四条边相等 ==================== -->
+<div class="card example-card">
+    <h2>📐 性质定理1：菱形的四条边都相等</h2>
+
+    <div class="theorem-box">
+        <div class="theorem-title">菱形的性质定理 1</div>
+        <p style="margin-top:12px;font-size:19px;line-height:1.8;">
+            <strong>菱形的四条边都相等。</strong>
+        </p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="theorem1Canvas" width="500" height="380"></canvas>
+        <p class="canvas-caption">图4：菱形ABCD的四条边关系</p>
+    </div>
+
+    <div class="solution">
+        <p><strong>证明：</strong></p>
+        <div class="proof-step">
+            已知：四边形 $ABCD$ 是菱形
+        </div>
+        <div class="proof-step">
+            求证：$AB = BC = CD = DA$
+        </div>
+        <div class="proof-step">
+            证明：∵ 四边形 $ABCD$ 是菱形
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ 四边形 $ABCD$ 是平行四边形（菱形是特殊的平行四边形）
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ $AB = CD$，$AD = BC$（平行四边形的对边相等）
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            又 ∵ $AB = AD$（菱形有一组邻边相等）
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ $AB = BC = CD = DA$
+        </div>
+    </div>
+
+    <div class="formula-box">
+        若 $\square ABCD$ 是菱形，则有：$AB = BC = CD = DA$
+    </div>
+</div>
+
+<!-- ==================== 性质定理2：对角线互相垂直 ==================== -->
+<div class="card example-card">
+    <h2>📐 性质定理2：菱形的对角线互相垂直</h2>
+
+    <div class="theorem-box">
+        <div class="theorem-title">菱形的性质定理 2</div>
+        <p style="margin-top:12px;font-size:19px;line-height:1.8;">
+            <strong>菱形的对角线互相垂直。</strong>
+        </p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="theorem2Canvas" width="550" height="420"></canvas>
+        <p class="canvas-caption">图5：菱形对角线互相垂直</p>
+    </div>
+
+    <div style="text-align:center;margin:15px 0;">
+        <button class="btn" onclick="playDiagonalAnimation()">▶️ 播放对角线动画演示</button>
+        <button class="btn" onclick="showProof2()">📝 显示/隐藏证明</button>
+    </div>
+
+    <div id="proof2Area" class="answer-area">
+        <p><strong>证明：</strong>（利用等腰三角形"三线合一"）</p>
+        <div class="proof-step">
+            已知：菱形 $ABCD$ 的对角线 $AC$、$BD$ 相交于点 $O$
+        </div>
+        <div class="proof-step">
+            求证：$AC \perp BD$
+        </div>
+        <div class="proof-step">
+            证明：∵ 四边形 $ABCD$ 是菱形
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ $AB = AD$（菱形的四条边都相等）
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ $\triangle ABD$ 是等腰三角形
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            又 ∵ 四边形 $ABCD$ 是平行四边形
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ 对角线 $AC$、$BD$ 互相平分于点 $O$
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            即 $BO = DO$，所以 $AO$ 是等腰 $\triangle ABD$ 底边 $BD$ 上的中线
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            ∴ $AO \perp BD$（等腰三角形"三线合一"：底边中线也是底边的高）
+        </div>
+        <div class="proof-step" style="margin-left:20px;">
+            即 $AC \perp BD$，也就是菱形的对角线互相垂直
+        </div>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>重要推论：</strong>菱形的对角线不仅互相垂直，而且每条对角线平分一组对角。</p>
+        <p style="margin-top:8px;">例如：$AC$ 平分 $\angle BAD$ 和 $\angle BCD$；$BD$ 平分 $\angle ABC$ 和 $\angle ADC$</p>
+    </div>
+</div>
+
+<!-- ==================== 例题精讲 ==================== -->
+<div class="card example-card">
+    <h2>📝 例题精讲</h2>
+
+    <div class="example-title">例1：菱形内角的计算</div>
+
+    <div class="problem">
+        <p><strong>题目：</strong>如图，在菱形 $ABCD$ 中，$\angle BAD = 120^\circ$，求：</p>
+        <p>(1) $\angle B$ 的大小；</p>
+        <p>(2) 说明 $\triangle ABC$ 是什么三角形？并说明理由。</p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="example1Canvas" width="520" height="420"></canvas>
+        <p class="canvas-caption">图6：菱形ABCD中∠BAD=120°</p>
+    </div>
+
+    <div style="text-align:center;margin:15px 0;">
+        <button class="btn" onclick="toggleExampleAnswer()">💡 显示/隐藏解答</button>
+    </div>
+
+    <div id="example1Answer" class="answer-area">
+        <p><strong>解：</strong></p>
+        
+        <p><strong>(1)</strong> 求 $\angle B$ 的大小：</p>
+        <div class="proof-step">
+            ∵ 四边形 $ABCD$ 是菱形
+        </div>
+        <div class="proof-step">
+            ∴ $AD \parallel BC$（菱形是平行四边形，对边平行）
+        </div>
+        <div class="proof-step">
+            ∴ $\angle BAD + \angle B = 180^\circ$（两直线平行，同旁内角互补）
+        </div>
+        <div class="proof-step">
+            ∵ $\angle BAD = 120^\circ$
+        </div>
+        <div class="proof-step">
+            ∴ $\angle B = 180^\circ - 120^\circ = \mathbf{60^\circ}$
+        </div>
+
+        <br>
+        <p><strong>(2)</strong> 判断 $\triangle ABC$ 的形状：</p>
+        <div class="proof-step">
+            ∵ 四边形 $ABCD$ 是菱形
+        </div>
+        <div class="proof-step">
+            ∴ $AB = BC$（菱形的四条边都相等）
+        </div>
+        <div class="proof-step">
+            又 ∵ $\angle B = 60^\circ$
+        </div>
+        <div class="proof-step">
+            ∴ $\triangle ABC$ 是<strong>等边三角形</strong>（有一个角等于 $60^\circ$ 的等腰三角形是等边三角形）
+        </div>
+        <div class="proof-step">
+            即 $\triangle ABC$ 中 $AB = BC = AC$，且每个内角都是 $60^\circ$
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 生活中的应用 ==================== -->
+<div class="card">
+    <h2>🏠 生活中的应用——伸缩衣帽架</h2>
+
+    <p>菱形结构在实际生活中有非常广泛的应用。<strong>伸缩衣帽架</strong>就是利用了菱形的特殊性设计的。</p>
+
+    <div class="canvas-container">
+        <canvas id="coatRackCanvas" width="600" height="380"></canvas>
+        <p class="canvas-caption">图7：伸缩衣帽架的工作原理</p>
+    </div>
+
+    <div style="text-align:center;margin:15px 0;">
+        <button class="btn" onclick="animateCoatRack()">▶️ 伸缩演示</button>
+        <button class="btn" onclick="resetCoatRack()">🔄 重置</button>
+    </div>
+
+    <div class="think-bubble">
+        <p><strong>工作原理：</strong></p>
+        <p>衣帽架的骨架由若干个菱形组成。由于菱形的<strong>四条边长度固定不变</strong>，当拉动上下两端时，菱形的形状改变但各边长度保持不变，从而实现自由伸缩！</p>
+        <p style="margin-top:8px;">这正是利用了<strong>"菱形四条边都相等"</strong>这一性质的巧妙设计 💡</p>
+    </div>
+</div>
+
+<!-- ==================== 课堂练习 ==================== -->
+<div class="card practice-card">
+    <h2>✏️ 课堂练习</h2>
+
+    <!-- 练习1 -->
+    <div class="practice-item">
+        <p><strong>练习1：</strong>菱形的周长为 $48\,\text{cm}$，则它的每条边的长为______ cm。</p>
+        <div style="text-align:center;margin-top:10px;">
+            <button class="btn" onclick="toggleAnswer('ans1')">查看答案</button>
+        </div>
+        <div id="ans1" class="answer-area">
+            <p><strong>答案：</strong>$12\,\text{cm}$</p>
+            <p><strong>解析：</strong>∵ 菱形的四条边都相等，周长为 $48\,\text{cm}$</p>
+            <p>∴ 每条边长 $= 48 \div 4 = 12\,\text{cm}$</p>
+        </div>
+    </div>
+
+    <!-- 练习2 -->
+    <div class="practice-item">
+        <p><strong>练习2：</strong>已知菱形 $ABCD$ 的对角线 $AC = 6\,\text{cm}$，$BD = 8\,\text{cm}$，求菱形的面积。</p>
+        <div style="text-align:center;margin-top:10px;">
+            <button class="btn" onclick="toggleAnswer('ans2')">查看答案</button>
+        </div>
+        <div id="ans2" class="answer-area">
+            <p><strong>答案：</strong>$24\,\text{cm}^2$</p>
+            <p><strong>解析：</strong>∵ 菱形的对角线互相垂直（设交点为 $O$）</p>
+            <p>∴ $AC \perp BD$，菱形被分成四个全等的直角三角形</p>
+            <p>∴ 面积 $S = 4 \times \frac{1}{2} \times AO \times BO = 4 \times \frac{1}{2} \times 3 \times 4 = 24\,\text{cm}^2$</p>
+            <p><strong>公式总结：</strong>菱形的面积 = $\frac{1}{2} \times d_1 \times d_2$（两条对角线乘积的一半）</p>
+        </div>
+    </div>
+
+    <!-- 练习3 -->
+    <div class="practice-item">
+        <p><strong>练习3：</strong>菱形的一个内角是 $70^\circ$，那么其余三个内角分别是多少度？</p>
+        <div style="text-align:center;margin-top:10px;">
+            <button class="btn" onclick="toggleAnswer('ans3')">查看答案</button>
+        </div>
+        <div id="ans3" class="answer-area">
+            <p><strong>答案：</strong>$110^\circ$、$70^\circ$、$110^\circ$</p>
+            <p><strong>解析：</strong>∵ 菱形是平行四边形</p>
+            <p>∴ 对角相等，邻角互补</p>
+            <p>∴ 其余三个角分别为 $110^\circ$（邻角）、$70^\circ$（对角）、$110^\circ$（邻角）</p>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 课堂小结 ==================== -->
+<div class="card summary-card">
+    <h2>📋 课堂小结</h2>
+    <ul class="summary-list">
+        <li>
+            <strong>菱形的定义：</strong>有一组邻边相等的平行四边形叫做菱形。菱形是特殊的平行四边形。
+        </li>
+        <li>
+            <strong>对称性：</strong>菱形既是<strong>中心对称图形</strong>（对称中心为对角线交点），又是<strong>轴对称图形</strong>（有2条对称轴，即两条对角线所在直线）。
+        </li>
+        <li>
+            <strong>性质定理1：</strong>菱形的<strong>四条边都相等</strong>。（$AB=BC=CD=DA$）
+        </li>
+        <li>
+            <strong>性质定理2：</strong>菱形的<strong>对角线互相垂直</strong>。（$AC \perp BD$）
+        </li>
+        <li>
+            <strong>重要推论：</strong>菱形的对角线平分一组对角；菱形面积 $S=\frac{1}{2}d_1 d_2$。
+        </li>
+        <li>
+            <strong>生活应用：</strong>伸缩衣帽架利用菱形四条边相等的特性实现伸缩功能。
+        </li>
+    </ul>
+</div>
+
+<!-- ==================== 数学思想方法 ==================== -->
+<div class="card">
+    <h2>💡 数学思想方法</h2>
+    <div class="math-idea">
+        <h3 style="color:#0e7490;">🔄 类比思想</h3>
+        <p style="font-size:17px;line-height:2;margin-top:10px;">
+            我们学习菱形的方法与之前学习<strong>矩形</strong>的方法是一致的——都是先研究其<strong>作为特殊平行四边形所特有的性质</strong>。
+        </p>
+        <p style="font-size:17px;line-height:2;">
+            矩形是在"角"方面特殊（有一个直角），菱形是在"边"方面特殊（有一组邻边相等）。这种<strong>类比研究</strong>的方法可以帮助我们更系统地掌握特殊四边形的性质体系。
+        </p>
+        <div class="formula-box" style="margin-top:15px;">
+            平行四边形 $\xrightarrow{\text{加直角条件}}$ 矩形 &nbsp;&nbsp;|&nbsp;&nbsp; 平行四边形 $\xrightarrow{\text{加邻边相等}}$ 菱形
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 数学口诀 ==================== -->
+<div class="card">
+    <h2>📝 数学口诀</h2>
+    <div class="rhyme-box">
+        <h3>💎 菱形性质口诀</h3>
+        <div class="rhyme-text">
+            平行四边形加邻边等，<br>
+            特殊图形名叫菱形。<br>
+            四条边长都相等，<br>
+            对角线来互垂直。<br>
+            轴对称加中心对称，<br>
+            对角线平分两组角。<br>
+            面积可用底乘高，<br>
+            对角线积半也行得！
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 作业布置 ==================== -->
+<div class="card">
+    <h2>📚 作业布置</h2>
+    <div class="homework-box">
+        <span>📖</span>
+        <span><strong>必做题：</strong>课本第XX页 练习题 1、2、3</span>
+    </div>
+    <div class="homework-box">
+        <span>✏️</span>
+        <span><strong>选做题：</strong>思考：如果一个四边形的对角线互相垂直且平分，这个四边形一定是菱形吗？</span>
+    </div>
+    <div class="message-box">
+        "数学是一门需要不断积累和思考的学科，今天的每一个小发现，都是明天大智慧的基石。" 🌟
+    </div>
+</div>
+
+<!-- 页脚 -->
+<div class="footer-note">
+    华师版八年级下册 · 第18章 矩形、菱形与正方形 · 18.2.1.1 菱形的性质（第一课时）
+</div>
+
+</div><!-- end container -->
+
+<script>
+// ==================== 全局变量 ====================
+let foldAnimFrame = null;
+let foldStep = 0;
+let symmetryShowAxis = false;
+let coatRackState = 0;
+let coatRackAnimId = null;
+
+// ==================== 工具函数 ====================
+function drawArrow(ctx, fromX, fromY, toX, toY, color='#333', lineWidth=2) {
+    ctx.beginPath();
+    ctx.moveTo(fromX, fromY);
+    ctx.lineTo(toX, toY);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.stroke();
+    // 箭头
+    const angle = Math.atan2(toY - fromY, toX - fromX);
+    const headLen = 10;
+    ctx.beginPath();
+    ctx.moveTo(toX, toY);
+    ctx.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
+    ctx.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+
+function drawRightAngleMark(ctx, x, y, size, angleOffset=0) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angleOffset);
+    ctx.beginPath();
+    ctx.moveTo(size, 0);
+    ctx.lineTo(size, size);
+    ctx.lineTo(0, size);
+    ctx.strokeStyle = '#e11d48';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    ctx.restore();
+}
+
+function drawAngleArc(ctx, cx, cy, radius, startAngle, endAngle, label, labelColor='#333') {
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius, startAngle, endAngle);
+    ctx.strokeStyle = '#2563eb';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    // 标签位置
+    const midAngle = (startAngle + endAngle) / 2;
+    const lx = cx + (radius + 18) * Math.cos(midAngle);
+    const ly = cy + (radius + 18) * Math.sin(midAngle);
+    ctx.fillStyle = labelColor;
+    ctx.font = 'bold 17px Microsoft YaHei';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(label, lx, ly);
+}
+
+// ==================== 折纸动画 Canvas ====================
+function drawPaperFold(step) {
+    const canvas = document.getElementById('paperFoldCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 步骤文字
+    ctx.font = 'bold 18px Microsoft YaHei';
+    ctx.textAlign = 'center';
+    const steps = [
+        '步骤①：取一张矩形纸片',
+        '步骤②：将纸片沿水平方向对折',
+        '步骤③：再沿竖直方向再次对折',
+        '步骤④：沿虚线斜向剪开',
+        '步骤⑤：展开得到菱形！'
+    ];
+    ctx.fillStyle = '#5b21b6';
+    ctx.fillText(steps[step], W/2, 28);
+
+    if (step === 0) {
+        // 原始矩形
+        ctx.fillStyle = '#ede9fe'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+        ctx.fillRect(150, 60, 300, 200); ctx.strokeRect(150, 60, 300, 200);
+        ctx.fillStyle = '#333'; ctx.font = '16px Microsoft YaHei';
+        ctx.fillText('矩形纸片', 300, 290);
+    } else if (step === 1) {
+        // 第一次对折
+        ctx.save();
+        ctx.translate(300, 160);
+        ctx.scale(1, 0.5);
+        ctx.fillStyle = '#ddd6fe'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+        ctx.fillRect(-150, -100, 300, 200); ctx.strokeRect(-150, -100, 300, 200);
+        ctx.restore();
+        // 折痕线
+        ctx.beginPath(); ctx.setLineDash([6,4]); ctx.moveTo(150,160); ctx.lineTo(450,160);
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#333'; ctx.font = '16px Microsoft YaHei'; ctx.textAlign='center';
+        ctx.fillText('第一次对折（水平方向）', 300, 295);
+    } else if (step === 2) {
+        // 第二次对折
+        ctx.save();
+        ctx.translate(300, 160);
+        ctx.scale(0.35, 0.45);
+        ctx.fillStyle = '#c4b5fd'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+        ctx.fillRect(-150, -100, 300, 200); ctx.strokeRect(-150, -100, 300, 200);
+        ctx.restore();
+        ctx.setLineDash([6,4]);
+        ctx.beginPath(); ctx.moveTo(150,160); ctx.lineTo(450,160);
+        ctx.moveTo(300,60); ctx.lineTo(300,260);
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#333'; ctx.font = '16px Microsoft YaHei'; ctx.textAlign='center';
+        ctx.fillText('第二次对折（竖直方向）', 300, 295);
+    } else if (step === 3) {
+        // 小矩形 + 剪切虚线
+        ctx.save();
+        ctx.translate(300, 155);
+        ctx.scale(0.35, 0.42);
+        ctx.fillStyle = '#c4b5fd'; ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2;
+        ctx.fillRect(-150, -100, 300, 200); ctx.strokeRect(-150, -100, 300, 200);
+        ctx.restore();
+        // 剪切虚线
+        ctx.beginPath(); ctx.setLineDash([5,5]);
+        ctx.moveTo(230, 90); ctx.lineTo(370, 220);
+        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2.5; ctx.stroke(); ctx.setLineDash([]);
+        ctx.font = '16px Microsoft YaHei'; ctx.fillStyle = '#dc2626'; ctx.textAlign='left';
+        ctx.fillText('✂️ 沿此虚线剪开', 375, 225);
+        // 剪刀图标
+        ctx.font = '30px sans-serif'; ctx.fillText('✂️', 210, 80);
+    } else if (step === 4) {
+        // 展开的菱形
+        const cx = 300, cy = 170;
+        const dx = 130, dy = 95;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - dy); ctx.lineTo(cx + dx, cy);
+        ctx.lineTo(cx, cy + dy); ctx.lineTo(cx - dx, cy);
+        ctx.closePath();
+        ctx.fillStyle = '#c4b5fd'; ctx.fill();
+        ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 3; ctx.stroke();
+
+        // 标注顶点
+        ctx.fillStyle = '#5b21b6'; ctx.font = 'bold 18px Microsoft YaHei';
+        ctx.textAlign = 'center';
+        ctx.fillText('A', cx, cy - dy - 12);
+        ctx.fillText('B', cx + dx + 15, cy + 5);
+        ctx.fillText('C', cx, cy + dy + 18);
+        ctx.fillText('D', cx - dx - 15, cy + 5);
+
+        // 边长相等标注
+        ctx.font = '14px Microsoft YaHei'; ctx.fillStyle = '#d97706';
+        ctx.fillText('四条边都相等!', cx, cy + dy + 50);
+    }
+}
+
+function playFoldAnimation() {
+    foldStep = 0;
+    if (foldAnimFrame) cancelAnimationFrame(foldAnimFrame);
+    function animate() {
+        drawPaperFold(foldStep);
+        foldStep++;
+        if (foldStep <= 4) {
+            foldAnimFrame = setTimeout(() => requestAnimationFrame(animate), 1200);
+        }
+    }
+    animate();
+}
+
+function resetFoldAnimation() {
+    if (foldAnimFrame) { clearTimeout(foldAnimFrame); foldAnimFrame = null; }
+    foldStep = 0;
+    drawPaperFold(0);
+}
+
+// ==================== 对比图 Canvas ====================
+function drawCompare() {
+    const canvas = document.getElementById('compareCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 左侧：一般平行四边形
+    ctx.font = 'bold 18px Microsoft YaHei'; ctx.fillStyle = '#333'; ctx.textAlign = 'center';
+    ctx.fillText('一般平行四边形', 165, 32);
+
+    const ax1=80, ay1=250, bx1=260, cy1=190, dx1=140, dy1=310;
+    ctx.beginPath();
+    ctx.moveTo(ax1,ay1); ctx.lineTo(bx1,cy1); ctx.lineTo(dx1,dy1); ctx.lineTo(ax1+bx1-dx1,ay1+cy1-dy1);
+    ctx.closePath();
+    ctx.fillStyle = '#e0e7ff'; ctx.fill(); ctx.strokeStyle = '#3730a3'; ctx.lineWidth = 2.5; ctx.stroke();
+
+    ctx.fillStyle = '#1e40af'; ctx.font = 'bold 17px Microsoft YaHei';
+    ctx.textAlign='center';
+    ctx.fillText('A', ax1, ay1+20); ctx.fillText('B', bx1+12, cy1+5);
+    ctx.fillText('C', dx1+12, dy1+20); ctx.fillText('D', ax1+bx1-dx1-12, ay1+cy1-dy1+5);
+
+    // 标注不等边
+    ctx.font = '13px Microsoft YaHei'; ctx.fillStyle = '#666';
+    ctx.fillText('AB≠AD', 165, 340);
+
+    // 右侧：菱形
+    ctx.font = 'bold 18px Microsoft YaHei'; ctx.fillStyle = '#333'; ctx.textAlign = 'center';
+    ctx.fillText('菱形（特殊平行四边形）', 480, 32);
+
+    const cx2 = 480, cy2 = 265, rx = 105, ry2 = 115;
+    ctx.beginPath();
+    ctx.moveTo(cx2, cy2 - ry2); ctx.lineTo(cx2 + rx, cy2);
+    ctx.lineTo(cx2, cy2 + ry2); ctx.lineTo(cx2 - rx, cy2);
+    ctx.closePath();
+    ctx.fillStyle = '#ddd6fe'; ctx.fill(); ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2.5; ctx.stroke();
+
+    ctx.fillStyle = '#6d28d9'; ctx.font = 'bold 17px Microsoft YaHei';
+    ctx.textAlign = 'center';
+    ctx.fillText('A', cx2, cy2 - ry2 - 12);
+    ctx.fillText('B', cx2 + rx + 15, cy2 + 5);
+    ctx.fillText('C', cx2, cy2 + ry2 + 18);
+    ctx.fillText('D', cx2 - rx - 15, cy2 + 5);
+
+    // 标注四边相等
+    ctx.font = '13px Microsoft YaHei'; ctx.fillStyle = '#d97706';
+    ctx.fillText('AB=BC=CD=DA ✓', cx2, 340);
+
+    // 中间箭头
+    drawArrow(ctx, 315, 265, 360, 265, '#7c3aed', 2);
+    ctx.font = '13px Microsoft YaHei'; ctx.fillStyle = '#7c3aed';
+    ctx.textAlign = 'center';
+    ctx.fillText('邻边相等', 338, 255);
+}
+
+// ==================== 对称性 Canvas ====================
+function drawSymmetry() {
+    const canvas = document.getElementById('symmetryCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = 300, cy = 200, rx = 140, ry2 = 120;
+
+    // 绘制菱形
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx + rx, cy);
+    ctx.lineTo(cx, cy + ry2); ctx.lineTo(cx - rx, cy);
+    ctx.closePath();
+    ctx.fillStyle = '#ede9fe'; ctx.fill();
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2.5; ctx.stroke();
+
+    // 对角线
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx, cy + ry2);
+    ctx.moveTo(cx - rx, cy); ctx.lineTo(cx + rx, cy);
+    ctx.strokeStyle = '#9333ea'; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]);
+    ctx.stroke(); ctx.setLineDash([]);
+
+    // 顶点标签
+    ctx.fillStyle = '#4c1d95'; ctx.font = 'bold 18px Microsoft YaHei'; ctx.textAlign='center';
+    ctx.fillText('A', cx, cy - ry2 - 14);
+    ctx.fillText('B', cx + rx + 15, cy + 5);
+    ctx.fillText('C', cx, cy + ry2 + 20);
+    ctx.fillText('D', cx - rx - 15, cy + 5);
+    ctx.fillText('O', cx, cy + 20);
+
+    // 对角线标注
+    ctx.font = '16px Microsoft YaHei'; ctx.fillStyle = '#7c3aed';
+    ctx.fillText('AC', cx + 22, cy - 65);
+    ctx.fillText('BD', cx + rx - 20, cy - 12);
+
+    // 如果显示对称轴
+    if (symmetryShowAxis) {
+        // AC所在直线（对称轴1）
+        ctx.beginPath(); ctx.moveTo(cx, cy - ry2 - 30); ctx.lineTo(cx, cy + ry2 + 30);
+        ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2.5; ctx.stroke();
+        ctx.font = '15px Microsoft YaHei'; ctx.fillStyle = '#dc2626';
+        ctx.fillText('对称轴1（AC所在直线）', cx, cy + ry2 + 52);
+
+        // BD所在直线（对称轴2）
+        ctx.beginPath(); ctx.moveTo(cx - rx - 30, cy); ctx.lineTo(cx + rx + 30, cy);
+        ctx.strokeStyle = '#059669'; ctx.lineWidth = 2.5; ctx.stroke();
+        ctx.font = '15px Microsoft YaHei'; ctx.fillStyle = '#047857';
+        ctx.fillText('对称轴2（BD所在直线）', cx, cy + ry2 + 75);
+
+        // 中心对称标记
+        ctx.beginPath(); ctx.arc(cx, cy, 8, 0, Math.PI*2);
+        ctx.fillStyle = '#f59e0b'; ctx.fill();
+        ctx.font = '14px Microsoft YaHei'; ctx.fillStyle = '#d97706';
+        ctx.fillText('中心对称点 O', cx + 58, cy + 5);
+    }
+
+    // 底部说明
+    ctx.font = '16px Microsoft YaHei'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#333';
+    ctx.fillText(symmetryShowAxis ? '菱形有2条对称轴，也是中心对称图形' : '点击上方按钮显示对称轴', W/2, H - 12);
+}
+
+function toggleSymmetryAxis() {
+    symmetryShowAxis = !symmetryShowAxis;
+    drawSymmetry();
+}
+
+// ==================== 定理1 Canvas ====================
+function drawTheorem1() {
+    const canvas = document.getElementById('theorem1Canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W/2, cy = 195, rx = 140, ry2 = 125;
+
+    // 菱形
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx + rx, cy);
+    ctx.lineTo(cx, cy + ry2); ctx.lineTo(cx - rx, cy);
+    ctx.closePath();
+    ctx.fillStyle = '#ede9fe'; ctx.fill();
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 3; ctx.stroke();
+
+    // 边长相等标记（双短线）
+    function markEqualSide(x1, y1, x2, y2, offsetX, offsetY) {
+        const mx = (x1+x2)/2, my = (y1+y2)/2;
+        const perpAngle = Math.atan2(y2-y1, x2-x1) + Math.PI/2;
+        for (let i = -4; i <= 4; i += 8) {
+            ctx.beginPath();
+            ctx.moveTo(mx + i*Math.cos(perpAngle) + offsetX, my + i*Math.sin(perpAngle) + offsetY);
+            ctx.lineTo(mx + i*Math.cos(perpAngle) - offsetX, my + i*Math.sin(perpAngle) - offsetY);
+            ctx.strokeStyle = '#d97706'; ctx.lineWidth = 2; ctx.stroke();
+        }
+    }
+
+    markEqualSide(cx, cy-ry2, cx+rx, cy, 6, 0);   // AB
+    markEqualSide(cx+rx, cy, cx, cy+ry2, 0, 6);   // BC
+    markEqualSide(cx, cy+ry2, cx-rx, cy, -6, 0);  // CD
+    markEqualSide(cx-rx, cy, cx, cy-ry2, 0, -6);  // DA
+
+    // 顶点
+    ctx.fillStyle = '#4c1d95'; ctx.font = 'bold 20px Microsoft YaHei'; ctx.textAlign='center';
+    ctx.fillText('A', cx, cy - ry2 - 16);
+    ctx.fillText('B', cx + rx + 18, cy + 5);
+    ctx.fillText('C', cx, cy + ry2 + 22);
+    ctx.fillText('D', cx - rx - 18, cy + 5);
+
+    // 结论
+    ctx.font = 'bold 19px Microsoft YaHei'; ctx.fillStyle = '#7c3aed';
+    ctx.textAlign = 'center';
+    ctx.fillText('AB = BC = CD = DA', cx, H - 18);
+
+    // 图例说明
+    ctx.font = '15px Microsoft YaHei'; ctx.fillStyle = '#666';
+    ctx.textAlign = 'left';
+    ctx.fillText('注：双短划标记表示两边相等', 15, H - 18);
+}
+
+// ==================== 定理2 Canvas ====================
+function drawTheorem2(animProgress=0) {
+    const canvas = document.getElementById('theorem2Canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W/2, cy = 210, rx = 145, ry2 = 135;
+
+    // 菱形
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx + rx, cy);
+    ctx.lineTo(cx, cy + ry2); ctx.lineTo(cx - rx, cy);
+    ctx.closePath();
+    ctx.fillStyle = '#ede9fe'; ctx.fill();
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 3; ctx.stroke();
+
+    // 对角线（根据动画进度绘制）
+    const progress = Math.min(animProgress, 1);
+
+    // AC
+    if (progress > 0) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - ry2);
+        ctx.lineTo(cx, cy - ry2 + (cy + ry2 - (cy - ry2)) * progress);
+        ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 2.5; ctx.stroke();
+    }
+    // BD
+    if (progress > 0.3) {
+        const p2 = (progress - 0.3) / 0.7;
+        ctx.beginPath();
+        ctx.moveTo(cx - rx, cy);
+        ctx.lineTo(cx - rx + (cx + rx - (cx - rx)) * p2, cy);
+        ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2.5; ctx.stroke();
+    }
+    // 完整对角线
+    if (progress >= 1) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx, cy + ry2);  // AC
+        ctx.moveTo(cx - rx, cy); ctx.lineTo(cx + rx, cy);      // BD
+        ctx.strokeStyle = '#6d28d9'; ctx.lineWidth = 2; ctx.stroke();
+    }
+
+    // 交点O
+    ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI*2);
+    ctx.fillStyle = '#dc2626'; ctx.fill();
+
+    // 垂直符号（动画后期显示）
+    if (progress >= 1) {
+        drawRightAngleMark(ctx, cx, cy, 14, 0);
+        drawRightAngleMark(ctx, cx, cy, 14, Math.PI/2);
+        drawRightAngleMark(ctx, cx, cy, 14, Math.PI);
+        drawRightAngleMark(ctx, cx, cy, 14, -Math.PI/2);
+    }
+
+    // 顶点
+    ctx.fillStyle = '#4c1d95'; ctx.font = 'bold 19px Microsoft YaHei'; ctx.textAlign='center';
+    ctx.fillText('A', cx, cy - ry2 - 16);
+    ctx.fillText('B', cx + rx + 18, cy + 5);
+    ctx.fillText('C', cx, cy + ry2 + 22);
+    ctx.fillText('D', cx - rx - 18, cy + 5);
+    ctx.fillStyle = '#dc2626'; ctx.font = 'bold 18px Microsoft YaHei';
+    ctx.fillText('O', cx + 15, cy + 18);
+
+    // 对角线标注
+    if (progress >= 1) {
+        ctx.font = '16px Microsoft YaHei'; ctx.fillStyle = '#2563eb';
+        ctx.fillText('AC', cx + 22, cy - 75);
+        ctx.fillStyle = '#dc2626';
+        ctx.fillText('BD', cx + rx - 20, cy - 12);
+    }
+
+    // 结论
+    ctx.textAlign = 'center';
+    if (progress >= 1) {
+        ctx.font = 'bold 19px Microsoft YaHei'; ctx.fillStyle = '#7c3aed';
+        ctx.fillText('AC ⊥ BD （对角线互相垂直）', cx, H - 12);
+    } else {
+        ctx.font = '16px Microsoft YaHei'; ctx.fillStyle = '#666';
+        ctx.fillText('播放动画观察对角线...', cx, H - 12);
+    }
+}
+
+function playDiagonalAnimation() {
+    let progress = 0;
+    function anim() {
+        progress += 0.03;
+        drawTheorem2(progress);
+        if (progress < 1.3) {
+            requestAnimationFrame(anim);
+        }
+    }
+    anim();
+}
+
+function showProof2() {
+    const el = document.getElementById('proof2Area');
+    el.classList.toggle('show');
+}
+
+// ==================== 例1 Canvas ====================
+function drawExample1() {
+    const canvas = document.getElementById('example1Canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const cx = W/2, cy = 215, rx = 145, ry2 = 140;
+
+    // 菱形（倾斜使BAD看起来像120°）
+    // 使用标准菱形绘制，标注角度即可
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx + rx, cy);
+    ctx.lineTo(cx, cy + ry2); ctx.lineTo(cx - rx, cy);
+    ctx.closePath();
+    ctx.fillStyle = '#ede9fe'; ctx.fill();
+    ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 3; ctx.stroke();
+
+    // 对角线
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx, cy + ry2);
+    ctx.moveTo(cx - rx, cy); ctx.lineTo(cx + rx, cy);
+    ctx.strokeStyle = '#a78bfa'; ctx.lineWidth = 1.5; ctx.setLineDash([5,4]);
+    ctx.stroke(); ctx.setLineDash([]);
+
+    // 角度弧 BAD = 120°
+    const angleA = Math.atan2(-(cy-ry2)-cy, 0-(cx-rx)); // AD方向
+    const angleB = Math.atan2(cy-(cy-ry2), (cx+rx)-cx);  // AB方向
+    // 在顶点A处画120°角弧
+    drawAngleArc(ctx, cx, cy - ry2, 38,
+        Math.atan2((cy)-(cy-ry2), (cx+rx-cx)), // AB方向
+        Math.atan2((cy)-(cy-ry2), (cx-rx-cx)),  // AD方向
+        '120°', '#dc2626');
+
+    // 角度B = 60°
+    drawAngleArc(ctx, cx + rx, cy, 30,
+        Math.atan2((cy-ry2)-cy, cx-(cx+rx)),
+        Math.atan2((cy+ry2)-cy, cx-(cx+rx)),
+        '60°?', '#2563eb');
+
+    // △ABC 等边三角形标注（连接AC）
+    ctx.beginPath();
+    ctx.moveTo(cx + rx, cy);
+    ctx.lineTo(cx, cy - ry2);
+    ctx.setLineDash([4,3]); ctx.strokeStyle = '#059669'; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+
+    // 三角形ABC填充
+    ctx.beginPath();
+    ctx.moveTo(cx, cy - ry2); ctx.lineTo(cx + rx, cy); ctx.lineTo(cx, cy + ry2);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(16,185,129,0.08)'; ctx.fill();
+    ctx.strokeStyle = '#059669'; ctx.lineWidth = 1.5; ctx.setLineDash([4,3]); ctx.stroke(); ctx.setLineDash([]);
+
+    // 顶点
+    ctx.fillStyle = '#4c1d95'; ctx.font = 'bold 20px Microsoft YaHei'; ctx.textAlign='center';
+    ctx.fillText('A', cx, cy - ry2 - 18);
+    ctx.fillText('B', cx + rx + 18, cy + 6);
+    ctx.fillText('C', cx, cy + ry2 + 22);
+    ctx.fillText('D', cx - rx - 18, cy + 6);
+
+    // △ABC标注
+    ctx.font = '15px Microsoft YaHei'; ctx.fillStyle = '#047857';
+    ctx.fillText('△ABC', cx + rx/2 + 15, cy - 20);
+}
+
+function toggleExampleAnswer() {
+    document.getElementById('example1Answer').classList.toggle('show');
+}
+
+// ==================== 衣帽架 Canvas ====================
+function drawCoatRack(state) {
+    const canvas = document.getElementById('coatRackCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const baseCx = W / 2, baseCy = H - 60;
+
+    // 计算收缩程度：state 0=展开, 1=中间, 2=收缩
+    const maxWidth = 240;
+    const minWidth = 60;
+    const heights = [180, 130, 75]; // 不同状态的高度
+
+    let curWidth, curHeight;
+    if (state === 0) { curWidth = maxWidth; curHeight = heights[0]; }
+    else if (state === 1) { curWidth = (maxWidth + minWidth) / 2; curHeight = heights[1]; }
+    else { curWidth = minWidth; curHeight = heights[2]; }
+
+    // 绘制3个菱形单元
+    const numUnits = 3;
+    const unitH = curHeight / numUnits;
+
+    for (let i = 0; i < numUnits; i++) {
+        const unitCenterY = baseCy - curHeight / 2 + unitH * i + unitH / 2;
+        const halfW = curWidth / 2 * (1 - Math.abs(i - 1) * 0.15); // 中间宽一点
+        const halfH2 = unitH / 2 * 0.85;
+
+        // 菱形
+        ctx.beginPath();
+        ctx.moveTo(baseCx, unitCenterY - halfH2);
+        ctx.lineTo(baseCx + halfW, unitCenterY);
+        ctx.lineTo(baseCx, unitCenterY + halfH2);
+        ctx.lineTo(baseCx - halfW, unitCenterY);
+        ctx.closePath();
+        ctx.fillStyle = i === 1 ? '#c4b5fd' : '#ede9fe';
+        ctx.fill();
+        ctx.strokeStyle = '#7c3aed'; ctx.lineWidth = 2; ctx.stroke();
+
+        // 连接点
+        ctx.beginPath(); ctx.arc(baseCx, unitCenterY - halfH2, 4, 0, Math.PI*2);
+        ctx.fillStyle = '#6d28d9'; ctx.fill();
+        ctx.beginPath(); ctx.arc(baseCx, unitCenterY + halfH2, 4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath(); ctx.arc(baseCx + halfW, unitCenterY, 4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.beginPath(); ctx.arc(baseCx - halfW, unitCenterY, 4, 0, Math.PI*2);
+        ctx.fill();
+    }
+
+    // 顶部挂钩
+    ctx.beginPath();
+    ctx.moveTo(baseCx, baseCy - curHeight);
+    ctx.quadraticCurveTo(baseCx, baseCy - curHeight - 30, baseCx + 20, baseCy - curHeight - 35);
+    ctx.quadraticCurveTo(baseCx + 35, baseCy - curHeight - 35, baseCx + 35, baseCy - curHeight - 20);
+    ctx.strokeStyle = '#374151'; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.stroke();
+
+    // 底座
+    ctx.fillStyle = '#6b7280';
+    ctx.beginPath();
+    ctx.roundRect(baseCx - 40, baseCy - 8, 80, 16, 4);
+    ctx.fill();
+
+    // 左右侧杆
+    ctx.beginPath();
+    ctx.moveTo(baseCx - curWidth / 2, baseCy - curHeight / 2);
+    ctx.lineTo(baseCx - 40, baseCy - 8);
+    ctx.moveTo(baseCx + curWidth / 2, baseCy - curHeight / 2);
+    ctx.lineTo(baseCx + 40, baseCy - 8);
+    ctx.strokeStyle = '#9ca3af'; ctx.lineWidth = 2; ctx.stroke();
+
+    // 衣服装饰（展开时显示）
+    if (state <= 1) {
+        const shirtW = curWidth * 0.6;
+        ctx.fillStyle = state === 0 ? 'rgba(59,130,246,0.3)' : 'rgba(239,68,68,0.3)';
+        ctx.beginPath();
+        ctx.ellipse(baseCx, baseCy - curHeight / 2 + 10, shirtW/2, 35, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = state === 0 ? '#3b82f6' : '#ef4444'; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+
+    // 状态文字
+    const labels = ['展开状态（挂衣物）', '半收缩状态', '完全收缩（节省空间）'];
+    ctx.font = 'bold 17px Microsoft YaHei'; ctx.fillStyle = '#5b21b6'; ctx.textAlign = 'center';
+    ctx.fillText(labels[state] || labels[0], W / 2, H - 15);
+}
+
+function animateCoatRack() {
+    coatRackState = 0;
+    drawCoatRack(0);
+    let step = 0;
+    function anim() {
+        step++;
+        if (step % 40 === 0 && coatRackState < 2) {
+            coatRackState++;
+            drawCoatRack(coatRackState);
+        }
+        if (coatRackState < 2) {
+            coatRackAnimId = requestAnimationFrame(anim);
+        } else {
+            // 自动返回展开
+            setTimeout(() => {
+                coatRackState = 1; drawCoatRack(1);
+                setTimeout(() => { coatRackState = 0; drawCoatRack(0); }, 500);
+            }, 800);
+        }
+    }
+    if (coatRackAnimId) cancelAnimationFrame(coatRackAnimId);
+    anim();
+}
+
+function resetCoatRack() {
+    if (coatRackAnimId) cancelAnimationFrame(coatRackAnimId);
+    coatRackState = 0;
+    drawCoatRack(0);
+}
+
+// ==================== 答案切换 ====================
+function toggleAnswer(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('show');
+}
+
+// ==================== 初始化所有Canvas ====================
+function initAllCanvases() {
+    drawPaperFold(0);
+    drawCompare();
+    drawSymmetry();
+    drawTheorem1();
+    drawTheorem2(1);
+    drawExample1();
+    drawCoatRack(0);
+}
+
+// 页面加载完成后初始化
+window.onload = function() {
+    // 等 MathJax 加载后初始化 Canvas
+    setTimeout(initAllCanvases, 300);
+};
+</script>
+
+</body>
+</html>

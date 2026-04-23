@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.3 实践与探索(第三课时) | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}.explore-card h4::before{content:"🔍 ";}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;} .interact-btn:hover{transform:translateY(-2px);}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}tr:nth-child(even) td{background:#f0fdff;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.5.3 实践与探索（第三课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>能综合运用一次函数和反比例函数知识解决复杂实际问题</div>
+            <div class="target-item"><span>2</span>掌握分段函数的建模方法与应用</div>
+            <div class="target-item"><span>3</span>能从图表信息中提取数据并建立函数模型</div>
+            <div class="target-item"><span>4</span>体会函数思想在解决综合性问题中的价值</div>
+        </div>
+    </div>
+
+    <!-- 综合探究一：温度转换 -->
+    <div class="section-title">🌡️ 探究一：温度单位换算中的线性模型</div>
+
+    <div class="explore-card">
+        <h4>摄氏温度与华氏温度的关系</h4>
+        <p>生活中常用的两种温标：**摄氏度 (°C)** 和 **华氏度 (°F)**。它们之间的换算关系是一个<strong>一次函数</strong>！</p>
+        <p>已知以下对应关系：</p>
+        <table style="width:auto;margin:.5rem auto;">
+            <tr><th>摄氏 $C$</th><td>-40</td><td>0</td><td>37</td><td>100</td></tr>
+            <tr><th>华氏 $F$</th><td>-40</td><td>32</td><td>98.6</td><td>212</td></tr>
+        </table>
+        <button class="interact-btn" onclick="toggleAnswer('tempQ')">💡 推导关系式</button>
+        <div id="tempQ" class="answer-box">
+            <p>设 $F = kC + b$，代入 $(0, 32)$ 和 $(100, 212)$：</p>
+            <p>$32 = k\times0 + b$ → $\boldsymbol{b = 32}$</p>
+            <p>$212 = k\times100 + 32$ → $180 = 100k$ → $\boldsymbol{k = \frac{9}{5} = 1.8}$</p>
+            <p>∴ 换算公式：$$F = \frac{9}{5}C + 32$$ 或 $$C = \frac{5}{9}(F - 32)$$</p>
+            <p><strong>有趣事实：</strong>$-40°C = -40°F$，这是两温标唯一的相同点！</p>
+        </div>
+    </div>
+
+    <!-- 综合探究二：分段计费综合 -->
+    <div class="section-title">🧮 探究二：分段函数的综合建模</div>
+
+    <div class="example-card">
+        <h4>例1 某市居民用水阶梯水价问题</h4>
+        <p>某市对居民生活用水实行阶梯价格，收费标准如下：</p>
+        <table style="max-width:500px;">
+            <tr><th>用水量等级</th><th>每吨水价（元）</th></tr>
+            <tr><td>不超过 15 吨/月</td><td>2.0</td></tr>
+            <tr><td>超过 15 吨但不超过 25 吨的部分</td><td>2.5</td></tr>
+            <tr><td>超过 25 吨的部分</td><td>3.5</td></tr>
+        </table>
+        <p>(1) 写出水费 $y$ 与用水量 $x$（吨）的分段函数表达式</p>
+        <p>(2) 某户上月用水 20 吨，应缴水费多少？用水 30 吨呢？</p>
+        <p>(3) 如果某户某月缴了 55 元水费，该户用了多少吨水？（取整到小数点后一位）</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>(1)</strong></p>
+            <p>当 $0 \leq x \leq 15$ 时：$\displaystyle y = 2x$</p>
+            <p>当 $15 < x \leq 25$ 时：$\displaystyle y = 30 + 2.5(x-15) = 2.5x - 7.5$</p>
+            <p>当 $x > 25$ 时：$\displaystyle y = 30 + 25 + 3.5(x-25) = 3.5x - 22.5$</p>
+            <p style="text-align:center;">$$ y = \begin{cases} 2x & (0 \leq x \leq 15) \\ 2.5x - 7.5 & (15 < x \leq 25) \\ 3.5x - 22.5 & (x > 25) \end{cases} $$</p>
+            <p><strong>(2)</strong> 用水 20 吨（第二段）：<br>$y = 2.5\times20 - 7.5 =$ <strong>42.5 元</strong></p>
+            <p>用水 30 吨（第三段）：<br>$y = 3.5\times30 - 22.5 = 105 - 22.5 =$ <strong>82.5 元</strong></p>
+            <p><strong>(3)</strong> 先判断在哪一段：
+                <br>第一段最大费用：$2\times15=30$ 元
+                <br>第二段最大费用：$2.5\times25-7.5=55$ 元
+                <br>55元正好等于第二段的最高值！说明 $x = 25$ 吨（或略大于25吨）
+                <br>精确计算：若在第三段：$3.5x-22.5=55$ → $3.5x=77.5$ → $x=\frac{155}{7}\approx 22.14$
+                <br>但 22.14 < 25，不在第三段 → 应为第二段末端：$x=$<strong>25 吨</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- 综合探究三：一次+反比例综合 -->
+    <div class="section-title">⚖️ 探究三：一次函数与反比例函数的综合应用</div>
+
+    <div class="example-card">
+        <h4>例2 行程中的速度、时间和路程</h4>
+        <p>A、B 两城相距 300 km。甲车以恒定速度 $v_1 = 50$ km/h 从 A 城驶向 B 城。乙车同时从 B 城出发驶向 A 城。</p>
+        <p>(1) 设乙车速度为 $v_2$ km/h。若要求两车在出发后不超过 3 小时相遇，则乙车的速度至少应为多少？</p>
+        <p>(2) 若乙车速度为 $v_2 = 75$ km/h：
+p>&nbsp;&nbsp;&nbsp;(a) 多少小时后两车相遇？
+<p>&nbsp;&nbsp;&nbsp;(b) 相遇时各自行驶了多少路程？</p>
+        <p>(3) 若要求两车必须在距离 A 城 120 km ~ 180 km 之间相遇（如在该区间有加油站），则乙车速度应在什么范围内？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 相遇时间 $t \leq 3$：</p>
+            <p>$\frac{300}{v_1+v_2} \leq 3$ → $v_1 + v_2 \geq 100$</p>
+            <p>$50 + v_2 \geq 100$ → $\boldsymbol{v_2 \geq 50}$ km/h</p>
+            <p><strong>(2)(a)</strong> $t = \frac{300}{50+75} = \frac{300}{125} =$ <strong>2.4 小时</strong></p>
+            <p><strong>(2)(b)</strong> 甲路程：$50\times2.4 =$ <strong>120 km</strong></p>
+            <p>乙路程：$75\times2.4 =$ <strong>180 km</strong>（检验：$120+180=300$ ✓）</p>
+            <p><strong>(3)</strong> 相遇时距A城的距离：$s = 50t = 50\times\frac{300}{50+v_2} = \frac{15000}{50+v_2}$</p>
+            <p>要求 $120 \leq s \leq 180$：</p>
+            <p>$120 \leq \frac{15000}{50+v_2} \leq 180$</p>
+            <p>左边：$120(50+v_2)\leq15000$ → $6000+120v_2\leq15000$ → $v_2\leq75$</p>
+            <p>右边：$15000\leq180(50+v_2)$ → $15000\leq9000+180v_2$ → $180v_2\geq6000$ → $v_2\geq\frac{100}{3}\approx33.33$</p>
+            <p>∴ $\boldsymbol{\frac{100}{3}\leq v_2\leq 75}$ km/h</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 等积变形 — 反比例关系的巧妙利用</h4>
+        <p>已知矩形的长为 $x$ cm，宽为 $y$ cm，面积为 48 cm²。</p>
+        <p>(1) 求 $y$ 关于 $x$ 的函数表达式</p>
+        <p>(2) 若长比宽多 4 cm，求这个矩形的周长</p>
+        <p>(3) 当矩形的长和宽均为正整数且相差不超过 3 时，有多少种这样的矩形？分别写出它们的长和宽。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 详细解答</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>(1)</strong> $xy = 48$ → $\displaystyle y = \frac{48}{x}$（$x > 0$, 反比例函数）</p>
+            <p><strong>(2)</strong> 由题意：$x = y + 4$，代入面积公式：</p>
+            <p>$y(y+4) = 48$ → $y^2 + 4y - 48 = 0$</p>
+            <p>解得：$(y+8)(y-6)=0$ → $y=6$ 或 $y=-8$（舍去负值）</p>
+            <p>∴ 宽 $y=6$ cm，长 $x=y+4=10$ cm</p>
+            <p>周长 = $2(10+6)=$ <strong>32 cm</strong></p>
+            <p><strong>(3)</strong> $xy=48$ 的正整数因数对有：
+                <br>$(1,48),(2,24),(3,16),(4,12),(6,8),(8,6),(12,4),(16,3),(24,2),(48,1)$</p>
+            <p>其中差不超过 3 的：$(6,8)$ 和 $(8,6)$ → 共 <strong>2 种</strong></p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 某快递公司收取快递费的规则如下：首重 1 kg 内收费 10 元，续重每千克加收 5 元（不足 1 kg 按 1 kg 计算）。设快递重量为 $x$ kg（$x > 0$），运费为 $y$ 元：</p>
+        <p>&nbsp;&nbsp;(1) 写出 $y$ 关于 $x$ 的分段函数表达式</p>
+        <p>&nbsp;&nbsp;(2) 一个包裹重 3.2 kg，需要多少运费？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+        <div id="pr1" class="answer-box">
+            <p><strong>(1)</strong> 当 $0 < x \leq 1$：$y = 10$<br>当 $x > 1$：$y = 10 + 5\lceil x-1\rceil$</p>
+            <p><strong>(2)</strong> 3.2 kg → 首重1kg：10元；续重 2.2kg→按3kg计算：$3\times5=15$元<br>总计：$10+15=$<strong>25 元</strong></p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>2.</strong> 甲、乙两人分别从 A、B 两地同时相向而行。甲的速度是乙的 1.5 倍。已知 A、B 相距 200 km，2 小时后两人还相距 20 km。求两人的速度。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p>设乙速为 $v$ km/h，则甲速为 $1.5v$ km/h</p>
+            <p>2小时共走了：$2(v+1.5v)=5v$ km</p>
+            <p>剩余 20 km → $5v + 20 = 200$ → $5v = 180$ → $v = 36$ km/h</p>
+            <p>∴ 乙速 <strong>36 km/h</strong>，甲速 <strong>54 km/h</strong></p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>分段函数建模</strong>：实际中很多计费方案都是分段线性的，需分区间讨论</li>
+            <li><strong>反比例关系的应用</strong>：乘积定值的问题（工程、面积等），常结合方程求解</li>
+            <li><strong>一次函数的综合应用</strong>：行程、利润、方案选择等问题中，往往涉及多个变量之间的关系</li>
+            <li><strong>关键能力</strong>：读懂题意 → 建立模型 → 数学求解 → 还原检验</li>
+        </ul>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){var el=document.getElementById(id);if(el.style.display==='block'||el.style.display===''){var c=window.getComputedStyle(el).display;if(c==='block'||el.dataset.shown==='yes'){el.style.display='none';return;}}el.style.display='block';el.dataset.shown='yes';if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}}
+</script>
+</body>
+</html>

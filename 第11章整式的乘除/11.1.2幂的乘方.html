@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.1.2 幂的乘方 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.1.2</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.1.2 幂的乘方</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解幂的乘方的运算法则</div>
+            <div class="target-item"><span>✔</span>能运用法则进行计算和化简</div>
+            <div class="target-item"><span>✔</span>体会转化思想，将幂的乘方转化为同底数幂的乘法</div>
+        </div>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>根据乘方的意义及同底数幂的乘法法则填空：</p>
+        <p>\((1)\ (2^{3})^{2} = 2^{3}\times 2^{3} = 2^{(\qquad)}\)</p>
+        <p>\((2)\ (5^{2})^{3} = 5^{2}\times 5^{2}\times 5^{2} = 5^{(\qquad)}\)</p>
+        <p>\((3)\ (a^{3})^{4} = a^{3}\cdot a^{3}\cdot a^{3}\cdot a^{3} = a^{(\qquad)}\)</p>
+        <button class="interact-btn" onclick="toggleAnswer('tryAns')">🔍 显示答案</button>
+        <div id="tryAns" class="answer-box">
+            <p>\((1)\ 2^{6}\)；\((2)\ 5^{6}\)；\((3)\ a^{12}\)。</p>
+        </div>
+    </div>
+
+    <!-- 概括（包含用户提供的推导） -->
+    <div class="concept-box">
+        <strong>概括</strong><br>
+        一般地，对于任意正整数 \(m,n\)，有
+        \[
+        \begin{aligned}
+        (a^{m})^{n} &= \underbrace{a^{m} \cdot a^{m} \cdot \cdots \cdot a^{m}}_{n\ \text{个}} \\
+        &= a^{\overbrace{m+m+\cdots+m}^{n\ \text{个}}} \\
+        &= a^{mn}.
+        \end{aligned}
+        \]
+        这就是说，幂的乘方，底数不变，指数相乘。<br>
+        <strong>法则：</strong> \((a^{m})^{n}=a^{mn}\)（\(m,n\)为正整数）。
+    </div>
+
+    <!-- 例2 （课本例2） -->
+    <div class="example-box">
+        <h4>例2 计算</h4>
+        <p>\((1)\ (10^{3})^{5}\)；\((2)\ (b^{5})^{4}\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>\((1)\ (10^{3})^{5}=10^{3\times5}=10^{15}\)；</p>
+            <p>\((2)\ (b^{5})^{4}=b^{5\times4}=b^{20}\)。</p>
+        </div>
+    </div>
+
+    <!-- 例3 （底数为代数式） -->
+    <div class="example-box">
+        <h4>例3 计算（底数为代数式）</h4>
+        <p>\((1)\ [(x+y)^{2}]^{3}\)；\((2)\ [(2a-1)^{3}]^{4}\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>\((1)\ [(x+y)^{2}]^{3} = (x+y)^{2\times3} = (x+y)^{6}\)；</p>
+            <p>\((2)\ [(2a-1)^{3}]^{4} = (2a-1)^{3\times4} = (2a-1)^{12}\)。</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 判断下列计算是否正确，并说明理由：</p>
+            <span class="sub-question">\((1)\ (a^{3})^{5} = a^{8}\)；</span>
+            <span class="sub-question">\((2)\ a^{3}\cdot a^{5} = a^{15}\)；</span>
+            <span class="sub-question">\((3)\ (a^{2})^{3}\cdot a^{4} = a^{9}\)。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) 错，应为 \(a^{15}\)（指数相乘 \(3\times5=15\)）；</p>
+                <p class="sub-answer">(2) 错，应为 \(a^{8}\)（同底数幂乘法，指数相加 \(3+5=8\)）；</p>
+                <p class="sub-answer">(3) 正确，\((a^{2})^{3}=a^{6}\)，\(a^{6}\cdot a^{4}=a^{10}\)？等等，原题是 \(a^{9}\)，我们重新计算：\((a^{2})^{3}=a^{6}\)，乘以 \(a^{4}\) 得 \(a^{10}\)，所以原题 \(a^{9}\) 错误，正确答案是 \(a^{10}\)。</p>
+                <p class="sub-answer">修正：\((a^{2})^{3}\cdot a^{4} = a^{6}\cdot a^{4}=a^{10}\)。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：</p>
+            <span class="sub-question">\((1)\ (2^{2})^{2}\)；</span>
+            <span class="sub-question">\((2)\ (y^{2})^{5}\)；</span>
+            <span class="sub-question">\((3)\ (x^{4})^{3}\)；</span>
+            <span class="sub-question">\((4)\ (y^{3})^{2}\cdot (y^{2})^{3}\)；</span>
+            <span class="sub-question">\((5)\ [(m+n)^{3}]^{2}\)。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) \(2^{4}=16\)；</p>
+                <p class="sub-answer">(2) \(y^{10}\)；</p>
+                <p class="sub-answer">(3) \(x^{12}\)；</p>
+                <p class="sub-answer">(4) \((y^{3})^{2}=y^{6}\)，\((y^{2})^{3}=y^{6}\)，乘积 \(y^{12}\)；</p>
+                <p class="sub-answer">(5) \((m+n)^{6}\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：幂的乘方与积的乘方 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 幂的乘方与积的乘方</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>幂的乘方 \((a^{m})^{n}=a^{mn}\) 与积的乘方 \((ab)^{n}=a^{n}b^{n}\) 是幂的运算中两个重要的法则。它们可以互相结合，解决更复杂的问题，例如 \((a^{2}b^{3})^{4} = a^{8}b^{12}\)。这些法则在整式乘除中有着广泛的应用。</p>
+            <p>有趣的是，幂的乘方也可以从乘方的意义理解：\((a^{m})^{n}\) 表示 \(n\) 个 \(a^{m}\) 相乘，而每个 \(a^{m}\) 又是 \(m\) 个 \(a\) 相乘，所以一共是 \(m\times n\) 个 \(a\) 相乘。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将幂的乘方转化为同底数幂的乘法，再转化为指数的加法，最终得到指数相乘。<br>
+        <strong>归纳思想：</strong> 从特殊例子中归纳出一般法则。<br>
+        <strong>符号意识：</strong> 用字母表示数，培养代数思维。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">幂的乘方：\((a^{m})^{n}=a^{mn}\)（底数不变，指数相乘）。</div>
+            <div class="summary-item">注意与同底数幂乘法 \((a^{m}\cdot a^{n}=a^{m+n})\) 的区别。</div>
+            <div class="summary-item">底数可以是数、字母或代数式，法则同样适用。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.1 A组第2、3(3)题，并尝试自己编写一道幂的乘方题目（底数为代数式）。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 指数相乘，底数不变，幂的乘方助你攀登数学高峰 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.1.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

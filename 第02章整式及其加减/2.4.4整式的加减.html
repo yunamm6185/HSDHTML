@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第35课时 整式的加减 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            },
+            chtml: {
+                scale: 1,
+                displayAlign: 'center',
+                displayIndent: '0px'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px; /* 增大最大高度，确保全部显示 */
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .figure-box {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+        /* 读一读内部样式 */
+        .reading-content p {
+            margin: 0.8rem 0;
+        }
+        /* 并排竖式容器 */
+        .row-vertical {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .latex-vertical {
+            margin: 0;
+            text-align: center;
+        }
+        .reading-exercise-item {
+            margin: 12px 0;
+            text-align: left !important;
+            display: block;
+            width: 100%;
+        }
+        .reading-exercise-item mjx-container {
+            justify-content: flex-start !important;
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.4 整式的加减</h2>
+    <div class="lesson-title">第5课时 整式的加减</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握整式加减运算的步骤</div>
+            <div class="target-item"><span>✔</span>能熟练进行整式的加减运算</div>
+            <div class="target-item"><span>✔</span>能运用整式加减解决简单实际问题</div>
+            <div class="target-item"><span>✔</span>体会从一般到特殊的数学思想</div>
+        </div>
+    </div>
+
+    <!-- 做一做：合唱团人数（无图） -->
+    <h3>📝 做一做</h3>
+    <div class="think-box">
+        <p>某中学合唱团出场时第1排站了 \(n\) 位同学，从第2排起每排都比前一排多1位同学，一共站了4排，则该合唱团一共有______位同学参加演唱。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do')">显示答案</button>
+        <div id="answerDo" class="answer-box">
+            <div class="answer-line">第2、3、4排的人数分别为 \(n+1\)、\(n+2\)、\(n+3\)。</div>
+            <div class="answer-line">总人数为 \(n + (n+1) + (n+2) + (n+3) = 4n + 6\)。</div>
+        </div>
+    </div>
+
+    <!-- 思考与概括 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">🤔 思考：在解本节的例7时，我们所做的实质上就是整式的加减运算。结合已有的知识和经验，你能总结出整式加减运算的一般步骤吗？</p>
+    </div>
+    <div class="rule-box">
+        <div class="title">📌 概括</div>
+        <p>去括号和合并同类项是整式加减的基础。整式加减运算的一般步骤是：</p>
+        <p><span class="term-highlight">先去括号，再合并同类项。</span></p>
+    </div>
+
+    <!-- 例9（课本P110） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex9">
+        <p><strong>例9</strong> 求整式 \(x^2 - 7x - 2\) 与 \(-2x^2 + 4x - 1\) 的差。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(9)">显示答案</button>
+        <div id="exampleAnswer9" class="answer-box">
+            <div class="answer-line">\((x^2 - 7x - 2) - (-2x^2 + 4x - 1)\)</div>
+            <div class="answer-line">\(= x^2 - 7x - 2 + 2x^2 - 4x + 1\)</div>
+            <div class="answer-line">\(= (x^2 + 2x^2) + (-7x - 4x) + (-2 + 1)\)</div>
+            <div class="answer-line">\(= 3x^2 - 11x - 1\)</div>
+        </div>
+    </div>
+
+    <!-- 例10（课本P110） -->
+    <div class="example-box" id="ex10">
+        <p><strong>例10</strong> 计算：\(-2y^3 + (3xy^2 - x^2y) - 2(xy^2 - y^3)\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(10)">显示答案</button>
+        <div id="exampleAnswer10" class="answer-box">
+            <div class="answer-line">\(-2y^3 + (3xy^2 - x^2y) - 2(xy^2 - y^3)\)</div>
+            <div class="answer-line">\(= -2y^3 + 3xy^2 - x^2y - 2xy^2 + 2y^3\)</div>
+            <div class="answer-line">\(= (-2y^3 + 2y^3) + (3xy^2 - 2xy^2) - x^2y\)</div>
+            <div class="answer-line">\(= xy^2 - x^2y\)</div>
+        </div>
+    </div>
+
+    <!-- 例11（课本P110） -->
+    <div class="example-box" id="ex11">
+        <p><strong>例11</strong> 先化简，再求值：\(2x^2y - 3xy^2 + 4x^2y - 5xy^2\)，其中 \(x = 1\)，\(y = -1\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(11)">显示答案</button>
+        <div id="exampleAnswer11" class="answer-box">
+            <div class="answer-line">\(2x^2y - 3xy^2 + 4x^2y - 5xy^2\)</div>
+            <div class="answer-line">\(= (2x^2y + 4x^2y) - (3xy^2 + 5xy^2)\)</div>
+            <div class="answer-line">\(= 6x^2y - 8xy^2\)</div>
+            <div class="answer-line">当 \(x = 1\)，\(y = -1\) 时，</div>
+            <div class="answer-line">原式 \(= 6 \times 1^2 \times (-1) - 8 \times 1 \times (-1)^2 = -6 - 8 = -14\)。</div>
+        </div>
+    </div>
+
+    <!-- 例12（课本P110） -->
+    <div class="example-box" id="ex12">
+        <p><strong>例12</strong> 设 \(\overline{abcd}\) 是一个四位数，如果 \(a + b + c + d\) 可以被3整除，那么这个数可以被3整除。为什么？</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(12)">显示答案</button>
+        <div id="exampleAnswer12" class="answer-box">
+            <div class="answer-line">\(\overline{abcd} = 1000a + 100b + 10c + d\)</div>
+            <div class="answer-line">\(= (999a + 99b + 9c) + (a + b + c + d)\)</div>
+            <div class="answer-line">显然 \(999a + 99b + 9c\) 能被3整除。</div>
+            <div class="answer-line">因此，如果 \(a + b + c + d\) 能被3整除，那么 \(\overline{abcd}\) 就能被3整除。</div>
+        </div>
+    </div>
+
+    <!-- 课本P110最后一段 -->
+    <div class="tip-box" style="background:#e6f3e6; border-left-color:#2e8b6c;">
+        <p>我们看到，用字母表示数，通过数与式的运算，还可以进行简单的代数推理，说明一些数学结论的道理。</p>
+    </div>
+
+    <!-- 练习（课本P110-111） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 填空：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(3x - (-2x) =\) ______；</div>
+            <div class="sub-question">(2) \(-2x^2 - 3x^2 =\) ______；</div>
+            <div class="sub-question">(3) \(-4xy - (-2xy) =\) ______。</div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">(1) \(3x + 2x = 5x\)</div>
+                <div class="answer-line">(2) \(-5x^2\)</div>
+                <div class="answer-line">(3) \(-4xy + 2xy = -2xy\)</div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(2x^2y^3 + (-4x^2y^3) - (-3x^2y^3)\)；</div>
+            <div class="sub-question">(2) \((3x^2 + x - 5) - (4 - x + 7x^2)\)；</div>
+            <div class="sub-question">(3) \((8xy - 3y^2) - 5xy - 2(3xy - 2x^2)\)。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) \(2x^2y^3 - 4x^2y^3 + 3x^2y^3 = (2-4+3)x^2y^3 = x^2y^3\)</div>
+                <div class="answer-line">(2) \(3x^2 + x - 5 - 4 + x - 7x^2 = (3x^2-7x^2) + (x+x) + (-5-4) = -4x^2 + 2x - 9\)</div>
+                <div class="answer-line">(3) \(8xy - 3y^2 - 5xy - 6xy + 4x^2 = (8xy - 5xy - 6xy) - 3y^2 + 4x^2 = -3xy - 3y^2 + 4x^2\)</div>
+            </div>
+        </div>
+
+        <!-- 第3题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>3.</strong> 先化简，再求值：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p3')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(2a^2 - b^2 + (2b^2 - a^2) - (a^2 + 2b^2)\)，其中 \(a = \dfrac{1}{3},\; b = 3\)；</div>
+            <div class="sub-question">(2) \(5(3x^2y - xy^2) - (xy^2 + 3x^2y)\)，其中 \(x = \dfrac{1}{2},\; y = -1\)。</div>
+            <div id="answerP3" class="answer-box">
+                <div class="answer-line">(1) 化简：\(2a^2 - b^2 + 2b^2 - a^2 - a^2 - 2b^2 = (2a^2 - a^2 - a^2) + (-b^2 + 2b^2 - 2b^2) = 0 - b^2 = -b^2\)</div>
+                <div class="answer-line">当 \(b = 3\) 时，原式 \(= -9\)。</div>
+                <div class="answer-line">(2) 化简：\(15x^2y - 5xy^2 - xy^2 - 3x^2y = (15x^2y - 3x^2y) + (-5xy^2 - xy^2) = 12x^2y - 6xy^2\)</div>
+                <div class="answer-line">当 \(x = \dfrac{1}{2},\; y = -1\) 时，</div>
+                <div class="answer-line">原式 \(= 12 \times \left(\dfrac{1}{2}\right)^2 \times (-1) - 6 \times \dfrac{1}{2} \times (-1)^2 = 12 \times \dfrac{1}{4} \times (-1) - 6 \times \dfrac{1}{2} \times 1 = -3 - 3 = -6\)。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：用分离系数法进行整式的加减运算（竖式并排，且展开高度足够） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 用分离系数法进行整式的加减运算</h3>
+            <span class="toggle-icon" id="toggleIcon">▼</span>  <!-- 初始向下，默认展开 -->
+        </div>
+        <div class="reading-content" id="readingContent">  <!-- 移除collapsed，默认展开 -->
+            <p>我们已经学过整式的加减，知道整式的加减可以归结为合并同类项。而合并同类项实际上就是“合并”各同类项的系数。因此，进行整式的加减，关键就是把各同类项的系数进行加减。</p>
+            <p>如果把两个整式的各同类项对齐，我们就可以像小学时列竖式做加减法一样，来进行整式的加减运算了。</p>
+            <p>怎样把各同类项对齐呢？其实，只要将参与运算的整式按同一个字母进行降幂排列，凡缺项则留出空位或添零，然后让常数项对齐（即右对齐）即可。例如，计算</p>
+            <p>$$(x^3 - 2x^2 - 5) + (x - 2x^2 - 1)$$</p>
+            <p>及</p>
+            <p>$$(x^3 - 2x^2 - 5) - (x - 2x^2 - 1)$$</p>
+            <p>时，我们可以分别用下列竖式计算：</p>
+
+            <!-- 并排竖式容器 -->
+            <div class="row-vertical">
+                <!-- 加法竖式 -->
+                <div class="latex-vertical">
+                    $$
+                    \begin{array}{r@{}r@{}r@{}r@{}r}
+                        & x^3 & -2x^2 &      & -5 \\
+                        +) &     & -2x^2 & +x   & -1 \\
+                        \hline
+                        & x^3 & -4x^2 & +x   & -6 \\
+                    \end{array}
+                    $$
+                </div>
+                <!-- 减法竖式 -->
+                <div class="latex-vertical">
+                    $$
+                    \begin{array}{r@{}r@{}r@{}r@{}r}
+                        & x^3 & -2x^2 &      & -5 \\
+                        -) &     & -2x^2 & +x   & -1 \\
+                        \hline
+                        & x^3 &       & -x   & -4 \\
+                    \end{array}
+                    $$
+                </div>
+            </div>
+
+            <p>我们发现，参与加减运算的整式都按同一个字母的降幂排列后，各项排列的位置对应该项字母的指数。基于这个事实，我们可以不再写出字母及其指数，只需写出系数，计算出结果后，再把字母和相应的指数补充上去，从而使演算过程简化。这种方法叫做<strong>分离系数法</strong>。</p>
+            <p>按分离系数法，上面第一道题的演算过程可以简化为：</p>
+
+            <!-- 分离系数法竖式 -->
+            <div class="latex-vertical">
+                $$
+                \begin{array}{r@{}r@{}r@{}r@{}r}
+                    & 1 & -2 & 0 & -5 \\
+                    +) & 0 & -2 & 1 & -1 \\
+                    \hline
+                    & 1 & -4 & 1 & -6 \\
+                \end{array}
+                $$
+            </div>
+
+            <p>所以 $$(x^3 - 2x^2 - 5) + (x - 2x^2 - 1) = x^3 - 4x^2 + x - 6$$。</p>
+            <p>第二道题也可以如此简化。</p>
+            <p>现在让我们一起尝试用上面的方法解决下列计算问题：</p>
+
+            <!-- 练习题（左对齐） -->
+            <div class="reading-exercise-item">
+                $$(1)\quad (2x^2 - x - 3) + (5 - 4x + x^2);$$
+            </div>
+            <div class="reading-exercise-item">
+                $$(2)\quad (3y^3 - 5y^2 - 6) - (y - 2 + 3y^2)。$$
+            </div>
+            <p>（答案可自行验证或与同伴交流）</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">整式加减运算的一般步骤：先去括号，再合并同类项。</div>
+                <div class="summary-item">求整式的和或差时，要正确使用括号表示每个整式。</div>
+                <div class="summary-item">化简求值题应先化简，再代入求值，可使计算简便。</div>
+                <div class="summary-item">分离系数法是一种简便的竖式运算方法，可以尝试使用。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P112习题2.4 A组第8、9、10题，B组第13、14题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 整式加减有步骤，先去括号后合并 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第35课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

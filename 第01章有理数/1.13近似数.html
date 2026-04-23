@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第21课时 近似数 | 华师版·七上 第1章 有理数</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px; /* 增大基础字体 */
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .rule-box .title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #b13e3e;
+            margin-bottom: 0.8rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .note-box {
+            background: #e8eaf6;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #3f51b5;
+        }
+        .qa-block {
+            background: #f1f8e9;
+            border-radius: 24px;
+            padding: 1rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #7cb342;
+        }
+        /* 增强正文可读性 */
+        p, li {
+            font-size: 1.1rem;
+        }
+        strong {
+            color: #0b4b78;
+        }
+        .warning-note {
+            background: #ffebee;
+            border-left: 8px solid #e53935;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。</div>
+    <h2>1.13 近似数</h2>
+    <div class="lesson-title">近似数</div>
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解近似数的意义，能区分准确数与近似数</div>
+            <div class="target-item"><span>✔</span>能按照精确度的要求，用四舍五入法取近似数</div>
+            <div class="target-item"><span>✔</span>能说出一个近似数的精确度</div>
+            <div class="target-item"><span>✔</span>了解进一法、去尾法在实际问题中的应用</div>
+        </div>
+    </div>
+
+    <!-- 做一做：教材第64页 -->
+    <h3>📝 做一做</h3>
+    <div class="think-box">
+        <p>1. 统计班上喜欢看球赛的同学的人数。</p>
+        <p>2. 量一量本册数学教科书的宽度。</p>
+        <p>这两个数是与实际完全符合的数吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')" style="margin-top:0.5rem;">显示答案</button>
+        <div id="answerDo1" class="answer-box">
+            <div class="answer-line">统计得到的人数（如35）是<strong>准确数</strong>——与实际完全符合，一个也不多，一个也不少。</div>
+            <div class="answer-line">量得的宽度（如18.6cm）是<strong>近似数</strong>——由于刻度尺的精确度限制，与实际宽度非常接近，但常有一点偏差。</div>
+        </div>
+    </div>
+
+    <!-- 准确数与近似数概念 -->
+    <h3>📐 准确数与近似数</h3>
+    <div class="rule-box">
+        <div class="title">概念辨析</div>
+        <p><strong>准确数</strong>：与实际完全符合的数。</p>
+        <p><strong>近似数</strong>：通过测量、估算、四舍五入得到的与实际非常接近的数。</p>
+    </div>
+    <div class="note-box">
+        <p><strong>什么情况下我们会使用近似数？</strong></p>
+        <ul style="margin-left:2rem;">
+            <li>我们很难测出准确值，或者没有必要算得准确，这样通过测量、估算得到的数都是近似数。例如，姚明的身高是 2.26 米。</li>
+            <li>有时为了叙述、书写方便，用四舍五入法得到的数也是近似数。例如，2022年全国高考报名的考生达到 1193 万人。</li>
+        </ul>
+    </div>
+
+    <!-- 辨一辨 -->
+    <div class="think-box">
+        <p><strong>辨一辨：</strong>下列语句中，哪些数据是准确数，哪些是近似数？</p>
+        <p>1. 妈妈去买水果，买了 <strong>8</strong> 个苹果，大约 <strong>3</strong> 千克。</p>
+        <p>2. 小民与小李买了 <strong>2</strong> 瓶水，<strong>4</strong> 根黄瓜，<strong>6</strong> 袋牛肉干，约 <strong>20</strong> 元，然后骑车去大约 <strong>3.5</strong> km外去郊游，大约玩了 <strong>4.5</strong> 小时回家。</p>
+        <p>3. 我国共有 <strong>56</strong> 个民族。</p>
+        <button class="interact-btn" onclick="toggleAnswer('identify')">显示答案</button>
+        <div id="answerIdentify" class="answer-box">
+            <div class="answer-line">准确数：8，2，4，6，56</div>
+            <div class="answer-line">近似数：3，20，3.5，4.5</div>
+        </div>
+    </div>
+
+    <!-- 精确度与四舍五入 -->
+    <h3>📏 精确度与四舍五入</h3>
+    <div class="intro-block">
+        <p>使用近似数就有关于近似程度的问题，也就是关于<strong>精确度</strong>的问题。</p>
+    </div>
+
+    <!-- 对π取近似数 -->
+    <div class="axis-showcase" style="background:#faf9f7; border-radius:32px; padding:1.5rem 2rem; margin:1.5rem 0;">
+        <p style="text-align:center; font-size:1.3rem;">我们都知道：<strong>π = 3.1415926535…</strong></p>
+        <p>计算中，我们需对π取近似数：</p>
+        <div class="grid-2">
+            <div>π≈<strong>3</strong>（精确到个位）</div>
+            <div>π≈<strong>3.1</strong>（精确到十分位/0.1）</div>
+            <div>π≈<strong>3.14</strong>（精确到百分位/0.01）</div>
+            <div>π≈<strong>3.142</strong>（精确到千分位/0.001）</div>
+            <div>π≈<strong>3.1416</strong>（精确到万分位/0.0001）</div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="title">📌 四舍五入法规则</div>
+        <p><strong>保留到哪一位，就看它的下一位，下一位≥5则向前一位进1，否则舍去。</strong></p>
+        <p>例如：保留到十分位：3.14159 → 看百分位（4＜5）→ 3.1</p>
+        <p>保留到百分位：2.687 → 看千分位（7≥5）→ 2.69</p>
+    </div>
+
+    <!-- 易错警示 -->
+    <div class="warning-note">
+        <p><strong>⚠️ 易错警示：连续进位</strong></p>
+        <p>4.996 保留两位小数：</p>
+        <p>看千分位6≥5，向百分位进1，百分位9+1=10，再向十分位进1……最终得到 <strong>5.00</strong>（学生常误为4.99）。</p>
+    </div>
+
+    <div class="rule-box">
+        <div class="title">📌 精确度的规定</div>
+        <p><strong>一般地，一个近似数四舍五入到哪一位，就说这个近似数精确到那一位。</strong></p>
+        <p>例如，小明的身高为1.70m，1.70这个近似数精确到百分位。</p>
+    </div>
+
+    <!-- 例1：教材第65页 -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 下列用四舍五入法得到的近似数，分别精确到哪一位？</p>
+        <p>(1) 132.4； (2) 0.0572； (3) 7.36×10⁴。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            <div class="answer-line">(1) 132.4 精确到<strong>十分位</strong>（即精确到0.1）</div>
+            <div class="answer-line">(2) 0.0572 精确到<strong>万分位</strong>（即精确到0.0001）</div>
+            <div class="answer-line">(3) 7.36×10⁴ = 73600，精确到<strong>百位</strong>（因为6在百位）</div>
+        </div>
+    </div>
+
+    <!-- 例2：教材第65页 -->
+    <div class="example-box" id="example2">
+        <p><strong>例2</strong> 用四舍五入法，按括号中的要求，对下列各数取近似数：</p>
+        <p>(1) 0.34082（精确到千分位）；</p>
+        <p>(2) 64.8（精确到个位）；</p>
+        <p>(3) 1.5046（精确到0.01）；</p>
+        <p>(4) 130542（精确到千位）。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box">
+            <div class="answer-line">(1) 0.34082 ≈ <strong>0.341</strong>（千分位是小数点后第三位，看第四位8四舍五入）</div>
+            <div class="answer-line">(2) 64.8 ≈ <strong>65</strong>（个位是4，看十分位8四舍五入）</div>
+            <div class="answer-line">(3) 1.5046 ≈ <strong>1.50</strong>（注意：末尾的0不能省略，表示精确到0.01）</div>
+            <div class="answer-line">(4) 130542 ≈ <strong>1.31×10⁵</strong>（精确到千位，用科学记数法确切表示）</div>
+        </div>
+    </div>
+
+    <!-- 课本第65页“注意”内容（完整呈现） -->
+    <h3>📌 注意</h3>
+    <div class="tip-box" style="background:#fef9e7; border-left-color:#f4b84b;">
+        <p><strong>(1)</strong> 例2的小题(4)中，用科学记数法，把结果写成 \(1.31 \times 10^5\)，就确切地表示精确到千位。而如果把结果写成131000，会误认为是精确到个位。</p>
+        <p><strong>(2)</strong> 有一些量，我们很难测出它们的准确值，或者没有必要算得它们的准确值，这时可以通过粗略的估算得到需要的近似数，有时近似数也并不是用四舍五入法得到的。</p>
+        <p>例如，某地遭遇水灾，约有10万人的生活受到影响。政府拟从外地调运一批粮食救灾，需估计每天要调运的粮食重量。如果按一个人平均一天需要约0.5kg粮食计算，那么可以估计出每天要调运约5万千克粮食。</p>
+        <p>又如，某校共有1230名学生，想租用45座的客车外出秋游。为估计需租用客车的辆数，计算得 \(1230 \div 45 = 27.33\ldots\)，这里就不能用四舍五入法取近似数，而是要用“进一法”，即应租用28辆客车。想想这是为什么？</p>
+    </div>
+
+    <!-- 进一法与去尾法（已包含在上方，但可单独强调） -->
+    <div class="think-box" style="margin-top:0;">
+        <p><strong>进一法</strong>：不管多余部分大小，都向前一位进1。如租车问题，必须保证每个人都有座位，所以需要28辆。</p>
+        <p><strong>去尾法</strong>：不管多余部分大小，都舍去。如用布料做衣服，剩下的布料不够再做一件，就舍去。</p>
+    </div>
+
+    <!-- 练习：教材第66页 -->
+    <div class="exercises">
+        <h3>练习</h3>
+        
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 请你举出几个含有准确数和近似数的实际例子。</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box">
+                <div class="answer-line">准确数：我班有45名同学；每星期有7天；一年有12个月。</div>
+                <div class="answer-line">近似数：小明身高约为1.6m；学校旗杆高约为10m；某市约有100万人。</div>
+                <div class="answer-line">（答案不唯一）</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 圆周率π=3.141592653…，如果取近似数3.142，那么它精确到哪一位？如果取近似数3.1416呢？</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div id="answer1" class="answer-box">
+                <div class="answer-line">3.142是精确到<strong>千分位</strong>（即精确到0.001）。</div>
+                <div class="answer-line">3.1416是精确到<strong>万分位</strong>（即精确到0.0001）。</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 下列用四舍五入法得到的近似数，分别精确到哪一位？</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div class="exercise-text">
+                (1) 127.32； (2) 0.0407； (3) 20.053；<br>
+                (4) 230.0； (5) 4.002； (6) 5.08×10³。
+            </div>
+            <div id="answer2" class="answer-box">
+                <div class="answer-line">(1) 127.32 精确到<strong>百分位</strong></div>
+                <div class="answer-line">(2) 0.0407 精确到<strong>万分位</strong></div>
+                <div class="answer-line">(3) 20.053 精确到<strong>千分位</strong></div>
+                <div class="answer-line">(4) 230.0 精确到<strong>十分位</strong></div>
+                <div class="answer-line">(5) 4.002 精确到<strong>千分位</strong></div>
+                <div class="answer-line">(6) 5.08×10³ 精确到<strong>十位</strong></div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">4. 用四舍五入法，按括号中的要求，对下列各数取近似数：</span>
+                <button class="interact-btn" onclick="toggleAnswer(3)">显示答案</button>
+            </div>
+            <div class="exercise-text">
+                (1) 0.6328（精确到0.01）；<br>
+                (2) 7.9122（精确到个位）；<br>
+                (3) 130.06（精确到十分位）；<br>
+                (4) 46021（精确到百位）。
+            </div>
+            <div id="answer3" class="answer-box">
+                <div class="answer-line">(1) 0.6328 ≈ <strong>0.63</strong></div>
+                <div class="answer-line">(2) 7.9122 ≈ <strong>8</strong></div>
+                <div class="answer-line">(3) 130.06 ≈ <strong>130.1</strong></div>
+                <div class="answer-line">(4) 46021 ≈ <strong>4.60×10⁴</strong></div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">5. 量出本册数学教科书的长度。（精确到1mm）</span>
+                <button class="interact-btn" onclick="toggleAnswer(4)">显示答案</button>
+            </div>
+            <div id="answer4" class="answer-box">
+                <div class="answer-line">实际测量结果约为<strong>26.0 cm</strong>（不同版本教材可能有差异，以实际测量为准）。</div>
+                <div class="answer-line">注意：精确到1mm = 0.1cm，结果应保留一位小数。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：近似数的应用（可折叠） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 近似数的应用</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>在实际问题中，取近似数的方法不止四舍五入一种：</p>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>四舍五入法</strong>：最常用的方法，根据要求舍去多余位数并进位。</li>
+                <li><strong>进一法</strong>：不管多余部分大小，都向前一位进1。如租车问题、装货问题。</li>
+                <li><strong>去尾法</strong>：不管多余部分大小，都舍去。如购物问题、材料裁剪问题。</li>
+            </ul>
+            <p>用科学记数法表示近似数时，可以更清楚地表达精确度。例如，130542精确到千位应写成1.31×10⁵，而不是131000，因为后者可能被误解为精确到个位。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">准确数：与实际完全相符的数；近似数：通过测量、估算、四舍五入得到的数。</div>
+                <div class="summary-item">精确度：近似数与准确数的接近程度，四舍五入到哪一位就精确到那一位。</div>
+                <div class="summary-item">用四舍五入法取近似数时，末尾的0不能随意去掉，它表示精确度。</div>
+                <div class="summary-item">较大数取近似数时，用科学记数法可以明确表示精确度。</div>
+                <div class="summary-item">实际问题中，有时要用进一法或去尾法取近似数。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P66 练习第1-5题；习题1.13 A组第1、2、3题，B组第4、5题。</span>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 近似有度，取舍有法 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第21课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        if (id === 'do1') {
+            document.getElementById('answerDo1').classList.toggle('show-answer');
+        } else if (id === 'identify') {
+            document.getElementById('answerIdentify').classList.toggle('show-answer');
+        } else {
+            const answerDiv = document.getElementById('answer' + id);
+            if (answerDiv) answerDiv.classList.toggle('show-answer');
+        }
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

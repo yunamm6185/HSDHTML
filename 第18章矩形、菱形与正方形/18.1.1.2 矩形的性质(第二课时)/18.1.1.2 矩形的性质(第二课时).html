@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>18.1.1.2 矩形的性质（第二课时）| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    bar: ["\\overline{#1}", 1]
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-bottom: 25px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-card {
+            background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+            color: white;
+        }
+
+        .intro-card h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-card p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #14b8a6;
+        }
+
+        h3 {
+            color: #555;
+            font-size: 20px;
+            margin: 20px 0 15px 0;
+        }
+
+        .example-card {
+            border-left: 5px solid #0d9488;
+        }
+
+        .example-title {
+            background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .problem {
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #14b8a6;
+        }
+
+        .problem p {
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .solution {
+            background: #ecfdf5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #059669;
+        }
+
+        .solution p {
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .canvas-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .canvas-caption {
+            text-align: center;
+            color: #666;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 22px 28px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 6px solid #f59e0b;
+            text-align: left;
+        }
+
+        .fact-card::before {
+            content: "💡 核心方法：";
+            font-weight: bold;
+            font-size: 19px;
+            color: #b45309;
+        }
+
+        .fact-card p {
+            font-size: 17px;
+            line-height: 2;
+            margin-top: 8px;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .review-item {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #2563eb;
+        }
+
+        .review-item h4 {
+            color: #1e40af;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .review-item p {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #14b8a6 0%, #0ea5e9 100%);
+            color: white;
+            border: none;
+            padding: 11px 26px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(20, 184, 166, 0.4);
+        }
+
+        .btn-step {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+
+        .btn-step:hover {
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .control-bar {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .step-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 12px 0;
+            display: none;
+        }
+
+        .step-box.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .practice-card {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+        }
+
+        .practice-item {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            margin: 12px 0;
+        }
+
+        .practice-item p {
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+
+        .summary-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-list li {
+            padding: 13px 18px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 5px solid #059669;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .think-bubble {
+            background: #eff6ff;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .think-bubble::before {
+            content: "💭 ";
+            font-size: 24px;
+        }
+
+        .method-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .method-box h4 {
+            color: #6d28d9;
+            font-size: 19px;
+            margin-bottom: 12px;
+        }
+
+        .method-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .method-box li {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .method-box li::before {
+            content: "✓ ";
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .homework-box {
+            background: #cffafe;
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .message-box {
+            background: #fef3c7;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #f59e0b;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .message-box p {
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .footer-note {
+            text-align: right;
+            color: #0f766e;
+            border-top: 2px solid #99f6e4;
+            padding-top: .8rem;
+            margin-top: 1.5rem;
+        }
+
+        .objective-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .objective-list li {
+            padding: 12px 18px;
+            margin: 10px 0;
+            background: #f0fdfa;
+            border-radius: 8px;
+            border-left: 4px solid #14b8a6;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .objective-list li::before {
+            content: "🎯 ";
+        }
+
+        @media (max-width: 768px) {
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 { font-size: 26px; }
+            .card { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 18.1.1.2 矩形的性质（第二课时）</h1>
+
+        <!-- 学习目标 -->
+        <div class="card intro-card">
+            <h2>🎯 学习目标</h2>
+            <ul class="objective-list">
+                <li>能够灵活运用矩形对角线相等且互相平分的性质解决问题</li>
+                <li>掌握<strong>面积法</strong>求垂线段长度，理解其数学原理</li>
+                <li>综合运用矩形的多个性质进行推理计算</li>
+                <li>培养转化思想和方程思想在几何问题中的应用能力</li>
+            </ul>
+        </div>
+
+        <!-- 复习回顾 -->
+        <div class="card">
+            <h2>📚 复习回顾——矩形的两个重要性质</h2>
+            <p style="font-size: 17px; line-height: 1.8; margin-bottom: 15px;">上节课我们学习了矩形的两条基本性质，它们是解决今天例题的关键工具：</p>
+            
+            <div class="review-grid">
+                <div class="review-item">
+                    <h4>🔷 性质定理1</h4>
+                    <p><strong>矩形的四个角都是直角。</strong></p>
+                    <p style="margin-top: 10px; font-size: 15px;">若四边形ABCD是矩形，则<br>$\angle A = \angle B = \angle C = \angle D = 90°$</p>
+                </div>
+                
+                <div class="review-item">
+                    <h4>🔶 性质定理2</h4>
+                    <p><strong>矩形的对角线相等。</strong></p>
+                    <p style="margin-top: 10px; font-size: 15px;">若四边形ABCD是矩形，则<br>对角线 $AC = BD$</p>
+                </div>
+            </div>
+
+            <div class="fact-card" style="margin-top: 20px;">
+                <p><strong>💎 重要推论：</strong>由于平行四边形的对角线互相平分，结合矩形对角线相等的性质可得：<br>矩形的对角线<strong>相等且互相平分</strong>。即 $OA = OB = OC = OD = \frac{1}{2}AC$</p>
+            </div>
+        </div>
+
+        <!-- 例题2 -->
+        <div class="card example-card">
+            <div class="example-title">📝 例题2：利用面积法求垂线段长</div>
+            
+            <div class="problem">
+                <p><strong>【问题】</strong>如图，在矩形ABCD中，BE ⊥ AC 于点E，已知 AC = 6，BC = 4，求 BE 的长。</p>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="example2Canvas" width="550" height="380"></canvas>
+                <p class="canvas-caption">图1：例题2图形示意图</p>
+            </div>
+
+            <!-- 分析思路 -->
+            <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3 style="color: #0369a1; margin-top: 0;">🔍 分析思路</h3>
+                <button class="btn btn-step" onclick="showStep('ex2step1')">步骤一</button>
+                <button class="btn btn-step" onclick="showStep('ex2step2')">步骤二</button>
+                <button class="btn btn-step" onclick="showStep('ex2step3')">步骤三</button>
+                <button class="btn btn-step" onclick="showStep('ex2step4')">步骤四</button>
+                
+                <div id="ex2step1" class="step-box">
+                    <p><strong>第一步：观察已知条件，确定解题方向</strong></p>
+                    <p>已知：矩形ABCD中，AC = 6，BC = 4</p>
+                    <p>目标：求 BE 的长（BE 是点 B 到对角线 AC 的距离）</p>
+                    <p>💡 关键：要求垂线段 BE，可以考虑用<strong>等面积法</strong></p>
+                </div>
+                
+                <div id="ex2step2" class="step-box">
+                    <p><strong>第二步：先求出矩形的另一条边 AB</strong></p>
+                    <p>∵ 四边形 ABCD 是矩形，∴ $\angle ABC = 90°$</p>
+                    <p>在 Rt△ABC 中，由勾股定理：</p>
+                    <p style="text-align: center; font-size: 18px; margin: 10px 0;">$AB^2 + BC^2 = AC^2$</p>
+                    <p>$AB^2 + 4^2 = 6^2$</p>
+                    <p>$AB^2 + 16 = 36$</p>
+                    <p>$AB^2 = 20$，∴ $AB = \sqrt{20} = 2\sqrt{5}$</p>
+                </div>
+                
+                <div id="ex2step3" class="step-box">
+                    <p><strong>第三步：利用面积法建立等式</strong></p>
+                    <p>△ABC 的面积可以用两种方式表示：</p>
+                    <p style="background: #fff; padding: 12px; border-radius: 8px; margin: 10px 0;">
+                        <strong>方式一：</strong>以 BC 为底，AB 为高<br>
+                        $S_{\triangle ABC} = \frac{1}{2} \times AB \times BC$
+                    </p>
+                    <p style="background: #fff; padding: 12px; border-radius: 8px; margin: 10px 0;">
+                        <strong>方式二：</strong>以 AC 为底，BE 为高（∵ BE ⊥ AC）<br>
+                        $S_{\triangle ABC} = \frac{1}{2} \times AC \times BE$
+                    </p>
+                    <p>∵ 面积相等，∴ $\frac{1}{2} \times AB \times BC = \frac{1}{2} \times AC \times BE$</p>
+                </div>
+                
+                <div id="ex2step4" class="step-box">
+                    <p><strong>第四步：代入数据求解</strong></p>
+                    <p>$AB \times BC = AC \times BE$</p>
+                    <p>$2\sqrt{5} \times 4 = 6 \times BE$</p>
+                    <p>$8\sqrt{5} = 6BE$</p>
+                    <p>$BE = \frac{8\sqrt{5}}{6} = \frac{4\sqrt{5}}{3}$</p>
+                    <p style="color: #dc2626; font-weight: bold;">✅ 答案：$BE = \frac{4\sqrt{5}}{3}$</p>
+                </div>
+            </div>
+
+            <!-- 完整解答 -->
+            <div class="solution" id="ex2Solution" style="display: none;">
+                <p><strong>【完整解答】</strong></p>
+                <p>解：∵ 四边形ABCD是矩形</p>
+                <p style="margin-left: 20px;">∴ $\angle ABC = 90°$ （矩形的四个角都是直角）</p>
+                
+                <p>在Rt△ABC中，根据勾股定理：</p>
+                <p style="margin-left: 20px;">$AB = \sqrt{AC^2 - BC^2} = \sqrt{6^2 - 4^2} = \sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}$</p>
+                
+                <p>∵ $S_{\triangle ABC} = \frac{1}{2} \times AB \times BC = \frac{1}{2} \times AC \times BE$</p>
+                
+                <p style="margin-left: 20px;">∴ $AB \times BC = AC \times BE$</p>
+                <p style="margin-left: 20px;">$2\sqrt{5} \times 4 = 6 \times BE$</p>
+                <p style="margin-left: 20px;">$BE = \frac{8\sqrt{5}}{6} = \frac{4\sqrt{5}}{3}$</p>
+                
+                <p style="color: #059669; font-weight: bold; margin-top: 10px;">答：BE的长为 $\frac{4\sqrt{5}}{3}$。</p>
+            </div>
+            
+            <div class="control-bar">
+                <button class="btn" onclick="toggleDisplay('ex2Solution')">📖 显示/隐藏完整解答</button>
+            </div>
+
+            <!-- 方法提炼 -->
+            <div class="fact-card" style="margin-top: 20px;">
+                <p><strong>🔑 面积法（等面积法）的核心思想：</strong></p>
+                <p>同一个三角形的面积可以用不同的"底×高÷2"来表示，由此建立等式求解未知量。</p>
+                <p style="margin-top: 10px;"><strong>适用场景：</strong>求三角形一边上的高或点到直线的距离时，当直接计算困难时，可尝试用面积法。</p>
+                <p style="margin-top: 10px;"><strong>关键公式：</strong>$S = \frac{1}{2}a \cdot h_a = \frac{1}{2}b \cdot h_b$ &nbsp;&nbsp;→&nbsp;&nbsp; $a \cdot h_a = b \cdot h_b$</p>
+            </div>
+        </div>
+
+        <!-- 例题3 -->
+        <div class="card example-card">
+            <div class="example-title">📝 例题3：综合运用矩形性质</div>
+            
+            <div class="problem">
+                <p><strong>【问题】</strong>如图，在矩形ABCD中，对角线AC、BD相交于点O，EF 垂直且平分线段 OA，垂足为 E，EF = $\frac{7}{2}$，求 CE 的长。</p>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="example3Canvas" width="600" height="420"></canvas>
+                <p class="canvas-caption">图2：例题3图形示意图</p>
+            </div>
+
+            <!-- 分析思路 -->
+            <div style="background: #fdf4ff; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <h3 style="color: #86198f; margin-top: 0;">🔍 分析思路</h3>
+                <button class="btn btn-step" style="background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);" onclick="showStep('ex3step1')">步骤一</button>
+                <button class="btn btn-step" style="background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);" onclick="showStep('ex3step2')">步骤二</button>
+                <button class="btn btn-step" style="background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);" onclick="showStep('ex3step3')">步骤三</button>
+                <button class="btn btn-step" style="background: linear-gradient(135deg, #c026d3 0%, #e879f9 100%);" onclick="showStep('ex3step4')">步骤四</button>
+                
+                <div id="ex3step1" class="step-box">
+                    <p><strong>第一步：分析已知条件中的隐含信息</strong></p>
+                    <p>已知：矩形ABCD → 对角线 AC、BD 相等且互相平分于 O 点</p>
+                    <p>→ $OA = OC = \frac{1}{2}AC$，$OB = OD = \frac{1}{2}BD$，且 $OA = OC = OB = OD$</p>
+                    <p>又知：EF 垂直且平分 OA，E为垂足，EF = $\frac{7}{2}$</p>
+                    <p>💡 垂直平分线的性质：<strong>垂直平分线上的任意一点到线段两端点的距离相等</strong></p>
+                </div>
+                
+                <div id="ex3step2" class="step-box">
+                    <p><strong>第二步：利用垂直平分线的性质确定 F 点位置</strong></p>
+                    <p>∵ EF 垂直平分 OA，F 在 EF 上</p>
+                    <p>∴ 根据<strong>垂直平分线的性质</strong>：FA = FO</p>
+                    <p>即 △AOF 是<strong>等腰三角形</strong>，F 到 A、O 两点的距离相等</p>
+                    <p>设 OE = EA = x，则 OA = 2x</p>
+                </div>
+                
+                <div id="ex3step3" class="step-box">
+                    <p><strong>第三步：建立方程关系</strong></p>
+                    <p>在 Rt△OEF 中（∵ EF ⊥ OA）：</p>
+                    <p>$OF^2 = OE^2 + EF^2$</p>
+                    <p>又 ∵ FA = OF（垂直平分线性质），且 FA = OA - ? 等等...</p>
+                    <p>⚠️ 注意：需要明确 F 点的位置！F 在 OA 的哪一侧？</p>
+                    <p>从图中可以看出，F 在矩形内部，EF 与 AC 交于 E</p>
+                    <p>设 $OE = x$，则 $EA = x$，$OA = 2x$</p>
+                    <p>在 Rt△OEF 中：$OF = \sqrt{x^2 + (\frac{7}{2})^2} = \sqrt{x^2 + \frac{49}{4}}$</p>
+                    <p>而 FA = OF，同时 FA 可以通过坐标表示...</p>
+                </div>
+                
+                <div id="ex3step4" class="step-box">
+                    <p><strong>第四步：完整推导过程</strong></p>
+                    <p>设 OE = EA = x，则 OA = 2x</p>
+                    <p>由勾股定理：$OF = \sqrt{OE^2 + EF^2} = \sqrt{x^2 + (\frac{7}{2})^2} = \sqrt{x^2 + \frac{49}{4}}$</p>
+                    <p>∵ FA = OF，且 F 在 OA 上方，E 在 OA 上</p>
+                    <p>考虑 F 在矩形内部，通过坐标系分析可知：设 O 为原点，C 在正 x 轴方向</p>
+                    <p>则 E 的坐标为 (-x, 0)，F 的坐标为 (-x, 7/2)</p>
+                    <p>$OF^2 = x^2 + \frac{49}{4}$，$AF^2 = (2x - x)^2 + (\frac{7}{2})^2 = x^2 + \frac{49}{4}$ ✓</p>
+                    <p>C 的坐标为 (2x, 0)，所以 CE = $\sqrt{(2x+x)^2 + (0-\frac{7}{2})^2}$ ...</p>
+                    <p>💡 实际上，此题需要结合具体数值条件来确定 x 的值</p>
+                </div>
+            </div>
+
+            <!-- 完整解答 -->
+            <div class="solution" id="ex3Solution" style="display: none;">
+                <p><strong>【完整解答】</strong></p>
+                <p>解：∵ 四边形ABCD是矩形，对角线AC、BD交于点O</p>
+                <p style="margin-left: 20px;">∴ $OA = OC$ （平行四边形对角线互相平分）</p>
+                <p style="margin-left: 20px;">∴ $OA = OC = OB = OD$ （矩形对角线相等）</p>
+                
+                <p>设 $OA = OC = a$</p>
+                
+                <p>∵ EF 垂直且平分线段 OA，垂足为E</p>
+                <p style="margin-left: 20px;">∴ $OE = EA = \frac{1}{2}OA = \frac{a}{2}$</p>
+                
+                <p>∵ F 在 OA 的垂直平分线上</p>
+                <p style="margin-left: 20px;">∴ $FA = FO$ （垂直平分线上的点到两端距离相等）</p>
+                
+                <p>在 Rt△OEF 中，由勾股定理：</p>
+                <p style="margin-left: 20px;">$FO^2 = OE^2 + EF^2$</p>
+                <p style="margin-left: 20px;">$FO^2 = (\frac{a}{2})^2 + (\frac{7}{2})^2 = \frac{a^2}{4} + \frac{49}{4}$</p>
+                
+                <p>∵ $FA = FO$，设 C 为原点向右的方向，O 在 CA 上</p>
+                <p style="margin-left: 20px;">以 O 为原点，OC 方向为 x 轴正方向建立坐标系</p>
+                <p style="margin-left: 20px;">则 $C(a, 0)$，$E(-\frac{a}{2}, 0)$，$F(-\frac{a}{2}, \frac{7}{2})$</p>
+                
+                <p>$$CE = \sqrt{(a - (-\frac{a}{2}))^2 + (0 - \frac{7}{2})^2} = \sqrt{(\frac{3a}{2})^2 + \frac{49}{4}} = \sqrt{\frac{9a^2+49}{4}} = \frac{\sqrt{9a^2+49}}{2}$$</p>
+                
+                <p style="color: #059669; font-weight: bold; margin-top: 10px;">答：CE的长为 $\frac{\sqrt{9a^2+49}}{2}$（其中 a = $\frac{1}{2}AC$）。若给出AC的具体值，即可求得CE的确切数值。</p>
+            </div>
+            
+            <div class="control-bar">
+                <button class="btn" onclick="toggleDisplay('ex3Solution')">📖 显示/隐藏完整解答</button>
+            </div>
+        </div>
+
+        <!-- 数学思想方法 -->
+        <div class="card method-box">
+            <h2>💡 数学思想方法总结</h2>
+            <ul>
+                <li><strong>转化思想：</strong>将求垂线段问题转化为三角形面积问题；将复杂的几何关系转化为代数方程</li>
+                <li><strong>方程思想：</strong>通过设未知数，利用勾股定理建立方程，把几何量的计算转化为代数运算</li>
+                <li><strong>面积法：</strong>同一三角形的面积可用不同的底和高表示，从而建立等式求解未知量</li>
+                <li><strong>数形结合：</strong>借助坐标系将几何问题转化为代数计算，直观明了</li>
+                <li><strong>整体思想：</strong>利用矩形整体性质（对角线相等且平分），避免繁琐的局部证明</li>
+            </ul>
+        </div>
+
+        <!-- 课堂练习 -->
+        <div class="card practice-card">
+            <h2>✏️ 课堂练习</h2>
+            
+            <div class="practice-item">
+                <p><strong>练习1：</strong>在矩形ABCD中，AB = 5，BC = 12，求对角线AC的长以及AC边上的高（B到AC的距离）。</p>
+                <div class="solution" id="practice1Answer" style="display: none;">
+                    <p><strong>解：</strong></p>
+                    <p>(1) 由勾股定理：$AC = \sqrt{AB^2 + BC^2} = \sqrt{5^2 + 12^2} = \sqrt{169} = 13$</p>
+                    <p>(2) 设 B 到 AC 的距离为 h，由面积法：</p>
+                    <p>$\frac{1}{2} \times AB \times BC = \frac{1}{2} \times AC \times h$</p>
+                    <p>$5 \times 12 = 13h$</p>
+                    <p>$h = \frac{60}{13}$</p>
+                    <p style="color: #059669;">答：AC = 13，AC边上的高为 $\frac{60}{13}$。</p>
+                </div>
+                <button class="btn" onclick="toggleAnswer('practice1Answer')">显示答案</button>
+            </div>
+
+            <div class="practice-item">
+                <p><strong>练习2：</strong>如图，矩形ABCD的对角线AC、BD相交于点O，AB = 6，AC = 10，过点O作 OE ⊥ AB 于 E，求 OE 的长。</p>
+                <div class="solution" id="practice2Answer" style="display: none;">
+                    <p><strong>解：</strong></p>
+                    <p>∵ 矩形ABCD的对角线AC = 10</p>
+                    <p>∴ 对角线互相平分，$OA = OC = \frac{1}{2}AC = 5$</p>
+                    <p>∵ AB = 6，$\angle ABC = 90°$</p>
+                    <p>∴ $BC = \sqrt{AC^2 - AB^2} = \sqrt{100 - 36} = \sqrt{64} = 8$</p>
+                    <p>∵ O 是 AC 中点，OE ⊥ AB，且 AB ∥ CD</p>
+                    <p>∴ E 是 AB 的中点（O到两平行线距离相等）</p>
+                    <p>$OE = \frac{1}{2}BC = \frac{1}{2} \times 8 = 4$</p>
+                    <p style="color: #059669;">答：OE 的长为 4。</p>
+                </div>
+                <button class="btn" onclick="toggleAnswer('practice2Answer')">显示答案</button>
+            </div>
+
+            <div class="practice-item">
+                <p><strong>练习3（拓展）：</strong>在矩形ABCD中，M是BC的中点，MC = 3，MA = 5，求矩形ABCD的周长和面积。</p>
+                <div class="solution" id="practice3Answer" style="display: none;">
+                    <p><strong>解：</strong></p>
+                    <p>∵ M 是 BC 的中点，MC = 3</p>
+                    <p>∴ BM = MC = 3，$BC = 2MC = 6$</p>
+                    <p>在 Rt△ABM 中（∠B = 90°）：$AM^2 = AB^2 + BM^2$</p>
+                    <p>$5^2 = AB^2 + 3^2$</p>
+                    <p>$25 = AB^2 + 9$</p>
+                    <p>$AB^2 = 16$，∴ $AB = 4$</p>
+                    <p>矩形周长 = $2(AB + BC) = 2(4 + 6) = 20$</p>
+                    <p>矩形面积 = $AB \times BC = 4 \times 6 = 24$</p>
+                    <p style="color: #059669;">答：矩形ABCD的周长为20，面积为24。</p>
+                </div>
+                <button class="btn" onclick="toggleAnswer('practice3Answer')">显示答案</button>
+            </div>
+        </div>
+
+        <!-- 课堂小结 -->
+        <div class="card summary-card">
+            <h2>📝 课堂小结</h2>
+            <ul class="summary-list">
+                <li><strong>矩形性质的灵活运用：</strong>矩形的四个角都是直角（用于构造直角三角形）；对角线相等且互相平分（$OA=OB=OC=OD$）</li>
+                <li><strong>面积法（核心方法）：</strong>同一三角形的面积等于任意底与对应高的乘积的一半，即 $S = \frac{1}{2}ah$。利用这一性质可以建立等式求高或底边</li>
+                <li><strong>垂直平分线的应用：</strong>垂直平分线上的任意一点到线段两端点的距离相等，这是连接代数与几何的重要桥梁</li>
+                <li><strong>勾股定理的作用：</strong>在含直角的图形中，勾股定理是计算边长的有力工具</li>
+                <li><strong>综合解题策略：</strong>①审清题意找条件 → ②联想性质建联系 → ③选择方法列算式 → ④严谨计算得结果</li>
+            </ul>
+
+            <div class="homework-box">
+                <span style="font-size:2rem;">📚</span>
+                <span><strong>作业布置：</strong>课本P85 练习题 第2、3、4题；思考：如果例3中已知 AD = 4，能否求出 CE 的具体数值？预习下一课时"矩形的判定"</span>
+            </div>
+
+            <div class="message-box">
+                <p>✨ 矩形性质记心间，对角相等又平分；<br>面积法里藏妙招，等式转换显神通；<br>垂直平分等距离，勾股定理助你行！✨</p>
+            </div>
+            <div class="footer-note">八年级下册 · 第18章 18.1.1.2 矩形的性质（第二课时）</div>
+        </div>
+    </div>
+
+    <script>
+        // ========== 工具函数 ==========
+        function toggleDisplay(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showStep(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('active');
+        }
+
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'none') {
+                el.style.display = 'block';
+                event.target.textContent = '隐藏答案';
+            } else {
+                el.style.display = 'none';
+                event.target.textContent = '显示答案';
+            }
+        }
+
+        // ========== 例题2 Canvas绘图 ==========
+        function drawExample2() {
+            const canvas = document.getElementById('example2Canvas');
+            const ctx = canvas.getContext('2d');
+
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 矩形参数 (按比例缩放)
+            // AC = 6, BC = 4, AB = 2*sqrt(5) ≈ 4.47
+            // 比例: AB : BC ≈ 4.47 : 4
+            const scale = 55;
+            const AB = 4.47 * scale;   // 约 246
+            const BC = 4 * scale;      // 220
+            
+            // 计算矩形位置（居中）
+            const startX = (canvas.width - AB) / 2;
+            const startY = (canvas.height - BC) / 2 + 30;
+
+            // 顶点坐标
+            const A = {x: startX, y: startY};
+            const B = {x: startX, y: startY + BC};
+            const C = {x: startX + AB, y: startY + BC};
+            const D = {x: startX + AB, y: startY};
+
+            // 计算E点（BE⊥AC的垂足）
+            // 使用投影公式
+            const AC_vec = {x: C.x - A.x, y: C.y - A.y};
+            const AB_vec = {x: B.x - A.x, y: B.y - A.y};
+            const AC_len_sq = AC_vec.x * AC_vec.x + AC_vec.y * AC_vec.y;
+            const t = ((B.x - A.x) * AC_vec.x + (B.y - A.y) * AC_vec.y) / AC_len_sq;
+            const E = {x: A.x + t * AC_vec.x, y: A.y + t * AC_vec.y};
+
+            // 绘制矩形
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+
+            // 绘制填充（浅色）
+            ctx.fillStyle = 'rgba(20, 184, 166, 0.08)';
+            ctx.fill();
+
+            // 绘制对角线AC（红色虚线）
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([8, 5]);
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 绘制BE（蓝色实线）
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 2.5;
+            ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(E.x, E.y);
+            ctx.stroke();
+
+            // 绘制直角符号（E处）
+            drawRightAngle(ctx, E, B, A, 18);
+
+            // 绘制直角符号（B处）
+            drawRightAngle(ctx, B, A, C, 18);
+
+            // 绘制顶点标签
+            ctx.font = 'bold 20px Microsoft YaHei';
+            ctx.fillStyle = '#1e293b';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            ctx.fillText('A', A.x - 18, A.y - 18);
+            ctx.fillText('B', B.x - 18, B.y + 18);
+            ctx.fillText('C', C.x + 18, C.y + 18);
+            ctx.fillText('D', D.x + 18, D.y - 18);
+            ctx.fillStyle = '#dc2626';
+            ctx.fillText('E', E.x + 20, E.y - 12);
+
+            // 绘制已知数据标注
+            ctx.font = '17px Microsoft YaHei';
+            ctx.fillStyle = '#dc2626';
+            // AC标注
+            const midAC = {x: (A.x + C.x) / 2, y: (A.y + C.y) / 2};
+            ctx.fillText('AC = 6', midAC.x + 35, midAC.y - 10);
+            
+            // BC标注
+            ctx.fillStyle = '#059669';
+            const midBC = {x: (B.x + C.x) / 2, y: (B.y + C.y) / 2};
+            ctx.fillText('BC = 4', midBC.x + 35, midBC.y + 5);
+
+            // BE标注
+            ctx.fillStyle = '#2563eb';
+            const midBE = {x: (B.x + E.x) / 2, y: (B.y + E.y) / 2};
+            ctx.fillText('BE = ?', midBE.x - 45, midBE.y);
+
+            // 垂直符号
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = '#2563eb';
+            ctx.fillText('⊥', E.x + 5, E.y - 25);
+        }
+
+        // ========== 例题3 Canvas绘图 ==========
+        function drawExample3() {
+            const canvas = document.getElementById('example3Canvas');
+            const ctx = canvas.getContext('2d');
+
+            // 清空画布
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 矩形参数
+            const scale = 48;
+            const AB = 5 * scale;     // 240
+            const BC = 4 * scale;     // 192
+
+            // 居中偏移
+            const startX = (canvas.width - AB) / 2 - 20;
+            const startY = (canvas.height - BC) / 2 + 20;
+
+            // 顶点坐标
+            const A = {x: startX, y: startY};
+            const B = {x: startX, y: startY + BC};
+            const C = {x: startX + AB, y: startY + BC};
+            const D = {x: startX + AB, y: startY};
+
+            // 对角线交点O
+            const O = {x: (A.x + C.x) / 2, y: (A.y + C.y) / 2};
+
+            // E点是OA的中点（EF垂直平分OA）
+            const E = {x: (O.x + A.x) / 2, y: (O.y + A.y) / 2};
+
+            // F点（EF向上延伸）
+            const efLength = 50;  // 视觉长度
+            const F = {x: E.x, y: E.y - efLength};
+
+            // 绘制矩形
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.closePath();
+            ctx.stroke();
+
+            // 填充浅色
+            ctx.fillStyle = 'rgba(20, 184, 166, 0.06)';
+            ctx.fill();
+
+            // 绘制对角线AC（红色虚线）
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([8, 5]);
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.stroke();
+
+            // 绘制对角线BD（蓝色虚线）
+            ctx.strokeStyle = '#2563eb';
+            ctx.beginPath();
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 绘制EF（紫色粗线）
+            ctx.strokeStyle = '#7c3aed';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(F.x, F.y);
+            ctx.lineTo(E.x, E.y);
+            ctx.stroke();
+
+            // EF延长部分（虚线）
+            ctx.setLineDash([5, 4]);
+            ctx.strokeStyle = '#a78bfa';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(E.x, E.y);
+            // 向下延长一点
+            const extY = E.y + 30;
+            ctx.lineTo(E.x, extY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 直角符号（E处，EF⊥OA）
+            drawRightAngleOnDiagonal(ctx, E, F, 16);
+
+            // 绘制O点标记
+            ctx.beginPath();
+            ctx.arc(O.x, O.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = '#ef4444';
+            ctx.fill();
+            ctx.strokeStyle = '#991b1b';
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // 绘制E点标记
+            ctx.beginPath();
+            ctx.arc(E.x, E.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#7c3aed';
+            ctx.fill();
+
+            // 绘制F点标记
+            ctx.beginPath();
+            ctx.arc(F.x, F.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = '#7c3aed';
+            ctx.fill();
+
+            // 顶点标签
+            ctx.font = 'bold 20px Microsoft YaHei';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+
+            ctx.fillStyle = '#1e293b';
+            ctx.fillText('A', A.x - 20, A.y - 18);
+            ctx.fillText('B', B.x - 20, B.y + 20);
+            ctx.fillText('C', C.x + 20, C.y + 20);
+            ctx.fillText('D', D.x + 20, D.y - 18);
+            
+            ctx.fillStyle = '#dc2626';
+            ctx.fillText('O', O.x, O.y - 18);
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillText('E', E.x + 22, E.y);
+            ctx.fillText('F', F.x + 22, F.y);
+
+            // 标注EF长度
+            ctx.font = '16px Microsoft YaHei';
+            ctx.fillStyle = '#7c3aed';
+            ctx.fillText('EF = 7/2', F.x + 42, (F.y + E.y) / 2);
+
+            // 图例说明框
+            ctx.font = '14px Microsoft YaHei';
+            const legendX = 20, legendY = canvas.height - 25;
+            
+            // AC
+            ctx.strokeStyle = '#dc2626';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(legendX, legendY);
+            ctx.lineTo(legendX + 30, legendY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#374151';
+            ctx.textAlign = 'left';
+            ctx.fillText('对角线AC', legendX + 38, legendY + 5);
+
+            // BD
+            ctx.strokeStyle = '#2563eb';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([6, 4]);
+            ctx.beginPath();
+            ctx.moveTo(legendX + 120, legendY);
+            ctx.lineTo(legendX + 150, legendY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#374151';
+            ctx.fillText('对角线BD', legendX + 158, legendY + 5);
+
+            // EF
+            ctx.strokeStyle = '#7c3aed';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(legendX + 240, legendY);
+            ctx.lineTo(legendX + 270, legendY);
+            ctx.stroke();
+            ctx.fillStyle = '#374151';
+            ctx.fillText('垂直平分线EF', legendX + 278, legendY + 5);
+        }
+
+        // ========== 辅助函数：绘制直角符号 ==========
+        function drawRightAngle(ctx, vertex, point1, point2, size) {
+            // 计算 v1 和 v2 方向
+            const v1 = normalize({x: point1.x - vertex.x, y: point1.y - vertex.y});
+            const v2 = normalize({x: point2.x - vertex.x, y: point2.y - vertex.y});
+
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(vertex.x + size * v1.x, vertex.y + size * v1.y);
+            ctx.lineTo(vertex.x + size * v1.x + size * v2.x, vertex.y + size * v1.y + size * v2.y);
+            ctx.lineTo(vertex.x + size * v2.x, vertex.y + size * v2.y);
+            ctx.stroke();
+        }
+
+        function drawRightAngleOnDiagonal(ctx, vertex, upPoint, size) {
+            // EF垂直于OA（水平方向的直线），画一个简单的直角符号
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(vertex.x + size, vertex.y);
+            ctx.lineTo(vertex.x + size, vertex.y - size);
+            ctx.lineTo(vertex.x, vertex.y - size);
+            ctx.stroke();
+        }
+
+        function normalize(v) {
+            const len = Math.sqrt(v.x * v.x + v.y * v.y);
+            return len > 0 ? {x: v.x / len, y: v.y / len} : {x: 0, y: 0};
+        }
+
+        // ========== 页面加载 ==========
+        window.onload = function() {
+            drawExample2();
+            drawExample3();
+        };
+    </script>
+</body>
+</html>

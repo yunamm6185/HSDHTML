@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动：自己动手做一根杆秤 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .activity-step {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .activity-step h3 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .activity-step h3::before { content: "🔬 "; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        /* 优化答案框样式 */
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .show-answer { display: block; }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        /* 卡片式答案 */
+        .hint-card, .design-card {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #47945b;
+            box-shadow: 0 6px 12px rgba(0,60,80,0.1);
+        }
+        .hint-card p, .design-card p {
+            margin: 0.5rem 0;
+        }
+        .hint-card strong, .design-card strong {
+            color: #1d6130;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 数学活动</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 动手实践，感受方程在生活中的应用。</div>
+    <div class="lesson-title">数学活动 自己动手做一根杆秤</div>
+
+    <p>杆秤是中国独立发明的度量物体质量的衡器，如图1所示。它是我国古代劳动人民的智慧结晶。使用时，将被测物挂在秤钩上，一手提起秤纽，一手移动秤砣，使秤杆平衡，观察秤星，就可以读出物体的质量数。当有两个秤纽时，靠近秤钩的一个是称量较重物体时使用的。</p>
+
+    <!-- 图1.png -->
+    <div class="figure-box">
+        <img src="图1.png" alt="图1 杆秤示意图">
+        <div class="figcaption">图1 杆秤示意图</div>
+    </div>
+
+    <!-- 步骤1 -->
+    <div class="activity-step">
+        <h3>步骤1</h3>
+        <p>准备一根稍长一些、两端粗细相同的筷子（或者硬的细塑料管）和4个相同质量的砝码。在筷子正中间点 \(A\) 处，拴细绳将筷子悬挂起来，发现筷子保持水平位置。分别在筷子两端 \(B\) 、 \(C\) 处（必须和点 \(A\) 等距离）各挂上一个砝码，如图2所示，此时筷子依然保持水平。</p>
+        <div class="figure-box">
+            <img src="图2.png" alt="图2 两端等距悬挂砝码，杆秤平衡">
+            <div class="figcaption">图2 两端等距悬挂砝码，杆秤平衡</div>
+        </div>
+    </div>
+
+    <!-- 步骤2 -->
+    <div class="activity-step">
+        <h3>步骤2</h3>
+        <p>若在点 \(B\) 处挂上两个砝码，筷子还保持水平吗？若不能保持水平，扶住筷子，尝试移动点 \(B\) 处的砝码到图2中的点 \(B'\) 处，设法让筷子重新保持水平。分别测量点 \(C\) 、 \(B'\) 与点 \(A\) 的距离，它们有什么关系？若在点 \(B'\) 处再添上一个砝码呢？</p>
+        <button class="interact-btn" onclick="toggleAnswer('step2Hint')">💡 显示提示</button>
+        <div id="step2Hint" class="answer-box">
+            <div class="hint-card">
+                <p><strong>杠杆平衡原理：</strong> 左边力矩 = 右边力矩。</p>
+                <p>设一个砝码重力为 \(G\)，\(AB = AC = L\)。</p>
+                <p>当 \(B\) 处挂两个砝码时：左边力矩 \(2G \cdot L\)，右边力矩 \(G \cdot L\)，不相等，所以不平衡。</p>
+                <p>为使平衡，需将两个砝码向左移动，设新力臂为 \(AB'\)，则 \(2G \cdot AB' = G \cdot L\)，解得 \(AB' = \frac{L}{2}\)。此时左边力矩 \(2G \cdot \frac{L}{2} = G \cdot L\)，等于右边力矩，杆秤平衡。</p>
+                <p>若在 \(B'\) 处再添一个砝码（共三个），则左边力矩 \(3G \cdot AB''\) 应与右边力矩 \(G \cdot L\) 相等，得 \(AB'' = \frac{L}{3}\)。</p>
+                <p>可见，力臂与所挂砝码个数成反比。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 步骤3 -->
+    <div class="activity-step">
+        <h3>步骤3</h3>
+        <p>将上面的成果稍加改动，就可以制作一个简易的杆秤：将拴细绳的点 \(A\) 移动到距离点 \(B\) \(10\mathrm{mm}\) 处，在点 \(B\) 处加上秤钩并固定，如图3所示。设点 \(C\) 处可移动的砝码（秤砣）为 \(20\mathrm{g}\) ，秤杆质量不计。</p>
+        <div class="figure-box">
+            <img src="图3.png" alt="图3 简易杆秤模型">
+            <div class="figcaption">图3 简易杆秤模型</div>
+        </div>
+        <p>分别就以下情形说一说你打算怎样设制秤杆上的秤星，使之可以测量一定范围内物体的质量：</p>
+        <p>(1) 若细绳和秤钩的质量都不计；</p>
+        <p>(2) 若细绳的质量不计，秤钩的质量为 \(5\mathrm{g}\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('step3Ans')">📐 显示设计思路</button>
+        <div id="step3Ans" class="answer-box">
+            <div class="design-card">
+                <p><strong>(1) 不计细绳和秤钩质量</strong></p>
+                <p>设被测物体质量为 \(m\) g，挂在秤钩 \(B\) 处。秤砣质量 \(20\) g。根据杠杆平衡：</p>
+                <p>\[ m \times AB = 20 \times AC \]</p>
+                <p>已知 \(AB = 10\) mm，所以 \(10m = 20 \times AC\)，即 \(AC = \dfrac{m}{2}\) (mm)。</p>
+                <p>秤星位置与质量成正比：当 \(m=20\) g时，\(AC=10\) mm；当 \(m=40\) g时，\(AC=20\) mm，依此类推。可在秤杆上均匀刻上刻度，每增加10g，\(AC\) 增加5mm。</p>
+            </div>
+            <div class="design-card" style="margin-top:1rem;">
+                <p><strong>(2) 秤钩质量 \(5\) g</strong></p>
+                <p>此时秤钩本身产生力矩。设被测物质量 \(m\) g，挂在 \(B\) 处，秤钩质量 \(5\) g 作用于 \(B\) 点。左边总力矩为 \((m+5) \times 10\)。右边为 \(20 \times AC\)。</p>
+                <p>平衡时：\((m+5)\times 10 = 20\times AC\)，得 \(AC = \dfrac{m+5}{2}\) (mm)。</p>
+                <p>当 \(m=0\)时（空秤），\(AC=2.5\) mm，即秤砣应放在距 \(A\) 点 2.5 mm 处才能平衡。刻度仍为线性：\(AC\) 与 \(m\) 是一次函数，所以刻度是均匀的，但零点偏移了2.5 mm。制作时可以先标记零点，然后每增加10g，\(AC\) 增加5mm。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：杆秤的历史 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 杆秤的文化</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>杆秤是中国最古老的衡器之一，传说由鲁班发明，也有说起源于春秋战国时期。它利用杠杆原理，轻便易携，直到今天仍在一些地方使用。杆秤上的秤星通常用金属镶嵌，代表不同的刻度。古人制作杆秤时，需要精确计算秤砣的位置，这与我们今天学习的方程紧密相关。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>模型思想：</strong> 用杠杆平衡原理建立方程模型。<br>
+        <strong>抽象思想：</strong> 从具体操作中抽象出等量关系。<br>
+        <strong>应用意识：</strong> 数学在传统工艺中的实际应用。</p>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 动手做杆秤，感受古人智慧，体会方程之美。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 数学活动</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.4.1 互逆命题和互逆定理 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9fbede;
+            margin: 0.8rem 0 0.2rem;
+            font-size: 1rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.8rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1.2rem 1.2rem 0;
+            font-size: 1rem;
+        }
+        .show-answer { display: block; }
+        .exercise-item {
+            margin-top: 1.8rem;
+            border-bottom: 1px dashed #c6daea;
+            padding-bottom: 1rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .sub-section {
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 → 12.4.1 互逆命题和互逆定理</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.4.1 互逆命题和互逆定理</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解命题、逆命题、互逆命题的概念</div>
+            <div class="target-item"><span>✔</span>会写出一个命题的逆命题并判断真假</div>
+            <div class="target-item"><span>✔</span>理解互逆定理，知道原命题正确逆命题不一定正确</div>
+            <div class="target-item"><span>✔</span>能举例说明互逆定理</div>
+        </div>
+    </div>
+
+    <!-- 命题回顾 -->
+    <div class="card">
+        <h3>📌 命题的回顾</h3>
+        <p><strong>命题</strong>：表示判断的语句。例如“三角形的内角和等于180°”、“如果两个角是对顶角，那么这两个角相等”。</p>
+        <p>命题通常由<strong>条件</strong>和<strong>结论</strong>两部分组成，可写成“如果……，那么……”的形式。</p>
+        <div class="example-card" style="margin-top: 0.8rem;">
+            <p>例：命题“两直线平行，同位角相等”中，<br>
+            条件是“两直线平行”，结论是“同位角相等”。</p>
+        </div>
+    </div>
+
+    <!-- 互逆命题定义 -->
+    <div class="card theorem-card">
+        <h3>🔄 互逆命题</h3>
+        <p>在两个命题中，如果第一个命题的条件是第二个命题的结论，而第一个命题的结论是第二个命题的条件，那么这两个命题叫做<strong>互逆命题</strong>。如果把其中一个叫做原命题，那么另一个叫做它的<strong>逆命题</strong>。</p>
+        <p><strong>注意</strong>：每一个命题都有逆命题。但原命题正确，它的逆命题未必正确。</p>
+        <div class="fact-card" style="margin-top: 0.8rem;">
+            <p>📖 例如：原命题“对顶角相等”是真命题，它的逆命题“相等的角是对顶角”是假命题（反例：等腰三角形的两个底角相等但不是对顶角）。</p>
+        </div>
+    </div>
+
+    <!-- 互逆定理 -->
+    <div class="card theorem-card">
+        <h3>📖 互逆定理</h3>
+        <p>如果一个定理的逆命题也是定理，那么这两个定理叫做<strong>互逆定理</strong>，其中的一个定理叫做另一个定理的<strong>逆定理</strong>。</p>
+        <p>例如：</p>
+        <ul style="margin-left: 1.5rem;">
+            <li>“两直线平行，内错角相等”与“内错角相等，两直线平行”是互逆定理。</li>
+            <li>“等腰三角形的两个底角相等”与“有两个角相等的三角形是等腰三角形”也是互逆定理。</li>
+        </ul>
+        <p>注意：一个假命题的逆命题可以是真命题，甚至可以是定理。例如“相等的角是对顶角”是假命题，但它的逆命题“对顶角相等”是真命题且是定理。</p>
+    </div>
+
+    <!-- 课堂练习：严格按照课本12.4节第1、2、3题 -->
+    <div class="card" style="background:#f9f5f0;">
+        <h3>✍️ 课堂练习</h3>
+        
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-question">1. 先指出下列各命题的条件和结论，再写出它们的逆命题，并判断其真假：</div>
+            <div class="sub-section">
+                <p>(1) 如果一个三角形是直角三角形，那么它的两个锐角互余。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q1_1')">🔍 答案</button>
+                <div id="q1_1" class="answer-box">
+                    条件：一个三角形是直角三角形；结论：它的两个锐角互余。<br>
+                    逆命题：如果一个三角形的两个锐角互余，那么这个三角形是直角三角形。（真命题）
+                </div>
+            </div>
+            <div class="sub-section">
+                <p>(2) 等边三角形的每个角都等于60°。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q1_2')">🔍 答案</button>
+                <div id="q1_2" class="answer-box">
+                    条件：一个三角形是等边三角形；结论：它的每个角都等于60°。<br>
+                    逆命题：如果一个三角形的每个角都等于60°，那么这个三角形是等边三角形。（真命题）
+                </div>
+            </div>
+            <div class="sub-section">
+                <p>(3) 全等三角形的对应角相等。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q1_3')">🔍 答案</button>
+                <div id="q1_3" class="answer-box">
+                    条件：两个三角形全等；结论：它们的对应角相等。<br>
+                    逆命题：如果两个三角形的对应角相等，那么这两个三角形全等。（假命题，反例：两个相似三角形对应角相等但不一定全等）
+                </div>
+            </div>
+            <div class="sub-section">
+                <p>(4) 如果 \(a = b\)，那么 \(a^3 = b^3\)。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q1_4')">🔍 答案</button>
+                <div id="q1_4" class="answer-box">
+                    条件：\(a = b\)；结论：\(a^3 = b^3\)。<br>
+                    逆命题：如果 \(a^3 = b^3\)，那么 \(a = b\)。（真命题）
+                </div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-question">2. 举例说明下列命题的逆命题是假命题：</div>
+            <div class="sub-section">
+                <p>(1) 如果一个整数的个位数字是5，那么这个整数能被5整除。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q2_1')">🔍 答案</button>
+                <div id="q2_1" class="answer-box">
+                    逆命题：如果一个整数能被5整除，那么它的个位数字是5。<br>
+                    反例：10能被5整除，但个位数字是0，不是5。
+                </div>
+            </div>
+            <div class="sub-section">
+                <p>(2) 如果两个角都是直角，那么这两个角相等。</p>
+                <button class="interact-btn" onclick="toggleAnswer('q2_2')">🔍 答案</button>
+                <div id="q2_2" class="answer-box">
+                    逆命题：如果两个角相等，那么这两个角都是直角。<br>
+                    反例：等腰三角形的两个底角相等，但它们不是直角。
+                </div>
+            </div>
+        </div>
+
+        <!-- 第3题 -->
+        <div class="exercise-item">
+            <div class="exercise-question">3. 在你所学过的知识内容中，有没有原命题与它的逆命题都正确的例子？试举出几对。</div>
+            <button class="interact-btn" onclick="toggleAnswer('q3')">🔍 示例</button>
+            <div id="q3" class="answer-box">
+                例如：<br>
+                ① 原命题：等腰三角形的两个底角相等；逆命题：有两个角相等的三角形是等腰三角形。（互逆定理）<br>
+                ② 原命题：全等三角形的对应边相等；逆命题：三边对应相等的两个三角形全等。（SSS判定定理）<br>
+                ③ 原命题：两直线平行，同位角相等；逆命题：同位角相等，两直线平行。（平行线判定与性质）
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：数学文化 -->
+    <div class="reading-card">
+        <h4>📖 读一读 · 逻辑与逆向思维</h4>
+        <p>互逆命题的思想源于古希腊的演绎逻辑。欧几里得在《几何原本》中大量使用“性质”与“判定”互逆的结构。例如“等边对等角”与“等角对等边”就是一对经典的互逆定理。这种双向思维不仅在几何中重要，在日常生活中也常用到，比如“如果下雨，地就会湿”与“如果地湿了，是否一定下雨？”的思考。数学中的逆命题训练有助于培养缜密的逻辑推理能力。</p>
+    </div>
+
+    <!-- 课堂小结（已删除重复的“数学思想”条目） -->
+    <div class="summary-card">
+        <h3>📌 课堂小结</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>互逆命题</strong>：条件与结论互换，每个命题都有逆命题。</li>
+            <li><strong>真假性</strong>：原命题为真，逆命题不一定为真；原命题为假，逆命题也不一定为假。</li>
+            <li><strong>互逆定理</strong>：原命题与逆命题都是真命题（定理）时，它们互逆。</li>
+        </ul>
+    </div>
+
+    <!-- 数学思想与素养 -->
+    <div class="math-idea-card">
+        <h4>🧠 数学思想 · 核心素养</h4>
+        <p><strong>• 逆向思维：</strong> 构造逆命题是训练逆向思维的重要方式；<br>
+        <strong>• 逻辑推理：</strong> 判断逆命题真假需要严谨的证明或举反例；<br>
+        <strong>• 批判性思维：</strong> 不盲目认为原命题真则逆命题真，培养质疑精神。</p>
+    </div>
+
+    <!-- 作业单独块 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom: 0.5rem;">📚 课后作业</h3>
+        <ul style="margin-left: 1.8rem; font-weight: 500;">
+            <li>课本习题12.4 A组第2、3题；</li>
+            <li>写出下列命题的逆命题并判断真假：① 如果x>0，那么x²>0；② 同位角相等，两直线平行；</li>
+            <li>思考：举例说明一个定理的逆命题不一定是定理。</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 原逆互换理相通，条件结论各不同；真假判断需谨慎，举反例或证无穷。 ✨<br>
+        逆向思维勤训练，逻辑推理更从容！</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第12章 12.4.1 互逆命题和互逆定理 | 课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', () => {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

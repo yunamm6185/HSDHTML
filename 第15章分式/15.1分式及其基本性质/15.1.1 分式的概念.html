@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.1.1 分式的概念| 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' },
+            options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
+            startup: {
+                ready() {
+                    MathJax.startup.defaultReady();
+                    // 全局放大SVG公式尺寸
+                    MathJax.startup.promise.then(() => {
+                        document.querySelectorAll('mjx-container').forEach(el => {
+                            el.style.fontSize = '145%';
+                        });
+                    });
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f3e8fd;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #2d1867;
+            padding: 1.5rem;
+            font-size: 22px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(102, 126, 234, 0.35);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d4c4f8;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8a5e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #5a3d9a;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #5a3d9a;
+            background: linear-gradient(145deg, #ede6fc, #ddd0f5);
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #c9b8ea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #ede6fc, #ddd0f5);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #c9b8ea;
+            box-shadow: 0 5px 0 #b8a0e0;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #667eea;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 0 #c4b5e8;
+            border: 1px solid #d4c4f8;
+        }
+        .target-item span {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .intro-card {
+            background: #ede6fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #667eea;
+            font-weight: 600;
+        }
+        .explore-card {
+            background: #e8fdf4;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #34c77b;
+            font-weight: 600;
+        }
+        .explore-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: #1a8a4a;
+        }
+        .explore-card h4::before { content: "🔍 "; }
+        .fact-card {
+            background: #fff8e1;
+            border-left: 8px solid #f0b34b;
+            border-radius: 1.8rem;
+            padding: 1.4rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .fact-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #b85c1a;
+        }
+        .theorem-box {
+            background: #fff3cd;
+            border: 3px solid #f0b34b;
+            border-radius: 1.5rem;
+            padding: 1.2rem 2rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #7a3d00;
+        }
+        .example-card {
+            background: #e8fdf4;
+            border-left: 8px solid #34c77b;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .example-card h4 { font-size: 1.4rem; color: #1a8a4a; }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 8px solid #e6b422;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 500;
+        }
+        .figure-container {
+            background: #faf8ff;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #d4c4f8;
+            text-align: center;
+        }
+        .interact-btn {
+            background: #ede6fc;
+            border: none;
+            color: #5a3d9a;
+            padding: 0.45rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c4b5e8;
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+        .interact-btn:active { transform: translateY(2px); }
+        .answer-box {
+            background: #faf8ff;
+            border-left: 6px solid #f0b34b;
+            padding: 0.9rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 1.1rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5efff;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item { margin-bottom: 1.5rem; }
+        .exercise-question {
+            font-weight: 700;
+            color: #5a3d9a;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .summary-section {
+            background: linear-gradient(145deg, #ede6fc, #ddd0f5);
+            border-left: 6px solid #667eea;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #ede6fc;
+            border-left: 8px solid #667eea;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .homework-box {
+            background: linear-gradient(145deg, #ddd0f5, #ede6fc);
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .message-box {
+            background: #f0ebff;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #764ba2;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+        }
+        .footer-note {
+            text-align: right;
+            color: #5a3d9a;
+            border-top: 2px solid #c9b8ea;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .highlight {
+            background: #d4f4dd;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* 动态实验样式 */
+        .experiment-wrap {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
+            margin-top: 1rem;
+        }
+        .exp-canvas-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px;
+            background: #faf8ff;
+        }
+        .exp-panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 1.5rem;
+            border: 1px solid #e0d5f5;
+            overflow: hidden;
+        }
+        .exp-panel-title {
+            background: linear-gradient(145deg, #ede6fc, #ddd0f5);
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #ddd0f5;
+            color: #5a3d9a;
+        }
+        canvas.exp-canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #fafaff;
+        }
+        .exp-result {
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 1.15rem;
+            background: #d4f4dd;
+            color: #1a8a4a;
+            margin: 0 16px 16px;
+            border-radius: 30px;
+        }
+        .exp-controls {
+            padding: 12px 16px;
+            background: #fafaff;
+            border-top: 1px solid #ede6fc;
+        }
+        .ctrl-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .ctrl-row input[type=range] { flex: 1; height: 6px; }
+        .val-badge {
+            background: #ede6fc;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 1rem;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border: 2px solid #ddd0f5;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+        }
+        tr:nth-child(even) { background: #faf8ff; }
+        tr:hover { background: #ede6fc; }
+
+        @media (max-width: 700px) {
+            .exp-canvas-row { flex-direction: column; }
+        }
+
+        /* ===== 数学公式字体放大 ===== */
+        mjx-container {
+            font-size: 145% !important;
+        }
+        /* 行内公式 */
+        mjx-container[jax="SVG"] {
+            font-size: 145% !important;
+        }
+        /* display 块级公式适当放大 */
+        mjx-container[display="true"] {
+            font-size: 160% !important;
+            margin: 1rem auto !important;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级下册</span>
+        <span>第15章 分式 · 15.1.1</span>
+    </div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.1.1 分式的概念</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解分式的概念，能识别分式</div>
+            <div class="target-item"><span>✔</span>掌握分式有意义的条件（分母不为零）</div>
+            <div class="target-item"><span>✔</span>能求使分式值为零的条件</div>
+            <div class="target-item"><span>✔</span>区分整式和分式</div>
+        </div>
+    </div>
+
+    <!-- 引入：实际问题 -->
+    <div class="intro-card">
+        <p>前面我们已经学习了<strong>整式</strong>（单项式和多项式），并掌握了它们的运算法则。但在解决实际问题时，我们常常会遇到两个整式相除的情况。</p>
+        <p style="margin-top: 0.5rem;">例如：某班有学生 $m$ 人，如果每 $n$ 人一组，那么可以分成多少组？</p>
+        <p><strong>答案是 $\frac{m}{n}$ 组。</strong></p>
+        <p>这个代数式的分母中含有字母 $n$，它不是我们之前学过的整式。这种形式的代数式就是我们要学习的——<strong>分式</strong>。</p>
+    </div>
+
+    <!-- 观察与发现 -->
+    <div class="explore-card">
+        <h4>观察与思考</h4>
+        <p>观察下列代数式：</p>
+
+        <table style="margin: 1rem auto;">
+            <tr>
+                <th>序号</th>
+                <th>代数式</th>
+                <th>类型判断</th>
+            </tr>
+            <tr>
+                <td>①</td>
+                <td>$\frac{1}{x}$</td>
+                <td><button class="interact-btn" onclick="toggleAnswer('t1')">🔍 显示答案</button><div id="t1" class="answer-box"><strong style="color:#e74c3c;">分式</strong>（分母 $x$ 含有字母）</div></td>
+            </tr>
+            <tr>
+                <td>②</td>
+                <td>$\frac{a}{3}$</td>
+                <td><button class="interact-btn" onclick="toggleAnswer('t2')">🔍 显示答案</button><div id="t2" class="answer-box"><strong style="color:#27ae60;">整式</strong>（分母是常数 $3$，不含字母）</div></td>
+            </tr>
+            <tr>
+                <td>③</td>
+                <td>$\frac{x+y}{5}$</td>
+                <td><button class="interact-btn" onclick="toggleAnswer('t3')">🔍 显示答案</button><div id="t3" class="answer-box"><strong style="color:#27ae60;">整式</strong>（分母是常数 $5$，不含字母）</div></td>
+            </tr>
+            <tr>
+                <td>④</td>
+                <td>$\frac{s}{t}$</td>
+                <td><button class="interact-btn" onclick="toggleAnswer('t4')">🔍 显示答案</button><div id="t4" class="answer-box"><strong style="color:#e74c3c;">分式</strong>（分母 $t$ 含有字母）</div></td>
+            </tr>
+            <tr>
+                <td>⑤</td>
+                <td>$\frac{a-b}{a+b}$</td>
+                <td><button class="interact-btn" onclick="toggleAnswer('t5')">🔍 显示答案</button><div id="t5" class="answer-box"><strong style="color:#e74c3c;">分式</strong>（分母 $a+b$ 含有字母）</div></td>
+            </tr>
+        </table>
+
+        <p style="margin-top: 1rem;"><strong>思考：</strong>上面这些代数式中，哪些是整式？哪些是分式？它们有什么区别？</p>
+        <p><strong>关键区别：</strong>整式的分母中<strong>不含有字母</strong>，而分式的分母中<strong>含有字母</strong>。</p>
+    </div>
+
+    <!-- 分式的定义 -->
+    <div class="fact-card">
+        <h4>📌 分式的定义</h4>
+        <div class="highlight">
+            <p><strong>定义：</strong>一般地，如果 $A$、$B$ 表示两个整式，且 $B$ 中含有字母，那么式子 $\frac{A}{B}$ 叫做<strong>分式</strong>（fraction）。</p>
+        </div>
+        <p style="margin-top: 1rem;">其中，<strong>$A$ 叫做分式的分子</strong>，<strong>$B$ 叫做分式的分母</strong>。</p>
+        <div class="theorem-box" style="font-size: 1.45rem;">
+            $$\text{分式} = \frac{\text{分子 } A}{\text{分母 } B} \quad (\text{其中 } B \neq 0 \text{ 且 } B \text{ 中含有字母})$$
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 1.2rem;">⚠️ <strong>注意：</strong>因为除数不能为零，所以分式的分母不能等于零！</p>
+    </div>
+
+    <!-- 分式有意义的条件 -->
+    <div class="explore-card">
+        <h4>探究：分式何时有意义？</h4>
+        <p>对于分式 $\frac{A}{B}$，当分母 $B = 0$ 时，分式没有意义；只有当 $B \neq 0$ 时，分式才有意义。</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex_meaning')">✍️ 查看详细说明</button>
+        <div id="ex_meaning" class="answer-box">
+            <p><strong>例：</strong>对于分式 $\frac{1}{x}$，要使其有意义，需要满足：</p>
+            <p style="text-align: center; font-size: 1.4rem;">$x \neq 0$</p>
+            <p style="margin-top: 0.5rem;"><strong>例：</strong>对于分式 $\frac{x+1}{x-2}$，要使其有意义，需要满足：</p>
+            <p style="text-align: center; font-size: 1.4rem;">$x - 2 \neq 0$，即 $x \neq 2$</p>
+        </div>
+    </div>
+
+    <!-- 动态交互：分式的数值变化规律 -->
+    <div style="margin-top: 1rem;">
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">⬇ 拖动滑块，观察分式 $\frac{x^2-4}{x-2}$ 的分子、分母及值的变化：</p>
+        <div class="experiment-wrap">
+            <div class="exp-canvas-row" style="flex-direction: column;">
+                <div class="exp-panel" style="min-width:360px;">
+                    <div class="exp-panel-title">📊 分式数值分析面板</div>
+                    <div style="padding: 24px; font-size: 1.1rem;">
+                        <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 12px 16px; align-items: center; margin-bottom: 16px;">
+                            <span style="font-weight:700;">变量 $x$ =</span>
+                            <input type="range" id="sliderX" min="-3" max="7" step="0.1" value="3" style="height:8px; width:100%;">
+                            <span class="val-badge" id="dispX" style="font-size:1.15rem; padding:4px 14px;">3.0</span>
+                        </div>
+
+                        <table style="width:100%; border-collapse:collapse; font-size:1.1rem;">
+                            <tr style="background:#ede6fc;">
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:700;">项目</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:700; text-align:center;">表达式</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:700; text-align:center;">当前值</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:700; text-align:center;">状态</td>
+                            </tr>
+                            <tr id="rowNum">
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:600;">分子 $A$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;">$x^2 - 4$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;" id="numVal">5.00</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;" id="numStatus">—</td>
+                            </tr>
+                            <tr style="background:#faf8ff;" id="rowDen">
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:600;">分母 $B$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;">$x - 2$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;" id="denVal">1.00</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;" id="denStatus">✅ ≠ 0</td>
+                            </tr>
+                            <tr id="rowFrac">
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; font-weight:700; color:#5a3d9a;">分式值 $\frac{A}{B}$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;">$\frac{x^2-4}{x-2}$</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center; font-size:1.25rem;" id="fracResult">5.00</td>
+                                <td style="padding:10px 16px; border:2px solid #ddd0f5; text-align:center;" id="fracStatus">—</td>
+                            </tr>
+                        </table>
+
+                        <div id="meaningStatus" style="margin-top:16px; background:#d4f4dd; border-radius:1rem; padding:12px 18px; font-weight:700; color:#1a8a4a; font-size:1.15rem; text-align:center;">
+                            ✅ 分式有意义（$x \neq 2$）
+                        </div>
+
+                        <!-- 化简提示 -->
+                        <div style="margin-top:16px; background:#fff8e1; border-radius:1rem; padding:12px 18px; border-left:6px solid #f0b34b;">
+                            <p style="font-size:1.25rem;"><strong>💡 化简提示：</strong>当 $x \neq 2$ 时，$\displaystyle\frac{x^2-4}{x-2} = \frac{(x+2)(x-2)}{x-2} = x + 2$</p>
+                            <p style="text-align:center; font-size:1.3rem; margin-top:6px;" id="simplifyHint">当 $x=3$ 时，原式 $= 3+2 = 5$ ✓</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="exp-result" id="expResultBar">
+                当 $x = 2$ 时，分母为零，分式无意义；当 $x \neq 2$ 时，可化简为 $x+2$
+            </div>
+        </div>
+    </div>
+
+    <!-- 分式值为零的条件 -->
+    <div class="fact-card">
+        <h4>📌 分式值为零的条件</h4>
+        <div class="highlight">
+            <p>当分式的分子等于<strong>零</strong>而分母<strong>不等于零</strong>时，分式的值为零。</p>
+        </div>
+        <div class="theorem-box" style="font-size: 1.45rem;">
+            $$\frac{A}{B} = 0 \quad \Longleftrightarrow \quad A = 0 \text{ 且 } B \neq 0$$
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 1.2rem;">⚠️ <strong>重要：</strong>必须同时满足两个条件！仅分子为零是不够的，还要保证分母不为零。</p>
+    </div>
+
+    <!-- 例题讲解 -->
+    <div class="example-card">
+        <h4>例1 判断下列各式中，哪些是整式？哪些是分式？</h4>
+        <p>$\frac{3}{x}$ &nbsp;&nbsp;&nbsp; $\frac{x^2-1}{2}$ &nbsp;&nbsp;&nbsp; $\frac{a+b}{ab}$ &nbsp;&nbsp;&nbsp; $\frac{1}{n}$ &nbsp;&nbsp;&nbsp; $\frac{x^2-y^2}{5}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>• $\frac{3}{x}$ —— <strong style="color:#e74c3c;">分式</strong>（分母 $x$ 含有字母）</p>
+            <p>• $\frac{x^2-1}{2}$ —— <strong style="color:#27ae60;">整式</strong>（分母是常数 2，不含字母）</p>
+            <p>• $\frac{a+b}{ab}$ —— <strong style="color:#e74c3c;">分式</strong>（分母 $ab$ 含有字母）</p>
+            <p>• $\frac{1}{n}$ —— <strong style="color:#e74c3c;">分式</strong>（分母 $n$ 含有字母）</p>
+            <p>• $\frac{x^2-y^2}{5}$ —— <strong style="color:#27ae60;">整式</strong>（分母是常数 5，不含字母）</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 当 $x$ 取什么值时，下列分式有意义？</h4>
+        <p>(1) $\frac{1}{x}$ &nbsp;&nbsp;&nbsp;&nbsp; (2) $\frac{2x}{x+2}$ &nbsp;&nbsp;&nbsp;&nbsp; (3) $\frac{x-1}{x^2-1}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> 要使 $\frac{1}{x}$ 有意义，需要 $x \neq 0$</p>
+            <p style="margin-top: 0.5rem;"><strong>(2)</strong> 要使 $\frac{2x}{x+2}$ 有意义，需要 $x + 2 \neq 0$，即 $x \neq -2$</p>
+            <p style="margin-top: 0.5rem;"><strong>(3)</strong> 要使 $\frac{x-1}{x^2-1}$ 有意义，需要 $x^2 - 1 \neq 0$</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;$x^2 \neq 1$，即 $x \neq \pm 1$</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 当 $x$ 为何值时，分式 $\frac{x-3}{x+1}$ 的值为零？</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>解：</strong>要使分式的值为零，需要满足：</p>
+            <p>① 分子等于零：$x - 3 = 0$，得 $x = 3$</p>
+            <p>② 分母不等于零：$x + 1 \neq 0$，得 $x \neq -1$</p>
+            <p style="margin-top: 0.5rem;">综合①②，当 <strong>$x = 3$</strong> 时，该分式的值为零。</p>
+            <p style="color: #e74c3c; margin-top: 0.5rem;">⚠️ 验证：当 $x=3$ 时，$\frac{3-3}{3+1} = \frac{0}{4} = 0$ ✓</p>
+        </div>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 下列各式中，哪些是整式？哪些是分式？</p>
+            <p>$\frac{2}{x+1}$ &nbsp; $\frac{xy}{3}$ &nbsp; $\frac{a+b}{a-b}$ &nbsp; $\frac{5}{7}$ &nbsp; $\frac{n}{m+n}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案与解析</button>
+            <div id="p1" class="answer-box">
+                <p><strong>答案：</strong></p>
+                <p>• <strong style="color:#e74c3c;">分式：</strong>$\frac{2}{x+1}$、$\frac{a+b}{a-b}$、$\frac{n}{m+n}$（分母含字母）</p>
+                <p>• <strong style="color:#27ae60;">整式：</strong>$\frac{xy}{3}$、$\frac{5}{7}$（分母为常数）</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 当 $x$ 取什么值时，下列分式有意义？</p>
+            <p>(1) $\frac{5}{2x-1}$ &nbsp;&nbsp;&nbsp; (2) $\frac{x}{x^2-4}$ &nbsp;&nbsp;&nbsp; (3) $\frac{3x+1}{x(x-1)}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案与解析</button>
+            <div id="p2" class="answer-box">
+                <p><strong>答案：</strong></p>
+                <p>(1) $2x - 1 \neq 0$，即 $x \neq \frac{1}{2}$</p>
+                <p>(2) $x^2 - 4 \neq 0$，即 $(x+2)(x-2) \neq 0$，所以 $x \neq \pm 2$</p>
+                <p>(3) $x(x-1) \neq 0$，即 $x \neq 0$ 且 $x \neq 1$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 填空：当 $x=$______时，分式 $\frac{|x|-2}{x+2}$ 的值为零。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案与解析</button>
+            <div id="p3" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>① 分子为零：$|x| - 2 = 0$，得 $|x| = 2$，所以 $x = \pm 2$</p>
+                <p>② 分母不为零：$x + 2 \neq 0$，得 $x \neq -2$</p>
+                <p>综合得：<strong>$x = 2$</strong></p>
+                <p style="color: #e74c3c;">⚠️ 注意：虽然 $x=-2$ 使分子为0，但此时分母也为0，分式无意义！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="reading-section">
+        <h4>📖 读一读——分式的历史</h4>
+        <p>"分数"的概念在人类文明早期就已经产生。古埃及人使用单位分数（分子为1的分数），古希腊人发展了更一般的分数理论。在中国，《九章算术》中已有完整的分数运算法则。</p>
+        <p>"分式"作为分母含有字母的分数形式，随着代数学的发展逐渐形成。<strong>分式</strong>（fraction）这个词源于拉丁语 "fractus"，意为"破碎的"。在现代数学中，分式是研究函数、方程的重要工具。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>分式的定义：</strong>形如 $\frac{A}{B}$ 的式子叫做分式，其中 $A$、$B$ 是整式，且 $B$ 中含有字母，$B \neq 0$。</div>
+        <div style="margin-top: 0.5rem;">• <strong>分式有意义的条件：</strong>分母 $B \neq 0$。</div>
+        <div style="margin-top: 0.5rem;">• <strong>分式值为零的条件：</strong>分子 $A = 0$ 且分母 $B \neq 0$（两个条件缺一不可！）。</div>
+        <div style="margin-top: 0.5rem;">• <strong>整式与分式的区分：</strong>关键看分母是否含字母。若分母是数字则为整式，若分母含字母则为分式。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong>讨论分式有无意义、值为零等问题时，需从多个角度分类讨论。<br>
+        <strong>从特殊到一般：</strong>从具体的数字例子出发，归纳出分式的一般性质。<br>
+        <strong>类比迁移：</strong>将分数的知识类比推广到分式，建立知识联系。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P5 练习第1~3题；思考：是否存在一个分式，无论 $x$ 取何值都有意义？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 分母含字即为分，零值双条记心间；先验分母再论值，数学严谨不等闲。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.1.1 分式的概念</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // 动态实验：分式数值变化探究
+    (function() {
+        let x = 3;
+
+        function update() {
+            let numV = x * x - 4;
+            let denV = x - 2;
+
+            // 更新显示
+            document.getElementById('dispX').textContent = x.toFixed(1);
+            document.getElementById('numVal').textContent = numV.toFixed(2);
+            document.getElementById('denVal').textContent = denV.toFixed(2);
+
+            if (Math.abs(denV) < 0.001) {
+                // 分母为零，无意义
+                document.getElementById('fracResult').innerHTML = '<span style="color:#e74c3c; font-weight:700;">无意义</span>';
+                document.getElementById('denStatus').innerHTML = '<span style="color:#e74c3c; font-weight:700;">❌ = 0</span>';
+                document.getElementById('numStatus').innerHTML = (Math.abs(numV) < 0.01) ? '<span style="color:#f0b34b;">⚠️ = 0</span>' : '—';
+                document.getElementById('fracStatus').innerHTML = '<span style="color:#e74c3c; font-weight:700;">❌ 无定义</span>';
+
+                document.getElementById('meaningStatus').style.background = '#ffe0e0';
+                document.getElementById('meaningStatus').style.color = '#c0392b';
+                document.getElementById('meaningStatus').innerHTML = '❌ 分式无意义！分母 $x-2=0$（$x=2$ 时除数为零）';
+
+                document.getElementById('rowNum').style.background = (Math.abs(numV) < 0.01) ? '#fff8e1' : '';
+                document.getElementById('rowDen').style.background = '#ffe0e0';
+                document.getElementById('rowFrac').style.background = '#ffe0e0';
+
+                document.getElementById('simplifyHint').innerHTML = '<span style="color:#e74c3c;">⚠️ 当 $x=2$ 时不能化简！因为原式本身无意义。</span>';
+            } else {
+                let result = numV / denV;
+                document.getElementById('fracResult').textContent = result.toFixed(2);
+                document.getElementById('denStatus').innerHTML = '<span style="color:#27ae60; font-weight:700;">✅ ≠ 0</span>';
+                document.getElementById('numStatus').innerHTML = (Math.abs(numV) < 0.01) ? '<span style="color:#f0b34b;">⚠️ = 0</span>' : '—';
+
+                // 判断分式值是否为零
+                if (Math.abs(numV) < 0.01) {
+                    document.getElementById('fracStatus').innerHTML = '<span style="color:#f0b34b; font-weight:700;">⭐ 值为0</span>';
+                    document.getElementById('meaningStatus').style.background = '#fff8e1';
+                    document.getElementById('meaningStatus').style.color = '#b85c1a';
+                    document.getElementById('meaningStatus').innerHTML = '⚡ 分式的值为零！（分子=0 且 分母≠0）';
+                    document.getElementById('rowNum').style.background = '#fff8e1';
+                } else {
+                    document.getElementById('fracStatus').innerHTML = '—';
+                    document.getElementById('meaningStatus').style.background = '#d4f4dd';
+                    document.getElementById('meaningStatus').style.color = '#1a8a4a';
+                    document.getElementById('meaningStatus').innerHTML = '✅ 分式有意义（$x \\neq 2$）';
+                    document.getElementById('rowNum').style.background = '';
+                }
+                document.getElementById('rowDen').style.background = '';
+                document.getElementById('rowFrac').style.background = '';
+
+                document.getElementById('simplifyHint').innerHTML = '当 $x=' + x.toFixed(1) + '$ 时，原式 $= ' + x.toFixed(1) + '+2 = ' + result.toFixed(2) + '$ ✓';
+            }
+        }
+
+        document.getElementById('sliderX').addEventListener('input', function() {
+            x = parseFloat(this.value);
+            update();
+            // 动态更新后重新渲染MathJax
+            setTimeout(function() {
+                if (window.MathJax && MathJax.typesetPromise) {
+                    MathJax.typesetPromise([
+                        document.getElementById('meaningStatus'),
+                        document.getElementById('simplifyHint')
+                    ]).catch(function(err) { console.log('MathJax render error:', err); });
+                }
+            }, 0);
+        });
+
+        update();
+    })();
+</script>
+</body>
+</html>

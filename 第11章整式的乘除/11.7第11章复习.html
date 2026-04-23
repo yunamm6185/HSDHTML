@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11章 整式的乘除 章末复习 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .knowledge-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 8px 16px rgba(0,40,60,0.1);
+            border: 1px solid #b9d6ef;
+        }
+        .knowledge-card h4 {
+            font-size: 1.4rem;
+            color: #0b4b78;
+            border-bottom: 2px solid #58a9d4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .knowledge-tag {
+            display: inline-block;
+            background: #e1f0de;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            margin: 0.3rem;
+            font-size: 0.95rem;
+            border: 1px solid #47945b;
+            color: #1d6130;
+        }
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .concept-table th, .concept-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .concept-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            width: 20%;
+        }
+        .concept-table td {
+            background: #f9fcff;
+        }
+        .example-box, .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4, .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 章末复习</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="chapter-intro">★ 系统梳理幂的运算、整式乘除、乘法公式及因式分解，构建知识体系。</div>
+    <div class="lesson-title">章末复习</div>
+
+    <!-- 复习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握幂的运算法则（乘、除、乘方、积的乘方）</div>
+            <div class="target-item"><span>✔</span>熟练进行整式乘除运算，理解乘法公式</div>
+            <div class="target-item"><span>✔</span>掌握因式分解的提公因式法、公式法、十字相乘法</div>
+        </div>
+    </div>
+
+    <!-- 知识结构图（卡片式） -->
+    <h2>📚 知识结构图</h2>
+    <div class="knowledge-grid">
+        <div class="knowledge-card">
+            <h4>📌 幂的运算</h4>
+            <div>
+                <span class="knowledge-tag">同底数幂乘法 $a^m\cdot a^n=a^{m+n}$</span>
+                <span class="knowledge-tag">幂的乘方 $(a^m)^n=a^{mn}$</span>
+                <span class="knowledge-tag">积的乘方 $(ab)^n=a^n b^n$</span>
+                <span class="knowledge-tag">同底数幂除法 $a^m\div a^n=a^{m-n}$ ($a\neq0$)</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>🔢 整式乘法</h4>
+            <div>
+                <span class="knowledge-tag">单项式×单项式</span>
+                <span class="knowledge-tag">单项式×多项式</span>
+                <span class="knowledge-tag">多项式×多项式</span>
+                <span class="knowledge-tag">乘法公式: $(a+b)(a-b)=a^2-b^2$, $(a\pm b)^2=a^2\pm2ab+b^2$</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>⚖️ 整式除法</h4>
+            <div>
+                <span class="knowledge-tag">单项式÷单项式</span>
+                <span class="knowledge-tag">多项式÷单项式</span>
+            </div>
+        </div>
+        <div class="knowledge-card">
+            <h4>💡 因式分解</h4>
+            <div>
+                <span class="knowledge-tag">提公因式法</span>
+                <span class="knowledge-tag">公式法: 平方差、完全平方</span>
+                <span class="knowledge-tag">十字相乘法 $x^2+(a+b)x+ab=(x+a)(x+b)$</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心概念回顾（表格） -->
+    <h2>📖 核心概念回顾</h2>
+    <table class="concept-table">
+        <tr><th>概念</th><th>法则/公式</th><th>示例</th></tr>
+        <tr><td>同底数幂乘法</td><td>$a^m\cdot a^n=a^{m+n}$</td><td>$x^3\cdot x^4=x^7$</td></tr>
+        <tr><td>幂的乘方</td><td>$(a^m)^n=a^{mn}$</td><td>$(10^3)^5=10^{15}$</td></tr>
+        <tr><td>积的乘方</td><td>$(ab)^n=a^n b^n$</td><td>$(-2x)^3=-8x^3$</td></tr>
+        <tr><td>同底数幂除法</td><td>$a^m\div a^n=a^{m-n}$ ($a\neq0$)</td><td>$x^8\div x^3=x^5$</td></tr>
+        <tr><td>单项式×单项式</td><td>系数相乘，相同字母指数相加</td><td>$3x^2y\cdot(-2xy^3)=-6x^3y^4$</td></tr>
+        <tr><td>多项式×多项式</td><td>逐项相乘，合并同类项</td><td>$(x+2)(x-3)=x^2-x-6$</td></tr>
+        <tr><td>平方差公式</td><td>$(a+b)(a-b)=a^2-b^2$</td><td>$(2a+3b)(2a-3b)=4a^2-9b^2$</td></tr>
+        <tr><td>完全平方公式</td><td>$(a\pm b)^2=a^2\pm2ab+b^2$</td><td>$(3x-2y)^2=9x^2-12xy+4y^2$</td></tr>
+        <tr><td>单项式÷单项式</td><td>系数相除，同底数幂相除</td><td>$24a^3b^2\div3ab^2=8a^2$</td></tr>
+        <tr><td>多项式÷单项式</td><td>每一项除以单项式再相加</td><td>$(9x^4-15x^2+6x)\div3x=3x^3-5x+2$</td></tr>
+        <tr><td>提公因式法</td><td>$ma+mb+mc=m(a+b+c)$</td><td>$3x^2-9xy=3x(x-3y)$</td></tr>
+        <tr><td>平方差分解</td><td>$a^2-b^2=(a+b)(a-b)$</td><td>$25x^2-16y^2=(5x+4y)(5x-4y)$</td></tr>
+        <tr><td>完全平方分解</td><td>$a^2\pm2ab+b^2=(a\pm b)^2$</td><td>$x^2+4xy+4y^2=(x+2y)^2$</td></tr>
+        <tr><td>十字相乘法</td><td>$x^2+(a+b)x+ab=(x+a)(x+b)$</td><td>$x^2-5x+6=(x-2)(x-3)$</td></tr>
+    </table>
+
+    <!-- 典型例题 -->
+    <h2>📐 典型例题</h2>
+
+    <!-- 例1 幂的运算 -->
+    <div class="example-box">
+        <h4>例1 计算（结果以幂的形式表示）</h4>
+        <p>$(1)\ a^7\cdot a^8$； $(2)\ (a^3)^7$； $(3)\ (-2a^2b)^3$； $(4)\ a^{10}\div a^2$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>$(1)\ a^{15}$； $(2)\ a^{21}$； $(3)\ -8a^6b^3$； $(4)\ a^{8}$。</p>
+        </div>
+    </div>
+
+    <!-- 例2 整式乘法 -->
+    <div class="example-box">
+        <h4>例2 计算</h4>
+        <p>$(1)\ (-3a^2b)\cdot(2a^3b^2)$； $(2)\ (2x-3)(x+4)$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>$(1)\ -6a^5b^3$；</p>
+            <p>$(2)\ (2x-3)(x+4)=2x^2+8x-3x-12=2x^2+5x-12$。</p>
+        </div>
+    </div>
+
+    <!-- 例3 乘法公式 -->
+    <div class="example-box">
+        <h4>例3 运用乘法公式计算</h4>
+        <p>$(1)\ (2a+5b)(2a-5b)$； $(2)\ (3x-2y)^2$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">📌 显示解答</button>
+        <div id="ex3" class="answer-box">
+            <p>$(1)\ (2a)^2-(5b)^2=4a^2-25b^2$；</p>
+            <p>$(2)\ (3x)^2-2\cdot3x\cdot2y+(2y)^2=9x^2-12xy+4y^2$。</p>
+        </div>
+    </div>
+
+    <!-- 例4 整式除法 -->
+    <div class="example-box">
+        <h4>例4 计算</h4>
+        <p>$(1)\ (6x^3y^4z)\div (-2x^2y^2)$； $(2)\ (28a^3b^2c+ a^2b^3-14a^2b^2)\div(-7a^2b)$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">📌 显示解答</button>
+        <div id="ex4" class="answer-box">
+            <p>$(1)\ (6\div(-2))x^{3-2}y^{4-2}z=-3xy^2z$；</p>
+            <p>$(2)\ =28a^3b^2c\div(-7a^2b)+a^2b^3\div(-7a^2b)-14a^2b^2\div(-7a^2b)=-4abc-\frac{1}{7}b^2+2b$。</p>
+        </div>
+    </div>
+
+    <!-- 例5 因式分解 -->
+    <div class="example-box">
+        <h4>例5 分解因式</h4>
+        <p>$(1)\ 3x^3-12xy^2$； $(2)\ x^2+6x+9$； $(3)\ x^2-2x-8$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex5')">📌 显示解答</button>
+        <div id="ex5" class="answer-box">
+            <p>$(1)\ 3x(x^2-4y^2)=3x(x+2y)(x-2y)$；</p>
+            <p>$(2)\ (x+3)^2$；</p>
+            <p>$(3)\ (x-4)(x+2)$。</p>
+        </div>
+    </div>
+
+    <!-- 练习区 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 复习练习</h3>
+
+        <!-- 练习1 判断 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 判断下列等式是否正确，并说明理由：</p>
+            <span class="sub-question">$(1)\ a^2\cdot a^2=(2a)^2$；</span>
+            <span class="sub-question">$(2)\ a^2\cdot b^2=(ab)^4$；</span>
+            <span class="sub-question">$(3)\ a^{12}=(a^2)^6=(a^3)^4=(a^5)^7$；</span>
+            <span class="sub-question">$(4)\ a^6\div a^2=a^3$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) 错，左边 $a^4$，右边 $4a^2$；</p>
+                <p class="sub-answer">(2) 错，左边 $a^2b^2$，右边 $a^4b^4$；</p>
+                <p class="sub-answer">(3) 错，$(a^5)^7=a^{35}$，其他两项为 $a^{12}$，故不相等；</p>
+                <p class="sub-answer">(4) 错，应为 $a^4$。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 计算 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：</p>
+            <span class="sub-question">$(1)\ (3\times10^5)^2$；</span>
+            <span class="sub-question">$(2)\ a^2\cdot(ab)^3$；</span>
+            <span class="sub-question">$(3)\ (x^3)^2\div x^5$；</span>
+            <span class="sub-question">$(4)\ (2x-1)(3x+2)$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) $9\times10^{10}$；</p>
+                <p class="sub-answer">(2) $a^5b^3$；</p>
+                <p class="sub-answer">(3) $x$；</p>
+                <p class="sub-answer">(4) $6x^2+x-2$。</p>
+            </div>
+        </div>
+
+        <!-- 练习3 乘法公式 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 运用乘法公式计算：</p>
+            <span class="sub-question">$(1)\ (x+2y)(x-2y)$；</span>
+            <span class="sub-question">$(2)\ (2m+3n)^2$；</span>
+            <span class="sub-question">$(3)\ 99^2$（用完全平方公式）。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p class="sub-answer">(1) $x^2-4y^2$；</p>
+                <p class="sub-answer">(2) $4m^2+12mn+9n^2$；</p>
+                <p class="sub-answer">(3) $(100-1)^2=10000-200+1=9801$。</p>
+            </div>
+        </div>
+
+        <!-- 练习4 因式分解 -->
+        <div class="exercise-item">
+            <p class="exercise-question">4. 分解因式：</p>
+            <span class="sub-question">$(1)\ x^2-25x$；</span>
+            <span class="sub-question">$(2)\ 1-4x^2$；</span>
+            <span class="sub-question">$(3)\ x^3-4x^2+4x$；</span>
+            <span class="sub-question">$(4)\ x^2+7x+12$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac4')">🔍 答案</button>
+            <div id="prac4" class="answer-box">
+                <p class="sub-answer">(1) $x(x-25)$；</p>
+                <p class="sub-answer">(2) $(1-2x)(1+2x)$；</p>
+                <p class="sub-answer">(3) $x(x^2-4x+4)=x(x-2)^2$；</p>
+                <p class="sub-answer">(4) $(x+3)(x+4)$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：数学文化 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 我国古代数学中的“开方术”</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>我国古代数学家早在《九章算术》中就已经提出了开平方、开立方的方法，这与现代整式乘除中的幂运算有着密切联系。宋元时期的数学家李冶、朱世杰等进一步发展了“天元术”和“四元术”，实际上就是用符号表示多项式并进行乘除运算。这些成就表明我国古代在代数方面处于世界领先地位。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 多项式乘法转化为单项式乘法，除法转化为乘法逆运算。<br>
+        <strong>类比思想：</strong> 类比数的运算学习式的运算。<br>
+        <strong>数形结合：</strong> 用图形面积解释乘法公式。<br>
+        <strong>逆向思维：</strong> 因式分解是整式乘法的逆变形。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">幂的运算：同底数幂相乘除，幂的乘方，积的乘方</div>
+            <div class="summary-item">整式乘法：单项式乘单项式、多项式乘多项式，乘法公式</div>
+            <div class="summary-item">整式除法：单项式除以单项式，多项式除以单项式</div>
+            <div class="summary-item">因式分解：提公因式法、公式法、十字相乘法</div>
+            <div class="summary-item">注意运算顺序、符号，分解因式要彻底</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本复习题 A组第1、3、5、8题，B组第10、11题，C组第16题（选做）。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 整式乘除与因式分解，是代数运算的重要基石 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 复习</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

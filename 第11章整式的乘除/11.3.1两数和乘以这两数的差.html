@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.3.1 两数和乘以这两数的差 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 800px;
+            margin-top: 1rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        /* 统一尺寸常量：a=120px, b=40px */
+        :root {
+            --a: 120px;
+            --b: 40px;
+            --a-b: 80px;
+            --a-plus-b: 160px;
+        }
+
+        /* 图形容器 */
+        .figure-11-3-1-container {
+            background: #f9fbfe;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #b9d6ef;
+            box-shadow: 0 4px 12px rgba(0,40,60,0.1);
+        }
+        .figure-title {
+            font-weight: 600;
+            color: #0a3e5f;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            background: #e3f0fd;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+        .figure-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        /* 左侧推导部分 */
+        .derive-part {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .graph-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+        .operator-large {
+            font-size: 28px;
+            font-weight: 500;
+            color: #1e3a5f;
+        }
+
+        /* 长方形 (a+b)(a-b) */
+        .rect-ab {
+            position: relative;
+            width: var(--a-plus-b);
+            height: var(--a-b);
+            border: 3px solid #1e4f6b;
+            background-color: #e1f0e1;
+        }
+        .rect-ab-split {
+            position: absolute;
+            top: 0;
+            right: var(--b);
+            width: 2px;
+            height: 100%;
+            background-color: #1e4f6b;
+        }
+        .rect-ab-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: var(--b);
+            height: 100%;
+            background-color: #b3d9f2;
+        }
+        .rect-ab-label {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            white-space: nowrap;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid #b0d4ee;
+        }
+
+        /* 大正方形 a² */
+        .square-a2 {
+            position: relative;
+            width: var(--a);
+            height: var(--a);
+            border: 3px solid #1e4f6b;
+            background-color: #e1f0e1;
+        }
+        .square-a2-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--b);
+            border-top: 3px solid #1e4f6b;
+        }
+        .square-a2-blue {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: var(--a-b);
+            height: var(--b);
+            background-color: #b3d9f2;
+            border-right: 3px solid #1e4f6b;
+        }
+        .square-a2-pink {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: var(--b);
+            height: var(--b);
+            background-color: #f8d8e8;
+        }
+        .square-a2-label {
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 14px;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            border: 1px solid #b0d4ee;
+        }
+
+        /* 小正方形 b² */
+        .square-b2 {
+            position: relative;
+            width: var(--b);
+            height: var(--b);
+            border: 3px solid #1e4f6b;
+            background-color: #f8d8e8;
+            box-shadow: 3px 3px 0 #c0b5b5;
+        }
+        .square-b2-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            background: white;
+            padding: 2px 4px;
+            border-radius: 10px;
+            border: 1px solid #b0d4ee;
+        }
+
+        /* 填空线 */
+        .fill-row {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-top: 5px;
+        }
+        .blank-line {
+            border-bottom: 2px solid #1e4f6b;
+            height: 20px;
+        }
+        .blank-1 { width: var(--a-plus-b); }
+        .blank-2 { width: var(--a); }
+        .blank-3 { width: var(--b); }
+
+        /* 右侧图 11.3.1 */
+        .figure-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .graph-1131 {
+            position: relative;
+            width: var(--a);
+            height: var(--a);
+            border: 3px solid #1e4f6b;
+            background-color: white;
+            margin: 10px 0;
+        }
+        .g-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--a-b);
+            height: var(--a-b);
+            background-color: #e1f0e1;
+            border-right: 3px solid #1e4f6b;
+            border-bottom: 3px solid #1e4f6b;
+        }
+        .g-top-right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: var(--b);
+            height: var(--a-b);
+            background-color: #b3d9f2;
+            border-left: 3px solid #1e4f6b;
+            border-bottom: 3px solid #1e4f6b;
+        }
+        .g-bottom-left {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: var(--a-b);
+            height: var(--b);
+            background-color: #b3d9f2;
+            border-top: 3px solid #1e4f6b;
+            border-right: 3px solid #1e4f6b;
+        }
+        .g-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: var(--b);
+            height: var(--b);
+            background-color: #f8d8e8;
+            border-top: 3px solid #1e4f6b;
+            border-left: 3px solid #1e4f6b;
+        }
+
+        /* 边长标注 */
+        .label-a-top {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e4f6b;
+        }
+        .label-a-left {
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e4f6b;
+        }
+        .label-b-bottom {
+            position: absolute;
+            bottom: -25px;
+            left: calc(var(--a) - var(--b)/2);
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e4f6b;
+        }
+        .label-b-right {
+            position: absolute;
+            right: -25px;
+            top: calc(var(--a) - var(--b)/2);
+            transform: translateY(-50%);
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e4f6b;
+        }
+
+        .graph-caption {
+            text-align: center;
+            color: #0f4a6f;
+            margin-top: 15px;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .area-analysis {
+            margin-top: 30px;
+            background: #f0f8ff;
+            padding: 1.2rem 2rem;
+            border-radius: 28px;
+            border-left: 8px solid #2a7faa;
+        }
+        .area-analysis p, .area-analysis ul {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .formula {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #0b4b6b;
+            margin: 0.8rem 0;
+            text-align: center;
+        }
+
+        /* 读一读图形：直接使用左侧推导图的样式，但缩小尺寸 */
+        .reading-derive {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .reading-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .reading-square-a2 {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border: 2px solid #1e4f6b;
+            background-color: #e1f0e1;
+        }
+        .reading-square-a2 .bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            border-top: 2px solid #1e4f6b;
+        }
+        .reading-square-a2 .blue {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 20px;
+            background-color: #b3d9f2;
+            border-right: 2px solid #1e4f6b;
+        }
+        .reading-square-a2 .pink {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #f8d8e8;
+        }
+        .reading-square-b2 {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1e4f6b;
+            background-color: #f8d8e8;
+            box-shadow: 2px 2px 0 #c0b5b5;
+        }
+        .reading-rect-ab {
+            position: relative;
+            width: 80px;
+            height: 40px;
+            border: 2px solid #1e4f6b;
+            background-color: #e1f0e1;
+        }
+        .reading-rect-ab .split {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            width: 2px;
+            height: 100%;
+            background-color: #1e4f6b;
+        }
+        .reading-rect-ab .blue {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            background-color: #b3d9f2;
+        }
+        .reading-operator {
+            font-size: 24px;
+            font-weight: 500;
+            color: #1e3a5f;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.3.1</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.3.1 两数和乘以这两数的差</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解平方差公式的推导过程</div>
+            <div class="target-item"><span>✔</span>掌握平方差公式的结构特征</div>
+            <div class="target-item"><span>✔</span>能运用公式进行简便计算和化简</div>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>用多项式的乘法法则计算：$(a+b)(a-b)$</p>
+        <p>$$(a+b)(a-b)=a^2 - ab + ab - b^2 = a^2 - b^2.$$</p>
+        <p>这两个特殊的多项式相乘，得到的结果特别简洁：</p>
+        <p>$$(a+b)(a-b)=a^2-b^2.$$</p>
+        <p>这就是说，两数和与这两数差的积，等于这两数的平方差。</p>
+        <p>这个公式叫做两数和与这两数差的乘法公式，有时也简称为平方差公式。</p>
+    </div>
+
+    <!-- 图11.3.1 -->
+    <div class="figure-11-3-1-container">
+        <div class="figure-title">观察图11.3.1，指出它包含哪些长方形和正方形，并用等式表示下图中图形面积的运算：</div>
+        
+        <!-- 主图形区域：左侧推导 + 右侧图 -->
+        <div class="figure-row">
+            <!-- 左侧推导填空 -->
+            <div class="derive-part">
+                <div class="graph-row">
+                    <!-- 长方形 (a+b)(a-b) -->
+                    <div class="rect-ab">
+                        <div class="rect-ab-split"></div>
+                        <div class="rect-ab-right"></div>
+                        <div class="rect-ab-label">$(a+b)(a-b)$</div>
+                    </div>
+                    <span class="operator-large">=</span>
+                    <!-- 大正方形 a² -->
+                    <div class="square-a2">
+                        <div class="square-a2-bottom">
+                            <div class="square-a2-blue"></div>
+                            <div class="square-a2-pink"></div>
+                        </div>
+                        <div class="square-a2-label">$a^2$</div>
+                    </div>
+                    <span class="operator-large">−</span>
+                    <!-- 小正方形 b² -->
+                    <div class="square-b2">
+                        <div class="square-b2-label">$b^2$</div>
+                    </div>
+                </div>
+                <!-- 填空线 -->
+                <div class="fill-row">
+                    <div class="blank-line blank-1"></div>
+                    <span class="operator-large">=</span>
+                    <div class="blank-line blank-2"></div>
+                    <span class="operator-large">−</span>
+                    <div class="blank-line blank-3"></div>
+                </div>
+            </div>
+
+            <!-- 右侧图 11.3.1 -->
+            <div class="figure-right">
+                <div class="graph-1131">
+                    <div class="g-top-left"></div>
+                    <div class="g-top-right"></div>
+                    <div class="g-bottom-left"></div>
+                    <div class="g-bottom-right"></div>
+                    <span class="label-a-top">$a$</span>
+                    <span class="label-a-left">$a$</span>
+                    <span class="label-b-bottom">$b$</span>
+                    <span class="label-b-right">$b$</span>
+                </div>
+                <div class="graph-caption">图 11.3.1</div>
+            </div>
+        </div>
+
+        <!-- 面积分析说明 -->
+        <div class="area-analysis">
+            <p><strong>图形构成分析：</strong></p>
+            <ul>
+                <li><strong>正方形</strong>：边长为 $a$ 的大正方形（浅绿色区域）、边长为 $b$ 的小正方形（浅粉色区域）。</li>
+                <li><strong>长方形</strong>：长为 $a$、宽为 $b$ 的长方形（浅蓝色区域，共两块，面积均为 $ab$），长为 $(a+b)$、宽为 $(a-b)$ 的大长方形（最左侧图形）。</li>
+            </ul>
+            <p><strong>面积运算推导：</strong></p>
+            <div class="formula">$(a+b)(a-b) = a^2 - b^2$</div>
+            <p>即：长为 $(a+b)$、宽为 $(a-b)$ 的长方形面积 = 边长为 $a$ 的大正方形面积 − 边长为 $b$ 的小正方形面积。</p>
+        </div>
+    </div>
+
+    <!-- 例1 -->
+    <div class="example-box">
+        <h4>例1 计算</h4>
+        <p>\((1)\ (a+3)(a-3)\)；\((2)\ (2a+3b)(2a-3b)\)；\((3)\ (1+2c)(1-2c)\)；\((4)\ (-2x-y)(2x-y)\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>\((1)\ (a+3)(a-3)=a^2-3^2=a^2-9\)；</p>
+            <p>\((2)\ (2a+3b)(2a-3b)=(2a)^2-(3b)^2=4a^2-9b^2\)；</p>
+            <p>\((3)\ (1+2c)(1-2c)=1^2-(2c)^2=1-4c^2\)；</p>
+            <p>\((4)\ (-2x-y)(2x-y)=(-y-2x)(-y+2x)=(-y)^2-(2x)^2=y^2-4x^2\)。</p>
+        </div>
+    </div>
+
+    <!-- 例2 简便计算 -->
+    <div class="example-box">
+        <h4>例2 计算 $1998\times2002$</h4>
+        <p>解：$1998\times2002=(2000-2)(2000+2)=2000^2-2^2=4000000-4=3999996$。</p>
+    </div>
+
+    <!-- 例3 草坪问题 -->
+    <div class="example-box">
+        <h4>例3 街心花园有一块边长为 $a\,\mathrm{m}$ 的正方形草坪 $(a>2)$，南北向增加 $2\,\mathrm{m}$，东西向减少 $2\,\mathrm{m}$。改造后得到一块长方形草坪，求这块长方形草坪的面积。</h4>
+        <p>解：$(a+2)(a-2)=a^2-4$。</p>
+        <p>答：这块长方形草坪的面积为 $(a^2-4)\,\mathrm{m}^2$。</p>
+    </div>
+
+    <!-- 练习 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p class="exercise-question">1. 计算：</p>
+            <span class="sub-question">\((1)\ \left(2x+\dfrac{1}{2}\right)\left(2x-\dfrac{1}{2}\right)\)；</span>
+            <span class="sub-question">\((2)\ (-2x+y)(2x+y)\)；</span>
+            <span class="sub-question">\((3)\ 498\times502\)；</span>
+            <span class="sub-question">\((4)\ 999\times1001\)。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) $4x^2-\dfrac{1}{4}$；</p>
+                <p class="sub-answer">(2) $y^2-4x^2$；</p>
+                <p class="sub-answer">(3) $(500-2)(500+2)=500^2-2^2=250000-4=249996$；</p>
+                <p class="sub-answer">(4) $(1000-1)(1000+1)=1000^2-1^2=1000000-1=999999$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p class="exercise-question">2. 先化简，再求值：$(2x-y)(y+2x)-(2y+x)(2y-x)$，其中 $x=1$，$y=2$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>原式 $=(4x^2-y^2)-(4y^2-x^2)=4x^2-y^2-4y^2+x^2=5x^2-5y^2$。</p>
+                <p>代入 $x=1$，$y=2$，得 $5\times1-5\times4=5-20=-15$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：平方差公式的历史（使用左侧推导图风格） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 平方差公式的几何背景</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>平方差公式 $(a+b)(a-b)=a^2-b^2$ 是乘法公式中最基本的一个。早在古希腊时期，欧几里得就在《几何原本》中用几何方法证明了这一等式：</p>
+            <!-- 直接使用左侧推导图风格，缩小尺寸 -->
+            <div class="reading-derive">
+                <!-- 左侧 a² - b² 的组合 -->
+                <div class="reading-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <div class="reading-square-a2">
+                            <div class="bottom"></div>
+                            <div class="blue"></div>
+                            <div class="pink"></div>
+                        </div>
+                        <span class="reading-operator">−</span>
+                        <div class="reading-square-b2"></div>
+                    </div>
+                </div>
+                <span class="reading-operator">=</span>
+                <!-- 右侧 (a+b)(a-b) 长方形 -->
+                <div class="reading-item">
+                    <div class="reading-rect-ab">
+                        <div class="split"></div>
+                        <div class="blue"></div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 10px;">如图，边长为 $a$ 的大正方形去掉边长为 $b$ 的小正方形（粉色），剩余部分（绿色与两个蓝色矩形）可以拼成一个长为 $a+b$、宽为 $a-b$ 的长方形，从而得到 $(a+b)(a-b)=a^2-b^2$。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数形结合：</strong> 用图形面积解释平方差公式，直观理解代数恒等式。<br>
+        <strong>转化思想：</strong> 将复杂计算转化为平方差公式，简化运算。<br>
+        <strong>符号意识：</strong> 识别公式中的$a$和$b$，正确运用公式。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">平方差公式：$(a+b)(a-b)=a^2-b^2$。</div>
+            <div class="summary-item">公式特征：左边是两个二项式相乘，一项相同，另一项互为相反数；右边是相同项的平方减去相反项的平方。</div>
+            <div class="summary-item">应用：简化计算、化简代数式。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.3 A组第1题，B组第6题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 平方差，差平方，公式运用要灵活 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.3.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

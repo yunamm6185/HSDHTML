@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2">
+<title>17.3 数学活动——图形的等分 | 华师版·八年级下册</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+    macros: { square: ['\\square'] }
+  },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#ecf5fa;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;font-weight:500;line-height:1.7;color:#1e3b5a;padding:1.5rem;font-size:18px;}
+.textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(0,45,70,.25);padding:2rem 2.5rem;border:1px solid #cde0f0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8d2e9;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#2e5b7c;}
+h1{font-size:2.4rem;color:#0f405e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:#3a9fd5;border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.2rem;color:#0b4b78;background:#e2effa;padding:.6rem 1.2rem;border-radius:60px;border:3px solid #b2d2ea;margin:1.2rem 0 1.8rem;font-weight:700;}
+.learning-targets{background:linear-gradient(145deg,#e3f0fd,#d2e6f8);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #b4d1ec;box-shadow:0 5px 0 #92b9da;}
+.learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #2675a8;padding-left:1rem;color:#0b3b59;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}.target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4cde2;border:1px solid #c3daef;}
+.target-item span{background:#2675a8;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:#e6f2fb;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #2a7faa;font-weight:600;}
+.explore-card{background:#e5f3e2;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #3a8b4f;font-weight:600;}
+.explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#1d6130;}.explore-card h4::before{content:"🔍 ";}
+.fact-card{background:#fff8e1;border-left:8px solid #f0b34b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b85c1a;}
+.theorem-box{background:#fff3cd;border:3px solid #f0b34b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;text-align:center;font-size:1.25rem;font-weight:700;color:#7a3d00;}
+.example-card{background:#e5f3e2;border-left:8px solid #3a8b4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+.example-card h4{font-size:1.35rem;color:#1d6130;}
+.interact-btn{background:linear-gradient(135deg,#3a9fd5,#2675a8);border:none;color:white;padding:.45rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 10px rgba(38,117,168,.35);margin:.5rem .3rem 0;font-size:.95rem;transition:all .2s;}
+.interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(38,117,168,.45);}
+.interact-btn:active{transform:translateY(1px);box-shadow:0 2px 6px rgba(38,117,168,.3);}
+.interact-btn.btn-green{background:linear-gradient(135deg,#51cf66,#37b24d);box-shadow:0 4px 10px rgba(55,178,77,.35);}
+.interact-btn.btn-orange{background:linear-gradient(135deg,#ffa94d,#fd7e14);box-shadow:0 4px 10px rgba(253,126,20,.35);}
+.interact-btn.btn-red{background:linear-gradient(135deg,#ff6b6b,#e03131);box-shadow:0 4px 10px rgba(224,49,49,.35);}
+.answer-box{background:#f6fbfe;border-left:6px solid #f0b34b;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}.show-answer{display:block;animation:fadeIn .4s ease;}
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+.section-title{font-size:1.6rem;color:#0b4b78;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #3a9fd5;}
+.summary-section{background:#d6e9f5;border-left:6px solid #30829b;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 0;}
+.math-idea{background:#deedf7;border-left:8px solid #2a7faa;border-radius:1.8rem;padding:1rem 1.8rem;margin:1rem 0;}
+.homework-box{background:#d0e5f3;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+.message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #3a9fd5;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+.footer-note{text-align:right;color:#33658a;border-top:2px solid #c0d8ec;padding-top:.8rem;margin-top:1.5rem;}
+
+/* Canvas容器 */
+.canvas-container{position:relative;display:inline-block;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,40,80,.12);background:#fafcff;border:2px solid #d4e5f7;}
+canvas{display:block;max-width:100%;height:auto;border-radius:10px;}
+
+/* 控制面板 */
+.control-panel{background:linear-gradient(145deg,#f0f7fc,#e2effa);border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border:2px solid #c5daf0;display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;}
+.control-panel label{font-weight:600;color:#1e3b5a;font-size:.95rem;}
+.control-panel input[type=range]{width:200px;accent-color:#2675a8;cursor:pointer;}
+.control-panel .angle-display{background:#2675a8;color:white;padding:.25rem .8rem;border-radius:20px;font-weight:bold;font-size:.9rem;min-width:70px;text-align:center;}
+
+/* 对比布局 */
+.compare-container{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin:1rem 0;}
+.compare-item{flex:1;min-width:280px;max-width:450px;text-align:center;}
+.compare-item .compare-title{font-size:1.15rem;font-weight:700;margin-bottom:.5rem;padding:.4rem;border-radius:12px;}
+.compare-item .compare-title.yes{background:#d3f9d8;color:#2b8a3e;}
+.compare-item .compare-title.no{background:#ffe3e3;color:#c92a2a;}
+.compare-item canvas{margin:0 auto;}
+
+/* 动画状态指示器 */
+.status-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .9rem;border-radius:20px;font-weight:700;font-size:.85rem;}
+.status-badge.running{background:#d3f9d8;color:#2b8a3e;animation:pulse 1.5s infinite;}
+.status-badge.stopped{background:#ffe3e3;color:#c92a2a;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.65;}}
+
+/* 面积显示 */
+.area-display{display:flex;gap:1rem;justify-content:center;margin:.8rem 0;flex-wrap:wrap;}
+.area-box{padding:.5rem 1.2rem;border-radius:12px;font-weight:bold;text-align:center;min-width:120px;}
+.area-box.left{background:#e8f4ea;color:#2b8a3e;border:2px solid #69db7c;}
+.area-box.right{background:#fce4e4;color:#c92a2a;border:2px solid #ffa8a8;}
+.area-box.equal{background:#fff3cd;color:#996600;border:2px solid #fcc419;}
+
+p{margin:.5rem 0;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华师版·八年级下册</span><span>第17章 · 平行四边形 · 17.3</span></div>
+<h1>第17章 平行四边形</h1>
+<div class="lesson-title">17.3 数学活动 —— 图形的等分</div>
+
+<div class="learning-targets"><h3>🎯 活动目标</h3><div class="target-grid">
+<div class="target-item"><span>1</span>探索平行四边形面积等分的方法</div>
+<div class="target-item"><span>2</span>理解过对称中心的直线平分面积的性质</div>
+<div class="target-item"><span>3</span>动手操作，培养几何直观和空间想象能力</div>
+<div class="target-item"><span>4</span>体会数学与实际生活的联系</div>
+</div></div>
+
+<!-- 引入 -->
+<div class="intro-card">
+<p style="font-size:1.15rem;">✂️ <strong>活动背景：图形的等分问题</strong></p>
+<p>在日常生活中，我们经常需要将一个图形<strong>分成相等的两部分</strong>。比如：</p>
+<ul style="padding-left:1.5rem;margin-top:.5rem;">
+    <li>将一张长方形纸片对折成两半</li>
+    <li>将一块地平均分给两个人</li>
+    <li>将蛋糕公平地切开</li>
+</ul>
+<p><strong>核心问题：</strong>什么样的直线能将一个平行四边形的面积分成相等的两部分？</p>
+</div>
+
+<!-- ========== 探究一：交互式过中心直线旋转 ========== -->
+<div class="section-title">一、探究活动1：过中心的直线等分面积</div>
+
+<div class="explore-card"><h4>操作与观察（可交互演示）</h4>
+<p><strong>材料准备：</strong>一张平行四边形纸片、直尺、铅笔</p>
+<p><strong>步骤1：</strong>画出平行四边形ABCD的两条对角线AC、BD，交于点O。</p>
+<p><strong>步骤2：</strong>用铅笔通过点O任意画一条直线l（不与对角线重合），分别交两组对边于两点。</p>
+
+<!-- 交互Canvas区域 -->
+<div style="text-align:center;margin:1rem 0;">
+<div class="canvas-container">
+<canvas id="activity1" width="520" height="340"></canvas>
+</div>
+
+<!-- 控制面板 -->
+<div class="control-panel">
+<label>🔄 直线角度:</label>
+<input type="range" id="angleSlider" min="-90" max="90" value="30" step="1">
+<span class="angle-display" id="angleDisplay">30°</span>
+<button class="interact-btn btn-green" onclick="startAutoRotate()" id="autoRotateBtn">▶ 自动旋转</button>
+<button class="interact-btn btn-orange" onclick="toggleMultiLine()">📐 显示多条直线</button>
+<button class="interact-btn" onclick="resetActivity1()">↺ 重置</button>
+</div>
+
+<!-- 面积显示 -->
+<div class="area-display" id="areaDisplay">
+<div class="area-box left" id="areaLeft">左侧面积 = <span id="leftVal">50%</span></div>
+<div class="area-box right" id="areaRight">右侧面积 = <span id="rightVal">50%</span></div>
+<div class="area-box equal" id="areaEqual">✓ 面积相等！</div>
+</div>
+
+<p><strong>💡 操作提示：</strong>拖动滑块改变过O点直线的角度，或点击「自动旋转」观看动画！无论怎么转，两侧面积始终相等。</p>
+
+<p><strong>观察与思考：</strong></p>
+<ol style="padding-left:1.5rem;">
+    <li>这条直线把平行四边形分成了几个部分？</li>
+    <li>各部分的面积有什么关系？</li>
+    <li>换一个角度再试试，结论还成立吗？</li>
+</ol>
+<button class="interact-btn" onclick="toggleAnswer('obs1')">查看结论</button>
+<div id="obs1" class="answer-box">
+<p><strong>结论：</strong>过平行四边形对称中心O的任意一条直线，都将其面积分成<strong>相等的两部分</strong>！</p>
+<p><strong>原因：</strong>平行四边形是中心对称图形。过对称中心的直线将图形分成关于O点对称的两部分，这两部分全等，所以面积相等。用符号表示：$S_1 = S_2 = \frac{1}{2}S_{ABCD}$。</p>
+</div></div>
+
+<div class="theorem-box">
+<p><strong>定理：过平行四边形对称中心的任意直线，将其面积分为相等的两部分。</strong></p>
+</div>
+
+<!-- ========== 探究二：对比示意图 ========== -->
+<div class="section-title">二、探究活动2：哪些直线能等分面积？</div>
+
+<div class="explore-card"><h4>思考与分类</h4>
+<p><strong>问题：</strong>除了过对称中心O的直线外，还有没有其他直线也能等分平行四边形的面积？</p>
+
+<!-- 对比图示 -->
+<div class="compare-container">
+<div class="compare-item">
+<div class="compare-title yes">✅ 过中心O的直线 → 等分面积</div>
+<div class="canvas-container">
+<canvas id="activity2_yes" width="400" height="260"></canvas>
+</div>
+<p style="color:#2b8a3e;font-weight:700;">左右面积相等！</p>
+</div>
+<div class="compare-item">
+<div class="compare-title no">❌ 不过中心O的直线 → 不等分</div>
+<div class="canvas-container">
+<canvas id="activity2_no" width="400" height="260"></canvas>
+</div>
+<p style="color:#c92a2a;font-weight:700;">左右面积不相等！</p>
+</div>
+</div>
+
+<button class="interact-btn" onclick="toggleAnswer('classify')">查看分析</button>
+<div id="classify" class="answer-box">
+<p><strong>分析：</strong>设平行四边形ABCD的面积为S，要找直线l使 $S_{\text{左}} = S_{\text{右}} = \frac{S}{2}$。</p>
+<ol style="padding-left:1.5rem;">
+<li><strong>过中心O的直线</strong> → $\square$ 必然等分</li>
+<li><strong>平行于一组对边的直线</strong> → 需满足特定位置条件</li>
+<li><strong>其他方向的直线</strong> → 需要具体计算</li>
+</ol>
+<p><strong>关键发现：</strong>对于平行四边形，能等分其面积的直线有<strong>无数多条</strong>！其中最特殊的就是<strong>过对称中心O的直线族</strong>。</p>
+</div></div>
+
+<!-- ========== 探究三：三角形等分 ========== -->
+<div class="section-title">三、探究活动3：三角形面积的等分</div>
+
+<div class="fact-card"><h4>📌 延伸思考：三角形的等分</div>
+<p><strong>问题：</strong>如何画一条直线，将一个三角形分成面积相等的两部分？</p>
+
+<div style="text-align:center;margin:1rem 0;">
+<div class="canvas-container">
+<canvas id="triangleCanvas" width="480" height="320"></canvas>
+</div>
+</div>
+
+<!-- 三角形控制面板 -->
+<div class="control-panel" style="justify-content:center;">
+<button class="interact-btn btn-green" onclick="showTriangleMedian('AB')">显示中线 AD (到BC中点)</button>
+<button class="interact-btn btn-orange" onclick="showTriangleMedian('AC')">显示中线 BE (到AC中点)</button>
+<button class="interact-btn" onclick="showTriangleMedian('BC')">显示中线 CF (到AB中点)</button>
+<button class="interact-btn btn-red" onclick="showAllMedians()">显示全部三条中线</button>
+</div>
+
+<button class="interact-btn" onclick="toggleAnswer('triangle')">查看答案</button>
+<div id="triangle" class="answer-box">
+<p><strong>方法：</strong>取三角形一边的<strong>中点</strong>，连接该中点与对顶点。</p>
+<p><strong>原理：</strong>中线将三角形分成面积相等的两部分（等底同高）。即 $S_{\triangle ABD} = S_{\triangle ACD} = \frac{1}{2}S_{\triangle ABC}$。</p>
+<p><strong>推广：</strong>三角形有<strong>三条</strong>这样的等分线（三条中线）。而平行四边形有<strong>无数条</strong>（所有过中心的直线）！</p>
+</div></div>
+
+<!-- ========== 实际应用：土地分配 ========== -->
+<div class="section-title">四、实际应用</div>
+
+<div class="example-card"><h4>应用题：土地分配</h4>
+<p>有一块形状为平行四边形的土地，要修建一条笔直的道路穿过这块地，使得道路两侧的土地面积相等。应该怎样设计道路？</p>
+
+<div style="text-align:center;margin:1rem 0;">
+<div class="canvas-container">
+<canvas id="landCanvas" width="520" height="360"></canvas>
+</div>
+</div>
+
+<!-- 土地分配控制面板 -->
+<div class="control-panel" style="justify-content:center;">
+<label>🛤️ 道路方向:</label>
+<input type="range" id="roadAngleSlider" min="-75" max="75" value="20" step="1" oninput="updateLandDemo()">
+<span class="angle-display" id="roadAngleDisplay">20°</span>
+<button class="interact-btn btn-green" onclick="animateRoad()">▶ 动画演示</button>
+<button class="interact-btn" onclick="resetLandDemo()">↺ 重置</button>
+</div>
+
+<button class="interact-btn" onclick="toggleAnswer('app')">解答思路</button>
+<div id="app" class="answer-box">
+<p><strong>方案：</strong></p>
+<p>找到这块平行四边形土地的<strong>对称中心</strong>（即两条对角线的交点），然后过此点任意设计一条直路即可！</p>
+<p>因为过对称中心的直线必然将面积分成相等的两部分，所以道路两侧的土地面积一定相等。</p>
+<p style="color:#991b1b;">💡 这就是为什么很多公园的小路、城市的街道会经过某些特殊的"中心点"！</p>
+</div></div>
+
+<!-- 总结 -->
+<div class="summary-section"><h3 style="color:#0f5669;border-left:6px solid #30829b;padding-left:1rem;margin-bottom:1rem;">📌 活动总结</h3>
+<ul style="line-height:2;"><li><strong>平行四边形是中心对称图形</strong>，对称中心为对角线交点</li><li><strong>过对称中心的任意直线</strong>都能等分平行四边形的面积</li><li>这种性质在实际生活中有广泛应用（道路设计、土地分割等）</li><li>对比：三角形只有<strong>3条</strong>面积等分线，平行四边形有<strong>无数条</strong></li></ul></div>
+
+<div class="math-idea"><h4>🧠 数学思想·核心素养</h4>
+<p><strong>实验探究：</strong>通过动手操作发现规律。<br><strong>归纳总结：</strong>从特殊情况归纳一般结论。<br><strong>实际应用：</strong>将抽象的几何知识应用于解决实际问题。</p></div>
+
+<div class="homework-box"><span style="font-size:2rem;">📚</span><span><strong>课后任务：</strong>① 用纸剪出一个平行四边形，验证本课结论；② 思考：矩形和菱形是否也具有同样的等分性质？③ 预习第17章复习内容。</span></div>
+
+<div class="message-box"><p>✨ 过心直线分面积，无数条条皆相等；中心对称显神奇，数学之美在其中。✨</p></div>
+<div class="footer-note">八年级下册 · 第17章 17.3 数学活动——图形的等分</div>
+</div>
+
+<script>
+// ======== 工具函数 ========
+function toggleAnswer(id){const b=document.getElementById(id);if(b)b.classList.toggle('show-answer');}
+
+function drawRoundedRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x,y+h-r);ctx.lineTo(x,y+h-r);ctx.quadraticCurveTo(x,y+h,x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+
+// ======== Activity 1: 过中心旋转直线 ========
+let activity1Angle = 30;
+let autoRotating = false;
+let autoRotateTimer = null;
+let showMultiLine = false;
+
+const act1_pts = [[70,40],[450,40],[380,290],[0,290]];
+const act1_O = [225,165];
+
+function drawActivity1(){
+    const c=document.getElementById('activity1'),ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    
+    // 背景渐变
+    const bgGrad = ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#fafcff');bgGrad.addColorStop(1,'#f0f7fa');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    
+    // 计算直线端点（过O点）
+    const rad = activity1Angle * Math.PI / 180;
+    const lineLen = Math.max(W,H) * 0.9;
+    const dx = Math.cos(rad), dy = Math.sin(rad);
+    
+    // 平行四边形
+    ctx.beginPath();ctx.moveTo(act1_pts[0][0],act1_pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(act1_pts[i][0],act1_pts[i][1]);ctx.closePath();
+    ctx.fillStyle='#2675a818';ctx.fill();
+    ctx.strokeStyle='#2675a8';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 填充两半不同颜色
+    ctx.save();
+    ctx.beginPath();ctx.moveTo(act1_pts[0][0],act1_pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(act1_pts[i][0],act1_pts[i][1]);
+    ctx.closePath();ctx.clip();
+    
+    // 左侧绿色填充
+    ctx.beginPath();
+    ctx.moveTo(act1_O[0]-dx*lineLen,act1_O[1]-dy*lineLen);
+    ctx.lineTo(act1_O[0],act1_O[1]);
+    ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+    ctx.closePath();
+    ctx.fillStyle='rgba(105,219,124,0.22)';ctx.fill();
+    
+    // 右侧红色填充
+    ctx.beginPath();
+    ctx.moveTo(act1_O[0]+dx*lineLen,act1_O[1]+dy*lineLen);
+    ctx.lineTo(act1_O[0],act1_O[1]);
+    ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+    ctx.closePath();
+    ctx.fillStyle='rgba(255,168,168,0.22)';ctx.fill();
+    ctx.restore();
+    
+    // 多条直线模式
+    if(showMultiLine){
+        [-60,-30,0,30,60].forEach(a => {
+            const r = a*Math.PI/180;
+            const ddx=Math.cos(r),ddy=Math.sin(r);
+            ctx.beginPath();
+            ctx.moveTo(act1_O[0]-ddx*lineLen,act1_O[1]-ddy*lineLen);
+            ctx.lineTo(act1_O[0]+ddx*lineLen,act1_O[1]+ddy*lineLen);
+            ctx.strokeStyle='rgba(231,76,60,0.3)';ctx.lineWidth=1.5;ctx.stroke();
+        });
+    }
+    
+    // 主直线
+    ctx.beginPath();
+    ctx.moveTo(act1_O[0]-dx*lineLen,act1_O[1]-dy*lineLen);
+    ctx.lineTo(act1_O[0]+dx*lineLen,act1_O[1]+dy*lineLen);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=3;ctx.stroke();
+    
+    // 直线箭头/端点装饰
+    ctx.beginPath();ctx.arc(act1_O[0]-dx*lineLen*0.42,act1_O[1]-dy*lineLen*0.42,4,0,Math.PI*2);
+    ctx.arc(act1_O[0]+dx*lineLen*0.42,act1_O[1]+dy*lineLen*0.42,4,0,Math.PI*2);
+    ctx.fillStyle='#e74c3c';ctx.fill();
+    
+    // 对角线虚线
+    [[act1_pts[0],act1_pts[2]],[act1_pts[1],act1_pts[3]]].forEach(d=>{
+    ctx.beginPath();ctx.moveTo(d[0][0],d[0][1]);ctx.lineTo(d[1][0],d[1][1]);
+    ctx.strokeStyle='#aaa';ctx.lineWidth=1.2;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+    });
+    
+    // 中心点 O（发光效果）
+    ctx.beginPath();ctx.arc(act1_O[0],act1_O[1],12,0,Math.PI*2);
+    ctx.fillStyle='rgba(231,76,60,0.15)';ctx.fill();
+    ctx.beginPath();ctx.arc(act1_O[0],act1_O[1],6,0,Math.PI*2);
+    ctx.fillStyle='#e74c3c';ctx.fill();
+    ctx.beginPath();ctx.arc(act1_O[0],act1_O[1],3,0,Math.PI*2);
+    ctx.fillStyle='white';ctx.fill();
+    
+    // 顶点标注
+    ctx.font='bold 16px Segoe UI';ctx.fillStyle='#0b4b78';
+    [['A',-22,-8],['B',8,-8],['C',8,22],['D',-22,22]].forEach((o,i)=>{
+        ctx.fillText(o[0],act1_pts[i][0]+o[1],act1_pts[i][1]+o[2]);
+        // 顶点圆圈
+        ctx.beginPath();ctx.arc(act1_pts[i][0],act1_pts[i][1],4,0,Math.PI*2);
+        ctx.fillStyle='#2675a8';ctx.fill();
+    });
+    
+    // O标注
+    ctx.fillStyle='#c92a2a';ctx.font='bold 16px Segoe UI';
+    ctx.fillText('O',act1_O[0]-6,act1_O[1]+28);
+    
+    // 角度弧线
+    ctx.beginPath();ctx.arc(act1_O[0],act1_O[1],35,0,-rad,true);
+    ctx.strokeStyle='#e74c3c';ctx.lineWidth=1.5;ctx.stroke();
+    ctx.fillStyle='#c92a2a';ctx.font='bold 12px Segoe UI';
+    const arcTextX = act1_O[0] + 42*Math.cos(-rad/2), arcTextY = act1_O[1] + 42*Math.sin(-rad/2);
+    ctx.fillText(activity1Angle+'°',arcTextX,arcTextY);
+}
+
+document.getElementById('angleSlider').addEventListener('input', function(e){
+    activity1Angle = parseFloat(this.value);
+    document.getElementById('angleDisplay').textContent = activity1Angle + '°';
+    drawActivity1();
+});
+
+function startAutoRotate(){
+    if(autoRotating){
+        clearInterval(autoRotateTimer);
+        autoRotating=false;
+        document.getElementById('autoRotateBtn').textContent='▶ 自动旋转';
+        document.getElementById('autoRotateBtn').classList.remove('btn-red');
+        document.getElementById('autoRotateBtn').classList.add('btn-green');
+    } else {
+        autoRotating=true;
+        document.getElementById('autoRotateBtn').textContent='⏹ 停止';
+        document.getElementById('autoRotateBtn').classList.remove('btn-green');
+        document.getElementById('autoRotateBtn').classList.add('btn-red');
+        let dir=1;
+        autoRotateTimer=setInterval(()=>{
+            activity1Angle+=dir*1.2;
+            if(activity1Angle>=88)dir=-1;
+            if(activity1Angle<=-88)dir=1;
+            document.getElementById('angleSlider').value=activity1Angle;
+            document.getElementById('angleDisplay').textContent=Math.round(activity1Angle)+'°';
+            drawActivity1();
+        },40);
+    }
+}
+
+function toggleMultiLine(){
+    showMultiLine=!showMultiLine;
+    drawActivity1();
+}
+
+function resetActivity1(){
+    if(autoRotating) startAutoRotate();
+    showMultiLine=false;
+    activity1Angle=30;
+    document.getElementById('angleSlider').value=30;
+    document.getElementById('angleDisplay').textContent='30°';
+    drawActivity1();
+}
+
+// ======== Activity 2: 对比示意图 ========
+function drawActivity2Yes(){
+    const c=document.getElementById('activity2_yes'),ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    const pts=[[50,35],[350,35],[310,215],[10,215]],O=[180,125];
+    
+    // 平行四边形
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath();
+    ctx.fillStyle='#d3f9d855';ctx.fill();ctx.strokeStyle='#2b8a3e';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 过O的直线
+    ctx.save();ctx.clip();
+    ctx.beginPath();ctx.moveTo(O[0]-150,O[1]-100);ctx.lineTo(O[0],O[1]);ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+    ctx.closePath();ctx.fillStyle='rgba(105,219,124,0.3)';ctx.fill();
+    ctx.restore();
+    
+    ctx.beginPath();ctx.moveTo(15,H-20);ctx.lineTo(W-15,25);
+    ctx.strokeStyle='#2b8a3e';ctx.lineWidth=3;ctx.stroke();
+    
+    // 对角线和O
+    [[pts[0],pts[2]],[pts[1],pts[3]]].forEach(d=>{
+        ctx.beginPath();ctx.moveTo(d[0][0],d[0][1]);ctx.lineTo(d[1][0],d[1][1]);
+        ctx.setLineDash([5,3]);ctx.strokeStyle='#999';ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+    });
+    ctx.beginPath();ctx.arc(O[0],O[1],5,0,Math.PI*2);ctx.fillStyle='#2b8a3e';ctx.fill();
+
+    // 标注
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#1e3b5a';
+    [['A',-16,-6],['B',5,-6],['C',5,16],['D',-16,16]].forEach((o,i)=>ctx.fillText(o[0],pts[i][0]+o[1],pts[i][1]+o[2]));
+    ctx.fillStyle='#2b8a3e';ctx.fillText('O',O[0]-4,O[1]+20);ctx.fillText('过O的直线',W/2-40,H-8);
+
+    // ✓ 标记
+    ctx.font='bold 24px Segoe UI';ctx.fillStyle='#2b8a3e';
+    ctx.fillText('✓',W-35,35);
+}
+
+function drawActivity2No(){
+    const c=document.getElementById('activity2_no'),ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    const pts=[[50,35],[350,35],[310,215],[10,215]],O=[180,125];
+    
+    // 平行四边形
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath();
+    ctx.fillStyle='#ffe3e355';ctx.fill();ctx.strokeStyle='#c92a2a';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 不过O的直线
+    ctx.save();ctx.clip();
+    ctx.beginPath();ctx.moveTo(30,180);ctx.lineTo(370,60);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.lineTo(0,0);
+    ctx.closePath();ctx.fillStyle='rgba(255,168,168,0.35)';ctx.fill();
+    ctx.restore();
+    
+    ctx.beginPath();ctx.moveTo(30,180);ctx.lineTo(370,60);
+    ctx.strokeStyle='#c92a2a';ctx.lineWidth=3;ctx.stroke();
+    
+    // 对角线和O
+    [[pts[0],pts[2]],[pts[1],pts[3]]].forEach(d=>{
+        ctx.beginPath();ctx.moveTo(d[0][0],d[0][1]);ctx.lineTo(d[1][0],d[1][1]);
+        ctx.setLineDash([5,3]);ctx.strokeStyle='#999';ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+    });
+    ctx.beginPath();ctx.arc(O[0],O[1],5,0,Math.PI*2);ctx.fillStyle='#999';ctx.fill();
+
+    // 标注
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#1e3b5a';
+    [['A',-16,-6],['B',5,-6],['C',5,16],['D',-16,16]].forEach((o,i)=>ctx.fillText(o[0],pts[i][0]+o[1],pts[i][1]+o[2]));
+    ctx.fillText('O',O[0]-4,O[1]+20);
+    ctx.fillStyle='#c92a2a';ctx.fillText('不过O的直线',W/2-48,H-8);
+
+    // ✗ 标记
+    ctx.font='bold 24px Segoe UI';ctx.fillStyle='#c92a2a';
+    ctx.fillText('✗',W-35,35);
+
+    // 不等标记
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#c92a2a';
+    ctx.fillText('S₁ ≠ S₂',W/2-28,25);
+}
+
+// ======== Activity 3: 三角形等分 ========
+let currentMedian = null;
+
+const tri_pts = [[240,35],[60,275],[420,275]]; // A, B, C
+const tri_mid = {
+    AB: [(tri_pts[0][0]+tri_pts[1][0])/2,(tri_pts[0][1]+tri_pts[1][1])/2],
+    AC: [(tri_pts[0][0]+tri_pts[2][0])/2,(tri_pts[0][1]+tri_pts[2][1])/2],
+    BC: [(tri_pts[1][0]+tri_pts[2][0])/2,(tri_pts[1][1]+tri_pts[2][1])/2]
+};
+// D在BC上, E在AC上, F在AB上
+const tri_D = tri_mid.BC;
+const tri_E = tri_mid.AC;
+const tri_F = tri_mid.AB;
+
+function drawTriangleCanvas(){
+    const c=document.getElementById('triangleCanvas'),ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    
+    // 背景
+    ctx.fillStyle='#fffbf0';ctx.fillRect(0,0,W,H);
+    
+    // 三角形
+    ctx.beginPath();ctx.moveTo(tri_pts[0][0],tri_pts[0][1]);
+    ctx.lineTo(tri_pts[1][0],tri_pts[1][1]);ctx.lineTo(tri_pts[2][0],tri_pts[2][1]);
+    ctx.closePath();
+    ctx.fillStyle='#fff3cd44';ctx.fill();
+    ctx.strokeStyle='#b85c1a';ctx.lineWidth=2.5;ctx.stroke();
+    
+    // 如果有中线，填充两半
+    if(currentMedian && currentMedian!=='ALL'){
+        const medianPts = {
+            AB:[tri_pts[2],tri_F],  // 从C到AB中点F
+            AC:[tri_pts[1],tri_E],  // 从B到AC中点E  
+            BC:[tri_pts[0],tri_D]   // 从A到BC中点D
+        };
+        const mp = medianPts[currentMedian];
+        
+        ctx.save();ctx.beginPath();ctx.moveTo(tri_pts[0][0],tri_pts[0][1]);
+        ctx.lineTo(tri_pts[1][0],tri_pts[1][1]);ctx.lineTo(tri_pts[2][0],tri_pts[2][1]);
+        ctx.closePath();ctx.clip();
+        
+        ctx.beginPath();ctx.moveTo(mp[0][0],mp[0][1]);ctx.lineTo(mp[1][0],mp[1][1]);
+        ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+        ctx.closePath();ctx.fillStyle='rgba(255,169,77,0.25)';ctx.fill();
+        ctx.restore();
+    }
+    
+    if(currentMedian==='ALL'){
+        // 三条中线
+        [
+            [tri_pts[2],tri_F,'rgba(55,178,77,0.15)'],
+            [tri_pts[1],tri_E,'rgba(38,117,168,0.15)'],
+            [tri_pts[0],tri_D,'rgba(231,76,60,0.15)']
+        ].forEach(line=>{
+            ctx.save();ctx.clip();
+            ctx.beginPath();ctx.moveTo(line[0][0],line[0][1]);
+            ctx.lineTo(line[1][0],line[1][1]);ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+            ctx.closePath();ctx.fillStyle=line[2];ctx.fill();ctx.restore();
+            
+            ctx.beginPath();ctx.moveTo(line[0][0],line[0][1]);ctx.lineTo(line[1][0],line[1][1]);
+            ctx.strokeStyle=['#37b24d','#2675a8','#e74c3c'][[line].indexOf(line)||0];ctx.lineWidth=2.5;ctx.stroke();
+        });
+    }else if(currentMedian){
+        const medianPts = {
+            AB:[tri_pts[2],tri_F,'#37b24d'],
+            AC:[tri_pts[1],tri_E,'#2675a8'],
+            BC:[tri_pts[0],tri_D,'#e74c3c']
+        };
+        const mp=medianPts[currentMedian];
+        ctx.beginPath();ctx.moveTo(mp[0][0],mp[0][1]);ctx.lineTo(mp[1][0],mp[1][1]);
+        ctx.strokeStyle=mp[2];ctx.lineWidth=3;ctx.stroke();
+    }
+    
+    // 中点标记
+    [tri_D,tri_E,tri_F].forEach(p=>{
+        ctx.beginPath();ctx.arc(p[0],p[1],5,0,Math.PI*2);
+        ctx.fillStyle='#fd7e14';ctx.fill();ctx.strokeStyle='white';ctx.lineWidth=1.5;ctx.stroke();
+    });
+    
+    // 顶点标注
+    ctx.font='bold 15px Segoe UI';ctx.fillStyle='#1e3b5a';
+    [['A',-5,-12],['B',-22,18],['C',8,18]].forEach((o,i)=>{
+        ctx.beginPath();ctx.arc(tri_pts[i][0],tri_pts[i][1],4,0,Math.PI*2);
+        ctx.fillStyle='#b85c1a';ctx.fill();
+        ctx.fillText(o[0],tri_pts[i][0]+o[1],tri_pts[i][1]+o[2]);
+    });
+    
+    // 中点标注
+    ctx.font='bold 12px Segoe UI';ctx.fillStyle='#d9480f';
+    ctx.fillText('D',tri_D[0]+8,tri_D[1]+5);
+    ctx.fillText('E',tri_E[0]+8,tri_E[1]-5);
+    ctx.fillText('F',tri_F[0]-18,tri_F[1]+5);
+    
+    // 说明文字
+    ctx.font='bold 13px Segoe UI';ctx.fillStyle='#666';
+    if(!currentMedian){
+        ctx.fillText('点击上方按钮显示中线',W/2-72,H-15);
+    }else if(currentMedian==='ALL'){
+        ctx.fillText('三条中线交于重心 G',W/2-68,H-15);
+        // 重心
+        const G=[(tri_pts[0][0]+tri_pts[1][0]+tri_pts[2][0])/3,
+                (tri_pts[0][1]+tri_pts[1][1]+tri_pts[2][1])/3];
+        ctx.beginPath();ctx.arc(G[0],G[1],6,0,Math.PI*2);
+        ctx.fillStyle='#9c36b5';ctx.fill();
+        ctx.fillStyle='#9c36b5';ctx.fillText('G',G[0]+8,G[1]+5);
+    }else{
+        const names={AB:'中线 CF (C→AB中点F)',AC:'中线 BE (B→AC中点E)',BC:'中线 AD (A→BC中点D)'};
+        ctx.fillText(names[currentMedian],W/2-names[currentMedian].length*4,H-15);
+    }
+}
+
+function showTriangleMedian(side){
+    currentMedian=side;
+    drawTriangleCanvas();
+}
+function showAllMedians(){
+    currentMedian='ALL';
+    drawTriangleCanvas();
+}
+
+// ======== 土地分配应用 ========
+let landAngle = 20;
+let landAnimating = false;
+let landAnimTimer = null;
+
+const land_pts = [[80,50],[440,50],[380,300],[20,300]];
+const land_O = [230,175];
+
+function drawLandCanvas(){
+    const c=document.getElementById('landCanvas'),ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
+    ctx.clearRect(0,0,W,H);
+    
+    // 背景 - 土地颜色
+    const bgGrad=ctx.createLinearGradient(0,0,W,H);
+    bgGrad.addColorStop(0,'#f0fbe4');bgGrad.addColorStop(1,'#dff5c9');
+    ctx.fillStyle=bgGrad;ctx.fillRect(0,0,W,H);
+    
+    // 网格线模拟田地
+    ctx.strokeStyle='rgba(107,142,35,0.08)';ctx.lineWidth=.5;
+    for(let i=0;i<W;i+=25){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,H);ctx.stroke();}
+    for(let i=0;i<H;i+=25){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W,i);ctx.stroke();}
+    
+    // 平行四边形土地
+    ctx.beginPath();ctx.moveTo(land_pts[0][0],land_pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(land_pts[i][0],land_pts[i][1]);ctx.closePath();
+    ctx.fillStyle='#a8d47a66';ctx.fill();
+    ctx.strokeStyle='#558b2f';ctx.lineWidth=3;ctx.stroke();
+    
+    // 两块地的颜色
+    const rad=landAngle*Math.PI/180,dx=Math.cos(rad),dy=Math.sin(rad);
+    const ll=Math.max(W,H)*0.9;
+    ctx.save();ctx.beginPath();ctx.moveTo(land_pts[0][0],land_pts[0][1]);
+    for(let i=1;i<4;i++)ctx.lineTo(land_pts[i][0],land_pts[i][1]);ctx.closePath();ctx.clip();
+    
+    // 左侧地块
+    ctx.beginPath();ctx.moveTo(land_O[0]-dx*ll,land_O[1]-dy*ll);ctx.lineTo(land_O[0],land_O[1]);
+    ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+    ctx.closePath();ctx.fillStyle='rgba(129,199,132,0.35)';ctx.fill();
+    // 右侧地块
+    ctx.beginPath();ctx.moveTo(land_O[0]+dx*ll,land_O[1]+dy*ll);ctx.lineTo(land_O[0],land_O[1]);
+    ctx.lineTo(0,0);ctx.lineTo(W,0);ctx.lineTo(W,H);ctx.lineTo(0,H);
+    ctx.closePath();ctx.fillStyle='rgba(255,183,77,0.35)';ctx.fill();
+    ctx.restore();
+    
+    // 道路
+    ctx.beginPath();ctx.moveTo(land_O[0]-dx*ll,land_O[1]-dy*ll);
+    ctx.lineTo(land_O[0]+dx*ll,land_O[1]+dy*ll);
+    ctx.strokeStyle='#795548';ctx.lineWidth=8;ctx.stroke();
+    ctx.strokeStyle='#a1887f';ctx.lineWidth=4;ctx.stroke();
+    
+    // 道路边线
+    ctx.setLineDash([8,4]);ctx.strokeStyle='#5d4037';ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+    
+    // 对角线
+    [[land_pts[0],land_pts[2]],[land_pts[1],land_pts[3]]].forEach(d=>{
+        ctx.beginPath();ctx.moveTo(d[0][0],d[0][1]);ctx.lineTo(d[1][0],d[1][1]);
+        ctx.strokeStyle='rgba(85,139,47,0.3)';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+    });
+    
+    // 中心O
+    ctx.beginPath();ctx.arc(land_O[0],land_O[1],10,0,Math.PI*2);
+    ctx.fillStyle='rgba(231,76,60,0.2)';ctx.fill();
+    ctx.beginPath();ctx.arc(land_O[0],land_O[1],6,0,Math.PI*2);
+    ctx.fillStyle='#e74c3c';ctx.fill();
+    ctx.beginPath();ctx.arc(land_O[0],land_O[1],3,0,Math.PI*2);
+    ctx.fillStyle='white';ctx.fill();
+    
+    // 顶点标注
+    ctx.font='bold 14px Segoe UI';ctx.fillStyle='#33691e';
+    [['A',-18,-6],['B',6,-6],['C',6,18],['D',-18,18]].forEach((o,i)=>{
+        ctx.fillText(o[0],land_pts[i][0]+o[1],land_pts[i][1]+o[2]);
+    });
+    ctx.fillStyle='#c92a2a';ctx.font='bold 14px Segoe UI';
+    ctx.fillText('O (中心)',land_O[0]-16,land_O[1]+28);
+    
+    // 地块标签
+    ctx.font='bold 15px Segoe UI';
+    ctx.fillStyle='#2e7d32';ctx.fillText('甲地块',60,160);
+    ctx.fillStyle='#e65100';ctx.fillText('乙地块',340,220);
+    
+    // 道路标注
+    ctx.save();ctx.translate(land_O[0]+dx*80,land_O[1]+dy*80+10);
+    ctx.rotate(rad);ctx.fillStyle='#5d4037';ctx.font='bold 12px Segoe UI';
+    ctx.fillText('← 道道 →',-24,0);ctx.restore();
+}
+
+function updateLandDemo(){
+    landAngle=parseFloat(document.getElementById('roadAngleSlider').value);
+    document.getElementById('roadAngleDisplay').textContent=landAngle+'°';
+    drawLandCanvas();
+}
+
+function animateRoad(){
+    if(landAnimating){clearInterval(landAnimTimer);landAnimating=false;return;}
+    landAnimating=true;
+    let dir=1;
+    landAnimTimer=setInterval(()=>{
+        landAngle+=dir*1.5;
+        if(landAngle>=73)dir=-1;
+        if(landAngle<=-73)dir=1;
+        document.getElementById('roadAngleSlider').value=landAngle;
+        document.getElementById('roadAngleDisplay').textContent=Math.round(landAngle)+'°';
+        drawLandCanvas();
+    },45);
+    setTimeout(()=>{if(landAnimating){clearInterval(landAnimTimer);landAnimating=false;}},8000);
+}
+
+function resetLandDemo(){
+    if(landAnimating){clearInterval(landAnimTimer);landAnimating=false;}
+    landAngle=20;
+    document.getElementById('roadAngleSlider').value=20;
+    document.getElementById('roadAngleDisplay').textContent='20°';
+    drawLandCanvas();
+}
+
+// ======== 初始化 ========
+window.onload=function(){
+    drawActivity1();
+    drawActivity2Yes();
+    drawActivity2No();
+    drawTriangleCanvas();
+    drawLandCanvas();
+};
+</script>
+</body></html>

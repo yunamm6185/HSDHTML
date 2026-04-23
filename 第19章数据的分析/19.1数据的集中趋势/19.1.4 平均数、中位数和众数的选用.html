@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>19.1.4 平均数、中位数和众数的选用 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.2rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;border-radius:8px 8px 0 0;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}
+        tr:nth-child(even) td{background:#f0fdff;}
+        tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        canvas{max-width:100%;height:auto;border-radius:12px;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul{padding-left:1.5rem;line-height:2;}
+        .summary-box li{margin:.3rem 0;}
+        p{margin:.5rem 0;}
+        .canvas-container{position:relative;width:100%;max-width:800px;margin:1rem auto;background:linear-gradient(to bottom,#e0f7fa,#ffffff);border-radius:12px;padding:1rem;}
+        .chart-info{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;margin-top:.8rem;}
+        .info-item{background:white;border-radius:12px;padding:.6rem 1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);border:2px solid #a7d8e0;text-align:center;min-width:120px;}
+        .info-item .label{font-size:.85rem;color:#64748b;}
+        .info-item .value{font-size:1.3rem;font-weight:700;color:#0e7490;}
+        .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0;}
+        .compare-item{background:white;border-radius:1rem;padding:1rem;border:2px solid #e0f7fa;text-align:center;}
+        .compare-item h5{font-size:1.1rem;color:#0e7490;margin-bottom:.5rem;}
+        .compare-item .feature{font-size:.9rem;color:#64748b;margin:.3rem 0;}
+        .scenario-selector{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0;}
+        .scenario-btn{background:white;border:2px solid #14b8a6;color:#0f766e;padding:.5rem 1.2rem;border-radius:30px;font-weight:600;cursor:pointer;transition:all .2s;}
+        .scenario-btn:hover,.scenario-btn.active{background:#14b8a6;color:white;}
+        .data-input-area{background:#f0fdff;border-radius:1rem;padding:1rem;margin:1rem 0;}
+        .data-input-area input{padding:.5rem;font-size:1rem;border:2px solid #a7d8e0;border-radius:8px;width:150px;margin-right:.5rem;}
+        .result-display{background:linear-gradient(135deg,#fef3c7,#fef9c3);border-radius:1rem;padding:1rem;margin-top:1rem;border:2px solid #f59e0b;}
+        .result-display h5{color:#b45309;margin-bottom:.5rem;}
+        .result-values{display:flex;justify-content:space-around;flex-wrap:wrap;gap:.5rem;margin-top:.5rem;}
+        .result-value{background:white;padding:.5rem 1rem;border-radius:20px;font-weight:600;}
+        .recommendation-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1rem;padding:1rem;margin-top:1rem;border:2px solid #3b82f6;}
+        .recommendation-box h5{color:#1e40af;margin-bottom:.5rem;}
+        .legend{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin:.5rem 0;}
+        .legend-item{display:flex;align-items:center;gap:.3rem;font-size:.9rem;}
+        .legend-color{width:20px;height:12px;border-radius:3px;}
+        .homework-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border:2px solid #3b82f6;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.5rem 0;font-weight:600;color:#1e40af;display:flex;align-items:center;gap:1rem;}
+        .message-box{background:linear-gradient(135deg,#fef3c7,#fef9c3);border:2px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1rem 0;text-align:center;font-size:1.1rem;font-weight:600;color:#78350f;}
+        .footer-note{text-align:center;color:#64748b;font-size:.9rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #e2e8f0;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.4 平均数、中位数和众数的选用</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解平均数、中位数、众数各自的优缺点</div>
+            <div class="target-item"><span>2</span>能根据数据特点选择合适的代表值</div>
+            <div class="target-item"><span>3</span>理解极端值对不同代表值的影响</div>
+            <div class="target-item"><span>4</span>能运用所学知识解决实际问题</div>
+        </div>
+    </div>
+
+    <!-- 导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">📊 <strong>平均数、中位数和众数都是用来代表一组数据的！</strong></p>
+        <p>它们相互之间可以相等也可以不相等，没有固定的大小关系。当它们不全相等时，就产生了<strong>如何选用才能恰当代表该组数据</strong>的问题。</p>
+    </div>
+
+    <!-- 问题情境：三位同学的成绩比较 -->
+    <div class="explore-card">
+        <h4>问题4 — 三位同学的数学成绩比较</h4>
+        <p>八年级某班的教室里，三位同学正在为谁的数学成绩最好而争论。他们的5次数学成绩分别是：</p>
+        <table style="max-width:650px;margin-top:1rem;">
+            <tr><th>学生</th><th>第1次</th><th>第2次</th><th>第3次</th><th>第4次</th><th>第5次</th></tr>
+            <tr><th>小华</th><td>72</td><td>84</td><td>90</td><td>91</td><td>96</td></tr>
+            <tr><th>小明</th><td>67</td><td>72</td><td>85</td><td>92</td><td>99</td></tr>
+            <tr><th>小丽</th><td>62</td><td>78</td><td>88</td><td>88</td><td>99</td></tr>
+        </table>
+        <p style="margin-top:1rem;">三位同学的成绩似乎都差不多，那么如何比较他们的成绩呢？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('q4')">💡 分析过程</button>
+        <div id="q4" class="answer-box">
+            <p>三位同学各执一词：</p>
+            <ul style="margin-left:1rem;">
+                <li><strong>小华</strong>说他的成绩平均数最大，所以他的成绩最好</li>
+                <li><strong>小明</strong>说应该比较中位数，他的成绩中位数最大</li>
+                <li><strong>小丽</strong>则说应该比较众数，她是三人中成绩众数最大的人</li>
+            </ul>
+            <table style="max-width:450px;margin-top:1rem;">
+                <tr><th>学生</th><th>平均数</th><th>中位数</th><th>众数</th></tr>
+                <tr><th>小华</th><td>86.6</td><td>90</td><td>无</td></tr>
+                <tr><th>小明</th><td>83</td><td>85</td><td>无</td></tr>
+                <tr><th>小丽</th><td>83</td><td>88</td><td>88</td></tr>
+            </table>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>思考：</strong>从三个人的测验分数来看，你认为哪一个同学的成绩最好呢？<br>
+                <span style="color:#64748b;">提示：平均数能反映总体水平，中位数反映中间位置，众数反映出现最多的分数。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 三种代表值对比图 -->
+    <div class="section-title">📈 三种代表值的对比</div>
+    <div class="canvas-container">
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background:#3b82f6;"></div>平均数</div>
+            <div class="legend-item"><div class="legend-color" style="background:#10b981;"></div>中位数</div>
+            <div class="legend-item"><div class="legend-color" style="background:#f59e0b;"></div>众数</div>
+        </div>
+        <canvas id="compareChart" width="750" height="400"></canvas>
+    </div>
+
+    <button class="interact-btn" onclick="toggleAnswer('compareDesc')">💡 图表说明</button>
+    <div id="compareDesc" class="answer-box">
+        <p>上图展示了小华、小明、小丽三位同学成绩的三种代表值：</p>
+        <ul style="margin-left:1rem;">
+            <li><strong style="color:#3b82f6;">蓝色线（平均数）</strong>：反映每位同学成绩的整体水平</li>
+            <li><strong style="color:#10b981;">绿色线（中位数）</strong>：反映每位同学成绩的中间位置</li>
+            <li><strong style="color:#f59e0b;">橙色线（众数）</strong>：反映每位同学出现次数最多的成绩</li>
+        </ul>
+    </div>
+
+    <!-- 问题5：交通问题 -->
+    <div class="explore-card">
+        <h4>问题5 — 交通主干道的路况分析</h4>
+        <p>随着汽车的日益普及，越来越多的城市出现了令人烦恼的交通堵塞问题。你认为用过往车辆一天车速的平均数衡量某条交通主干道的路况合适吗？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('q5')">💡 分析过程</button>
+        <div id="q5" class="answer-box">
+            <p>人们上、下班的时候是一天中道路较为繁忙的两个时段，其他时段车流量明显减少。</p>
+            <div class="warn-box">
+                <strong>⚠️ 问题：</strong>如果用一天车速的平均数来衡量路况，那么上、下班时交通堵塞的问题就被掩盖了！
+            </div>
+            <p style="margin-top:.5rem;"><strong>合理的做法：</strong>按道路繁忙的不同程度，将一天分为几个时段分别计算平均车速。</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                这说明：<strong>简单地使用平均数可能会掩盖数据的某些重要特征</strong>！
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心知识点：三种代表值的特点 -->
+    <div class="section-title">📚 三种代表值的特点与选用</div>
+
+    <div class="compare-grid">
+        <div class="compare-item" style="border-color:#3b82f6;">
+            <h5 style="color:#3b82f6;">📊 平均数</h5>
+            <div class="feature">✅ 利用所有数据信息</div>
+            <div class="feature">✅ 适合对称分布数据</div>
+            <div class="feature">❌ 受极端值影响大</div>
+            <div class="feature">📌 适合：总体水平分析</div>
+        </div>
+        <div class="compare-item" style="border-color:#10b981;">
+            <h5 style="color:#10b981;">📈 中位数</h5>
+            <div class="feature">✅ 不受极端值影响</div>
+            <div class="feature">✅ 适合偏态分布数据</div>
+            <div class="feature">❌ 未利用所有数据</div>
+            <div class="feature">📌 适合：有异常值时</div>
+        </div>
+        <div class="compare-item" style="border-color:#f59e0b;">
+            <h5 style="color:#f59e0b;">📉 众数</h5>
+            <div class="feature">✅ 反映最常见情况</div>
+            <div class="feature">✅ 适合分类数据</div>
+            <div class="feature">❌ 可能不存在或多于一个</div>
+            <div class="feature">📌 适合：决策选择</div>
+        </div>
+    </div>
+
+    <!-- 实例分析 -->
+    <div class="section-title">🔍 实例分析</div>
+
+    <!-- 实例1：年龄问题 -->
+    <div class="example-card">
+        <h4>实例1 — 草地上的游戏者</h4>
+        <p>草地上有6个人正在玩游戏，他们年龄的平均数是15岁。请想象一下是怎样年龄的6个人正在玩游戏？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">💡 答案</button>
+        <div id="ex1" class="answer-box">
+            <p>通常人们会想象是一群中学生正在玩游戏。但是...</p>
+            <p>如果是一个<strong>53岁的老人</strong>领着<strong>5个7岁的孩子</strong>在玩游戏也是有可能的！</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>💡 关键发现：</strong>老人的年龄把平均年龄一下子给抬上去了！<br>
+                这是一个<strong>不适合用平均数而适合用众数或中位数</strong>来代表一组数据的例子。
+            </div>
+            <p style="margin-top:.8rem;"><strong>结论：</strong>如果一组数据中有特别大或者特别小的<strong>异常值</strong>时，不适合用平均数作为这组数据的代表。</p>
+        </div>
+    </div>
+
+    <!-- 实例2：水果调查 -->
+    <div class="example-card">
+        <h4>实例2 — 新年晚会的水果选择</h4>
+        <p>为筹备班级的新年晚会，班长对全班同学爱吃香蕉、橘子、柚子中的哪一种水果做了民意调查。最终买什么水果，应该由哪个代表值决定？</p>
+        
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">💡 答案</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>显然由众数决定较好！</strong></p>
+            <p>因为它代表了全班<strong>多数同学的意愿</strong>。</p>
+            <div class="highlight-box">
+                在这种情况下，平均数和中位数都没有实际意义。众数反映了"最受欢迎"的选择。
+            </div>
+        </div>
+    </div>
+
+    <!-- 偏态分布演示 -->
+    <div class="section-title">📊 偏态分布与代表值的位置</div>
+    <div class="canvas-container">
+        <canvas id="skewDemo" width="750" height="300"></canvas>
+    </div>
+
+    <button class="interact-btn" onclick="toggleAnswer('skewDesc')">💡 图表说明</button>
+    <div id="skewDesc" class="answer-box">
+        <p>上图展示了三种不同的数据分布形态：</p>
+        <ul style="margin-left:1rem;">
+            <li><strong>左偏分布</strong>：大部分数据集中在右侧，平均数 < 中位数 < 众数</li>
+            <li><strong>对称分布</strong>：数据左右对称，平均数 ≈ 中位数 ≈ 众数</li>
+            <li><strong>右偏分布</strong>：大部分数据集中在左侧，众数 < 中位数 < 平均数</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:.8rem;">
+            <strong>选择建议：</strong>对称分布用平均数，偏态分布用中位数或众数。
+        </div>
+    </div>
+
+    <!-- 交互式案例：工资分析 -->
+    <div class="section-title">💼 实战案例：工资数据分析</div>
+    <div class="fact-card">
+        <h4>案例分析</h4>
+        <p>某公司有11名员工，他们的月工资如下（单位：元）：</p>
+        <p style="font-size:.9rem;color:#64748b;">点击"计算"按钮查看三种代表值，思考哪个更能代表员工的一般工资水平。</p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="caseStudy" width="750" height="350"></canvas>
+    </div>
+
+    <div class="result-display">
+        <h5>📊 计算结果</h5>
+        <div class="result-values">
+            <div class="result-value" style="border-left:4px solid #3b82f6;">平均数：<span id="avgResult">--</span> 元</div>
+            <div class="result-value" style="border-left:4px solid #10b981;">中位数：<span id="medResult">--</span> 元</div>
+            <div class="result-value" style="border-left:4px solid #f59e0b;">众数：<span id="modeResult">--</span> 元</div>
+        </div>
+    </div>
+
+    <button class="interact-btn" onclick="calculateWage()">🔢 计算</button>
+    <button class="interact-btn" onclick="toggleAnswer('wageAnalysis')">💡 分析结论</button>
+    <div id="wageAnalysis" class="answer-box">
+        <p><strong>数据说明：</strong></p>
+        <ul style="margin-left:1rem;">
+            <li>10名普通员工的工资都是3000元左右</li>
+            <li>1名高管的工资高达30000元</li>
+        </ul>
+        <p style="margin-top:.8rem;"><strong>关键发现：</strong></p>
+        <p>平均数被高管的极高工资"拉高"了，<strong>远高于大多数员工的实际工资</strong>。</p>
+        <div class="highlight-box" style="margin-top:.8rem;">
+            <strong>结论：</strong>在这种情况下，<strong>中位数更能代表一般员工的工资水平</strong>！<br>
+            这也解释了为什么官方发布居民收入时常用"中位数"而非"平均数"。
+        </div>
+    </div>
+
+    <!-- 交互探索：添加异常值 -->
+    <div class="section-title">🧪 交互探索：异常值的影响</div>
+    <div class="data-input-area">
+        <p><strong>基础数据：</strong><span id="baseData">65, 70, 72, 75, 78, 80, 82, 85, 88, 90</span></p>
+        <p style="margin-top:.5rem;">
+            添加一个异常值：<input type="number" id="outlierInput" placeholder="输入数值" value="150">
+            <button class="interact-btn" onclick="addOutlier()">添加并计算</button>
+            <button class="interact-btn" onclick="resetData()">重置数据</button>
+        </p>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="outlierChart" width="750" height="300"></canvas>
+    </div>
+
+    <div class="result-display">
+        <h5>📊 当前数据统计</h5>
+        <div class="result-values">
+            <div class="result-value" style="border-left:4px solid #3b82f6;">平均数：<span id="outAvg">78.5</span></div>
+            <div class="result-value" style="border-left:4px solid #10b981;">中位数：<span id="outMed">79</span></div>
+            <div class="result-value" style="border-left:4px solid #f59e0b;">众数：<span id="outMode">无</span></div>
+        </div>
+    </div>
+
+    <div class="recommendation-box">
+        <h5>🎯 选用建议</h5>
+        <p id="recommendation">当前数据分布较为对称，建议使用<strong>平均数</strong>作为代表值。</p>
+    </div>
+
+    <!-- 场景选择器 -->
+    <div class="section-title">🎬 场景应用</div>
+    <p>选择不同的场景，查看应该选择哪种代表值：</p>
+    <div class="scenario-selector">
+        <button class="scenario-btn active" onclick="showScenario('salary')">工资分析</button>
+        <button class="scenario-btn" onclick="showScenario('exam')">考试成绩</button>
+        <button class="scenario-btn" onclick="showScenario('temp')">气温记录</button>
+        <button class="scenario-btn" onclick="showScenario('shoe')">鞋码生产</button>
+    </div>
+
+    <div id="scenarioContent" class="fact-card">
+        <h4 id="scenarioTitle">💼 工资分析</h4>
+        <p id="scenarioDesc">分析员工工资时，由于少数高管工资极高，会拉高平均数，因此建议使用<strong>中位数</strong>来代表一般员工的工资水平。</p>
+        <div class="highlight-box" style="margin-top:.8rem;">
+            <strong>选择理由：</strong><span id="scenarioReason">极端值对平均数影响很大，中位数不受极端值影响。</span>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="section-title">✋ 做一做</div>
+    <div class="explore-card">
+        <h4>绳子长度估计实验</h4>
+        <p>请老师准备一根绳子，面对所有学生，捏住绳子的两端，将绳子拉直。全班同学目测几秒钟后估计这根绳子的长度。</p>
+        <ol style="margin-left:1.5rem;margin-top:.8rem;">
+            <li>设计并完成一张统计表和一张统计图，全面反映每位同学对这根绳子长度的估计值</li>
+            <li>计算全班同学估计值的平均数、中位数和众数</li>
+            <li>在全班同学估计值的基础上，请给出一个最后的估计值，作为全班集体对这根绳子长度的估计值</li>
+            <li>最后，老师重新出示这根绳子，由学生代表当众用刻度尺量出这根绳子的长度。这个测量值与全班同学目测的估计值接近吗？</li>
+        </ol>
+        <div class="highlight-box" style="margin-top:.8rem;">
+            <strong>讨论：</strong>为什么测量值与估计值相差不大或者相差较大？
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">✏️ 练习</div>
+    <div class="example-card">
+        <h4>手表走时误差分析</h4>
+        <p>检验某厂生产的手表质量时，检验人员随机抽取了10块手表，记录了每块手表的日走时误差（正数表示比标准时间快，负数表示比标准时间慢）。你认为用这10块手表走时误差的平均数来衡量这10块手表的精度合适吗？</p>
+        
+        <table style="max-width:700px;margin-top:1rem;">
+            <tr><th>手表序号</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+            <tr><th>日走时误差(秒)</th><td>-2</td><td>1</td><td>0</td><td>2</td><td>1</td><td>3</td><td>-1</td><td>0</td><td>2</td><td>4</td></tr>
+        </table>
+        
+        <button class="interact-btn" onclick="toggleAnswer('practice1')">💡 分析</button>
+        <div id="practice1" class="answer-box">
+            <p>计算：</p>
+            <ul style="margin-left:1rem;">
+                <li>平均数 = (-2+1+0+2+1+3-1+0+2+4) ÷ 10 = 1秒</li>
+                <li>中位数 = (1+1) ÷ 2 = 1秒</li>
+                <li>众数 = 1秒和2秒（都出现两次）</li>
+            </ul>
+            <p style="margin-top:.8rem;">由于误差值分布较为对称，没有极端值，<strong>用平均数是合适的</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 知识总结 -->
+    <div class="summary-box">
+        <h4>📝 知识总结</h4>
+        <ul>
+            <li><strong>平均数</strong>：利用所有数据信息，但受极端值影响大，适合对称分布数据</li>
+            <li><strong>中位数</strong>：不受极端值影响，适合偏态分布或有异常值的数据</li>
+            <li><strong>众数</strong>：反映最常见情况，适合分类数据和决策选择</li>
+            <li><strong>选用原则</strong>：根据数据特点和分析目的，选择合适的代表值</li>
+            <li><strong>实际应用</strong>：工资分析用中位数，产品偏好用众数，对称数据用平均数</li>
+        </ul>
+    </div>
+
+    <!-- 思考题 -->
+    <div class="fact-card">
+        <h4>🤔 课后思考</h4>
+        <ol style="margin-left:1.5rem;">
+            <li>已知小河的平均水深为1.5m，手持一根2m长的竹竿，在手不沾水的情况下，能否使竹竿的另一端接触到河床？</li>
+            <li>某校录取新生的平均成绩是530分，如果某人的考分是525分，那么此人肯定没有被这个学校录取吗？</li>
+            <li>10名学生一次考试得分分别是：98, 58, 92, 90, 88, 85, 80, 75, 72, 60。考分为85分的学生是在平均分之上还是之下？</li>
+        </ol>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P118 练习19.4 第1~3题；分析一组数据的分布特点，选择合适的代表值；思考：为什么新闻报道常用中位数而不是平均数？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 三种代表各千秋，对称偏态要看透；极端值、众数多，灵活选用显智慧！✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第19章 19.1.4 平均数、中位数和众数的选用</div>
+
+</div>
+
+<script>
+// 工具函数
+function toggleAnswer(id) {
+    const box = document.getElementById(id);
+    box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
+}
+
+// 三种代表值对比图
+function drawCompareChart() {
+    const canvas = document.getElementById('compareChart');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const padding = 60;
+    
+    // 数据
+    const students = ['小华', '小明', '小丽'];
+    const avgData = [86.6, 83, 83];
+    const medData = [90, 85, 88];
+    const modeData = [0, 0, 88]; // 0表示无众数
+    
+    const maxVal = 100;
+    const barWidth = 40;
+    const groupWidth = 160;
+    
+    // 绘制坐标轴
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, height - padding);
+    ctx.lineTo(width - padding, height - padding);
+    ctx.stroke();
+    
+    // Y轴刻度
+    ctx.fillStyle = '#64748b';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 5; i++) {
+        const y = height - padding - (height - 2 * padding) * i / 5;
+        const val = i * 20;
+        ctx.fillText(val.toString(), padding - 10, y + 4);
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.stroke();
+    }
+    
+    // 绘制折线
+    function drawLine(data, color) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        data.forEach((val, i) => {
+            const x = padding + 100 + i * groupWidth;
+            const y = height - padding - (val / maxVal) * (height - 2 * padding);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+            // 绘制点
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, 6, 0, Math.PI * 2);
+            ctx.fill();
+            // 显示数值
+            ctx.fillStyle = color;
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'center';
+            if (val > 0) ctx.fillText(val.toString(), x, y - 15);
+        });
+        ctx.stroke();
+    }
+    
+    drawLine(avgData, '#3b82f6');
+    drawLine(medData, '#10b981');
+    drawLine(modeData, '#f59e0b');
+    
+    // X轴标签
+    ctx.fillStyle = '#1a3a4a';
+    ctx.font = '14px sans-serif';
+    ctx.textAlign = 'center';
+    students.forEach((name, i) => {
+        const x = padding + 100 + i * groupWidth;
+        ctx.fillText(name, x, height - padding + 25);
+    });
+}
+
+// 偏态分布演示
+function drawSkewDemo() {
+    const canvas = document.getElementById('skewDemo');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const panelWidth = (width - 80) / 3;
+    
+    // 三种分布
+    const distributions = [
+        { title: '左偏分布', data: generateSkewData('left'), color: '#8b5cf6' },
+        { title: '对称分布', data: generateSkewData('symmetric'), color: '#3b82f6' },
+        { title: '右偏分布', data: generateSkewData('right'), color: '#ef4444' }
+    ];
+    
+    distributions.forEach((dist, index) => {
+        const startX = 20 + index * panelWidth;
+        drawDistribution(ctx, startX, 0, panelWidth, height, dist);
+    });
+}
+
+function generateSkewData(type) {
+    const data = [];
+    if (type === 'left') {
+        for (let i = 0; i < 100; i++) {
+            data.push(60 + Math.random() * 40 + (Math.random() > 0.7 ? Math.random() * 20 : 0));
+        }
+    } else if (type === 'right') {
+        for (let i = 0; i < 100; i++) {
+            data.push(20 + Math.random() * 40 + (Math.random() > 0.7 ? Math.random() * 20 : 0));
+        }
+    } else {
+        for (let i = 0; i < 100; i++) {
+            data.push(40 + (Math.random() - 0.5) * 40);
+        }
+    }
+    return data;
+}
+
+function drawDistribution(ctx, startX, startY, width, height, dist) {
+    const padding = 30;
+    
+    // 标题
+    ctx.fillStyle = '#1a3a4a';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(dist.title, startX + width / 2, startY + 20);
+    
+    // 绘制柱状图
+    const data = dist.data;
+    const bins = 10;
+    const min = Math.min(...data);
+    const max = Math.max(...data);
+    const binWidth = (max - min) / bins;
+    const counts = new Array(bins).fill(0);
+    
+    data.forEach(val => {
+        const binIndex = Math.min(Math.floor((val - min) / binWidth), bins - 1);
+        counts[binIndex]++;
+    });
+    
+    const maxCount = Math.max(...counts);
+    const barWidth = (width - 2 * padding) / bins;
+    
+    ctx.fillStyle = dist.color + '40';
+    counts.forEach((count, i) => {
+        const barHeight = (count / maxCount) * (height - 80);
+        const x = startX + padding + i * barWidth;
+        const y = startY + height - padding - barHeight;
+        ctx.fillRect(x, y, barWidth - 2, barHeight);
+    });
+    
+    // 计算并标注三种代表值
+    const sorted = [...data].sort((a, b) => a - b);
+    const avg = data.reduce((a, b) => a + b, 0) / data.length;
+    const median = sorted[Math.floor(data.length / 2)];
+    
+    // 绘制代表值位置线
+    const xScale = (val) => startX + padding + ((val - min) / (max - min)) * (width - 2 * padding);
+    
+    ctx.lineWidth = 2;
+    
+    // 平均数
+    ctx.strokeStyle = '#3b82f6';
+    ctx.beginPath();
+    ctx.moveTo(xScale(avg), startY + 35);
+    ctx.lineTo(xScale(avg), startY + height - padding);
+    ctx.stroke();
+    ctx.fillStyle = '#3b82f6';
+    ctx.font = '10px sans-serif';
+    ctx.fillText('均', xScale(avg), startY + height - padding + 12);
+    
+    // 中位数
+    ctx.strokeStyle = '#10b981';
+    ctx.beginPath();
+    ctx.moveTo(xScale(median), startY + 35);
+    ctx.lineTo(xScale(median), startY + height - padding);
+    ctx.stroke();
+    ctx.fillStyle = '#10b981';
+    ctx.fillText('中', xScale(median), startY + height - padding + 12);
+}
+
+// 工资案例分析
+let wageData = [3000, 3200, 3100, 3300, 3000, 3150, 3050, 3250, 3000, 3100, 30000];
+
+function drawCaseStudy() {
+    const canvas = document.getElementById('caseStudy');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const padding = 50;
+    
+    const maxVal = 35000;
+    const barWidth = (width - 2 * padding) / wageData.length - 5;
+    
+    wageData.forEach((val, i) => {
+        const x = padding + i * (barWidth + 5);
+        const barHeight = (val / maxVal) * (height - 2 * padding - 30);
+        const y = height - padding - barHeight;
+        
+        ctx.fillStyle = i === wageData.length - 1 ? '#ef4444' : '#3b82f6';
+        ctx.fillRect(x, y, barWidth, barHeight);
+        
+        // 标签
+        ctx.fillStyle = '#64748b';
+        ctx.font = '10px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(i < 10 ? (i + 1).toString() : '高', x + barWidth / 2, height - padding + 15);
+    });
+    
+    // Y轴
+    ctx.strokeStyle = '#94a3b8';
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, height - padding);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#64748b';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 3; i++) {
+        const y = height - padding - (height - 2 * padding - 30) * i / 3;
+        ctx.fillText((i * 10000).toString(), padding - 10, y + 4);
+    }
+}
+
+function calculateWage() {
+    const sorted = [...wageData].sort((a, b) => a - b);
+    const avg = (wageData.reduce((a, b) => a + b, 0) / wageData.length).toFixed(0);
+    const median = sorted[Math.floor(sorted.length / 2)];
+    
+    // 找众数
+    const counts = {};
+    wageData.forEach(v => counts[v] = (counts[v] || 0) + 1);
+    const maxCount = Math.max(...Object.values(counts));
+    const modes = Object.keys(counts).filter(k => counts[k] === maxCount);
+    const mode = maxCount > 1 ? modes.join(', ') : '无';
+    
+    document.getElementById('avgResult').textContent = avg;
+    document.getElementById('medResult').textContent = median;
+    document.getElementById('modeResult').textContent = mode;
+    
+    drawCaseStudy();
+}
+
+// 异常值影响演示
+let currentData = [65, 70, 72, 75, 78, 80, 82, 85, 88, 90];
+
+function drawOutlierChart() {
+    const canvas = document.getElementById('outlierChart');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    const padding = 50;
+    
+    const sorted = [...currentData].sort((a, b) => a - b);
+    const avg = currentData.reduce((a, b) => a + b, 0) / currentData.length;
+    const median = sorted[Math.floor(sorted.length / 2)];
+    
+    const minVal = Math.min(...currentData) - 10;
+    const maxVal = Math.max(...currentData) + 10;
+    const range = maxVal - minVal;
+    
+    const barWidth = (width - 2 * padding) / currentData.length - 5;
+    
+    currentData.forEach((val, i) => {
+        const x = padding + i * (barWidth + 5);
+        const barHeight = ((val - minVal) / range) * (height - 2 * padding - 30);
+        const y = height - padding - barHeight;
+        
+        // 判断是否异常值
+        const isOutlier = Math.abs(val - avg) > 2 * (sorted[sorted.length - 1] - sorted[0]) / 4;
+        ctx.fillStyle = isOutlier ? '#ef4444' : '#3b82f6';
+        ctx.fillRect(x, y, barWidth, barHeight);
+    });
+    
+    // 绘制代表值线
+    const xScale = (val) => padding + ((val - minVal) / range) * (width - 2 * padding);
+    
+    // 平均数线
+    const avgX = xScale(avg);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.setLineDash([5, 3]);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, height - padding - ((avg - minVal) / range) * (height - 2 * padding - 30));
+    ctx.lineTo(width - padding, height - padding - ((avg - minVal) / range) * (height - 2 * padding - 30));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 中位数线
+    ctx.strokeStyle = '#10b981';
+    ctx.setLineDash([5, 3]);
+    ctx.beginPath();
+    ctx.moveTo(padding, height - padding - ((median - minVal) / range) * (height - 2 * padding - 30));
+    ctx.lineTo(width - padding, height - padding - ((median - minVal) / range) * (height - 2 * padding - 30));
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    // 更新统计值
+    document.getElementById('outAvg').textContent = avg.toFixed(1);
+    document.getElementById('outMed').textContent = median;
+    
+    // 众数
+    const counts = {};
+    currentData.forEach(v => counts[v] = (counts[v] || 0) + 1);
+    const maxCount = Math.max(...Object.values(counts));
+    const modes = Object.keys(counts).filter(k => counts[k] === maxCount);
+    document.getElementById('outMode').textContent = maxCount > 1 ? modes.join(', ') : '无';
+    
+    // 更新建议
+    const range_actual = sorted[sorted.length - 1] - sorted[0];
+    const iqr = sorted[Math.floor(sorted.length * 0.75)] - sorted[Math.floor(sorted.length * 0.25)];
+    const hasOutlier = range_actual > 3 * iqr || Math.abs(avg - median) > iqr;
+    
+    let rec = '';
+    if (hasOutlier) {
+        rec = '数据中存在极端值，平均数受到影响较大，建议使用<strong>中位数</strong>作为代表值。';
+    } else if (Math.abs(avg - median) < 3) {
+        rec = '当前数据分布较为对称，建议使用<strong>平均数</strong>作为代表值。';
+    } else {
+        rec = '数据分布略有偏态，建议使用<strong>中位数</strong>作为代表值。';
+    }
+    document.getElementById('recommendation').innerHTML = rec;
+}
+
+function addOutlier() {
+    const val = parseFloat(document.getElementById('outlierInput').value);
+    if (!isNaN(val)) {
+        currentData.push(val);
+        drawOutlierChart();
+    }
+}
+
+function resetData() {
+    currentData = [65, 70, 72, 75, 78, 80, 82, 85, 88, 90];
+    document.getElementById('baseData').textContent = currentData.join(', ');
+    drawOutlierChart();
+}
+
+// 场景选择
+const scenarios = {
+    salary: {
+        title: '💼 工资分析',
+        desc: '分析员工工资时，由于少数高管工资极高，会拉高平均数，因此建议使用<strong>中位数</strong>来代表一般员工的工资水平。',
+        reason: '极端值对平均数影响很大，中位数不受极端值影响。'
+    },
+    exam: {
+        title: '📝 考试成绩',
+        desc: '分析班级考试成绩时，如果成绩分布较为对称，建议使用<strong>平均数</strong>来反映班级整体水平；如果有极端分数，可用中位数。',
+        reason: '平均数能利用所有数据信息，反映整体水平。'
+    },
+    temp: {
+        title: '🌡️ 气温记录',
+        desc: '分析某地气温变化时，如果关注一天或一月的总体温度，建议使用<strong>平均数</strong>；如果关注最常见温度，可用众数。',
+        reason: '气温数据通常分布较为均匀，适合用平均数。'
+    },
+    shoe: {
+        title: '👟 鞋码生产',
+        desc: '鞋厂要决定生产哪些尺码的鞋子时，应参考销售数据的<strong>众数</strong>，因为需要生产"最畅销"的尺码。',
+        reason: '众数反映最常见的情况，对生产和销售决策最有参考价值。'
+    }
+};
+
+function showScenario(type) {
+    // 更新按钮状态
+    document.querySelectorAll('.scenario-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const s = scenarios[type];
+    document.getElementById('scenarioTitle').textContent = s.title;
+    document.getElementById('scenarioDesc').innerHTML = s.desc;
+    document.getElementById('scenarioReason').textContent = s.reason;
+}
+
+// 初始化
+window.onload = function() {
+    drawCompareChart();
+    drawSkewDemo();
+    drawCaseStudy();
+    drawOutlierChart();
+};
+</script>
+
+</body>
+</html>
