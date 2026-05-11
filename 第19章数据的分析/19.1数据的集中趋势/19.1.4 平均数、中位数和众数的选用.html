@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>19.1.4 平均数、中位数和众数的选用 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <style>
+        /* 基础字号统一 20px */
+        html{font-size:20px;}
+        body{font-size:1rem;}
+
+        /* ===== 表格 ===== */
+        .big-table{width:100%;border-collapse:collapse;box-shadow:0 4px 20px rgba(0,0,0,.1);margin:1rem 0;font-size:1rem;border:2px solid #0284c7;border-radius:.8rem;overflow:hidden;}
+        .big-table th,.big-table td{border:1.5px solid #cbd5e1;padding:.65rem .5rem;text-align:center;}
+        .big-table th{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.2);}
+        .big-table td{background:#fff;font-weight:600;color:#1e293b;}
+        .big-table tr:nth-child(even) td{background:#f0fdfa;}
+        .big-table tr:hover td{background:#e0f2fe;}
+
+        /* ===== 数据高亮 ===== */
+        .data-inline{background:linear-gradient(135deg,#f0fdfa,#e0f7fa);padding:.25rem .7rem;border-radius:.5rem;font-weight:700;color:#0f766e;border:1px solid #99f6e4;white-space:nowrap;}
+
+        /* ===== 思考框 ===== */
+        .think-box{background:linear-gradient(135deg,#f0fdfa,#ccfbf1);border-left:5px solid var(--accent);border-radius:0 1rem 1rem 0;padding:1.2rem 1.6rem;margin:1.2rem 0;font-weight:600;box-shadow:0 2px 8px rgba(20,184,166,.1);position:relative;}
+        .think-box::before{content:'💡';position:absolute;top:.8rem;right:1rem;font-size:1.5rem;opacity:.3;}
+        .think-box strong{color:#0f766e;font-size:1.05rem;}
+        .think-box>p:first-child{padding-right:2rem;}
+
+        /* ===== 答案展开 ===== */
+        .answer-box{display:none;background:#f8faff;border:2px dashed #bae6fd;border-radius:.8rem;padding:1.2rem 1.5rem;margin-top:.6rem;overflow:hidden;}
+        .answer-box.show{display:block;}
+
+        /* ===== 读一读 ===== */
+        .read-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:2px dashed #60a5fa;border-radius:1.2rem;padding:1.4rem 1.8rem;margin:1.4rem 0;position:relative;}
+        .read-box::before{content:'📖';position:absolute;top:-.8rem;left:1.5rem;background:#eff6ff;padding:0 .5rem;font-size:1.4rem;border-radius:50%;}
+        .read-box h4{color:#1e40af;margin-bottom:.8rem;font-size:1.15rem;padding-left:1rem;}
+        .read-box p{color:#1e3a8a;line-height:1.9;}
+
+        /* ===== 实例卡片 ===== */
+        .example-card{background:#fff;border:2px solid var(--border);border-radius:1rem;padding:1.2rem 1.6rem;margin:1rem 0;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:box-shadow .2s;}
+        .example-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);}
+        .example-card h4{color:var(--primary);margin-bottom:.6rem;font-size:1.1rem;}
+        .example-card ol{padding-left:1.5rem;}
+        .example-card li{margin:.6rem 0;line-height:1.8;}
+
+        /* ===== 寄语 ===== */
+        .message-box{background:linear-gradient(135deg,#fefce8,#fef9c3);border:2px solid #fde047;border-radius:1rem;padding:1rem 1.6rem;margin:1.5rem 0;text-align:center;color:#854d0e;font-weight:700;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+
+        /* ===== 判断题 ===== */
+        .judge-item{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;padding:.7rem 1rem;background:#f8fafc;border-radius:.6rem;border:1px solid #e2e8f0;margin:.5rem 0;transition:background .2s;}
+        .judge-item:hover{background:#f0f9ff;border-color:#93c5fd;}
+        .judge-ans{display:none;font-weight:700;margin-left:auto;white-space:nowrap;font-size:1.1rem;}
+        .judge-ans.show{display:inline-block;}
+
+        /* ===== 条形图可视化（CSS模拟） ===== */
+        .bar-chart{display:flex;align-items:flex-end;justify-content:center;gap:1.5rem;padding:1.5rem 1rem;height:220px;background:#f8fafc;border-radius:1rem;border:2px solid #e2e8f0;margin:1rem 0;}
+        .bar-group{display:flex;flex-direction:column;align-items:center;gap:.3rem;}
+        .bar-group .label{font-size:.85rem;font-weight:600;color:#334155;}
+        .bar-stack{display:flex;gap:4px;align-items:flex-end;height:160px;}
+        .bar{width:22px;border-radius:4px 4px 0 0;position:relative;transition:all .3s;}
+        .bar:hover{filter:brightness(1.1);}
+        .bar.b-xiaohua{background:#0ea5e9;}
+        .bar.b-xiaoming{background:#ef4444;}
+        .bar.b-xiaoli{background:#10b981;}
+        .bar-val{position:absolute;top:-1.2rem;left:50%;transform:translateX(-50%);font-size:.7rem;font-weight:700;color:#475569;}
+
+        /* ===== 实例序号 ===== */
+        .instance-num{display:inline-block;width:1.8rem;height:1.8rem;line-height:1.8rem;text-align:center;background:var(--primary);color:#fff;border-radius:50%;font-weight:700;margin-right:.5rem;font-size:.9rem;}
+
+        /* ===== 三种代表值对比卡片 ===== */
+        .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0;}
+        .compare-item{background:#fff;border:2px solid var(--border);border-radius:1rem;padding:1.2rem 1rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s;}
+        .compare-item:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
+        .compare-item h5{font-size:1.1rem;margin-bottom:.6rem;}
+        .compare-item .feature{padding:.4rem 0;font-size:.9rem;border-bottom:1px dashed #e2e8f0;}
+        .compare-item .feature:last-child{border-bottom:none;}
+
+        /* ===== 误导性统计 ===== */
+        .mislead-demo{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fca5a5;border-radius:1.2rem;padding:1.2rem 1.6rem;margin:1.2rem 0;}
+        .mislead-demo h4{color:#991b1b;font-size:1.2rem;margin-bottom:.6rem;}
+        .mislead-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.6rem 0;}
+        .mislead-tags span{background:#fff;padding:.3rem .7rem;border-radius:6px;font-size:.85rem;border:1px solid #fecaca;}
+
+        /* ===== 场景应用 ===== */
+        .scenario-selector{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0;}
+        .scenario-btn{background:#f1f5f9;border:2px solid #cbd5e1;border-radius:2rem;padding:.4rem 1rem;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;}
+        .scenario-btn.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+        .scenario-btn:hover:not(.active){border-color:var(--primary);color:var(--primary);}
+        #scenarioContent{margin-top:1rem;}
+
+        /* ===== 综合挑战 ===== */
+        .quiz-card{background:#fff;border:2px solid var(--border);border-radius:1rem;padding:1.2rem 1.6rem;margin:1rem 0;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+        .quiz-card.correct{border-color:#10b981;}
+        .quiz-card.wrong{border-color:#ef4444;}
+        .quiz-options{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0;}
+        .quiz-option{background:#f8fafc;border:2px solid #e2e8f0;border-radius:2rem;padding:.4rem 1.2rem;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;}
+        .quiz-option:hover{background:#eff6ff;border-color:#93c5fd;}
+        .quiz-option.selected{background:var(--primary);color:#fff;border-color:var(--primary);}
+        .quiz-option.correct-answer{background:#10b981;color:#fff;border-color:#10b981;}
+        .quiz-option.wrong-answer{background:#ef4444;color:#fff;border-color:#ef4444;}
+        .quiz-feedback{display:none;margin-top:.5rem;padding:.6rem 1rem;border-radius:.6rem;font-weight:600;font-size:.95rem;}
+        .quiz-feedback.show{display:block;}
+        .score-box{display:none;text-align:center;font-size:1.3rem;font-weight:700;color:var(--primary);margin:1rem 0;padding:1rem;background:#f0fdfa;border-radius:1rem;border:2px solid var(--accent);}
+
+        /* ===== 结果值展示 ===== */
+        .result-values{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .result-value{flex:1;min-width:140px;background:#fff;padding:.8rem;border-radius:.6rem;border-left:4px solid var(--primary);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+        .result-value .label{font-size:.8rem;color:var(--text-secondary);}
+        .result-value .value{font-size:1.1rem;font-weight:700;color:var(--text-primary);}
+
+        /* ===== 标签徽章 ===== */
+        .rec-badge{display:inline-block;padding:.3rem 1rem;border-radius:2rem;font-weight:700;font-size:.95rem;color:#fff;}
+        .rec-avg{background:#0ea5e9;}
+        .rec-med{background:#10b981;}
+        .rec-mode{background:#f59e0b;}
+
+        @media (max-width:768px){
+            .bar-chart{gap:.6rem;padding:1rem .5rem;}
+            .bar{width:16px;}
+            .bar-stack{height:120px;}
+            .big-table{font-size:.8rem;}
+            .big-table th,.big-table td{padding:.4rem .2rem;}
+            .think-box::before{display:none;}
+            .read-box::before{left:1rem;}
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.4 平均数、中位数和众数的选用</div>
+
+    <!-- ==================== 学习目标 ==================== -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解平均数、中位数、众数各自的优缺点</div>
+            <div class="target-item"><span>2</span>能根据数据特点选择合适的代表值</div>
+            <div class="target-item"><span>3</span>理解极端值对不同代表值的影响</div>
+            <div class="target-item"><span>4</span>能运用所学知识解决实际问题</div>
+        </div>
+    </div>
+
+    <!-- ==================== 导入 ==================== -->
+    <div class="intro-card">
+        <p style="font-size:1.1rem;">📊 <strong>平均数、中位数和众数都是用来代表一组数据的！</strong></p>
+        <p>它们相互之间可以相等也可以不相等，没有固定的大小关系。当它们不全相等时，就产生了<strong>如何选用才能恰当代表该组数据</strong>的问题。</p>
+    </div>
+
+    <!-- ==================== 问题4 ==================== -->
+    <div class="explore-card">
+        <h4>问题 4　三位同学的数学成绩比较</h4>
+        <p>八年级某班的教室里，三位同学正在为谁的成绩最好而争论，他们的5次数学成绩分别是：</p>
+
+        <table class="big-table">
+            <tr><th>学生</th><th>第1次</th><th>第2次</th><th>第3次</th><th>第4次</th><th>第5次</th></tr>
+            <tr><th>小华</th><td>62</td><td>94</td><td>95</td><td>98</td><td>98</td></tr>
+            <tr><th>小明</th><td>62</td><td>62</td><td>98</td><td>99</td><td>100</td></tr>
+            <tr><th>小丽</th><td>40</td><td>62</td><td>85</td><td>99</td><td>99</td></tr>
+        </table>
+
+        <p style="margin-top:1rem;">三位同学的成绩似乎都差不多，那么如何比较他们的成绩呢？</p>
+
+        <button class="btn" onclick="toggleAnswer('q4')">💡 分析过程</button>
+        <div id="q4" class="answer-box">
+            <p>三位同学各执一词：</p>
+            <ul style="margin-left:1rem;">
+                <li><strong>小华</strong>说他的成绩平均数最大，所以他的成绩最好；</li>
+                <li><strong>小明</strong>说应该比较中位数，他的成绩中位数最大；</li>
+                <li><strong>小丽</strong>则说应该比较众数，她是三人中成绩众数最大的人。</li>
+            </ul>
+            <p>从三人的测验分数条形统计图（图 19.1.9）来看，你认为哪一个同学的成绩最好呢？</p>
+
+            <table class="big-table" style="max-width:500px;">
+                <tr><th>学生</th><th>平均数</th><th>中位数</th><th>众数</th></tr>
+                <tr><th>小华</th><td>89.4</td><td>95</td><td>98</td></tr>
+                <tr><th>小明</th><td>84.2</td><td>98</td><td>62</td></tr>
+                <tr><th>小丽</th><td>77</td><td>85</td><td>99</td></tr>
+            </table>
+
+            <!-- 图19.1.9 模拟 -->
+            <div style="margin-top:1rem;">
+                <p style="text-align:center;font-weight:700;color:var(--primary);margin-bottom:.5rem;">图 19.1.9　三位同学测验分数对比</p>
+                <div class="bar-chart">
+                    <div class="bar-group">
+                        <div class="bar-stack">
+                            <div class="bar b-xiaohua" style="height:62px;"><span class="bar-val">62</span></div>
+                            <div class="bar b-xiaoming" style="height:62px;"><span class="bar-val">62</span></div>
+                            <div class="bar b-xiaoli" style="height:40px;"><span class="bar-val">40</span></div>
+                        </div>
+                        <div class="label">第1次</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-stack">
+                            <div class="bar b-xiaohua" style="height:94px;"><span class="bar-val">94</span></div>
+                            <div class="bar b-xiaoming" style="height:62px;"><span class="bar-val">62</span></div>
+                            <div class="bar b-xiaoli" style="height:62px;"><span class="bar-val">62</span></div>
+                        </div>
+                        <div class="label">第2次</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-stack">
+                            <div class="bar b-xiaohua" style="height:95px;"><span class="bar-val">95</span></div>
+                            <div class="bar b-xiaoming" style="height:98px;"><span class="bar-val">98</span></div>
+                            <div class="bar b-xiaoli" style="height:85px;"><span class="bar-val">85</span></div>
+                        </div>
+                        <div class="label">第3次</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-stack">
+                            <div class="bar b-xiaohua" style="height:98px;"><span class="bar-val">98</span></div>
+                            <div class="bar b-xiaoming" style="height:99px;"><span class="bar-val">99</span></div>
+                            <div class="bar b-xiaoli" style="height:99px;"><span class="bar-val">99</span></div>
+                        </div>
+                        <div class="label">第4次</div>
+                    </div>
+                    <div class="bar-group">
+                        <div class="bar-stack">
+                            <div class="bar b-xiaohua" style="height:98px;"><span class="bar-val">98</span></div>
+                            <div class="bar b-xiaoming" style="height:100px;"><span class="bar-val">100</span></div>
+                            <div class="bar b-xiaoli" style="height:99px;"><span class="bar-val">99</span></div>
+                        </div>
+                        <div class="label">第5次</div>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:center;gap:1.5rem;font-size:.85rem;">
+                    <span><span style="display:inline-block;width:12px;height:12px;background:#0ea5e9;border-radius:2px;margin-right:.3rem;"></span>小华</span>
+                    <span><span style="display:inline-block;width:12px;height:12px;background:#ef4444;border-radius:2px;margin-right:.3rem;"></span>小明</span>
+                    <span><span style="display:inline-block;width:12px;height:12px;background:#10b981;border-radius:2px;margin-right:.3rem;"></span>小丽</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 想一想 -->
+    <div class="think-box">
+        <p><strong>想一想：</strong>高一级学校录取新生主要是依据考生的总分，这与平均数、中位数和众数中的哪一个关系较大？</p>
+        <button class="btn" style="margin-top:.8rem;" onclick="toggleAnswer('think1')">💡 提示</button>
+        <div id="think1" class="answer-box">
+            <p>录取新生依据的是<strong>总分</strong>，总分除以科目数就是<strong>平均数</strong>。因此，这与<strong>平均数</strong>的关系最大。</p>
+        </div>
+    </div>
+
+    <!-- ==================== 问题5 ==================== -->
+    <div class="explore-card">
+        <h4>问题 5　交通主干道的路况分析</h4>
+        <p>随着汽车的日益普及，越来越多的城市出现了令人烦恼的交通堵塞问题。你认为用过往车辆一天车速的<strong>平均数</strong>衡量某条交通主干道的路况合适吗？</p>
+
+        <button class="btn" onclick="toggleAnswer('q5')">💡 分析过程</button>
+        <div id="q5" class="answer-box">
+            <p>人们上、下班的时候是一天中道路较为繁忙的两个时段，其他时段车流量明显减少。</p>
+            <p>因此，如果用一天车速的平均数来衡量路况，那么上、下班时交通堵塞的问题就被<strong>掩盖</strong>了！</p>
+            <p style="margin-top:.8rem;"><strong>合理的做法：</strong>按道路繁忙的不同程度，将一天分为几个时段分别计算平均车速。</p>
+        </div>
+    </div>
+
+    <!-- ==================== 三种代表值特点 ==================== -->
+    <div class="section-title">📚 三种代表值的特点</div>
+    <p>平均数、中位数和众数各有其长，也各有其短，下面的几个例子也许能让你对它们有更深入的了解：</p>
+
+    <!-- 实例(1) -->
+    <div class="example-card">
+        <h4><span class="instance-num">1</span>草地上的游戏者</h4>
+        <p>草地上有 6 个人正在玩游戏，他们年龄的平均数是 15 岁。请想象一下是怎样年龄的 6 个人正在玩游戏？</p>
+        <button class="btn" onclick="toggleAnswer('ex1')">💡 解答</button>
+        <div id="ex1" class="answer-box">
+            <p>通常人们会想象是一群中学生正在玩游戏，但是——</p>
+            <p>如果是一个 <strong>65 岁</strong>的老人领着 <strong>5 个 5 岁</strong>的孩子在玩游戏也是有可能的！</p>
+            <p style="margin-top:.8rem;">这是一个<strong>不适合用平均数</strong>而<strong>适合用众数或中位数</strong>来代表一组数据的例子，老人的年龄把平均年龄一下子给抬上去了。</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <strong>结论：</strong>如果一组数据中有特别大或者特别小的<strong>异常值</strong>时，不适合用平均数作为这组数据的代表。
+            </div>
+        </div>
+    </div>
+
+    <!-- 实例(2) -->
+    <div class="example-card">
+        <h4><span class="instance-num">2</span>新年晚会的水果选择</h4>
+        <p>为筹备班级的新年晚会，班长对全班同学爱吃<strong>香蕉、橘子、柚子</strong>中的哪一种水果做了民意调查。最终买什么水果，显然由哪个代表值决定较好？</p>
+        <button class="btn" onclick="toggleAnswer('ex2')">💡 解答</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>显然由众数决定较好！</strong></p>
+            <p>因为它代表了全班<strong>多数同学的意愿</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 实例(3) -->
+    <div class="example-card">
+        <h4><span class="instance-num">3</span>班级成绩与年级成绩</h4>
+        <p>八年级有 4 个班级，如果已知在一次测验中这 4 个班级每班学生的<strong>平均成绩</strong>，也知道各班级的学生人数，那么，我们就可以计算出整个年级学生的平均成绩。</p>
+        <p>但是，如果已知的是每个班级学生成绩的<strong>中位数</strong>或者<strong>众数</strong>，那么我们一般是<strong>没有办法</strong>得出整个年级学生的中位数或者众数的。</p>
+        <button class="btn" onclick="toggleAnswer('ex3')">💡 思考</button>
+        <div id="ex3" class="answer-box">
+            <p>这说明<strong>平均数具有"可加性"</strong>：知道各部分的平均数和权重（人数），可以求出整体的平均数。</p>
+            <p>但<strong>中位数和众数不具有这种可加性</strong>，因此不能由各部分的众数或中位数推算出整体的众数或中位数。</p>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="read-box">
+        <h4>怎样合理选用各种指标</h4>
+ 
+        <p style="margin-top:.6rem;"><strong>核心原则：</strong>没有绝对"最好"的代表值，只有"最合适"的代表值。要根据数据的分布特点和分析目的灵活选用。</p>
+    </div>
+
+    <!-- ==================== 做一做 ==================== -->
+    <div class="section-title">✋ 做一做</div>
+    <div class="explore-card">
+        <h4>绳子长度估计实验</h4>
+        <p>请老师准备一根绳子，面对所有学生，捏住绳子的两端，将绳子拉直。全班同学目测几秒钟后估计这根绳子的长度。</p>
+        <ol style="margin-left:1.5rem;margin-top:.8rem;">
+            <li>设计并完成一张统计表和一张统计图，全面反映每位同学对这根绳子长度的估计值。</li>
+            <li>计算全班同学估计值的平均数、中位数和众数。</li>
+            <li>在全班同学估计值的基础上，请给出一个最后的估计值，作为全班集体对这根绳子长度的估计值。</li>
+            <li>最后，老师重新出示这根绳子，由学生代表当众用刻度尺量出这根绳子的长度。这个测量值与全班同学目测的估计值接近吗？全班讨论一下比较的结果，为什么测量值与估计值相差不大或者相差较大？</li>
+        </ol>
+    </div>
+
+    <!-- ==================== 练习 ==================== -->
+    <div class="section-title">✏️ 练习</div>
+    <div class="example-card">
+        <h4>手表走时误差分析</h4>
+        <p>检验某厂生产的手表质量时，检验人员随机抽取了 10 块手表，在下表中记下了每块手表的日走时误差（正数表示比标准时间快，负数表示比标准时间慢）。你认为用这 10 块手表走时误差的平均数来衡量这 10 块手表的精度合适吗？</p>
+        <table class="big-table" style="max-width:700px;">
+            <tr><th>手表序号</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+            <tr><th>日走时误差/s</th><td>-2</td><td>0</td><td>1</td><td>-3</td><td>-1</td><td>0</td><td>2</td><td>4</td><td>-3</td><td>2</td></tr>
+        </table>
+        <button class="btn" onclick="toggleAnswer('practice1')">💡 分析</button>
+        <div id="practice1" class="answer-box">
+            <p>计算得：</p>
+            <ul style="margin-left:1rem;">
+                <li>平均数 = $(-2+0+1-3-1+0+2+4-3+2)\div10 = 0$ 秒</li>
+                <li>中位数 = $(-1+0)\div2 = -0.5$ 秒</li>
+                <li>众数 = $0$ 秒（出现 2 次）和 $2$ 秒、$-3$ 秒（各出现 2 次）</li>
+            </ul>
+            <p style="margin-top:.8rem;">由于误差值有正有负，相互抵消后平均数为 0，但这并不能说明手表精度很高。实际上部分手表误差较大。<strong>此时用平均数并不合适</strong>，不过，聪明的你也许会想到，可以考虑误差绝对值的平均数。</p>
+        </div>
+    </div>
+
+    <!-- ==================== 三种代表值特点对比（扩展） ==================== -->
+    <div class="section-title">📚 三种代表值的特点与选用</div>
+    <div class="compare-grid">
+        <div class="compare-item" style="border-top:4px solid #0ea5e9;">
+            <h5 style="color:#0ea5e9;">📊 平均数</h5>
+            <div class="feature">✅ 利用所有数据信息</div>
+            <div class="feature">✅ 适合对称分布数据</div>
+            <div class="feature">❌ 受极端值影响大</div>
+            <div class="feature">📌 适合：总体水平分析</div>
+        </div>
+        <div class="compare-item" style="border-top:4px solid #10b981;">
+            <h5 style="color:#10b981;">📈 中位数</h5>
+            <div class="feature">✅ 不受极端值影响</div>
+            <div class="feature">✅ 适合偏态分布数据</div>
+            <div class="feature">❌ 未利用所有数据</div>
+            <div class="feature">📌 适合：有异常值时</div>
+        </div>
+        <div class="compare-item" style="border-top:4px solid #f59e0b;">
+            <h5 style="color:#f59e0b;">📉 众数</h5>
+            <div class="feature">✅ 反映最常见情况</div>
+            <div class="feature">✅ 适合分类数据</div>
+            <div class="feature">❌ 可能不存在或多于一个</div>
+            <div class="feature">📌 适合：决策选择</div>
+        </div>
+    </div>
+
+    <!-- ==================== 警惕"误导性统计" ==================== -->
+    <div class="section-title">⚠️ 警惕"误导性统计"</div>
+    <div class="mislead-demo">
+        <h4>某公司的招聘广告</h4>
+        <p style="font-weight:600;">"我公司员工平均月薪 <strong style="font-size:1.3rem;color:#ef4444;">18,000元</strong>，欢迎加入我们！"</p>
+        <p style="color:var(--text-secondary);margin-top:.4rem;">以下是该公司员工的真实工资（元）：</p>
+        <div class="mislead-tags">
+            <span>3,500</span><span>3,800</span><span>4,000</span><span>4,200</span><span>4,500</span><span>4,500</span><span>4,800</span><span>5,000</span><span>5,500</span><span>6,000</span><span style="background:#fecaca;color:#991b1b;font-weight:700;">150,000 (老板)</span>
+        </div>
+        <button class="btn btn-warn" onclick="toggleAnswer('misleadAnalysis')">💡 揭示真相</button>
+        <div id="misleadAnalysis" class="answer-box" style="border-color:#fca5a5;">
+            <div class="result-values">
+                <div class="result-value" style="border-left-color:#ef4444;"><div class="label">平均数</div><div class="value">≈ 18,164 元</div></div>
+                <div class="result-value" style="border-left-color:#10b981;"><div class="label">中位数</div><div class="value">4,500 元</div></div>
+                <div class="result-value" style="border-left-color:#f59e0b;"><div class="label">众数</div><div class="value">4,500 元</div></div>
+            </div>
+            <div class="warn-box" style="margin-top:.8rem;">
+                <strong>🔍 分析：</strong>老板的极高工资将平均数拉高到了18,000元以上，但大多数员工的工资实际在3,500~6,000元之间！<strong>平均数被极端值严重扭曲了。</strong>
+            </div>
+            <p style="margin-top:.6rem;">💡 <strong>启示：</strong>在阅读统计信息时，要警惕"平均数陷阱"——当数据存在极端值时，中位数往往更能反映真实情况。</p>
+        </div>
+    </div>
+
+    <!-- ==================== 场景应用 ==================== -->
+    <div class="section-title">🎬 场景应用</div>
+    <p>选择不同的场景，查看应该选择哪种代表值：</p>
+    <div class="scenario-selector">
+        <button class="scenario-btn active" onclick="showScenario('salary',this)">工资分析</button>
+        <button class="scenario-btn" onclick="showScenario('exam',this)">考试成绩</button>
+        <button class="scenario-btn" onclick="showScenario('temp',this)">气温记录</button>
+        <button class="scenario-btn" onclick="showScenario('shoe',this)">鞋码生产</button>
+        <button class="scenario-btn" onclick="showScenario('house',this)">房价分析</button>
+        <button class="scenario-btn" onclick="showScenario('income',this)">人均收入</button>
+    </div>
+    <div id="scenarioContent" class="fact-card">
+        <h4 id="scenarioTitle">💼 工资分析</h4>
+        <p id="scenarioDesc">分析员工工资时，由于少数高管工资极高，会拉高平均数，因此建议使用<strong>中位数</strong>来代表一般员工的工资水平。</p>
+        <div class="highlight-box" style="margin-top:.8rem;">
+            <strong>选择理由：</strong><span id="scenarioReason">极端值对平均数影响很大，中位数不受极端值影响。</span>
+        </div>
+    </div>
+
+    <!-- ==================== 综合挑战 ==================== -->
+    <div class="section-title">🏆 综合挑战——你来当数据分析师</div>
+    <p style="color:var(--text-secondary);margin-bottom:.8rem;">阅读以下场景，选择最合适的统计量。完成后查看得分！</p>
+
+    <div id="quizArea">
+        <div class="quiz-card" id="quiz1">
+            <p><strong>第1题：</strong>某城市想了解居民家庭年收入的"一般水平"。该市有少数超级富豪，年收入远高于普通居民。应该使用哪个统计量？</p>
+            <div class="quiz-options">
+                <button class="quiz-option" onclick="submitQuiz(1,'median',this)">A. 中位数</button>
+                <button class="quiz-option" onclick="submitQuiz(1,'mean',this)">B. 平均数</button>
+                <button class="quiz-option" onclick="submitQuiz(1,'mode',this)">C. 众数</button>
+            </div>
+            <div class="quiz-feedback" id="feedback1"></div>
+        </div>
+        <div class="quiz-card" id="quiz2">
+            <p><strong>第2题：</strong>鞋厂要决定下季度各类尺码鞋子的生产数量比例，应参考销售数据的哪个统计量？</p>
+            <div class="quiz-options">
+                <button class="quiz-option" onclick="submitQuiz(2,'median',this)">A. 中位数</button>
+                <button class="quiz-option" onclick="submitQuiz(2,'mean',this)">B. 平均数</button>
+                <button class="quiz-option" onclick="submitQuiz(2,'mode',this)">C. 众数</button>
+            </div>
+            <div class="quiz-feedback" id="feedback2"></div>
+        </div>
+        <div class="quiz-card" id="quiz3">
+            <p><strong>第3题：</strong>某班级数学考试成绩呈对称分布，各分数段人数均匀，想要反映班级整体水平，该用哪个统计量？</p>
+            <div class="quiz-options">
+                <button class="quiz-option" onclick="submitQuiz(3,'median',this)">A. 中位数</button>
+                <button class="quiz-option" onclick="submitQuiz(3,'mean',this)">B. 平均数</button>
+                <button class="quiz-option" onclick="submitQuiz(3,'mode',this)">C. 众数</button>
+            </div>
+            <div class="quiz-feedback" id="feedback3"></div>
+        </div>
+        <div class="quiz-card" id="quiz4">
+            <p><strong>第4题：</strong>某班要选"最受欢迎的颜色"来定班服，应该使用调查数据的哪个统计量？</p>
+            <div class="quiz-options">
+                <button class="quiz-option" onclick="submitQuiz(4,'median',this)">A. 中位数</button>
+                <button class="quiz-option" onclick="submitQuiz(4,'mean',this)">B. 平均数</button>
+                <button class="quiz-option" onclick="submitQuiz(4,'mode',this)">C. 众数</button>
+            </div>
+            <div class="quiz-feedback" id="feedback4"></div>
+        </div>
+    </div>
+
+    <div class="score-box" id="scoreDisplay">🎉 你的得分：<span id="score">0</span> / 4</div>
+
+    <!-- ==================== 真实社会案例速查 ==================== -->
+    <div class="section-title">🌍 真实社会案例速查</div>
+    <table class="big-table" style="max-width:700px;">
+        <tr><th>场景</th><th>最适合指标</th><th>原因</th></tr>
+        <tr><td>人均收入</td><td><span class="rec-badge rec-med">中位数</span></td><td>极端高收入会拉高平均数</td></tr>
+        <tr><td>商品尺码</td><td><span class="rec-badge rec-mode">众数</span></td><td>需要生产最畅销的尺码</td></tr>
+        <tr><td>考试成绩</td><td><span class="rec-badge rec-avg">平均数</span></td><td>成绩通常呈对称分布</td></tr>
+        <tr><td>房价</td><td><span class="rec-badge rec-med">中位数</span></td><td>豪宅价格会扭曲平均数</td></tr>
+        <tr><td>商品定价</td><td><span class="rec-badge rec-mode">众数</span></td><td>需要知道最常见价格区间</td></tr>
+        <tr><td>温度记录</td><td><span class="rec-badge rec-avg">平均数</span></td><td>温度数据通常分布均匀</td></tr>
+    </table>
+
+    <!-- ==================== 课后思考 ==================== -->
+    <div class="section-title">🤔 课后思考</div>
+    <div class="fact-card">
+        <h4>思考题</h4>
+        <ol style="margin-left:1.5rem;">
+            <li>已知小河的平均水深为1.5m，身高1.8m但是完全不会水性的数学老师，在水流速度为0情况下，能否安全涉水到达对岸？</li>
+            <li>某年某高中录取新生的平均成绩是530分，如果小明的考分是525分，那么小明会被这个学校录取吗？</li>
+            <li>有10名学生数学考试得分分别是：98, 58, 92, 90, $x$, 85, 80, 75, 72, 60。问：考分为85分的这个学生是在平均分之上还是之下？当 $x=12$ 呢？</li>
+        </ol>
+    </div>
+
+    <!-- ==================== 寄语 ==================== -->
+    <div class="message-box">
+        <p>✨ 三种代表各千秋，对称偏态要看透；极端值、众数多，灵活选用显智慧！✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第19章 19.1.4 平均数、中位数和众数的选用</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    el.classList.toggle('show');
+}
+
+// ==================== 场景应用 ====================
+const scenarios={
+    salary:{title:'💼 工资分析',desc:'分析员工工资时，由于少数高管工资极高，会拉高平均数，因此建议使用<strong>中位数</strong>来代表一般员工的工资水平。',reason:'极端值对平均数影响很大，中位数不受极端值影响。'},
+    exam:{title:'📝 考试成绩',desc:'分析班级考试成绩时，如果成绩分布较为对称，建议使用<strong>平均数</strong>来反映班级整体水平；如果有极端分数，可用中位数。',reason:'平均数能利用所有数据信息，反映整体水平。'},
+    temp:{title:'🌡️ 气温记录',desc:'分析某地气温变化时，如果关注一天或一月的总体温度，建议使用<strong>平均数</strong>；如果关注最常见温度，可用众数。',reason:'气温数据通常分布较为均匀，适合用平均数。'},
+    shoe:{title:'👟 鞋码生产',desc:'鞋厂要决定生产哪些尺码的鞋子时，应参考销售数据的<strong>众数</strong>，因为需要生产"最畅销"的尺码。',reason:'众数反映最常见的情况，对生产和销售决策最有参考价值。'},
+    house:{title:'🏠 房价分析',desc:'分析城市房价水平时，少数豪宅会拉高平均房价，建议使用<strong>中位数</strong>来反映一般房价水平。',reason:'豪宅价格是极端值，中位数更能反映普通市民购房成本。'},
+    income:{title:'💰 人均收入',desc:'统计居民收入时，由于收入分配通常呈右偏分布，官方常使用<strong>中位数</strong>（而非平均数）来发布居民收入数据。',reason:'平均数被少数高收入者拉高，无法反映大多数人的真实收入水平。'}
+};
+function showScenario(type,btn){
+    document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const s=scenarios[type];
+    document.getElementById('scenarioTitle').textContent=s.title;
+    document.getElementById('scenarioDesc').innerHTML=s.desc;
+    document.getElementById('scenarioReason').textContent=s.reason;
+    const c=document.getElementById('scenarioContent');
+    c.style.animation='none';void c.offsetWidth;c.style.animation='fadeIn .4s ease';
+}
+
+// ==================== 综合挑战答题 ====================
+const quizAnswers={1:'median',2:'mode',3:'mean',4:'mode'};
+const quizSubmitted={};
+const quizReasons={
+    1:'居民收入存在少数极端值（超级富豪），中位数不受极端值影响，更适合。',
+    2:'鞋厂需要知道最畅销的尺码，即出现次数最多的尺码（众数）。',
+    3:'成绩分布对称时，平均数能最好地反映整体水平。',
+    4:'班服颜色是分类数据，"最受欢迎"应使用众数。'
+};
+function submitQuiz(qNum,answer,btnEl){
+    if(quizSubmitted[qNum])return;
+    const card=document.getElementById('quiz'+qNum);
+    const feedback=document.getElementById('feedback'+qNum);
+    const correct=quizAnswers[qNum];
+    const allBtns=card.querySelectorAll('.quiz-option');
+    allBtns.forEach(b=>b.classList.remove('selected'));
+    btnEl.classList.add('selected');
+    quizSubmitted[qNum]=answer;
+    if(answer===correct){
+        card.classList.add('correct');
+        feedback.style.display='block';
+        feedback.innerHTML='<span style="color:#059669;">✅ 回答正确！</span> '+quizReasons[qNum];
+        feedback.className='quiz-feedback';
+        feedback.style.background='#d1fae5';
+    }else{
+        card.classList.add('wrong');
+        feedback.style.display='block';
+        feedback.innerHTML='<span style="color:#dc2626;">❌ 回答错误。</span> '+quizReasons[qNum];
+        feedback.className='quiz-feedback';
+        feedback.style.background='#fee2e2';
+        const idx=['median','mean','mode'].indexOf(correct);
+        const label=['A','B','C'][idx];
+        allBtns.forEach(b=>{if(b.textContent.startsWith(label))b.classList.add('correct-answer');});
+    }
+    allBtns.forEach(b=>{b.style.pointerEvents='none';b.style.opacity='0.6';});
+    btnEl.style.opacity='1';
+    checkAllSubmitted();
+}
+function checkAllSubmitted(){
+    const total=Object.keys(quizAnswers).length;
+    const answered=Object.keys(quizSubmitted).length;
+    if(answered>=total){
+        const correctCount=Object.entries(quizSubmitted).filter(([q,a])=>a===quizAnswers[q]).length;
+        document.getElementById('score').textContent=correctCount;
+        const sd=document.getElementById('scoreDisplay');
+        sd.style.display='block';
+        sd.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+}
+</script>
+</body>
+</html>

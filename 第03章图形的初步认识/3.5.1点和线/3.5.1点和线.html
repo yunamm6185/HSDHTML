@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第44课时 点和线 | 华师版·七上 第3章</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第44课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 点、线是构成图形的最基本元素，从它们出发开启几何世界。</div>
+    <h2>3.5 最基本的图形——点和线</h2>
+    <div class="lesson-title">第1课时 点和线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解点、线段、射线、直线的概念</div>
+            <div class="target-item"><span>✔</span>掌握“两点之间线段最短”和“两点确定一条直线”两个基本事实</div>
+            <div class="target-item"><span>✔</span>能区分线段、射线、直线的表示方法</div>
+            <div class="target-item"><span>✔</span>体会抽象思想在几何概念形成中的作用</div>
+        </div>
+    </div>
+
+    <!-- 导入：点与线的形象 -->
+    <div class="intro-block">
+        <p>通过前面的学习，大家一定会感叹，生活中有那么多奇妙的图形！其实不管是什么样的图形，它们都是由一些基本的图形构成的。下面先看两个最基本的图形。</p>
+        <p>用削尖的铅笔轻触一张白纸，就在纸上留下了<strong>点</strong>的直观形象。在许多图示上，点常用来表示那些大小尺寸可以忽略不计的物体。例如，在小比例尺地图上，一个城市就常常用一个点来表示。许多点的聚集又可以表现不同的图形。</p>
+        <p>在日常生活中，一根拉紧的绳子、一根竹竿、人行横道线等都给我们以<strong>线段</strong>的形象。实际上，线段是无数排成行的点的聚集。</p>
+    </div>
+
+    <!-- 图3.5.1 长方体 -->
+    <p>在前面抽象得到的多面体上，我们可以找到点和线的形象。例如，如图3.5.1所示的长方体，它由6个面组成，两个相邻的面交于一条线段，这条线段称为棱；两条相接的棱交于一个点，这个点称为顶点。</p>
+    <div class="figure-box">
+        <img src="3.5.1.png" alt="图3.5.1">
+        <div class="figcaption">图3.5.1 长方体</div>
+    </div>
+
+    <!-- 图3.5.2 表示点和线段 -->
+    <p>我们可以用如图3.5.2所示的方式来表示点和线段，其中在线段 \(AB\) 中，点 \(A\) 和点 \(B\) 称为线段 \(AB\) 的端点。</p>
+    <div class="figure-box">
+        <img src="3.5.2.png" alt="图3.5.2">
+        <div class="figcaption">图3.5.2 点和线段的表示</div>
+    </div>
+
+    <!-- 读一读：抽象思想（课本第25页） -->
+    <div class="reading-block" id="readingBlock1">
+        <div class="reading-header" onclick="toggleReading('readingContent1')">
+            <h4>📖 读一读 · 抽象</h4>
+            <span class="toggle-icon" id="toggleIcon1">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent1">
+            <p>“抽象”是数学的一种基本思想和基本方法。由实际生活中的物体、图形抽象得到的点、线、面、体等数学概念，概括了客观事物的数学属性，但也不再是原来的事物了。例如，抽象得到的数学上的“点”是没有大小的，但如果我们在纸上画“点”，无论铅笔削得多尖，画出来的点都有大小。本册教科书第1、2章谈的是数与代数领域中数量和数量关系的抽象。现在我们又从简单图形和图形关系出发抽象出了一些最基本的几何概念。我们还将在此基础上进一步运用抽象等数学思想和方法，研究和解决各种几何图形中的问题。</p>
+        </div>
+    </div>
+
+    <!-- 试一试：从A地到B地的路径 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <p>如图3.5.3，从 \(A\) 地到 \(B\) 地有三条路径，你会选择哪一条？</p>
+        <div class="figure-box">
+            <img src="3.5.3.png" alt="图3.5.3">
+            <div class="figcaption">图3.5.3 三条路径</div>
+        </div>
+        <p>在实际情况中，我们都希望走的路程越短越好，当然选择笔直的路线。这条路线就是线段 \(AB\) 。也就是我们平时所说的基本事实：<strong>两点之间线段最短</strong>。此时线段 \(AB\) 的长度，就是 \(A\) 、 \(B\) 两点间的距离。</p>
+    </div>
+
+    <!-- 射线 -->
+    <p>如图3.5.4，把线段向一端无限延伸所形成的图形叫做<strong>射线</strong>（ray）。图中固定的点 \(O\) 称为射线 \(OC\) 的端点。</p>
+    <div class="figure-box">
+        <img src="3.5.4.png" alt="图3.5.4">
+        <div class="figcaption">图3.5.4 射线OC</div>
+    </div>
+
+    <!-- 直线 -->
+    <p>如图3.5.5，激光灯的光束，给我们以射线的形象。把线段向两端无限延伸所形成的图形叫做<strong>直线</strong>（straight line）。如图3.5.6，直线可以用两种不同的方法表示。</p>
+    <div class="figure-box">
+        <img src="3.5.6.png" alt="图3.5.6">
+        <div class="figcaption">图3.5.6 直线的表示</div>
+    </div>
+
+    <!-- 试一试：过两点画直线 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <p>在纸上画出两个不同的点 \(A\) 和点 \(B\) ，过点 \(A\) 你能画几条直线？经过 \(A\) 、 \(B\) 两点画直线，你又可以画几条？</p>
+        <p>我们可以发现这样一个基本事实：<strong>经过两点有一条直线，并且只有一条直线</strong>。即两点确定一条直线。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 思考题</button>
+        <div id="ans1" class="answer-box">
+            <p>1. 要在墙上钉牢一根木条，至少要钉几颗钉子？为什么？<br>答：至少钉2颗钉子，因为两点确定一条直线，木条才能固定。</p>
+            <p>2. 请举出生活中运用“两点之间线段最短”的几个例子。<br>答：修路时尽量取直道，狗跑向食物时沿直线奔跑，等等。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">点：没有大小的几何元素；线段：有两个端点，可度量长度</div>
+            <div class="summary-item">射线：一个端点，向一端无限延伸；直线：无端点，向两端无限延伸</div>
+            <div class="summary-item">基本事实：两点之间线段最短；两点确定一条直线</div>
+            <div class="summary-item">点、线是构成图形的基础，通过抽象得到数学概念</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从现实物体中抽象出点、线、面等基本几何概念。<br>
+        <strong>模型思想：</strong> 用点、线描述现实世界中的位置、路径等。<br>
+        <strong>公理化思想：</strong> 将“两点之间线段最短”“两点确定一条直线”作为基本事实，作为推理的起点。</p>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本P31习题3.5 A组第1、2、3题；观察生活中哪些地方应用了“两点之间线段最短”。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第44课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading(id) {
+        var c = document.getElementById(id);
+        var icon = document.getElementById('toggleIcon1');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

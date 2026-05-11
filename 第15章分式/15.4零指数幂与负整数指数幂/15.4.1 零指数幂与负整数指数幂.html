@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.4.1 零指数幂与负整数指数幂 | 华师版·八年级下册</title>
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <!-- KaTeX JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <!-- KaTeX Auto-render -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f3e8fd; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif; font-weight: 500; line-height: 1.6; color: #2d1867; padding: 1.5rem; font-size: 22px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: white; border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(102,126,234,0.35); padding: 2rem 2.5rem; border: 1px solid #d4c4f8; word-wrap: break-word; overflow-wrap: break-word; }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #b8a5e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem; font-weight: 600; font-size: 1.1rem; }
+        h1 { font-size: 2.6rem; color: #5a3d9a; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:5px; margin-top:8px; }
+        .lesson-title { text-align:center; font-size:2.4rem; color:#5a3d9a; background:linear-gradient(145deg,#ede6fc,#ddd0f5); padding:.6rem 1.2rem; border-radius:60px; border:3px solid #c9b8ea; margin:1.2rem 0 1.8rem; font-weight:700; }
+
+        .learning-targets { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-radius:2rem; padding:1.3rem 2rem; margin:1rem 0 2rem; border:1px solid #c9b8ea; box-shadow:0 5px 0 #b8a0e0; }
+        .learning-targets h3 { margin:0 0 0.8rem; font-size:1.6rem; border-left:6px solid #667eea; padding-left:1rem; }
+        .target-list { list-style:none; padding:0; margin:0; }
+        .target-list li { background:white; border-radius:15px; padding:.6rem 1.2rem; margin:.5rem 0; font-weight:600; font-size:1.05rem; box-shadow:0 3px 0 #c4b5e8; border:1px solid #d4c4f8; }
+        .target-list li::before { content:"✔"; background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; margin-right:.6rem; font-size:0.9rem; }
+
+        .intro-card { background:#ede6fc; border-radius:2rem; padding:1.5rem 2rem; margin:1.2rem 0; border-left:8px solid #667eea; font-weight:600; }
+        .explore-card { background:#e8fdf4; border-radius:1.8rem; padding:1.5rem 1.8rem; margin:1.4rem 0; border-left:8px solid #34c77b; font-weight:600; }
+        .explore-card h4 { font-size:1.5rem; margin-bottom:0.7rem; color:#1a8a4a; }
+        .explore-card h4::before { content:"🔍 "; }
+        .fact-card { background:#fff8e1; border-left:8px solid #f0b34b; border-radius:1.8rem; padding:1.4rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .fact-card h4 { font-size:1.55rem; margin-bottom:0.6rem; color:#b85c1a; }
+        .theorem-box { background:#fff3cd; border:3px solid #f0b34b; border-radius:1.5rem; padding:1.2rem 2rem; margin:1rem 0; text-align:center; font-size:1.3rem; font-weight:700; color:#7a3d00; }
+        .example-card { background:#e8fdf4; border-left:8px solid #34c77b; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .example-card h4 { font-size:1.5rem; color:#1a8a4a; }
+        .reading-section { background:#fef9e6; border-left:8px solid #e6b422; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:500; }
+        .warning-box { background:#fdecea; border:3px solid #e74c3c; border-radius:1.5rem; padding:1.2rem 2rem; margin:1rem 0; text-align:center; font-size:1.25rem; font-weight:700; color:#c0392b; }
+
+        .interact-btn { background:#ede6fc; border:none; color:#5a3d9a; padding:.4rem 1.4rem; border-radius:40px; font-weight:700; cursor:pointer; box-shadow:0 4px 0 #c4b5e8; margin:.5rem 0 0; font-size:1rem; }
+        .interact-btn:active { transform:translateY(2px); }
+        .answer-box { background:#faf8ff; border-left:6px solid #f0b34b; padding:.8rem 1.5rem; margin:.8rem 0; display:none; border-radius:0 1rem 1rem 0; font-size:1.05rem; }
+        .show-answer { display:block; }
+
+        .exercise-section { background:#f5efff; border-radius:2rem; padding:1.5rem 2rem; margin:2rem 0; }
+        .exercise-item { margin-bottom:1.5rem; }
+        .exercise-question { font-weight:700; color:#5a3d9a; font-size:1.15rem; margin-bottom:0.4rem; }
+
+        .summary-section { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-left:6px solid #667eea; border-radius:1.8rem; padding:1.2rem 2rem; margin:1.5rem 0; }
+        .math-idea { background:#ede6fc; border-left:8px solid #667eea; border-radius:1.8rem; padding:1rem 1.8rem; margin:1rem 0; }
+        .homework-box { background:linear-gradient(145deg,#ddd0f5,#ede6fc); border-radius:60px; padding:1rem 2rem; display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; margin:1.5rem 0; }
+        .message-box { background:#f0ebff; text-align:center; font-style:italic; border-left:8px solid #764ba2; padding:1rem 1.8rem; border-radius:2rem; margin:1.5rem 0; }
+        .footer-note { text-align:right; color:#5a3d9a; border-top:2px solid #c9b8ea; padding-top:.8rem; margin-top:1.5rem; }
+        .highlight { background:#d4f4dd; padding:.5rem 1rem; border-radius:1rem; margin:.5rem 0; }
+
+        table { width:100%; border-collapse:collapse; margin:1rem 0; background:white; border-radius:10px; overflow:hidden; }
+        th,td { padding:12px 16px; text-align:center; border:2px solid #ddd0f5; }
+        th { background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; }
+        tr:nth-child(even) { background:#faf8ff; } tr:hover { background:#ede6fc; }
+
+        /* KaTeX 公式字体大小 */
+        .katex { font-size: 1.55em !important; }
+        .katex-display { font-size: 1.55em !important; margin: 0.8rem 0 !important; }
+        .interact-btn .katex { font-size: 1.6em !important; }
+        .answer-box .katex { font-size: 1.55em !important; }
+        .theorem-box .katex { font-size: 1.5em !important; }
+        table .katex { font-size: 1.45em !important; }
+        .target-list .katex { font-size: 1.1em !important; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第15章 分式 · 15.4.1</span></div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.4.1 零指数幂与负整数指数幂</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <ul class="target-list">
+            <li>理解零指数幂的意义，掌握 $a^0=1$（$a\neq0$）</li>
+            <li>理解负整数指数幂的意义，掌握 $a^{-n}=\dfrac{1}{a^n}$</li>
+            <li>能进行零指数幂和负整数指数幂的运算</li>
+            <li>理解幂的运算性质对整数指数仍然成立</li>
+        </ul>
+    </div>
+
+    <!-- 问题引入 -->
+    <div class="intro-card">
+        <p><strong>回顾：</strong>在15.2节中介绍同底数幂的除法公式 $a^m \div a^n = a^{m-n}$（$a \neq 0$）时，有一个附加条件：即被除数的指数大于除数的指数（$m > n$）。</p>
+        <p style="margin-top:0.8rem; color:#e74c3c;"><strong>思考问题：</strong>当被除数的指数不大于除数的指数，即 $m = n$ 或 $m < n$ 时，情况怎样呢？</p>
+    </div>
+
+    <!-- 零指数幂探索 -->
+    <div class="explore-card">
+        <h4>探索：零指数幂</h4>
+        <p>先考察被除数的指数等于除数的指数的情况。例如下列算式：</p>
+        <p style="margin-top:0.5rem;">$5^2 \div 5^2$，$10^3 \div 10^3$，$a^5 \div a^5$（$a \neq 0$）</p>
+        <p style="margin-top:0.8rem;"><strong>一方面</strong>，如果仿照同底数幂的除法公式来计算，出现：</p>
+        <p>$5^2 \div 5^2 = 5^{2-2} = 5^0$，$10^3 \div 10^3 = 10^{3-3} = 10^0$，$a^5 \div a^5 = a^{5-5} = a^0$</p>
+        <p style="margin-top:0.8rem;"><strong>另一方面</strong>，由于这几个式子的被除式等于除式，由除法的意义可知，所得的商都等于1。</p>
+    </div>
+
+    <!-- 零指数幂定义 -->
+    <div class="fact-card">
+        <h4>📌 零指数幂的定义</h4>
+        <div class="highlight">
+            <p><strong>规定：</strong>$a^0 = 1$（$a \neq 0$）</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>这就是说：</strong>任何不等于0的数的0次幂都等于1。</p>
+        <p style="margin-top:0.5rem; color:#e74c3c;">⚠️ <strong>注意：</strong>0的0次幂没有意义。</p>
+    </div>
+
+    <!-- 负整数指数幂探索 -->
+    <div class="explore-card">
+        <h4>探索：负整数指数幂</h4>
+        <p>我们再来考察被除数的指数小于除数的指数的情况。例如下列算式：</p>
+        <p style="margin-top:0.5rem;">$5^2 \div 5^5$，$10^3 \div 10^7$（$a \neq 0$）</p>
+        <p style="margin-top:0.8rem;"><strong>一方面</strong>，如果仿照同底数幂的除法公式来计算，出现：</p>
+        <p>$5^2 \div 5^5 = 5^{2-5} = 5^{-3}$，$10^3 \div 10^7 = 10^{3-7} = 10^{-4}$</p>
+        <p style="margin-top:0.8rem;"><strong>另一方面</strong>，我们可以利用约分，直接算出这两个式子的结果：</p>
+        <p>$5^2 \div 5^5 = \dfrac{5^2}{5^5} = \dfrac{1}{5^3}$，$10^3 \div 10^7 = \dfrac{10^3}{10^7} = \dfrac{1}{10^4}$</p>
+    </div>
+
+    <!-- 负整数指数幂定义 -->
+    <div class="fact-card">
+        <h4>📌 负整数指数幂的定义</h4>
+        <div class="highlight">
+            <p><strong>规定：</strong>$a^{-n} = \dfrac{1}{a^n}$（$a \neq 0$，$n$ 是正整数）</p>
+        </div>
+        <p style="margin-top:0.8rem;"><strong>这就是说：</strong>任何不等于0的数的 $-n$（$n$ 是正整数）次幂，等于这个数的 $n$ 次幂的倒数。</p>
+    </div>
+
+    <!-- 例题1 -->
+    <div class="example-card">
+        <h4>例1 计算</h4>
+        <p>(1) $3^{-2}$ &nbsp;&nbsp;&nbsp;&nbsp; (2) $\left(\dfrac{1}{3}\right)^0 \times 10^{-1}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 详细解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>(1) $3^{-2} = \dfrac{1}{3^2} = \dfrac{1}{9}$</p>
+            <p style="margin-top:0.5rem;">(2) $\left(\dfrac{1}{3}\right)^0 \times 10^{-1} = 1 \times \dfrac{1}{10^1} = \dfrac{1}{10}$</p>
+        </div>
+    </div>
+
+    <!-- 例题2 -->
+    <div class="example-card">
+        <h4>例2 用小数表示下列各数</h4>
+        <p>(1) $10^{-4}$ &nbsp;&nbsp;&nbsp;&nbsp; (2) $2.1 \times 10^{-5}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 详细解答</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>(1) $10^{-4} = \dfrac{1}{10^4} = 0.0001$</p>
+            <p style="margin-top:0.5rem;">(2) $2.1 \times 10^{-5} = 2.1 \times \dfrac{1}{10^5}$</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$= 2.1 \times 0.00001$</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$= 0.000021$</p>
+        </div>
+    </div>
+
+    <!-- 幂的运算性质 -->
+    <div class="explore-card">
+        <h4>探索：幂的运算性质对整数指数是否成立？</h4>
+        <p>我们知道，正整数指数幂有如下运算性质（12.1节）：</p>
+        <p style="margin-top:0.5rem;">(1) $a^m \cdot a^n = a^{m+n}$</p>
+        <p>(2) $a^m \div a^n = a^{m-n}$（$a \neq 0$）</p>
+        <p>(3) $(a^m)^n = a^{mn}$</p>
+        <p>(4) $(ab)^n = a^n \cdot b^n$</p>
+        <p style="margin-top:0.8rem;">上述各式中，$m$、$n$ 都是正整数。在性质(2)中还要求 $m > n$。</p>
+        <p style="margin-top:0.8rem; color:#667eea;"><strong>问题：</strong>我们已经引进零指数幂和负整数指数幂，指数的范围扩大到了全体整数。上述幂的运算性质是否还成立呢？</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="fact-card">
+        <h4>📌 试一试</h4>
+        <p>我们不妨取 $m$、$n$ 的一些特殊值，来检验一下上述性质是否成立。</p>
+        <p style="margin-top:0.5rem;">例如，取 $m = 2$，$n = -3$，我们来检验性质(1)：</p>
+        <p style="margin-top:0.5rem;">$a^2 \cdot a^{-3} = a^{2+(-3)} = a^{-1} = \dfrac{1}{a}$</p>
+        <p style="margin-top:0.5rem;">而 $a^2 \cdot a^{-3} = a^2 \cdot \dfrac{1}{a^3} = \dfrac{a^2}{a^3} = \dfrac{1}{a}$</p>
+        <p style="margin-top:0.5rem;">所以，这时性质(1)成立。</p>
+        <p style="margin-top:0.8rem;"><strong>类似地，我们可以检验幂的其他运算性质的正确性。</strong></p>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.2rem;">✏️ 课堂练习（课本P20）</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 计算</p>
+            <p>(1) $(-0.1)^0$ &nbsp;&nbsp; (2) $\left(\dfrac{1}{2025}\right)^0$ &nbsp;&nbsp; (3) $2^{-2}$ &nbsp;&nbsp; (4) $\left(\dfrac{1}{2}\right)^{-2}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 显示答案</button>
+            <div id="p1" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>(1) $(-0.1)^0 = 1$</p>
+                <p>(2) $\left(\dfrac{1}{2025}\right)^0 = 1$</p>
+                <p>(3) $2^{-2} = \dfrac{1}{2^2} = \dfrac{1}{4}$</p>
+                <p>(4) $\left(\dfrac{1}{2}\right)^{-2} = \dfrac{1}{\left(\frac{1}{2}\right)^2} = \dfrac{1}{\frac{1}{4}} = 4$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 用10的负整数指数幂填空</p>
+            <p>(1) $1\text{ s}$ 是 $1\text{ μs}$ 的 $1000000$ 倍，$1\text{ μs} = $ ______ $\text{s}$</p>
+            <p>(2) $1\text{ mg} = $ ______ $\text{kg}$</p>
+            <p>(3) $1\text{ μm} = $ ______ $\text{m}$</p>
+            <p>(4) $1\text{ nm} = $ ______ $\text{μm}$</p>
+            <p>(5) $1\text{ cm}^2 = $ ______ $\text{m}^2$</p>
+            <p>(6) $1\text{ mL} = $ ______ $\text{m}^3$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 显示答案</button>
+            <div id="p2" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>(1) $1\text{ μs} = 10^{-6}$ $\text{s}$</p>
+                <p>(2) $1\text{ mg} = 10^{-6}$ $\text{kg}$</p>
+                <p>(3) $1\text{ μm} = 10^{-6}$ $\text{m}$</p>
+                <p>(4) $1\text{ nm} = 10^{-3}$ $\text{μm}$（或 $10^{-9}\text{ m}$）</p>
+                <p>(5) $1\text{ cm}^2 = 10^{-4}$ $\text{m}^2$</p>
+                <p>(6) $1\text{ mL} = 10^{-6}$ $\text{m}^3$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">4. 计算下列各式，并把结果化为只含有正整数指数幂的形式</p>
+            <p>(1) $(a^{-3})^2 \cdot (ab^2)^{-3}$ &nbsp;&nbsp; (2) $(2mn^2)^{-2} \cdot (m^{-2}n^{-1})^{-3}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p4')">🔍 显示答案</button>
+            <div id="p4" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>(1) $(a^{-3})^2 \cdot (ab^2)^{-3} = a^{-6} \cdot a^{-3}b^{-6} = a^{-9}b^{-6} = \dfrac{1}{a^9b^6}$</p>
+                <p style="margin-top:0.5rem;">(2) $(2mn^2)^{-2} \cdot (m^{-2}n^{-1})^{-3} = 2^{-2}m^{-2}n^{-4} \cdot m^6n^3 = \dfrac{1}{4}m^4n^{-1} = \dfrac{m^4}{4n}$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>零指数幂：</strong>$a^0 = 1$（$a \neq 0$），任何不等于0的数的0次幂都等于1</div>
+        <div style="margin-top:0.5rem;">• <strong>负整数指数幂：</strong>$a^{-n} = \dfrac{1}{a^n}$（$a \neq 0$，$n$是正整数）</div>
+        <div style="margin-top:0.5rem;">• <strong>幂的运算性质：</strong>对于整数指数，正整数指数幂的运算性质仍然成立</div>
+        <div style="margin-top:0.5rem;">• <strong>特别注意：</strong>0的0次幂和0的负整数次幂都没有意义</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>从特殊到一般：</strong>通过具体算式归纳出零指数幂和负整数指数幂的定义。<br>
+        <strong>类比思想：</strong>将正整数指数幂的运算性质推广到整数指数。<br>
+        <strong>转化思想：</strong>负整数指数幂可以转化为正整数指数幂的倒数进行计算。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本P25 复习题第3、4题；思考：为什么0的0次幂没有意义？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 零指负指新定义，除法公式来启发；运算性质仍适用，转化思想记心间。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.4.1 零指数幂与负整数指数幂</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b)b.classList.toggle('show-answer');
+}
+
+// KaTeX 自动渲染
+window.addEventListener('load', function() {
+    if (typeof renderMathInElement !== 'undefined') {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left:'$$', right:'$$', display:true},
+                {left:'$', right:'$', display:false}
+            ],
+            strict: false,
+            trust: true,
+            throwOnError: false
+        });
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.3 实践与探索(第三课时) | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.9;color:#1a3a4a;padding:1.5rem;font-size:26px;}
+        .textbook{max-width:1300px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.8rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.2rem;color:#0f766e;}
+        h1{font-size:2.8rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.4rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .section-title{font-size:1.8rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .goal-box{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #4ade80;}
+        .goal-box h4{font-size:1.6rem;color:#166534;margin-bottom:.5rem;}.goal-box h4::before{content:"🎯 ";}
+        .goal-box ol{padding-left:1.5rem;line-height:2.2;}
+        .intro-box{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+        .intro-box h4{font-size:1.6rem;color:#1e40af;margin-bottom:.5rem;}.intro-box h4::before{content:"🚀 ";}
+        .review-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #f59e0b;}
+        .review-box h4{font-size:1.6rem;color:#92400e;margin-bottom:.5rem;}.review-box h4::before{content:"📖 ";}
+        .question-box{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border-left:8px solid #10b981;}
+        .question-box h4{font-size:1.6rem;margin-bottom:.7rem;color:#059669;}.question-box h4::before{content:"📌 ";}
+        .analysis-box{background:#eff6ff;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border-left:6px solid #3b82f6;}
+        .analysis-box strong{color:#1d4ed8;}
+        .think-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:3px solid #3b82f6;border-radius:1.5rem;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+        .think-box h4{color:#1e40af;font-size:1.4rem;margin-bottom:.5rem;}.think-box h4::before{content:"💭 试一试";}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.2;}
+        .practice-box{background:#fdf2f8;border:3px solid #ec4899;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;}
+        .practice-box h4{font-size:1.6rem;color:#be185d;margin-bottom:.8rem;}.practice-box h4::before{content:"📝 练习";}
+        .do-box{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border-left:8px solid #ec4899;}
+        .do-box h4{font-size:1.4rem;color:#be185d;margin-bottom:.5rem;}.do-box h4::before{content:"✍️ 做一做 ";}
+        .conclude-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border:2px solid #34d399;}
+        .conclude-box h4{font-size:1.4rem;color:#065f46;margin-bottom:.5rem;}.conclude-box h4::before{content:"📐 方法归纳 ";}
+        .core-box{background:linear-gradient(135deg,#fae8ff,#f5d0fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #e879f9;}
+        .core-box h4{font-size:1.6rem;color:#86198f;margin-bottom:.5rem;}.core-box h4::before{content:"⭐ 核心素养";}
+        .core-box ul{padding-left:1.5rem;line-height:2.2;}
+        .ho-work{background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #a78bfa;}
+        .ho-work h4{font-size:1.6rem;color:#6d28d9;margin-bottom:.5rem;}.ho-work h4::before{content:"📝 课后作业";}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #3b82f6;box-shadow:0 4px 15px rgba(59,130,246,0.15);position:relative;}
+        .highlight-box::before{content:"📐";position:absolute;left:1.2rem;top:1.2rem;font-size:1.6rem;}
+        .highlight-box p{margin:.5rem 0;padding-left:2.2rem;font-size:1.3rem;line-height:2;}
+        .highlight-box strong{color:#1e40af;}
+        p{margin:.5rem 0;}
+        .katex{font-size:1.15em;}
+        .math-block{text-align:center;margin:.8rem 0;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.5rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.6rem .6rem .6rem 0;font-size:1rem;transition:all .1s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1.2rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .q-item{display:flex;align-items:flex-start;gap:.5rem;margin:.6rem 0;padding:.5rem .8rem;border-radius:12px;transition:background .2s;}
+        .q-item:hover{background:#f0fdfa;}
+        .q-text{flex:1;line-height:1.6;}
+        .q-btn{white-space:nowrap;}
+        .graph-caption{text-align:center;color:#6b7280;font-size:.9rem;margin-top:4px;}
+        .gwrap{position:relative;display:inline-block;margin:0 auto;text-align:center;width:100%;}
+        .gwrap canvas{display:block;margin:0 auto;border-radius:12px;border:1px solid #d1d5db;background:#fafafa;max-width:100%;}
+        .glabel{position:absolute;pointer-events:none;text-shadow:0 0 5px #fafafa,0 0 5px #fafafa,0 0 5px #fafafa;line-height:1.2;}
+        .glabel .katex{font-size:1.05em;}
+        .data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:1.1rem;}
+        .data-table th,.data-table td{border:2px solid #b0bec5;padding:.6rem .8rem;text-align:center;}
+        .data-table th{background:#e0f2fe;color:#1e3a5f;font-weight:600;}
+        .data-table td{background:#fff;}
+        .data-table tr:nth-child(even) td{background:#f8fafc;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>16.5 实践与探索</h1>
+    <div class="lesson-title">16.5.3 实践与探索（第三课时）</div>
+
+    <!-- ===== 学习目标 ===== -->
+    <div class="goal-box">
+        <h4>学习目标</h4>
+        <ol>
+            <li>了解现实生活中变量间的近似函数关系，能根据数据用图象法求近似的一次函数表达式。</li>
+            <li>体会用经验数据拟合函数模型的思想方法，感受近似计算在实际问题中的应用。</li>
+            <li>进一步理解数形结合思想，培养分析和解决实际问题的能力。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课题导入 ===== -->
+    <div class="intro-box">
+        <h4>课题导入</h4>
+        <p>同学们坐过火车吗？细心观察会发现，铁轨之间都留有一道小小的缝隙。这是为什么呢？</p>
+        <p>原来，金属也会<strong>"热胀冷缩"</strong>——温度升高时体积会变大，温度降低时体积会缩小。如果铁轨不留缝隙，夏天受热膨胀，铁轨就会挤压变形，甚至引发事故！</p>
+        <p>那么，一种合金材料从 $-40^{\circ}\mathrm{C}$ 到 $60^{\circ}\mathrm{C}$，它的体积究竟会发生怎样的变化？这种变化能用我们学过的函数来描述吗？今天我们就来做一回"小小科学家"，用实验数据寻找近似的规律。</p>
+    </div>
+
+    <!-- ===== 复习回顾 ===== -->
+    <div class="review-box">
+        <h4>复习回顾</h4>
+        <p>已知一次函数 $y = kx + b$ 图象上的两点 $(x_1, y_1)$、$(x_2, y_2)$，可列出方程组求出 $k$ 和 $b$。</p>
+        <p>待定系数法的关键：<strong>两点确定一条直线</strong>。</p>
+    </div>
+
+    <!-- ===== 新知探索 ===== -->
+    <div class="section-title">🔍 新知探索</div>
+
+    <div class="question-box">
+        <h4>问题3</h4>
+        <p>为了研究某合金材料的体积 $V$ ($\mathrm{cm}^3$) 随温度 $t$ ($^{\circ}\mathrm{C}$) 变化的规律，对一个用这种合金制成的圆球测得相关数据如下：</p>
+
+        <table class="data-table">
+            <tr><th>$t/^{\circ}\mathrm{C}$</th><td>$-40$</td><td>$-20$</td><td>$-10$</td><td>$0$</td><td>$10$</td><td>$20$</td><td>$40$</td><td>$60$</td></tr>
+            <tr><th>$V/\mathrm{cm}^3$</th><td>$998.3$</td><td>$999.2$</td><td>$999.6$</td><td>$1000$</td><td>$1000.3$</td><td>$1000.7$</td><td>$1001.6$</td><td>$1002.3$</td></tr>
+        </table>
+
+        <p>能否据此寻求 $V$ 与 $t$ 之间的函数关系式？</p>
+    </div>
+
+    <div class="analysis-box">
+        <p><strong>分析</strong>　在平面直角坐标系中描出各对数值所对应的点，我们发现，这些点大致位于同一条直线上，可知 $V$ 与 $t$ 之间近似地符合一次函数关系。我们可以用一条直线去尽可能地与这些点相贴近，求出近似的函数关系式。</p>
+        <p>如图16.5.4所示的就是一条这样的直线，较接近的点可考虑取 $(10, 1000.3)$ 和 $(60, 1002.3)$。你也可以将直线稍稍挪动一下，换上其他适当的两点，试一试。</p>
+    </div>
+
+    <!-- 图16.5.4 -->
+    <div style="text-align:center;margin-top:1rem;">
+        <div class="gwrap" style="width:100%;max-width:560px;">
+            <canvas id="g1" width="560" height="480" style="width:100%;height:auto;"></canvas>
+            <span class="glabel" style="left:35.7%;top:87.5%;font-weight:700;">O</span>
+            <span class="glabel" style="left:82%;top:87.5%;font-style:italic;font-weight:700;">$t/^{\circ}\mathrm{C}$</span>
+            <span class="glabel" style="left:28%;top:4.2%;font-style:italic;font-weight:700;">$V/\mathrm{cm}^3$</span>
+        </div>
+        <p class="graph-caption">图16.5.4</p>
+    </div>
+
+    <!-- 试一试气泡 -->
+    <div class="think-box">
+        <h4></h4>
+        <p>试一试，求出近似的函数关系式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('try1')">💡 参考答案</button>
+        <div id="try1" class="answer-box">
+            <p>取点 $(10, 1000.3)$ 和 $(60, 1002.3)$，设 $V = kt + b$。</p>
+            <p>$$\begin{cases} 10k + b = 1000.3 \\ 60k + b = 1002.3 \end{cases}$$</p>
+            <p>两式相减得 $50k = 2$，$k = 0.04$。</p>
+            <p>代入得 $b = 1000.3 - 0.4 = 999.9$。</p>
+            <p>所以近似的函数关系式为：$V = 0.04t + 999.9$。</p>
+        </div>
+    </div>
+
+    <!-- ===== 概括 ===== -->
+    <div class="section-title">📐 概括总结</div>
+
+    <div class="highlight-box">
+        <p>我们曾采用<strong>待定系数法</strong>求得一次函数和反比例函数的表达式。但是现实生活中的数量关系是错综复杂的，在实践中得到的一些变量的对应值，有时很难精确地判断它们有怎样的函数关系，需要我们根据经验分析，进行<strong>近似计算和修正</strong>，列出比较接近的函数关系式。</p>
+    </div>
+
+    <!-- ===== 做一做 ===== -->
+    <div class="do-box">
+        <h4></h4>
+        <p>在问题3中，如果把直线稍稍挪动，取另外两点（如 $(-20, 999.2)$ 和 $(40, 1001.6)$），求出的近似函数关系式会有什么不同？</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">💡 参考答案</button>
+        <div id="do1" class="answer-box">
+            <p>取 $(-20, 999.2)$ 和 $(40, 1001.6)$：</p>
+            <p>$$k = \frac{1001.6 - 999.2}{40 - (-20)} = \frac{2.4}{60} = 0.04$$</p>
+            <p>$$b = 999.2 - 0.04 \times (-20) = 999.2 + 0.8 = 1000.0$$</p>
+            <p>得 $V = 0.04t + 1000.0$，与之前的 $V = 0.04t + 999.9$ 非常接近，说明拟合结果比较稳定。</p>
+        </div>
+    </div>
+
+    <!-- ===== 方法归纳 ===== -->
+    <div class="conclude-box">
+        <h4></h4>
+        <p>用图象法求近似函数关系式的步骤：</p>
+        <p><strong>① 描点</strong>：在坐标系中描出各组数据对应的点；</p>
+        <p><strong>② 拟合</strong>：观察这些点是否大致在一条直线上，用直线去贴近这些点；</p>
+        <p><strong>③ 取点</strong>：在直线上选取两个较接近的点，用待定系数法求出近似表达式。</p>
+    </div>
+
+    <!-- ===== 练习 ===== -->
+    <div class="practice-box">
+        <h4></h4>
+        <p>小刚观察了学校新添置的一批课桌椅，发现它们可以根据人的身高调节高度。他测量了一套课桌椅上的四档高度，得到如下数据：</p>
+        <table class="data-table">
+            <tr><th>椅面高 $x/\mathrm{cm}$</th><td>$37$</td><td>$40$</td><td>$42$</td><td>$45$</td></tr>
+            <tr><th>桌高 $y/\mathrm{cm}$</th><td>$70$</td><td>$75$</td><td>$78$</td><td>$82.5$</td></tr>
+        </table>
+        <p>请你和同学一起讨论，研究 $y$ 与 $x$ 可能满足什么函数关系。</p>
+        <button class="interact-btn" onclick="toggleAnswer('p1')">💡 参考答案</button>
+        <div id="p1" class="answer-box">
+            <p>在坐标系中描出点 $(37,70)$、$(40,75)$、$(42,78)$、$(45,82.5)$，这些点大致在同一条直线上。</p>
+            <p>取 $(37,70)$ 和 $(45,82.5)$，设 $y = kx + b$：</p>
+            <p>$$k = \frac{82.5 - 70}{45 - 37} = \frac{12.5}{8} = 1.5625$$</p>
+            <p>$$b = 70 - 1.5625 \times 37 = 12.1875$$</p>
+            <p>近似函数关系式：$y = 1.5625x + 12.1875$（或取整为 $y \approx 1.56x + 12.2$）。</p>
+        </div>
+    </div>
+
+    <!-- ===== 核心素养 ===== -->
+    <div class="core-box">
+        <h4></h4>
+        <ul>
+            <li><strong>数学建模</strong>：将实际问题中的数据抽象为函数模型，用一次函数近似描述变量关系。</li>
+            <li><strong>数据分析</strong>：通过对实验数据的观察和分析，判断变量间可能存在的函数关系。</li>
+            <li><strong>应用意识</strong>：体会数学建模在科学研究、工程技术中的重要作用。</li>
+        </ul>
+    </div>
+
+    <!-- ===== 课堂小结 ===== -->
+    <div class="summary-box">
+        <h4>课堂小结</h4>
+        <ol>
+            <li>现实问题中的数据往往存在误差，变量间的关系通常是近似的。</li>
+            <li>用<strong>图象法</strong>求近似函数关系式：描点 → 拟合直线 → 取点 → 待定系数法。</li>
+            <li>选取的点不同，得到的近似表达式可能略有差异，但应力求接近实际情况。</li>
+            <li>近似计算和修正是科学研究中常用的方法。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课后作业 ===== -->
+    <div class="ho-work">
+        <h4></h4>
+        <ol>
+            <li>整理课堂笔记，归纳用图象法求近似函数关系式的步骤。</li>
+            <li>根据问题3中的数据，取另外两组不同的点求近似函数关系式，并与 $V = 0.04t + 999.9$ 比较。</li>
+            <li>调查生活中的一组相关数据（如身高与鞋码、气温与用电量等），尝试用一次函数近似描述它们的关系。</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var e=document.getElementById(id);
+    e.style.display=(e.style.display==='block')?'none':'block';
+}
+
+// ==================== 图16.5.4 ====================
+;(function(){
+    var c=document.getElementById('g1'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,560,480);
+    var ox=200,oy=420;
+    var sc_t=4;  // 每1°C=4px  → 每10°C=40px
+    var sc_v=80; // 每1cm³=80px → 每0.5cm³=40px
+
+    // 网格（正方形）
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    // t方向竖线 每10°C一格=40px
+    for(var t=-40;t<=60;t+=10){
+        var x=ox+t*sc_t;
+        ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,440);ctx.stroke();
+    }
+    // V方向横线 每0.5一格=40px
+    for(var v=998.0;v<=1002.5;v+=0.5){
+        var y=oy-(v-998)*sc_v;
+        ctx.beginPath();ctx.moveTo(20,y);ctx.lineTo(460,y);ctx.stroke();
+    }
+
+    // 坐标轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    // x轴(t)
+    ctx.beginPath();ctx.moveTo(30,oy);ctx.lineTo(460,oy);ctx.stroke();
+    // y轴(V)
+    ctx.beginPath();ctx.moveTo(ox,440);ctx.lineTo(ox,20);ctx.stroke();
+
+    // 箭头
+    ctx.fillStyle='#1f2937';
+    // x轴箭头
+    ctx.beginPath();ctx.moveTo(460,oy);ctx.lineTo(450,oy-8);ctx.lineTo(450,oy+8);ctx.closePath();ctx.fill();
+    // y轴箭头
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-8,30);ctx.lineTo(ox+8,30);ctx.closePath();ctx.fill();
+
+    // y轴断裂符号（998.0~998.5之间画锯齿）
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(ox-6,380);ctx.lineTo(ox+2,388);ctx.lineTo(ox-6,396);ctx.lineTo(ox+2,404);ctx.lineTo(ox-6,412);ctx.lineTo(ox+2,420);
+    ctx.stroke();
+    // 断裂处小横线封口
+    ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(ox-7,380);ctx.lineTo(ox+3,380);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox-7,420);ctx.lineTo(ox+3,420);ctx.stroke();
+
+    // t轴刻度标签（下方）
+    ctx.fillStyle='#374151';ctx.font='14px sans-serif';ctx.textAlign='center';
+    for(var t=-40;t<=60;t+=10){
+        if(t===0) continue;
+        ctx.fillText(t,ox+t*sc_t,oy+22);
+    }
+    // y轴刻度标签（左侧）从998.5开始
+    ctx.textAlign='right';
+    for(var v=998.5;v<=1002.0;v+=0.5){
+        var label=v.toFixed(1);
+        ctx.fillText(label,ox-8,oy-(v-998)*sc_v+5);
+    }
+
+    // 数据点
+    var pts=[
+        [-40,998.3],[-20,999.2],[-10,999.6],[0,1000],
+        [10,1000.3],[20,1000.7],[40,1001.6],[60,1002.3]
+    ];
+    ctx.fillStyle='#2563eb';
+    for(var i=0;i<pts.length;i++){
+        var px=ox+pts[i][0]*sc_t;
+        var py=oy-(pts[i][1]-998)*sc_v;
+        ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);ctx.fill();
+    }
+
+    // 拟合直线 V=0.04t+999.9
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();
+    var x1=ox+(-40)*sc_t,y1=oy-(998.3-998)*sc_v;
+    var x2=ox+60*sc_t,y2=oy-(1002.3-998)*sc_v;
+    ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+})();
+
+// 等待KaTeX及auto-render加载完成后渲染
+var initAttempts = 0;
+function init(){
+    if(typeof katex !== 'undefined' && typeof renderMathInElement !== 'undefined'){
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+        });
+    } else if(initAttempts < 50){
+        initAttempts++;
+        setTimeout(init, 100);
+    } else {
+        console.error('KaTeX or auto-render failed to load');
+    }
+}
+window.onload = init;
+</script>
+</body>
+</html>

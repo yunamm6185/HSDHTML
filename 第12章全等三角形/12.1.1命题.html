@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.1.1 命题 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 (与之前风格统一) -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* 整体风格与之前提供的HTML文件保持一致 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 400px;
+            margin-top: 1rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第12章 全等三角形 · 12.1.1</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.1.1 命 题</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解命题的定义及构成</div>
+            <div class="target-item"><span>✔</span>能将命题改写成“如果……那么……”的形式</div>
+            <div class="target-item"><span>✔</span>能区分真命题与假命题，学会举反例</div>
+        </div>
+    </div>
+
+    <!-- 导入：生活中的命题 -->
+    <div class="explore-box">
+        <h4>情境引入</h4>
+        <p>我们经常说一些判断性的语句，例如：</p>
+        <ul style="margin-left:2rem;">
+            <li>“三角形的内角和等于180°”；</li>
+            <li>“如果两个角是对顶角，那么这两个角相等”；</li>
+            <li>“两直线平行，同位角相等”；</li>
+            <li>“直角都相等”。</li>
+        </ul>
+        <p>它们都是对某件事情做出判断，这样的语句就是<strong>命题</strong>。</p>
+    </div>
+
+    <!-- 概念详解 -->
+    <div class="concept-box">
+        <p><strong>命题的定义：</strong>表示判断的语句叫做命题。</p>
+        <p style="margin-top:0.5rem;"><strong>命题的结构：</strong>许多命题由“条件”和“结论”两部分组成。条件（已知事项）和结论（由条件推出的事项）。通常写成“如果……那么……”的形式。</p>
+        <p class="cloud-note">例如：“如果两个角是对顶角，那么这两个角相等”中，“两个角是对顶角”是条件，“这两个角相等”是结论。</p>
+    </div>
+
+    <!-- 例1 改写命题 -->
+    <div class="example-box">
+        <h4>例1</h4>
+        <p>把命题“三个角都相等的三角形是等边三角形”改写成“如果……那么……”的形式，并分别指出条件和结论。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>改写：</strong>如果一个三角形的三个角都相等，那么这个三角形是等边三角形。</p>
+            <p><strong>条件：</strong>一个三角形的三个角都相等；<strong>结论：</strong>这个三角形是等边三角形。</p>
+        </div>
+    </div>
+
+    <!-- 真命题与假命题 -->
+    <div class="think-box">
+        <h4>真命题与假命题</h4>
+        <p><strong>真命题：</strong>如果条件成立，那么结论一定成立。例如“三角形的内角和等于180°”。</p>
+        <p><strong>假命题：</strong>当条件成立时，不能保证结论总是正确。例如“如果两个角相等，那么它们是对顶角”就是假命题。</p>
+        <p>要说明一个命题是假命题，只需举出一个<strong>反例</strong>：符合条件，但不符合结论的例子。</p>
+        <div style="background:#fff0d9; border-radius:16px; padding:0.8rem; margin-top:0.5rem;">
+            <p>💡 例如：两个直角相等（比如都是90°），但它们不一定是对顶角，因此原命题是假命题。</p>
+        </div>
+    </div>
+
+    <!-- 练一练：真假命题判断 + 举反例 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 课堂练习</h3>
+
+        <!-- 练习1 改写 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 把下列命题改写成“如果……那么……”的形式，并指出条件和结论：</p>
+            <span class="sub-question">(1) 全等三角形的对应边相等；</span>
+            <span class="sub-question">(2) 在同一平面内，垂直于同一条直线的两条直线互相平行。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 显示答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) 如果两个三角形全等，那么它们的对应边相等。条件：两个三角形全等；结论：它们的对应边相等。</p>
+                <p class="sub-answer">(2) 在同一平面内，如果两条直线垂直于同一条直线，那么这两条直线互相平行。条件：在同一平面内两条直线垂直于同一条直线；结论：这两条直线互相平行。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 真假命题（直接判断） -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 指出下列命题中的真命题和假命题：</p>
+            <span class="sub-question">(1) 同位角相等，两直线平行；</span>
+            <span class="sub-question">(2) 多边形的内角和等于180°；</span>
+            <span class="sub-question">(3) 四边形的外角和等于360°；</span>
+            <span class="sub-question">(4) 平行于同一条直线的两条直线互相平行。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 显示答案</button>
+            <div id="prac2" class="answer-box">
+                <p class="sub-answer">(1) 真命题（平行线判定定理）；</p>
+                <p class="sub-answer">(2) 假命题（三角形内角和180°，四边形内角和360°）；</p>
+                <p class="sub-answer">(3) 真命题（任意多边形外角和360°）；</p>
+                <p class="sub-answer">(4) 真命题（平行公理推论）。</p>
+            </div>
+        </div>
+
+        <!-- 练习3 真假命题+举反例 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 指出下列命题的真假，若是假命题请举出反例：</p>
+            <span class="sub-question">(1) 两个锐角的和等于90°；</span>
+            <span class="sub-question">(2) 当 $x<0$ 时，$x^2 - x > 0$ 一定成立。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 显示答案</button>
+            <div id="prac3" class="answer-box">
+                <p class="sub-answer">(1) 假命题。反例：两个锐角分别为30°和60°，和是90°，但也可以是50°和50°（和100°≠90°），实际上并不一定等于90°，所以命题本身“两个锐角的和等于90°”是假的（因为并非所有情况都成立）。更直接反例：30°和40°（和70°≠90°）。</p>
+                <p class="sub-answer">(2) 真命题。当 $x<0$ 时，$x^2>0$，$-x>0$，所以 $x^2-x>0$ 恒成立。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：命题的文化背景（修正版，仅与12.1.1相关） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 命题的历史与文化</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>“命题”一词源于逻辑学，意指一个可以判断真假的陈述句。在数学中，命题是构成推理的基本单元。</p>
+            <p>早在古希腊，欧几里得在《几何原本》中就将最初的几个正确命题作为公理（如“两点确定一条直线”），然后通过逻辑推理证明其他命题（定理），建立了第一个公理化的几何体系。这种“公理→定理”的结构至今仍是数学的典范。</p>
+            <p>在中国古代，《墨经》中也出现了许多类似命题的记载，例如“平，同高也”（意思是：平行的线或面之间有相同的高度），这实际上是对平行线性质的一种命题式描述。古代数学家对命题的研究推动了逻辑学和数学的同步发展。</p>
+            <p>今天，我们学习命题，不仅是为了数学证明，更是为了培养严谨的逻辑思维习惯。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想方法 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>逻辑推理：</strong> 命题的条件与结论之间的因果关系。<br>
+        <strong>举反例：</strong> 判断假命题的重要方法，体现批判性思维。<br>
+        <strong>转化思想：</strong> 将自然语言命题转化为“如果……那么……”的形式，便于分析。</p>
+    </div>
+
+    <!-- 课堂小结 (折叠式) -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">命题：表示判断的语句，由条件和结论组成。</div>
+            <div class="summary-item">改写“如果……那么……”：先找条件、结论，再调整语言。</div>
+            <div class="summary-item">真命题：需推理证明；假命题：举一个反例即可。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 教材习题12.1 A组第1、2、3题，B组第6题（选做）。</span>
+    </div>
+
+    <!-- 结束语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 命题有真假，推理需严谨 ✨</p>
+    <div class="footer-note">八年级上册 · 第12章 12.1.1</div>
+</div>
+
+<script>
+    // 通用函数：切换答案显示
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 折叠课堂小结
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    // 折叠“读一读”
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    // 确保MathJax重新渲染
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

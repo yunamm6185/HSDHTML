@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.3 一次函数的性质 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.15rem;color:#0f766e;}
+        h1{font-size:2.8rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:80px;height:6px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.6rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.7rem 1.4rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.4rem 2.2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.8rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.6rem 1.6rem .6rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.2rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item > span:first-child{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;}
+        .intro-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.4rem 2rem;margin:1rem 0;border-left:8px solid #f59e0b;}
+        .intro-card p{font-size:1.25rem;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.7rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card p{font-size:1.25rem;}
+        .theorem-box{background:white;border-left:8px solid #f59e0b;border-radius:1rem;padding:1.3rem 2rem;margin:1rem 0;font-size:1.35rem;font-weight:600;color:#1e293b;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.4rem 2rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.6rem;color:#047857;}
+        .example-card p{font-size:1.25rem;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.5rem 1.6rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:1.1rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1.2rem 1.8rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .highlight-box p{font-size:1.2rem;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:2rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.4;}
+        .summary-box li{font-size:1.3rem;}
+        p{margin:.5rem 0;}
+        .graph-box{position:relative;text-align:center;margin:1rem 0;overflow:visible;min-height:380px;}
+        .graph-box canvas{position:relative;width:100%;max-width:620px;height:460px;background:white;border:2px solid #a7d8e0;border-radius:12px;}
+        .graph-label{position:absolute;pointer-events:auto;z-index:10;background:rgba(255,255,255,0.9);padding:2px 6px;border-radius:4px;font-size:20px;font-weight:bold;cursor:move;user-select:none;-webkit-user-select:none;white-space:nowrap;}
+        .katex{font-size:1.15em !important;}
+        .think-box{background:#f3e8ff;border-left:10px solid #a855f7;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem 0;font-weight:600;}
+        .think-box p{font-size:1.25rem;}
+        .message-box{background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;}
+        .message-box h4{color:#f0fdfa;font-size:1.8rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+        .message-box p{color:#ccfbf1;font-size:1.3rem;line-height:2.2;text-indent:2em;}
+        .literacy-container{display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;}
+        .literacy-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.4rem 1.6rem;border-left:6px solid #f59e0b;}
+        .literacy-card:nth-child(2){background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-left-color:#3b82f6;}
+        .literacy-card:nth-child(3){background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-left-color:#10b981;}
+        .literacy-card:nth-child(4){background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-left-color:#8b5cf6;}
+        .literacy-card h4{font-size:1.35rem;}
+        .literacy-card p{font-size:1.2rem;}
+        .blank{display:inline-block;min-width:80px;border-bottom:2px solid #1e293b;text-align:center;margin:0 4px;}
+        .caption{color:#64748b;font-size:1.15rem;text-align:center;margin-top:.3rem;font-weight:500;}
+        /* 性质概括卡片 */
+        .prop-list{display:grid;gap:1rem;margin:1rem 0;}
+        .prop-item{background:white;border-radius:1rem;padding:1.3rem 1.5rem;border-left:6px solid #10b981;box-shadow:0 2px 8px rgba(0,0,0,0.06);font-size:1.25rem;font-weight:600;}
+        .prop-item:nth-child(2){border-left-color:#ef4444;}
+        /* 象限表格 */
+        .quad-table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:1.15rem;border:2px solid #1e293b;}
+        .quad-table th{background:#0f766e;color:white;padding:1rem;font-size:1.2rem;font-weight:700;border:2px solid #1e293b;text-align:center;}
+        .quad-table td{padding:.7rem;text-align:center;border:2px solid #cbd5e1;background:white;font-weight:600;vertical-align:middle;}
+        .quad-table tr:nth-child(even) td{background:#f8fafc;}
+        .mini-canvas{width:160px;height:110px;border:1px solid #cbd5e1;border-radius:8px;background:white;}
+        /* 滑块 */
+        .slider-row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;margin:1.2rem 0;}
+        .slider-box{flex:1;min-width:260px;background:white;border-radius:12px;padding:1.2rem;border:2px solid #b2ebf2;}
+        .slider-box p{font-size:1.3rem;margin-bottom:.5rem;}
+        .slider-box input{width:100%;cursor:pointer;}
+        .live-formula{font-size:4.5rem;text-align:center;margin:.8rem auto;color:#713f12;font-weight:700;display:block;max-width:fit-content;padding:1.2rem 4rem;background:linear-gradient(135deg,#fefce8,#fef9c3);border-radius:1.2rem;border:2px solid #fde68a;box-shadow:0 4px 0 #fde047;}
+        .live-formula em{font-family:'Times New Roman','Cambria Math',serif;font-style:italic;font-weight:700;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.3 一次函数的性质</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>通过观察图象探索一次函数的增减性</div>
+            <div class="target-item"><span>2</span>理解 $k$ 的符号对函数增减性的影响</div>
+            <div class="target-item"><span>3</span>能利用增减性比较函数值的大小</div>
+            <div class="target-item"><span>4</span>经历观察—猜想—验证—概括的探究过程</div>
+        </div>
+    </div>
+
+    <!-- 新课导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.2rem;">📐 <strong>回顾与思考</strong></p>
+        <p>前面我们学习了一次函数的图象，知道一次函数 $y = kx + b$（$k \neq 0$）的图象是<strong>一条直线</strong>。</p>
+        <p style="margin-top:.5rem;">函数反映了现实世界中量的变化规律。那么，一次函数有什么<strong>性质</strong>呢？</p>
+        <p style="margin-top:.5rem;">比如：当自变量 $x$ 逐渐增大时，函数值 $y$ 会怎样变化呢？</p>
+    </div>
+
+    <!-- 探索一：图16.3.4 -->
+    <div class="section-title">🔍 探索活动一</div>
+
+    <div class="explore-card">
+        <h4>观察图 16.3.4，你能发现什么？</h4>
+        <p>如图，在函数 $y = \dfrac{2}{3}x + 1$ 的图象中，我们看到：当一个点在直线上<strong>从左向右</strong>移动（自变量 $x$ 从小到大变化）时，它的位置也在逐步从低到高变化（函数值 $y$ 的值也从小到大变化）。</p>
+
+        <div class="graph-box"><canvas id="canvasFig1"></canvas></div>
+        <p class="caption">图 16.3.4</p>
+
+        <div class="think-box" style="margin-top:1rem;">
+            <p><strong>🤔 想一想：</strong></p>
+            <p>这就是说，函数值 $y$ 随自变量 $x$ 的增大而 <span class="blank" id="blank1"></span> 。</p>
+            <p style="margin-top:.8rem;">函数 $y = 3x - 2$ 的图象（图 16.3.4 中的虚线）是否也有这种现象呢？</p>
+            <button class="interact-btn" onclick="toggleAnswer('explore1')">💡 点击分析</button>
+            <div id="explore1" class="answer-box">
+                <p><strong>分析 $y = \dfrac{2}{3}x + 1$：</strong></p>
+                <p>取 $x_1 = -3$ 时，$y_1 = \dfrac{2}{3} \times (-3) + 1 = -1$</p>
+                <p>取 $x_2 = 0$ 时，$y_2 = 1$；取 $x_3 = 3$ 时，$y_3 = 3$</p>
+                <p>当 $x$ 从 $-3$ 增大到 $3$ 时，$y$ 从 $-1$ 增大到 $3$。</p>
+                <p style="margin-top:.5rem;"><strong>分析 $y = 3x - 2$：</strong></p>
+                <p>取 $x_1 = 0$ 时，$y_1 = -2$；取 $x_2 = 1$ 时，$y_2 = 1$</p>
+                <p>当 $x$ 增大时，$y$ 也从 $-2$ 增大到 $1$。</p>
+                <div class="highlight-box" style="margin-top:.8rem;">
+                    <p><strong>发现：</strong>这两个函数都有同样的现象——<strong>$x$ 增大时，$y$ 也增大</strong>。</p>
+                    <p>它们有什么共同点？<strong>斜率 $k$ 都大于 0</strong>！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 探索二：教材"探索"板块 -->
+    <div class="section-title">🔍 探索活动二</div>
+
+    <div class="explore-card">
+        <h4>再观察另外两类一次函数的图象</h4>
+        <p>如图 16.3.5，再观察函数 $y = -x + 2$ 和 $y = -\dfrac{3}{2}x - 1$ 的图象，作类似的研究。</p>
+
+        <div class="graph-box"><canvas id="canvasFig2"></canvas></div>
+        <p class="caption">图 16.3.5</p>
+
+        <div class="think-box" style="margin-top:1rem;">
+            <p><strong>🤔 讨论：</strong></p>
+            <p>1. 这两个函数有什么<strong>共同性质</strong>？</p>
+            <p>2. 它们与前两个函数（$y = \dfrac{2}{3}x + 1$ 和 $y = 3x - 2$）有什么<strong>不同</strong>？</p>
+            <p>3. 从对以上四个函数的研究结果中，你能<strong>概括</strong>出关于一次函数性质的一般结论吗？</p>
+            <button class="interact-btn" onclick="toggleAnswer('explore2')">💡 点击查看分析</button>
+            <div id="explore2" class="answer-box">
+                <p><strong>分析 $y = -x + 2$：</strong></p>
+                <p>取 $x_1 = -2$ 时，$y_1 = 4$；取 $x_2 = 0$ 时，$y_2 = 2$；取 $x_3 = 2$ 时，$y_3 = 0$</p>
+                <p>当 $x$ 增大时，$y$ 反而<strong>减小</strong>！</p>
+                <p style="margin-top:.5rem;"><strong>分析 $y = -\dfrac{3}{2}x - 1$：</strong></p>
+                <p>取 $x_1 = -2$ 时，$y_1 = 2$；取 $x_2 = 0$ 时，$y_2 = -1$；取 $x_3 = 2$ 时，$y_3 = -4$</p>
+                <p>当 $x$ 增大时，$y$ 也<strong>减小</strong>！</p>
+                <div class="highlight-box" style="margin-top:.8rem;">
+                    <p><strong>共同性质：</strong>当 $x$ 增大时，$y$ 都<strong>减小</strong>。</p>
+                    <p><strong>与前两个函数的不同：</strong>前两个函数 $x$ 增大时 $y$ <strong>增大</strong>，这两个函数 $x$ 增大时 $y$ <strong>减小</strong>。</p>
+                    <p style="margin-top:.5rem;"><strong>关键区别在哪里？</strong></p>
+                    <p>前两个函数的 $k = \dfrac{2}{3} > 0$，$k = 3 > 0$（<strong>正数</strong>）</p>
+                    <p>后两个函数的 $k = -1 < 0$，$k = -\dfrac{3}{2} < 0$（<strong>负数</strong>）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 概括 -->
+    <div class="section-title">📚 概括</div>
+
+    <div class="explore-card">
+        <h4>一次函数 $y = kx + b$（$k \neq 0$）有下列性质：</h4>
+        <div class="prop-list" style="margin-top:1rem;">
+            <div class="prop-item" style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+                <div style="flex:1;min-width:260px;">
+                    <p><strong>（1）</strong>若 $k > 0$，$y$ 随 $x$ 的增大而 <strong style="color:#059669;">增大</strong>，这时函数的图象从左到右 <strong style="color:#059669;">上升</strong>；</p>
+                </div>
+                <canvas id="summaryUp" style="width:160px;height:110px;border:1px solid #cbd5e1;border-radius:8px;background:white;flex-shrink:0;"></canvas>
+            </div>
+            <div class="prop-item" style="display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;">
+                <div style="flex:1;min-width:260px;">
+                    <p><strong>（2）</strong>若 $k < 0$，$y$ 随 $x$ 的增大而 <strong style="color:#dc2626;">减小</strong>，这时函数的图象从左到右 <strong style="color:#dc2626;">下降</strong>。</p>
+                </div>
+                <canvas id="summaryDown" style="width:160px;height:110px;border:1px solid #cbd5e1;border-radius:8px;background:white;flex-shrink:0;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="section-title">✏️ 做一做</div>
+
+    <div class="example-card">
+        <h4>动手画图，验证性质</h4>
+        <p>画出函数 $y = -2x + 2$ 的图象，结合图象回答：</p>
+        <p>在这个函数中，随着自变量 $x$ 的增大，函数值 $y$ 是增大还是减小？它的图象从左到右怎样变化？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('doGraph')">📐 查看图象</button>
+        <div id="doGraph" class="answer-box">
+            <div class="graph-box"><canvas id="canvasDo"></canvas></div>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('doAns')" style="margin-top:.5rem;">✍️ 解答</button>
+        <div id="doAns" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>列表：</p>
+            <table style="max-width:450px;margin:.5rem auto;font-size:1.1rem;">
+                <tr><th>$x$</th><th>$-1$</th><th>$0$</th><th>$1$</th><th>$2$</th></tr>
+                <tr><td>$y = -2x + 2$</td><td>$4$</td><td>$2$</td><td>$0$</td><td>$-2$</td></tr>
+            </table>
+            <p style="margin-top:.5rem;">描点、连线，得到直线。</p>
+            <p>∵ $k = -2 < 0$</p>
+            <p>∴ $y$ 随 $x$ 的增大而 <strong>减小</strong>，图象从左到右 <strong>下降</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 交互探索 -->
+    <div class="section-title">🎮 交互探索</div>
+
+    <div class="explore-card">
+        <h4>拖动滑块，观察 $k$ 对直线趋势的影响</h4>
+        <p class="live-formula"><em>y</em> = <span id="kDisplay" style="color:#dc2626;">1</span><em>x</em><span id="bDisplay" style="color:#7c3aed;"></span></p>
+        <div id="quadInfo" style="text-align:center;font-size:1.15rem;font-weight:600;color:#0f766e;margin-bottom:.5rem;"></div>
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;">
+            <div class="graph-box" style="flex:2;min-width:320px;margin:0;"><canvas id="canvasInteractive"></canvas></div>
+            <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:1rem;padding-top:.5rem;">
+                <div class="slider-box">
+                    <p><strong>$k$ = <span id="kVal" style="color:#dc2626;">1</span></strong></p>
+                    <input type="range" id="kSlider" min="-5" max="5" step="0.5" value="1" style="width:100%;cursor:pointer;">
+                </div>
+                <div class="slider-box">
+                    <p><strong>$b$ = <span id="bVal" style="color:#7c3aed;">0</span></strong></p>
+                    <input type="range" id="bSlider" min="-5" max="5" step="0.5" value="0" style="width:100%;cursor:pointer;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 知识拓展：k、b与象限 -->
+    <div class="section-title">📊 知识拓展：$k$、$b$ 与直线经过的象限</div>
+
+    <div class="explore-card">
+        <h4>一次函数 $y = kx + b$ 的图象经过哪些象限？</h4>
+        <p>除了增减性，$k$ 和 $b$ 的符号还决定了直线经过哪些象限。结合图象看一看：</p>
+
+        <table class="quad-table">
+            <tr><th>$k$ 的符号</th><th>$b$ 的符号</th><th>经过的象限</th><th>示意图</th></tr>
+            <tr>
+                <td rowspan="3">$k > 0$（上升）</td>
+                <td>$b > 0$</td><td>一、二、三</td>
+                <td><canvas id="mini1" class="mini-canvas"></canvas></td>
+            </tr>
+            <tr>
+                <td>$b = 0$</td><td>一、三</td>
+                <td><canvas id="mini2" class="mini-canvas"></canvas></td>
+            </tr>
+            <tr>
+                <td>$b < 0$</td><td>一、三、四</td>
+                <td><canvas id="mini3" class="mini-canvas"></canvas></td>
+            </tr>
+            <tr>
+                <td rowspan="3">$k < 0$（下降）</td>
+                <td>$b > 0$</td><td>一、二、四</td>
+                <td><canvas id="mini4" class="mini-canvas"></canvas></td>
+            </tr>
+            <tr>
+                <td>$b = 0$</td><td>二、四</td>
+                <td><canvas id="mini5" class="mini-canvas"></canvas></td>
+            </tr>
+            <tr>
+                <td>$b < 0$</td><td>二、三、四</td>
+                <td><canvas id="mini6" class="mini-canvas"></canvas></td>
+            </tr>
+        </table>
+
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p><strong>💡 记忆口诀：</strong></p>
+            <p><strong>"$k$ 正上升 $k$ 负降，$b$ 定 $y$ 轴交何方"</strong></p>
+            <p style="margin-top:.3rem;">$b > 0$ 交 $y$ 轴正半轴，$b < 0$ 交 $y$ 轴负半轴，$b = 0$ 过原点。</p>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="section-title">📐 例题讲解</div>
+
+    <div class="example-card">
+        <h4>例 利用增减性比较函数值的大小</h4>
+        <p>已知点 $A(x_1, y_1)$、$B(x_2, y_2)$ 在直线 $y = -3x + 2$ 上，且 $x_1 < x_2$。比较 $y_1$ 与 $y_2$ 的大小。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong>∵ 直线解析式为 $y = -3x + 2$</p>
+            <p>∴ 斜率 $k = -3 < 0$</p>
+            <p>∴ 该函数是<strong>减函数</strong>，$y$ 随 $x$ 的增大而<strong>减小</strong></p>
+            <p>又 ∵ $x_1 < x_2$</p>
+            <p>∴ $\boxed{y_1 > y_2}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法总结：</strong>判断增减性的关键就是看 $k$ 的正负！</p>
+                <p>$k > 0$ 则同向（$x$ 大 $y$ 也大），$k < 0$ 则反向（$x$ 大 $y$ 反而小）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">📝 课堂练习</div>
+
+    <div class="example-card">
+        <h4>课本 P52 练习</h4>
+        <p style="margin-top:1rem;"><strong>1.</strong> 已知函数 $y = (m - 3)x - \dfrac{2}{3}$（$m$ 是常数），回答下列问题：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(1) 当 $m$ 取何值时，$y$ 随 $x$ 的增大而增大？</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(2) 当 $m$ 取何值时，$y$ 随 $x$ 的增大而减小？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 解答</button>
+        <div id="pr1" class="answer-box">
+            <p><strong>(1)</strong> $y$ 随 $x$ 增大而增大 → 函数递增 → $k > 0$</p>
+            <p>即 $m - 3 > 0$ → $\boxed{m > 3}$</p>
+            <p style="margin-top:.8rem;"><strong>(2)</strong> $y$ 随 $x$ 增大而减小 → 函数递减 → $k < 0$</p>
+            <p>即 $m - 3 < 0$ → $\boxed{m < 3}$</p>
+        </div>
+
+        <p style="margin-top:1.5rem;"><strong>2.</strong> 已知点 $(-1, a)$ 和点 $\left(\dfrac{1}{2}, b\right)$ 都在直线 $y = \dfrac{2}{3}x + 3$ 上，试比较 $a$ 与 $b$ 的大小。你能想出几种判断方法？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 解答</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>方法一：利用增减性</strong></p>
+            <p>∵ $k = \dfrac{2}{3} > 0$，∴ $y$ 随 $x$ 的增大而增大</p>
+            <p>又 ∵ $-1 < \dfrac{1}{2}$，∴ $\boxed{a < b}$</p>
+            <p style="margin-top:.8rem;"><strong>方法二：直接计算</strong></p>
+            <p>$a = \dfrac{2}{3} \times (-1) + 3 = -\dfrac{2}{3} + 3 = \dfrac{7}{3}$</p>
+            <p>$b = \dfrac{2}{3} \times \dfrac{1}{2} + 3 = \dfrac{1}{3} + 3 = \dfrac{10}{3}$</p>
+            <p>∵ $\dfrac{7}{3} < \dfrac{10}{3}$，∴ $\boxed{a < b}$</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">📝 课堂小结</div>
+    <div class="summary-box">
+        <h4>本节课我们学到了什么？</h4>
+        <ol>
+            <li>一次函数 $y = kx + b$（$k \neq 0$）最重要的性质是<strong>增减性</strong></li>
+            <li>当 <strong>$k > 0$</strong> 时，$y$ 随 $x$ 的增大而<strong>增大</strong>，图象从左到右<strong>上升</strong></li>
+            <li>当 <strong>$k < 0$</strong> 时，$y$ 随 $x$ 的增大而<strong>减小</strong>，图象从左到右<strong>下降</strong></li>
+            <li>利用增减性可以快速比较函数值的大小，不必逐一计算</li>
+            <li>$k$、$b$ 的符号还决定了直线经过的<strong>象限</strong></li>
+            <li><strong>探究过程</strong>：观察图象 → 发现规律 → 验证猜想 → 概括结论</li>
+        </ol>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎓 数学核心素养</div>
+    <div class="literacy-container">
+        <div class="literacy-card">
+            <h4 style="color:#92400e;margin-bottom:.5rem;">📐 直观想象</h4>
+            <p style="color:#78350f;line-height:1.8;">通过观察一次函数图象的"上升"与"下降"趋势，直观理解函数的增减性。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#1e40af;margin-bottom:.5rem;">🔍 逻辑推理</h4>
+            <p style="color:#1e3a8a;line-height:1.8;">从四个具体函数图象的共同特征中，归纳概括出一次函数增减性的一般结论。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#065f46;margin-bottom:.5rem;">✏️ 数学运算</h4>
+            <p style="color:#064e3b;line-height:1.8;">准确判断 $k$ 的符号，利用增减性规律解决比较大小、求参数范围等问题。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#6b21a8;margin-bottom:.5rem;">🌐 数学建模</h4>
+            <p style="color:#581c87;line-height:1.8;">理解"增大""减小"是描述现实世界中变量变化规律的核心语言。</p>
+        </div>
+    </div>
+
+    <!-- 教师寄语 -->
+    <div class="message-box">
+        <h4>💬 教师寄语</h4>
+        <p>观察、发现、归纳、概括——这是数学研究的基本方法。一次函数的增减性告诉我们：方向比位置更重要。$k$ 决定方向，无论起点在哪里，趋势不会改变。</p>
+    </div>
+
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.dataset.shown==='yes'){el.style.display='none';el.dataset.shown='';return;}
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.renderMathInElement){renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}
+    if(id==='doGraph') setTimeout(drawDo, 100);
+}
+
+// ========== 通用坐标系绘制 ==========
+function drawAxes(cx, W, H, padL, padR, padT, padB, rX, rY){
+    var maxR = Math.max(rX, rY);
+    var unit = Math.min((W - padL - padR) / (2 * maxR), (H - padT - padB) / (2 * maxR));
+    var cW = unit * 2 * maxR;
+    var cH = unit * 2 * maxR;
+    var offsetX = (W - padL - padR - cW) / 2;
+    var offsetY = (H - padT - padB - cH) / 2;
+    var drawL = padL + offsetX, drawT = padT + offsetY;
+    // 网格
+    cx.strokeStyle='#cfe8f3'; cx.lineWidth=1;
+    var yAx=drawT+cH-(0+maxR)*unit, xAx=drawL+(0+maxR)*unit;
+    var gStep=unit<25?2:1, gUnit=gStep*unit;
+    var vx=xAx; while(vx>0){vx-=gUnit;}
+    for(;vx<W;vx+=gUnit){ if(Math.abs(vx-xAx)<0.5) continue; cx.beginPath();cx.moveTo(vx,0);cx.lineTo(vx,H);cx.stroke(); }
+    var hy=yAx; while(hy>0){hy-=gUnit;}
+    for(;hy<H;hy+=gUnit){ if(Math.abs(hy-yAx)<0.5) continue; cx.beginPath();cx.moveTo(0,hy);cx.lineTo(W,hy);cx.stroke(); }
+    // 坐标轴
+    cx.strokeStyle='#1e293b'; cx.lineWidth=3;
+    cx.beginPath();cx.moveTo(drawL-15,yAx);cx.lineTo(drawL+cW+15,yAx);cx.stroke();
+    cx.beginPath();cx.moveTo(xAx,drawT-15);cx.lineTo(xAx,drawT+cH+15);cx.stroke();
+    // 箭头
+    cx.fillStyle='#1e293b';
+    cx.beginPath();cx.moveTo(drawL+cW+15,yAx);cx.lineTo(drawL+cW+5,yAx-6);cx.lineTo(drawL+cW+5,yAx+6);cx.fill();
+    cx.beginPath();cx.moveTo(xAx,drawT-15);cx.lineTo(xAx-6,drawT-5);cx.lineTo(xAx+6,drawT-5);cx.fill();
+    // 刻度
+    cx.fillStyle='#334155'; cx.font='bold 15px "Segoe UI", sans-serif';
+    var tLen=4;
+    for(var i=-rX;i<=rX;i++){
+        if(i===0) continue;
+        var px=drawL+(i+maxR)*unit;
+        cx.beginPath();cx.moveTo(px,yAx-tLen);cx.lineTo(px,yAx+tLen);cx.stroke();
+        cx.textAlign='center'; cx.fillText(i, px, yAx+24);
+    }
+    for(var i=-rY;i<=rY;i++){
+        if(i===0) continue;
+        var py=drawT+cH-(i+maxR)*unit;
+        cx.beginPath();cx.moveTo(xAx-tLen,py);cx.lineTo(xAx+tLen,py);cx.stroke();
+        cx.textAlign='right'; cx.fillText(i, xAx-10, py+5);
+    }
+    // 原点O
+    cx.beginPath(); cx.arc(xAx, yAx, 6, 0, Math.PI*2);
+    cx.fillStyle='white'; cx.fill();
+    cx.strokeStyle='#0f766e'; cx.lineWidth=2; cx.stroke();
+    cx.font='bold 16px "Segoe UI", sans-serif'; cx.fillStyle='#0f766e';
+    cx.textAlign='right'; cx.fillText('O', xAx-12, yAx+20);
+    // 轴标签
+    cx.font='italic bold 20px "Times New Roman", serif'; cx.fillStyle='#dc2626';
+    cx.textAlign='center'; cx.fillText('x', drawL+cW+22, yAx+5);
+    cx.fillText('y', xAx-14, drawT-18);
+    return {cW:cW, cH:cH, xAx:xAx, yAx:yAx, unit:unit, drawL:drawL, drawT:drawT, maxR:maxR};
+}
+
+// 画直线
+function drawLine(cx, info, k, b, color, dash){
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit, maxR=info.maxR||0;
+    var cW=info.cW, cH=info.cH;
+    var topB=drawT+12, botB=drawT+cH-12;
+    cx.strokeStyle=color; cx.lineWidth=3; cx.lineCap='round';
+    if(dash) cx.setLineDash([6,4]); else cx.setLineDash([]);
+    cx.beginPath();
+    var started=false;
+    for(var px=drawL;px<=drawL+cW;px+=1){
+        var x=(px-drawL)/unit-maxR, y=k*x+b;
+        var py=drawT+cH-(y+maxR)*unit;
+        if(py<topB||py>botB){if(started){cx.stroke();started=false;}continue;}
+        if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+    }
+    cx.stroke();
+    cx.setLineDash([]);
+}
+
+// 标记点
+function markPoint(cx, info, x, y, color){
+    var maxR=info.maxR||0;
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit;
+    var cH=info.cH;
+    var px=drawL+(x+maxR)*unit, py=drawT+cH-(y+maxR)*unit;
+    cx.beginPath();cx.arc(px,py,6,0,Math.PI*2);cx.fillStyle=color;cx.fill();cx.strokeStyle='white';cx.lineWidth=2;cx.stroke();
+}
+
+// 添加可拖拽标签
+function addGraphLabel(box, info, color, tex, x, y, offX, offY){
+    var el=document.createElement('span');
+    el.className='graph-label';
+    el.style.color=color;
+    el.innerHTML='$'+tex+'$';
+    var cv=box.querySelector('canvas');
+    var cRect=cv.getBoundingClientRect(), bRect=box.getBoundingClientRect();
+    var scaleX=cRect.width/cv.width, scaleY=cRect.height/cv.height;
+    var ox=cRect.left-bRect.left, oy=cRect.top-bRect.top;
+    var maxR=info.maxR||0;
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit, cH=info.cH;
+    var px=drawL+(x+maxR)*unit+(offX||0);
+    var py=drawT+cH-(y+maxR)*unit+(offY||0);
+    el.style.left=(ox+px*scaleX)+'px';
+    el.style.top=(oy+py*scaleY)+'px';
+    var dragging=false, startX, startY, startL, startT;
+    el.addEventListener('mousedown',function(e){dragging=true;startX=e.clientX;startY=e.clientY;startL=parseFloat(el.style.left)||0;startT=parseFloat(el.style.top)||0;el.style.zIndex=100;e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(!dragging)return;el.style.left=(startL+e.clientX-startX)+'px';el.style.top=(startT+e.clientY-startY)+'px';});
+    document.addEventListener('mouseup',function(){dragging=false;el.style.zIndex=10;});
+    box.appendChild(el);
+    if(window.katex){katex.render(tex,el,{throwOnError:false});}
+}
+
+// ========== 图16.3.4：y=2/3x+1 和 y=3x-2 ==========
+function drawFig1(){
+    var cv=document.getElementById('canvasFig1'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=580, H=440;
+    cv.width=W; cv.height=H;
+    var padL=50, padR=40, padT=40, padB=50, rX=3, rY=5;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,padL,padR,padT,padB,rX,rY);
+    drawLine(cx,info,2/3,1,'#dc2626',false);
+    drawLine(cx,info,3,-2,'#0ea5e9',true);
+    var box=cv.parentElement;
+    box.querySelectorAll('.graph-label').forEach(function(el){el.remove();});
+    addGraphLabel(box,info,'#dc2626','y=\\frac{2}{3}x+1',2.5,2.67,12,-12);
+    addGraphLabel(box,info,'#0ea5e9','y=3x-2',-0.8,-3.4,-85,0);
+}
+
+// ========== 图16.3.5：y=-x+2 和 y=-3/2x-1 ==========
+function drawFig2(){
+    var cv=document.getElementById('canvasFig2'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=580, H=440;
+    cv.width=W; cv.height=H;
+    var padL=50, padR=40, padT=40, padB=50, rX=3, rY=6;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,padL,padR,padT,padB,rX,rY);
+    drawLine(cx,info,-1,2,'#dc2626',false);
+    drawLine(cx,info,-1.5,-1,'#0ea5e9',true);
+    var box=cv.parentElement;
+    box.querySelectorAll('.graph-label').forEach(function(el){el.remove();});
+    addGraphLabel(box,info,'#dc2626','y=-x+2',-2.5,4.5,10,-12);
+    addGraphLabel(box,info,'#0ea5e9','y=-\\frac{3}{2}x-1',2,-4,12,5);
+}
+
+// ========== 做一做：y=-2x+2 ==========
+function drawDo(){
+    var cv=document.getElementById('canvasDo'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=580, H=440;
+    cv.width=W; cv.height=H;
+    var padL=50, padR=40, padT=40, padB=50, rX=3, rY=5;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,padL,padR,padT,padB,rX,rY);
+    drawLine(cx,info,-2,2,'#0ea5e9',false);
+    markPoint(cx,info,-1,4,'#10b981');
+    markPoint(cx,info,0,2,'#10b981');
+    markPoint(cx,info,1,0,'#10b981');
+    markPoint(cx,info,2,-2,'#10b981');
+    var box=cv.parentElement;
+    box.querySelectorAll('.graph-label').forEach(function(el){el.remove();});
+    addGraphLabel(box,info,'#0ea5e9','y=-2x+2',-1.8,5.6,8,-10);
+    addGraphLabel(box,info,'#10b981','(-1,4)',-1,4,-45,-5);
+    addGraphLabel(box,info,'#10b981','(0,2)',0,2,8,-12);
+    addGraphLabel(box,info,'#10b981','(1,0)',1,0,8,15);
+    addGraphLabel(box,info,'#10b981','(2,-2)',2,-2,8,15);
+}
+
+// ========== 小坐标系（用于象限表格） ==========
+function drawMiniAxes(cx, W, H, rX, rY){
+    var maxR=Math.max(rX,rY);
+    var unit=Math.min(W/(2*maxR+1.5), H/(2*maxR+1.5));
+    var xAx=W/2, yAx=H/2;
+    cx.strokeStyle='#475569'; cx.lineWidth=2;
+    cx.beginPath(); cx.moveTo(8,yAx); cx.lineTo(W-8,yAx); cx.stroke();
+    cx.beginPath(); cx.moveTo(xAx,8); cx.lineTo(xAx,H-8); cx.stroke();
+    cx.fillStyle='#475569';
+    cx.beginPath(); cx.moveTo(W-8,yAx); cx.lineTo(W-14,yAx-4); cx.lineTo(W-14,yAx+4); cx.fill();
+    cx.beginPath(); cx.moveTo(xAx,8); cx.lineTo(xAx-4,14); cx.lineTo(xAx+4,14); cx.fill();
+    cx.font='bold 11px "Segoe UI",sans-serif'; cx.fillStyle='#64748b';
+    cx.textAlign='center'; cx.fillText('O', xAx-10, yAx+12);
+    return {unit:unit, xAx:xAx, yAx:yAx, maxR:maxR};
+}
+function drawMiniLine(cx, info, k, b, color){
+    var unit=info.unit, xAx=info.xAx, yAx=info.yAx, maxR=info.maxR;
+    var W=cx.canvas.width, H=cx.canvas.height;
+    cx.strokeStyle=color; cx.lineWidth=2.5; cx.lineCap='round';
+    cx.beginPath();
+    var started=false;
+    for(var px=0; px<=W; px+=1){
+        var x=(px-xAx)/unit, y=k*x+b;
+        var py=yAx-y*unit;
+        if(py<4||py>H-4){if(started){cx.stroke();started=false;}continue;}
+        if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+    }
+    cx.stroke();
+}
+function drawMiniQuadrant(cx, info, k, b){
+    var unit=info.unit, xAx=info.xAx, yAx=info.yAx;
+    // x轴交点
+    if(Math.abs(k)>0.001){
+        var xInt=-b/k;
+        var px=xAx+xInt*unit;
+        if(px>=8 && px<=cx.canvas.width-8){
+            cx.beginPath();cx.arc(px,yAx,3,0,Math.PI*2);cx.fillStyle='#dc2626';cx.fill();
+        }
+    }
+    // y轴交点
+    var py=yAx-b*unit;
+    if(py>=4 && py<=cx.canvas.height-4){
+        cx.beginPath();cx.arc(xAx,py,3,0,Math.PI*2);cx.fillStyle='#dc2626';cx.fill();
+    }
+}
+
+// ========== 绘制6个象限小图 ==========
+function drawMiniGraphs(){
+    var configs=[
+        {id:'mini1',k:0.7,b:1.5},
+        {id:'mini2',k:0.7,b:0},
+        {id:'mini3',k:0.7,b:-1.5},
+        {id:'mini4',k:-0.7,b:1.5},
+        {id:'mini5',k:-0.7,b:0},
+        {id:'mini6',k:-0.7,b:-1.5}
+    ];
+    configs.forEach(function(cfg){
+        var cv=document.getElementById(cfg.id); if(!cv) return;
+        var cx=cv.getContext('2d'), W=140, H=100;
+        cv.width=W; cv.height=H;
+        cx.clearRect(0,0,W,H);
+        var info=drawMiniAxes(cx,W,H,3,3);
+        drawMiniLine(cx,info,cfg.k,cfg.b,'#0ea5e9');
+        drawMiniQuadrant(cx,info,cfg.k,cfg.b);
+    });
+}
+
+// ========== 交互探索滑块 ==========
+function drawInteractive(){
+    var cv=document.getElementById('canvasInteractive'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=580, H=440;
+    cv.width=W; cv.height=H;
+    var k=parseFloat(document.getElementById('kSlider').value);
+    var b=parseFloat(document.getElementById('bSlider').value);
+    document.getElementById('kVal').textContent=k;
+    document.getElementById('bVal').textContent=b;
+    var ks=k===1?'':k===-1?'-':k;
+    var bs=b>0?'+'+b:b<0?b:'';
+    document.getElementById('kDisplay').textContent=ks;
+    document.getElementById('bDisplay').textContent=bs;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,50,40,40,50,4,5);
+    drawLine(cx,info,k,b,'#0ea5e9',false);
+    // 标记与y轴交点（紫色，对应b）
+    if(Math.abs(b)<=5){
+        markPoint(cx,info,0,b,'#7c3aed');
+    }
+    // 象限信息
+    var quadText='';
+    if(k>0){
+        if(b>0) quadText='经过象限：一、二、三';
+        else if(b===0) quadText='经过象限：一、三';
+        else quadText='经过象限：一、三、四';
+    }else if(k<0){
+        if(b>0) quadText='经过象限：一、二、四';
+        else if(b===0) quadText='经过象限：二、四';
+        else quadText='经过象限：二、三、四';
+    }else{
+        quadText='k ≠ 0 才是一次函数';
+    }
+    var qel=document.getElementById('quadInfo');
+    if(qel) qel.textContent=quadText;
+    // 标签（k值红色，b值蓝色）
+    var box=cv.parentElement;
+    box.querySelectorAll('.graph-label').forEach(function(el){el.remove();});
+    var kPart=(k===1?'':k===-1?'-':k);
+    var bPart=(b>0?'+'+b:b<0?b:'');
+    var tex='y={\\color{#dc2626}'+kPart+'}x{\\color{#7c3aed}'+bPart+'}';
+    addGraphLabel(box,info,'#0f766e',tex,3.5,4.5,8,-10);
+}
+
+// 滑块事件
+function setupSliders(){
+    var kSlider=document.getElementById('kSlider');
+    var bSlider=document.getElementById('bSlider');
+    if(kSlider) kSlider.addEventListener('input',drawInteractive);
+    if(bSlider) bSlider.addEventListener('input',drawInteractive);
+    drawInteractive();
+}
+
+// ========== 概括小图：上升/下降示意（无交点） ==========
+function drawSummarySketch(id, k, b){
+    var cv=document.getElementById(id); if(!cv) return;
+    var cx=cv.getContext('2d'), W=160, H=110;
+    cv.width=W; cv.height=H;
+    cx.clearRect(0,0,W,H);
+    var info=drawMiniAxes(cx,W,H,3,3);
+    drawMiniLine(cx,info,k,b,k>0?'#059669':'#dc2626');
+    // 加箭头表示方向
+    var unit=info.unit, xAx=info.xAx, yAx=info.yAx;
+    var x1=-1.5, x2=1.5, y1=k*x1+b, y2=k*x2+b;
+    var px1=xAx+x1*unit, py1=yAx-y1*unit;
+    var px2=xAx+x2*unit, py2=yAx-y2*unit;
+    // 在直线末端画小箭头
+    var angle=Math.atan2(py2-py1, px2-px1);
+    var ax=px2-12*Math.cos(angle), ay=py2-12*Math.sin(angle);
+    cx.fillStyle=k>0?'#059669':'#dc2626';
+    cx.beginPath();
+    cx.moveTo(px2,py2);
+    cx.lineTo(ax+5*Math.sin(angle),ay-5*Math.cos(angle));
+    cx.lineTo(ax-5*Math.sin(angle),ay+5*Math.cos(angle));
+    cx.fill();
+}
+
+// 页面加载
+window.addEventListener('load', function(){
+    drawFig1();
+    drawFig2();
+    drawMiniGraphs();
+    drawSummarySketch('summaryUp', 0.8, 0.5);
+    drawSummarySketch('summaryDown', -0.8, 0.5);
+    setupSliders();
+});
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if(window.renderMathInElement){
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        }
+    });
+</script>
+</body>
+</html>

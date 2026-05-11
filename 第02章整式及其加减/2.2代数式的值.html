@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第27课时 代数式的值 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        /* 样式保持不变 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th {
+            background-color: #e1eff9;
+        }
+        /* 术语高亮增强 */
+        .term-highlight {
+            background-color: #ffd966;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+        /* 读一读多行显示 */
+        .reading-content .example-flow {
+            font-family: 'Courier New', monospace;
+            background: #f0f7fb;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            overflow-x: visible;
+            white-space: normal;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.2 代数式的值</h2>
+    <div class="lesson-title">代数式的值</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解代数式的值的概念</div>
+            <div class="target-item"><span>✔</span>能熟练地求代数式的值</div>
+            <div class="target-item"><span>✔</span>体会从一般到特殊的思想方法</div>
+            <div class="target-item"><span>✔</span>能运用代数式的值解决简单的实际问题</div>
+        </div>
+    </div>
+
+    <!-- 问题引入：礼堂座位（课本P90） -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 问题：某礼堂第1排有18个座位，往后每排比前一排多2个座位。问：</p>
+        <p>(1) 第 \(n\) 排有多少个座位？（用含 \(n\) 的代数式表示）</p>
+        <p>(2) 第10排、第15排、第23排分别有多少个座位？</p>
+    </div>
+
+    <div class="think-box">
+        <p><strong>探索：</strong></p>
+        <p>第2排比第1排多2个座位，它的座位数为 \(18 + 2 = 20\)；</p>
+        <p>第3排比第2排多2个座位，它的座位数为 \(20 + 2 = 22\)，也可看作 \(18 + 2 \times 2 = 22\)；</p>
+        <p>第4排可看作 \(18 + 2 \times 3 = 24\)；</p>
+        <p>…</p>
+        <p>一般地，第 \(n\) 排是第1排的后 \((n-1)\) 排，它的座位数应比第1排多 \(2(n-1)\)，即为 <strong>\(18 + 2(n-1)\)</strong>。</p>
+        <p>当 \(n = 10\) 时，\(18 + 2(10-1) = 18 + 18 = 36\)；</p>
+        <p>当 \(n = 15\) 时，\(18 + 2(15-1) = 18 + 28 = 46\)；</p>
+        <p>当 \(n = 23\) 时，\(18 + 2(23-1) = 18 + 44 = 62\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('seat')">显示答案</button>
+        <div id="answerSeat" class="answer-box">
+            <div class="answer-line">(1) 第 \(n\) 排有 \(18 + 2(n-1)\) 个座位。</div>
+            <div class="answer-line">(2) 第10排：36个；第15排：46个；第23排：62个。</div>
+        </div>
+    </div>
+
+    <!-- 概括：代数式的值定义 -->
+    <div class="rule-box">
+        <div class="title">📌 概括</div>
+        <p>我们看到，当 \(n\) 取不同数值时，代数式 \(18 + 2(n-1)\) 的计算结果不同。以上结果可以说：当 \(n = 10\) 时，代数式 \(18 + 2(n-1)\) 的值是36；当 \(n = 15\) 时，代数式 \(18 + 2(n-1)\) 的值是46；等等。</p>
+        <p><strong>一般地，用数值代替代数式里的字母，按照代数式中的运算计算得出的结果，叫做<span class="term-highlight">代数式的值（value of algebraic expression）</span>。</strong></p>
+    </div>
+
+    <!-- 例1（课本P90） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex1">
+        <p><strong>例1</strong> 当 \(a = 2, b = -1, c = -3\) 时，求下列各代数式的值：</p>
+        <p>(1) \(b^2 - 4ac\)； (2) \((a + b + c)^2\)。</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示(1)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示(2)答案</button>
+        </div>
+        <div id="exampleAnswer1" class="answer-box">
+            <div class="answer-line">当 \(a = 2, b = -1, c = -3\) 时，</div>
+            <div class="answer-line">\(b^2 - 4ac = (-1)^2 - 4 \times 2 \times (-3)\)</div>
+            <div class="answer-line">\(= 1 - (-24)\)</div>
+            <div class="answer-line">\(= 1 + 24 = 25\)。</div>
+        </div>
+        <div id="exampleAnswer2" class="answer-box">
+            <div class="answer-line">当 \(a = 2, b = -1, c = -3\) 时，</div>
+            <div class="answer-line">\((a + b + c)^2 = [2 + (-1) + (-3)]^2\)</div>
+            <div class="answer-line">\(= (2 - 1 - 3)^2\)</div>
+            <div class="answer-line">\(= (-2)^2 = 4\)。</div>
+        </div>
+    </div>
+
+    <!-- 例2（课本P91） -->
+    <div class="example-box" id="ex2">
+        <p><strong>例2</strong> 某地积极响应党中央号召，大力推进美丽中国建设工程，去年的投资为 \(a\) 亿元，今年的投资比去年增长了10%。如果明年的投资还能按这个速度增长，请你预测一下，该地明年的投资将达到多少亿元？如果去年的投资为2亿元，那么预计明年的投资是多少亿元？</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示答案</button>
+        <div id="exampleAnswer3" class="answer-box">
+            <div class="answer-line">由题意可得，今年的投资为 \(a \cdot (1 + 10\%)\) 亿元，</div>
+            <div class="answer-line">于是明年的投资将达到</div>
+            <div class="answer-line">\(a \cdot (1 + 10\%) \cdot (1 + 10\%) = 1.21a\)（亿元）。</div>
+            <div class="answer-line">如果去年的投资为2亿元，即 \(a = 2\)，那么当 \(a = 2\) 时，</div>
+            <div class="answer-line">\(1.21a = 1.21 \times 2 = 2.42\)（亿元）。</div>
+            <div class="answer-line">答：该地明年的投资将达到 \(1.21a\) 亿元。如果去年的投资为2亿元，那么预计明年的投资是2.42亿元。</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P91-92） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题：填表（动态表格，借鉴第1章复习课的处理） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 填表：</span>
+                <button class="interact-btn" onclick="toggleTable27()">显示/隐藏答案</button>
+            </div>
+            <table id="table27">
+                <tr>
+                    <th>\(x\)</th>
+                    <th>\(-2\)</th>
+                    <th>\(-1\)</th>
+                    <th>\(0\)</th>
+                    <th>\(\dfrac{1}{2}\)</th>
+                    <th>\(2\)</th>
+                </tr>
+                <tr>
+                    <td>\(2x - 1\)</td>
+                    <td id="cell27_1"></td>
+                    <td id="cell27_2"></td>
+                    <td id="cell27_3"></td>
+                    <td id="cell27_4"></td>
+                    <td id="cell27_5"></td>
+                </tr>
+                <tr>
+                    <td>\(x^2\)</td>
+                    <td id="cell27_6"></td>
+                    <td id="cell27_7"></td>
+                    <td id="cell27_8"></td>
+                    <td id="cell27_9"></td>
+                    <td id="cell27_10"></td>
+                </tr>
+                <tr>
+                    <td>\(x^3\)</td>
+                    <td id="cell27_11"></td>
+                    <td id="cell27_12"></td>
+                    <td id="cell27_13"></td>
+                    <td id="cell27_14"></td>
+                    <td id="cell27_15"></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 第2题（课本P92） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 根据下列各组 \(x, y\) 的值，分别求出代数式 \(x^2 + 2xy + y^2\) 和 \(x^2 - 2xy + y^2\) 的值：</span>
+                <button class="interact-btn" onclick="toggleAnswer('t2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(x = 2, y = 3\)；</div>
+            <div class="sub-question">(2) \(x = -2, y = -4\)。</div>
+            <div id="answerT2" class="answer-box">
+                <div class="answer-line">(1) 当 \(x = 2, y = 3\) 时，</div>
+                <div class="answer-line">\(x^2 + 2xy + y^2 = 2^2 + 2 \times 2 \times 3 + 3^2\)</div>
+                <div class="answer-line">\(= 4 + 12 + 9 = 25\)；</div>
+                <div class="answer-line">\(x^2 - 2xy + y^2 = 2^2 - 2 \times 2 \times 3 + 3^2\)</div>
+                <div class="answer-line">\(= 4 - 12 + 9 = 1\)。</div>
+                <div class="answer-line">(2) 当 \(x = -2, y = -4\) 时，</div>
+                <div class="answer-line">\(x^2 + 2xy + y^2 = (-2)^2 + 2 \times (-2) \times (-4) + (-4)^2\)</div>
+                <div class="answer-line">\(= 4 + 16 + 16 = 36\)；</div>
+                <div class="answer-line">\(x^2 - 2xy + y^2 = (-2)^2 - 2 \times (-2) \times (-4) + (-4)^2\)</div>
+                <div class="answer-line">\(= 4 - 16 + 16 = 4\)。</div>
+            </div>
+        </div>
+
+        <!-- 第3题（课本P92） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>3.</strong> 已知梯形的上底 \(a = 2\,\text{cm}\)，下底 \(b = 4\,\text{cm}\)，高 \(h = 3\,\text{cm}\)，利用梯形的面积公式求这个梯形的面积。</span>
+                <button class="interact-btn" onclick="toggleAnswer('t3')">显示答案</button>
+            </div>
+            <div id="answerT3" class="answer-box">
+                <div class="answer-line">梯形面积公式 \(S = \dfrac{1}{2}(a + b)h\)，</div>
+                <div class="answer-line">当 \(a = 2\,\text{cm},\; b = 4\,\text{cm},\; h = 3\,\text{cm}\) 时，</div>
+                <div class="answer-line">\(S = \dfrac{1}{2} \times (2 + 4) \times 3 = \dfrac{1}{2} \times 6 \times 3 = 9\,(\text{cm}^2)\)。</div>
+                <div class="answer-line">答：这个梯形的面积为 \(9\,\text{cm}^2\)。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：有趣的“3x+1”问题 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 有趣的“\(3x+1\)”问题</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>给定两个代数式：</p>
+            <p style="text-align: center; font-size: 1.3rem;">\(3x+1\)  \(\dfrac{1}{2}x\)</p>
+            <p><strong>规则：</strong> 任取正整数 \(x\)，若为奇数用 \(3x+1\)，若为偶数用 \(\frac{1}{2}x\)，重复进行。</p>
+            <p><strong>例如：</strong> 取 \(x=18\)，依次得到：</p>
+            <div class="example-flow">
+                \(18 \xrightarrow{\div2} 9 \xrightarrow{\times3+1} 28 \xrightarrow{\div2} 14 \xrightarrow{\div2} 7 \xrightarrow{\times3+1} 22 \xrightarrow{\div2} 11 \xrightarrow{\times3+1} 34 \xrightarrow{\div2} 17 \xrightarrow{\times3+1} 52\)<br>
+                \(\xrightarrow{\div2} 26 \xrightarrow{\div2} 13 \xrightarrow{\times3+1} 40 \xrightarrow{\div2} 20 \xrightarrow{\div2} 10 \xrightarrow{\div2} 5 \xrightarrow{\times3+1} 16 \xrightarrow{\div2} 8 \xrightarrow{\div2} 4 \xrightarrow{\div2} 2 \xrightarrow{\div2} 1 \xrightarrow{\times3+1} 4 \to \cdots\)
+            </div>
+            <p>最后陷入循环 \(4,2,1\)。取 \(x=21\) 同样落入此循环。这就是著名的“\(3x+1\)”问题，也称<strong>角谷猜想</strong>——至今未证明对所有正整数成立，也未找到反例。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">代数式的值：用数值代替代数式里的字母，按照运算计算得出的结果。</div>
+                <div class="summary-item">求值步骤：①代入数值；②计算（注意运算顺序和符号）。</div>
+                <div class="summary-item">从一般（代数式）到特殊（具体数值）是重要的数学思想。</div>
+                <div class="summary-item">代数式的值可用于解决实际问题，如投资增长、面积计算等。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P94习题2.2 A组第1、2、3、4、5题；B组第6、7、8题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 代数式值代一代，具体情境算出来 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第27课时</div>
+</div>
+
+<script>
+    // 表格答案（已包含 LaTeX 格式）
+    const table27Answers = [
+        // 第一行 2x-1
+        ['$-5$', '$-3$', '$-1$', '$0$', '$3$'],
+        // 第二行 x^2
+        ['$4$', '$1$', '$0$', '$\\frac{1}{4}$', '$4$'],
+        // 第三行 x^3
+        ['$-8$', '$-1$', '$0$', '$\\frac{1}{8}$', '$8$']
+    ];
+    let table27Filled = false;
+
+    async function toggleTable27() {
+        // 获取所有单元格（按行顺序：先第一行5个，再第二行5个，再第三行5个）
+        const cells = [];
+        for (let i = 1; i <= 15; i++) {
+            cells.push(document.getElementById('cell27_' + i));
+        }
+
+        if (!table27Filled) {
+            // 填充答案
+            for (let i = 0; i < 15; i++) {
+                const row = Math.floor(i / 5);
+                const col = i % 5;
+                cells[i].innerHTML = table27Answers[row][col];
+            }
+            table27Filled = true;
+        } else {
+            // 清空
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].innerHTML = '';
+            }
+            table27Filled = false;
+        }
+
+        // 重新渲染 MathJax
+        if (window.MathJax) {
+            try {
+                await MathJax.typesetPromise();
+            } catch (err) {
+                console.log('MathJax 渲染错误', err);
+            }
+        }
+    }
+
+    function toggleAnswer(id) {
+        // 处理其他答案（如 'seat', 't2', 't3'）
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

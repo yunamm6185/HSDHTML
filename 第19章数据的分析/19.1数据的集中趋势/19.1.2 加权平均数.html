@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>19.1.2 加权平均数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], macros: { bar: ["\\overline{#1}", 1] } },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script src="../assets/js/interaction.js"></script>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <style>
+        html{font-size:18px;}
+        body{font-size:1.1rem;line-height:1.8;}
+        .textbook p{font-size:1.1rem;line-height:1.8;}
+        .example-card p{font-size:1.1rem;line-height:1.8;}
+        .answer-box p{font-size:1.1rem;line-height:1.8;}
+        .highlight-box,.warn-box{font-size:1.05rem;}
+        table{font-size:1.05rem;}
+        .btn{font-size:1.1rem;padding:.7rem 1.4rem;}
+        .section-title{font-size:1.4rem;}
+        .real-life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:.8rem 0;}
+        .real-life-item{background:#fff;border-radius:.8rem;padding:.8rem 1rem;text-align:center;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s;}
+        .real-life-item:hover{transform:translateY(-3px);}
+        .real-life-item .icon{font-size:2rem;}
+        .real-life-item .value{font-size:1.3rem;font-weight:700;color:var(--primary);}
+        .real-life-item .label{font-size:.85rem;color:var(--text-secondary);}
+        .outlier-slider-container{margin:.8rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+        .outlier-slider-container input[type=range]{flex:1;min-width:200px;accent-color:var(--primary);}
+        .real-app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;margin:.8rem 0;}
+        .real-app-item{background:#fff;border-radius:.8rem;padding:.8rem 1rem;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+        .real-app-item h5{color:var(--primary);margin-bottom:.3rem;font-size:1.1rem;}
+        .real-app-item p{font-size:1rem;}
+        .comparison-box{display:flex;gap:1rem;margin:1rem 0;flex-wrap:wrap;}
+        .comparison-item{flex:1;min-width:250px;padding:1.2rem;border-radius:1rem;text-align:center;color:#fff;font-weight:600;}
+        .comparison-item h3{font-size:1.2rem;}
+        .comparison-item p{font-size:1.1rem;}
+        .cm-arithmetic{background:linear-gradient(135deg,var(--primary),#0284c7);}
+        .cm-weighted{background:linear-gradient(135deg,#f5576c,#e11d48);}
+        .weight-bar{height:30px;background:#e2e8f0;border-radius:15px;overflow:hidden;margin:.5rem 0;display:flex;}
+        .weight-segment{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem;transition:all .3s;}
+        .slider-container{margin:.6rem 0;}
+        .slider-container label{display:flex;justify-content:space-between;font-weight:600;font-size:1.1rem;}
+        .slider-container input[type=range]{width:100%;accent-color:var(--primary);margin:.3rem 0;}
+        .compare-three{display:flex;flex-wrap:wrap;gap:1rem;margin:.8rem 0;}
+        .compare-three>div{flex:1;min-width:240px;}
+        .smart-recommend{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border-radius:1.2rem;padding:1.5rem;margin:1.2rem 0;border:2px solid #93c5fd;}
+        .smart-recommend h4{color:#1e40af;font-size:1.25rem;margin-bottom:.8rem;}
+        .data-input-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.8rem 0;}
+        .data-input-row input{flex:1;min-width:200px;padding:.5rem .8rem;font-size:1rem;border:2px solid var(--border);border-radius:8px;font-family:inherit;}
+        .mislead-demo{background:var(--highlight-red);border:2px solid #fca5a5;border-radius:1.2rem;padding:1.2rem 1.6rem;margin:1.2rem 0;}
+        .mislead-demo h4{color:#991b1b;font-size:1.2rem;margin-bottom:.6rem;}
+        .recommend-result{background:#fff;border-radius:.8rem;padding:1rem;margin-top:.8rem;border:1px solid var(--border);animation:bounceIn .4s ease;}
+        .recommend-result .rec-badge{display:inline-block;padding:.3rem 1rem;border-radius:2rem;font-weight:700;font-size:.95rem;color:#fff;}
+        .rec-avg{background:var(--primary);}.rec-med{background:var(--accent);}.rec-mode{background:var(--warning);}
+        .score-display{text-align:center;font-size:1.3rem;font-weight:700;color:var(--primary);margin:1rem 0;padding:.8rem;background:var(--highlight-blue);border-radius:1rem;display:none;}
+        .result-display{font-size:1.3rem;}
+        #weightWarning{font-size:1.05rem;}
+        @media (max-width:768px){html{font-size:16px;}.real-life-grid,.real-app-grid{grid-template-columns:repeat(2,1fr);}.outlier-slider-container{flex-direction:column;align-items:stretch;}.data-input-row{flex-direction:column;}.data-input-row input{width:100%;min-width:auto;}.smart-recommend{padding:1rem;}}
+        @media (max-width:480px){.real-life-grid,.real-app-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.2 加权平均数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解加权平均数的概念和计算公式</div>
+            <div class="target-item"><span>2</span>理解"权"的意义和作用</div>
+            <div class="target-item"><span>3</span>能根据实际问题确定权重并计算</div>
+            <div class="target-item"><span>4</span>区分算术平均与加权平均的适用场景</div>
+        </div>
+    </div>
+
+    <!-- 情境导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.1rem;">🌟 <strong>情境导入</strong></p>
+        <p>在日常生活中，我们经常会遇到平均数，但发现在有些情况下以前计算平均数的方法并不适用。比如，当不同数据的重要程度不一样时……</p>
+    </div>
+
+    <!-- 问题情境 -->
+    <div class="example-card">
+        <h4>📋 问题情境：学期总评成绩</h4>
+        <p>老师在计算学生每学期的总评成绩时，并不是简单地将一个学生的平时成绩与考试成绩相加除以2，而是突出考试成绩的重要性。比如，按照<strong>"平时成绩占40%，考试成绩占60%"</strong>的比例计算。</p>
+        <p>如果一个学生某学期的平时成绩为<strong>70分</strong>，考试成绩为<strong>90分</strong>，那么他该学期的总评成绩应该是多少？</p>
+        <div style="text-align:center;margin:.8rem 0;">
+            <div style="display:inline-block;width:180px;height:180px;border-radius:50%;background:conic-gradient(#ef4444 0% 40%, #10b981 40% 100%);position:relative;">
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:50%;width:100px;height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column;">
+                    <span style="font-size:.8rem;color:#666;">权重</span>
+                </div>
+            </div>
+            <div style="margin-top:.5rem;font-size:.9rem;">
+                <span style="display:inline-block;margin:0 .5rem;"><span style="display:inline-block;width:12px;height:12px;background:#ef4444;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>平时成绩 40%</span>
+                <span style="display:inline-block;margin:0 .5rem;"><span style="display:inline-block;width:12px;height:12px;background:#10b981;border-radius:2px;vertical-align:middle;margin-right:4px;"></span>考试成绩 60%</span>
+            </div>
+        </div>
+        <button class="btn" onclick="toggleAnswer('q1sol')">💡 解答过程</button>
+        <div id="q1sol" class="answer-box">
+            <p>学期总评成绩 = $70 \times 40\% + 90 \times 60\%$</p>
+            <p>$= 70 \times 0.4 + 90 \times 0.6 = 28 + 54 = \mathbf{82}$（分）</p>
+            <p>如果简单求算术平均：$(70+90) \div 2 = 80$（分）—— 没有考虑权重，结果不同！</p>
+        </div>
+    </div>
+
+    <!-- 加权平均数的定义 -->
+    <div class="example-card">
+        <h4>📖 加权平均数的定义</h4>
+        <p>一般地，若$n$个数$x_1, x_2, \cdots, x_n$的权分别是$w_1, w_2, \cdots, w_n$，则</p>
+        <div class="formula-box">
+            $\bar{x} = \dfrac{w_1x_1 + w_2x_2 + \cdots + w_nx_n}{w_1 + w_2 + \cdots + w_n}$
+        </div>
+        <p>叫做这$n$个数的<strong>加权平均数</strong>。</p>
+        <div class="key-point"><strong>权的意义：</strong>权重反映了各个数据在总体中的重要程度。<strong>权重越大，该数据对平均数的影响越大。</strong></div>
+        <div class="comparison-box">
+            <div class="comparison-item cm-arithmetic">
+                <h3 style="font-size:1.1rem;">算术平均数</h3>
+                <p style="font-size:1.2rem;margin:.6rem 0;">(70+90)÷2 = 80</p>
+                <p style="font-size:.9rem;">每个数据权重相同（各1/2）</p>
+            </div>
+            <div class="comparison-item cm-weighted">
+                <h3 style="font-size:1.1rem;">加权平均数</h3>
+                <p style="font-size:1.2rem;margin:.6rem 0;">70×0.4+90×0.6 = 82</p>
+                <p style="font-size:.9rem;">权重不同：40%、60%</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="section-title">📝 试一试</div>
+    <div class="example-card">
+        <p>小青某学期的数学成绩情况为：测验一得<strong>89分</strong>，测验二得<strong>78分</strong>，测验三得<strong>85分</strong>，期中考试得<strong>90分</strong>，期末考试得<strong>87分</strong>。如果按照平时成绩占<strong>10%</strong>、期中成绩占<strong>30%</strong>、期末成绩占<strong>60%</strong>的权重，那么小青该学期的总评成绩是多少分？</p>
+        <button class="btn" onclick="toggleAnswer('trySol')">💡 解答过程</button>
+        <div id="trySol" class="answer-box">
+            <p>平时成绩 = (89+78+85)÷3 = 252÷3 = <strong>84分</strong></p>
+            <p>总评成绩 = $84 \times 10\% + 90 \times 30\% + 87 \times 60\%$</p>
+            <p>$= 84 \times 0.1 + 90 \times 0.3 + 87 \times 0.6 = 8.4 + 27 + 52.2 = \mathbf{87.6}$（分）</p>
+        </div>
+    </div>
+
+    <!-- 问题1：招聘面试 -->
+    <div class="example-card">
+        <h4>问题1：招聘面试评分</h4>
+        <p>某公司对应聘者A、B、C、D进行面试，并按三个方面给应聘者打分，每个方面满分为20分，最后打分结果如表所示。如果你是人事主管，会录用哪一位应聘者？</p>
+        <table style="margin:.8rem 0;font-size:.95rem;">
+            <tr><th>应聘者</th><th>专业知识</th><th>工作经验</th><th>仪表形象</th></tr>
+            <tr><td>A</td><td>14</td><td>18</td><td>12</td></tr>
+            <tr><td>B</td><td>18</td><td>16</td><td>11</td></tr>
+            <tr><td>C</td><td>17</td><td>14</td><td>14</td></tr>
+            <tr><td>D</td><td>16</td><td>16</td><td>14</td></tr>
+        </table>
+        <button class="btn" onclick="toggleAnswer('ex3sol')">💡 解答过程</button>
+        <div id="ex3sol" class="answer-box">
+            <p><strong>甲同学说：</strong>看谁的总分高就录用谁。通过计算可以发现D的总分最高（16+16+14=46分），应被录用。</p>
+            <p><strong>乙同学说：</strong>我有不同意见。三个方面满分都是20分，但按理这三个方面的重要性应该有所不同，比如专业知识就应该比仪表形象更重要。</p>
+            <p>假设上述三个方面的重要性之比为<strong>6:3:1</strong>，那么应该录用谁呢？</p>
+            <p>因为 6:3:1 = 60%:30%:10%，所以专业知识、工作经验与仪表形象这三个方面的权重分别是60%、30%与10%。</p>
+            <p>这样A的最后得分为</p>
+            <p>$14 \times 60\% + 18 \times 30\% + 12 \times 10\% = 8.4 + 5.4 + 1.2 = \mathbf{15}$（分）</p>
+            <p>请你根据这样的权重要求，继续算出另三位应聘者的最后得分。从你的计算结果看，谁应被录用？</p>
+            <p>B：$(18\times6+16\times3+11\times1)\div10=(108+48+11)\div10=\mathbf{16.7}$（分）</p>
+            <p>C：$(17\times6+14\times3+14\times1)\div10=(102+42+14)\div10=\mathbf{15.8}$（分）</p>
+            <p>D：$(16\times6+16\times3+14\times1)\div10=(96+48+14)\div10=\mathbf{15.8}$（分）</p>
+            <p><strong>结论：</strong>B的加权平均分最高（16.7分），应录用<strong>B</strong>。</p>
+            <div class="highlight-box">权重体现了不同指标的重要程度。专业知识权重最大（60%），B在该项得分最高（18分），因此胜出。</div>
+        </div>
+
+        <!-- 思考（嵌入问题1内部） -->
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px dashed var(--border);">
+            <p><strong>💡 思考：</strong>如果这三个方面的重要性之比为<strong>10:7:3</strong>，此时三个方面的权重各是多少？哪一位应被录用呢？</p>
+            <button class="btn" onclick="toggleAnswer('thinkSol')">💡 解答过程</button>
+            <div id="thinkSol" class="answer-box">
+                <p>总份数 = 10+7+3 = 20</p>
+                <p>专业知识权重 = 10÷20 = <strong>50%</strong></p>
+                <p>工作经验权重 = 7÷20 = <strong>35%</strong></p>
+                <p>仪表形象权重 = 3÷20 = <strong>15%</strong></p>
+                <p>A：$14 \times 50\% + 18 \times 35\% + 12 \times 15\% = 7 + 6.3 + 1.8 = \mathbf{15.1}$（分）</p>
+                <p>B：$18 \times 50\% + 16 \times 35\% + 11 \times 15\% = 9 + 5.6 + 1.65 = \mathbf{16.25}$（分）</p>
+                <p>C：$17 \times 50\% + 14 \times 35\% + 14 \times 15\% = 8.5 + 4.9 + 2.1 = \mathbf{15.5}$（分）</p>
+                <p>D：$16 \times 50\% + 16 \times 35\% + 14 \times 15\% = 8 + 5.6 + 2.1 = \mathbf{15.7}$（分）</p>
+                <p><strong>结论：</strong>B的加权平均分仍然最高（16.25分），应录用<strong>B</strong>。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题2：睡眠时间 -->
+    <div class="example-card">
+        <h4>问题2：学生睡眠时间调查</h4>
+        <p>某所初中学校通过调查了解到，该校七、八、九年级学生平均每天的睡眠时间依次为<strong>9h、8.5h和8h</strong>。</p>
+        <p>(1) 根据这些信息，能否求出该校学生平均每天的睡眠时间？</p>
+        <button class="btn" onclick="toggleAnswer('ex1sol1')">💡 解答过程</button>
+        <div id="ex1sol1" class="answer-box">
+            <p><strong>分析 (1)</strong>：如果该校三个年级的学生人数相同，可以求出该校学生平均每天的睡眠时间为</p>
+            <p>$$\dfrac{9 + 8.5 + 8}{3} = 8.5 \text{（h）}$$</p>
+            <p>如果该校三个年级的学生人数不相同，用上面的算法就得不到问题的答案了。要想求出该校学生平均每天的睡眠时间，还需要更多的信息。</p>
+        </div>
+        <p>(2) 如果已知该校七、八、九年级的学生人数分别为<strong>350、330、320</strong>，能否求出该校学生平均每天的睡眠时间？</p>
+        <button class="btn" onclick="toggleAnswer('ex1sol2')">💡 解答过程</button>
+        <div id="ex1sol2" class="answer-box">
+            <p><strong>(2)</strong> 有了各年级的学生人数，就可以求出该校学生每天睡眠的总时间，再除以学生的总人数：</p>
+            <p>$$\dfrac{9 \times 350 + 8.5 \times 330 + 8 \times 320}{350 + 330 + 320} = \dfrac{3150 + 2805 + 2560}{1000} = \dfrac{8515}{1000} = \mathbf{8.515} \text{（h）}$$</p>
+            <p>其实，在求解这个问题时，也可以分成三部分计算，即</p>
+            <p>$$9 \times \dfrac{350}{1000} + 8.5 \times \dfrac{330}{1000} + 8 \times \dfrac{320}{1000} = 8.515 \text{（h）}$$</p>
+            <div class="highlight-box">这是加权平均数，各年级学生人数占总人数的比例就是权重。</div>
+        </div>
+        <p>(3) 如果已知该校七、八、九年级的学生人数比为<strong>4:3:3</strong>，能否求出该校学生平均每天的睡眠时间？</p>
+        <button class="btn" onclick="toggleAnswer('ex1sol3')">💡 解答过程</button>
+        <div id="ex1sol3" class="answer-box">
+            <p><strong>(3)</strong> 已知各年级的学生人数之比，可以通过加权计算得到该校学生平均每天的睡眠时间为</p>
+            <p>$$9 \times \dfrac{4}{4+3+3} + 8.5 \times \dfrac{3}{4+3+3} + 8 \times \dfrac{3}{4+3+3} =  \mathbf{8.55} \text{（h）}$$</p>
+        </div>
+    </div>
+
+    <!-- 例题：苹果价格 -->
+    <div class="example-card">
+        <h4>例题：苹果的平均价格</h4>
+        <p>超市里有两种苹果，一种单价为<strong>15元/kg</strong>，另一种单价为<strong>18元/kg</strong>。小明妈妈买了单价为15元/kg的苹果<strong>1kg</strong>，单价为18元/kg的苹果<strong>3kg</strong>。你认为应该如何计算所买苹果的平均价格？</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:.8rem 0;">
+            <div style="text-align:center;padding:1rem;background:#fef2f2;border-radius:1rem;border:2px solid #fecaca;min-width:120px;">
+                <div style="font-size:1.5rem;font-weight:700;color:#ef4444;">15元/kg</div>
+                <div style="font-size:.9rem;color:#64748b;">买了 1kg</div>
+                <div style="font-size:1.2rem;font-weight:600;color:#991b1b;margin-top:.3rem;">15元</div>
+            </div>
+            <div style="display:flex;align-items:center;font-size:1.5rem;color:#94a3b8;">+</div>
+            <div style="text-align:center;padding:1rem;background:#fffbeb;border-radius:1rem;border:2px solid #fde68a;min-width:120px;">
+                <div style="font-size:1.5rem;font-weight:700;color:#f59e0b;">18元/kg</div>
+                <div style="font-size:.9rem;color:#64748b;">买了 3kg</div>
+                <div style="font-size:1.2rem;font-weight:600;color:#92400e;margin-top:.3rem;">54元</div>
+            </div>
+            <div style="display:flex;align-items:center;font-size:1.5rem;color:#94a3b8;">=</div>
+            <div style="text-align:center;padding:1rem;background:#f0fdf4;border-radius:1rem;border:2px solid #bbf7d0;min-width:120px;">
+                <div style="font-size:1.2rem;color:#64748b;">共 4kg</div>
+                <div style="font-size:1.5rem;font-weight:700;color:#10b981;">69元</div>
+                <div style="font-size:1.1rem;font-weight:600;color:#047857;margin-top:.3rem;">均价 17.25元/kg</div>
+            </div>
+        </div>
+        <button class="btn" onclick="toggleAnswer('ex2sol')">💡 解答过程</button>
+        <div id="ex2sol" class="answer-box">
+            <p>总金额：1×15 + 3×18 = 15 + 54 = <strong>69元</strong></p>
+            <p>总重量：1 + 3 = <strong>4kg</strong></p>
+            <p>平均价格 = 69÷4 = <strong>17.25元/kg</strong></p>
+            <div class="warn-box"><strong>❌ 错误做法：</strong>(15+18)÷2 = 16.5元/kg —— 没有考虑每次购买量不同！<br>每次的"购买量"就是权重。</div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">✏️ 练习</div>
+    <div class="example-card">
+        <p><strong>1.</strong> 本节例1中求"平均每人植树多少棵"还可以通过加权计算，请列式并计算。</p>
+        <button class="btn" onclick="toggleAnswer('pr1Sol')">显示答案</button>
+        <div id="pr1Sol" class="answer-box">
+            <p>假设第一组2人，平均每人植树4棵；第二组3人，平均每人植树3棵；第三组5人，平均每人植树6棵。</p>
+            <p>加权平均 = $\dfrac{4 \times 2 + 3 \times 3 + 6 \times 5}{2 + 3 + 5} = \dfrac{8 + 9 + 30}{10} = \dfrac{47}{10} = \mathbf{4.7}$（棵）</p>
+            <p>答：平均每人植树4.7棵。</p>
+        </div>
+    </div>
+    <div class="example-card">
+        <p><strong>2.</strong> 某人在A商店买了2包饼干，单价是6.20元。走了没多远，看见B商店也有卖这种饼干的，每包5.80元，于是他又买了3包。请先估计一下他买5包饼干的平均价格是小于、等于还是大于6元，然后再算出5包饼干的平均价格，看看你的估计对不对。</p>
+        <button class="btn" onclick="toggleAnswer('pr2Sol')">显示答案</button>
+        <div id="pr2Sol" class="answer-box">
+            <p><strong>估计：</strong>因为便宜的买了3包，贵的买了2包，平均价格应该<strong>小于6元</strong>。</p>
+            <p>平均价格 = $\dfrac{6.20 \times 2 + 5.80 \times 3}{2+3} = \dfrac{12.4 + 17.4}{5} = \dfrac{29.8}{5} = \mathbf{5.96}$（元）</p>
+            <p>确实小于6元，估计正确！</p>
+        </div>
+    </div>
+    <div class="example-card">
+        <p><strong>3.</strong> 一部电梯的最大载重是1000kg。现有13位乘客要搭乘这部电梯，已知其中11位先生的平均体重是80kg，2位女士的平均体重是70kg。请问：他们能否一起安全地搭乘这部电梯？他们的平均体重是多少千克？</p>
+        <button class="btn" onclick="toggleAnswer('pr3Sol')">显示答案</button>
+        <div id="pr3Sol" class="answer-box">
+            <p>总体重 = $11 \times 80 + 2 \times 70 = 880 + 140 = \mathbf{1020}$（kg）</p>
+            <p>因为1020kg > 1000kg，所以<strong>不能一起安全搭乘</strong>这部电梯。</p>
+            <p>平均体重 = $1020 \div 13 \approx \mathbf{78.5}$（kg）</p>
+        </div>
+    </div>
+    <div class="example-card">
+        <p><strong>4.</strong> 一家小吃店原有三个品种的馄饨，其中菜馅馄饨的售价为10元/碗，鸡蛋馅馄饨的售价为12元/碗，肉馅馄饨的售价为16元/碗。每碗均有10个馄饨。该店老板准备推出混合馄饨，请帮她解决以下问题：</p>
+        <p>(1) 如果每碗有3个菜馅馄饨、3个鸡蛋馅馄饨和4个肉馅馄饨，那么混合馄饨每碗定价多少合适？</p>
+        <p>(2) 如果菜馅馄饨、鸡蛋馅馄饨、肉馅馄饨的个数之比为3:2:5，那么混合馄饨每碗定价多少合适？</p>
+        <p>(3) 如果菜馅馄饨、鸡蛋馅馄饨、肉馅馄饨的个数之比为1:1:3，那么混合馄饨每碗定价多少合适？</p>
+        <button class="btn" onclick="toggleAnswer('pr4Sol')">显示答案</button>
+        <div id="pr4Sol" class="answer-box">
+            <p>每个馄饨的价格：菜馅1元，鸡蛋馅1.2元，肉馅1.6元。</p>
+            <p><strong>(1)</strong> 每碗定价 = $3 \times 1 + 3 \times 1.2 + 4 \times 1.6 = 3 + 3.6 + 6.4 = \mathbf{13}$（元）</p>
+            <p><strong>(2)</strong> 总份数=10，每碗定价 = $3 \times 1 + 2 \times 1.2 + 5 \times 1.6 = 3 + 2.4 + 8 = \mathbf{13.4}$（元）</p>
+            <p><strong>(3)</strong> 总份数=5，每碗定价 = $1 \times 1 + 1 \times 1.2 + 3 \times 1.6 = 1 + 1.2 + 4.8 = \mathbf{7}$（元）—— 但每碗应有10个馄饨，所以实际应为2碗的比例，定价 = $2 \times 7 = \mathbf{14}$（元），或直接按10个计算：2个菜馅、2个鸡蛋馅、6个肉馅，定价 = $2 \times 1 + 2 \times 1.2 + 6 \times 1.6 = 2 + 2.4 + 9.6 = \mathbf{14}$（元）</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📝 课堂小结</h4>
+        <ul>
+            <li><strong>定义：</strong>$\bar{x} = \dfrac{w_1x_1 + w_2x_2 + \cdots + w_nx_n}{w_1 + w_2 + \cdots + w_n}$</li>
+            <li><strong>权的意义：</strong>反映各数据在总体中的重要程度</li>
+            <li><strong>权的形式：</strong>可以是百分比、比例、频数等</li>
+            <li><strong>算术平均 vs 加权平均：</strong>当所有权重相等时，加权平均数 = 算术平均数</li>
+
+        </ul>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>调查生活中加权平均数的应用场景。</span>
+    </div>
+    <div class="message-box"><p>✨ 权重不同意义异，加权平均显真谛；百分比、频数列，综合考量显智慧！✨</p></div>
+    <div class="footer-note">八年级下册 · 第19章 19.1.2 加权平均数</div>
+</div>
+
+<script>
+// ==================== 工具函数 ====================
+// toggleAnswer 已由 interaction.js 提供
+
+// ==================== 初始化 ====================
+window.onload=function(){
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>17.3 数学活动·图形的等分 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.innerHTML = document.body.innerHTML.replace(/\\parallelogram/g, "▱");
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false,
+                strict: false,
+                macros: {}
+            });
+            initCanvases();
+        });
+
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'none' || el.style.display === '') {
+                el.style.display = 'block';
+                el.classList.add('show-answer');
+            } else {
+                el.style.display = 'none';
+                el.classList.remove('show-answer');
+            }
+        }
+
+        let count = 0;
+        function addLine() {
+            count++;
+            drawActivityCanvas();
+        }
+        function resetLines() {
+            count = 0;
+            drawActivityCanvas();
+        }
+
+        function initCanvases() {
+            drawActivityCanvas();
+            drawCanvas1();
+            drawCanvas2();
+            drawCanvas3();
+            drawCanvas4();
+        }
+
+        function drawActivityCanvas() {
+            const canvas = document.getElementById('canvasActivity');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 80, y: 30 }, B = { x: 380, y: 30 }, C = { x: 440, y: 170 }, D = { x: 140, y: 170 };
+            const O = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 };
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5, 5]); ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(D.x, D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            // Additional lines through O for equal division
+            const angles = [0.2, 0.6, 1.0, 1.4, 1.8];
+            for (let i = 0; i < count && i < angles.length; i++) {
+                const angle = angles[i];
+                const dx = Math.cos(angle) * 300;
+                const dy = Math.sin(angle) * 150;
+                ctx.beginPath();
+                ctx.moveTo(O.x - dx, O.y - dy);
+                ctx.lineTo(O.x + dx, O.y + dy);
+                ctx.strokeStyle = '#e11d48';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            ctx.fillStyle = '#e11d48'; ctx.font = 'bold 18px STKaiti, KaiTi';
+            ctx.fillText('O', O.x + 5, O.y + 20);
+            ctx.fillStyle = '#1e293b'; ctx.font = 'bold 22px STKaiti, KaiTi';
+            ctx.fillText('A', A.x - 25, A.y + 5); ctx.fillText('B', B.x + 10, B.y + 5);
+            ctx.fillText('C', C.x + 10, C.y + 10); ctx.fillText('D', D.x - 25, D.y + 10);
+            ctx.fillText('探索：过对称中心的直线等分面积', w / 2 - 150, h - 10);
+        }
+
+        function drawCanvas1() {
+            const canvas = document.getElementById('canvas1');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 60, y: 30 }, B = { x: 280, y: 30 }, C = { x: 320, y: 150 }, D = { x: 100, y: 150 };
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5, 5]); ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            ctx.setLineDash([]);
+            // Fill halves with light colors
+            ctx.fillStyle = 'rgba(37,99,235,0.1)';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = 'rgba(5,150,105,0.1)';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.fill();
+            ctx.font = 'bold 22px STKaiti, KaiTi'; ctx.fillStyle = '#1e293b';
+            ctx.fillText('A', A.x - 25, A.y + 5); ctx.fillText('B', B.x + 10, B.y + 5);
+            ctx.fillText('C', C.x + 10, C.y + 10); ctx.fillText('D', D.x - 25, D.y + 10);
+            ctx.fillText('图 1', w / 2 - 10, h - 10);
+        }
+
+        function drawCanvas2() {
+            const canvas = document.getElementById('canvas2');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 60, y: 30 }, B = { x: 280, y: 30 }, C = { x: 320, y: 150 }, D = { x: 100, y: 150 };
+            const midAB = { x: (A.x + B.x) / 2, y: (A.y + B.y) / 2 };
+            const midCD = { x: (C.x + D.x) / 2, y: (C.y + D.y) / 2 };
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5, 5]); ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(midAB.x, midAB.y); ctx.lineTo(midCD.x, midCD.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = 'rgba(37,99,235,0.1)';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(midAB.x, midAB.y); ctx.lineTo(midCD.x, midCD.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.fill();
+            ctx.fillStyle = 'rgba(5,150,105,0.1)';
+            ctx.beginPath(); ctx.moveTo(midAB.x, midAB.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(midCD.x, midCD.y); ctx.closePath(); ctx.fill();
+            ctx.font = 'bold 20px STKaiti, KaiTi'; ctx.fillStyle = '#1e293b';
+            ctx.fillText('A', A.x - 25, A.y + 5); ctx.fillText('B', B.x + 10, B.y + 5);
+            ctx.fillText('C', C.x + 10, C.y + 10); ctx.fillText('D', D.x - 25, D.y + 10);
+            ctx.fillText('图 2', w / 2 - 10, h - 10);
+        }
+
+        function drawCanvas3() {
+            const canvas = document.getElementById('canvas3');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 75, y: 30 }, B = { x: 325, y: 30 }, C = { x: 285, y: 160 }, D = { x: 35, y: 160 };
+            const O = { x: (A.x + C.x) / 2, y: (A.y + C.y) / 2 };
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(O.x, O.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(O.x, O.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            // Rectangles for combination
+            ctx.font = 'bold 20px STKaiti, KaiTi'; ctx.fillStyle = '#1e293b';
+            ctx.fillText('A', A.x - 25, A.y + 5); ctx.fillText('B', B.x + 10, B.y + 5);
+            ctx.fillText('C', C.x + 10, C.y + 10); ctx.fillText('D', D.x - 25, D.y + 10);
+            ctx.fillText('图 3', w / 2 - 30, h - 10);
+        }
+
+        function drawCanvas4() {
+            const canvas = document.getElementById('canvas4');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const O = { x: 200, y: 90 };
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.arc(O.x, O.y, 60, 0, Math.PI * 2); ctx.stroke();
+            ctx.lineWidth = 1.5;
+            for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 3) {
+                ctx.beginPath();
+                ctx.moveTo(O.x, O.y);
+                ctx.lineTo(O.x + 60 * Math.cos(angle), O.y + 60 * Math.sin(angle));
+                ctx.stroke();
+            }
+            ctx.font = 'bold 20px STKaiti, KaiTi'; ctx.fillStyle = '#1e293b';
+            ctx.fillText('对称中心', O.x + 10, O.y + 20);
+            ctx.fillText('过对称中心的任意直线', w / 2 - 150, h - 10);
+            ctx.fillText('将中心对称图形面积等分', w / 2 - 150, h + 20);
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #1e40af; --primary-light: #3b82f6; --primary-bg: #eff6ff; --primary-border: #bfdbfe;
+            --color-property: #0d9488; --color-property-bg: #f0fdfa;
+            --color-determine: #d97706; --color-determine-bg: #fffbeb;
+            --color-example: #e11d48; --color-example-bg: #fff1f2;
+            --color-explore: #7c3aed; --color-explore-bg: #f5f3ff;
+            --color-summary: #0891b2; --color-summary-bg: #ecfeff;
+            --text-heading: #0f172a; --text-body: #334155; --text-muted: #94a3b8;
+            --bg-page: #f8fafc; --bg-card: #ffffff; --bg-subtle: #f1f5f9;
+            --border-light: #e2e8f0; --border-medium: #cbd5e1;
+            --radius-sm: 0.6rem; --radius-md: 1rem; --radius-lg: 1.5rem;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.75; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2rem; box-shadow: var(--shadow-md); padding: 2.2rem 2.5rem; border: 1px solid var(--border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--primary-border); padding-bottom: .7rem; margin-bottom: 1.2rem; font-weight: 700; font-size: 1.1rem; color: var(--text-muted); }
+        h1 { font-size: 2.2rem; color: var(--text-heading); font-weight: 800; letter-spacing: .02em; }
+        h1::after { content: ''; display: block; width: 64px; height: 5px; background: var(--primary); border-radius: 5px; margin-top: 6px; }
+        .lesson-title { text-align: center; font-size: 1.9rem; color: #fff; background: var(--primary); padding: .55rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.5rem; font-weight: 700; letter-spacing: .03em; }
+        .section-title { font-size: 1.55rem; color: var(--text-heading); font-weight: 700; margin: 1.8rem 0 .8rem; padding-bottom: .35rem; border-bottom: 3px solid var(--primary-border); display: flex; align-items: center; gap: .5rem; }
+        .section-title::before { content: '◆'; color: var(--primary); font-size: 0.8rem; }
+        .think-box { background: var(--color-explore-bg); border-left: 8px solid var(--color-explore); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.2rem 0; }
+        .think-box h4 { color: var(--color-explore); font-size: 1.45rem; margin-bottom: .4rem; }
+        .goal-box { background: var(--primary-bg); border-left: 8px solid var(--primary); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.2rem 0; }
+        .goal-box h4 { color: var(--primary); font-size: 1.45rem; margin-bottom: .4rem; }
+        .explore-card { background: var(--color-property-bg); border-left: 8px solid var(--color-property); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.2rem 0; }
+        .explore-card h4 { color: #0f766e; font-size: 1.45rem; margin-bottom: .4rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--primary); color: var(--primary); padding: .5rem 1.6rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 3px 0 #bfdbfe; margin: .4rem .8rem .4rem 0; font-size: 1.15rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 0 #bfdbfe; background: var(--primary-bg); }
+        .interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #bfdbfe; }
+        .answer-box { background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: var(--radius-md); padding: 1.4rem 1.8rem; margin-top: .6rem; display: none; animation: fadeIn .35s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+        .layout-flex { display: flex; gap: 1.5rem; align-items: flex-start; margin-top: .8rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 300px; }
+        .layout-visual { flex: 1; min-width: 280px; max-width: 400px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .textbook canvas { background: #fff; border: 1px solid var(--border-light); border-radius: 8px; display: block; margin: 0 auto; max-width: 100%; height: auto; box-shadow: var(--shadow-sm); }
+        .core-competence { background: #fefce8; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.4rem; margin: 1.2rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--primary); margin-top: 2rem; padding: 1.2rem; border-top: 2px solid var(--primary-border); font-size: 1.2rem; }
+        .method-summary { background: var(--color-summary-bg); border: 2px solid #67e8f9; border-radius: var(--radius-lg); padding: 1.4rem; margin: 1.2rem 0; }
+        .method-summary h4 { color: #0e7490; margin-bottom: .6rem; }
+        @media (max-width: 800px) { body { font-size: 20px; padding: 0.8rem; } .textbook { padding: 1.2rem; } .two-col { grid-template-columns: 1fr; } .layout-flex { flex-direction: column; } }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="textbook">
+        <div class="header-meta">
+            <span>第十七章 平行四边形</span>
+            <span>17.3 数学活动</span>
+        </div>
+        <h1>17.3 数学活动</h1>
+        <div class="lesson-title">图形的等分</div>
+
+        <div class="section-title">学习目标</div>
+        <div class="goal-box">
+            
+            <ul>
+                <li>通过操作与探究，发现等分平行四边形面积的方法。</li>
+                <li>体会中心对称性在图形等分中的应用。</li>
+                <li>培养从特殊到一般的归纳能力，提升几何直观素养。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">情景导入</div>
+        <p>如图，将一个平行四边形沿着对角线翻折，可以将这个平行四边形一分为二。显然这两部分的形状与大小完全一样——也就是说，<strong>对角线将整个平行四边形分成了两个面积相等的部分</strong>。</p>
+        <div class="two-col" style="margin: 1rem 0;">
+            <div style="text-align: center;">
+                <canvas id="canvas1" width="360" height="180"></canvas>
+                <p class="caption">图 1：沿对角线 AC 等分</p>
+            </div>
+            <div style="text-align: center;">
+                <canvas id="canvas2" width="360" height="180"></canvas>
+                <p class="caption">图 2：通过对边中点连线等分</p>
+            </div>
+        </div>
+
+        <div class="section-title">思考</div>
+        <div class="think-box">
+            <h4>探究 1</h4>
+            <p>那么，是否还存在<strong>其他直线</strong>，也能将这个平行四边形分成面积相等的两部分呢？除了两条对角线所在的直线，你还能发现其他直线吗？它们之间有什么共同规律呢？</p>
+        </div>
+
+        <div class="section-title">探索发现</div>
+        <div class="explore-card">
+            <h4>动手试一试</h4>
+            <p>在下面的平行四边形中，过对角线的交点 $O$ 任意画一条直线。观察这条直线将平行四边形的面积分成了怎样的两部分？</p>
+            <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                <canvas id="canvasActivity" width="520" height="220"></canvas>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <button class="interact-btn" onclick="addLine()">添加过 O 的直线</button>
+                <button class="interact-btn" onclick="resetLines()">重置</button>
+                <button class="interact-btn" onclick="toggleAnswer('discover')">查看发现</button>
+            </div>
+            <div id="discover" class="answer-box">
+                <p><strong>发现：</strong> 过平行四边形对角线交点 $O$ 的<strong>任意一条直线</strong>，都能将平行四边形的面积分成<strong>面积相等的两部分</strong>。</p>
+                <p>这是因为平行四边形是<strong>中心对称图形</strong>，对称中心就是对角线的交点 $O$。过对称中心的任意直线将中心对称图形分成两个全等的部分，因此面积相等。</p>
+            </div>
+        </div>
+
+        <div class="section-title">进一步探究</div>
+        <div class="think-box">
+            <h4>探究 2</h4>
+            <p>如果想用<strong>两条直线</strong>将一个平行四边形分成面积相等的<strong>四部分</strong>，那么应该如何画出这两条直线呢？</p>
+            <p>你可能马上会想到两条对角线所在的直线（如图 3）。你还能找到其他直线吗？</p>
+        </div>
+        <div style="display: flex; justify-content: center; margin: 1rem 0;">
+            <canvas id="canvas3" width="400" height="200"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('discover2')">查看发现</button>
+        <div id="discover2" class="answer-box">
+            <p><strong>发现：<br></strong> 只要这两条直线都经过平行四边形的对称中心 $O$，且<strong>互相垂直</strong>（或将每个平行四边形的一半再等分），就能将平行四边形分成面积相等的四部分。</p>
+            <p>更一般地，过对称中心 $O$ 的任意两条相交直线，如果它们将周角分成相等的四份（即互相垂直），则这四条线段将平行四边形面积四等分。</p>
+        </div>
+
+        <div class="section-title">思考与推广</div>
+        <div class="explore-card">
+            <h4>进一步思考</h4>
+            <p>我们知道平行四边形是一个中心对称图形。你的发现是否与中心对称有某种关系呢？是否可以<strong>引申到一般的中心对称图形</strong>呢？</p>
+            <div style="display: flex; justify-content: center; margin: 1rem 0;">
+                <canvas id="canvas4" width="400" height="200"></canvas>
+            </div>
+            <p>这样的探索是否对<strong>一般的轴对称图形</strong>有相应的结论呢？更一般地，对于由几个中心对称或轴对称图形<strong>组合而成的图形</strong>，是否也有相应的结论呢？</p>
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0;">
+            <p><strong>动手试试看，相信你一定能找到合适的方法，得到有意义的结果！</strong></p>
+        </div>
+
+        <div class="section-title">方法归纳 / 概括</div>
+        <div class="method-summary">
+            <h4>图形等分的规律</h4>
+            <p>1. 对于中心对称图形，<strong>过对称中心的任意直线</strong>都将该图形分成面积相等的两部分。</p>
+            <p>2. 用两条过对称中心且互相垂直的直线，可以将中心对称图形<strong>面积四等分</strong>。</p>
+            <p>3. 这一规律不仅适用于平行四边形，也适用于其他中心对称图形（如圆、正六边形等）。</p>
+        </div>
+
+        <div class="section-title">做一做</div>
+        <div class="think-box">
+            <h4>动手实践</h4>
+            <p>1. 画一个正六边形，验证过对称中心的任意直线是否将它分成面积相等的两部分。</p>
+            <p>2. 尝试将一个由两个平行四边形组合而成的图形进行面积等分。</p>
+            <p>3. 思考：等腰梯形是轴对称图形，如何用一条直线将其面积等分？（考验你的时刻来了）</p>
+        </div>
+
+        <div class="section-title">数学核心素养</div>
+        <div class="core-competence">
+            <h4><span style="font-size: 1.5rem;"> </span> </h4>
+            <p><strong>直观想象：</strong> 通过画图和操作，直观感受对称中心在图形等分中的作用。</p>
+            <p><strong>数学抽象：</strong> 从平行四边形的特殊等分规律，抽象出一般中心对称图形等分的普适结论。</p>
+            <p><strong>逻辑推理：</strong> 运用中心对称的性质，严格论证"过对称中心的直线等分面积"这一结论。</p>
+        </div>
+
+        <div class="teacher-msg">
+            中心对称是打开等分之门的钥匙。从平行四边形到所有中心对称图形——这就是数学从特殊到一般的推理魅力！
+        </div>
+
+        <div style="text-align: right; color: #888; font-size: 0.9rem; margin-top: 2rem;">
+            &copy; 2026 华师大版初中数学课件制作组
+        </div>
+    </div>
+</body>
+</html>

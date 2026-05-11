@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>数轴表示 x ≤ -5</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .number-line-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="number-line-container">
+        <!-- SVG 绘制数轴 -->
+        <svg width="780" height="120" viewBox="-90 10 780 80" xmlns="http://www.w3.org/2000/svg">
+            <!-- 数轴主线（-6左侧延长更多，覆盖-7.5到6，单位长度50px） -->
+            <line x1="-30" y1="50" x2="650" y2="50" stroke="#333" stroke-width="2"/>
+            
+            <!-- 绘制刻度 + 数字标注（范围：-6到6，都添加刻度线） -->
+            <g stroke="#333" font-family="Arial" font-size="14" text-anchor="middle">
+                <!-- 负数刻度+数字（-5到-1） -->
+                <line x1="100" y1="47" x2="100" y2="53" stroke-width="2"/> <!-- -4 -->
+                <text x="100" y="70" fill="#333">-4</text>
+                <line x1="150" y1="47" x2="150" y2="53" stroke-width="2"/> <!-- -3 -->
+                <text x="150" y="70" fill="#333">-3</text>
+                <line x1="200" y1="47" x2="200" y2="53" stroke-width="2"/> <!-- -2 -->
+                <text x="200" y="70" fill="#333">-2</text>
+                <line x1="250" y1="47" x2="250" y2="53" stroke-width="2"/> <!-- -1 -->
+                <text x="250" y="70" fill="#333">-1</text>
+                
+                <!-- 0点刻度+数字（加长） -->
+                <line x1="300" y1="45" x2="300" y2="55" stroke-width="3"/>
+                <text x="300" y="70" fill="#333">0</text>
+                
+                <!-- 正数刻度+数字（1到5） -->
+                <line x1="350" y1="47" x2="350" y2="53" stroke-width="2"/> <!-- 1 -->
+                <text x="350" y="70" fill="#333">1</text>
+                <line x1="400" y1="47" x2="400" y2="53" stroke-width="2"/> <!-- 2 -->
+                <text x="400" y="70" fill="#333">2</text>
+                <line x1="450" y1="47" x2="450" y2="53" stroke-width="2"/> <!-- 3 -->
+                <text x="450" y="70" fill="#333">3</text>
+                <line x1="500" y1="47" x2="500" y2="53" stroke-width="2"/> <!-- 4 -->
+                <text x="500" y="70" fill="#333">4</text>
+                <line x1="550" y1="47" x2="550" y2="53" stroke-width="2"/> <!-- 5 -->
+                <text x="550" y="70" fill="#333">5</text>
+                
+                <!-- -5刻度+数字（重点，加长） -->
+                <line x1="50" y1="45" x2="50" y2="55" stroke-width="3"/>
+                <text x="50" y="70" fill="#333">-5</text>
+                
+                <!-- -6和6刻度+数字（添加刻度线） -->
+                <line x1="0" y1="47" x2="0" y2="53" stroke-width="2"/> <!-- -6刻度线 -->
+                <text x="0" y="70" fill="#333">-6</text>
+                <line x1="600" y1="47" x2="600" y2="53" stroke-width="2"/> <!-- 6刻度线 -->
+                <text x="600" y="70" fill="#333">6</text>
+            </g>
+            
+            <!-- 标准样式：水平向左线段+垂直下接线+实心圆点（x ≤ -5） -->
+            <g stroke="#333" stroke-width="2" fill="#333">
+                <circle cx="50" cy="50" r="4"/> <!-- -5处实心圆点 -->
+                <line x1="-30" y1="35" x2="50" y2="35"/> <!-- 水平向左延伸到-6左侧延长段 -->
+                <line x1="50" y1="35" x2="50" y2="50"/> <!-- 垂直向下连接圆点 -->
+            </g>
+            
+            <!-- 仅保留右侧箭头 -->
+            <polygon points="650 50, 640 45, 640 55" fill="#333"/> <!-- 右端箭头 -->
+        </svg>
+    </div>
+</body>
+</html>

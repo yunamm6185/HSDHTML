@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第32课时 合并同类项 | 华师版·七上 第2章 整式及其加减</title>
+    <!-- MathJax 配置 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.1rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.2rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.1rem;
+        }
+        .sub-question {
+            margin-left: 2rem;
+            margin-bottom: 0.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.2;
+            margin-bottom: 0.6rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2.2rem;
+            color: #2f6d9c;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.8rem 1.8rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.2rem;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .figure-box {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        /* 窗框图形样式（采用用户提供的精确CSS图形） */
+        .window-shape {
+            width: 222px;          /* 与半圆半径匹配：222/2=111，半圆半径110px+边框2px */
+            height: 322px;          /* 矩形高+半圆高：矩形220px+半圆110px，加边框后322px */
+            position: relative;
+            border: 2px solid #000;
+            border-top-left-radius: 111px;
+            border-top-right-radius: 111px;
+            box-sizing: border-box;
+            background: #87CEEB;    /* 浅蓝色填充 */
+            margin: 0 auto;          /* 居中 */
+        }
+        .center-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #000;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .horizontal-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000;
+            z-index: 1;
+        }
+        .line1 { top: 110px; }      /* 半圆底部，即矩形顶部 */
+        .line2 { top: 180px; }      /* 第一行网格下边界 */
+        .line3 { top: 250px; }      /* 第二行网格下边界 */
+        /* 同类项底色 */
+        .term-group1 {
+            background-color: #ffd966;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0 0.1rem;
+        }
+        .term-group2 {
+            background-color: #b8d9e0;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0 0.1rem;
+        }
+        .term-group3 {
+            background-color: #d0f0c0;
+            padding: 0.1rem 0.2rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 0 0.1rem;
+        }
+        .term-group1, .term-group2, .term-group3 {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第2章 整式及其加减</span>
+    </div>
+    <h1>第2章 整式及其加减</h1>
+    <div class="chapter-intro">★ 本章将学习代数式，主要研究整式及其加减法，为后续学习打下基础。</div>
+    <h2>2.4 整式的加减</h2>
+    <div class="lesson-title">第2课时 合并同类项</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解合并同类项的法则</div>
+            <div class="target-item"><span>✔</span>能熟练合并多项式中的同类项</div>
+            <div class="target-item"><span>✔</span>能通过先化简再求值简化计算</div>
+            <div class="target-item"><span>✔</span>体会化归思想在整式运算中的应用</div>
+        </div>
+    </div>
+
+    <!-- 引入：合并同类项的意义 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 如果一个多项式中含有同类项，那么我们可以把同类项合并起来，使结果得以简化。</p>
+        <p>例如，根据分配律，有 \(3x^2y + 5x^2y = (3+5)x^2y = 8x^2y\)。</p>
+    </div>
+
+    <!-- 合并同类项法则（带底色示例） -->
+    <div class="rule-box">
+        <div class="title">📌 合并同类项的法则</div>
+        <p><span class="term-highlight">合并同类项</span>：把同类项的系数相加，所得的结果作为和的系数，字母和字母的指数保持不变。</p>
+        <p>例如，对多项式 \(3x^2y - 4xy^2 - 3 + 5x^2y + 2xy^2 + 5\)，我们可以先运用加法的交换律和结合律将同类项组合在一起，再根据分配律合并：</p>
+        <div style="text-align:left; margin-left:1rem; margin-bottom:0.5rem;">
+            <span class="term-group1">\(3x^2y\)</span> <span class="term-group2">\(-4xy^2\)</span> <span class="term-group3">\(-3\)</span> <span class="term-group1">\(+5x^2y\)</span> <span class="term-group2">\(+2xy^2\)</span> <span class="term-group3">\(+5\)</span>
+        </div>
+        <p style="margin-left:1rem;">
+            \(= (3+5)x^2y + (-4+2)xy^2 + (-3+5)\)<br>
+            \(= 8x^2y - 2xy^2 + 2\)。
+        </p>
+        <p style="margin-top:0.5rem; font-size:0.95rem; color:#666;">（相同底色表示同类项）</p>
+    </div>
+
+    <!-- 例3（课本P104） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="ex3">
+        <p><strong>例3</strong> 合并下列多项式中的同类项：</p>
+        <p>(1) \(2a^2b - 3a^2b + \dfrac{1}{2}a^2b\)；</p>
+        <p>(2) \(a^3 - a^2b + ab^2 + a^2b - ab^2 + b^3\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示答案</button>
+        <div id="exampleAnswer3" class="answer-box">
+            <div class="answer-line">(1) \(2a^2b - 3a^2b + \dfrac{1}{2}a^2b\)</div>
+            <div class="answer-line">\(= \left(2 - 3 + \dfrac{1}{2}\right)a^2b\)</div>
+            <div class="answer-line">\(= \left(-1 + \dfrac{1}{2}\right)a^2b = -\dfrac{1}{2}a^2b\)。</div>
+            <div class="answer-line">(2) \(a^3 - a^2b + ab^2 + a^2b - ab^2 + b^3\)</div>
+            <div class="answer-line">\(= a^3 + b^3 + (-a^2b + a^2b) + (ab^2 - ab^2)\)</div>
+            <div class="answer-line">\(= a^3 + b^3\)。</div>
+        </div>
+    </div>
+
+    <!-- 例4（课本P104） -->
+    <div class="example-box" id="ex4">
+        <p><strong>例4</strong> 求多项式 \(3x^2 + 4x - 2x^2 - x + x^2 - 3x - 1\) 的值，其中 \(x = -3\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示答案</button>
+        <div id="exampleAnswer4" class="answer-box">
+            <div class="answer-line">\(3x^2 + 4x - 2x^2 - x + x^2 - 3x - 1\)</div>
+            <div class="answer-line">\(= (3 - 2 + 1)x^2 + (4 - 1 - 3)x - 1\)</div>
+            <div class="answer-line">\(= 2x^2 - 1\)。</div>
+            <div class="answer-line">当 \(x = -3\) 时，原式 \(= 2 \times (-3)^2 - 1 = 2 \times 9 - 1 = 17\)。</div>
+        </div>
+    </div>
+
+    <!-- 例5（课本P105）窗框问题（采用精确CSS图形） -->
+    <div class="example-box" id="ex5">
+        <p><strong>例5</strong> 如图所示的窗框，上部分为半圆，下部分为6个大小一样的长方形，长方形的长与宽的比为3:2。如果长方形的长分别为 \(0.4\,\text{m}\)、\(0.5\,\text{m}\)、\(0.6\,\text{m}\) 等，那么窗框所需材料的长度分别是多少？如果长方形的长为 \(a\,\text{m}\) 呢？</p>
+        <!-- 精确窗框图形 -->
+        <div class="figure-box">
+            <div class="window-shape">
+                <div class="center-line"></div>
+                <div class="horizontal-line line1"></div>
+                <div class="horizontal-line line2"></div>
+                <div class="horizontal-line line3"></div>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleExampleAnswer(5)">显示答案</button>
+        <div id="exampleAnswer5" class="answer-box">
+            <div class="answer-line">如果长方形的长为 \(a\,\text{m}\)，那么它的宽为 \(\dfrac{2}{3}a\,\text{m}\)。</div>
+            <div class="answer-line">窗框所需材料的长度为：</div>
+            <div class="answer-line">\(9a + 9 \times \dfrac{2}{3}a + \pi a\)</div>
+            <div class="answer-line">\(= (9 + 6 + \pi)a = (15 + \pi)a\,\text{m}\)。</div>
+            <div class="answer-line">当 \(a = 0.4\) 时，\((15 + \pi) \times 0.4 \approx (15 + 3.14) \times 0.4 = 18.14 \times 0.4 = 7.256 \approx 7.3\,\text{m}\)。</div>
+            <div class="answer-line">当 \(a = 0.5\) 时，\((15 + \pi) \times 0.5 \approx 18.14 \times 0.5 = 9.07\,\text{m}\)。</div>
+            <div class="answer-line">当 \(a = 0.6\) 时，\((15 + \pi) \times 0.6 \approx 18.14 \times 0.6 = 10.884 \approx 10.9\,\text{m}\)。</div>
+        </div>
+    </div>
+
+    <!-- 练习（课本P105） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 第1题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>1.</strong> 如果两个同类项的系数互为相反数，那么合并同类项后，结果是________。</span>
+                <button class="interact-btn" onclick="toggleAnswer('p1')">显示答案</button>
+            </div>
+            <div id="answerP1" class="answer-box">
+                <div class="answer-line">结果是0。</div>
+            </div>
+        </div>
+
+        <!-- 第2题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>2.</strong> 先标出下列各多项式中的同类项，再合并同类项：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p2')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(3x - 2x^2 + 5 + 3x^2 - 2x - 5\)；</div>
+            <div class="sub-question">(2) \(a^3 + a^2b + ab^2 - a^2b - ab^2 - b^3\)；</div>
+            <div class="sub-question">(3) \(6a^2 - 5b^2 + 2ab + 5b^2 - 6a^2\)。</div>
+            <div id="answerP2" class="answer-box">
+                <div class="answer-line">(1) 同类项：\(3x\) 与 \(-2x\)， \(-2x^2\) 与 \(3x^2\)， \(5\) 与 \(-5\)。</div>
+                <div class="answer-line">\(3x - 2x^2 + 5 + 3x^2 - 2x - 5 = (3x-2x) + (-2x^2+3x^2) + (5-5) = x + x^2\)。</div>
+                <div class="answer-line">(2) 同类项：\(a^2b\) 与 \(-a^2b\)， \(ab^2\) 与 \(-ab^2\)， \(a^3\) 与 \(-b^3\) 不是同类项。</div>
+                <div class="answer-line">\(a^3 + a^2b + ab^2 - a^2b - ab^2 - b^3 = a^3 - b^3\)。</div>
+                <div class="answer-line">(3) 同类项：\(6a^2\) 与 \(-6a^2\)， \(-5b^2\) 与 \(5b^2\)， \(2ab\) 单独。</div>
+                <div class="answer-line">\(6a^2 - 5b^2 + 2ab + 5b^2 - 6a^2 = 2ab\)。</div>
+            </div>
+        </div>
+
+        <!-- 第3题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text"><strong>3.</strong> 求下列多项式的值：</span>
+                <button class="interact-btn" onclick="toggleAnswer('p3')">显示答案</button>
+            </div>
+            <div class="sub-question">(1) \(7x^2 - 3x^2 - 2x - 2x^2 + 5 + 6x\)，其中 \(x = -2\)；</div>
+            <div class="sub-question">(2) \(5a - 2b + 3b - 4a - 1\)，其中 \(a = -1,\; b = 2\)；</div>
+            <div class="sub-question">(3) \(2x^2 - 3xy + y^2 - 2xy - 2x^2 + 5xy - 2y + 1\)，其中 \(x = \dfrac{22}{7},\; y = -1\)。</div>
+            <div id="answerP3" class="answer-box">
+                <div class="answer-line">(1) 先化简：\(7x^2 - 3x^2 - 2x - 2x^2 + 5 + 6x = (7-3-2)x^2 + (-2+6)x + 5 = 2x^2 + 4x + 5\)。</div>
+                <div class="answer-line">当 \(x = -2\) 时，原式 \(= 2 \times 4 - 8 + 5 = 8 - 8 + 5 = 5\)。</div>
+                <div class="answer-line">(2) 先化简：\(5a - 2b + 3b - 4a - 1 = (5a-4a) + (-2b+3b) - 1 = a + b - 1\)。</div>
+                <div class="answer-line">当 \(a = -1,\; b = 2\) 时，原式 \(= -1 + 2 - 1 = 0\)。</div>
+                <div class="answer-line">(3) 先化简：\(2x^2 - 3xy + y^2 - 2xy - 2x^2 + 5xy - 2y + 1\)</div>
+                <div class="answer-line">\(= (2x^2-2x^2) + (-3xy-2xy+5xy) + y^2 - 2y + 1\)</div>
+                <div class="answer-line">\(= 0 + 0 + y^2 - 2y + 1 = y^2 - 2y + 1\)。</div>
+                <div class="answer-line">当 \(y = -1\) 时，原式 \(= (-1)^2 - 2 \times (-1) + 1 = 1 + 2 + 1 = 4\)。</div>
+                <div class="answer-line">（注：\(x\) 的值不影响结果）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：化归思想 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 化归——将复杂化为简单</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>合并同类项的过程，就是将一个复杂多项式转化为简单形式的过程，这体现了数学中的<strong>化归思想</strong>。所谓化归，就是把待解决的问题通过某种转化，归结到另一个已解决或较易解决的问题中去。</p>
+            <p>在整式运算中，我们常通过合并同类项、去括号等操作，将整式化简，从而更容易求值或进行其他运算。这种化繁为简的思想，是数学学习中最重要的思想之一。</p>
+            <p style="margin-top:0.8rem;"><strong>核心素养链接：</strong> 数学抽象 · 化归思想 · 运算能力</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结（可折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">合并同类项法则：系数相加，字母和字母的指数不变。</div>
+                <div class="summary-item">步骤：①找出同类项；②利用加法交换律、结合律将同类项放在一起；③合并系数。</div>
+                <div class="summary-item">求多项式的值时，先化简再代入求值可以简化计算。</div>
+                <div class="summary-item">合并同类项是整式加减的基础，体现了化归思想。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P106习题2.4 A组第4、5、6、7题；B组第12、13题（选做）。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 合并同类项，化繁为简显智慧 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第32课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const answerDiv = document.getElementById('answer' + id.charAt(0).toUpperCase() + id.slice(1));
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

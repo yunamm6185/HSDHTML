@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3 实践与探索（第三课时） | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 8px solid #30829b;
+        }
+        .summary-box h4 { font-size: 1.5rem; color: #0f5669; margin-bottom: 0.8rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #333;
+            min-width: 4em;
+            height: 1.2em;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+        /* 答案表格样式 */
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border: 1px solid #b0d4ee;
+        }
+        .answer-table th, .answer-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .answer-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.3 实践与探索</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 通过探索实际问题，进一步体会方程是刻画现实世界的有效模型。</div>
+    <div class="lesson-title">5.3 实践与探索</div>
+    <div class="sub-title">第三课时 工程问题与报酬分配</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析工程问题中的工作量、工作效率、工作时间关系</div>
+            <div class="target-item"><span>✔</span>会列方程解决合作、分配问题</div>
+            <div class="target-item"><span>✔</span>能根据工作量计算报酬</div>
+        </div>
+    </div>
+
+    <!-- 问题3 -->
+    <div class="example-box">
+        <h4>问题3 课外活动时李老师来教室布置作业，有一道题目只写了“某工厂需制作一块广告牌，请来两名工人。已知师傅单独完成需4天，徒弟单独完成需6天”就停住了。片刻后，同学们带着疑惑的目光……</h4>
+        <p>小明抢先说：“让我试一试。”于是，上去添了：“两人合作需要几天完成？”</p>
+        <p>李老师选了两位同学的问题，综合后，在黑板上写出：现由徒弟先做1天，再两人合作，完成后共得到报酬900元。如果按各人完成的工作量计算报酬，那么该如何分配？</p>
+        <p style="color: #1d6130; font-weight: 500;">试解答这一问题，并和同学交流各自的做法。</p>
+        <button class="interact-btn" onclick="toggleAnswer('q3-try')">💡 试试看（一种解法）</button>
+        <div id="q3-try" class="answer-box">
+            <p><strong>解：</strong>设两人合作需要 $x$ 天完成。</p>
+            <p>徒弟先做1天，完成工作量为 $\frac{1}{6}$；</p>
+            <p>两人合作的工作效率为 $\frac{1}{4} + \frac{1}{6} = \frac{5}{12}$，合作 $x$ 天完成工作量为 $\frac{5}{12}x$。</p>
+            <p>根据总工作量为1，得方程：$\frac{1}{6} + \frac{5}{12}x = 1$。</p>
+            <p>解得 $\frac{5}{12}x = \frac{5}{6}$，$x = 2$（天）。</p>
+            <p>因此，师徒工作时间及工作量如下：</p>
+            <table class="answer-table">
+                <tr><th>人员</th><th>单独完成时间</th><th>工作效率</th><th>工作时间</th><th>工作量</th></tr>
+                <tr>
+                    <td>师傅</td>
+                    <td>4天</td>
+                    <td>$\frac{1}{4}$</td>
+                    <td>2天（合作）</td>
+                    <td>$2 \times \frac{1}{4} = \frac{1}{2}$</td>
+                </tr>
+                <tr>
+                    <td>徒弟</td>
+                    <td>6天</td>
+                    <td>$\frac{1}{6}$</td>
+                    <td>1天（先做）+2天（合作）=3天</td>
+                    <td>$1 \times \frac{1}{6} + 2 \times \frac{1}{6} = \frac{1}{2}$</td>
+                </tr>
+            </table>
+            <p>两人完成工作量相等，所以每人应得 $900 \div 2 = 450$ 元。</p>
+            <p>答：徒弟得450元，师傅得450元。你还有其他做法吗？可以和同学交流。</p>
+        </div>
+    </div>
+
+    <!-- 练习1（读书问题） -->
+    <div class="example-box">
+        <h4>练习1</h4>
+        <p>小慧阅读一本科普图书，原来每天阅读20页，读完120页后，抽出一定的时间练毛笔字，每天的阅读量降为原来的一半，结果多花了5天才读完，求这本科普图书的总页数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac31')">📌 显示解答</button>
+        <div id="prac31" class="answer-box">
+            <p>解：设总页数为 $x$ 页。前120页用了 $\frac{120}{20} = 6$ 天。剩余 $x-120$ 页，后来每天读10页，用了 $\frac{x-120}{10}$ 天。实际总天数为 $6 + \frac{x-120}{10}$，原计划天数为 $\frac{x}{20}$，多花5天，所以 $6 + \frac{x-120}{10} = \frac{x}{20} + 5$。</p>
+            <p>乘以20：$120 + 2(x-120) = x + 100$，$120 + 2x - 240 = x + 100$，$2x -120 = x + 100$，$x = 220$。</p>
+            <p>答：总页数为220页。</p>
+        </div>
+    </div>
+
+    <!-- 练习2（行李费问题） -->
+    <div class="example-box">
+        <h4>练习2</h4>
+        <p>某航空公司规定：乘坐飞机经济舱的旅客每人最多可免费托运20kg行李，超过部分每千克按飞机票价的1.5%购买行李票。一位乘坐经济舱的旅客托运了35kg行李，机票连同行李费共付了1323元，求这位旅客的机票价。</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac32')">📌 显示解答</button>
+        <div id="prac32" class="answer-box">
+            <p>解：设机票价为 $x$ 元。超重 $35-20=15$ kg，行李费 $15 \times 1.5\% x = 0.225x$ 元。总费用 $x + 0.225x = 1.225x = 1323$，解得 $x = \frac{1323}{1.225} = 1080$ 元。</p>
+            <p>答：机票价为1080元。</p>
+        </div>
+    </div>
+
+    <!-- 练习3（小旗制作问题） -->
+    <div class="example-box">
+        <h4>练习3</h4>
+        <p>为庆祝学校运动会开幕，七年级(2)班同学接受了制作小旗的任务，原计划一半同学参加制作，每天制作40面。完成了三分之一以后，全班同学一起参加了制作，结果比原计划提前一天半完成任务。假设每人的制作效率相同，问：共制作小旗多少面？</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac33')">📌 显示解答</button>
+        <div id="prac33" class="answer-box">
+            <p>解：设共制作小旗 $x$ 面。原计划一半同学每天40面，则全班同学每天80面。前 $\frac{1}{3}x$ 面用了 $\frac{x/3}{40} = \frac{x}{120}$ 天；后 $\frac{2}{3}x$ 面用了 $\frac{2x/3}{80} = \frac{x}{120}$ 天；实际总天数为 $\frac{x}{120} + \frac{x}{120} = \frac{x}{60}$ 天。原计划一半同学全程制作需 $\frac{x}{40}$ 天。提前1.5天，所以 $\frac{x}{40} - \frac{x}{60} = 1.5$。</p>
+            <p>解得 $\frac{3x - 2x}{120} = 1.5$，$\frac{x}{120} = 1.5$，$x = 180$。</p>
+            <p>答：共制作小旗180面。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代的“共作”问题 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 《九章算术》中的“共作”问题</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》第七章“盈不足”中有一类“共作”问题，例如：“今有甲乙二人共作一器，甲日作八分，乙日作六分，今共作十日，成器。问各作几日？”这相当于已知工作效率和合作时间，求各自工作时间。古人用“盈不足术”求解，与现代设未知数列方程的方法一致。这类问题反映了古代劳动人民在工程合作方面的数学智慧。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📌 课堂小结</h4>
+        <div class="summary-item">工程问题中，常把总工作量看作1，工作效率 = 1/工作时间</div>
+        <div class="summary-item">工作量按比例分配报酬，先计算每人完成的工作量</div>
+        <div class="summary-item">分析题意时，要分清工作阶段、人员变化</div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将工程问题抽象为方程模型。<br>
+        <strong>数形结合：</strong> 画线段图分析工作量。<br>
+        <strong>逻辑推理：</strong> 根据条件逐步推导未知量。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.3.3 第1、2、3题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 工程问题如人生，合作共赢，数学帮你算清。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.3 第三课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

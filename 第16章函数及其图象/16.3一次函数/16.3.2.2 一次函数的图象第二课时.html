@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.2 一次函数的图象（第二课时） | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:18px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .graph-box{position:relative;text-align:center;margin:1rem 0;overflow:visible;min-height:420px;}
+        .graph-box canvas{position:relative;width:100%;max-width:520px;height:480px;background:white;border:2px solid #a7d8e0;border-radius:12px;}
+        .graph-label{position:absolute;pointer-events:auto;z-index:10;background:rgba(255,255,255,0.85);padding:2px 6px;border-radius:4px;font-size:17px;font-weight:bold;cursor:move;user-select:none;-webkit-user-select:none;white-space:nowrap;}
+        .katex{font-size:1.15em !important;}
+        .summary-table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:1.05rem;border:2px solid #1e293b;}
+        .summary-table th{background:#0f766e;color:white;padding:.8rem;font-size:1.1rem;font-weight:700;border:2px solid #1e293b;text-align:center;}
+        .summary-table td{padding:.7rem 1rem;text-align:center;border:2px solid #cbd5e1;background:white;font-weight:600;vertical-align:middle;}
+        .summary-table tr:nth-child(even) td{background:#f8fafc;}
+        .summary-table td:first-child{text-align:left;background:#ecfdf5;font-weight:700;color:#065f46;}
+        .think-box{background:#f3e8ff;border-left:10px solid #a855f7;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem 0;font-weight:600;}
+        .message-box{background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;}
+        .message-box h4{color:#f0fdfa;font-size:1.5rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+        .message-box p{color:#ccfbf1;font-size:1.15rem;line-height:2.2;text-indent:2em;}
+        .literacy-container{display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;}
+        .literacy-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #f59e0b;}
+        .literacy-card:nth-child(2){background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-left-color:#3b82f6;}
+        .literacy-card:nth-child(3){background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-left-color:#10b981;}
+        .literacy-card:nth-child(4){background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-left-color:#8b5cf6;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.2 一次函数的图象（第二课时）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>会求一次函数图象与坐标轴的交点</div>
+            <div class="target-item"><span>2</span>会用"两点法"画一次函数的图象</div>
+            <div class="target-item"><span>3</span>能解决一次函数的实际应用问题</div>
+            <div class="target-item"><span>4</span>理解实际问题中自变量的取值范围</div>
+        </div>
+    </div>
+
+    <!-- 新课导入 -->
+    <div class="example-card" style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-left-color:#f59e0b;">
+        <h4 style="color:#92400e;">🚗 情境导入</h4>
+        <p>上节课我们学习了用<strong>描点法</strong>画一次函数的图象，需要取很多点。比如画 $y = 2x + 1$ 的图象，至少要取 $5$ 个点：</p>
+        <p style="text-align:center;margin:.8rem 0;">$(-2, -3)$，$(-1, -1)$，$(0, 1)$，$(1, 3)$，$(2, 5)$</p>
+        <p>描点、连线，比较麻烦。有没有<strong>更简单的方法</strong>呢？</p>
+        <p style="margin-top:.5rem;"><strong>想一想：</strong>一条直线最少需要几个点就能确定？</p>
+        <button class="interact-btn" onclick="toggleAnswer('introAns')">💡 点击思考</button>
+        <div id="introAns" class="answer-box">
+            <p><strong>答：</strong>两个点就能确定一条直线！</p>
+            <p>所以画一次函数的图象，只要找到<strong>两个点</strong>，连线即可。这节课我们就来学习如何<strong>快速找到这两个点</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 例2 -->
+    <div class="section-title">📐 例题讲解</div>
+    <div class="example-card">
+        <h4>例2 求直线与坐标轴的交点</h4>
+        <p>求直线 $y = -2x - 3$ 与 $x$ 轴和 $y$ 轴的交点，并画出这条直线。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2ans')">✍️ 解答过程</button>
+        <div id="ex2ans" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>$x$ 轴上的点的纵坐标等于 $0$，$y$ 轴上的点的横坐标等于 $0$。</p>
+            <p>交点同时在直线 $y = -2x - 3$ 上，它的坐标 $(x, y)$ 应满足 $y = -2x - 3$。</p>
+            <p style="margin-top:.8rem;"><strong>求与 $x$ 轴的交点：</strong>令 $y = 0$</p>
+            <p>$0 = -2x - 3$</p>
+            <p>$2x = -3$</p>
+            <p>$x = -1.5$</p>
+            <p>∴ 点 $(-1.5, 0)$ 就是直线 $y = -2x - 3$ 与 $x$ 轴的交点。</p>
+            <p style="margin-top:.8rem;"><strong>求与 $y$ 轴的交点：</strong>令 $x = 0$</p>
+            <p>$y = -2 \times 0 - 3 = -3$</p>
+            <p>∴ 点 $(0, -3)$ 就是直线 $y = -2x - 3$ 与 $y$ 轴的交点。</p>
+            <div class="highlight-box" style="margin-top:1rem;">
+                <p><strong>💡 方法总结：</strong></p>
+                <ul style="padding-left:1.5rem;line-height:1.9;">
+                    <li>与 <strong>$x$ 轴</strong>交点 → 令 <strong>$y = 0$</strong>，解出 $x$</li>
+                    <li>与 <strong>$y$ 轴</strong>交点 → 令 <strong>$x = 0$</strong>，解出 $y$</li>
+                </ul>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex2graph')" style="margin-top:.5rem;">📐 查看图象</button>
+        <div id="ex2graph" class="answer-box">
+            <p>过点 $(-1.5, 0)$ 和点 $(0, -3)$ 作直线，就是所求的直线 $y = -2x - 3$。</p>
+            <div class="graph-box"><canvas id="canvasEx2"></canvas></div>
+        </div>
+        <div class="think-box" style="margin-top:1rem;">
+            <p><strong>🤔 思考：</strong>这里是取哪两个特殊点来作直线的？这样取点有什么好处？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2think')">💡 点击查看</button>
+            <div id="ex2think" class="answer-box">
+                <p>取的是直线与 <strong>$x$ 轴</strong>和 <strong>$y$ 轴</strong>的交点。</p>
+                <p><strong>好处：</strong></p>
+                <ul style="padding-left:1.5rem;line-height:1.9;">
+                    <li>计算简单：令 $x=0$ 或 $y=0$ 即可</li>
+                    <li>描点方便：交点在坐标轴上，容易定位</li>
+                    <li>体现截距：直接看出直线在 $y$ 轴上的截距</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例3 -->
+    <div class="example-card">
+        <h4>例3 一次函数的实际应用</h4>
+        <p>本节问题1中，汽车距北京的路程 $s$（km）与汽车在高速公路上行驶的时间 $t$（h）之间的函数关系式是 $s = 285 - 95t$，试画出这个函数的图象。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3ans')">✍️ 分析解答</button>
+        <div id="ex3ans" class="answer-box">
+            <p><strong>分析：</strong>在实际问题中，我们可以在表示时间的 $t$ 轴和表示路程的 $s$ 轴上分别选取适当的单位长度，画出平面直角坐标系。</p>
+            <p style="margin-top:.8rem;"><strong>解：</strong></p>
+            <p>当 $t = 0$ 时，$s = 285 - 95 \times 0 = 285$</p>
+            <p>当 $s = 0$ 时，$0 = 285 - 95t$，$t = 3$</p>
+            <p>∴ 图象是连接点 $(0, 285)$ 和 $(3, 0)$ 的<strong>线段</strong>。</p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                <strong>注意：</strong>这里的图象是直线的一部分（一条线段），不是无限延伸的直线。因为时间 $t$ 和路程 $s$ 都不能为负数。
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex3graph')" style="margin-top:.5rem;">📐 查看图象</button>
+        <div id="ex3graph" class="answer-box">
+            <div class="graph-box"><canvas id="canvasEx3"></canvas></div>
+        </div>
+        <div class="think-box" style="margin-top:1rem;">
+            <p><strong>🤔 讨论：</strong>这里自变量 $t$ 的取值范围是什么？函数的图象是怎样的图形？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3disc')">💡 点击查看</button>
+            <div id="ex3disc" class="answer-box">
+                <p><strong>自变量 $t$ 的取值范围：</strong>$0 \leq t \leq 3$</p>
+                <p>（当 $t=0$ 时，汽车在北京 285 km 处；当 $t=3$ 时，汽车到达北京）</p>
+                <p style="margin-top:.5rem;"><strong>函数的图象：</strong>是一条<strong>线段</strong>，不是无限延伸的直线。</p>
+                <p>线段的两个端点 $(0, 285)$ 和 $(3, 0)$ 反映了：</p>
+                <ul style="padding-left:1.5rem;line-height:1.9;">
+                    <li>出发时（$t=0$），距北京 285 km</li>
+                    <li>3 小时后（$t=3$），到达北京（$s=0$）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 概括总结 -->
+    <div class="section-title">📊 概括总结</div>
+    <div class="example-card">
+        <h4>一次函数图象的画法与关键要点</h4>
+        <table class="summary-table">
+            <tr><th style="width:28%;">知识点</th><th style="width:72%;">具体内容</th></tr>
+            <tr>
+                <td>求与 $x$ 轴交点</td>
+                <td>令 <strong>$y = 0$</strong>，代入 $y = kx + b$ 解出 $x$，交点坐标为 $\left(-\dfrac{b}{k},\,0\right)$</td>
+            </tr>
+            <tr>
+                <td>求与 $y$ 轴交点</td>
+                <td>令 <strong>$x = 0$</strong>，代入 $y = kx + b$ 得 $y = b$，交点坐标为 $(0,\,b)$</td>
+            </tr>
+            <tr>
+                <td>两点法画图</td>
+                <td>取直线与 <strong>$x$ 轴、$y$ 轴的交点</strong>，在坐标系中描出两点，过两点画直线即可</td>
+            </tr>
+            <tr>
+                <td>实际应用注意</td>
+                <td>实际问题中要注意 <strong>自变量的取值范围</strong>，图象可能是线段或射线，不是无限延伸的直线</td>
+            </tr>
+        </table>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p style="text-align:center;font-size:1.15rem;"><strong>口诀：</strong>求交点，令为零；$y$ 零找 $x$ 轴，$x$ 零找 $y$ 轴；两点一连，直线搞定！</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">📝 课堂练习</div>
+    <div class="example-card">
+        <h4>练习</h4>
+        <p><strong>1.</strong> 求下列直线与 $x$ 轴和 $y$ 轴的交点，并在同一个平面直角坐标系中画出它们的图象：</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;(1) $y = 4x - 1$ &nbsp;&nbsp;&nbsp;&nbsp; (2) $y = -\dfrac{2}{3}x + 2$</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1ans')">✍️ 解答过程</button>
+        <div id="pr1ans" class="answer-box">
+            <p><strong>(1) $y = 4x - 1$</strong></p>
+            <p>与 $x$ 轴交点：令 $y = 0$，$0 = 4x - 1$，$x = 0.25$ → $(0.25, 0)$</p>
+            <p>与 $y$ 轴交点：令 $x = 0$，$y = -1$ → $(0, -1)$</p>
+            <p style="margin-top:.8rem;"><strong>(2) $y = -\dfrac{2}{3}x + 2$</strong></p>
+            <p>与 $x$ 轴交点：令 $y = 0$，$0 = -\dfrac{2}{3}x + 2$，$x = 3$ → $(3, 0)$</p>
+            <p>与 $y$ 轴交点：令 $x = 0$，$y = 2$ → $(0, 2)$</p>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('pr1graph')" style="margin-top:.5rem;">📐 查看图象</button>
+        <div id="pr1graph" class="answer-box">
+            <div class="graph-box"><canvas id="canvasPr1"></canvas></div>
+        </div>
+        <p style="margin-top:1rem;"><strong>2.</strong> 利用本节问题1中函数的图象，求汽车在高速公路上行驶 2 h 后，小明距北京的路程。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2ans')">✍️ 解答</button>
+        <div id="pr2ans" class="answer-box">
+            <p>函数关系式：$s = 285 - 95t$</p>
+            <p>当 $t = 2$ 时：</p>
+            <p>$s = 285 - 95 \times 2 = 285 - 190 = 95$</p>
+            <p>∴ 行驶 2 h 后，距北京的路程为 <strong>$\boxed{95}$ km</strong>。</p>
+            <p style="margin-top:.5rem;">也可以在图象上找到 $t = 2$ 对应的点，读取纵坐标 $s = 95$。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">📝 课堂小结</div>
+    <div class="summary-box">
+        <h4>本节课我们学到了什么？</h4>
+        <ol style="font-size:1.15rem;">
+            <li>求直线与 <strong>$x$ 轴</strong>交点：令 <strong>$y = 0$</strong>，解出 $x$</li>
+            <li>求直线与 <strong>$y$ 轴</strong>交点：令 <strong>$x = 0$</strong>，解出 $y$</li>
+            <li>画一次函数图象只需取 <strong>两个点</strong>（通常取与坐标轴的交点），然后连线</li>
+            <li>实际问题中，要注意 <strong>自变量的取值范围</strong>，图象可能是线段或射线</li>
+        </ol>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎓 数学核心素养</div>
+    <div class="literacy-container">
+        <div class="literacy-card">
+            <h4 style="color:#92400e;margin-bottom:.5rem;">📐 直观想象</h4>
+            <p style="color:#78350f;line-height:1.8;font-size:1rem;">通过求交点、描点画图，将代数计算与几何图形结合，培养数形结合能力。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#1e40af;margin-bottom:.5rem;">🔍 逻辑推理</h4>
+            <p style="color:#1e3a8a;line-height:1.8;font-size:1rem;">理解"两点确定一条直线"，掌握用交点法画一次函数图象的推理过程。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#065f46;margin-bottom:.5rem;">✏️ 数学运算</h4>
+            <p style="color:#064e3b;line-height:1.8;font-size:1rem;">准确求解一次函数与坐标轴的交点坐标，规范作图。</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#6b21a8;margin-bottom:.5rem;">🌐 数学建模</h4>
+            <p style="color:#581c87;line-height:1.8;font-size:1rem;">体会一次函数在实际问题中的应用，理解自变量取值范围对图象的影响。</p>
+        </div>
+    </div>
+
+    <!-- 教师寄语 -->
+    <div class="message-box">
+        <h4>💬 教师寄语</h4>
+        <p>求交点、画直线，两点之间见真章。数学源于生活，又服务于生活。学会用数学的眼光观察世界，用数学的思维分析问题。</p>
+    </div>
+
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.dataset.shown==='yes'){el.style.display='none';el.dataset.shown='';return;}
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.renderMathInElement){renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});}
+    if(id==='ex2graph') setTimeout(drawEx2, 100);
+    if(id==='ex3graph') setTimeout(drawEx3, 100);
+    if(id==='pr1graph') setTimeout(drawPr1, 100);
+}
+
+// ========== 通用坐标系绘制 ==========
+function drawAxes(cx, W, H, padL, padR, padT, padB, rX, rY){
+    var maxR = Math.max(rX, rY);
+    var unit = Math.min((W - padL - padR) / (2 * maxR), (H - padT - padB) / (2 * maxR));
+    var cW = unit * 2 * maxR;
+    var cH = unit * 2 * maxR;
+    var offsetX = (W - padL - padR - cW) / 2;
+    var offsetY = (H - padT - padB - cH) / 2;
+    var drawL = padL + offsetX, drawT = padT + offsetY;
+    // 网格
+    cx.strokeStyle='#cfe8f3'; cx.lineWidth=1;
+    var yAx=drawT+cH-(0+maxR)*unit, xAx=drawL+(0+maxR)*unit;
+    var gStep=unit<25?2:1, gUnit=gStep*unit;
+    var vx=xAx; while(vx>0){vx-=gUnit;}
+    for(;vx<W;vx+=gUnit){ if(Math.abs(vx-xAx)<0.5) continue; cx.beginPath();cx.moveTo(vx,0);cx.lineTo(vx,H);cx.stroke(); }
+    var hy=yAx; while(hy>0){hy-=gUnit;}
+    for(;hy<H;hy+=gUnit){ if(Math.abs(hy-yAx)<0.5) continue; cx.beginPath();cx.moveTo(0,hy);cx.lineTo(W,hy);cx.stroke(); }
+    // 坐标轴
+    cx.strokeStyle='#1e293b'; cx.lineWidth=3;
+    cx.beginPath();cx.moveTo(drawL-15,yAx);cx.lineTo(drawL+cW+15,yAx);cx.stroke();
+    cx.beginPath();cx.moveTo(xAx,drawT-15);cx.lineTo(xAx,drawT+cH+15);cx.stroke();
+    // 箭头
+    cx.fillStyle='#1e293b';
+    cx.beginPath();cx.moveTo(drawL+cW+15,yAx);cx.lineTo(drawL+cW+5,yAx-6);cx.lineTo(drawL+cW+5,yAx+6);cx.fill();
+    cx.beginPath();cx.moveTo(xAx,drawT-15);cx.lineTo(xAx-6,drawT-5);cx.lineTo(xAx+6,drawT-5);cx.fill();
+    // 刻度
+    cx.fillStyle='#334155'; cx.font='bold 15px "Segoe UI", sans-serif';
+    var tLen=4;
+    for(var i=-rX;i<=rX;i++){
+        if(i===0) continue;
+        var px=drawL+(i+maxR)*unit;
+        cx.beginPath();cx.moveTo(px,yAx-tLen);cx.lineTo(px,yAx+tLen);cx.stroke();
+        cx.textAlign='center'; cx.fillText(i, px, yAx+24);
+    }
+    for(var i=-rY;i<=rY;i++){
+        if(i===0) continue;
+        var py=drawT+cH-(i+maxR)*unit;
+        cx.beginPath();cx.moveTo(xAx-tLen,py);cx.lineTo(xAx+tLen,py);cx.stroke();
+        cx.textAlign='right'; cx.fillText(i, xAx-10, py+5);
+    }
+    // 原点O
+    cx.beginPath(); cx.arc(xAx, yAx, 6, 0, Math.PI*2);
+    cx.fillStyle='white'; cx.fill();
+    cx.strokeStyle='#0f766e'; cx.lineWidth=2; cx.stroke();
+    cx.font='bold 16px "Segoe UI", sans-serif'; cx.fillStyle='#0f766e';
+    cx.textAlign='right'; cx.fillText('O', xAx-12, yAx+20);
+    // 轴标签
+    cx.font='italic bold 20px "Times New Roman", serif'; cx.fillStyle='#dc2626';
+    cx.textAlign='center'; cx.fillText('x', drawL+cW+22, yAx+5);
+    cx.fillText('y', xAx-14, drawT-18);
+    return {cW:cW, cH:cH, xAx:xAx, yAx:yAx, unit:unit, drawL:drawL, drawT:drawT, maxR:maxR};
+}
+
+// 第一象限坐标系（用于实际应用题）
+function drawAxesFirstQuadrant(cx, W, H, padL, padR, padT, padB, xMax, yMax, xTicks, yTicks, xName, yName){
+    var availW=W-padL-padR, availH=H-padT-padB;
+    var unitX=availW/xMax, unitY=availH/yMax;
+    var cW=unitX*xMax, cH=unitY*yMax;
+    var drawL=padL, drawT=H-padB-cH;
+    // 网格
+    cx.strokeStyle='#cfe8f3'; cx.lineWidth=1;
+    for(var i=1;i<=xMax;i++){
+        var px=drawL+i*unitX;
+        cx.beginPath();cx.moveTo(px,drawT);cx.lineTo(px,drawT+cH);cx.stroke();
+    }
+    for(var i=1;i<=yMax;i++){
+        var py=drawT+cH-i*unitY;
+        cx.beginPath();cx.moveTo(drawL,py);cx.lineTo(drawL+cW,py);cx.stroke();
+    }
+    // 坐标轴
+    cx.strokeStyle='#1e293b'; cx.lineWidth=3;
+    cx.beginPath();cx.moveTo(drawL-15,drawT+cH);cx.lineTo(drawL+cW+15,drawT+cH);cx.stroke();
+    cx.beginPath();cx.moveTo(drawL,drawT+cH+15);cx.lineTo(drawL,drawT-15);cx.stroke();
+    // 箭头
+    cx.fillStyle='#1e293b';
+    cx.beginPath();cx.moveTo(drawL+cW+15,drawT+cH);cx.lineTo(drawL+cW+5,drawT+cH-6);cx.lineTo(drawL+cW+5,drawT+cH+6);cx.fill();
+    cx.beginPath();cx.moveTo(drawL,drawT-15);cx.lineTo(drawL-6,drawT-5);cx.lineTo(drawL+6,drawT-5);cx.fill();
+    // 刻度
+    cx.fillStyle='#334155'; cx.font='bold 15px "Segoe UI", sans-serif';
+    var tLen=4;
+    for(var i=0;i<xTicks.length;i++){
+        var v=xTicks[i]; if(v===0) continue;
+        var px=drawL+v*unitX;
+        cx.beginPath();cx.moveTo(px,drawT+cH-tLen);cx.lineTo(px,drawT+cH+tLen);cx.stroke();
+        cx.textAlign='center'; cx.fillText(v, px, drawT+cH+24);
+    }
+    for(var i=0;i<yTicks.length;i++){
+        var v=yTicks[i]; if(v===0) continue;
+        var py=drawT+cH-v*unitY;
+        cx.beginPath();cx.moveTo(drawL-tLen,py);cx.lineTo(drawL+tLen,py);cx.stroke();
+        cx.textAlign='right'; cx.fillText(v, drawL-10, py+5);
+    }
+    // 原点O
+    cx.beginPath(); cx.arc(drawL, drawT+cH, 6, 0, Math.PI*2);
+    cx.fillStyle='white'; cx.fill();
+    cx.strokeStyle='#0f766e'; cx.lineWidth=2; cx.stroke();
+    cx.font='bold 16px "Segoe UI", sans-serif'; cx.fillStyle='#0f766e';
+    cx.textAlign='right'; cx.fillText('O', drawL-12, drawT+cH+20);
+    // 轴标签
+    cx.font='italic bold 20px "Times New Roman", serif'; cx.fillStyle='#dc2626';
+    cx.textAlign='center'; cx.fillText(xName||'x', drawL+cW+22, drawT+cH+5);
+    cx.textAlign='right'; cx.fillText(yName||'y', drawL-14, drawT-8);
+    return {cW:cW, cH:cH, xAx:drawL, yAx:drawT+cH, unitX:unitX, unitY:unitY, drawL:drawL, drawT:drawT};
+}
+
+// 画直线
+function drawLine(cx, info, k, b, color){
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit, maxR=info.maxR||0;
+    var cW=info.cW, cH=info.cH;
+    var topB=drawT+12, botB=drawT+cH-12;
+    cx.strokeStyle=color; cx.lineWidth=3; cx.lineCap='round';
+    cx.beginPath();
+    var started=false;
+    for(var px=drawL;px<=drawL+cW;px+=1){
+        var x=(px-drawL)/unit-maxR, y=k*x+b;
+        var py=drawT+cH-(y+maxR)*unit;
+        if(py<topB||py>botB){if(started){cx.stroke();started=false;}continue;}
+        if(!started){cx.moveTo(px,py);started=true;}else{cx.lineTo(px,py);}
+    }
+    cx.stroke();
+}
+
+// 画线段（用于第一象限）
+function drawSegment(cx, info, x1, y1, x2, y2, color){
+    var drawL=info.drawL, drawT=info.drawT, unitX=info.unitX||info.unit, unitY=info.unitY||info.unit;
+    var cH=info.cH;
+    var px1=drawL+x1*unitX, py1=drawT+cH-y1*unitY;
+    var px2=drawL+x2*unitX, py2=drawT+cH-y2*unitY;
+    cx.strokeStyle=color; cx.lineWidth=3; cx.lineCap='round';
+    cx.beginPath();cx.moveTo(px1,py1);cx.lineTo(px2,py2);cx.stroke();
+}
+
+// 标记点
+function markPoint(cx, cv, info, x, y, color, label, maxR, offX, offY){
+    maxR=maxR||0;
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit;
+    var cH=info.cH;
+    var px=drawL+(x+maxR)*unit, py=drawT+cH-(y+maxR)*unit;
+    cx.beginPath();cx.arc(px,py,6,0,Math.PI*2);cx.fillStyle=color;cx.fill();cx.strokeStyle='white';cx.lineWidth=2;cx.stroke();
+    if(label && cv){
+        var W=cv.width, H=cv.height;
+        var box=cv.parentElement;
+        var cRect=cv.getBoundingClientRect(), bRect=box.getBoundingClientRect();
+        var scaleX=cRect.width/W, scaleY=cRect.height/H;
+        var ox=cRect.left-bRect.left, oy=cRect.top-bRect.top;
+        var el=document.createElement('span');
+        el.className='graph-label'; el.style.color=color;
+        el.innerHTML='$'+label+'$';
+        el.style.left=(ox+(px+(offX!==undefined?offX:10))*scaleX)+'px';
+        el.style.top=(oy+(py+(offY!==undefined?offY:-6))*scaleY)+'px';
+        var dragging=false, startX, startY, startL, startT;
+        el.addEventListener('mousedown',function(e){dragging=true;startX=e.clientX;startY=e.clientY;startL=parseFloat(el.style.left)||0;startT=parseFloat(el.style.top)||0;el.style.zIndex=100;e.preventDefault();});
+        document.addEventListener('mousemove',function(e){if(!dragging)return;el.style.left=(startL+e.clientX-startX)+'px';el.style.top=(startT+e.clientY-startY)+'px';});
+        document.addEventListener('mouseup',function(){dragging=false;el.style.zIndex=10;});
+        box.appendChild(el);
+        if(window.katex){katex.render(label,el,{throwOnError:false});}
+    }
+}
+
+// 标记点（第一象限）
+function markPointFQ(cx, cv, info, x, y, color, label){
+    var drawL=info.drawL, drawT=info.drawT, unitX=info.unitX||info.unit, unitY=info.unitY||info.unit;
+    var cH=info.cH;
+    var px=drawL+x*unitX, py=drawT+cH-y*unitY;
+    cx.beginPath();cx.arc(px,py,6,0,Math.PI*2);cx.fillStyle=color;cx.fill();cx.strokeStyle='white';cx.lineWidth=2;cx.stroke();
+    if(label && cv){
+        var W=cv.width, H=cv.height;
+        var box=cv.parentElement;
+        var cRect=cv.getBoundingClientRect(), bRect=box.getBoundingClientRect();
+        var scaleX=cRect.width/W, scaleY=cRect.height/H;
+        var ox=cRect.left-bRect.left, oy=cRect.top-bRect.top;
+        var el=document.createElement('span');
+        el.className='graph-label'; el.style.color=color;
+        el.innerHTML='$'+label+'$';
+        el.style.left=(ox+(px+10)*scaleX)+'px';
+        el.style.top=(oy+(py-6)*scaleY)+'px';
+        var dragging=false, startX, startY, startL, startT;
+        el.addEventListener('mousedown',function(e){dragging=true;startX=e.clientX;startY=e.clientY;startL=parseFloat(el.style.left)||0;startT=parseFloat(el.style.top)||0;el.style.zIndex=100;e.preventDefault();});
+        document.addEventListener('mousemove',function(e){if(!dragging)return;el.style.left=(startL+e.clientX-startX)+'px';el.style.top=(startT+e.clientY-startY)+'px';});
+        document.addEventListener('mouseup',function(){dragging=false;el.style.zIndex=10;});
+        box.appendChild(el);
+        if(window.katex){katex.render(label,el,{throwOnError:false});}
+    }
+}
+
+// ========== 例2：y=-2x-3 ==========
+function drawEx2(){
+    var cv=document.getElementById('canvasEx2'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=520, H=480;
+    cv.width=W; cv.height=H;
+    var padL=45, padR=35, padT=35, padB=45, rX=3, rY=4;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,padL,padR,padT,padB,rX,rY);
+    drawLine(cx,info,-2,-3,'#0ea5e9');
+    // 标记交点
+    markPoint(cx,cv,info,-1.5,0,'#dc2626','(-1.5, 0)',info.maxR);
+    markPoint(cx,cv,info,0,-3,'#10b981','(0, -3)',info.maxR);
+    // 标签
+    addCanvasLabel(cv,'y=-2x-3','#0ea5e9',info,-2,-3,12,-10);
+}
+
+// ========== 例3：s=285-95t ==========
+function drawEx3(){
+    var cv=document.getElementById('canvasEx3'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=520, H=480;
+    cv.width=W; cv.height=H;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxesFirstQuadrant(cx,W,H,55,40,40,55,4,320,[0,1,2,3,4],[0,100,200,300],'t/h','s/km');
+    // 画线段 (0,285) 到 (3,0)
+    drawSegment(cx,info,0,285,3,0,'#0ea5e9');
+    // 标记端点
+    markPointFQ(cx,cv,info,0,285,'#10b981','(0, 285)');
+    markPointFQ(cx,cv,info,3,0,'#dc2626','(3, 0)');
+    // 标签
+    addCanvasLabelFQ(cv,'s=285-95t','#0ea5e9',info,1.8,160,0,0);
+}
+
+// ========== 练习：两条直线 ==========
+function drawPr1(){
+    var cv=document.getElementById('canvasPr1'); if(!cv) return;
+    var cx=cv.getContext('2d'), W=520, H=480;
+    cv.width=W; cv.height=H;
+    var padL=45, padR=35, padT=35, padB=45, rX=4, rY=5;
+    cx.clearRect(0,0,W,H);
+    var info=drawAxes(cx,W,H,padL,padR,padT,padB,rX,rY);
+    // y=4x-1 (红色)
+    drawLine(cx,info,4,-1,'#dc2626');
+    markPoint(cx,cv,info,0.25,0,'#dc2626','(0.25, 0)',info.maxR, 16, 22);
+    markPoint(cx,cv,info,0,-1,'#dc2626','(0, -1)',info.maxR, -75, 16);
+    // y=-⅔x+2 (蓝色)
+    drawLine(cx,info,-2/3,2,'#0ea5e9');
+    markPoint(cx,cv,info,3,0,'#0ea5e9','(3, 0)',info.maxR, 14, -18);
+    markPoint(cx,cv,info,0,2,'#0ea5e9','(0, 2)',info.maxR, -60, -8);
+    // 标签
+    addCanvasLabel(cv,'y=4x-1','#dc2626',info,4,-1,12,-10);
+    addCanvasLabel(cv,'y=-\\frac{2}{3}x+2','#0ea5e9',info,-2/3,2,-140,-18);
+}
+
+// ========== 标签辅助函数 ==========
+function addCanvasLabel(cv,tex,color,info,k,b,offX,offY){
+    var box=cv.parentElement;
+    var drawL=info.drawL, drawT=info.drawT, unit=info.unit, maxR=info.maxR;
+    var cW=info.cW, cH=info.cH, W=cv.width, H=cv.height;
+    var lastPx, lastPy;
+    for(var px=drawL; px<=drawL+cW; px+=2){
+        var x=(px-drawL)/unit-maxR, y=k*x+b;
+        var py=drawT+cH-(y+maxR)*unit;
+        if(py>=drawT+12 && py<=drawT+cH-12){lastPx=px; lastPy=py;}
+    }
+    var px=(lastPx!==undefined?lastPx:drawL+cW-55)+(offX||10);
+    var py=(lastPy!==undefined?lastPy:drawT+25)+(offY||-8);
+    var cRect=cv.getBoundingClientRect(), bRect=box.getBoundingClientRect();
+    var scaleX=cRect.width/W, scaleY=cRect.height/H;
+    var ox=cRect.left-bRect.left, oy=cRect.top-bRect.top;
+    var el=document.createElement('span');
+    el.className='graph-label'; el.style.color=color;
+    el.innerHTML='$'+tex+'$';
+    el.style.left=(ox+px*scaleX)+'px'; el.style.top=(oy+py*scaleY)+'px';
+    // 拖拽
+    var dragging=false, startX, startY, startL, startT;
+    el.addEventListener('mousedown',function(e){dragging=true;startX=e.clientX;startY=e.clientY;startL=parseFloat(el.style.left)||0;startT=parseFloat(el.style.top)||0;el.style.zIndex=100;e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(!dragging)return;el.style.left=(startL+e.clientX-startX)+'px';el.style.top=(startT+e.clientY-startY)+'px';});
+    document.addEventListener('mouseup',function(){dragging=false;el.style.zIndex=10;});
+    box.appendChild(el);
+    if(window.katex){katex.render(tex,el,{throwOnError:false});}
+}
+
+function addCanvasLabelFQ(cv,tex,color,info,x,y,offX,offY){
+    var box=cv.parentElement;
+    var drawL=info.drawL, drawT=info.drawT, unitX=info.unitX||info.unit, unitY=info.unitY||info.unit;
+    var cH=info.cH, W=cv.width, H=cv.height;
+    var px=drawL+x*unitX+(offX||0), py=drawT+cH-y*unitY+(offY||0);
+    var cRect=cv.getBoundingClientRect(), bRect=box.getBoundingClientRect();
+    var scaleX=cRect.width/W, scaleY=cRect.height/H;
+    var ox=cRect.left-bRect.left, oy=cRect.top-bRect.top;
+    var el=document.createElement('span');
+    el.className='graph-label'; el.style.color=color;
+    el.innerHTML='$'+tex+'$';
+    el.style.left=(ox+px*scaleX)+'px'; el.style.top=(oy+py*scaleY)+'px';
+    var dragging=false, startX, startY, startL, startT;
+    el.addEventListener('mousedown',function(e){dragging=true;startX=e.clientX;startY=e.clientY;startL=parseFloat(el.style.left)||0;startT=parseFloat(el.style.top)||0;el.style.zIndex=100;e.preventDefault();});
+    document.addEventListener('mousemove',function(e){if(!dragging)return;el.style.left=(startL+e.clientX-startX)+'px';el.style.top=(startT+e.clientY-startY)+'px';});
+    document.addEventListener('mouseup',function(){dragging=false;el.style.zIndex=10;});
+    box.appendChild(el);
+    if(window.katex){katex.render(tex,el,{throwOnError:false});}
+}
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if(window.renderMathInElement){
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第19课时 有理数的混合运算（1） | 华师版·七上 第1章 有理数</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+        .rule-box {
+            background: #fbe9d2;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #e67e22;
+            font-size: 1.2rem;
+        }
+        .rule-box p {
+            margin: 0.5rem 0;
+        }
+        .rule-box .title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #b13e3e;
+            margin-bottom: 0.8rem;
+        }
+        .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.8rem 0 0.8rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box .answer-line {
+            line-height: 2.5;
+            margin-bottom: 0.5rem;
+        }
+        .answer-box .answer-line:last-child {
+            margin-bottom: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .try-item {
+            background: #edf7fc;
+            border-radius: 20px;
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 1px solid #b9d6ef;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.1rem;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。</div>
+    <h2>1.12 有理数的混合运算</h2>
+    <div class="lesson-title">第1课时 混合运算的顺序</div>
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数混合运算的意义</div>
+            <div class="target-item"><span>✔</span>掌握有理数混合运算的顺序</div>
+            <div class="target-item"><span>✔</span>能正确进行简单的有理数混合运算</div>
+            <div class="target-item"><span>✔</span>体会运算顺序的重要性</div>
+        </div>
+    </div>
+
+    <!-- 引入：教材第59页引例 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">📌 下面的算式中有哪几种运算？</p>
+        <p style="text-align:center; font-size:1.8rem; margin:1rem 0;">\(3 + 50 \div 2^{2} \times \left(-\dfrac{1}{5}\right) - 1\)</p>
+        <p>这个算式中，含有有理数的加、减、乘、除、乘方等多种运算，它是有理数的混合运算。</p>
+    </div>
+
+    <!-- 有理数混合运算顺序 -->
+    <h3>📋 有理数混合运算的顺序</h3>
+    <div class="rule-box">
+        <div class="title">📏 运算顺序法则</div>
+        <p>1. <strong>先做乘方，再做乘除，最后做加减</strong>；</p>
+        <p>2. <strong>同级运算，按照从左至右的顺序进行</strong>；</p>
+        <p>3. <strong>如果有括号，就先算小括号里的，再算中括号里的，然后算大括号里的</strong>。</p>
+    </div>
+    <div class="tip-box">
+        <p><strong>📌 运算层级：</strong></p>
+        <p>加法和减法叫做<strong>第一级运算</strong>；乘法和除法叫做<strong>第二级运算</strong>；乘方和开方（今后将会学到）叫做<strong>第三级运算</strong>。</p>
+    </div>
+
+    <!-- 试一试：教材第59页 -->
+    <h3>✏️ 试一试</h3>
+    <div class="think-box">
+        <p style="font-size:1.2rem; margin-bottom:1rem;"><strong>指出下列各算式的运算顺序：</strong></p>
+        <div class="grid-2">
+            <div class="try-item">(1) \(6 \div (3 \times 2)\)</div>
+            <div class="try-item">(2) \(6 \div 3 \times 2\)</div>
+            <div class="try-item">(3) \(17 - 8 \div (-2) + 4 \times (-3)\)</div>
+            <div class="try-item">(4) \(3^{2} - 50 \div 2^{2} \times \dfrac{1}{10} - 1\)</div>
+            <div class="try-item">(5) \(-1\dfrac{2}{3} \times \left(0.5 - \dfrac{2}{3}\right) \div 1\dfrac{1}{9}\)</div>
+            <div class="try-item">(6) \(-1 - [1 - (1 - 0.5 \times 4^{3})]\)</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('try')" style="margin-top:0.5rem;">显示答案</button>
+        <div id="answerTry" class="answer-box">
+            <div class="answer-line">(1) 先算括号里的乘法，再算除法；</div>
+            <div class="answer-line">(2) 同级运算，从左到右：先算除法，再算乘法；</div>
+            <div class="answer-line">(3) 先算乘除，再算加减；</div>
+            <div class="answer-line">(4) 先算乘方，再算乘除，最后算加减；</div>
+            <div class="answer-line">(5) 先算括号里的减法，再算乘除；</div>
+            <div class="answer-line">(6) 先算小括号里的乘方和乘法，再算小括号里的减法，再算中括号里的减法，最后算括号外的减法。</div>
+        </div>
+    </div>
+
+    <!-- 思考：教材第60页 -->
+    <h3>🤔 思考</h3>
+    <div class="grid-2" style="margin:1rem 0; gap:2rem;">
+        <div style="background:#f9f2e0; border-radius:20px; padding:1rem;">
+            <p><strong>(1) \(2 \div \left(\dfrac{1}{2} - 2\right)\) 与 \(2 \div \dfrac{1}{2} - 2\) 有什么不同？</strong></p>
+            <button class="interact-btn" onclick="toggleAnswer('think1')" style="margin-top:0.5rem;">显示答案</button>
+            <div id="answerThink1" class="answer-box">
+                <div class="answer-line">第一个算式有括号，先算括号里的减法，再算除法；</div>
+                <div class="answer-line">第二个算式无括号，先算除法，再算减法。</div>
+                <div class="answer-line">运算顺序不同，结果也不同。</div>
+            </div>
+        </div>
+        <div style="background:#f9f2e0; border-radius:20px; padding:1rem;">
+            <p><strong>(2) \((-2) \div (2 \times 3)\) 与 \((-2) \div 2 \times 3\) 有什么不同？</strong></p>
+            <button class="interact-btn" onclick="toggleAnswer('think2')" style="margin-top:0.5rem;">显示答案</button>
+            <div id="answerThink2" class="answer-box">
+                <div class="answer-line">第一个算式有括号，先算括号里的乘法，再算除法；</div>
+                <div class="answer-line">第二个算式无括号，同级运算从左到右：先算除法，再算乘法。</div>
+                <div class="answer-line">运算顺序不同，结果也不同。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例1：教材第60页 -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 计算：\(\left(\dfrac{1}{3} - \dfrac{1}{2}\right) \div 1\dfrac{1}{4} \div \dfrac{1}{10}\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            <div class="answer-line">\(\left(\dfrac{1}{3} - \dfrac{1}{2}\right) \div 1\dfrac{1}{4} \div \dfrac{1}{10}\)</div>
+            <div class="answer-line">\(= \left(-\dfrac{1}{6}\right) \div \dfrac{5}{4} \div \dfrac{1}{10}\)</div>
+            <div class="answer-line">\(= \left(-\dfrac{1}{6}\right) \times \dfrac{4}{5} \times 10\)</div>
+            <div class="answer-line">\(= -\dfrac{1}{6} \times \dfrac{4}{5} \times 10\)</div>
+            <div class="answer-line">\(= -\dfrac{40}{30} = -\dfrac{4}{3}\)</div>
+        </div>
+        <div class="tip-box" style="margin-top:1rem;">
+            <strong>💡 注意：</strong> 进行分数的乘除运算时，一般要把带分数化为假分数，把除法转化为乘法。
+        </div>
+    </div>
+
+    <!-- 试一试：教材第60页练习前的小试一试 -->
+    <div class="think-box">
+        <p><strong>试一试</strong> 计算：\(2\dfrac{1}{4} \times \left(-\dfrac{6}{7}\right) \div \left(\dfrac{1}{2} - 2\right)\)。</p>
+        <button class="interact-btn" onclick="toggleAnswer('try2')">显示答案</button>
+        <div id="answerTry2" class="answer-box">
+            <div class="answer-line">\(2\dfrac{1}{4} \times \left(-\dfrac{6}{7}\right) \div \left(\dfrac{1}{2} - 2\right)\)</div>
+            <div class="answer-line">\(= \dfrac{9}{4} \times \left(-\dfrac{6}{7}\right) \div \left(-\dfrac{3}{2}\right)\)</div>
+            <div class="answer-line">\(= \dfrac{9}{4} \times \left(-\dfrac{6}{7}\right) \times \left(-\dfrac{2}{3}\right)\)</div>
+            <div class="answer-line">\(= \dfrac{9}{4} \times \dfrac{6}{7} \times \dfrac{2}{3}\)（负负得正）</div>
+            <div class="answer-line">\(= \dfrac{9 \times 6 \times 2}{4 \times 7 \times 3} = \dfrac{108}{84} = \dfrac{9}{7}\)</div>
+        </div>
+    </div>
+
+    <!-- 练习：教材第60页 -->
+    <div class="exercises">
+        <h3>练习</h3>
+        
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 计算：\(2 \times (-3)^{3} - 4 \times (-3) + 15\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box">
+                <div class="answer-line">\(2 \times (-3)^{3} - 4 \times (-3) + 15\)</div>
+                <div class="answer-line">\(= 2 \times (-27) - (-12) + 15\)</div>
+                <div class="answer-line">\(= -54 + 12 + 15\)</div>
+                <div class="answer-line">\(= -27\)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：\(-1\dfrac{2}{3} \times \left(1 - \dfrac{2}{3}\right) \div \dfrac{1}{9}\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div id="answer1" class="answer-box">
+                <div class="answer-line">\(-1\dfrac{2}{3} \times \left(1 - \dfrac{2}{3}\right) \div \dfrac{1}{9}\)</div>
+                <div class="answer-line">\(= -\dfrac{5}{3} \times \dfrac{1}{3} \times 9\)</div>
+                <div class="answer-line">\(= -\dfrac{5}{3} \times \dfrac{1}{3} \times 9 = -\dfrac{5}{9} \times 9 = -5\)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 计算：\([12 - 4 \times (3 - 10)] \div 4\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div id="answer2" class="answer-box">
+                <div class="answer-line">\([12 - 4 \times (3 - 10)] \div 4\)</div>
+                <div class="answer-line">\(= [12 - 4 \times (-7)] \div 4\)</div>
+                <div class="answer-line">\(= [12 + 28] \div 4\)</div>
+                <div class="answer-line">\(= 40 \div 4 = 10\)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：运算技巧提示（可折叠） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 运算小技巧</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>进行有理数混合运算时，要注意以下几点：</p>
+            <ul style="margin-left:1.5rem;">
+                <li>先观察算式结构，确定运算顺序；</li>
+                <li>有括号先算括号内的；</li>
+                <li>同级运算从左到右依次进行；</li>
+                <li>乘方运算中，注意底数的符号；</li>
+                <li>分数运算时，带分数要化为假分数；</li>
+                <li>除法要转化为乘法；</li>
+                <li>注意运算符号与性质符号的区别。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">有理数混合运算：含有加、减、乘、除、乘方等多种运算</div>
+                <div class="summary-item">运算顺序：先乘方，再乘除，最后加减</div>
+                <div class="summary-item">同级运算：从左到右依次进行</div>
+                <div class="summary-item">有括号：先小括号，再中括号，最后大括号</div>
+                <div class="summary-item">分数运算：带分数化假分数，除法化乘法</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P60 练习第1、2、3题；习题1.12 A组第1、2题。</span>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 运算顺序要记牢，先乘方后乘除，加减最后莫颠倒 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第19课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        if (id === 'try') {
+            document.getElementById('answerTry').classList.toggle('show-answer');
+        } else if (id === 'think1') {
+            document.getElementById('answerThink1').classList.toggle('show-answer');
+        } else if (id === 'think2') {
+            document.getElementById('answerThink2').classList.toggle('show-answer');
+        } else if (id === 'try2') {
+            document.getElementById('answerTry2').classList.toggle('show-answer');
+        } else {
+            const answerDiv = document.getElementById('answer' + id);
+            if (answerDiv) answerDiv.classList.toggle('show-answer');
+        }
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

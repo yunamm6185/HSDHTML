@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.5 第18章复习 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            var el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+            if (el.style.display === 'block') el.classList.add('show-answer'); else el.classList.remove('show-answer');
+        }
+        // 综合探究题状态
+        var extendState = {A:{x:250,y:190}, B:{x:150,y:310}, C:{x:420,y:310}, dragging:false, needsRedraw:true};
+
+        function initCanvases() {
+            setupExtendInteraction();
+            extendRenderLoop();
+        }
+
+        // 预计算旋转常量
+        var COS60 = 0.5, SIN60 = 0.8660254037844386;
+        function rotCW(x, y) {  return {x: x*COS60 + y*SIN60, y: -x*SIN60 + y*COS60}; }
+        function rotCCW(x, y) { return {x: x*COS60 - y*SIN60, y: x*SIN60 + y*COS60}; }
+
+        /* ===== 拓展延伸：综合探究图（可拖动点A） ===== */
+        function drawExtendProblem() {
+            var c = document.getElementById('cExtend'); if (!c) return;
+            var ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+
+            var A = extendState.A, B = extendState.B, C = extendState.C;
+
+            // D: △ACD以AC为边向外
+            var vACx = C.x - A.x, vACy = C.y - A.y;
+            var rAC = rotCW(vACx, vACy);
+            var Dx = A.x + rAC.x, Dy = A.y + rAC.y;
+
+            // E: △ABE以AB为边向外
+            var vABx = B.x - A.x, vABy = B.y - A.y;
+            var rAB = rotCCW(vABx, vABy);
+            var Ex = A.x + rAB.x, Ey = A.y + rAB.y;
+
+            // F: △BCF以BC为边向上
+            var vBCx = C.x - B.x, vBCy = C.y - B.y;
+            var rBC = rotCW(vBCx, vBCy);
+            var Fx = B.x + rBC.x, Fy = B.y + rBC.y;
+
+            // 绘制三个等边三角形（虚线+淡色填充）
+            ctx.setLineDash([4,3]); ctx.lineWidth = 1.2;
+
+            ctx.strokeStyle = '#2563a0';
+            ctx.fillStyle = 'rgba(37,99,160,0.06)';
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.lineTo(Dx,Dy); ctx.closePath();
+            ctx.fill(); ctx.stroke();
+
+            ctx.strokeStyle = '#0d6b4a';
+            ctx.fillStyle = 'rgba(13,107,74,0.06)';
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(Ex,Ey); ctx.closePath();
+            ctx.fill(); ctx.stroke();
+
+            ctx.strokeStyle = '#9a4d00';
+            ctx.fillStyle = 'rgba(154,77,0,0.06)';
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(Fx,Fy); ctx.closePath();
+            ctx.fill(); ctx.stroke();
+
+            ctx.setLineDash([]);
+
+            // △ABC 主体
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.closePath();
+            ctx.stroke();
+
+            // 四边形 ADFE（浅红色填充）
+            ctx.fillStyle = 'rgba(168,32,53,0.18)';
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2.2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(Dx,Dy); ctx.lineTo(Fx,Fy); ctx.lineTo(Ex,Ey); ctx.closePath();
+            ctx.fill(); ctx.stroke();
+
+            // 顶点标注
+            ctx.font = 'bold 24px STKaiti,KaiTi';
+            ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x-4, A.y-10);
+            ctx.fillText('B', B.x-14, B.y+18);
+            ctx.fillText('C', C.x+6, B.y+18);
+            ctx.fillStyle = '#2563a0';
+            ctx.fillText('D', Dx+5, Dy-4);
+            ctx.fillStyle = '#0d6b4a';
+            ctx.fillText('E', Ex-14, Ey-4);
+            ctx.fillStyle = '#9a4d00';
+            ctx.fillText('F', Fx-4, Fy-8);
+
+            // 点A可拖动提示
+            ctx.fillStyle = 'rgba(168,32,53,0.25)';
+            ctx.beginPath(); ctx.arc(A.x, A.y, 12, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = '#a82035';
+            ctx.beginPath(); ctx.arc(A.x, A.y, 6, 0, Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(A.x, A.y, 6, 0, Math.PI*2); ctx.stroke();
+
+            // 实时显示 ∠BAC 度数 + 弧线标注
+            var ABx = B.x - A.x, ABy = B.y - A.y;
+            var ACx = C.x - A.x, ACy = C.y - A.y;
+            var lenAB = Math.sqrt(ABx*ABx + ABy*ABy);
+            var lenAC = Math.sqrt(ACx*ACx + ACy*ACy);
+            var angleDeg = 0;
+            if (lenAB > 0.1 && lenAC > 0.1) {
+                var cosA = (ABx*ACx + ABy*ACy) / (lenAB * lenAC);
+                cosA = Math.max(-1, Math.min(1, cosA));
+                angleDeg = Math.round(Math.acos(cosA) * 180 / Math.PI);
+            }
+            // 绘制角BAC弧线
+            var endAng = Math.atan2(ABy, ABx);
+            var startAng = Math.atan2(ACy, ACx);
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(A.x, A.y, 22, startAng, endAng, false); ctx.stroke();
+
+            ctx.font = 'bold 20px sans-serif';
+            ctx.fillStyle = '#a82035';
+            ctx.fillText(angleDeg + '\u00B0', A.x - 5, A.y + 50);
+        }
+
+        /* ===== requestAnimationFrame 渲染循环 ===== */
+        function extendRenderLoop() {
+            if (extendState.needsRedraw) {
+                extendState.needsRedraw = false;
+                drawExtendProblem();
+            }
+            requestAnimationFrame(extendRenderLoop);
+        }
+
+        /* ===== 点A拖动交互 ===== */
+        function setupExtendInteraction() {
+            var c = document.getElementById('cExtend'); if (!c) return;
+            function getPos(e) {
+                var rect = c.getBoundingClientRect();
+                var cx = e.touches ? e.touches[0].clientX : e.clientX;
+                var cy = e.touches ? e.touches[0].clientY : e.clientY;
+                return {x: (cx - rect.left) * (c.width / rect.width),
+                        y: (cy - rect.top) * (c.height / rect.height)};
+            }
+            function dist(p1, p2) {
+                var dx = p1.x - p2.x, dy = p1.y - p2.y;
+                return dx*dx + dy*dy; // 省略开方，比较平方即可
+            }
+            c.addEventListener('mousedown', function(e) {
+                var p = getPos(e);
+                if (dist(p, extendState.A) < 256) extendState.dragging = true; // 16^2 = 256
+            });
+            c.addEventListener('mousemove', function(e) {
+                if (!extendState.dragging) return;
+                var p = getPos(e);
+                extendState.A.x = Math.max(60, Math.min(440, p.x));
+                extendState.A.y = Math.max(40, Math.min(290, p.y));
+                extendState.needsRedraw = true;
+            });
+            c.addEventListener('mouseup', function() { extendState.dragging = false; });
+            c.addEventListener('mouseleave', function() { extendState.dragging = false; });
+            c.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                var p = getPos(e);
+                if (dist(p, extendState.A) < 256) extendState.dragging = true;
+            });
+            c.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                if (!extendState.dragging) return;
+                var p = getPos(e);
+                extendState.A.x = Math.max(60, Math.min(440, p.x));
+                extendState.A.y = Math.max(40, Math.min(290, p.y));
+                extendState.needsRedraw = true;
+            });
+            c.addEventListener('touchend', function() { extendState.dragging = false; });
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 22px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.8rem 0 1rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .sub-title { font-size: 1.3rem; color: var(--color-accent-blue); font-weight: 700; margin: 1.2rem 0 .6rem; }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .intro-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #86efac; border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; }
+        .intro-box h4 { color: #166534; font-size: 1.4rem; margin-bottom: .8rem; }
+        .goal-box { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.2rem 1.8rem; margin: 1rem 0; }
+        .goal-box h4 { color: #1e40af; font-size: 1.3rem; margin-bottom: .6rem; }
+        .goal-box ul { margin-left: 1.5rem; }
+        .goal-box li { margin: .4rem 0; }
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.5rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .example-card { background: #fff7ed; border-left: 8px solid #f97316; border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .example-card h4 { font-size: 1.4rem; color: #c2410c; font-weight: 700; margin-bottom: 0.5rem; }
+        .example-tag { display: inline-block; background: #f97316; color: #fff; padding: .2rem .8rem; border-radius: 20px; font-size: .9rem; font-weight: 700; margin-right: .5rem; }
+        .practice-card { background: #f0f9ff; border: 2px solid #7dd3fc; border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; }
+        .practice-card h4 { font-size: 1.4rem; color: #0369a1; font-weight: 700; margin-bottom: 0.5rem; }
+        .practice-level { display: inline-block; padding: .2rem .8rem; border-radius: 20px; font-size: .85rem; font-weight: 700; margin-right: .5rem; }
+        .level-a { background: #22c55e; color: #fff; }
+        .level-b { background: #3b82f6; color: #fff; }
+        .level-c { background: #8b5cf6; color: #fff; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.1rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .interact-btn-orange { background: #fff; border: 2px solid #f97316; color: #f97316; box-shadow: 0 4px 0 #c2410c; }
+        .interact-btn-orange:hover { box-shadow: 0 6px 0 #c2410c; }
+        .interact-btn-orange:active { box-shadow: 0 1px 0 #c2410c; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; }
+        th, td { border: 2px solid #d0d7e0; padding: 0.8rem; text-align: left; }
+        th { background: #e8ecf2; color: var(--color-primary); font-weight: 700; font-size: 1.1rem; }
+        td { font-size: 1rem; }
+        .method-table th, .method-table td { text-align: center; font-size: 1.2rem;}
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; font-size: 1.4rem; }
+
+        .knowledge-card { background: #fef3c7; border: 2px solid #fcd34d; border-radius: var(--radius-lg); padding: 1.2rem; margin: 1rem 0; }
+        .knowledge-card h4 { color: #92400e; margin-bottom: 0.5rem; }
+        .screenshot-img { max-width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; margin: 1rem 0; display: block; }
+        .error-tip { background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; margin: 1rem 0; border-radius: 0 8px 8px 0; }
+        .error-tip h4 { color: #b91c1c; margin-bottom: 0.3rem; }
+        .flow-box { background: #f8fafc; border: 2px solid #cbd5e1; border-radius: var(--radius-md); padding: 1rem; margin: 1rem 0; text-align: center; }
+        .flow-box p { margin: .3rem 0; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+        /* ===== 知识体系紧凑版 ===== */
+        .knowledge-tree {
+            display:flex; align-items:center; justify-content:center;
+            flex-wrap:wrap; gap:0.3rem 0.6rem;
+            margin:0.8rem 0; font-size:0.9rem;
+        }
+        .kt-node-mini {
+            padding: 0.3rem 0.9rem; border-radius: 999px; font-weight: 700;
+            color: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            white-space: nowrap; font-size:0.9rem;
+        }
+        .kt-node-mini.n0 { background: #64748b; }
+        .kt-node-mini.n1 { background: #3b82f6; }
+        .kt-node-mini.n3 { background: #7c3aed; }
+        .kt-arrow-mini { color:#94a3b8; font-size:1.1rem; }
+        .kt-cond-mini {
+            background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px;
+            padding:0.2rem 0.5rem; font-size:0.78rem; color:#334155;
+            text-align:center; line-height:1.3;
+        }
+        .kt-target-mini {
+            padding: 0.3rem 0.9rem; border-radius: 999px; font-weight: 700;
+            font-size: 0.9rem; color: #fff;
+        }
+        .kt-target-mini.rect { background: #2563a0; }
+        .kt-target-mini.rhomb { background: #0d6b4a; }
+        .kt-branch-mini { display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap; justify-content:center; }
+        .kt-join-text { font-size:0.78rem; color:#64748b; }
+
+        /* 紧凑知识卡片 */
+        .card-rect  { border-top: 3px solid #2563a0; }
+        .card-rect h4  { color: #1e3a5f; margin-bottom:0.3rem; }
+        .card-rect .tag { background: #2563a0; }
+        .card-rhomb { border-top: 3px solid #0d6b4a; }
+        .card-rhomb h4 { color: #064e3b; margin-bottom:0.3rem; }
+        .card-rhomb .tag { background: #0d6b4a; }
+        .card-squ   { border-top: 3px solid #9333ea; }
+        .card-squ h4   { color: #6b21a8; margin-bottom:0.3rem; }
+        .card-squ .tag { background: #9333ea; }
+        .summary-card .tag {
+            display:inline-block; color:#fff; border-radius:4px; padding:0.1rem 0.4rem;
+            font-size:0.7rem; font-weight:700; margin-right:0.3rem; vertical-align:middle;
+        }
+        .summary-card p { margin: 0.25rem 0; line-height: 1.4; font-size: 0.88rem; }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem; margin: 0.6rem 0; }
+        @media (max-width: 800px) { .summary-grid { grid-template-columns: 1fr; } }
+        .summary-card { background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 0.8rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.5 第18章复习</span>
+    </div>
+    <h1>第18章 复习</h1>
+    <div class="lesson-title">知识梳理·综合练习·回顾提升</div>
+
+
+
+    <div class="section-title">一、导入</div>
+    <div class="intro-box">
+        <p>同学们，我们已经学习了矩形、菱形、正方形这三种特殊的平行四边形。请思考：</p>
+        <p style="margin-top:0.8rem;"><strong>1.</strong> 如果把平行四边形变成一个"角是直角"的图形，会得到什么图形？它有哪些特殊性质？</p>
+        <p><strong>2.</strong> 如果把平行四边形变成"邻边相等"的图形，又会得到什么图形？</p>
+        <p><strong>3.</strong> 当一个图形既是矩形又是菱形时，它是什么图形？</p>
+        <p style="margin-top:0.8rem;color:#166534;">今天，就让我们一起来梳理这些图形之间的联系，构建完整的知识网络！</p>
+    </div>
+
+
+    <div class="section-title">二、知识结构</div>
+    <div class="method-summary">
+        <h4>本章知识体系</h4>
+
+        <!-- 紧凑层级关系图 -->
+        <div class="knowledge-tree">
+            <div class="kt-node-mini n0">四边形</div>
+            <span class="kt-arrow-mini">&#8594;</span>
+            <span class="kt-cond-mini">两组对边<br>分别平行</span>
+            <span class="kt-arrow-mini">&#8594;</span>
+            <div class="kt-node-mini n1">平行四边形</div>
+            <span class="kt-arrow-mini">&#8594;</span>
+            <div class="kt-branch-mini">
+                <span class="kt-cond-mini">+直角<br>或对角线相等</span>
+                <span class="kt-arrow-mini">&#8594;</span>
+                <div class="kt-target-mini rect">矩形</div>
+            </div>
+            <span class="kt-join-text">┐</span>
+            <span class="kt-join-text">既是矩形又是菱形</span>
+            <span class="kt-join-text">┘</span>
+            <div class="kt-branch-mini">
+                <span class="kt-cond-mini">+邻边相等<br>或对角线垂直</span>
+                <span class="kt-arrow-mini">&#8594;</span>
+                <div class="kt-target-mini rhomb">菱形</div>
+            </div>
+            <span class="kt-arrow-mini">&#8594;</span>
+            <div class="kt-node-mini n3">正方形</div>
+        </div>
+
+        <!-- 紧凑知识卡片 -->
+        <div class="summary-grid">
+            <div class="summary-card card-rect">
+                <h4><span class="tag">矩形</span></h4>
+                <p><span class="tag">定义</span>有一个角是直角的平行四边形</p>
+                <p><span class="tag">性质</span>四个角都是直角；对角线相等且互相平分</p>
+                <p><span class="tag">判定</span>平行四边形+直角；四边形+三个直角；平行四边形+对角线相等</p>
+            </div>
+            <div class="summary-card card-rhomb">
+                <h4><span class="tag">菱形</span></h4>
+                <p><span class="tag">定义</span>一组邻边相等的平行四边形</p>
+                <p><span class="tag">性质</span>四条边都相等；对角线互相垂直且平分一组对角</p>
+                <p><span class="tag">判定</span>平行四边形+邻边相等；四边形+四边相等；平行四边形+对角线垂直</p>
+            </div>
+            <div class="summary-card card-squ">
+                <h4><span class="tag">正方形</span></h4>
+                <p><span class="tag">定义</span>既是矩形又是菱形的四边形</p>
+                <p><span class="tag">性质</span>兼具矩形和菱形的全部性质</p>
+                <p><span class="tag">判定</span>平行四边形+直角+邻边相等；矩形且菱形；对角线相等且垂直平分</p>
+            </div>
+        </div>
+    </div>
+
+ 
+    <div class="section-title">三、要点回顾</div>
+    <div class="think-box">
+      
+        <p><strong>1. 特殊平行四边形的性质对比：</strong></p>
+        <table>
+            <tr><th>图形</th><th>边</th><th>角</th><th>对角线</th><th>对称性</th></tr>
+            <tr><td>平行四边形</td><td>对边平行且相等</td><td>对角相等</td><td>互相平分</td><td>中心对称</td></tr>
+            <tr><td>矩形</td><td>对边平行且相等</td><td style="color:#a82035;">四个角都是直角</td><td style="color:#a82035;">相等且互相平分</td><td>中心对称+2条轴对称</td></tr>
+            <tr><td>菱形</td><td style="color:#a82035;">四条边都相等</td><td>对角相等</td><td style="color:#a82035;">垂直且互相平分</td><td>中心对称+2条轴对称</td></tr>
+            <tr><td>正方形</td><td style="color:#a82035;">四条边都相等</td><td style="color:#a82035;">四个角都是直角</td><td style="color:#a82035;">相等、垂直、互相平分</td><td>中心对称+4条轴对称</td></tr>
+        </table>
+        <p><strong>2. 重要定理：</strong></p>
+        <p>• 直角三角形斜边上的中线等于斜边的一半。</p>
+        <p>• 逆定理：一边上的中线等于该边一半的三角形是直角三角形。</p>
+        <p><strong>3. 面积公式：</strong></p>
+        <p>• 菱形面积 $S = \dfrac{1}{2}d_1d_2$（对角线乘积的一半）</p>
+        <p>• 正方形面积 $S = a^2 = \dfrac{1}{2}d^2$</p>
+    </div>
+
+    <!-- 五、方法归纳 -->
+    <div class="section-title">四、方法归纳</div>
+    <div class="knowledge-card">
+        <h4>🔑 解题常用方法</h4>
+        <table class="method-table">
+            <tr>
+                <th>方法类型</th>
+                <th>具体方法</th>
+                <th>适用场景</th>
+            </tr>
+            <tr>
+                <td rowspan="3"><strong>判定图形</strong></td>
+                <td>从平行四边形出发</td>
+                <td>证矩形：+直角/对角线相等；证菱形：+邻边相等/对角线垂直</td>
+            </tr>
+            <tr>
+                <td>从四边形直接出发</td>
+                <td>证矩形：三个角是直角；证菱形：四条边相等</td>
+            </tr>
+            <tr>
+                <td>对角线特征</td>
+                <td>对角线相等且平分→矩形；垂直且平分→菱形；既相等又垂直→正方形</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>计算技巧</strong></td>
+                <td>利用勾股定理</td>
+                <td>涉及边长、对角线计算</td>
+            </tr>
+            <tr>
+                <td>面积法</td>
+                <td>求高、证明线段相等</td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>证明思路</strong></td>
+                <td>全等三角形</td>
+                <td>证明线段相等、角相等</td>
+            </tr>
+            <tr>
+                <td>构造辅助线</td>
+                <td>对角线、中位线、垂线</td>
+            </tr>
+        </table>
+    </div>
+    <div class="error-tip">
+        <h4>⚠️ 易错点提醒</h4>
+        <p><strong>错误1：</strong>"对角线相等的四边形是矩形" —— <strong>×</strong>（反例：等腰梯形）。正确：对角线相等的<strong>平行四边形</strong>是矩形。</p>
+        <p><strong>错误2：</strong>"对角线垂直的四边形是菱形" —— <strong>×</strong>（反例：筝形）。正确：对角线垂直的<strong>平行四边形</strong>是菱形。</p>
+        <p><strong>错误3：</strong>混淆"有三个角是直角"和"有三个角相等"——只有直角才能判定矩形。</p>
+    </div>
+
+
+    <div class="section-title">五、综合探究</div>
+    <div class="knowledge-card">
+        <p><strong>16.</strong> 如图，根据图形解答下列问题：</p>
+        <div style="text-align:center;margin:0.5rem 0;">
+            <canvas id="cExtend" width="600" height="380" style="max-width:100%;border-radius:8px;border:1px solid #eee;"></canvas>
+        </div>
+        <p>(1) 以 $\triangle ABC$ 的三边为边分别作等边三角形 $ACD$、等边三角形 $ABE$ 和等边三角形 $BCF$，判断四边形 $ADFE$ 的形状。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ext1')">查看分析</button>
+        <div id="ext1" class="answer-box">
+            <p>四边形 $ADFE$ 是<strong>平行四边形</strong>。</p>
+            <p>提示：$\triangle ABE$、$\triangle ACD$ 均为等边三角形，得 $AE = AB$，$AD = AC$，$\angle EAB = \angle DAC = 60°$。可证 $\triangle EAC \cong \triangle BAD$（SAS），进一步得到 $AD = FE$，$AE = FD$，故 $ADFE$ 为平行四边形。</p>
+        </div>
+        <p>(2) 在小题(1)中，是否一定存在▱$ADFE$？若存在，写出 $\triangle ABC$ 应满足的条件；若不一定存在，请说明理由。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ext2')">查看分析</button>
+        <div id="ext2" class="answer-box">
+            <p>不一定存在。当 $A$、$B$、$C$ 三点共线时，$\triangle ABC$ 退化，无法构成四边形 $ADFE$。</p>
+            <p>条件：<strong>$\triangle ABC$ 为非退化三角形</strong>（$A$ 不在直线 $BC$ 上）。</p>
+        </div>
+        <p>(3) $\triangle ABC$ 满足什么条件时，四边形 $ADFE$ 是矩形？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ext3')">查看分析</button>
+        <div id="ext3" class="answer-box">
+            <p>当 $\angle BAC = 150°$ 时，$\angle DAE = 360° - 60° - 60° - 150° = 90°$，平行四边形 $ADFE$ 有一个内角为 $90°$，故为<strong>矩形</strong>。</p>
+        </div>
+        <p>(4) $\triangle ABC$ 满足什么条件时，四边形 $ADFE$ 是菱形？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ext4')">查看分析</button>
+        <div id="ext4" class="answer-box">
+            <p>当 $AB = AC$ 时，$AE = AB = AC = AD$，即平行四边形 $ADFE$ 邻边相等，故为<strong>菱形</strong>。</p>
+        </div>
+        <p>(5) $\triangle ABC$ 满足什么条件时，四边形 $ADFE$ 是正方形？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ext5')">查看分析</button>
+        <div id="ext5" class="answer-box">
+            <p>同时满足(3)和(4)，即 <strong>$\angle BAC = 150°$ 且 $AB = AC$</strong> 时，四边形 $ADFE$ 为<strong>正方形</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 核心素养 -->
+    <div class="section-title">六、核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>逻辑推理：</strong>从一般到特殊再到一般，体会数学推理的层次性和严密性。</p>
+        <p><strong>数学建模：</strong>建立图形性质与判定之间的互逆关系模型。</p>
+        <p><strong>直观想象：</strong>通过图形变化感受几何图形之间的内在联系。</p>
+    </div>
+
+    <div class="teacher-msg">
+        第十八章的学习即将结束。从平行四边形到矩形、菱形、正方形，我们走过了"一般→特殊→更特殊"的探索之旅。记住：数学中的每一次特化，都是新发现的起点！
+    </div>
+
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

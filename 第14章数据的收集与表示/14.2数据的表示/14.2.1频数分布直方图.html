@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<title>14.2.1 频数分布直方图 | 华师版·八年级上册</title>
+<script>
+MathJax = {
+    tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+    svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:linear-gradient(135deg,#e8ecf4 0%,#d4dce8 100%);font-family:'PingFang SC','Microsoft YaHei','Segoe UI','Noto Sans SC',sans-serif;font-weight:500;line-height:1.9;color:#1e3b5a;padding:1.5rem;font-size:20px;min-height:100vh;}
+.textbook{max-width:1200px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 12px 50px rgba(40,60,120,.18),0 4px 12px rgba(0,0,0,.08);padding:0;overflow:hidden;}
+.header-meta{text-align:center;font-size:1.05rem;color:#6a7ba8;padding:.8rem 2rem;background:#f5f7ff;border-bottom:1px solid #dde3f5;letter-spacing:.03em;}
+.chapter-title{text-align:center;padding:2.2rem 2rem 1.5rem;background:linear-gradient(135deg,#2d3a6e,#4a5fae,#3d5a9e);color:#fff;position:relative;overflow:hidden;}
+.chapter-title::before{content:'';position:absolute;top:-60px;right:-40px;width:260px;height:260px;background:rgba(255,255,255,.05);border-radius:50%;}
+.chapter-title h1{font-size:2.6rem;font-weight:700;margin:0 0 .4rem;position:relative;z-index:1;color:#fff;}
+.chapter-title .section-label{font-size:1.25rem;opacity:.9;margin:.4rem 0;position:relative;z-index:1;color:rgba(255,255,255,.85);}
+.chapter-title .lesson-title{display:inline-block;background:rgba(255,255,255,.18);border-radius:40px;padding:.35rem 1.4rem;font-size:1.35rem;font-weight:600;margin-top:.5rem;position:relative;z-index:1;color:#fff;letter-spacing:.04em;}
+.content-body{padding:2.2rem 3rem 3rem;}
+/* 学习目标 */
+.learning-targets{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.5rem 2.2rem;margin-bottom:1.8rem;border:1px solid #c4cce0;box-shadow:0 4px 0 #a8b8cc;}
+.learning-targets h3{margin:0 0 .7rem;font-size:1.5rem;border-left:6px solid #5b6eae;padding-left:.8rem;color:#2d3a5e;}
+.target-grid{display:flex;flex-wrap:wrap;gap:.7rem;}
+.target-item{background:#fff;border-radius:40px;padding:.35rem 1.2rem .35rem .8rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.05rem;box-shadow:0 2px 0 #b4c4d8;border:1px solid #c8d2e2;}
+.target-item span{background:#5b6eae;color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+/* section标题 */
+.section-title{font-size:1.8rem;color:#2d3a5e;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #5b6eae;display:flex;align-items:center;gap:.6rem;}
+.section-title::before{content:'';display:inline-block;width:7px;height:1.4rem;background:linear-gradient(180deg,#5b6eae,#3b82f6);border-radius:4px;flex-shrink:0;}
+/* 各类卡片 */
+.intro-card{background:linear-gradient(135deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.8rem 2.5rem;margin:1.2rem 0;border-left:8px solid #5b6eae;}
+.intro-card h4{font-size:1.35rem;margin-bottom:.5rem;color:#2d3a5e;}
+.fact-card{background:#fff8e1;border-left:8px solid #d4a017;border-radius:2rem;padding:1.5rem 2.2rem;margin:1.2rem 0;}
+.fact-card h4{font-size:1.35rem;margin-bottom:.5rem;color:#b8860b;}
+.example-card{background:#e8f4e8;border-left:8px solid #4a7c4f;border-radius:2rem;padding:1.5rem 2.2rem;margin:1.2rem 0;}
+.example-card h4{font-size:1.35rem;color:#2d5a30;margin-bottom:.5rem;}
+.key-concept{background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-left:8px solid #1976d2;border-radius:2rem;padding:1.5rem 2.2rem;margin:1.2rem 0;}
+.key-concept h4{font-size:1.35rem;color:#0d47a1;margin-bottom:.5rem;}
+.summary-box{background:linear-gradient(135deg,#ede7f6,#d1c4e9);border-radius:2rem;padding:1.3rem 2rem;margin:1.5rem 0;}
+.summary-box h4{font-size:1.5rem;color:#4a148c;margin-bottom:.8rem;}
+/* 表格 */
+table{width:100%;border-collapse:collapse;margin:.8rem auto;}
+th,td{padding:12px 18px;text-align:center;border:1px solid #d4dae8;}
+th{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:#fff;font-size:1rem;}
+tr:nth-child(even){background:#f8fafc;}
+/* 图表容器 */
+.chart-wrap{background:#f8faff;border:2px solid #d4dae8;border-radius:1.5rem;padding:1.2rem 1rem;margin:1rem 0;text-align:center;}
+canvas{max-width:100%;height:auto;border-radius:8px;display:block;margin:0 auto;}
+/* 按钮 */
+.interact-btn{background:linear-gradient(135deg,#5b6eae,#7c8fcf);border:none;color:#fff;padding:.45rem 1.6rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #3d4e7e;margin:.4rem .3rem 0 0;font-size:1.05rem;transition:all .15s;}
+.interact-btn:hover{transform:translateY(-1px);box-shadow:0 5px 0 #3d4e7e;}
+.interact-btn:active{transform:translateY(1px);box-shadow:0 2px 0 #3d4e7e;}
+.answer-box{background:#f8f9ff;border-left:6px solid #d4a017;padding:.9rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:1.05rem;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+.show-answer{display:block!important;animation:fadeIn .35s ease;}
+/* 步骤卡片 */
+.steps-wrap{display:flex;flex-direction:column;gap:.7rem;margin:.8rem 0;}
+.step-item{display:flex;align-items:flex-start;gap:.9rem;background:#fff;border-radius:1.3rem;padding:.8rem 1.2rem;box-shadow:0 2px 6px rgba(91,110,174,.12);border:1px solid #dde3f5;}
+.step-num{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;flex-shrink:0;}
+.step-content{flex:1;line-height:1.7;}
+/* 互动区 */
+.interact-section{background:#eef2fb;border:2px dashed #9aabd8;border-radius:2rem;padding:1.8rem 2.5rem;margin:1.5rem 0;}
+.interact-section h4{font-size:1.35rem;color:#2d3a5e;margin-bottom:.8rem;}
+.input-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.5rem 0;}
+.custom-input{border:2px solid #9aabd8;border-radius:8px;padding:.45rem 1rem;font-size:1.05rem;width:90px;text-align:center;}
+.custom-input:focus{outline:none;border-color:#5b6eae;}
+/* 对比卡片 */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0;}
+.compare-item{background:#fff;border-radius:1.3rem;padding:.9rem 1.2rem;box-shadow:0 2px 6px rgba(0,0,0,.08);}
+.compare-item h5{font-size:1rem;margin-bottom:.4rem;}
+/* 高亮 */
+.hl{background:linear-gradient(120deg,#fef3c7,#fde68a);padding:1px 6px;border-radius:5px;font-weight:700;color:#92400e;}
+/* 数据块 */
+.data-block{background:#f5f7fa;padding:1rem 1.2rem;border-radius:1.3rem;margin:.8rem 0;font-family:monospace;line-height:2.1;text-align:center;font-size:1.05rem;border:1px solid #e0e4ee;}
+/* 页脚 */
+.footer-note{text-align:right;color:#3d4a6e;border-top:2px solid #c4cee0;padding-top:.8rem;margin-top:1.5rem;font-size:1rem;}
+ul,ol{margin-left:1.4rem;line-height:2.1;}
+p{margin:.45rem 0;}
+strong{color:#2d3a5e;}
+@media(max-width:700px){.content-body{padding:1.2rem 1.2rem 2rem;}.compare-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">华师版·八年级上册 ｜ 第14章 数据的收集与表示</div>
+
+    <div class="chapter-title">
+        <div class="section-label">14.2 数据的表示</div>
+        <h1>第十四章 数据的收集与表示</h1>
+        <div><span class="lesson-title">14.2.1 频数分布直方图</span></div>
+    </div>
+
+    <div class="content-body">
+
+        <!-- 学习目标 -->
+        <div class="learning-targets">
+            <h3>🎯 学习目标</h3>
+            <div class="target-grid">
+                <div class="target-item"><span>1</span>了解三种统计图各自的适用场景</div>
+                <div class="target-item"><span>2</span>理解频数、频数分布表的概念</div>
+                <div class="target-item"><span>3</span>掌握绘制频数分布直方图的步骤</div>
+                <div class="target-item"><span>4</span>能从直方图中读取数据并分析分布特征</div>
+            </div>
+        </div>
+
+        <!-- 一、三种统计图回顾 -->
+        <div class="section-title">一、三种常见统计图回顾</div>
+        <div class="compare-grid" style="grid-template-columns:1fr 1fr 1fr;align-items:start;">
+            <div class="compare-item" style="border-top:4px solid #5b6eae;">
+                <h5 style="color:#5b6eae;">📊 条形统计图</h5>
+                <p>用<strong>条形的高低</strong>表示数量大小</p>
+                <p style="color:#888;font-size:1rem;">适合：比较各类数量的多少</p>
+                <p style="color:#888;font-size:1rem;">特点：各条形间有空隙</p>
+                <div style="margin-top:.6rem;padding:.5rem;background:rgba(91,110,174,.06);border-radius:10px;">
+                <svg viewBox="0 0 160 90" style="width:100%;max-width:150px;height:auto;display:block;margin:0 auto;">
+                <line x1="20" y1="75" x2="150" y2="75" stroke="#ccc" stroke-width="1"/>
+                <rect x="30" y="50" width="22" height="25" fill="#5b6eae" rx="2"/>
+                <rect x="68" y="25" width="22" height="50" fill="#7c8fcf" rx="2"/>
+                <rect x="106" y="10" width="22" height="65" fill="#3d5a9e" rx="2"/>
+                <text x="41" y="85" font-size="9" fill="#888" text-anchor="middle">甲</text>
+                <text x="79" y="85" font-size="9" fill="#888" text-anchor="middle">乙</text>
+                <text x="117" y="85" font-size="9" fill="#888" text-anchor="middle">丙</text>
+                </svg></div>
+            </div>
+            <div class="compare-item" style="border-top:4px solid #e67e22;">
+                <h5 style="color:#e67e22;">📈 折线统计图</h5>
+                <p>用<strong>折线的起伏</strong>表示变化趋势</p>
+                <p style="color:#888;font-size:1rem;">适合：反映数量变化规律</p>
+                <p style="color:#888;font-size:1rem;">特点：直观显示增减趋势</p>
+                <div style="margin-top:.6rem;padding:.5rem;background:rgba(230,126,34,.06);border-radius:10px;">
+                <svg viewBox="0 0 160 90" style="width:100%;max-width:150px;height:auto;display:block;margin:0 auto;">
+                <line x1="20" y1="75" x2="150" y2="75" stroke="#ccc" stroke-width="1"/>
+                <polyline points="30,65 60,35 90,50 120,15 145,30" fill="none" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="30" cy="65" r="3" fill="#e67e22"/><circle cx="60" cy="35" r="3" fill="#e67e22"/>
+                <circle cx="90" cy="50" r="3" fill="#e67e22"/><circle cx="120" cy="15" r="3" fill="#e67e22"/>
+                <circle cx="145" cy="30" r="3" fill="#e67e22"/>
+                </svg></div>
+            </div>
+            <div class="compare-item" style="border-top:4px solid #27ae60;">
+                <h5 style="color:#27ae60;">🥧 扇形统计图</h5>
+                <p>用<strong>扇形的大小</strong>反映各部分占比</p>
+                <p style="color:#888;font-size:1rem;">适合：描述部分与总体关系</p>
+                <p style="color:#888;font-size:1rem;">特点：各扇形占比之和=100%</p>
+                <div style="margin-top:.6rem;padding:.5rem;background:rgba(39,174,96,.06);border-radius:10px;">
+                <svg viewBox="0 0 160 90" style="width:100%;max-width:150px;height:auto;display:block;margin:0 auto;">
+                <circle cx="65" cy="45" r="35" fill="#27ae60"/>
+                <path d="M65,45 L65,10 A35,35 0 0,1 96,28 Z" fill="#2ecc71"/>
+                <path d="M65,45 L96,28 A35,35 0 0,1 65,80 Z" fill="#1e8449"/>
+                <text x="120" y="30" font-size="8" fill="#27ae60">● 30%</text>
+                <text x="120" y="45" font-size="8" fill="#2ecc71">● 45%</text>
+                <text x="120" y="60" font-size="8" fill="#1e8449">● 25%</text>
+                </svg></div>
+            </div>
+        </div>
+        <div class="fact-card">
+            <h4>❓ 新问题引入</h4>
+            <p>当数据量较大（如20人的成绩、全国31个省份的数据）时，条形图会非常拥挤，难以看清整体规律。</p>
+            <p>→ 需要一种能够<strong>反映大量数据整体分布</strong>的统计图——<span class="hl">频数分布直方图</span></p>
+        </div>
+
+        <!-- 二、例1 -->
+        <div class="section-title">二、例1　立定投篮成绩统计</div>
+
+        <div class="intro-card">
+            <h4>📋 题目</h4>
+            <p>某班20位同学参加立定投篮比赛，体育老师记录了他们的成绩（单位：个）。学校有5个篮球架，要按投篮成绩把这20位同学分成<strong>5组</strong>分别训练，该如何统计各组人数？</p>
+            <p>原始数据如下：</p>
+            <div class="data-block">
+                3, 7, 7, 6, 5, 0, 7, 9, 0, 2,<br>
+                7, 3, 2, 6, 8, 7, 3, 4, 8, 6
+            </div>
+        </div>
+
+        <!-- 例1：先展示条形图（引发思考） -->
+        <div class="fact-card" style="margin:1rem 0;">
+            <h4>📊 先用条形统计图展示</h4>
+            <p>把20位同学的成绩直接绘制成条形统计图——以<strong>学号1~20</strong>为横轴，<strong>投篮命中数</strong>为纵轴：</p>
+            <div class="chart-wrap" style="margin-top:.8rem;">
+                <canvas id="canvasBar1" width="560" height="280"></canvas>
+                <p style="color:#666;font-size:.95rem;margin-top:.4rem;">图14.2.0　立定投篮成绩条形统计图（20人）</p>
+            </div>
+            <p style="margin-top:.7rem;color:#666;">❓ 思考：这张图能一眼看出同学们成绩的<strong>整体分布规律</strong>吗？如果有100人、1000人的数据，条形图还适用吗？</p>
+            <div style="margin-top:.8rem;padding:.8rem 1rem;background:#fff3e0;border-left:4px solid #ff9800;border-radius:8px;">
+                <p style="margin:0;color:#e65100;"><strong>💡 思路：</strong>与其逐个看每个人的成绩，不如把相近的成绩<strong>归为一组</strong>，统计每组有多少人——这就是<span class="hl">频数分布表</span>。再根据频数分布表绘制<span class="hl">频数分布直方图</span>，就能清晰看出数据的整体分布了！</p>
+            </div>
+        </div>
+
+        <!-- 例1：步骤 -->
+        <div class="key-concept">
+            <h4>🔢 制作频数分布表的步骤</h4>
+            <div class="steps-wrap">
+                <div class="step-item">
+                    <div class="step-num">①</div>
+                    <div class="step-content"><strong>找极差</strong>：最大值 − 最小值 = 9 − 0 = <span class="hl">9</span></div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">②</div>
+                    <div class="step-content"><strong>定组数和组距</strong>：需分5组，每组组距 = 9 ÷ 5 ≈ <span class="hl">2</span>（取整），分组：[0, 2)、[2, 4)、[4, 6)、[6, 8)、[8, 10)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">③</div>
+                    <div class="step-content"><strong>划记计数</strong>：逐个数出每组的数据个数（"上组不在内"：每组含左端点，不含右端点）</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">④</div>
+                    <div class="step-content"><strong>得频数分布表</strong>，再据此<strong>绘制直方图</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 例1：表格 + 直方图并排 -->
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:stretch;margin:1rem 0;">
+            <div style="flex:1;min-width:280px;display:flex;flex-direction:column;">
+                <div class="example-card" style="flex:1;display:flex;flex-direction:column;">
+                    <h4>例1　频数分布表</h4>
+                    <table style="max-width:100%;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(91,110,174,.15);flex:1;">
+                        <thead>
+                            <tr>
+                                <th style="background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:#fff;font-size:1.05rem;padding:16px 14px;">命中次数</th>
+                                <th style="background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:#fff;font-size:1.05rem;padding:16px 18px;min-width:90px;">划记</th>
+                                <th style="background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:#fff;font-size:1.05rem;padding:16px 14px;">频数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:16px 14px;font-weight:600;">[0, 2)</td>
+                                <td style="padding:16px 18px;color:#5b6eae;font-weight:600;letter-spacing:.3em;">T</td>
+                                <td style="padding:16px 14px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">2</td>
+                            </tr>
+                            <tr style="background:#f8faff;">
+                                <td style="padding:16px 14px;font-weight:600;">[2, 4)</td>
+                                <td style="padding:16px 18px;color:#5b6eae;font-weight:600;letter-spacing:.3em;">正</td>
+                                <td style="padding:16px 14px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">5</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:16px 14px;font-weight:600;">[4, 6)</td>
+                                <td style="padding:16px 18px;color:#5b6eae;font-weight:600;letter-spacing:.3em;">T</td>
+                                <td style="padding:16px 14px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">2</td>
+                            </tr>
+                            <tr style="background:#f8faff;">
+                                <td style="padding:16px 14px;font-weight:600;">[6, 8)</td>
+                                <td style="padding:16px 18px;color:#5b6eae;font-weight:600;letter-spacing:.3em;">正丅</td>
+                                <td style="padding:16px 14px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">8</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:16px 14px;font-weight:600;">[8, 10)</td>
+                                <td style="padding:16px 18px;color:#5b6eae;font-weight:600;letter-spacing:.3em;">下</td>
+                                <td style="padding:16px 14px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">3</td>
+                            </tr>
+                            <tr style="background:linear-gradient(135deg,#e8ecf4,#dde3ee);font-weight:700;border-top:2px solid #5b6eae;">
+                                <td style="padding:16px 14px;">合计</td>
+                                <td style="padding:16px 18px;">—</td>
+                                <td style="padding:16px 14px;font-size:1.1rem;color:#5b6eae;">20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:.8rem;color:#555;font-size:.95rem;">
+                        数据：0×2, 2×2, 3×3, 4×1, 5×1, 6×3, 7×5, 8×2, 9×1 → 合计20人 ✓
+                    </p>
+                </div>
+            </div>
+            <div style="flex:2;min-width:320px;display:flex;flex-direction:column;">
+                <div class="chart-wrap" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                    <canvas id="canvas1" width="520" height="280"></canvas>
+                    <p style="color:#666;font-size:1rem;margin-top:.5rem;">图14.2.1　立定投篮成绩频数分布直方图（20人）</p>
+                </div>
+            </div>
+        </div><!-- 例1 flex 结束 -->
+
+        <!-- 例1读图 -->
+        <div class="fact-card">
+            <h4>🔍 读图思考</h4>
+            <ol>
+                <li>频数最高的一组是哪组？说明了什么？</li>
+                <li>命中次数在4个以下（成绩较差）的有多少人？占全班的百分之几？</li>
+            </ol>
+            <button class="interact-btn" onclick="toggleAns('ans1')">🔍 查看参考答案</button>
+            <div id="ans1" class="answer-box">
+                <p><strong>参考答案：</strong></p>
+                <ol style="line-height:2.1;">
+                    <li>频数最高的是 <strong>[6, 8)</strong> 组，频数为8人，说明大多数同学命中次数在6~7个之间，训练效果较好。</li>
+                    <li>命中不足4个（[0,2)+[2,4)）的有 2+5 = <strong>7人</strong>，占 $\dfrac{7}{20} = 35\%$</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 三、例2 -->
+        <div class="section-title">三、例2　31省市人均GDP统计</div>
+
+        <div class="intro-card">
+            <h4>📋 题目</h4>
+            <p>表14.2.2显示了2021年我国31个省市自治区（不含港澳台地区）人均GDP的数据。为了解这些数据的大致分布情况，请制作频数分布表，并绘制相应的频数分布直方图。</p>
+            <p>原始数据如下（单位：万元）：</p>
+            <div class="data-block">
+                4.07, 4.36, 4.94, 5.03, 5.07, 5.09, 5.36, 5.42, 5.44, 5.51,<br>
+                5.53, 5.59, 5.73, 5.91, 5.98, 6.19, 6.49, 6.76, 6.82, 6.84,<br>
+                6.84, 7.99, 8.17, 8.65, 9.82, 10.67, 11.32, 11.39, 12.18, 17.36, 18.40
+            </div>
+        </div>
+
+        <!-- 例2：步骤 -->
+        <div class="key-concept">
+            <h4>🔢 制作频数分布表的步骤</h4>
+            <div class="steps-wrap">
+                <div class="step-item">
+                    <div class="step-num">①</div>
+                    <div class="step-content"><strong>找极差</strong>：最大值 − 最小值 = 18.40 − 4.07 = <span class="hl">14.33</span>（万元）</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">②</div>
+                    <div class="step-content"><strong>定组距</strong>：极差约14.33，分<strong>8组</strong>，组距取 <span class="hl">2</span> 万元（14.33 ÷ 8 ≈ 1.8，向上取整为2）</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">③</div>
+                    <div class="step-content"><strong>确定起点</strong>：第一组从 <strong>4.0</strong> 万元开始（略小于最小值4.07），各组：[4,6)、[6,8)、[8,10)、[10,12)、[12,14)、[14,16)、[16,18)、[18,20)</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">④</div>
+                    <div class="step-content"><strong>划记计数</strong>：遵循"<strong>左闭右开</strong>"原则（含左端点，不含右端点）逐一计入各组</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 例2：表格 + 直方图并排 -->
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:stretch;margin:1rem 0;">
+            <div style="flex:1;min-width:280px;display:flex;flex-direction:column;">
+                <div class="example-card" style="flex:1;display:flex;flex-direction:column;">
+                    <h4>例2　频数分布表</h4>
+                    <table style="max-width:100%;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(74,158,111,.15);flex:1;">
+                        <thead>
+                            <tr>
+                                <th style="background:linear-gradient(135deg,#4a9e6f,#6bc48a);color:#fff;font-size:1.05rem;padding:12px 12px;">人均GDP（万元）</th>
+                                <th style="background:linear-gradient(135deg,#4a9e6f,#6bc48a);color:#fff;font-size:1.05rem;padding:12px 16px;min-width:80px;">划记</th>
+                                <th style="background:linear-gradient(135deg,#4a9e6f,#6bc48a);color:#fff;font-size:1.05rem;padding:12px 12px;">频数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:12px 12px;font-weight:600;">[4, 6)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">正正正</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">15</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 12px;font-weight:600;">[6, 8)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">正T</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">7</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px 12px;font-weight:600;">[8, 10)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">下</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">3</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 12px;font-weight:600;">[10, 12)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">下</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">3</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px 12px;font-weight:600;">[12, 14)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">一</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">1</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 12px;font-weight:600;">[14, 16)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;"></td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">0</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px 12px;font-weight:600;">[16, 18)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">一</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">1</td>
+                            </tr>
+                            <tr style="background:#f8fafc;">
+                                <td style="padding:12px 12px;font-weight:600;">[18, 20)</td>
+                                <td style="padding:12px 16px;color:#4a9e6f;font-weight:600;letter-spacing:.2em;">一</td>
+                                <td style="padding:12px 12px;font-weight:700;color:#2d3a5e;font-size:1.1rem;">1</td>
+                            </tr>
+                            <tr style="background:linear-gradient(135deg,#e8f4e8,#d4e8d4);font-weight:700;border-top:2px solid #4a9e6f;">
+                                <td style="padding:12px 12px;">合计</td>
+                                <td style="padding:12px 16px;">—</td>
+                                <td style="padding:12px 12px;font-size:1.1rem;color:#4a9e6f;">31</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:.6rem;color:#555;font-size:.9rem;">
+                        验证：15+7+3+3+1+0+1+1 = <strong>31</strong> ✓
+                    </p>
+                </div>
+            </div>
+            <div style="flex:2;min-width:320px;display:flex;flex-direction:column;">
+                <div class="chart-wrap" style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+                    <canvas id="canvas2" width="520" height="280"></canvas>
+                    <p style="color:#666;font-size:1rem;margin-top:.5rem;">图14.2.2　2021年31省市自治区人均GDP频数分布直方图</p>
+                </div>
+            </div>
+        </div><!-- 例2 flex 结束 -->
+
+        <!-- 例2读图 -->
+        <div class="fact-card">
+            <h4>🔍 读图思考与讨论</h4>
+            <ol>
+                <li>频数最高的是哪一组？该组有多少个省市？</li>
+                <li>人均GDP在8万元以下的省市有多少个？占总数的百分之几？</li>
+                <li>这个直方图呈什么分布形态？数据主要集中在哪个范围？</li>
+            </ol>
+            <button class="interact-btn" onclick="toggleAns('ans2')">🔍 查看参考答案</button>
+            <div id="ans2" class="answer-box">
+                <p><strong>参考答案：</strong></p>
+                <ol style="line-height:2.1;">
+                    <li>频数最高的是 <strong>[4, 6)</strong> 组，有 <strong>15</strong> 个省市</li>
+                    <li>8万元以下：15 + 7 = <strong>22个</strong>省市，占 $\dfrac{22}{31} \approx 71.0\%$</li>
+                    <li>直方图呈<strong>右偏分布</strong>（大部分数据集中在左侧低值区，右侧有长尾），数据主要集中在 <strong>4 ~ 8万元</strong>之间</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 四、互动探究 -->
+        <div class="section-title">四、互动探究：自制频数分布直方图</div>
+
+        <div class="interact-section">
+            <h4>🎮 院士年龄数据分析（练习题）</h4>
+            <p>2021年，中国科学院新增院士59位，他们当年的年龄如下（岁）：</p>
+            <div class="data-block" id="rawDataDisplay">
+                56, 59, 57, 56, 57, 55, 57, 56, 57, 54,<br>
+                58, 56, 57, 54, 53, 52, 57, 56, 55, 58,<br>
+                58, 56, 55, 55, 50, 56, 51, 55, 54, 56,<br>
+                55, 52, 55, 54, 57, 52, 55, 49, 57, 58,<br>
+                55, 55, 58, 55, 56, 55, 57, 54, 56, 57,<br>
+                52, 57, 53, 57, 51, 55, 56, 55, 54
+            </div>
+            <p style="margin-top:.8rem;"><strong>请根据以上数据绘制频数分布直方图，组距设为2岁：</strong></p>
+            <div style="display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin:.8rem 0;">
+                <span>起始年龄：</span>
+                <input class="custom-input" id="startAge" type="number" value="48" min="40" max="60">
+                <span>组距：</span>
+                <input class="custom-input" id="groupWidth" type="number" value="2" min="1" max="10">
+                <span>组数：</span>
+                <input class="custom-input" id="groupCount" type="number" value="6" min="2" max="12">
+                <button class="interact-btn" onclick="drawCustom()">📊 生成直方图</button>
+            </div>
+            <div class="chart-wrap">
+                <canvas id="canvas3" width="560" height="340"></canvas>
+            </div>
+            <button class="interact-btn" onclick="toggleAns('ans3')">🔍 查看参考答案</button>
+            <div id="ans3" class="answer-box">
+                <p><strong>参考答案：</strong>共59位院士，分为6组，组距为2岁：</p>
+                <table style="max-width:480px;">
+                    <thead>
+                        <tr><th>年龄（岁）</th><th>划记</th><th>频数</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>[48, 50)</td><td>一</td><td>1</td></tr>
+                        <tr><td>[50, 52)</td><td>下</td><td>3</td></tr>
+                        <tr><td>[52, 54)</td><td>正T</td><td>7</td></tr>
+                        <tr><td>[54, 56)</td><td>正正正T</td><td>17</td></tr>
+                        <tr><td>[56, 58)</td><td>正正正正正下</td><td>23</td></tr>
+                        <tr><td>[58, 60)</td><td>正丅</td><td>8</td></tr>
+                        <tr style="background:#e8ecf4;font-weight:700;"><td>合计</td><td>—</td><td>59</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top:.6rem;color:#555;font-size:.9rem;">验证：1+3+7+17+23+8 = <strong>59</strong> ✓</p>
+                <p style="margin-top:.6rem;">分布特征：数据主要集中在 <strong>56~58岁</strong>（频数最高23人），整体呈<strong>中间偏右高、两端低</strong>的略右偏分布。</p>
+            </div>
+        </div>
+
+        <!-- 五、课堂小结 -->
+        <div class="section-title">五、课堂小结</div>
+        <div class="summary-box">
+            <h4>💡 本节重点</h4>
+            <div class="steps-wrap">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content"><strong>频数分布直方图的特点：</strong>横轴为连续区间（组），纵轴为频数，各矩形<span class="hl">紧密相连无空隙</span>，组距相等。</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content"><strong>绘制步骤：</strong>① 找极差 → ② 确定组数和组距 → ③ 划记计数（左闭右开）→ ④ 列频数分布表 → ⑤ 绘直方图。</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content"><strong>读图分析：</strong>能从直方图中判断数据的集中趋势（哪组最多）、分布形态（对称/左偏/右偏）、占比等信息。</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div class="step-content"><strong>与条形图的区别：</strong>直方图各矩形<span class="hl">紧密相连</span>，用于大量<strong>连续数据</strong>；条形图<span class="hl">有空隙</span>，用于少量<strong>离散数据</strong>。</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">华师版·八年级上册 ｜ 第14章 数据的收集与表示 ｜ 14.2.1 频数分布直方图</div>
+    </div>
+</div>
+
+<script>
+/* ---- 工具函数 ---- */
+function toggleAns(id){
+    const box = document.getElementById(id);
+    if(!box) return;
+    box.classList.toggle('show-answer');
+}
+
+/* ---- Canvas 绘制频数分布直方图 ---- */
+function drawHistogram(canvasId, labels, freqs, title, xLabel, color){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const marginL = 58, marginR = 20, marginT = 50, marginB = 65;
+    const plotW = W - marginL - marginR;
+    const plotH = H - marginT - marginB;
+    const n = labels.length;
+    const barW = plotW / n;
+    const maxFreq = Math.max(...freqs);
+    const yMax = Math.ceil(maxFreq / 5) * 5 + 2;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 背景
+    ctx.fillStyle = '#f8faff';
+    ctx.fillRect(0, 0, W, H);
+
+    // 网格线和Y轴刻度
+    ctx.strokeStyle = '#dde3f0';
+    ctx.lineWidth = 1;
+    ctx.fillStyle = '#5a6a8a';
+    ctx.font = '14px PingFang SC, Microsoft YaHei, sans-serif';
+    ctx.textAlign = 'right';
+    const ySteps = 5;
+    for(let i = 0; i <= ySteps; i++){
+        const val = Math.round(yMax * i / ySteps);
+        const y = marginT + plotH - (val / yMax) * plotH;
+        ctx.beginPath();
+        ctx.moveTo(marginL, y);
+        ctx.lineTo(marginL + plotW, y);
+        ctx.stroke();
+        ctx.fillText(val, marginL - 6, y + 5);
+    }
+
+    // 渐变色柱子（直方图：柱间无空隙）
+    for(let i = 0; i < n; i++){
+        const x = marginL + i * barW;
+        const bH = (freqs[i] / yMax) * plotH;
+        const y = marginT + plotH - bH;
+        const grad = ctx.createLinearGradient(x, y, x, marginT + plotH);
+        grad.addColorStop(0, color || '#7c8fcf');
+        grad.addColorStop(1, (color || '#7c8fcf') === '#7c8fcf' ? '#3d5a9e' : '#2d6b4a');
+        ctx.fillStyle = grad;
+        // 直方图：柱子紧靠，不留空隙（x+0.5只保留细边线效果）
+        ctx.fillRect(x + 0.5, y, barW - 1, bH);
+
+        // 频数标注
+        if(freqs[i] > 0){
+            ctx.fillStyle = '#2d3a5e';
+            ctx.font = 'bold 14px PingFang SC, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(freqs[i], x + barW / 2, y - 5);
+        }
+    }
+
+    // X轴标签
+    ctx.fillStyle = '#3d4a6e';
+    ctx.font = '13px PingFang SC, Microsoft YaHei, sans-serif';
+    ctx.textAlign = 'center';
+    for(let i = 0; i < n; i++){
+        const x = marginL + i * barW + barW / 2;
+        // 较多标签时，在柱底边界处标注分界点
+        ctx.fillText(labels[i], x, marginT + plotH + 20);
+    }
+
+    // 轴线
+    ctx.strokeStyle = '#4a5880';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(marginL, marginT);
+    ctx.lineTo(marginL, marginT + plotH);
+    ctx.lineTo(marginL + plotW, marginT + plotH);
+    ctx.stroke();
+
+    // Y轴标题
+    ctx.save();
+    ctx.translate(14, marginT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = '#3d4a6e';
+    ctx.font = '13px PingFang SC, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('频数（人数）', 0, 0);
+    ctx.restore();
+
+    // X轴标题
+    if(xLabel){
+        ctx.fillStyle = '#3d4a6e';
+        ctx.font = '13px PingFang SC, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(xLabel, marginL + plotW / 2, H - 8);
+    }
+
+    // 图表标题
+    ctx.fillStyle = '#2d3a5e';
+    ctx.font = 'bold 15px PingFang SC, Noto Sans SC, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(title, W / 2, 28);
+}
+
+/* ---- 例1 条形统计图（横轴：学号1~20，纵轴：投篮命中数） ---- */
+// 原始数据（按学号顺序）：3,7,7,6,5,0,7,9,0,2,7,3,2,6,8,7,3,4,8,6
+function drawBarEx1(){
+    const scores = [3,7,7,6,5,0,7,9,0,2,7,3,2,6,8,7,3,4,8,6];
+    const canvas = document.getElementById('canvasBar1');
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const marginL = 52, marginR = 20, marginT = 44, marginB = 58;
+    const plotW = W - marginL - marginR;
+    const plotH = H - marginT - marginB;
+    const n = scores.length;   // 20人
+    const gap = 6;             // 条形图：条间有空隙
+    const barW = (plotW - gap * (n - 1)) / n;
+    const yMax = 10;           // 纵轴最大值10
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#f8faff';
+    ctx.fillRect(0, 0, W, H);
+
+    // 网格线 & Y轴刻度（0,2,4,6,8,10）
+    ctx.font = '13px PingFang SC, Microsoft YaHei, sans-serif';
+    for(let g = 0; g <= yMax; g += 2){
+        const y = marginT + plotH - (g / yMax) * plotH;
+        ctx.strokeStyle = '#dde3f0'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(marginL, y); ctx.lineTo(marginL + plotW, y); ctx.stroke();
+        ctx.fillStyle = '#5a6a8a'; ctx.textAlign = 'right';
+        ctx.fillText(g, marginL - 6, y + 5);
+    }
+
+    // 渐变条形（有间距，圆角顶部）
+    for(let i = 0; i < n; i++){
+        const x = marginL + i * (barW + gap);
+        const bH = (scores[i] / yMax) * plotH;
+        const y = marginT + plotH - bH;
+        const grad = ctx.createLinearGradient(x, y, x, marginT + plotH);
+        grad.addColorStop(0, '#5b9bd5');
+        grad.addColorStop(1, '#2d5a9e');
+        ctx.fillStyle = grad;
+        if(bH > 0){
+            ctx.beginPath();
+            if(ctx.roundRect){
+                ctx.roundRect(x, y, barW, bH, [3,3,0,0]);
+            } else {
+                ctx.rect(x, y, barW, bH);
+            }
+            ctx.fill();
+        }
+        // 顶部成绩标注
+        ctx.fillStyle = '#2d3a5e';
+        ctx.font = 'bold 12px PingFang SC, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(scores[i], x + barW / 2, y - 4);
+
+        // X轴学号标签
+        ctx.fillStyle = '#3d4a6e';
+        ctx.font = '12px PingFang SC, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(i + 1, x + barW / 2, marginT + plotH + 18);
+    }
+
+    // 坐标轴
+    ctx.strokeStyle = '#4a5880'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(marginL, marginT);
+    ctx.lineTo(marginL, marginT + plotH);
+    ctx.lineTo(marginL + plotW, marginT + plotH);
+    ctx.stroke();
+
+    // Y轴标题（纵轴：投篮命中数）
+    ctx.save();
+    ctx.translate(14, marginT + plotH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillStyle = '#3d4a6e'; ctx.font = '13px PingFang SC, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('投篮命中数（个）', 0, 0);
+    ctx.restore();
+
+    // X轴标题（横轴：学号）
+    ctx.fillStyle = '#3d4a6e'; ctx.font = '13px PingFang SC, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('学号', marginL + plotW / 2, H - 8);
+
+    // 图表标题
+    ctx.fillStyle = '#2d3a5e'; ctx.font = 'bold 14px PingFang SC, Noto Sans SC, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('立定投篮成绩条形统计图（20人）', W / 2, 26);
+}
+
+/* ---- 例1 直方图：立定投篮 ---- */
+// 数据：[0,2)→0,0→2人; [2,4)→2,3,3,3,2→5人; [4,6)→5,4→2人; [6,8)→6,7,7,6,7,7,7,6→8人; [8,10)→8,8,9→3人
+function drawEx1(){
+    drawHistogram(
+        'canvas1',
+        ['[0,2)','[2,4)','[4,6)','[6,8)','[8,10)'],
+        [2, 5, 2, 8, 3],
+        '例1：立定投篮成绩频数分布直方图（20人）',
+        '投篮命中次数（个）',
+        '#5b9bd5'
+    );
+}
+
+/* ---- 例2 直方图：31省市人均GDP ---- */
+// [4,6)→4.07,4.36,4.94,5.03,5.07,5.09,5.36,5.42,5.44,5.51,5.53,5.59,5.73,5.91,5.98 = 15人
+// [6,8)→6.19,6.49,6.76,6.82,6.84,6.84,7.99 = 7人
+// [8,10)→8.17,8.65,9.82 = 3人
+// [10,12)→10.67,11.32,11.39 = 3人
+// [12,14)→12.18 = 1人
+// [14,16)→0人
+// [16,18)→17.36 = 1人
+// [18,20)→18.40 = 1人  合计31✓
+function drawEx2(){
+    drawHistogram(
+        'canvas2',
+        ['[4,6)','[6,8)','[8,10)','[10,12)','[12,14)','[14,16)','[16,18)','[18,20)'],
+        [15, 7, 3, 3, 1, 0, 1, 1],
+        '例2：31省市人均GDP频数分布直方图（2021年）',
+        '人均GDP（万元）',
+        '#4a9e6f'
+    );
+}
+
+/* ---- 互动：院士年龄 ---- */
+// 59位院士年龄数据（59个）
+const ageData = [56,59,57,56,57,55,57,56,57,54,
+                 58,56,57,54,53,52,57,56,55,58,
+                 58,56,55,55,50,56,51,55,54,56,
+                 55,52,55,54,57,52,55,49,57,58,
+                 55,55,58,55,56,55,57,54,56,57,
+                 52,57,53,57,51,55,56,55,54];
+
+function drawCustom(){
+    const start = parseInt(document.getElementById('startAge').value) || 48;
+    const gw = parseInt(document.getElementById('groupWidth').value) || 2;
+    const gc = parseInt(document.getElementById('groupCount').value) || 6;
+
+    const labels = [];
+    const freqs = [];
+    for(let i = 0; i < gc; i++){
+        const lo = start + i * gw;
+        const hi = lo + gw;
+        labels.push('[' + lo + ',' + hi + ')');
+        freqs.push(ageData.filter(v => v >= lo && v < hi).length);
+    }
+
+    drawHistogram(
+        'canvas3',
+        labels,
+        freqs,
+        '2021年中科院新增院士年龄频数分布直方图（59人）',
+        '年龄（岁）',
+        '#c26b2b'
+    );
+}
+
+/* ---- 页面加载 ---- */
+window.addEventListener('load', function(){
+    drawBarEx1();
+    drawEx1();
+    drawEx2();
+    drawCustom();
+    if(window.MathJax) MathJax.typesetPromise();
+});
+</script>
+</body>
+</html>

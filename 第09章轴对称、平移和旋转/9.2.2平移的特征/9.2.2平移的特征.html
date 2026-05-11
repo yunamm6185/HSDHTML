@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.2.2 平移的特征 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 150px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        
+        .construction-box {
+            background: #e8f0f7;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #7fa9c7;
+        }
+        .construction-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #135b8d;
+            margin-bottom: 0.8rem;
+        }
+        .step-list {
+            list-style-type: decimal;
+            padding-left: 1.8rem;
+            margin: 0.5rem 0;
+        }
+        .step-list li {
+            margin: 0.3rem 0;
+        }
+
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        
+        .break-line {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* 读一读样式 */
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            overflow: visible;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: visible;
+            transition: max-height 0.4s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content.expanded {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        
+        /* 滑块 */
+        .slide-container {
+            background: #f0f7fc;
+            border-radius: 24px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .slide-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        input[type=range] {
+            flex: 1;
+            height: 8px;
+            border-radius: 10px;
+            background: #d0e2f2;
+        }
+        #translateValue {
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        /* 填空样式 */
+        .fill-blank {
+            display: inline-block;
+            min-width: 60px;
+            border-bottom: 2px dashed #1e7e9f;
+            text-align: center;
+            margin: 0 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.2.2</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.2 平移 —— 2. 平移的特征</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握平移的特征：对应线段平行且相等，对应角相等</div>
+            <div class="target-item"><span>✔</span>理解对应点连线平行且相等</div>
+            <div class="target-item"><span>✔</span>能运用平移的特征进行作图与计算</div>
+        </div>
+    </div>
+
+    <!-- 回顾引入 -->
+    <div class="think-box">
+        <h4>回顾</h4>
+        <p>在上一节中，我们学习了平移的概念。那么平移后的图形与原图形之间有哪些不变的关系呢？</p>
+    </div>
+
+    <!-- 探索：画平行线 图9.2.6 使用9.2.6.png，填空题按指定格式修改 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>如图9.2.6，在画平行线的时候，有时为了需要，将直尺和三角板放在倾斜的位置上。但不管怎样，我们总可以推得</p>
+        <p>\[A'B' \parallel AB, \quad A'B' = AB, \quad \angle B' = \angle B.\]</p>
+        <p>同时也有</p>
+        <p>\[A'C' \parallel \_\_\_\_\_\_, \quad A'C' = \_\_\_\_\_\_, \quad \angle C' = \_\_\_\_\_\_.\]</p>
+        <p>\[B'C' \text{与} BC \quad \_\_\_\_\_\_, \quad B'C' = \_\_\_\_\_\_, \quad \angle A' = \_\_\_\_\_\_.\]</p>
+        <div class="image-container">
+            <img src="9.2.6.png" alt="图9.2.6 画平行线" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图9.2.6 画平行线</div>
+            <div class="image-caption">图9.2.6</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('exploreFill')">✏️ 填空</button>
+        <div id="exploreFill" class="answer-box">
+            <p>\(A'C' \parallel AC\)，\(A'C' = AC\)，\(\angle C' = \angle C\)；</p>
+            <p>\(B'C'\) 与 \(BC\) 在同一直线上（或平行），\(B'C' = BC\)，\(\angle A' = \angle A\)。</p>
+        </div>
+    </div>
+
+    <!-- 平移的特征 -->
+    <div class="concept-box">
+        <strong>平移的特征</strong>：<br>
+        <span class="break-line">✅ 平移后的图形与原来图形的对应线段平行（或在同一条直线上）且相等，对应角相等，图形的形状和大小不变。</span>
+        <span class="break-line">✅ 在平移过程中，对应线段也可能在同一条直线上（如图9.2.6中的 \(B'C'\) 与 \(BC\)）。</span>
+    </div>
+
+    <!-- 探索：对应点连线 图9.2.7 使用9.2.7.png，填空题按指定格式修改 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>观察图9.2.7，△ABC沿着PQ方向平移到△A'B'C'的位置，我们可以看到，△ABC上的每一点都作了相同的平移：</p>
+        <p>\[A \to A', \quad B \to B', \quad C \to C'.\]</p>
+        <div class="image-container">
+            <img src="9.2.7.png" alt="图9.2.7 对应点连线" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔍 图9.2.7 对应点连线</div>
+            <div class="image-caption">图9.2.7</div>
+        </div>
+        <p>你发现对应点所连的线段有什么特点了吗？</p>
+        <p>不难发现：</p>
+        <p>\[AA' \parallel BB', \quad AA' = BB';\]
+        \[AA' \parallel \_\_\_\_\_, \quad AA' = \_\_\_\_\_;\]
+        \[BB' \text{ 与 } CC' \quad \_\_\_\_\_, \quad BB' = \_\_\_\_\_.\]</p>
+        <button class="interact-btn" onclick="toggleAnswer('connectFill')">🔍 显示答案</button>
+        <div id="connectFill" class="answer-box">
+            <p>\(AA' \parallel CC'\)，\(AA' = CC'\)；</p>
+            <p>\(BB'\) 与 \(CC'\) 平行，\(BB' = CC'\)。</p>
+            <p><strong>平移后对应点所连的线段平行（或在同一条直线上）且相等。</strong></p>
+        </div>
+    </div>
+
+    <!-- 试一试 图9.2.8 使用9.2.8.png -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>将图9.2.8中的△ABC沿PQ方向平移到△A'B'C'的位置，其平移的距离为线段PQ的长度。</p>
+        <div class="image-container">
+            <img src="9.2.8.png" alt="图9.2.8 平移操作" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📏 图9.2.8 平移操作</div>
+            <div class="image-caption">图9.2.8</div>
+        </div>
+        <p>观察所得到的对应线段和对应点所连的线段是否符合上述我们得到的平移的特征？</p>
+        <button class="interact-btn" onclick="toggleAnswer('tryCheck')">✅ 验证</button>
+        <div id="tryCheck" class="answer-box">
+            <p>符合。对应线段平行且相等，对应点连线平行且相等。</p>
+        </div>
+    </div>
+
+    <!-- 例题 图9.2.9 使用9.2.9.png -->
+    <div class="example-box">
+        <h4>例</h4>
+        <p>如图9.2.9①，△ABC经过平移到达△A'B'C'的位置。指出平移的方向，并量出平移的距离。（精确到1mm）</p>
+        <div class="image-container">
+            <img src="9.2.9.png" alt="图9.2.9 测量平移距离" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图9.2.9</div>
+            <div class="image-caption">图9.2.9</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('exampleSol')">🔍 解答</button>
+        <div id="exampleSol" class="answer-box">
+            <p>解：由于点 \(A\) 与点 \(A'\) 是一对对应点，连结 \(AA'\)，平移的方向就是点 \(A\) 到点 \(A'\) 的方向，平移的距离就是线段 \(AA'\) 的长，经测量可知，约 \(25 \mathrm{~mm}\) 。</p>
+        </div>
+    </div>
+
+    <!-- 试一试：方格平移 图9.2.10 使用9.2.10.png -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>在如图9.2.10的方格图中，作出将图中的△ABC向右平移4格后的△A'B'C'，然后再作出将△A'B'C'向上平移3格后的△A''B''C''。△A''B''C''是否可以看成是△ABC经过一次平移而得到的？如果是，请指出平移的方向和距离。</p>
+        <div class="image-container">
+            <img src="9.2.10.png" alt="图9.2.10 方格平移" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔲 图9.2.10 方格平移</div>
+            <div class="image-caption">图9.2.10</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('gridTry')">🔍 结论</button>
+        <div id="gridTry" class="answer-box">
+            <p>可以。平移方向为从A到A''，距离为5格（勾3股4弦5）。</p>
+        </div>
+    </div>
+
+    <!-- 做一做：两次对称 图9.2.11 使用9.2.11.png -->
+    <div class="do-section">
+        <p class="bold">做一做</p>
+        <p>如图9.2.11，在纸上作△ABC和平行直线 \(m\) 、 \(n\) 。作出△ABC关于直线 \(m\) 对称的△A'B'C'，再作出△A'B'C'关于直线 \(n\) 对称的△A''B''C''。观察△ABC和△A''B''C''，你能发现这两个三角形有什么关系吗？</p>
+        <div class="image-container">
+            <img src="9.2.11.png" alt="图9.2.11 两次对称" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔁 图9.2.11 两次对称</div>
+            <div class="image-caption">图9.2.11</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('doAnswer')">🔍 发现</button>
+        <div id="doAnswer" class="answer-box">
+            <p>△A''B''C''可以看成是△ABC经过平移得到的，平移方向垂直于直线，距离为两条平行线间距离的2倍。</p>
+        </div>
+    </div>
+
+    <!-- ★ 读一读：平移与图案设计 -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 平移与图案设计</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>平移不仅是几何中的基本变换，也是艺术设计和日常生活中常用的手法。许多美丽的图案、花边、重复的纹样都是通过基本图形的平移得到的。</p>
+            <p>例如，图9.2.5中的图案就是由一个简单的基本图形通过多次平移形成的。在建筑装饰、纺织印染、墙纸设计中，平移被广泛用来创造节奏感和连续性。</p>
+            <p>荷兰著名艺术家埃舍尔（M.C. Escher）就曾利用平移、反射等变换创作了许多经典的镶嵌图案。平移与对称、旋转结合，可以产生千变万化的视觉效果。</p>
+            <p>在计算机图形学中，平移是最基础的几何变换之一，用于实现动画、游戏中的角色移动、场景滚动等效果。</p>
+        </div>
+    </div>
+
+    <!-- 练习 使用练习1.png, 练习2.png, 练习3.png -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 如图，在长方形ABCD中，对角线AC与BD相交于点 \(O\) ，作出 \(\triangle AOB\) 平移后的三角形，其平移方向为射线 \(AD\) 的方向，平移距离为线段 \(AD\) 的长。</p>
+            <div class="image-container">
+                <img src="练习1.png" alt="练习1 长方形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">📐 练习1 长方形</div>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 先将方格图中的图形向左平移5格，然后再向下平移3格，作出平移后的图形。</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 方格图" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🔲 练习2</div>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 将所给图形沿着 \(PQ\) 方向平移，平移距离为线段 \(PQ\) 的长，作出平移后的图形。</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 平移方向" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">➡️ 练习3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>归纳思想：</strong> 通过观察多个平移实例，归纳出平移的特征。<br>
+        <strong>几何直观：</strong> 利用图形理解平移的不变性。<br>
+        <strong>模型应用：</strong> 用平移特征解决作图问题。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">对应线段平行（或共线）且相等。</div>
+            <div class="summary-item">对应角相等。</div>
+            <div class="summary-item">对应点连线平行（或共线）且相等。</div>
+            <div class="summary-item">平移不改变图形的形状和大小。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.2 A组第4、5题，B组第6、7题。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.2.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+    window.onload = function() {
+        // 默认展开阅读区
+        document.getElementById('readingContent').classList.add('expanded');
+        document.getElementById('readingToggle').textContent = '▲';
+        
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

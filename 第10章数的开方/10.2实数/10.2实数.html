@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.2 实数 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+
+        /* 云图提示框 */
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+            position: relative;
+        }
+        .cloud-note::before {
+            content: "💡";
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 0.5rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+
+        .exercise-item {
+            margin-bottom: 1.8rem;
+        }
+        .exercise-item p {
+            margin: 0.3rem 0;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+
+        /* 长数字样式，产生视觉冲击，无滚动条，末尾加省略号 */
+        .long-number {
+            font-family: 'Courier New', monospace;
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            word-break: break-all;
+            border: 1px dashed #2675a8;
+            color: #014682;
+            margin: 1rem 0;
+        }
+
+        /* 图片占位 */
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 200px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+            margin: 1rem auto;
+        }
+        .image-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .figcaption {
+            color: #144a6f;
+            margin-top: 0.2rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第10章 数的开方 · 10.2 实数</span>
+    </div>
+    <h1>第10章 数的开方</h1>
+    <div class="lesson-title">10.2 实数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解无理数的概念，能识别无理数</div>
+            <div class="target-item"><span>✔</span>了解实数的分类，掌握实数与数轴上的点一一对应</div>
+            <div class="target-item"><span>✔</span>会求实数的相反数与绝对值，能比较实数的大小</div>
+        </div>
+    </div>
+
+    <!-- 做一做 (放在导入前面) -->
+    <div class="think-box">
+        <h4>做一做</h4>
+        <p>1. 用计算器求 $\sqrt{2}$，观察它的小数形式。<br>
+        2. 利用平方运算验算所得结果，你发现了什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('doAns')">🔍 提示</button>
+        <div id="doAns" class="answer-box">
+            <p>计算器显示的 $\sqrt{2}$ 是近似值，它的平方略小于2。这提示我们 $\sqrt{2}$ 可能不是有理数。</p>
+        </div>
+    </div>
+
+    <!-- 导入：探究√2，展示超长小数（末尾加省略号） -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <p>用计算器求 $\sqrt{2}$，显示结果为 $1.414213562$。再用计算器计算 $1.414213562$ 的平方，结果是 $1.999999999$，并不是 $2$。这说明计算器求得的只是 $\sqrt{2}$ 的近似值。</p>
+        <p>实际上，$\sqrt{2}$ 是一个无限不循环小数。让我们来感受一下它的长度：</p>
+        <div class="long-number">
+            1.414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641572735013846230912297024924836055850737212644121497099935831413222665927505592755799950501152782060571470109559971605970274534596862014728517418640889198609552329230484308714321450839762603627995251407989687253396546331808829640620615258352395054745750287759961729835575220337531857011354374603408498847160386899970699004815030544027790316454247823068492936918621580578463111596668713013015618568987237235288509264861249497715421833420428568606014682472077143585487415565706967765372022648544701585880162075847492265722600208558446652145839889394437092659180031138824646815708263010059485870400318648034219489727829064104507263688131373985525611732204024509122770022694112757362728049573810896750401836986836845072579936472906076299694138047565482372899718032680244742062926912485905218100445984215059112024944134172853147810580360337107730918286931471017111168391658172688941975871658215212...
+        </div>
+        <p>（以上仅为前几百位，实际上它无限不循环）</p>
+        <div class="cloud-note">
+            <strong>无限不循环小数叫做无理数(irrational number)。$\sqrt{2}$、$\sqrt[3]{5}$、$\pi$ 等都是无理数。</strong>
+        </div>
+    </div>
+
+    <!-- 读一读：为什么说√2不是有理数（反证法） -->
+    <div class="reading-block" id="readingBlock1">
+        <div class="reading-header" onclick="toggleReading('readingContent1', 'toggleIcon1')">
+            <h4>📖 读一读 · 为什么说 $\sqrt{2}$ 不是有理数</h4>
+            <span class="toggle-icon" id="toggleIcon1">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent1">
+            <p>我们可以用反证法证明 $\sqrt{2}$ 不是有理数：</p>
+            <p>假设 $\sqrt{2}$ 是有理数，那么它可以表示为 $\dfrac{q}{p}$ ($p,q$ 是互质的正整数)。由 $\sqrt{2}$ 的意义得 $\left(\dfrac{q}{p}\right)^2 = 2$，即 $q^2 = 2p^2$。于是 $q^2$ 是偶数，从而 $q$ 也是偶数。设 $q=2k$，代入得 $4k^2 = 2p^2$，即 $p^2 = 2k^2$，所以 $p$ 也是偶数。这与 $p,q$ 互质矛盾。因此假设不成立，$\sqrt{2}$ 不是有理数。</p>
+            <p>这个证明最早出现在欧几里得的《几何原本》中，是人类认识无理数的开端。</p>
+        </div>
+    </div>
+
+    <!-- 概括：实数定义与分类 -->
+    <div class="concept-box">
+        <strong>实数(real number)</strong>：有理数和无理数统称为实数。<br>
+        <strong>分类：</strong>
+        \[
+        \text{实数}\begin{cases}
+        \text{有理数}\begin{cases}\text{整数}\\\text{分数}\end{cases}\\
+        \text{无理数}\begin{cases}\text{正无理数}\\\text{负无理数}\end{cases}
+        \end{cases}
+        \]
+    </div>
+
+    <!-- 实数与数轴：在数轴上找√2的点，图10.2.1、10.2.2（仅保留图片，删除手绘数轴） -->
+    <div class="explore-box">
+        <h4>试一试 · 实数与数轴</h4>
+        <p>如图10.2.1，将两个边长为1的正方形分别沿对角线剪开，得到四个等腰直角三角形，可以拼成一个面积为2的大正方形，其边长为 $\sqrt{2}$。因此，边长为1的正方形的对角线长就是 $\sqrt{2}$。</p>
+        <div class="image-container">
+            <img src="10.2.1.png" alt="图10.2.1 拼正方形" style="max-width:100%; border:1px solid #ccc; border-radius:8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图10.2.1 拼正方形</div>
+            <div class="figcaption">图10.2.1</div>
+        </div>
+        <p>利用这个事实，我们可以在数轴上找到表示 $\sqrt{2}$ 的点，如图10.2.2所示。</p>
+        <div class="image-container">
+            <img src="10.2.2.png" alt="图10.2.2 数轴上的√2" style="max-width:100%; border:1px solid #ccc; border-radius:8px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📏 图10.2.2 数轴上的√2</div>
+            <div class="figcaption">图10.2.2</div>
+        </div>
+        <div class="cloud-note">
+            <strong>实数与数轴上的点一一对应：</strong>每一个实数都可以用数轴上的一个点表示；反过来，数轴上的每一个点都表示一个实数。
+        </div>
+    </div>
+
+    <!-- 相反数、绝对值、运算（适用于实数） -->
+    <div class="concept-box">
+        <strong>相反数、绝对值、运算</strong>：在有理数范围内学过的相反数、绝对值、大小比较法则、运算法则以及运算律，对于实数仍然适用。<br>
+        例如：$|\sqrt{2}| = \sqrt{2}$，$-\sqrt{2}$ 是 $\sqrt{2}$ 的相反数。
+    </div>
+
+    <!-- 例1 判断无理数（习题10.2 A组第2题） -->
+    <div class="example-box">
+        <h4>例1 下列各数中，哪些是无理数？</h4>
+        <p>$\pi^{2}$，$1.01$，$\sqrt[3]{8}$，$3.14$，$2.030030003\ldots$，$-\sqrt{32}$，$1.010010001$，$\dfrac{355}{113}$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1Ans')">📌 显示解答</button>
+        <div id="ex1Ans" class="answer-box">
+            <p>无理数有：$\pi^{2}$，$2.030030003\ldots$，$-\sqrt{32}$。<br>
+            因为：$\pi^{2}$ 是 $\pi$ 的平方，$\pi$ 是无理数，其平方仍为无理数；$2.030030003\ldots$ 是无限不循环小数；$-\sqrt{32} = -4\sqrt{2}$，$\sqrt{2}$ 是无理数。<br>
+            其余均为有理数：$\sqrt[3]{8}=2$，$1.01$，$3.14$ 是有限小数；$1.010010001$ 是有限小数（最后以001结尾，不再延续）；$\dfrac{355}{113}$ 是分数，都是有理数。</p>
+        </div>
+    </div>
+
+    <!-- 例2 比较大小（原例1） -->
+    <div class="example-box">
+        <h4>例2 比较 $\sqrt{3}+\sqrt{2}$ 与 $\pi$ 的大小</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex2Ans')">📌 显示解答</button>
+        <div id="ex2Ans" class="answer-box">
+            <p>用计算器求得 $\sqrt{3}+\sqrt{2} \approx 1.732+1.414 = 3.14626437$，$\pi \approx 3.141592654$，所以 $\sqrt{3}+\sqrt{2} > \pi$。</p>
+        </div>
+    </div>
+
+    <!-- 例3 计算（原例2） -->
+    <div class="example-box">
+        <h4>例3 计算：$\dfrac{\pi}{2} - \left|\dfrac{1}{6}-\sqrt{2}\right|$ (精确到0.01)</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex3Ans')">📌 显示解答</button>
+        <div id="ex3Ans" class="answer-box">
+            <p>$\dfrac{1}{6}-\sqrt{2} \approx 0.1667 - 1.4142 = -1.2475$，所以 $\left|\dfrac{1}{6}-\sqrt{2}\right| \approx 1.2475$，$\dfrac{\pi}{2} \approx 1.5708$，因此原式 $\approx 1.5708 - 1.2475 = 0.3233 \approx 0.32$。</p>
+            <p>也可以先化简：因为 $\dfrac{1}{6} < \sqrt{2}$，所以 $|\dfrac{1}{6}-\sqrt{2}| = \sqrt{2} - \dfrac{1}{6}$，再代入计算。</p>
+        </div>
+    </div>
+
+    <!-- 练习区域 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 练习1 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 下列说法是否正确？为什么？</p>
+            <p>(1) 两个整数相除，如果永远除不尽，那么结果一定是一个无理数；<br>(2) 任意一个无理数的绝对值都是正数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) 不正确。例如 $1\div 3 = 0.333\ldots$ 是循环小数，属于有理数。<br>(2) 正确。无理数不可能为0，所以绝对值是正数。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 计算 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 计算：$2\sqrt{6}+3\sqrt{7}$ (精确到0.01)</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>$\sqrt{6}\approx 2.44949$，$2\sqrt{6}\approx 4.89898$；$\sqrt{7}\approx 2.64575$，$3\sqrt{7}\approx 7.93725$；和 $\approx 12.83623 \approx 12.84$。</p>
+            </div>
+        </div>
+
+        <!-- 练习3 比较大小 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 比较下列各对数的大小：</p>
+            <p>(1) $2\sqrt{3}$ 与 $3\sqrt{2}$； (2) $-\dfrac{\sqrt{7}}{2}$ 与 $-\dfrac{\pi}{3}$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>(1) $(2\sqrt{3})^2 = 12$，$(3\sqrt{2})^2 = 18$，所以 $2\sqrt{3} < 3\sqrt{2}$。<br>(2) $-\dfrac{\sqrt{7}}{2} \approx -1.3229$，$-\dfrac{\pi}{3} \approx -1.0472$，因为 $-1.3229 < -1.0472$，所以 $-\dfrac{\sqrt{7}}{2} < -\dfrac{\pi}{3}$。</p>
+            </div>
+        </div>
+
+        <!-- 练习4 表格（相反数、绝对值） -->
+        <div class="exercise-item">
+            <p class="exercise-question">4. 完成下列表格：</p>
+            <table id="realTable">
+                <tr><th>实数</th><th>$\pi$</th><th>$\sqrt{2}$</th><th>$\sqrt{2}-1$</th><th>$\sqrt{2}-\sqrt{3}$</th></tr>
+                <tr><th>相反数</th><td id="opp1"></td><td id="opp2"></td><td id="opp3"></td><td id="opp4"></td></tr>
+                <tr><th>绝对值</th><td id="abs1"></td><td id="abs2"></td><td id="abs3"></td><td id="abs4"></td></tr>
+            </table>
+            <button class="interact-btn" onclick="fillRealTable()">📌 显示表格答案</button>
+        </div>
+    </div>
+
+    <!-- 读一读：√5的算法（近似计算） -->
+    <div class="reading-block" id="readingBlock2">
+        <div class="reading-header" onclick="toggleReading('readingContent2', 'toggleIcon2')">
+            <h4>📖 读一读 · $\sqrt{5}$ 的算法</h4>
+            <span class="toggle-icon" id="toggleIcon2">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent2">
+            <p>我们可以通过尝试逼近的方法求 $\sqrt{5}$ 的近似值：</p>
+            <p>因为 $2^2<5<3^2$，所以 $2<\sqrt{5}<3$。进一步，$2.2^2=4.84<5<2.3^2=5.29$，所以 $2.2<\sqrt{5}<2.3$。继续，$2.23^2=4.9729<5<2.24^2=5.0176$，所以 $2.23<\sqrt{5}<2.24$。如此反复，可以得到更精确的近似值。</p>
+            <p>古代数学家还使用一种迭代公式：$x_{n+1} = \dfrac{1}{2}\left(x_n + \dfrac{5}{x_n}\right)$，从 $x_0=2$ 开始，可以快速逼近 $\sqrt{5}$。例如 $x_1 = 2.25$，$x_2 = 2.23611$，已经非常接近真实值。</p>
+            <p>用计算器验证：$\sqrt{5} \approx 2.236067978$。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数形结合：</strong> 实数与数轴上的点一一对应，直观理解实数。<br>
+        <strong>分类思想：</strong> 实数按定义分为有理数和无理数。<br>
+        <strong>逼近思想：</strong> 用有理数逼近无理数，近似计算。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">无理数是无限不循环小数，如 $\sqrt{2}$、$\pi$。</div>
+            <div class="summary-item">有理数和无理数统称实数，实数与数轴上的点一一对应。</div>
+            <div class="summary-item">实数的相反数、绝对值、运算与有理数相同。</div>
+            <div class="summary-item">比较实数大小常用平方法、近似值法。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题10.2 A组第2、4、5题，B组第6、7题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 实数将数与点完美对应，让数学世界更加完整 ✨</p>
+    <div class="footer-note">八年级上册 · 第10章 10.2</div>
+</div>
+
+<script>
+    // 切换答案框
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 填充实数表格（带切换功能）
+    function fillRealTable() {
+        var opp1 = document.getElementById('opp1');
+        // 如果已经填充，则清空；否则填充
+        if (opp1.innerText.trim() !== '') {
+            // 清空
+            document.getElementById('opp1').innerText = '';
+            document.getElementById('opp2').innerText = '';
+            document.getElementById('opp3').innerText = '';
+            document.getElementById('opp4').innerText = '';
+            document.getElementById('abs1').innerText = '';
+            document.getElementById('abs2').innerText = '';
+            document.getElementById('abs3').innerText = '';
+            document.getElementById('abs4').innerText = '';
+        } else {
+            // 填充
+            document.getElementById('opp1').innerText = '$-\\pi$';
+            document.getElementById('opp2').innerText = '$-\\sqrt{2}$';
+            document.getElementById('opp3').innerText = '$-\\sqrt{2}+1$';
+            document.getElementById('opp4').innerText = '$-\\sqrt{2}+\\sqrt{3}$';
+            document.getElementById('abs1').innerText = '$\\pi$';
+            document.getElementById('abs2').innerText = '$\\sqrt{2}$';
+            document.getElementById('abs3').innerText = '$\\sqrt{2}-1$';
+            document.getElementById('abs4').innerText = '$\\sqrt{3}-\\sqrt{2}$';
+        }
+        // 触发 MathJax 重新渲染
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    // 折叠函数
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleReading(contentId, iconId) {
+        var c = document.getElementById(contentId);
+        var icon = document.getElementById(iconId);
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

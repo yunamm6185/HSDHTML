@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.1.1 生活中的轴对称 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 150px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+        .img-placeholder.large {
+            min-width: 200px;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+
+        /* 带底色和英文的概念框 */
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+        .concept-inline {
+            background-color: #dbf0f7;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            display: inline-block;
+            border: 1px solid #78b9d8;
+            margin: 0.2rem 0;
+            font-weight: 500;
+        }
+        .concept-inline em {
+            font-style: italic;
+            color: #125079;
+            background: transparent;
+        }
+
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            overflow: visible;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: visible;
+            transition: max-height 0.4s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content.expanded {
+            max-height: 1200px;
+            margin-top: 1rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        
+        /* 图片样式 */
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        
+        /* 换行样式 */
+        .break-line {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* 做一做样式 */
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section p {
+            margin: 0.5rem 0;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.1.1</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.1 轴对称 —— 1. 生活中的轴对称</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解轴对称图形、对称轴的概念</div>
+            <div class="target-item"><span>✔</span>能识别生活中的轴对称图形</div>
+            <div class="target-item"><span>✔</span>了解成轴对称的两个图形</div>
+            <div class="target-item"><span>✔</span>通过折纸活动探索对称轴</div>
+        </div>
+    </div>
+
+    <!-- 导入：生活中的对称 + 图9.1.1.png -->
+    <div class="figure-box">
+        <p style="font-size:1.2rem; font-style:italic;">山倒映在湖中，这是令人难忘的对称景象。自远古以来，对称的形式都被认为是和谐美丽的。</p>
+        <div class="image-container">
+            <img src="9.1.1.jpg" alt="图9.1.1 生活中的轴对称图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder large" style="display:none;">🏞️ 山与倒影、蝴蝶、天安门<br>(图9.1.1)</div>
+            <div class="image-caption">图9.1.1</div>
+        </div>
+    </div>
+
+    <!-- 概念1：轴对称图形 + 英文 + 底色 -->
+    <div class="concept-box">
+        <strong>轴对称图形</strong> <em>(a figure of line symmetry)</em>：把一个图形沿着某一条直线对折，对折后的两部分能够完全重合，这样的图形叫做轴对称图形。<br>
+        <strong>对称轴</strong> <em>(axis of symmetry)</em>：这条直线叫做这个图形的对称轴。
+    </div>
+
+    <!-- 试一试：星形 + 图9.1.2.png -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>用一张半透明的纸描出图9.1.2所示的星形图，然后用不同的方式对折，用直尺画出折痕。这幅星形图有多少条对称轴？</p>
+        <div class="image-container">
+            <img src="9.1.2.png" alt="图9.1.2 星形图" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">⭐ 五角星 (图9.1.2)</div>
+            <div class="image-caption">图9.1.2</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('starAxis')">🔍 显示答案</button>
+        <div id="starAxis" class="answer-box">
+            <p><strong>这幅星形图有5条对称轴</strong></p>
+        </div>
+    </div>
+
+    <!-- 两个图形成轴对称 + 图9.1.3.png + 做一做完整显示 -->
+    <div class="think-box">
+        <h4>图9.1.3 两组图形</h4>
+        <div class="image-container">
+            <img src="9.1.3.png" alt="图9.1.3 成轴对称的两个图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">两组成轴对称的图形 (图9.1.3)</div>
+            <div class="image-caption">图9.1.3</div>
+        </div>
+        <p>每一组里，某一边的图形沿虚线对折之后与另一边的图形完全重合。</p>
+        
+        <!-- 做一做完整显示 -->
+        <div class="do-section">
+            <p class="bold">做一做</p>
+            <p>请你标出图9.1.3中 \(A\)、\(B\)、\(C\) 三点的对称点 \(A_1\)、\(B_1\)、\(C_1\)。</p>
+            <button class="interact-btn" onclick="toggleAnswer('do913')">🔍 显示对称点</button>
+            <div id="do913" class="answer-box">
+                <p>点\(A\)的对称点是\(A_1\)，点\(B\)的对称点是\(B_1\)，点\(C\)的对称点是\(C_1\)。</p>
+            </div>
+        </div>
+        
+        <!-- 概念2：成轴对称 + 对称轴 + 对称点 带底色英文 -->
+        <div class="concept-box" style="margin-top:1rem; margin-bottom:0.5rem;">
+            <strong>成轴对称</strong>：把一个图形沿着某一条直线对折，如果它能与另一个图形完全重合，那么就说这两个图形成轴对称。<br>
+            <strong>对称轴</strong> <em>(axis of symmetry)</em>：这条直线叫做对称轴。<br>
+            <strong>对称点</strong> <em>(symmetric points)</em>：两个图形中的对应点（即两个图形重合时互相重合的点）叫做对称点。
+        </div>
+    </div>
+
+    <!-- 轴对称的基本特征 (冒号后换行显示) -->
+    <div class="concept-box">
+        <strong>轴对称的基本特征</strong>：<span class="break-line"><strong>对应线段</strong> <em>(corresponding segments)</em>相等，<strong>对应角</strong> <em>(corresponding angles)</em>相等。</span>
+    </div>
+
+    <!-- 练习 (练习1.png, 练习2.png, 练习3.png) -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 试一试 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 你一定见过许多美丽的照片或图片，如图所示的三幅图都给我们一种美妙和谐的轴对称形象。请你尽可能多地找出类似的照片或图片，与你的同伴一起欣赏。</p>
+            <div class="image-container">
+                <img src="练习1.jpg" alt="练习1 轴对称图片" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🏰 城堡倒影、🌺 花朵、🦚 孔雀 (练习1)</div>
+            </div>
+            <!-- 练习1的互动按钮已移除 -->
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 观察下列各种图形，分别判断是不是轴对称图形。</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 各种图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">△ □ ○ ⬟ (练习2)</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('exer2')">🔍 答案</button>
+            <div id="exer2" class="answer-box">
+                <p>①⑥⑧⑨⑪是轴对称图形，其他不是轴对称图形。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3. (第5页第3题)</strong> 如图, 已知正方形 \(ABCD\) , 点 \(E\) 、 \(F\) 、 \(G\) 、 \(H\) 分别是 \(DA\) 、 \(AB\) 、 \(BC\) 、 \(CD\) 的中点, 四边形 \(ABGE\) 沿 \(EG\) 对折能与四边形 \(DCGE\) 重合, 点 \(A\) 的对称点是点 ______; 四边形 \(AFHD\) 沿 \(HF\) 对折能与四边形 \(BFHC\) 重合, 点 \(B\) 的对称点是点 ______.</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 正方形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">正方形ABCD (练习3)</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('exer3')">✏️ 填空</button>
+            <div id="exer3" class="answer-box">
+                <p>点A的对称点是点 <strong>D</strong>；点B的对称点是点 <strong>C</strong>。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ★ 指定读一读：剪正五角星 (图1.png,图2.png,图3.png,图4.png,图5.png) -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 剪正五角星</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>节日前夕, 有时需要制作许多五角星. 我们用折纸的方法, 可以直接剪出一个五角星.</p>
+            <p><strong>方法：</strong> 拿一张长方形(或圆形)的纸, 对折成图1, 再沿图1中的虚线将平角折成五等份, 得到图2; 在五等份的折线上, 取点 \(A\) 和点 \(C\) , 使 \(OC\) 比三分之一的 \(OA\) 微微长一点; 沿斜线 \(AC\) 把图2中的阴影部分剪掉, 然后把纸展开, 就得到图3所示的一个正五角星。</p>
+            
+            <!-- 图1、2、3 -->
+            <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; margin:1.5rem 0;">
+                <div class="image-container" style="flex:1 1 150px;">
+                    <img src="图1.png" alt="图1 对折" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">📄 图1 (对折)</div>
+                    <div class="image-caption">图1</div>
+                </div>
+                <div class="image-container" style="flex:1 1 150px;">
+                    <img src="图2.png" alt="图2 五等份" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">✂️ 图2 (五等份)</div>
+                    <div class="image-caption">图2</div>
+                </div>
+                <div class="image-container" style="flex:1 1 150px;">
+                    <img src="图3.png" alt="图3 五角星" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">⭐ 图3 (五角星)</div>
+                    <div class="image-caption">图3</div>
+                </div>
+            </div>
+            
+            <p>如图4，若取得的 \(OC\) 比 \(OA\) 的三分之一长得多（如 \(OC\) 为 \(OA\) 的一半），这时剪出的五角星就不一样了，它的五个角的边比较短；如图5，而当沿直角方向剪时，展开后则成了一个正五边形。</p>
+            
+            <!-- 图4、5 -->
+            <div style="display:flex; gap:1.5rem; flex-wrap:wrap; justify-content:center; margin:1.5rem 0;">
+                <div class="image-container" style="flex:1 1 150px;">
+                    <img src="图4.png" alt="图4 五角星(短角)" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">⭐ 图4 (短角五角星)</div>
+                    <div class="image-caption">图4</div>
+                </div>
+                <div class="image-container" style="flex:1 1 150px;">
+                    <img src="图5.png" alt="图5 正五边形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="img-placeholder" style="display:none;">⬟ 图5 (正五边形)</div>
+                    <div class="image-caption">图5</div>
+                </div>
+            </div>
+            
+            <p><strong>想一想：</strong> 这种折纸剪正五角星的方法，其中隐含着什么数学道理？</p>
+            <button class="interact-btn" onclick="toggleAnswer('starReason')">💭 提示</button>
+            <div id="starReason" class="answer-box" style="margin-top:0.5rem;">
+                <p>利用对称性和角度等分：折叠产生对称轴，五等分平角得到 \(36°\) 角，剪裁时保证五个角均匀，体现了轴对称和角平分线的性质。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 / 核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象能力：</strong> 从现实物体中抽象出轴对称图形。<br>
+        <strong>几何直观：</strong> 通过折叠、观察理解对称轴与对应点。<br>
+        <strong>应用意识：</strong> 用轴对称解释生活中的美与设计。</p>
+    </div>
+
+    <!-- 课堂小结 (可折叠) 内部概念加底色 + 英文 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item"><span class="concept-inline"><strong>轴对称图形</strong> <em>(a figure of line symmetry)</em></span>：沿一条直线对折，两部分完全重合。</div>
+            <div class="summary-item"><span class="concept-inline"><strong>对称轴</strong> <em>(axis of symmetry)</em></span>：那条直线（可能有多条）。</div>
+            <div class="summary-item"><span class="concept-inline"><strong>成轴对称</strong> <em>(axial symmetry)</em></span>：两个图形沿直线对折后重合。</div>
+            <div class="summary-item"><span class="concept-inline"><strong>对称点</strong> <em>(symmetric points)</em></span>：互相重合的点。</div>
+            <div class="summary-item">对应线段相等，对应角相等。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.1 A组第1、2、3题（观察生活中的轴对称，并尝试剪一个五角星）。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.1.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+    // 默认展开阅读区
+    window.onload = function() {
+        document.getElementById('readingContent').classList.add('expanded');
+        document.getElementById('readingToggle').textContent = '▲';
+        
+        // 图片加载失败时显示占位符
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+    };
+</script>
+</body>
+</html>

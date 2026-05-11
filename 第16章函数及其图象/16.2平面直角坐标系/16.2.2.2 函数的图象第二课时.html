@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.2.2 函数的图象(第二课时) | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .sub-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:1.1rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-right:10px;}
+        .sub-problem{margin:1.2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,0.6);border-radius:12px;border-left:4px solid #10b981;display:flex;align-items:flex-start;}
+        .sub-content{flex:1;}
+        .ex-label{color:#be185d;font-weight:700;}
+        .ex-analysis{color:#0369a1;font-weight:700;}
+        canvas{display:block;border-radius:12px;background:white;margin:0 auto;}
+        .canvas-wrap{text-align:center;margin:1rem auto;}
+        .canvas-cap{font-size:.9rem;color:#64748b;margin-top:.4rem;}
+        .choice-wrap{display:flex;gap:1rem;justify-content:center;flex-wrap:nowrap;margin:1rem 0;}
+        .choice-item{text-align:center;padding:0.6rem;border-radius:12px;background:#f0fdff;border:2px solid #a7d8e0;cursor:pointer;transition:all .2s;}
+        .choice-item:hover{border-color:#14b8a6;background:#e0f7fa;}
+        .choice-item.selected{border-color:#10b981;background:#d1fae5;}
+        .choice-item canvas{width:180px;height:140px;}
+        .choice-label{font-weight:700;color:#0e7490;margin-top:.5rem;}
+        .warn-tip{background:#fef3c7;border-left:6px solid #f59e0b;border-radius:1rem;padding:1rem 1.5rem;margin:1rem 0;font-weight:600;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.2.2 函数的图象（第二课时）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>能从函数图象中获取信息，回答实际问题</div>
+            <div class="target-item"><span>2</span>理解图象上点的坐标与实际意义的对应关系</div>
+            <div class="target-item"><span>3</span>能根据实际情境判断函数图象的形状特征</div>
+        </div>
+    </div>
+
+    <!-- 复习引入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🔄 <strong>上节课我们学习了用"描点法"画函数图象的基本步骤：列表→描点→连线。</strong></p>
+        <p style="margin-top:.5rem;">本节课我们将学习<strong>如何从函数图象中读取信息</strong>，并利用图象解决实际问题。</p>
+    </div>
+
+    <!-- 例题 -->
+    <div class="section-title">✏️ 例题</div>
+
+    <div class="example-card">
+        <h4 style="font-size:1.35rem;color:#047857;">
+            <span class="ex-label">▶ 例2</span>　爷爷和小强爬山问题
+        </h4>
+        <p style="margin-top:.6rem;">爷爷和小强经常一起进行早锻炼，主要活动是爬山。有一天，小强让爷爷先上山，然后追赶爷爷，两人都爬上了山顶。下图中的两条线段分别表示小强和爷爷离开山脚的距离 $y$（m）与爬山所用时间 $x$（min）之间的函数关系（从小强开始爬山时计时）。</p>
+
+        <div class="canvas-wrap">
+            <canvas id="climbCanvas" style="max-width:600px;width:100%;"></canvas>
+            <p class="canvas-cap">图 16.2.6</p>
+        </div>
+
+        <div class="warn-tip">
+            <p>💡 <strong>注意：</strong>为了表达的方便，这里平面直角坐标系的横轴和纵坐标轴上取的单位长度不一致，这不影响对问题的表达和理解。</p>
+        </div>
+
+        <p style="margin-top:1rem;"><strong>看图回答下列问题：</strong></p>
+        <p>(1) 小强让爷爷先上山多少米？</p>
+        <p>(2) 山顶离山脚的距离有多少米？谁先爬上山顶？</p>
+        <p>(3) 小强何时赶上爷爷？这时距山脚的距离是多少？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex2Ans')">✍️ 解答过程</button>
+        <div id="ex2Ans" class="answer-box">
+            <p><strong>分析：</strong>图中有两条线段——"爷爷"和"小强"。横轴表示时间 $x$（min），纵轴表示离开山脚的距离 $y$（m）。</p>
+            <p style="margin-top:.6rem;"><strong>(1)</strong> 当 $x=0$（小强开始爬山时），爷爷对应的 $y$ 值就是爷爷先走的距离。</p>
+            <p>从图象看，爷爷线段起点为 $(0, 60)$，小强线段起点为 $(0, 0)$。</p>
+            <p>∴ 小强让爷爷先上山 <strong>60 米</strong>。</p>
+            <p style="margin-top:.6rem;"><strong>(2)</strong> 山顶是两人到达的最高点。从图象看，两条线段的最高点对应的 $y$ 值都是 300。</p>
+            <p>∴ 山顶离山脚的距离是 <strong>300 米</strong>。</p>
+            <p>爷爷到达山顶用时约 10 min，小强到达山顶用时约 8 min。</p>
+            <p>∴ <strong>小强先爬上山顶</strong>。</p>
+            <p style="margin-top:.6rem;"><strong>(3)</strong> "赶上"即两条线段的交点。从图象看，交点坐标约为 $(8, 240)$。</p>
+            <p>∴ 小强在出发后约 <strong>8 分钟</strong>赶上爷爷，这时距山脚 <strong>240 米</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">📝 练习</div>
+
+    <div class="example-card">
+        <!-- 练习1 -->
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>下图为世界总人口数的变化图。根据图象回答：</p>
+                <p>(1) 从 1830 年到 2021 年，世界总人口数呈怎样的变化趋势？</p>
+                <p>(2) 哪一段时间世界总人口数变化较快？</p>
+
+                <div class="canvas-wrap">
+                    <canvas id="popCanvas" style="max-width:900px;width:100%;"></canvas>
+                    <p class="canvas-cap">（第 1 题）</p>
+                </div>
+
+                <button class="interact-btn" onclick="toggleAnswer('pr1Ans')">💡 答案</button>
+                <div id="pr1Ans" class="answer-box">
+                    <p><strong>(1)</strong> 从 1830 年到 2021 年，世界总人口数呈<strong>上升趋势</strong>。</p>
+                    <p style="margin-top:.5rem;"><strong>(2)</strong> 从图象的陡峭程度看，<strong>1975 年以后</strong>世界总人口数变化较快（图象更陡）。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习2 -->
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>一支蜡烛长 20 cm，点燃后每小时燃烧掉 5 cm，下列 3 幅图象中，哪幅能大致刻画出这支蜡烛点燃后剩下的长度 $h$（cm）与点燃时间 $t$（h）之间的函数关系？</p>
+
+                <div class="choice-wrap">
+                    <div class="choice-item" id="choiceA" onclick="selectChoice('A')">
+                        <canvas id="candleA" width="300" height="240"></canvas>
+                        <div class="choice-label">①</div>
+                    </div>
+                    <div class="choice-item" id="choiceB" onclick="selectChoice('B')">
+                        <canvas id="candleB" width="300" height="240"></canvas>
+                        <div class="choice-label">②</div>
+                    </div>
+                    <div class="choice-item" id="choiceC" onclick="selectChoice('C')">
+                        <canvas id="candleC" width="300" height="240"></canvas>
+                        <div class="choice-label">③</div>
+                    </div>
+                </div>
+
+                <button class="interact-btn" onclick="toggleAnswer('pr2Ans')">💡 答案</button>
+                <div id="pr2Ans" class="answer-box">
+                    <p><strong>答案：③</strong></p>
+                    <p style="margin-top:.5rem;"><strong>分析：</strong>蜡烛原长 20 cm，每小时燃烧 5 cm。</p>
+                    <p>∴ $h = 20 - 5t$（$0 \leq t \leq 4$）</p>
+                    <p>这是一个<strong>一次函数</strong>，图象应该是一条<strong>从左上到右下的线段</strong>。</p>
+                    <p>图①表示长度不变，图②表示长度增加，都不符合实际。</p>
+                    <p>图③表示长度随时间均匀减少，<strong>4 小时后燃尽</strong>，符合题意。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习3 -->
+        <div class="sub-problem">
+            <span class="sub-number">3</span>
+            <div class="sub-content">
+                <p>小明从家里出发，外出散步，到一个公共阅报栏前看了一会儿报后，继续散步了一段时间，然后回家。下图描述了小明在散步过程中离家的距离 $s$（m）与散步所用时间 $t$（min）之间的函数关系。你能根据图象说出小明散步过程中的一些具体信息吗？</p>
+
+                <div class="canvas-wrap">
+                    <canvas id="walkCanvas" style="max-width:720px;width:100%;"></canvas>
+                    <p class="canvas-cap">（第 3 题）</p>
+                </div>
+
+                <button class="interact-btn" onclick="toggleAnswer('pr3Ans')">💡 答案</button>
+                <div id="pr3Ans" class="answer-box">
+                    <p><strong>分析图象各段含义：</strong></p>
+                    <ul style="padding-left:1.5rem;line-height:2;margin-top:.5rem;">
+                        <li><strong>0~3 min</strong>（上升）：从家出发，向阅报栏走去，3 分钟后到达，离家 250 m</li>
+                        <li><strong>3~8 min</strong>（水平）：在阅报栏前看报，停留了 5 分钟</li>
+                        <li><strong>8~10 min</strong>（上升）：继续散步，2 分钟后到达最远点，离家 450 m</li>
+                        <li><strong>10~16 min</strong>（下降）：返回家中，用了 6 分钟</li>
+                    </ul>
+                    <p style="margin-top:.5rem;"><strong>具体信息：</strong></p>
+                    <p>• 小明散步共用 <strong>16 分钟</strong></p>
+                    <p>• 最远离家 <strong>450 米</strong></p>
+                    <p>• 在阅报栏前停留 <strong>5 分钟</strong></p>
+                    <p>• 返回时的速度比去时慢</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="section-title">🔬 试一试</div>
+
+    <div class="explore-card">
+        <h4>画出 16.1 节例 2(1)（第 34 页）中函数的图象，并结合图象指出重叠部分面积的最大值。</h4>
+        <p style="margin-top:.6rem;">如图16.1.3，已知等腰直角三角形 $ABC$ 的直角边长与正方形 $MNPQ$ 的边长均为10cm，$CA$ 与 $MN$ 在同一条直线上，开始时点 $A$ 与点 $M$ 重合，让 $\triangle ABC$ 向右移动，最后点 $A$ 与点 $N$ 重合。</p>
+
+        <!-- 动态图 + 实时函数图象 并排 -->
+        <div style="margin-top:1rem;">
+            <p><strong>函数关系：</strong>$y = \frac{1}{2}x^2$（$0 \leqslant x \leqslant 10$）</p>
+            <p style="margin-top:.4rem;">拖动滑块，观察左侧几何图形与右侧函数图象的同步变化：</p>
+        </div>
+
+        <div class="canvas-wrap" style="background:white;border-radius:16px;padding:1rem;box-shadow:0 4px 15px rgba(0,0,0,0.1);margin:1rem auto;max-width:1100px;">
+            <div style="text-align:center;font-weight:700;color:#334155;margin-bottom:10px;white-space:nowrap;">图16.1.3 动态重叠示意图（拖动滑块观察变化）</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:15px;padding:12px;background:#f0fdfa;border-radius:12px;flex-wrap:wrap;">
+                <span style="font-weight:600;color:#0f766e;">点A移动距离 $x$：</span>
+                <button onclick="adjustSlider(-1)" style="background:#0ea5e9;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.2);">−</button>
+                <input type="range" id="slider" min="0" max="100" value="30" style="width:280px;height:8px;accent-color:#0ea5e9;cursor:pointer;">
+                <button onclick="adjustSlider(1)" style="background:#0ea5e9;color:white;border:none;width:32px;height:32px;border-radius:50%;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.2);">+</button>
+                <span id="distance" style="font-weight:700;color:#dc2626;font-size:1.2rem;">3.0 cm</span>
+            </div>
+            <div style="text-align:center;margin-top:12px;padding:10px;background:#e0f7fa;border-radius:10px;">
+                <span style="font-size:1.25rem;font-weight:600;color:#0e7490;">重叠三角形面积 = </span>
+                <span id="area-value" style="font-size:1.35rem;font-weight:700;color:#dc2626;">4.50 cm²</span>
+            </div>
+
+            <!-- 左右并排 -->
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:1rem;">
+                <!-- 左侧：几何动态图 -->
+                <div style="flex:1 1 400px;min-width:300px;max-width:520px;">
+                    <svg width="500" height="280" xmlns="http://www.w3.org/2000/svg" id="geometry-svg" style="max-width:100%;height:auto;background:linear-gradient(to bottom,#f8fafc,#ffffff);border-radius:12px;">
+                        <line x1="220" y1="40" x2="360" y2="40" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                        <line x1="360" y1="40" x2="360" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                        <line x1="220" y1="180" x2="360" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                        <line x1="220" y1="40" x2="220" y2="180" style="stroke:#334155;stroke-width:2.5;fill:none;" />
+                        <text x="210" y="30" style="font-size:18px;font-weight:700;fill:#334155;">Q</text>
+                        <text x="350" y="30" style="font-size:18px;font-weight:700;fill:#334155;">P</text>
+                        <text x="210" y="205" style="font-size:18px;font-weight:700;fill:#334155;">M</text>
+                        <text x="350" y="205" style="font-size:18px;font-weight:700;fill:#334155;">N</text>
+                        <polygon id="blue-area" points="220 180, 220 180, 220 180" style="fill:#0ea5e9;fill-opacity:0.4;stroke:#0ea5e9;stroke-width:2.5;"></polygon>
+                        <g id="triangle" transform="translate(80, 40)">
+                            <line x1="0" y1="0" x2="0" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                            <line x1="0" y1="140" x2="140" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                            <line x1="0" y1="0" x2="140" y2="140" style="stroke:#334155;stroke-width:2.5;" />
+                            <rect x="0" y="125" width="15" height="15" style="stroke:#334155;stroke-width:2;fill:none;" />
+                            <text x="-8" y="-8" style="font-size:18px;font-weight:700;fill:#0f172a;">B</text>
+                            <text x="-22" y="158" style="font-size:18px;font-weight:700;fill:#0f172a;">C</text>
+                            <text x="132" y="158" style="font-size:18px;font-weight:700;fill:#0f172a;">A</text>
+                        </g>
+                        <line id="ma-line" x1="220" y1="220" x2="262" y2="220" style="stroke:#dc2626;stroke-width:2.5;" />
+                        <text id="ma-label" x="236" y="240" style="font-size:16px;font-weight:700;fill:#dc2626;">x</text>
+                    </svg>
+                    <p class="canvas-cap" style="margin-top:.4rem;">几何动态图</p>
+                </div>
+
+                <!-- 右侧：函数图象 -->
+                <div style="flex:1 1 400px;min-width:300px;max-width:520px;">
+                    <canvas id="canvasTry" style="max-width:100%;width:100%;"></canvas>
+                    <p class="canvas-cap" style="margin-top:.4rem;">$y = \frac{1}{2}x^2$ 的实时图象</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('tryAns')">💡 答案与解析</button>
+        <div id="tryAns" class="answer-box">
+            <p><strong>解析：</strong></p>
+            <p>重叠部分是等腰直角三角形，直角边长为 $x$，所以面积 $y = \frac{1}{2}x^2$。</p>
+            <p style="margin-top:.5rem;"><strong>最大值分析：</strong></p>
+            <p>从图象可以看出，当 $x = 10$ 时，$y = \frac{1}{2} \times 10^2 = 50$ cm²。</p>
+            <p>但注意：当 $x = 10$ 时，三角形完全进入正方形，重叠面积最大。</p>
+            <p style="margin-top:.5rem;"><strong>结论：</strong>重叠部分面积的最大值为 <strong>50 cm²</strong>（当 $x = 10$ 时）。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li>函数图象上的<strong>每个点</strong>都有实际意义：横坐标表示自变量的值，纵坐标表示对应的函数值</li>
+            <li><strong>读图要点</strong>：看起点、终点、转折点、交点、变化趋势（上升/下降/水平）</li>
+            <li><strong>上升</strong>→函数值增大；<strong>下降</strong>→函数值减小；<strong>水平</strong>→函数值不变</li>
+            <li>图象的<strong>陡峭程度</strong>反映了变化的快慢</li>
+            <li>实际问题中，要注意坐标轴的<strong>单位长度</strong>可能不一致</li>
+        </ul>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎯 数学核心素养</div>
+    <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;">
+        <div style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #f59e0b;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🔗</span>
+                <h4 style="color:#92400e;font-size:1.25rem;font-weight:700;">数形结合思想</h4>
+            </div>
+            <p style="color:#78350f;line-height:1.8;font-size:1rem;">通过函数图象，将<strong>"数"</strong>（坐标数据）与<strong>"形"</strong>（曲线图形）统一。读图的过程，正是从"形"中提取"数"的具体体现。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #3b82f6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📐</span>
+                <h4 style="color:#1e40af;font-size:1.25rem;font-weight:700;">几何直观能力</h4>
+            </div>
+            <p style="color:#1e3a8a;line-height:1.8;font-size:1rem;">通过观察函数图象，培养<strong>从图形中获取信息</strong>的能力。看到线段的走向、交点位置，就能感知变化的规律。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #10b981;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📊</span>
+                <h4 style="color:#065f46;font-size:1.25rem;font-weight:700;">数据分析观念</h4>
+            </div>
+            <p style="color:#064e3b;line-height:1.8;font-size:1rem;">读图的过程，本质上就是<strong>收集信息、分析数据、得出结论</strong>的过程，是数据分析的基本方法。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #8b5cf6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🧩</span>
+                <h4 style="color:#5b21b6;font-size:1.25rem;font-weight:700;">数学建模观念</h4>
+            </div>
+            <p style="color:#4c1d95;line-height:1.8;font-size:1rem;">用函数图象来<strong>描述现实世界中的变化规律</strong>，如行程问题、人口增长等，感受数学建模的过程与价值。</p>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="section-title">📖 读一读</div>
+
+    <div class="explore-card" style="background:linear-gradient(145deg,#e0e7ff,#c7d2fe);border-left-color:#6366f1;">
+        <h4 style="color:#4338ca;">📈 图象——函数的"语言"</h4>
+        <p style="line-height:2;">函数图象是函数的一种直观表示，它能让我们"一眼看穿"函数的变化规律。</p>
+        <p style="line-height:2;margin-top:.5rem;">在实际生活中，图象的应用非常广泛：</p>
+        <ul style="line-height:2.2;padding-left:1.5rem;margin-top:0.5rem;">
+            <li><strong>心电图：</strong>医生通过心电图的波形判断心脏健康状况</li>
+            <li><strong>股票走势图：</strong>投资者通过 K 线图分析股价涨跌趋势</li>
+            <li><strong>气温曲线：</strong>气象员通过气温变化曲线预测天气</li>
+            <li><strong>运动轨迹：</strong>运动员通过速度-时间图分析训练效果</li>
+        </ul>
+        <div class="highlight-box" style="background:rgba(255,255,255,0.7);margin-top:1rem;">
+            <strong>思考：</strong>学会"读图"，就是学会用数学的眼光观察世界！
+        </div>
+    </div>
+
+    <!-- 寄语 -->
+    <div style="background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:8rem;opacity:0.1;">💭</div>
+        <h4 style="color:#f0fdfa;font-size:1.5rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;">
+            <span style="font-size:1.8rem;">💌</span> 教师寄语
+        </h4>
+        <div style="color:#ccfbf1;font-size:1.15rem;line-height:2.2;position:relative;z-index:1;">
+            <p style="text-indent:2em;">今天我们学会了如何从函数图象中读取信息。一条看似简单的曲线，背后却蕴含着丰富的故事。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">从爬山问题中，我们读出了速度与时间的关系；从人口变化中，我们看到了世界的发展趋势；从蜡烛燃烧中，我们理解了生命的流逝。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">记住：<strong>图象是函数的语言</strong>，学会读懂它，你就拥有了洞察世界变化的一把钥匙。数学的美，就在这<strong>数与形的交融</strong>之中！</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    if(el.style.display==='block'||el.dataset.shown==='yes'){
+        el.style.display='none';el.dataset.shown='';
+        return;
+    }
+    el.style.display='block';el.dataset.shown='yes';
+    if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){});}
+}
+
+function mjRender(el){
+    if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([el]).catch(function(){});
+}
+
+/* ========== 例2：爬山图 ========== */
+(function(){
+    var cv=document.getElementById('climbCanvas');if(!cv)return;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+
+    function draw(){
+        var W0=Math.min(cv.parentElement.clientWidth||600,600);
+        var H0=Math.round(W0*0.65);
+        cv.width=W0*dpr;cv.height=H0*dpr;
+        cv.style.width=W0+'px';cv.style.height=H0+'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+
+        var W=W0,H=H0;
+        var padL=70,padR=80,padT=50,padB=60;
+        var cW=W-padL-padR,cH=H-padT-padB;
+        ctx.clearRect(0,0,W,H);
+
+        // 网格 - x轴0~11，y轴0~300(每60一格)
+        ctx.strokeStyle='#e0f2fe';ctx.lineWidth=1;
+        for(var i=0;i<=11;i+=1){
+            var x=padL+i/11*cW;
+            ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,H-padB);ctx.stroke();
+        }
+        for(var i=0;i<=5;i+=1){
+            var y=H-padB-i/5*cH;
+            ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+        }
+
+        // 轴
+        ctx.strokeStyle='#334155';ctx.lineWidth=2;
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(W-padR+8,H-padB);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL,padT-8);ctx.stroke();
+        ctx.fillStyle='#334155';
+        ctx.beginPath();ctx.moveTo(W-padR+8,H-padB);ctx.lineTo(W-padR,H-padB-4);ctx.lineTo(W-padR,H-padB+4);ctx.closePath();ctx.fill();
+        ctx.beginPath();ctx.moveTo(padL,padT-8);ctx.lineTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.closePath();ctx.fill();
+
+        // 刻度 - x轴每1格(原点标O)
+        ctx.font='bold 17px sans-serif';ctx.fillStyle='#64748b';
+        for(var i=0;i<=11;i+=1){
+            var x=padL+i/11*cW;
+            if(i===0){
+                ctx.textAlign='center';ctx.fillText('O',x-16,H-padB+24);
+            }else{
+                ctx.textAlign='center';ctx.fillText(i,x,H-padB+24);
+            }
+            ctx.beginPath();ctx.moveTo(x,H-padB-4);ctx.lineTo(x,H-padB+4);ctx.strokeStyle='#334155';ctx.lineWidth=1.5;ctx.stroke();
+        }
+        // 刻度 - y轴60,120,180,240,300(不标0)
+        ctx.font='bold 17px sans-serif';
+        for(var i=1;i<=5;i+=1){
+            var y=H-padB-i/5*cH;
+            ctx.textAlign='right';ctx.fillText(i*60,padL-14,y+6);
+            ctx.beginPath();ctx.moveTo(padL-4,y);ctx.lineTo(padL+4,y);ctx.strokeStyle='#334155';ctx.lineWidth=1.5;ctx.stroke();
+        }
+
+        // 标签 - x在箭头旁，y在箭头旁
+        ctx.fillStyle='#0e7490';ctx.font='bold 16px sans-serif';ctx.textAlign='left';
+        ctx.fillText('x/min',W-padR+12,H-padB+26);
+        ctx.textAlign='left';ctx.fillText('y/m',padL+6,padT+10);
+
+        // 爷爷线段: (0,60)→(8,240)→(10.67,300) 直线 - 橙色
+        ctx.strokeStyle='#f59e0b';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();
+        ctx.moveTo(padL+0/11*cW,H-padB-60/300*cH);
+        ctx.lineTo(padL+8/11*cW,H-padB-240/300*cH);
+        ctx.lineTo(padL+10.67/11*cW,H-padB-300/300*cH);
+        ctx.stroke();
+
+        // 小强线段: (0,0)→(8,240)→(10,300) 直线 - 蓝色
+        ctx.strokeStyle='#0ea5e9';ctx.lineWidth=3;
+        ctx.beginPath();
+        ctx.moveTo(padL+0/11*cW,H-padB-0/300*cH);
+        ctx.lineTo(padL+8/11*cW,H-padB-240/300*cH);
+        ctx.lineTo(padL+10/11*cW,H-padB-300/300*cH);
+        ctx.stroke();
+
+        // 文字标注"爷爷""小强"
+        ctx.font='bold 19px sans-serif';ctx.fillStyle='#b45309';ctx.textAlign='center';
+        ctx.fillText('爷爷',padL+3.5/11*cW,H-padB-210/300*cH);
+        ctx.fillStyle='#0369a1';ctx.fillText('小强',padL+6/11*cW,H-padB-130/300*cH);
+
+        // 交点虚线 (8,240)
+        ctx.setLineDash([5,3]);ctx.strokeStyle='#64748b';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(padL+8/11*cW,H-padB);ctx.lineTo(padL+8/11*cW,H-padB-240/300*cH);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL,H-padB-240/300*cH);ctx.lineTo(padL+8/11*cW,H-padB-240/300*cH);ctx.stroke();
+        ctx.setLineDash([]);
+
+        // 交点红点和标注
+        var jx=padL+8/11*cW,jy=H-padB-240/300*cH;
+        ctx.beginPath();ctx.arc(jx,jy,5,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();
+        ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+    }
+
+    window.addEventListener('resize',draw);
+    if(document.readyState==='complete')draw();
+    else window.addEventListener('load',draw);
+})();
+
+/* ========== 练习1：人口图 ========== */
+(function(){
+    var cv=document.getElementById('popCanvas');if(!cv)return;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+
+    // 数据点 (年份, 人口/亿)
+    var popData=[
+        {y:1830,p:10},{y:1930,p:20},{y:1960,p:30},
+        {y:1975,p:40},{y:1987,p:50},{y:1999,p:60},
+        {y:2011,p:70},{y:2021,p:76}
+    ];
+    var yearMin=1830,yearMax=2021;
+    var popMax=80;
+
+    function yearToX(year,padL,cW){return padL+(year-yearMin)/(yearMax-yearMin)*cW;}
+    function popToY(pop,padB,cH,H){return H-padB-pop/popMax*cH;}
+
+    function draw(){
+        var W0=Math.min(cv.parentElement.clientWidth||900,900);
+        var H0=Math.round(W0*0.55);
+        cv.width=W0*dpr;cv.height=H0*dpr;
+        cv.style.width=W0+'px';cv.style.height=H0+'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+
+        var W=W0,H=H0;
+        var padL=80,padR=130,padT=55,padB=65;
+        var cW=W-padL-padR,cH=H-padT-padB;
+        ctx.clearRect(0,0,W,H);
+
+        // 网格 (水平虚线)
+        ctx.strokeStyle='#94a3b8';ctx.lineWidth=1.5;ctx.setLineDash([6,4]);
+        for(var i=0;i<=80;i+=10){
+            var y=popToY(i,padB,cH,H);
+            ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+        }
+        ctx.setLineDash([]);
+
+        // 轴
+        ctx.strokeStyle='#0f172a';ctx.lineWidth=2.5;
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(W-padR+8,H-padB);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL,padT-8);ctx.stroke();
+        ctx.fillStyle='#0f172a';
+        ctx.beginPath();ctx.moveTo(W-padR+8,H-padB);ctx.lineTo(W-padR,H-padB-4);ctx.lineTo(W-padR,H-padB+4);ctx.closePath();ctx.fill();
+        ctx.beginPath();ctx.moveTo(padL,padT-8);ctx.lineTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.closePath();ctx.fill();
+
+        // 原点标注 O
+        ctx.font='bold 16px sans-serif';ctx.fillStyle='#334155';ctx.textAlign='right';
+        ctx.fillText('O',padL-12,H-padB+6);
+
+        // 刻度 - 年份 (按实际年份位置)
+        ctx.font='bold 15px sans-serif';ctx.fillStyle='#334155';
+        popData.forEach(function(d){
+            var x=yearToX(d.y,padL,cW);
+            ctx.textAlign='center';ctx.fillText(d.y,x,H-padB+24);
+            ctx.beginPath();ctx.moveTo(x,H-padB-4);ctx.lineTo(x,H-padB+4);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+        });
+        // 刻度 - 人口
+        for(var i=10;i<=80;i+=10){
+            var y=popToY(i,padB,cH,H);
+            ctx.textAlign='right';ctx.fillText(i,padL-14,y+6);
+            ctx.beginPath();ctx.moveTo(padL-4,y);ctx.lineTo(padL+4,y);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+        }
+
+        // 标签：x和y放在箭头附近
+        ctx.fillStyle='#0e7490';ctx.font='bold 17px sans-serif';
+        ctx.textAlign='left';
+        ctx.fillText('年份',W-padR+10,H-padB+8);
+        ctx.textAlign='center';
+        ctx.fillText('世界总人口数/亿',padL-12,padT-8);
+
+        // 折线 (黑色加粗)
+        ctx.strokeStyle='#0f172a';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();
+        popData.forEach(function(d,i){
+            var x=yearToX(d.y,padL,cW),y=popToY(d.p,padB,cH,H);
+            if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+        });
+        ctx.stroke();
+
+        // 点 (黑色实心，更大)
+        popData.forEach(function(d){
+            var x=yearToX(d.y,padL,cW),y=popToY(d.p,padB,cH,H);
+            ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fillStyle='#0f172a';ctx.fill();
+        });
+
+        // 虚线连接到坐标轴 + 坐标标注
+        ctx.setLineDash([5,4]);ctx.strokeStyle='#475569';ctx.lineWidth=1.5;
+        popData.forEach(function(d){
+            var x=yearToX(d.y,padL,cW),y=popToY(d.p,padB,cH,H);
+            // 垂直到x轴
+            ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,H-padB);ctx.stroke();
+            // 水平到y轴
+            ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(padL,y);ctx.stroke();
+        });
+        ctx.setLineDash([]);
+
+        // 坐标标注 (统一放在点正右侧)
+        popData.forEach(function(d){
+            var x=yearToX(d.y,padL,cW),y=popToY(d.p,padB,cH,H);
+            ctx.fillStyle='#0f172a';ctx.font='bold 15px sans-serif';
+            ctx.textAlign='left';
+            ctx.fillText('('+d.y+', '+d.p+')',x+8,y+5);
+        });
+    }
+
+    window.addEventListener('resize',draw);
+    if(document.readyState==='complete')draw();
+    else window.addEventListener('load',draw);
+})();
+
+/* ========== 练习2：蜡烛图 ========== */
+function drawCandle(id,type){
+    var cv=document.getElementById(id);if(!cv)return;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+    var W0=300,H0=240;
+    cv.width=W0*dpr;cv.height=H0*dpr;
+    cv.style.width=W0+'px';cv.style.height=H0+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    var W=W0,H=H0;
+    var padL=55,padR=50,padT=35,padB=45;
+    var cW=W-padL-padR,cH=H-padT-padB;
+    ctx.clearRect(0,0,W,H);
+
+    // 网格
+    ctx.strokeStyle='#e0f2fe';ctx.lineWidth=1;
+    for(var i=0;i<=4;i++){
+        var x=padL+i/4*cW;
+        ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,H-padB);ctx.stroke();
+    }
+    for(var i=0;i<=4;i++){
+        var y=H-padB-i/4*cH;
+        ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    }
+
+    // 轴
+    ctx.strokeStyle='#0f172a';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(W-padR+6,H-padB);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL,padT-6);ctx.stroke();
+    ctx.fillStyle='#0f172a';
+    ctx.beginPath();ctx.moveTo(W-padR+6,H-padB);ctx.lineTo(W-padR,H-padB-4);ctx.lineTo(W-padR,H-padB+4);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(padL,padT-6);ctx.lineTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.closePath();ctx.fill();
+
+    // 刻度
+    ctx.font='bold 15px sans-serif';ctx.fillStyle='#334155';
+    for(var i=0;i<=4;i++){
+        var x=padL+i/4*cW;
+        ctx.textAlign='center';ctx.fillText(i,x,H-padB+20);
+        ctx.beginPath();ctx.moveTo(x,H-padB-4);ctx.lineTo(x,H-padB+4);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+    }
+    ctx.textAlign='right';
+    ctx.fillText('O',padL-10,H-padB+6);
+    ctx.fillText('20',padL-10,padT+6);
+    ctx.beginPath();ctx.moveTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+
+    // 标签：t/h 放 x 轴箭头右侧，h/cm 放 y 轴箭头上方
+    ctx.fillStyle='#0e7490';ctx.font='bold 16px sans-serif';
+    ctx.textAlign='left';
+    ctx.fillText('t/h',W-padR+10,H-padB+6);
+    ctx.textAlign='center';
+    ctx.fillText('h/cm',padL-8,padT-8);
+
+    // 线 (红色，加粗)
+    ctx.lineWidth=3;ctx.lineCap='round';
+    ctx.strokeStyle='#dc2626';
+    if(type==='A'){
+        ctx.beginPath();ctx.moveTo(padL,H-padB-20/20*cH);ctx.lineTo(padL+4/4*cW,H-padB-20/20*cH);ctx.stroke();
+    }else if(type==='B'){
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL+4/4*cW,H-padB-20/20*cH);ctx.stroke();
+    }else{
+        ctx.beginPath();ctx.moveTo(padL,H-padB-20/20*cH);ctx.lineTo(padL+4/4*cW,H-padB);ctx.stroke();
+    }
+}
+
+(function(){
+    function init(){
+        drawCandle('candleA','A');
+        drawCandle('candleB','B');
+        drawCandle('candleC','C');
+    }
+    if(document.readyState==='complete')init();
+    else window.addEventListener('load',init);
+})();
+
+function selectChoice(choice){
+    ['A','B','C'].forEach(function(c){
+        document.getElementById('choice'+c).classList.remove('selected');
+    });
+    document.getElementById('choice'+choice).classList.add('selected');
+}
+
+/* ========== 练习3：散步图 ========== */
+(function(){
+    var cv=document.getElementById('walkCanvas');if(!cv)return;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+
+    function draw(){
+        var W0=Math.min(cv.parentElement.clientWidth||720,720);
+        var H0=Math.round(W0*0.55);
+        cv.width=W0*dpr;cv.height=H0*dpr;
+        cv.style.width=W0+'px';cv.style.height=H0+'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+
+        var W=W0,H=H0;
+        var padL=75,padR=55,padT=50,padB=60;
+        var cW=W-padL-padR,cH=H-padT-padB;
+        ctx.clearRect(0,0,W,H);
+
+        // 网格 (水平虚线)
+        ctx.strokeStyle='#cbd5e1';ctx.lineWidth=1;ctx.setLineDash([5,3]);
+        for(var i=0;i<=450;i+=50){
+            var y=H-padB-i/450*cH;
+            ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+        }
+        ctx.setLineDash([]);
+
+        // 轴
+        ctx.strokeStyle='#0f172a';ctx.lineWidth=2.5;
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(W-padR+8,H-padB);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL,padT-8);ctx.stroke();
+        ctx.fillStyle='#0f172a';
+        ctx.beginPath();ctx.moveTo(W-padR+8,H-padB);ctx.lineTo(W-padR,H-padB-4);ctx.lineTo(W-padR,H-padB+4);ctx.closePath();ctx.fill();
+        ctx.beginPath();ctx.moveTo(padL,padT-8);ctx.lineTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.closePath();ctx.fill();
+
+        // 原点标注 O
+        ctx.font='bold 16px sans-serif';ctx.fillStyle='#334155';ctx.textAlign='right';
+        ctx.fillText('O',padL-12,H-padB+6);
+
+        // 刻度（跳过原点0）
+        ctx.font='bold 15px sans-serif';ctx.fillStyle='#334155';
+        for(var i=2;i<=16;i+=2){
+            var x=padL+i/16*cW;
+            ctx.textAlign='center';ctx.fillText(i,x,H-padB+24);
+            ctx.beginPath();ctx.moveTo(x,H-padB-4);ctx.lineTo(x,H-padB+4);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+        }
+        for(var i=50;i<=450;i+=50){
+            var y=H-padB-i/450*cH;
+            ctx.textAlign='right';ctx.fillText(i,padL-14,y+6);
+            ctx.beginPath();ctx.moveTo(padL-4,y);ctx.lineTo(padL+4,y);ctx.strokeStyle='#0f172a';ctx.lineWidth=1.5;ctx.stroke();
+        }
+
+        // 标签：t/s放箭头附近
+        ctx.fillStyle='#0e7490';ctx.font='bold 17px sans-serif';
+        ctx.textAlign='left';
+        ctx.fillText('t/min',W-padR+10,H-padB+6);
+        ctx.textAlign='center';
+        ctx.fillText('s/m',padL-10,padT-8);
+
+        // 分段线: (0,0)→(3,250)→(8,250)→(10,450)→(16,0)
+        ctx.strokeStyle='#dc2626';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();
+        ctx.moveTo(padL+0/16*cW,H-padB-0/450*cH);
+        ctx.lineTo(padL+3/16*cW,H-padB-250/450*cH);
+        ctx.lineTo(padL+8/16*cW,H-padB-250/450*cH);
+        ctx.lineTo(padL+10/16*cW,H-padB-450/450*cH);
+        ctx.lineTo(padL+16/16*cW,H-padB-0/450*cH);
+        ctx.stroke();
+
+        // 关键点
+        var pts=[
+            {t:0,s:0,l:'家'},{t:3,s:250,l:'阅报栏'},{t:8,s:250,l:''},
+            {t:10,s:450,l:'最远点'},{t:16,s:0,l:'回家'}
+        ];
+        pts.forEach(function(p){
+            var x=padL+p.t/16*cW,y=H-padB-p.s/450*cH;
+            ctx.beginPath();ctx.arc(x,y,7,0,Math.PI*2);ctx.fillStyle='#0f172a';ctx.fill();
+            if(p.l){
+                ctx.fillStyle='#0f172a';ctx.font='bold 16px sans-serif';ctx.textAlign='center';
+                ctx.fillText(p.l,x,y-16);
+            }
+        });
+
+        // 虚线连接到坐标轴
+        ctx.setLineDash([5,3]);ctx.strokeStyle='#64748b';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(padL+3/16*cW,H-padB);ctx.lineTo(padL+3/16*cW,H-padB-250/450*cH);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL+8/16*cW,H-padB);ctx.lineTo(padL+8/16*cW,H-padB-250/450*cH);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(padL+10/16*cW,H-padB);ctx.lineTo(padL+10/16*cW,H-padB-450/450*cH);ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    window.addEventListener('resize',draw);
+    if(document.readyState==='complete')draw();
+    else window.addEventListener('load',draw);
+})();
+
+/* ========== 试一试：SVG滑动条控制 ========== */
+function adjustSlider(delta){
+    var slider=document.getElementById('slider');
+    if(!slider)return;
+    var newValue=parseInt(slider.value)+delta;
+    if(newValue<0)newValue=0;
+    if(newValue>100)newValue=100;
+    slider.value=newValue;
+    slider.dispatchEvent(new Event('input'));
+}
+
+(function initOverlapSlider(){
+    var slider=document.getElementById('slider');
+    var distanceText=document.getElementById('distance');
+    var areaValue=document.getElementById('area-value');
+    var triangle=document.getElementById('triangle');
+    var blueArea=document.getElementById('blue-area');
+    var maLine=document.getElementById('ma-line');
+    var maLabel=document.getElementById('ma-label');
+    if(!slider)return;
+    var M_X=220,M_Y=180,SCALE=14,TRIANGLE_SIZE=140,INITIAL_C_X=80;
+    function updateGeometry(){
+        var x_cm=parseInt(slider.value)/10;
+        var moveX=x_cm*SCALE;
+        distanceText.textContent=x_cm.toFixed(1)+' cm';
+        var translateX=INITIAL_C_X+moveX;
+        triangle.setAttribute('transform','translate('+translateX+', 40)');
+        var overlapSize=Math.min(moveX,TRIANGLE_SIZE);
+        if(moveX<=0){
+            blueArea.setAttribute('points',M_X+' '+M_Y+', '+M_X+' '+M_Y+', '+M_X+' '+M_Y);
+            areaValue.textContent='0 cm²';
+        }else{
+            var intersectY=M_Y-overlapSize;
+            blueArea.setAttribute('points',M_X+' '+M_Y+', '+M_X+' '+intersectY+', '+(M_X+overlapSize)+' '+M_Y);
+            var area=0.5*x_cm*x_cm;
+            areaValue.textContent=area.toFixed(2)+' cm²';
+        }
+        if(x_cm>0.3){
+            maLine.setAttribute('x1',M_X);maLine.setAttribute('y1',220);
+            maLine.setAttribute('x2',M_X+moveX);maLine.setAttribute('y2',220);
+            maLabel.setAttribute('x',M_X+moveX/2-5);maLabel.setAttribute('y',240);
+            maLine.style.display='block';maLabel.style.display='block';
+        }else{
+            maLine.style.display='none';maLabel.style.display='none';
+        }
+        // 同步更新函数图象
+        drawTryGraph(x_cm);
+    }
+    slider.addEventListener('input',updateGeometry);
+    slider.value=30;updateGeometry();
+})();
+
+/* ========== 试一试：实时函数图象 ========== */
+var tryCanvasInfo=null;
+
+function drawTryGraph(currentX){
+    var cv=document.getElementById('canvasTry');
+    if(!cv)return;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+    var W0=Math.min(cv.parentElement.clientWidth||560,560);
+    var H0=Math.round(W0*0.65);
+    cv.width=W0*dpr;cv.height=H0*dpr;
+    cv.style.width=W0+'px';cv.style.height=H0+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    var W=W0,H=H0;
+    var padL=65,padR=50,padT=45,padB=60;
+    var cW=W-padL-padR,cH=H-padT-padB;
+
+    // 坐标范围 x:0~10, y:0~55 (为了显示50并留边距)
+    var xMax=10,yMax=55;
+    var ux=cW/xMax,uy=cH/yMax;
+    var ox=padL,oy=H-padB;
+
+    ctx.clearRect(0,0,W,H);
+
+    // 网格
+    ctx.strokeStyle='#e0f2fe';ctx.lineWidth=1;
+    for(var i=0;i<=10;i++){
+        var x=padL+i*ux;
+        ctx.beginPath();ctx.moveTo(x,padT);ctx.lineTo(x,H-padB);ctx.stroke();
+    }
+    for(var i=0;i<=55;i+=5){
+        var y=H-padB-i*uy;
+        ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    }
+
+    // 坐标轴
+    ctx.strokeStyle='#334155';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(W-padR+8,H-padB);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(padL,H-padB);ctx.lineTo(padL,padT-8);ctx.stroke();
+    ctx.fillStyle='#334155';
+    ctx.beginPath();ctx.moveTo(W-padR+8,H-padB);ctx.lineTo(W-padR,H-padB-4);ctx.lineTo(W-padR,H-padB+4);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(padL,padT-8);ctx.lineTo(padL-4,padT);ctx.lineTo(padL+4,padT);ctx.closePath();ctx.fill();
+
+    // 刻度（跳过原点0）
+    ctx.font='bold 15px sans-serif';ctx.fillStyle='#64748b';
+    for(var i=2;i<=10;i+=2){
+        var x=padL+i*ux;
+        ctx.textAlign='center';ctx.fillText(i,x,H-padB+24);
+        ctx.beginPath();ctx.moveTo(x,H-padB-3);ctx.lineTo(x,H-padB+3);ctx.strokeStyle='#334155';ctx.lineWidth=1;ctx.stroke();
+    }
+    for(var i=10;i<=50;i+=10){
+        var y=H-padB-i*uy;
+        ctx.textAlign='right';ctx.fillText(i,padL-12,y+5);
+        ctx.beginPath();ctx.moveTo(padL-3,y);ctx.lineTo(padL+3,y);ctx.strokeStyle='#334155';ctx.lineWidth=1;ctx.stroke();
+    }
+
+    // 标签：x放在x轴箭头附近，y放在y轴箭头附近
+    ctx.fillStyle='#0e7490';ctx.font='bold 16px sans-serif';
+    ctx.textAlign='left';
+    ctx.fillText('x',W-padR+8,H-padB+6);
+    ctx.textAlign='center';
+    ctx.fillText('y',padL-8,padT-6);
+    // 原点标注 O
+    ctx.fillStyle='#64748b';ctx.font='bold 15px sans-serif';ctx.textAlign='right';
+    ctx.fillText('O',padL-12,H-padB+20);
+
+    // 绘制完整抛物线 (浅色)
+    ctx.strokeStyle='#bae6fd';ctx.lineWidth=2;
+    ctx.beginPath();
+    var started=false;
+    for(var xi=0;xi<=10;xi+=0.05){
+        var yi=0.5*xi*xi;
+        var px=padL+xi*ux,py=H-padB-yi*uy;
+        if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+
+    // 绘制已走路径 (实色，到currentX)
+    if(currentX>0){
+        ctx.strokeStyle='#0ea5e9';ctx.lineWidth=3;
+        ctx.beginPath();
+        started=false;
+        for(var xi=0;xi<=currentX;xi+=0.05){
+            var yi=0.5*xi*xi;
+            var px=padL+xi*ux,py=H-padB-yi*uy;
+            if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);
+        }
+        ctx.stroke();
+    }
+
+    // 当前点
+    if(currentX>=0){
+        var cy=0.5*currentX*currentX;
+        var cx=padL+currentX*ux,cyPx=H-padB-cy*uy;
+        ctx.beginPath();ctx.arc(cx,cyPx,7,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();
+        ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+        // 坐标标注
+        ctx.fillStyle='#1e293b';ctx.font='bold 14px sans-serif';ctx.textAlign='left';
+        ctx.fillText('('+currentX.toFixed(1)+', '+cy.toFixed(2)+')',cx+12,cyPx-12);
+    }
+}
+
+function initTryCanvas(){
+    drawTryGraph(3.0);
+}
+window.addEventListener('load',initTryCanvas);
+window.addEventListener('resize',function(){drawTryGraph(parseInt(document.getElementById('slider').value)/10);});
+</script>
+</body>
+</html>

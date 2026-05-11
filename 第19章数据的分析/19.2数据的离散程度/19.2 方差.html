@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+<title>19.2 方差 | 华师版·八年级下册</title>
+<script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<style>
+body{font-size:24px;}
+h1{font-size:2.6rem !important;}
+h1::after{width:80px;height:5px;}
+.lesson-title{font-size:2.3rem !important;padding:.8rem 1.6rem !important;}
+.header-meta{font-size:1.15rem !important;}
+.section-title{font-size:1.7rem !important;}
+.learning-targets h3{font-size:1.6rem !important;margin:0 0 1rem !important;padding-left:1rem !important;}
+.target-item{font-size:1.15rem !important;padding:.5rem 1.4rem .5rem 1rem !important;}
+.target-item span{width:32px;height:32px;font-size:1rem !important;}
+.example-card p,.example-card li,.explore-card p,.explore-card li{font-size:1.05rem !important;}
+.chart-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin:1.2rem auto;max-width:720px;}
+.chart-title{text-align:center;font-weight:700;color:#0e7490;margin-bottom:.6rem;font-size:1.25rem;}
+.chart-legend{display:flex;justify-content:center;gap:1.5rem;margin-top:.6rem;font-size:1.1rem;}
+.chart-legend span{display:flex;align-items:center;gap:.3rem;}
+.chart-legend .square{width:14px;height:14px;display:inline-block;}
+.chart-legend .triangle{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:14px solid;display:inline-block;}
+.think-box{background:#f0f9ff;border-left:5px solid var(--primary);border-radius:var(--radius-md);padding:1.2rem 1.6rem;margin:1.2rem 0;}
+.think-box h4{color:#0e7490;margin-bottom:.5rem;font-size:1.3rem;}
+.think-box p{font-size:1.05rem;}
+.highlight-box{margin:1.2rem 0 !important;padding:1.2rem 1.6rem !important;}
+.formula-box{margin:1.2rem 0 !important;padding:1.2rem 1.6rem !important;}
+.summary-box{margin:1.2rem 0 !important;padding:1.2rem 1.6rem !important;}
+.message-box{margin:1.2rem 0 !important;padding:1.2rem 1.6rem !important;}
+.calc-step{margin:.6rem 0;padding:.7rem 1.2rem;background:#f8fafc;border-radius:8px;}
+.absent{color:var(--text-secondary);font-style:italic;}
+.table-caption{text-align:center;color:var(--text-secondary);font-size:1.15rem;margin:.4rem 0 1rem;}
+.btn{font-size:1.15rem;padding:.6rem 1.6rem;}
+.answer-box{font-size:1.05rem;padding:1.4rem 1.8rem;}
+table{border-collapse:separate;border-spacing:0;border:2px solid #1e293b;border-radius:10px;overflow:hidden;margin:1.4rem auto;box-shadow:0 4px 12px rgba(0,0,0,.08);font-size:1.1rem;}
+table th,table td{border:1px solid #cbd5e1;padding:.8rem .6rem;text-align:center;}
+table th{background:linear-gradient(180deg,#0ea5e9,#0284c7);color:#fff;border-color:#0284c7;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.2);}
+table tr:nth-child(even) td{background:#f1f5f9;}
+table tr:hover td{background:#e0f2fe;transition:background .2s;}
+table td:first-child{font-weight:600;color:#1e293b;background:#f8fafc;}
+table .sum-cell{background:#fefce8;font-weight:700;color:#92400e;}
+.summary-box h4{font-size:1.35rem !important;}
+.summary-box li{font-size:1.05rem !important;}
+.footer-note{font-size:1rem !important;}
+/* 核心概念框 */
+.concept-box{background:#f0f9ff;border:2px solid #0ea5e9;border-left:6px solid #0ea5e9;border-radius:1rem;margin:1.2rem 0;overflow:hidden;}
+.concept-badge{display:inline-block;background:#0ea5e9;color:#fff;font-weight:700;padding:.5rem 1.4rem;border-radius:0 0 1.2rem 0;font-size:1.05rem;letter-spacing:1px;}
+.concept-body{padding:0 1.6rem 1.4rem 1.6rem;}
+.concept-body h3{font-size:1.45rem;color:#0e7490;margin:.8rem 0 .6rem;}
+.concept-body>p{font-size:1.05rem;color:var(--text);font-weight:500;}
+.concept-formula{background:#fff;border:2px dashed #7dd3fc;border-radius:.8rem;padding:1rem 1.2rem;margin:.8rem 0;text-align:center;}
+.concept-formula .formula-main{font-size:1.35rem;color:#1e293b;font-weight:700;margin-bottom:.5rem;}
+.concept-formula .formula-abbr{font-size:1.1rem;color:#475569;}
+.concept-params{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:.8rem 0;}
+.concept-params span{display:inline-flex;align-items:center;gap:.3rem;background:#e0f2fe;border:1px solid #7dd3fc;border-radius:2rem;padding:.3rem .9rem;color:#0369a1;font-weight:700;font-size:1rem;}
+.concept-params span em{font-weight:500;color:#0284c7;font-style:normal;}
+.concept-summary{text-align:center;font-weight:600;font-size:1.05rem;color:#0c4a6e;margin-top:.6rem !important;}
+.concept-summary .icon{margin-right:.3rem;}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华东师范大学出版社·数学 八年级下册</span><span>第19章 · 数据的分析</span></div>
+<h1>第19章 数据的分析</h1>
+<div class="lesson-title">19.2 方差</div>
+
+<div class="learning-targets"><h3>学习目标</h3>
+<div class="target-grid">
+<div class="target-item"><span>1</span>理解方差的意义和作用</div>
+<div class="target-item"><span>2</span>掌握方差的计算方法</div>
+<div class="target-item"><span>3</span>会用方差比较两组数据的波动大小</div>
+</div></div>
+
+<div class="section-title">问题1</div>
+<div class="example-card">
+<p>表19.2.1显示2022年7月20日8时至7月21日5时天津和新加坡两地的气温。</p>
+<table>
+<tr><th>时间</th><th>8时</th><th>11时</th><th>14时</th><th>17时</th><th>20时</th><th>23时</th><th>2时</th><th>5时</th></tr>
+<tr><td><strong>天津</strong></td><td>27</td><td>30</td><td>32</td><td>31</td><td>26</td><td>25</td><td>24</td><td>23</td></tr>
+<tr><td><strong>新加坡</strong></td><td>26</td><td>27</td><td>28</td><td>29</td><td>27</td><td>27</td><td>27</td><td>27</td></tr>
+</table>
+<p class="table-caption">表19.2.1</p>
+<p>经计算，两地这一时段气温的平均数分别是：</p>
+<p>$$\bar{x}_{天津}=\frac{27+30+32+31+26+25+24+23}{8}=\frac{218}{8}=27.25$$</p>
+<p>$$\bar{x}_{新加坡}=\frac{26+27+28+29+27+27+27+27}{8}=\frac{218}{8}=27.25$$</p>
+<p>即两地气温的平均数相等。但在这一时段中，天津的气温波动范围从23°C到32°C，相差9°C；而新加坡的气温波动范围从26°C到29°C，仅相差3°C。</p>
+</div>
+
+<div class="chart-box">
+<div class="chart-title">图19.2.1 两地气温变化图</div>
+<svg viewBox="0 0 560 260" style="width:100%;height:auto;">
+<line x1="50" y1="220" x2="530" y2="220" stroke="#333" stroke-width="2"/>
+<line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+<g font-size="14" fill="#666">
+<text x="40" y="225" text-anchor="end">22</text><line x1="45" y1="220" x2="50" y2="220" stroke="#333"/>
+<text x="40" y="185" text-anchor="end">24</text><line x1="45" y1="180" x2="530" y2="180" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="145" text-anchor="end">26</text><line x1="45" y1="140" x2="530" y2="140" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="105" text-anchor="end">28</text><line x1="45" y1="100" x2="530" y2="100" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="65" text-anchor="end">30</text><line x1="45" y1="60" x2="530" y2="60" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="25" text-anchor="end">32</text><line x1="45" y1="20" x2="530" y2="20" stroke="#e2e8f0" stroke-dasharray="4"/>
+</g>
+<text x="15" y="120" text-anchor="middle" fill="#666" font-size="15" transform="rotate(-90 15 120)">气温（°C）</text>
+<g font-size="14" fill="#666" text-anchor="middle">
+<text x="50" y="240">8时</text><text x="110" y="240">11时</text><text x="170" y="240">14时</text><text x="230" y="240">17时</text>
+<text x="290" y="240">20时</text><text x="350" y="240">23时</text><text x="410" y="240">2时</text><text x="470" y="240">5时</text>
+</g>
+<polyline points="50,120 110,60 170,20 230,40 290,140 350,160 410,180 470,200" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+<rect x="45" y="115" width="10" height="10" fill="#0ea5e9"/><rect x="105" y="55" width="10" height="10" fill="#0ea5e9"/>
+<rect x="165" y="15" width="10" height="10" fill="#0ea5e9"/><rect x="225" y="35" width="10" height="10" fill="#0ea5e9"/>
+<rect x="285" y="135" width="10" height="10" fill="#0ea5e9"/><rect x="345" y="155" width="10" height="10" fill="#0ea5e9"/>
+<rect x="405" y="175" width="10" height="10" fill="#0ea5e9"/><rect x="465" y="195" width="10" height="10" fill="#0ea5e9"/>
+<polyline points="50,140 110,120 170,100 230,80 290,120 350,120 410,120 470,120" fill="none" stroke="#ef4444" stroke-width="2"/>
+<polygon points="50,135 55,145 45,145" fill="#ef4444"/><polygon points="110,115 115,125 105,125" fill="#ef4444"/>
+<polygon points="170,95 175,105 165,105" fill="#ef4444"/><polygon points="230,75 235,85 225,85" fill="#ef4444"/>
+<polygon points="290,115 295,125 285,125" fill="#ef4444"/><polygon points="350,115 355,125 345,125" fill="#ef4444"/>
+<polygon points="410,115 415,125 405,125" fill="#ef4444"/><polygon points="470,115 475,125 465,125" fill="#ef4444"/>
+</svg>
+<div class="chart-legend">
+<span><span class="square" style="background:#0ea5e9;"></span>天津</span>
+<span><span class="triangle" style="border-bottom-color:#ef4444;"></span>新加坡</span>
+</div>
+</div>
+
+<div class="highlight-box">
+<p><strong>概括</strong></p>
+<p>（1）两组数据比较时，可以先作图——图能直接给人们一种直观的形象。</p>
+<p>（2）两组数据的平均数相等时，波动可能不同。</p>
+</div>
+
+<div class="section-title">问题2</div>
+<div class="example-card">
+<p>小明和小兵两人参加体育项目训练，近期的5次测试成绩如表19.2.2所示。谁的成绩较为稳定？</p>
+<table>
+<tr><th>测试</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+<tr><td><strong>小明</strong></td><td>10</td><td>14</td><td>13</td><td>12</td><td>13</td></tr>
+<tr><td><strong>小兵</strong></td><td>11</td><td>11</td><td>15</td><td>14</td><td>11</td></tr>
+</table>
+<p class="table-caption">表19.2.2</p>
+</div>
+
+<div class="chart-box">
+<div class="chart-title">图19.2.2 成绩图</div>
+<svg viewBox="0 0 500 280" style="width:100%;height:auto;">
+<line x1="50" y1="220" x2="460" y2="220" stroke="#333" stroke-width="2"/>
+<line x1="50" y1="220" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+<g font-size="14" fill="#666">
+<text x="40" y="225" text-anchor="end">10</text><line x1="45" y1="220" x2="460" y2="220" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="185" text-anchor="end">11</text><line x1="45" y1="180" x2="460" y2="180" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="145" text-anchor="end">12</text><line x1="45" y1="140" x2="460" y2="140" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="105" text-anchor="end">13</text><line x1="45" y1="100" x2="460" y2="100" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="65" text-anchor="end">14</text><line x1="45" y1="60" x2="460" y2="60" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="40" y="25" text-anchor="end">15</text><line x1="45" y1="20" x2="460" y2="20" stroke="#e2e8f0" stroke-dasharray="4"/>
+</g>
+<text x="15" y="120" text-anchor="middle" fill="#666" font-size="15" transform="rotate(-90 15 120)">分数</text>
+<g font-size="14" fill="#666" text-anchor="middle">
+<text x="50" y="240">1</text><text x="135" y="240">2</text><text x="220" y="240">3</text><text x="305" y="240">4</text><text x="390" y="240">5</text>
+</g>
+<!-- 平均数参考线 12.4 -->
+<line x1="50" y1="124" x2="460" y2="124" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="455" y="118" fill="#f59e0b" font-size="14" font-weight="700" text-anchor="end">平均数 12.4</text>
+<!-- 小明折线（蓝色方块） -->
+<polyline points="50,220 135,60 220,100 305,140 390,100" fill="none" stroke="#0ea5e9" stroke-width="2"/>
+<rect x="45" y="215" width="10" height="10" fill="#0ea5e9"/><rect x="130" y="55" width="10" height="10" fill="#0ea5e9"/>
+<rect x="215" y="95" width="10" height="10" fill="#0ea5e9"/><rect x="300" y="135" width="10" height="10" fill="#0ea5e9"/>
+<rect x="385" y="95" width="10" height="10" fill="#0ea5e9"/>
+<text x="50" y="208" fill="#0ea5e9" font-size="13" text-anchor="middle" font-weight="700">10</text>
+<text x="135" y="48" fill="#0ea5e9" font-size="13" text-anchor="middle" font-weight="700">14</text>
+<text x="220" y="88" fill="#0ea5e9" font-size="13" text-anchor="middle" font-weight="700">13</text>
+<text x="305" y="128" fill="#0ea5e9" font-size="13" text-anchor="middle" font-weight="700">12</text>
+<text x="390" y="88" fill="#0ea5e9" font-size="13" text-anchor="middle" font-weight="700">13</text>
+<!-- 小兵折线（红色三角） -->
+<polyline points="50,180 135,180 220,20 305,60 390,180" fill="none" stroke="#ef4444" stroke-width="2"/>
+<polygon points="50,175 55,185 45,185" fill="#ef4444"/><polygon points="135,175 140,185 130,185" fill="#ef4444"/>
+<polygon points="220,15 225,25 215,25" fill="#ef4444"/><polygon points="305,55 310,65 300,65" fill="#ef4444"/>
+<polygon points="390,175 395,185 385,185" fill="#ef4444"/>
+<text x="50" y="198" fill="#ef4444" font-size="13" text-anchor="middle" font-weight="700">11</text>
+<text x="135" y="198" fill="#ef4444" font-size="13" text-anchor="middle" font-weight="700">11</text>
+<text x="220" y="13" fill="#ef4444" font-size="13" text-anchor="middle" font-weight="700">15</text>
+<text x="305" y="53" fill="#ef4444" font-size="13" text-anchor="middle" font-weight="700">14</text>
+<text x="390" y="198" fill="#ef4444" font-size="13" text-anchor="middle" font-weight="700">11</text>
+</svg>
+<div class="chart-legend">
+<span><span class="square" style="background:#0ea5e9;"></span>小明</span>
+<span><span class="triangle" style="border-bottom-color:#ef4444;"></span>小兵</span>
+<span style="color:#f59e0b;font-weight:700;">--- 平均数 $\bar{x}=12.4$</span>
+</div>
+<p style="text-align:center;font-size:1rem;color:var(--text-secondary);margin-top:.5rem;">观察数据点与橙色虚线的距离：小兵有3个点远离平均线，离散程度更大</p>
+</div>
+
+<div class="think-box">
+<h4>思考</h4>
+<p>怎样的指标能反映一组数据与其平均数的离散程度呢？</p>
+</div>
+
+<div class="example-card">
+<p>经计算，小明和小兵5次测试成绩的平均数分别是：</p>
+<p>$$\bar{x}_{小明}=\frac{10+14+13+12+13}{5}=\frac{62}{5}=12.4$$</p>
+<p>$$\bar{x}_{小兵}=\frac{11+11+15+14+11}{5}=\frac{62}{5}=12.4$$</p>
+<p>即他们的平均成绩相同。为了直观地看出一组数据与其平均数的离散程度，我们用表19.2.3和表19.2.4来分析。</p>
+</div>
+
+<div class="section-title">表19.2.3</div>
+<table>
+<tr><th></th><th>第1次</th><th>第2次</th><th>第3次</th><th>第4次</th><th>第5次</th><th>求和</th></tr>
+<tr><td><strong>小明</strong></td><td>$10-12.4$</td><td>$14-12.4$</td><td>$13-12.4$</td><td>$12-12.4$</td><td>$13-12.4$</td><td rowspan="2" class="sum-cell"><strong>0</strong></td></tr>
+<tr><td></td><td>$=-2.4$</td><td>$=1.6$</td><td>$=0.6$</td><td>$=-0.4$</td><td>$=0.6$</td></tr>
+<tr><td><strong>小兵</strong></td><td>$11-12.4$</td><td>$11-12.4$</td><td>$15-12.4$</td><td>$14-12.4$</td><td>$11-12.4$</td><td rowspan="2" class="sum-cell"><strong>0</strong></td></tr>
+<tr><td></td><td>$=-1.4$</td><td>$=-1.4$</td><td>$=2.6$</td><td>$=1.6$</td><td>$=-1.4$</td></tr>
+</table>
+
+<div class="think-box">
+<h4>思考</h4>
+<p>依据最后求和的结果可以比较两组数据围绕其平均数的波动情况吗？</p>
+<p>我们发现，求和的结果都是 <strong>0</strong>。事实上，在之前的学习中我们已经知道，一组数据中的每个数与这组数据平均数的差相加之和始终等于 0。</p>
+<p>既然直接求和不行，那么用什么办法可以从整体上反映各个数据远离平均数的情况呢？<br>现在有一个可行的方案，在表19.2.4中写出新的计算方案，并将计算结果填入表中。</p>
+</div>
+
+<div class="section-title">表19.2.4</div>
+<table>
+<tr><th></th><th>第1次</th><th>第2次</th><th>第3次</th><th>第4次</th><th>第5次</th><th>求和</th></tr>
+<tr><td><strong>小明</strong></td><td>$(-2.4)^2$</td><td>$1.6^2$</td><td>$0.6^2$</td><td>$(-0.4)^2$</td><td>$0.6^2$</td><td rowspan="2" class="sum-cell"><strong>9.2</strong></td></tr>
+<tr><td></td><td>$=5.76$</td><td>$=2.56$</td><td>$=0.36$</td><td>$=0.16$</td><td>$=0.36$</td></tr>
+<tr><td><strong>小兵</strong></td><td>$(-1.4)^2$</td><td>$(-1.4)^2$</td><td>$2.6^2$</td><td>$1.6^2$</td><td>$(-1.4)^2$</td><td rowspan="2" class="sum-cell"><strong>15.2</strong></td></tr>
+<tr><td></td><td>$=1.96$</td><td>$=1.96$</td><td>$=6.76$</td><td>$=2.56$</td><td>$=1.96$</td></tr>
+</table>
+
+<div class="example-card">
+<p>我们可以用<strong>"先平均，再求差，然后平方，最后求和"</strong>所得到的结果反映一组数据与其平均数的离散程度。这个结果称为这组数据的<strong>离差平方和</strong>（sum of squares of deviations）。</p>
+<p>通常用 $x_1, x_2, \cdots$ 表示各个原始数据，用 $\bar{x}$ 表示一组数据的平均数。<br>表19.2.2中小明和小兵5次测试成绩的离差平方和的计算式就是</p>
+<p style="text-align:center;font-size:1.15rem;">$$(x_1-\bar{x})^2+(x_2-\bar{x})^2+(x_3-\bar{x})^2+(x_4-\bar{x})^2+(x_5-\bar{x})^2$$</p>
+</div>
+
+<div class="formula-box">
+
+<p style="font-size:1.15rem;margin-top:.5rem;"><strong>离差平方和</strong>：$(x_1-\bar{x})^2+(x_2-\bar{x})^2+\cdots+(x_n-\bar{x})^2$</p>
+</div>
+
+<div class="example-card">
+<p><strong>计算小明和小兵5次测试成绩的离差平方和：</strong></p>
+<div class="calc-step">
+<p>小明：$(-2.4)^2+1.6^2+0.6^2+(-0.4)^2+0.6^2=5.76+2.56+0.36+0.16+0.36=\mathbf{9.2}$</p>
+</div>
+<div class="calc-step">
+<p>小兵：$(-1.4)^2+(-1.4)^2+2.6^2+1.6^2+(-1.4)^2=1.96+1.96+6.76+2.56+1.96=\mathbf{15.2}$</p>
+</div>
+</div>
+
+<div class="highlight-box">
+<p><strong>离差平方和的比较</strong></p>
+<p>小明和小兵都参加了5次测试，数据的个数相同。此时，离差平方和可以直接用来比较两组数据的波动大小：</p>
+<p style="text-align:center;font-size:1.15rem;">小明：9.2 ＜ 小兵：15.2</p>
+<p>离差平方和越小，数据波动越小。因此，<strong>小明的成绩较为稳定</strong>。</p>
+</div>
+
+<div class="think-box">
+<h4>思考</h4>
+<p>如果又进行了第6次、第7次测试，小明分别缺席了两次测试，此时两人测试次数不同。7次测试后，谁的成绩较为稳定？</p>
+<p>我们还能直接用离差平方和来比较吗？</p>
+</div>
+
+<div class="example-card">
+<p>将7次测试成绩记录在表19.2.5中：</p>
+<table>
+<tr><th>测试</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr>
+<tr><td><strong>小明</strong></td><td>10</td><td>14</td><td>13</td><td class="absent">缺席</td><td>12</td><td class="absent">缺席</td><td>13</td></tr>
+<tr><td><strong>小兵</strong></td><td>11</td><td>11</td><td>15</td><td>11</td><td>14</td><td>14</td><td>11</td></tr>
+</table>
+<p class="table-caption">表19.2.5</p>
+<p>小明只有5次有效成绩，小兵有7次成绩。<strong>数据的个数不同</strong>，离差平方和不能直接用来比较两组数据的波动大小。为了消除数据个数的影响，我们把离差平方和除以数据的个数 $n$，这样就得到了一组数据与其平均数的差的平方的<strong>平均值</strong>。</p>
+</div>
+
+<div class="concept-box">
+<div class="concept-badge">核心概念</div>
+<div class="concept-body">
+<h3>方差（Variance）</h3>
+<p>一组数据与其平均数的差的平方的<strong>平均值</strong>，叫做这组数据的<strong>方差</strong>，记作 $\sigma^2$。</p>
+<div class="concept-formula">
+<p class="formula-main">$$\sigma^2=\frac{1}{n}\left[(x_1-\bar{x})^2+(x_2-\bar{x})^2+\cdots+(x_n-\bar{x})^2\right]$$</p>
+<p class="formula-abbr">简记为 $\displaystyle\sigma^2=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})^2$</p>
+</div>
+<div class="concept-params">
+<span>$\sigma^2$<em>方差</em></span>
+<span>$n$<em>数据个数</em></span>
+<span>$\bar{x}$<em>平均数</em></span>
+<span>$x_i$<em>第 $i$ 个数据</em></span>
+</div>
+<p class="concept-summary"><span class="icon">📌</span> 方差越大，数据波动越大，离散程度越大；方差越小，数据越稳定。</p>
+</div>
+</div>
+
+<div class="example-card">
+<p><strong>利用方差公式，计算小明和小兵测试成绩的方差：</strong></p>
+<p>小明5次测试成绩的方差：</p>
+<p>$$s^2=\frac{1}{5}[(10-12.4)^2+(14-12.4)^2+(13-12.4)^2+(12-12.4)^2+(13-12.4)^2]$$</p>
+<p>$$=\frac{1}{5}(5.76+2.56+0.36+0.16+0.36)=\frac{9.2}{5}=\mathbf{1.84}$$</p>
+<p>小兵7次测试成绩的方差：</p>
+<p>$$s^2=\frac{1}{7}[(11-12.4)^2+(11-12.4)^2+(15-12.4)^2+(11-12.4)^2+(14-12.4)^2+(14-12.4)^2+(11-12.4)^2]$$</p>
+<p>$$=\frac{1}{7}(1.96+1.96+6.76+1.96+2.56+2.56+1.96)=\frac{19.72}{7}\approx\mathbf{2.82}$$</p>
+<p style="margin-top:.5rem;"><strong>结论：</strong>小明方差1.84 &lt; 小兵方差2.82，<strong>小明的成绩较为稳定</strong>。</p>
+</div>
+
+<div class="section-title">练习</div>
+<div class="example-card">
+<p><strong>1.</strong> 比较下列两组数据的方差，哪一组数据的离散程度较大？</p>
+<p style="margin-left:1rem;">A组：$0,\ 10,\ 5,\ 5,\ 5,\ 5,\ 5,\ 5,\ 5,\ 5$</p>
+<p style="margin-left:1rem;">B组：$4,\ 6,\ 3,\ 7,\ 2,\ 8,\ 1,\ 9,\ 5,\ 5$</p>
+<button class="btn" onclick="toggleAnswer('ans1')">💡 解答</button>
+<div id="ans1" class="answer-box">
+<p><strong>A组：</strong>平均数 $\bar{x}=\frac{0+10+5\times 8}{10}=\frac{50}{10}=5$</p>
+<p>方差 $s^2=\frac{1}{10}[(0-5)^2+(10-5)^2+8\times(5-5)^2]=\frac{1}{10}(25+25)=\mathbf{5}$</p>
+<p><strong>B组：</strong>平均数 $\bar{x}=\frac{4+6+3+7+2+8+1+9+5+5}{10}=\frac{50}{10}=5$</p>
+<p>方差 $s^2=\frac{1}{10}[(-1)^2+1^2+(-2)^2+2^2+(-3)^2+3^2+(-4)^2+4^2+0^2+0^2]$</p>
+<p>$=\frac{1}{10}(1+1+4+4+9+9+16+16)=\frac{60}{10}=\mathbf{6}$</p>
+<p><strong>结论：</strong>B组方差6 &gt; A组方差5，<strong>B组数据的离散程度较大</strong>。</p>
+</div>
+<p style="margin-top:.8rem;"><strong>2.</strong> 算一算，问题1中哪个城市该时段气温的离散程度较大？与图19.2.1的直观结果一致吗？</p>
+<button class="btn" onclick="toggleAnswer('ans2')">💡 解答</button>
+<div id="ans2" class="answer-box">
+<p><strong>天津气温方差：</strong></p>
+<p>$s^2=\frac{1}{8}[(27-27.25)^2+(30-27.25)^2+(32-27.25)^2+(31-27.25)^2+(26-27.25)^2+(25-27.25)^2+(24-27.25)^2+(23-27.25)^2]$</p>
+<p>$=\frac{1}{8}[0.0625+7.5625+22.5625+14.0625+1.5625+5.0625+10.5625+18.0625]$</p>
+<p>$=\frac{1}{8}\times 79.5\approx\mathbf{9.94}$</p>
+<p><strong>新加坡气温方差：</strong></p>
+<p>$s^2=\frac{1}{8}[(26-27.25)^2+(27-27.25)^2+(28-27.25)^2+(29-27.25)^2+4\times(27-27.25)^2]$</p>
+<p>$=\frac{1}{8}[1.5625+0.0625+0.5625+3.0625+4\times 0.0625]$</p>
+<p>$=\frac{1}{8}\times 5.5\approx\mathbf{0.69}$</p>
+<p><strong>结论：</strong>天津方差9.94 &gt; 新加坡方差0.69，<strong>天津气温离散程度较大</strong>，与图19.2.1直观结果一致。</p>
+</div>
+</div>
+
+<div class="summary-box">
+<h4>课堂小结</h4>
+<ol>
+<li>方差衡量数据偏离平均数的程度：$\sigma^2=\frac{1}{n}\left[(x_1-\bar{x})^2+(x_2-\bar{x})^2+\cdots+(x_n-\bar{x})^2\right]$</li>
+<li>方差越大，数据的波动越大，离散程度越大</li>
+<li>方差越小，数据的波动越小，越稳定</li>
+<li>当两组数据的平均数相等时，可以通过比较方差来判断稳定性</li>
+</ol>
+</div>
+
+
+
+<div class="message-box">
+<p>方差大小看波动，偏差平方求平均；稳定性、离散度，数据分析显真功！</p>
+</div>
+
+<div class="footer-note">八年级下册 · 第19章 19.2 方差</div>
+</div>
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'){el.style.display='none';}
+    else{el.style.display='block';el.style.animation='fadeIn .4s ease';}
+}
+</script>
+</body>
+</html>

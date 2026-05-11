@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.4.1 反比例函数 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.15rem;color:#0f766e;}
+        h1{font-size:2.8rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:80px;height:6px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.6rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.7rem 1.4rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.4rem 2.2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.8rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.6rem 1.6rem .6rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1.2rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item>span:first-child{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;}
+        .section-title{font-size:2rem;color:#0e7490;font-weight:700;margin:1.4rem 0 .8rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        /* 课题导入 */
+        .intro-card{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1rem 0;border-left:8px solid #f59e0b;font-weight:600;}
+        .intro-card h4{font-size:1.7rem;margin-bottom:.5rem;color:#92400e;}
+        .intro-card p{font-size:1.25rem;color:#78350f;line-height:1.7;}
+        /* 问题情境/探索 */
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.2rem 1.6rem;margin:.8rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.7rem;margin-bottom:.5rem;color:#059669;}
+        .explore-card p{font-size:1.25rem;}
+        .think-box{background:#f3e8ff;border-left:10px solid #a855f7;border-radius:1.5rem;padding:1rem 1.5rem;margin:.8rem 0;font-weight:600;}
+        .think-box p{font-size:1.25rem;}
+        /* answer-box 内嵌 think-box 时简化样式，避免框中框 */
+        .answer-box .think-box{margin:.3rem 0;border-left-width:6px;padding:.6rem 1rem;background:#f5f3ff;}
+        /* 想一想气泡 */
+        .bubble-box{float:right;clear:right;width:260px;background:#dde8f5;border-radius:14px;padding:12px 14px;font-size:1.05rem;line-height:1.7;color:#1a3a5c;margin:0 0 12px 16px;font-weight:600;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.4rem 1.2rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.3rem 0 0;font-size:1.05rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:.6rem 1rem;margin-top:.3rem;display:none;animation:fadeIn .4s ease;}
+        .answer-box p{margin:.3rem 0;font-size:1.15rem;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.6rem 0;border:2px solid #93c5fd;}
+        .highlight-box p{font-size:1.2rem;}
+        /* 方法归纳/概括 */
+        .method-box{background:white;border-left:8px solid #f59e0b;border-radius:1rem;padding:1.1rem 1.6rem;margin:.8rem 0;font-size:1.3rem;font-weight:600;color:#1e293b;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+        /* 做一做 */
+        .do-box{background:#fff7ed;border-left:8px solid #f97316;border-radius:1.8rem;padding:1.2rem 1.6rem;margin:1rem 0;font-weight:600;}
+        .do-box h4{font-size:1.6rem;color:#c2410c;margin-bottom:.5rem;}
+        .do-box p{font-size:1.25rem;}
+        /* 课堂小结 */
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.2rem 1.6rem;margin:1rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.6rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.2;}
+        .summary-box li{font-size:1.25rem;}
+        /* 练习 */
+        .exercise-box{background:#fff1f2;border-left:8px solid #e11d48;border-radius:1.8rem;padding:1.2rem 1.6rem;margin:1rem 0;font-weight:600;}
+        .exercise-box h4{font-size:1.6rem;color:#be123c;margin-bottom:.5rem;}
+        .exercise-box p{font-size:1.25rem;}
+        /* 核心素养 */
+        .literacy-container{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1rem 0;}
+        .literacy-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.2rem 1.4rem;border-left:6px solid #f59e0b;}
+        .literacy-card:nth-child(2){background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-left-color:#3b82f6;}
+        .literacy-card:nth-child(3){background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-left-color:#10b981;}
+        .literacy-card:nth-child(4){background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-left-color:#8b5cf6;}
+        .literacy-card h4{font-size:1.3rem;}
+        .literacy-card p{font-size:1.15rem;}
+        /* 作业 */
+        .homework-box{background:#f8fafc;border-left:8px solid #64748b;border-radius:1.8rem;padding:1.2rem 1.6rem;margin:1rem 0;font-weight:600;}
+        .homework-box h4{font-size:1.6rem;color:#334155;margin-bottom:.5rem;}
+        .homework-box p{font-size:1.2rem;}
+        .homework-box .level-tag{display:inline-block;background:#e2e8f0;color:#475569;border-radius:20px;padding:.15rem .7rem;font-size:.95rem;margin-right:.4rem;font-weight:700;}
+        /* 教师寄语 */
+        .message-box{background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:1.6rem 2rem;margin:1.2rem 0;position:relative;overflow:hidden;}
+        .message-box h4{color:#f0fdfa;font-size:1.7rem;font-weight:700;margin-bottom:.8rem;display:flex;align-items:center;gap:.8rem;}
+        .message-box p{color:#ccfbf1;font-size:1.25rem;line-height:2;text-indent:2em;}
+        p{margin:.4rem 0;}
+        .katex{font-size:1.15em!important;}
+        /* 表格 */
+        table.data-table{width:auto;margin:.5rem auto;border-collapse:collapse;font-size:1.1rem;}
+        table.data-table th, table.data-table td{padding:.5rem 1rem;border:1px solid #cbd5e1;text-align:center;}
+        table.data-table th{background:#0f766e;color:white;}
+        table.data-table tr:nth-child(even){background:#f8fafc;}
+        /* Canvas */
+        .canvas-wrap{text-align:center;margin:1rem 0;}
+        canvas.coordinate-canvas{background:#fff;border:2px solid #cbd5e1;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);}
+        .canvas-caption{text-align:center;color:#475569;font-size:1rem;margin-top:.4rem;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.4.1 反比例函数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解反比例函数的概念</div>
+            <div class="target-item"><span>2</span>能识别反比例函数的表达式特征</div>
+            <div class="target-item"><span>3</span>能从实际问题中建立反比例函数模型</div>
+            <div class="target-item"><span>4</span>理解反比例函数中自变量的取值范围</div>
+        </div>
+    </div>
+
+    <!-- ══════════ 课题导入 ══════════ -->
+    <div class="section-title">🚪 课题导入</div>
+    <div class="intro-card">
+        <h4>生活中的"此消彼长"</h4>
+        <p>我们已经学习了一次函数 $y=kx+b$（$k \neq 0$），它描述的是两个变量之间的线性关系。但在生活中，还有许多"此消彼长"的现象：路程一定时，速度越快，所用时间越短；面积一定时，长方形的一边越长，另一边就越短……这类关系中，两个变量的乘积始终保持不变。今天我们就来认识这种新的函数——<strong>反比例函数</strong>。</p>
+    </div>
+
+    <!-- ══════════ 问题情境 ══════════ -->
+    <div class="section-title">📖 问题情境</div>
+
+    <div class="explore-card">
+        <h4>▶ 问题 1</h4>
+        <p>甲、乙两地相距 120 km，汽车从甲地匀速驶往乙地．显然，汽车的行驶时间由行驶速度确定，时间是速度的函数，试写出这个函数关系式．</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('fx1')">✍️ 分析与解答</button>
+        <div id="fx1" class="answer-box">
+            <div class="think-box">
+                <p><strong>分析：</strong>和其他实际问题一样，要探求两个变量之间的关系，应先选用适当的符号表示变量，再根据题意列出相应的函数关系式．</p>
+            </div>
+            <p>设汽车行驶的速度是 $v$ km/h，从甲地到乙地的行驶时间是 $t$ h．因为在匀速运动中，</p>
+            <p style="text-align:center;font-size:1.3rem;">时间 = 路程 ÷ 速度</p>
+            <p>所以</p>
+            <p style="text-align:center;font-size:1.4rem;margin:1rem 0;">$t = \dfrac{120}{v}$．&emsp;&emsp;①</p>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>▶ 问题 2</h4>
+        <p>学校课外生物小组的同学准备自己动手，用旧围栏建一个面积为 24 m² 的长方形饲养场．设它的一边长为 $x$（m），求另一边的长 $y$（m）与 $x$ 之间的函数关系式．</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('fx2')">✍️ 分析与解答</button>
+        <div id="fx2" class="answer-box">
+            <div class="think-box">
+                <p><strong>分析：</strong>根据长方形的面积公式，可知</p>
+                <p style="text-align:center;font-size:1.3rem;margin:.8rem 0;">$xy = 24$，</p>
+                <p>所以</p>
+                <p style="text-align:center;font-size:1.4rem;margin:1rem 0;">$y = \dfrac{24}{x}$．&emsp;&emsp;②</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ 想一想 ══════════ -->
+    <div style="display:flex;align-items:flex-start;gap:1.2rem;margin-top:1rem;">
+        <div style="flex:1;">
+            <div class="think-box">
+                <p><strong>想一想：</strong>①式 $t = \dfrac{120}{v}$ 和 ②式 $y = \dfrac{24}{x}$ 这两个函数关系式有什么共同点？你能用一般形式表示出来吗？</p>
+            </div>
+        </div>
+        <div class="bubble-box" style="flex-shrink:0;margin-top:0;">
+            观察：两个函数中，两个变量的乘积都是定值！
+        </div>
+    </div>
+
+    <button class="interact-btn" onclick="toggleAnswer('think')">💡 参考答案</button>
+    <div id="think" class="answer-box">
+        <p>它们都具有 <strong>$y = \dfrac{k}{x}$</strong> 的形式（$k$ 是不等于 0 的常数）．</p>
+        <p style="margin-top:.6rem;">在①中，$k = 120$；在②中，$k = 24$．</p>
+    </div>
+
+    <!-- ══════════ 概括 ══════════ -->
+    <div class="section-title">📌 概括</div>
+    <div class="method-box">
+        <p>上述函数关系式都具有 $y = \dfrac{k}{x}$ 的形式．一般地，形如</p>
+        <p style="text-align:center;font-size:1.5rem;margin:1rem 0;font-weight:900;">$y = \dfrac{k}{x}$（$k$ 是常数，$k \neq 0$）</p>
+        <p>的函数叫做<strong>反比例函数</strong>（inverse proportional function）．反比例函数中，自变量的取值范围是<strong>不等于 0 的一切实数</strong>．</p>
+        <p style="margin-top:.8rem;">问题 1 和问题 2 中得到的函数，都是反比例函数．</p>
+    </div>
+
+    <!-- ══════════ 方法归纳 ══════════ -->
+    <div class="section-title">🧩 方法归纳</div>
+    <div class="highlight-box">
+        <p><strong>如何识别反比例函数？</strong></p>
+        <ol style="margin-top:.6rem;padding-left:1.5rem;line-height:2;">
+            <li>看形式：能否写成 $y = \dfrac{k}{x}$（$k \neq 0$）或 $xy = k$ 的形式</li>
+            <li>看本质：两个变量的<strong>乘积</strong>是否为<strong>非零定值</strong></li>
+            <li>看变形：也可写成 $y = kx^{-1}$（$k \neq 0$），此时自变量 $x$ 的指数为 $-1$</li>
+        </ol>
+    </div>
+
+    <!-- ══════════ 做一做 ══════════ -->
+    <div class="section-title">✏️ 做一做</div>
+    <div class="do-box">
+        <h4>即时判断</h4>
+        <p>下列函数中，哪些是反比例函数？如果是，指出 $k$ 的值：</p>
+        <p style="margin-top:.6rem;text-indent:2em;">（1）$y = \dfrac{3}{x}$　　（2）$y = 3x$　　（3）$y = -\dfrac{1}{2x}$　　（4）$y = \dfrac{x}{5}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">✍️ 核对答案</button>
+        <div id="do1" class="answer-box">
+            <p><strong>（1）</strong>是反比例函数，$k = 3$</p>
+            <p><strong>（2）</strong>不是，这是一次函数（正比例函数）</p>
+            <p><strong>（3）</strong>是反比例函数，可写成 $y = \dfrac{-\frac{1}{2}}{x}$，$k = -\dfrac{1}{2}$</p>
+            <p><strong>（4）</strong>不是，可写成 $y = \dfrac{1}{5}x$，这是一次函数（正比例函数）</p>
+        </div>
+    </div>
+
+    <!-- ══════════ 练习 ══════════ -->
+    <div class="section-title">📝 练习</div>
+    <div class="exercise-box">
+        <h4>📋 练习</h4>
+        <p><strong>1.</strong> 写出下列各问题中的函数关系式，并指出它们是什么函数：</p>
+        <p style="text-indent:2em;margin-top:.5rem;">（1）三角形的面积 $S$（cm²）是常数时，它的某一边的长 $y$（cm）是该边上的高 $x$（cm）的函数；</p>
+        <p style="text-indent:2em;margin-top:.5rem;">（2）百米赛跑中，某运动员的平均速度 $v$（m/s）是他的成绩 $t$（s）（跑完全程的时间）的函数．</p>
+        <p style="margin-top:1rem;"><strong>2.</strong> 试用描点作图法画出问题 2 中函数 $y = \dfrac{24}{x}$（$x > 0$）的图象．</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">✍️ 解答与图象</button>
+        <div id="pr1" class="answer-box">
+            <p><strong>1.（1）</strong>由三角形面积公式 $S = \dfrac{1}{2}xy$，得</p>
+            <p style="text-align:center;">$y = \dfrac{2S}{x}$</p>
+            <p>是<strong>反比例函数</strong>（$k = 2S$）．</p>
+            <p style="margin-top:.6rem;"><strong>1.（2）</strong>由路程 = 速度 × 时间，得 $100 = vt$，所以</p>
+            <p style="text-align:center;">$v = \dfrac{100}{t}$</p>
+            <p>是<strong>反比例函数</strong>（$k = 100$）．</p>
+
+            <p style="margin-top:1.2rem;"><strong>2.</strong> 函数 $y = \dfrac{24}{x}$（$x > 0$）．</p>
+            <p>列表：</p>
+            <table class="data-table">
+                <tr><th>$x$</th><th>…</th><th>1</th><th>2</th><th>3</th><th>4</th><th>6</th><th>8</th><th>12</th><th>24</th><th>…</th></tr>
+                <tr><td>$y$</td><td>…</td><td>24</td><td>12</td><td>8</td><td>6</td><td>4</td><td>3</td><td>2</td><td>1</td><td>…</td></tr>
+            </table>
+            <p style="margin-top:.5rem;">描点、连线，得到第一象限内的一支曲线（双曲线的一支）：</p>
+            <div class="canvas-wrap">
+                <canvas id="hyperbolaCanvas" class="coordinate-canvas" width="500" height="400"></canvas>
+                <div class="canvas-caption">图 1　$y = \dfrac{24}{x}$（$x > 0$）的图象</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════ 课堂小结 ══════════ -->
+    <div class="section-title">📝 课堂小结</div>
+    <div class="summary-box">
+        <h4>本节课我们学到了什么？</h4>
+        <ol>
+            <li>形如 $y = \dfrac{k}{x}$（$k \neq 0$）的函数叫做<strong>反比例函数</strong></li>
+            <li>反比例函数也可写成 $xy = k$ 或 $y = kx^{-1}$ 的形式</li>
+            <li>反比例函数中，自变量 $x$ 的取值范围是<strong>$x \neq 0$</strong></li>
+            <li>从实际问题中抽象出反比例函数模型：先找两个变量的乘积是否为定值</li>
+        </ol>
+    </div>
+
+    <!-- ══════════ 课后作业 ══════════ -->
+    <div class="section-title">📚 课后作业</div>
+    <div class="homework-box">
+        <h4>分层作业</h4>
+        <p style="margin-top:.4rem;"><span class="level-tag">必做</span> 课本第 __ 页 练习 第 1、2 题</p>
+        <p style="margin-top:.4rem;"><span class="level-tag">必做</span> 判断：若 $y$ 与 $x$ 成反比例，且当 $x = 2$ 时 $y = 6$，求 $y$ 与 $x$ 的函数关系式</p>
+        <p style="margin-top:.4rem;"><span class="level-tag">选做</span> 举出生活中一个反比例函数的例子，并写出其函数关系式</p>
+        <p style="margin-top:.6rem;color:#64748b;font-size:1.1rem;">💡 <strong>提示：</strong>第2题可设 $y = \dfrac{k}{x}$，代入已知条件求出 $k$。</p>
+    </div>
+
+    <!-- ══════════ 核心素养 ══════════ -->
+    <div class="section-title">🎓 数学核心素养</div>
+    <div class="literacy-container">
+        <div class="literacy-card">
+            <h4 style="color:#92400e;margin-bottom:.5rem;">📐 数学抽象</h4>
+            <p style="color:#78350f;line-height:1.8;">从行程问题、面积问题等实际情境中抽象出 $y = \dfrac{k}{x}$ 的数学模型．</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#1e40af;margin-bottom:.5rem;">🔍 逻辑推理</h4>
+            <p style="color:#1e3a8a;line-height:1.8;">通过比较两个函数关系式的共同点，归纳出反比例函数的一般形式．</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#065f46;margin-bottom:.5rem;">✏️ 数学运算</h4>
+            <p style="color:#064e3b;line-height:1.8;">根据实际问题中的数量关系，正确列出反比例函数表达式．</p>
+        </div>
+        <div class="literacy-card">
+            <h4 style="color:#6b21a8;margin-bottom:.5rem;">🌐 数学建模</h4>
+            <p style="color:#581c87;line-height:1.8;">将"路程一定""面积一定"等实际问题转化为反比例函数模型．</p>
+        </div>
+    </div>
+
+    <!-- ══════════ 教师寄语 ══════════ -->
+    <div class="message-box">
+        <h4>💬 教师寄语</h4>
+        <p>反比例函数描述的是"此消彼长"的关系——当一个量增大时，另一个量反而减小，但它们的乘积始终保持不变．这种关系在生活中无处不在：速度越快，时间越短；压强越大，受力面积越小……学会用反比例函数的眼光观察世界，你会发现数学就在身边．</p>
+    </div>
+
+</div><!-- .textbook -->
+
+<script>
+// ── 折叠/展开 ──────────────────────────────────────────────
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    if(el.style.display==='block'||el.dataset.shown==='yes'){
+        el.style.display='none'; el.dataset.shown=''; return;
+    }
+    el.style.display='block'; el.dataset.shown='yes';
+    if(window.renderMathInElement){
+        renderMathInElement(el,{
+            delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+            throwOnError:false
+        });
+    }
+    // 如果是练习2的解答，绘制Canvas
+    if(id==='pr1'){
+        setTimeout(drawHyperbola,100);
+    }
+}
+
+// ── Canvas 绘制双曲线 y=24/x (x>0) ─────────────────────────
+function drawHyperbola(){
+    var canvas=document.getElementById('hyperbolaCanvas');
+    if(!canvas) return;
+    var ctx=canvas.getContext('2d');
+    var W=canvas.width, H=canvas.height;
+    var padL=50, padR=30, padT=30, padB=50;
+    var cw=W-padL-padR, ch=H-padT-padB;
+    var ox=padL, oy=H-padB;
+
+    ctx.clearRect(0,0,W,H);
+
+    // 坐标轴范围：x:0~25, y:0~26
+    var xmax=25, ymax=26;
+    var sx=cw/xmax, sy=ch/ymax;
+
+    // 网格线
+    ctx.strokeStyle='#e2e8f0';
+    ctx.lineWidth=1;
+    for(var i=0;i<=xmax;i+=5){
+        var x=ox+i*sx;
+        ctx.beginPath();ctx.moveTo(x,oy);ctx.lineTo(x,padT);ctx.stroke();
+    }
+    for(var j=0;j<=ymax;j+=5){
+        var y=oy-j*sy;
+        ctx.beginPath();ctx.moveTo(ox,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    }
+
+    // 坐标轴
+    ctx.strokeStyle='#334155';
+    ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ox,padT);ctx.lineTo(ox,oy);ctx.lineTo(W-padR,oy);ctx.stroke();
+
+    // 箭头
+    ctx.fillStyle='#334155';
+    ctx.beginPath();ctx.moveTo(ox,padT);ctx.lineTo(ox-5,padT+10);ctx.lineTo(ox+5,padT+10);ctx.fill();
+    ctx.beginPath();ctx.moveTo(W-padR,oy);ctx.lineTo(W-padR-10,oy-5);ctx.lineTo(W-padR-10,oy+5);ctx.fill();
+
+    // 刻度标签
+    ctx.fillStyle='#475569';
+    ctx.font='14px "Segoe UI","Microsoft YaHei",sans-serif';
+    ctx.textAlign='center';ctx.textBaseline='top';
+    for(i=0;i<=xmax;i+=5){
+        if(i===0) continue;
+        ctx.fillText(i,ox+i*sx,oy+6);
+    }
+    ctx.textAlign='right';ctx.textBaseline='middle';
+    for(j=0;j<=ymax;j+=5){
+        if(j===0) continue;
+        ctx.fillText(j,ox-8,oy-j*sy);
+    }
+
+    // 轴标签
+    ctx.textAlign='left';ctx.textBaseline='top';
+    ctx.fillText('x',W-padR+4,oy-8);
+    ctx.textAlign='right';ctx.textBaseline='bottom';
+    ctx.fillText('y',ox+4,padT-4);
+    ctx.fillText('O',ox-6,oy+4);
+
+    // 描点
+    var pts=[{x:1,y:24},{x:2,y:12},{x:3,y:8},{x:4,y:6},{x:6,y:4},{x:8,y:3},{x:12,y:2},{x:24,y:1}];
+    pts.forEach(function(p){
+        var px=ox+p.x*sx, py=oy-p.y*sy;
+        ctx.fillStyle='#e11d48';
+        ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);ctx.fill();
+        // 标签
+        ctx.fillStyle='#0f766e';
+        ctx.font='bold 13px "Segoe UI","Microsoft YaHei",sans-serif';
+        ctx.textAlign='left';ctx.textBaseline='bottom';
+        ctx.fillText('('+p.x+','+p.y+')',px+7,py-3);
+    });
+
+    // 连线（平滑曲线）—— 向右侧延伸至坐标轴边界，体现无限趋近 x 轴
+    ctx.strokeStyle='#0ea5e9';
+    ctx.lineWidth=3;
+    ctx.beginPath();
+    for(var xv=0.5;xv<=xmax;xv+=0.05){
+        var yv=24/xv;
+        var px=ox+xv*sx, py=oy-yv*sy;
+        if(xv<=0.55) ctx.moveTo(px,py);
+        else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+    if(window.renderMathInElement){
+        renderMathInElement(document.body,{
+            delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+            throwOnError:false
+        });
+    }
+});
+</script>
+</body>
+</html>

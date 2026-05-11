@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.3.2 等腰三角形的判定 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;
+        }
+        .textbook {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.2rem;
+            margin: 2rem 0;
+        }
+        .main-content {
+            flex: 2;
+            min-width: 280px;
+        }
+        .interactive-side {
+            flex: 1.2;
+            background: #f8fbfe;
+            border-radius: 2rem;
+            padding: 1.2rem 1.2rem 1.5rem;
+            border: 2px solid #cfe2f2;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+        @media (max-width: 900px) {
+            .interactive-side { position: static; }
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #2c6079;
+            margin-top: 0.5rem;
+        }
+        .figure-inline {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        .figure-inline img {
+            max-width: 95%;
+            max-height: 240px;
+            border-radius: 20px;
+            background: #f9f9fc;
+            border: 1px solid #cfe0f0;
+            padding: 6px;
+            object-fit: contain;
+        }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9fbede;
+            margin: 0.8rem 0 0.2rem;
+            font-size: 1rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.8rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1.2rem 1.2rem 0;
+            font-size: 1rem;
+        }
+        .show-answer { display: block; }
+        .exercise-item {
+            margin-top: 1.8rem;
+            border-bottom: 1px dashed #c6daea;
+            padding-bottom: 1rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+        }
+        .canvas-container {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 0.5rem;
+            border: 1px solid #cde0ef;
+            margin: 1rem 0;
+        }
+        canvas {
+            width: 100%;
+            height: auto;
+            background: #fefef7;
+            border-radius: 1rem;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #e2e8f0;
+        }
+        .slider-group {
+            margin: 1rem 0;
+        }
+        .slider-group label {
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .slider-row button {
+            width: 36px;
+            height: 36px;
+            border-radius: 36px;
+            border: none;
+            background: #e2e8f0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #1e4a6e;
+        }
+        .slider-row button:active {
+            transform: scale(0.94);
+            background: #cbd5e1;
+        }
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+        }
+        .angle-badge {
+            background: #eef2ff;
+            border-radius: 32px;
+            padding: 5px 14px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-block;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 → 12.3.2 等腰三角形的判定</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.3.2 等腰三角形的判定</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握“等角对等边”判定定理</div>
+            <div class="target-item"><span>✔</span>掌握等边三角形的两个判定方法</div>
+            <div class="target-item"><span>✔</span>会运用判定定理证明线段相等或等腰三角形</div>
+            <div class="target-item"><span>✔</span>理解HL定理的证明过程</div>
+        </div>
+    </div>
+
+    <div class="two-columns">
+        <!-- 左侧教学内容 -->
+        <div class="main-content">
+            <!-- 引入 + 图12.3.10 -->
+            <div class="card">
+                <h3>🔍 从性质到判定</h3>
+                <p>我们已经知道等腰三角形两底角相等。反过来，如果一个三角形有两个角相等，那么它是等腰三角形吗？<br>
+                通过画图可以发现：<strong>有两个角相等的三角形是等腰三角形</strong>。</p>
+                <div class="figure-inline">
+                    <img src="12.3.10.png" alt="12.3.10 已知∠B=∠C" style="max-height:190px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.10%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.10 已知∠B=∠C，求证AB=AC</div>
+                </div>
+            </div>
+
+            <!-- 判定定理：等角对等边 + 图12.3.11 -->
+            <div class="card theorem-card">
+                <h3>📖 判定定理：等角对等边</h3>
+                <p><strong>有两个角相等的三角形是等腰三角形。</strong>（简写：等角对等边）</p>
+                <p><strong>已知：</strong>如图，在△ABC中，∠B = ∠C。求证：AB = AC。</p>
+                <div class="figure-inline">
+                    <img src="12.3.11.png" alt="12.3.11 作角平分线AD" style="max-height:200px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22150%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.11%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.11 作∠BAC的平分线AD</div>
+                </div>
+                <button class="interact-btn" onclick="toggleAnswer('proofJudge')">📐 证明过程</button>
+                <div id="proofJudge" class="answer-box">
+                    <p><strong>证明：</strong> 作∠BAC的平分线AD。<br>
+                    在△BAD和△CAD中，<br>
+                    ∠B = ∠C (已知)，∠BAD = ∠CAD (角平分线定义)，AD = AD (公共边)，<br>
+                    ∴ △BAD ≅ △CAD (AAS)。<br>
+                    ∴ AB = AC (全等三角形对应边相等)。</p>
+                </div>
+            </div>
+
+            <!-- 思考1（互逆命题）放在例4之前 -->
+            <div class="card fact-card">
+                <h4>🤔 思考1</h4>
+                <p>“等角对等边”与“等边对等角”互为逆定理。你能说出等腰三角形的性质定理与判定定理的区别与联系吗？</p>
+                <button class="interact-btn" onclick="toggleAnswer('think1ans')">💡 提示</button>
+                <div id="think1ans" class="answer-box">
+                    性质：已知等腰 → 得底角相等；判定：已知两角相等 → 得等腰。两者条件与结论互换，是互逆定理。
+                </div>
+            </div>
+
+            <!-- 例4 + 图12.3.12 -->
+            <div class="example-card">
+                <h4>📝 例4</h4>
+                <p>在△ABC中，已知∠A = 40°，∠B = 70°。求证：AB = AC。</p>
+                <div class="figure-inline">
+                    <img src="12.3.12.png" alt="12.3.12 例4图" style="max-height:160px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.12%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.12 例4图形</div>
+                </div>
+                <button class="interact-btn" onclick="toggleAnswer('ex4sol')">🔍 解答</button>
+                <div id="ex4sol" class="answer-box">
+                    解：∵ ∠A+∠B+∠C=180°，∴ ∠C = 180°-40°-70°=70°。<br>
+                    ∴ ∠C = ∠B，根据“等角对等边”得 AB = AC。
+                </div>
+            </div>
+
+            <!-- 思考2（等边三角形的条件）放在等边三角形的判定定理之前 -->
+            <div class="card fact-card">
+                <h4>🤔 思考2</h4>
+                <p>在等腰三角形中，添加什么条件可使其成为等边三角形？除了顶角或底角为60°，还有别的条件吗？</p>
+                <button class="interact-btn" onclick="toggleAnswer('think2ans')">💡 探索</button>
+                <div id="think2ans" class="answer-box">
+                    ① 腰相等底边也相等（三边相等）；② 有一个角为60°的等腰三角形；③ 三个角都相等。均可判定为等边三角形。
+                </div>
+            </div>
+
+            <!-- 等边三角形的判定定理（两个）内容，插图12.3.14 -->
+            <div class="card fact-card">
+                <h3>📐 等边三角形的判定定理</h3>
+                <p>由等腰三角形的判定定理，我们可以进一步得到等边三角形的两个判定定理：</p>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>定理1：三个角都相等的三角形是等边三角形。</strong></li>
+                    <li><strong>定理2：有一个角等于60°的等腰三角形是等边三角形。</strong></li>
+                </ul>
+                <div class="figure-inline">
+                    <img src="12.3.14.png" alt="12.3.14 等边三角形（正三角形）" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.14%20等边三角形%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.14 等边三角形（正三角形）</div>
+                </div>
+                <button class="interact-btn" onclick="toggleAnswer('equilateralProof')">📖 定理2的简要证明</button>
+                <div id="equilateralProof" class="answer-box">
+                    在等腰△ABC中，AB=AC。<br>
+                    ① 若顶角∠A=60°，则底角∠B=∠C=(180°-60°)/2=60°，三个角均为60°，故是等边三角形。<br>
+                    ② 若一个底角∠B=60°，则∠C=60°，∠A=180°-120°=60°，同样得等边三角形。<br>
+                    因此，有一个角为60°的等腰三角形一定是等边三角形。
+                </div>
+                <p style="margin-top: 0.6rem;">✨ 等边三角形是特殊的等腰三角形，也叫<strong>正三角形</strong>，有三条对称轴。</p>
+            </div>
+
+            <!-- 例5 + 图12.3.13 -->
+            <div class="example-card">
+                <h4>📝 例5</h4>
+                <p>如图，AB // CD，∠1 = ∠2。求证：AB = AC。</p>
+                <div class="figure-inline">
+                    <img src="12.3.13.png" alt="12.3.13 例5图" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22140%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.13%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.13 平行线与角平分线模型</div>
+                </div>
+                <button class="interact-btn" onclick="toggleAnswer('ex5sol')">📐 证明</button>
+                <div id="ex5sol" class="answer-box">
+                    ∵ AB // CD， ∴ ∠B = ∠2 (两直线平行，同位角相等)。<br>
+                    又 ∠1 = ∠2， ∴ ∠B = ∠1。 ∴ AB = AC (等角对等边)。
+                </div>
+            </div>
+
+            <!-- 例6 HL定理证明 + 图12.3.15 -->
+            <div class="example-card">
+                <h4>📝 例6</h4>
+                <p>如图，在Rt△ABC和Rt△A'B'C'中，∠ACB=∠A'C'B'=90°，AB=A'B'，AC=A'C'。<br>
+                求证：Rt△ABC ≅ Rt△A'B'C' (HL判定定理)。</p>
+                <div class="figure-inline">
+                    <img src="12.3.15.png" alt="12.3.15 HL定理证明图" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22160%22%20height%3D%22140%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.3.15%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div class="img-caption">图12.3.15 平移旋转构造等腰三角形</div>
+                </div>
+                <button class="interact-btn" onclick="toggleAnswer('hlProof')">📐 展示证明</button>
+                <div id="hlProof" class="answer-box">
+                    <p><strong>证明：</strong> 将Rt△ABC平移旋转，使A与A'、C与C'重合，且B与B'位于A'C'两侧。<br>
+                    则∠A'C'B = ∠A'C'B' = 90°，∴ B',C,B共线。<br>
+                    在△A'B'B中，A'B' = AB = A'B， ∴ ∠B = ∠B' (等边对等角)。<br>
+                    又AC = A'C'，∠ACB = ∠A'C'B' = 90°，利用AAS可证Rt△ABC ≅ Rt△A'B'C'。</p>
+                </div>
+            </div>
+
+            <!-- 读一读 -->
+            <div class="reading-card">
+                <h4>📖 读一读 · 从泰勒斯到欧几里得</h4>
+                <p>古希腊数学家泰勒斯曾用相似三角形测量金字塔高度，而等腰三角形的判定与性质也是早期几何发展的核心。欧几里得在《几何原本》第一卷中明确证明了“等边对等角”及其逆命题，为后世逻辑推理奠定了基础。“等角对等边”不仅用于几何证明，在建筑、工程中也有广泛应用，如人字梁的稳定性就利用了等腰三角形的特性。</p>
+            </div>
+
+            <!-- 课堂练习（第1~4题图） -->
+            <div class="card" style="background:#f9f5f0;">
+                <h3>✍️ 课堂练习</h3>
+                <div class="exercise-item">
+                    <div class="exercise-question">1. 如图，∠A = 72°，∠B = 36°，CD平分∠ACB。试指出图中的等腰三角形，并说明理由。</div>
+                    <div class="figure-inline"><img src="第1题.png" alt="第1题图" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第1题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+                    <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+                    <div id="prac1" class="answer-box">
+                        △ABC, △BCD, △ACD都是等腰三角形。计算角度可得∠BCD=36°，∠BDC=72°等，利用等角对等边。
+                    </div>
+                </div>
+                <div class="exercise-item">
+                    <div class="exercise-question">2. 如图，AB=DC，∠ABC=∠DCB，AC、BD相交于点E。求证：EB=EC。</div>
+                    <div class="figure-inline"><img src="第2题.png" alt="第2题图" style="max-height:170px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第2题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+                    <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 证明</button>
+                    <div id="prac2" class="answer-box">
+                        证△ABC≌△DCB (SAS)，得∠ACB=∠DBC，∴EB=EC (等角对等边)。
+                    </div>
+                </div>
+                <div class="exercise-item">
+                    <div class="exercise-question">3. 如图，∠A=∠B，CE // DA。求证：CE=CB。需再增加什么条件，可使△BCE成为等边三角形？</div>
+                    <div class="figure-inline"><img src="第3题.png" alt="第3题图" style="max-height:170px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第3题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+                    <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 解答</button>
+                    <div id="prac3" class="answer-box">
+                        由CE//DA得∠A=∠CEB，又∠A=∠B，∴∠B=∠CEB，故CE=CB。增加条件∠B=60°或BC=CE=EB即可使△BCE为等边三角形。
+                    </div>
+                </div>
+                <div class="exercise-item">
+                    <div class="exercise-question">4. 已知底边及底边上的高线作等腰三角形。已知线段a,h，求作△ABC，使AB=AC，BC=a，高AD=h。</div>
+                    <div class="figure-inline"><img src="第4题.png" alt="第4题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22100%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第4题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+                    <button class="interact-btn" onclick="toggleAnswer('prac4')">📐 作法</button>
+                    <div id="prac4" class="answer-box">
+                        作法：作线段BC=a，作BC的垂直平分线MN，垂足为D，在MN上截取DA=h，连结AB、AC，则△ABC为所求。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课堂小结 -->
+            <div class="summary-card">
+                <h3>📌 课堂小结</h3>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>等腰三角形的判定：</strong> 等角对等边（两个角相等 → 等腰）。</li>
+                    <li><strong>等边三角形的判定：</strong> ①三个角都相等；②有一个角是60°的等腰三角形。</li>
+                    <li><strong>直角三角形全等HL定理的证明：</strong> 利用等腰三角形的性质及全等。</li>
+                    <li><strong>证明线段相等常用思路：</strong> 构造等腰三角形或全等三角形。</li>
+                </ul>
+            </div>
+
+            <!-- 数学思想与素养 -->
+            <div class="math-idea-card">
+                <h4>🧠 数学思想 · 核心素养</h4>
+                <p><strong>• 逆向思维：</strong> 从性质到判定，培养互逆命题的逻辑关系；<br>
+                <strong>• 转化思想：</strong> 将角相等转化为边相等，通过全等三角形实现；<br>
+                <strong>• 分类讨论：</strong> 等边三角形判定中考虑顶角和底角两种情况；<br>
+                <strong>• 演绎推理：</strong> 每一步证明都有理有据，严谨规范；<br>
+                <strong>• 几何直观：</strong> 通过动态画板感受“等角对等边”的必然性。</p>
+            </div>
+        </div>
+
+        <!-- 右侧交互工具：动态验证等角对等边（顶点A在上，底边BC在下） -->
+        <div class="interactive-side">
+            <h3 style="text-align:center; font-size:1.5rem; color:#0f5b7a;">📐 动态验证 · 等角对等边</h3>
+            <p style="text-align:center; font-size:0.95rem;">拖动滑块或点击“-”“+”改变底角∠B和∠C，顶角∠A = 180° - ∠B - ∠C。<br>
+            <strong>判定：任意两个角相等，即为等腰三角形。</strong><br>
+            <span style="color:#b34b0c;">✨ 当三个角都等于60°时，为等边三角形（正三角形）。</span></p>
+            <div class="canvas-container">
+                <canvas id="judgeCanvas" width="500" height="380" style="width:100%; height:auto; max-width:500px; aspect-ratio:500/380"></canvas>
+            </div>
+            <div class="slider-group">
+                <label>📏 底角 ∠B  <span id="angleB_display" class="angle-badge">70°</span></label>
+                <div class="slider-row">
+                    <button id="btnB_minus">-</button>
+                    <input type="range" id="angleB_slider" min="10" max="80" step="1" value="70">
+                    <button id="btnB_plus">+</button>
+                </div>
+            </div>
+            <div class="slider-group">
+                <label>📏 底角 ∠C  <span id="angleC_display" class="angle-badge">40°</span></label>
+                <div class="slider-row">
+                    <button id="btnC_minus">-</button>
+                    <input type="range" id="angleC_slider" min="10" max="80" step="1" value="40">
+                    <button id="btnC_plus">+</button>
+                </div>
+            </div>
+            <div id="judgeResult" style="background:#e6f4ea; border-radius: 1rem; padding: 12px; margin-top: 12px; text-align:center; font-weight:bold;">
+                当前：∠A=70°, ∠B=70°, ∠C=40° → ∠A=∠B，三角形是等腰三角形。
+            </div>
+            <div class="img-caption" style="margin-top: 8px;">💡 当任意两个角相等时，所对的边相等，直观验证判定定理。<br>💡 尝试将∠B和∠C都调到60°，观察等边三角形的特殊结果。</div>
+        </div>
+    </div>
+
+    <!-- 作业单独块 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom: 0.5rem;">📚 课后作业</h3>
+        <ul style="margin-left: 1.8rem; font-weight: 500;">
+            <li>课本习题12.3 A组第5、6题，B组第7、8题；</li>
+            <li>练习册《等腰三角形的判定》基础巩固与能力提升；</li>
+            <li>思考题：证明“如果一个三角形一边上的中线和高线重合，则这个三角形是等腰三角形”。</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 等角对等边，判定显神通；三角皆六十，正形傲苍穹。 ✨<br>
+        勤于推理，勇于探索，几何世界因你而精彩！</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第12章 12.3.2 等腰三角形的判定 | 交互课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 动态绘制三角形：顶点A在上方，底边BC水平且在下
+    const canvas = document.getElementById('judgeCanvas');
+    const ctx = canvas.getContext('2d');
+    const angleBSlider = document.getElementById('angleB_slider');
+    const angleCSlider = document.getElementById('angleC_slider');
+    const angleB_disp = document.getElementById('angleB_display');
+    const angleC_disp = document.getElementById('angleC_display');
+    const judgeResult = document.getElementById('judgeResult');
+
+    let angleB = 70, angleC = 40;
+    const width = 500, heightCanvas = 380;
+
+    function drawTriangleWithAngles(bDeg, cDeg) {
+        ctx.clearRect(0, 0, width, heightCanvas);
+        let aDeg = 180 - bDeg - cDeg;
+        if (aDeg <= 5 || bDeg <= 5 || cDeg <= 5) {
+            ctx.fillStyle = "#aaa";
+            ctx.font = "18px 'Segoe UI'";
+            ctx.fillText("角度太小，无法构成三角形", 150, 200);
+            judgeResult.innerHTML = "⚠️ 无法构成三角形，请调整角度";
+            judgeResult.style.background = "#ffe6e5";
+            return;
+        }
+        // 底边BC水平，固定在画布下方
+        const Bx = 120, By = 300;
+        const Cx = 380, Cy = 300;
+        const radA = aDeg * Math.PI / 180;
+        const radB = bDeg * Math.PI / 180;
+        const radC = cDeg * Math.PI / 180;
+        const BC_len = Cx - Bx;
+        // 正弦定理求腰长 AB 和 AC
+        const sinA = Math.sin(radA);
+        if (sinA < 1e-6) return;
+        const AB_len = (BC_len * Math.sin(radC)) / sinA;
+        const AC_len = (BC_len * Math.sin(radB)) / sinA;
+        // 求顶点A坐标：以B为圆心AB_len为半径，以C为圆心AC_len为半径，取上方交点（y < By）
+        const dx = Cx - Bx, dy = Cy - By;
+        const d = Math.hypot(dx, dy);
+        if (d > AB_len + AC_len || d < Math.abs(AB_len - AC_len)) {
+            ctx.fillStyle = "#aaa";
+            ctx.fillText("边长无法构成三角形，微调角度", 140, 200);
+            judgeResult.innerHTML = "⚠️ 无法构成三角形，请调整角度";
+            judgeResult.style.background = "#ffe6e5";
+            return;
+        }
+        const a_side = AB_len, b_side = AC_len;
+        const t = (a_side * a_side - b_side * b_side + d * d) / (2 * d);
+        const h = Math.sqrt(Math.abs(a_side * a_side - t * t));
+        const x0 = Bx + (dx * t) / d;
+        const y0 = By + (dy * t) / d;
+        const rx = -dy * (h / d);
+        const ry = dx * (h / d);
+        // 两个交点：(x0+rx, y0+ry) 和 (x0-rx, y0-ry)，取y坐标较小的作为顶点（在上方）
+        let Ax = x0 + rx, Ay = y0 + ry;
+        if (Ay > By) {  // 如果这个交点在底边下方，则取另一个
+            Ax = x0 - rx;
+            Ay = y0 - ry;
+        }
+        // 边界保护
+        if (Ay < 35) Ay = 35;
+        if (Ax < 25) Ax = 25;
+        if (Ax > width - 25) Ax = width - 25;
+
+        // 绘制三角形
+        ctx.beginPath();
+        ctx.moveTo(Bx, By);
+        ctx.lineTo(Cx, Cy);
+        ctx.lineTo(Ax, Ay);
+        ctx.closePath();
+        ctx.fillStyle = "#fbfef7";
+        ctx.fill();
+        ctx.strokeStyle = "#2c6e9e";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // 标注顶点
+        ctx.font = "bold 22px 'Segoe UI'";
+        ctx.fillStyle = "#1e4a6e";
+        ctx.fillText("A", Ax - 12, Ay - 10);
+        ctx.fillText("B", Bx - 18, By + 8);
+        ctx.fillText("C", Cx + 8, By + 8);
+
+        function drawArc(vx, vy, p1x, p1y, p2x, p2y, radius, val) {
+            const a1 = Math.atan2(p1y - vy, p1x - vx);
+            const a2 = Math.atan2(p2y - vy, p2x - vx);
+            let start = a1, end = a2, sweep = true;
+            let delta = ((end - start + 2 * Math.PI) % (2 * Math.PI));
+            if (delta > Math.PI) { delta = 2 * Math.PI - delta; sweep = false; }
+            ctx.beginPath();
+            ctx.arc(vx, vy, radius, start, end, !sweep);
+            ctx.strokeStyle = "#e67e22";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            const mid = start + (sweep ? delta / 2 : -delta / 2);
+            const tx = vx + (radius + 12) * Math.cos(mid);
+            const ty = vy + (radius + 12) * Math.sin(mid);
+            ctx.fillStyle = "#c2491e";
+            ctx.font = "bold 16px 'Segoe UI'";
+            ctx.fillText(val.toFixed(0) + "°", tx - 10, ty - 6);
+        }
+
+        // 绘制三个角（顶角A，底角B，底角C）
+        drawArc(Ax, Ay, Bx, By, Cx, Cy, 30, aDeg);
+        drawArc(Bx, By, Ax, Ay, Cx, Cy, 28, bDeg);
+        drawArc(Cx, Cy, Ax, Ay, Bx, By, 28, cDeg);
+
+        // 显示边长
+        const AB_show = Math.hypot(Ax - Bx, Ay - By);
+        const AC_show = Math.hypot(Ax - Cx, Ay - Cy);
+        ctx.font = "16px 'Segoe UI'";
+        ctx.fillStyle = "#2b6a47";
+        ctx.fillText(`AB ≈ ${(AB_show / 2.2).toFixed(1)} px`, (Ax + Bx) / 2 - 30, (Ay + By) / 2 - 12);
+        ctx.fillText(`AC ≈ ${(AC_show / 2.2).toFixed(1)} px`, (Ax + Cx) / 2 + 10, (Ay + Cy) / 2 - 12);
+        ctx.fillText(`BC = ${((Cx - Bx) / 2.2).toFixed(1)} px`, (Bx + Cx) / 2 - 25, By + 18);
+
+        // 判定等腰 / 等边
+        const eps = 0.5;
+        const allSixty = Math.abs(aDeg - 60) <= eps && Math.abs(bDeg - 60) <= eps && Math.abs(cDeg - 60) <= eps;
+        if (allSixty) {
+            judgeResult.innerHTML = "✅ ∠A = ∠B = ∠C = 60° → 三角形是等边三角形（正三角形）！";
+            judgeResult.style.background = "#c9e9dc";
+            return;
+        }
+        let isIsosceles = false;
+        let equalPair = "";
+        if (Math.abs(aDeg - bDeg) <= eps) {
+            isIsosceles = true;
+            equalPair = `∠A = ∠B = ${aDeg.toFixed(0)}°`;
+        } else if (Math.abs(aDeg - cDeg) <= eps) {
+            isIsosceles = true;
+            equalPair = `∠A = ∠C = ${aDeg.toFixed(0)}°`;
+        } else if (Math.abs(bDeg - cDeg) <= eps) {
+            isIsosceles = true;
+            equalPair = `∠B = ∠C = ${bDeg.toFixed(0)}°`;
+        }
+        if (isIsosceles) {
+            judgeResult.innerHTML = `✅ ${equalPair} → 三角形是等腰三角形 (等角对等边)`;
+            judgeResult.style.background = "#d9f0e3";
+        } else {
+            judgeResult.innerHTML = "❌ 三个角互不相等 → 不是等腰三角形。调整角度使任意两个角相等。";
+            judgeResult.style.background = "#ffe6e5";
+        }
+    }
+
+    function updateAngles() {
+        angleB = parseFloat(angleBSlider.value);
+        angleC = parseFloat(angleCSlider.value);
+        angleB_disp.innerText = angleB + "°";
+        angleC_disp.innerText = angleC + "°";
+        drawTriangleWithAngles(angleB, angleC);
+    }
+
+    // 绑定按钮事件
+    document.getElementById('btnB_minus').addEventListener('click', () => {
+        let newVal = angleB - 1;
+        if (newVal >= 10) angleBSlider.value = newVal;
+        updateAngles();
+    });
+    document.getElementById('btnB_plus').addEventListener('click', () => {
+        let newVal = angleB + 1;
+        if (newVal <= 80) angleBSlider.value = newVal;
+        updateAngles();
+    });
+    document.getElementById('btnC_minus').addEventListener('click', () => {
+        let newVal = angleC - 1;
+        if (newVal >= 10) angleCSlider.value = newVal;
+        updateAngles();
+    });
+    document.getElementById('btnC_plus').addEventListener('click', () => {
+        let newVal = angleC + 1;
+        if (newVal <= 80) angleCSlider.value = newVal;
+        updateAngles();
+    });
+
+    angleBSlider.addEventListener('input', updateAngles);
+    angleCSlider.addEventListener('input', updateAngles);
+    updateAngles();
+    window.addEventListener('load', () => { if (window.MathJax) MathJax.typesetPromise?.(); });
+</script>
+</body>
+</html>

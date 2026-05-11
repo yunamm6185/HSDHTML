@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据的集中趋势与离散程度分析互动演示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#F59E0B',
+                        tertiary: '#8B5CF6',
+                        neutral: '#1F2937',
+                        'neutral-light': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+            }
+            .scale-on-hover {
+                @apply hover:scale-105 transition-all duration-300;
+            }
+            .shadow-depth {
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-br from-neutral-light to-white min-h-screen">
+    <!-- 顶部导航 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300 py-3">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fa fa-bar-chart text-primary text-2xl"></i>
+                    <h1 class="text-xl font-semibold text-neutral">数据的集中趋势与离散程度分析</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#concept" class="text-neutral/70 hover:text-primary transition-colors">基本概念</a>
+                    <a href="#demo" class="text-neutral/70 hover:text-primary transition-colors">互动演示</a>
+                    <a href="#differences" class="text-neutral/70 hover:text-primary transition-colors">关键区别</a>
+                    <a href="#quiz" class="text-neutral/70 hover:text-primary transition-colors">练习题</a>
+                    <a href="#summary" class="text-neutral/70 hover:text-primary transition-colors">总结</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 介绍部分 -->
+        <section class="mb-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-neutral mb-6">探索统计数据的奥秘</h2>
+            <p class="text-lg text-neutral/70 max-w-3xl mx-auto">
+                学习目标：通过交互式可视化，深入理解平均数、中位数、众数和方差等统计概念，
+                掌握数据集中趋势和离散程度的分析方法。
+            </p>
+        </section>
+
+        <!-- 概念解释 -->
+        <section id="concept" class="mb-16 bg-white rounded-xl shadow-depth p-8 transform transition-all duration-500 hover:shadow-lg">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-book text-primary mr-2"></i>基本概念
+            </h3>
+            
+            <!-- 集中趋势指标 -->
+            <div class="mb-8">
+                <h4 class="text-xl font-medium text-primary mb-4">数据的集中趋势指标</h4>
+                <p class="text-neutral/80 mb-4">集中趋势是指一组数据向某一中心值靠拢的程度，包括平均数、中位数和众数。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-primary/5 p-6 rounded-lg border-l-4 border-primary transform transition-all duration-300 hover:scale-x-105">
+                    <h4 class="text-xl font-medium text-primary mb-3 flex items-center">
+                        <i class="fa fa-calculator mr-2"></i>平均数 (Mean)
+                    </h4>
+                    <p class="text-neutral/80">平均数是一组数据的总和除以数据点的数量，它对所有数据点都敏感，包括异常值。</p>
+                    <div class="mt-4 bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-center text-sm md:text-base">公式: \(\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i\)</p>
+                    </div>
+                </div>
+                <div class="bg-accent/5 p-6 rounded-lg border-l-4 border-accent transform transition-all duration-300 hover:scale-x-105">
+                    <h4 class="text-xl font-medium text-accent mb-3 flex items-center">
+                        <i class="fa fa-sort-numeric-asc mr-2"></i>中位数 (Median)
+                    </h4>
+                    <p class="text-neutral/80">中位数是一组数据排序后位于中间位置的数值，它对异常值不敏感，更能代表数据的中间水平。</p>
+                    <div class="mt-4 bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-center text-xs md:text-sm">公式: \(M = \begin{cases} 
+x_{k} & (n=2k-1) \\
+\frac{x_{k}+x_{k+1}}{2} & (n=2k) 
+\end{cases}\)</p>
+                    </div>
+                </div>
+                <div class="bg-tertiary/5 p-6 rounded-lg border-l-4 border-tertiary transform transition-all duration-300 hover:scale-x-105">
+                    <h4 class="text-xl font-medium text-tertiary mb-3 flex items-center">
+                        <i class="fa fa-bar-chart mr-2"></i>众数 (Mode)
+                    </h4>
+                    <p class="text-neutral/80">众数是一组数据中出现次数最多的数值，它反映了数据的集中趋势，特别适用于分类数据。</p>
+                    <div class="mt-4 bg-white p-4 rounded-lg shadow-sm">
+                        <p class="text-center text-sm md:text-base">众数：出现次数最多的数</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <!-- 离散程度指标 -->
+            <div>
+                <h4 class="text-xl font-medium text-secondary mb-4">数据的离散程度指标</h4>
+                <p class="text-neutral/80 mb-4">离散程度是指一组数据远离中心值的程度，方差是衡量数据离散程度的重要指标。</p>
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                    <div class="bg-secondary/5 p-6 rounded-lg border-l-4 border-secondary transform transition-all duration-300 hover:scale-x-105">
+                        <h4 class="text-xl font-medium text-secondary mb-3 flex items-center">
+                            <i class="fa fa-area-chart mr-2"></i>方差 (Variance)
+                        </h4>
+                        <p class="text-neutral/80">方差衡量数据的离散程度，表示数据点与平均数的偏离程度的平方的平均值。</p>
+                        <div class="mt-4 bg-white p-4 rounded-lg shadow-sm">
+                            <p class="text-center text-sm md:text-base">公式: \(\sigma^2 = \frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})^2\)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新课标要求 -->
+                <div class="bg-primary/5 p-6 rounded-lg border-l-4 border-primary mt-8">
+                    <h4 class="text-xl font-medium text-primary mb-4">新课标要求</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-semibold text-neutral mb-3">数据的集中趋势</h5>
+                            <ul class="list-disc list-inside space-y-2 text-neutral/80">
+                                <li>理解平均数、中位数、众数的意义</li>
+                                <li>能计算中位数、众数、加权平均数</li>
+                                <li>知道它们是对数据集中趋势的描述</li>
+                                <li>能根据数据的集中趋势解释或解决问题</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-neutral mb-3">数据的离散程度</h5>
+                            <ul class="list-disc list-inside space-y-2 text-neutral/80">
+                                <li>体会刻画数据离散程度的意义</li>
+                                <li>会计算一组简单数据的离差平方和、方差</li>
+                                <li>知道方差是衡量数据波动程度的重要指标</li>
+                                <li>能根据数据的离散程度解释或解决问题</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-neutral/70 italic">
+                        <p>核心素养：发展数据观念、应用意识和模型意识，学会用数据说话，基于证据进行理性决策。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+        <!-- 互动演示 (修正：启用datalabels插件，标签在条形正上方居中，字号加大) -->
+        <section id="demo" class="mb-16">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-mouse-pointer text-primary mr-2"></i>互动演示
+            </h3>
+            <div class="bg-white rounded-xl shadow-depth p-6">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3">
+                        <div class="bg-neutral-light rounded-lg p-4 mb-4" style="height: 400px;">
+                            <div class="flex justify-between items-center mb-4">
+                                <h4 class="font-semibold text-neutral">数据分布</h4>
+                                <button id="sort-btn" class="bg-accent hover:bg-accent/90 text-white py-1 px-4 rounded-lg transition-colors duration-300 text-sm flex items-center">
+                                    <i class="fa fa-sort-amount-asc mr-2"></i>从小到大排序
+                                </button>
+                            </div>
+                            <canvas id="distributionChart" width="400" height="300"></canvas>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="bg-primary/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-primary">平均数</h4>
+                                    <span id="mean-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="mean-bar" class="bg-primary h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-accent/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-accent">中位数</h4>
+                                    <span id="median-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="median-bar" class="bg-accent h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-tertiary/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-tertiary">众数</h4>
+                                    <span id="mode-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="mode-bar" class="bg-tertiary h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-secondary/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-secondary">方差</h4>
+                                    <span id="variance-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="variance-bar" class="bg-secondary h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-neutral-light rounded-lg p-6 h-full">
+                            <h4 class="font-semibold text-neutral mb-4">调整数据点</h4>
+                            <p class="text-sm text-neutral/70 mb-4">拖动滑块改变数值，观察平均数、中位数和众数的变化</p>
+                            <div id="data-points" class="space-y-4">
+                                <!-- 数据点滑块将通过JavaScript动态生成 -->
+                            </div>
+                            <div class="mt-6">
+                                <button id="randomize-btn" class="w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa fa-random mr-2"></i>随机生成数据
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键区别 -->
+        <section id="differences" class="mb-16 bg-white rounded-xl shadow-depth p-8">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-exchange text-primary mr-2"></i>关键区别
+            </h3>
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold text-primary">1</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-neutral mb-2">对极端数据的抵抗力</h4>
+                            <p class="text-neutral/70">平均数容易受极端大或极端小的数据影响，比如一个特别大的数会拉高平均数；而中位数和众数不太受极端数据的影响，更能代表一般水平。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold text-primary">2</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-neutral mb-2">数据类型的适用性</h4>
+                            <p class="text-neutral/70">平均数适用于连续型数值数据；中位数适用于有序数据；众数适用于分类数据，比如统计班级中最常见的鞋码。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold text-primary">3</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-neutral mb-2">计算方法的差异</h4>
+                            <p class="text-neutral/70">平均数需要计算所有数据的总和；中位数只需要将数据排序后找到中间值；众数则是统计每个数值出现的次数。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <span class="font-bold text-primary">4</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-neutral mb-2">唯一性</h4>
+                            <p class="text-neutral/70">一组数据只有一个平均数和一个中位数（当数据个数为偶数时，中位数是中间两个数的平均值）；但可能有多个众数或没有众数。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 练习题 (完整保留8道题) -->
+        <section id="quiz" class="mb-16">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-question-circle text-primary mr-2"></i>练习题
+            </h3>
+            <div class="bg-white rounded-xl shadow-depth p-8">
+                <p class="text-neutral/70 mb-6">通过以下练习题，检验你对平均数、中位数、众数和方差概念的理解。</p>
+                <div class="space-y-6">
+                    <!-- 问题 1 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 1</h4>
+                        <p class="mb-4">一组数据：2, 3, 4, 5, 100。哪个统计量最能代表这组数据的中心趋势？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="mean" class="mr-3">
+                                <span>平均数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="median" class="mr-3">
+                                <span>中位数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="mode" class="mr-3">
+                                <span>众数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q1">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q1-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q1-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 2 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 2</h4>
+                        <p class="mb-4">在一个对称分布的数据集中，平均数、中位数和众数的关系是？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="equal" class="mr-3">
+                                <span>三者相等或接近</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="different" class="mr-3">
+                                <span>三者差异很大</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="no-relation" class="mr-3">
+                                <span>没有固定关系</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q2">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q2-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q2-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 3 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 3</h4>
+                        <p class="mb-4">在描述一个班级学生的鞋码分布时，哪个统计量最有意义？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="mean" class="mr-3">
+                                <span>平均数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="median" class="mr-3">
+                                <span>中位数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q3" value="mode" class="mr-3">
+                                <span>众数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q3">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q3-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q3-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 4 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 4</h4>
+                        <p class="mb-4">一组数据：2, 2, 3, 3, 3, 4, 4, 4, 4。这组数据的众数是？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q4" value="2" class="mr-3">
+                                <span>2</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q4" value="3" class="mr-3">
+                                <span>3</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q4" value="4" class="mr-3">
+                                <span>4</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q4">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q4-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q4-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 5 (已修改为更易懂的题目) -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 5</h4>
+                        <p class="mb-4">一组数据中有一个极端大的数值，最能代表这组数据一般水平的统计量是？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q5" value="mean" class="mr-3">
+                                <span>平均数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q5" value="median" class="mr-3">
+                                <span>中位数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q5" value="mode" class="mr-3">
+                                <span>众数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q5">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q5-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q5-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 6 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 6</h4>
+                        <p class="mb-4">当数据集中存在多个相同频率的最大值时，众数的情况是？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q6" value="one" class="mr-3">
+                                <span>只有一个众数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q6" value="multiple" class="mr-3">
+                                <span>存在多个众数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q6" value="none" class="mr-3">
+                                <span>没有众数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q6">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q6-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q6-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 7 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 7</h4>
+                        <p class="mb-4">一组数据：5, 5, 5, 5, 5。这组数据的方差是多少？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q7" value="0" class="mr-3">
+                                <span>0</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q7" value="5" class="mr-3">
+                                <span>5</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q7" value="25" class="mr-3">
+                                <span>25</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q7">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q7-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q7-message"></p>
+                        </div>
+                    </div>
+
+                    <!-- 问题 8 -->
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 8</h4>
+                        <p class="mb-4">在数据分析中，方差主要用于衡量什么？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q8" value="center" class="mr-3">
+                                <span>数据的集中趋势</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q8" value="spread" class="mr-3">
+                                <span>数据的离散程度</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q8" value="frequency" class="mr-3">
+                                <span>数据的出现频率</span>
+                            </label>
+                        </div>
+                        <div class="mt-4">
+                            <button class="check-answer-btn bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300" data-question="q8">
+                                <i class="fa fa-check-circle mr-2"></i>检查答案
+                            </button>
+                        </div>
+                        <div class="mt-4 hidden" id="q8-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q8-message"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 总结 -->
+        <section id="summary" class="mb-16 bg-white rounded-xl shadow-depth p-8">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-lightbulb-o text-primary mr-2"></i>总结
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="font-semibold text-neutral mb-4">何时使用平均数？</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-neutral/80">
+                        <li>数据分布相对对称</li>
+                        <li>没有极端异常值</li>
+                        <li>需要考虑所有数据点的影响</li>
+                        <li>数据呈正态分布</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-neutral mb-4">何时使用中位数？</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-neutral/80">
+                        <li>数据分布偏态</li>
+                        <li>存在极端异常值</li>
+                        <li>关注中间水平而非平均水平</li>
+                        <li>有序数据的中心趋势</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-neutral mb-4">何时使用众数？</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-neutral/80">
+                        <li>分类数据的集中趋势</li>
+                        <li>需要找出最常见的值</li>
+                        <li>数据分布有明显的峰值</li>
+                        <li>关注大多数情况而非平均水平</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 bg-primary/5 p-6 rounded-lg border-l-4 border-primary">
+                <h4 class="font-semibold text-neutral mb-4">统计思维的重要性</h4>
+                <p class="text-neutral/70">
+                    理解和掌握集中趋势与离散程度的统计指标，有助于我们更准确地理解数据背后的规律，
+                    做出更明智的决策。在实际应用中，应根据数据特点和分析目的，选择合适的统计指标，
+                    并结合多种指标进行综合分析。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-neutral text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">初中数学教学工具</h4>
+                    <p class="text-white/70">一个交互式学习工具，帮助理解基础统计概念</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">相关资源</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-white transition-colors">待补充</a></li>
+                        
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系方式</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <i class="fa fa-qq text-xl"></i>
+                        </a>
+                     <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <i class="fa fa-wechat text-xl"></i>
+                        </a>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-white/20 text-center text-white/50 text-sm">
+                <p>&copy; 孙起孟老师之数学工具 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始数据点
+        let dataPoints = [5, 5, 7, 9, 5, 8, 6];
+        let chart;
+
+        // DOM 加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            createDataPointControls();
+            updateStatistics();
+            setupScrollEffects();
+            setupQuiz();
+            setupSortButton();
+            setupRandomizeButton();
+        });
+
+        // 初始化图表 (修正：使用datalabels插件，标签在条形正上方居中，字号加大)
+        function initChart() {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+            
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js not loaded');
+                return;
+            }
+            
+            // 确保数据标签插件已注册
+            Chart.register(ChartDataLabels);
+            
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dataPoints.map((_, index) => `数据点 ${index + 1}`),
+                    datasets: [{
+                        label: '',
+                        data: dataPoints,
+                        backgroundColor: '#165DFF',
+                        borderColor: '#0F4CD8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: function(context) {
+                                const maxValue = Math.max(...context.chart.data.datasets[0].data);
+                                return Math.ceil(maxValue * 1.2);
+                            },
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: false
+                        },
+                        legend: {
+                            display: false
+                        },
+                        // 配置数据标签：在条形正上方居中，字号加大
+                        datalabels: {
+                            display: true,
+                            color: '#165DFF',
+                            backgroundColor: 'white',
+                            borderRadius: 8,
+                            padding: {
+                                top: 6,
+                                bottom: 6,
+                                left: 10,
+                                right: 10
+                            },
+                            font: {
+                                weight: 'bold',
+                                size: 18  // 原为14，现在加大到18
+                            },
+                            anchor: 'end',      // 锚定在条形顶部
+                            align: 'end',        // 标签与锚点对齐（即顶部居中）
+                            offset: 8,            // 距条形顶部的距离，适当增加
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2,
+                            shadowBlur: 6,
+                            shadowColor: 'rgba(0,0,0,0.1)',
+                            formatter: (value) => value.toString()
+                        }
+                    },
+                    animation: {
+                        duration: 0
+                    }
+                }
+            });
+        }
+
+        // 创建数据点控制滑块
+        function createDataPointControls() {
+            const container = document.getElementById('data-points');
+            container.innerHTML = '';
+            
+            dataPoints.forEach((value, index) => {
+                const controlGroup = document.createElement('div');
+                controlGroup.className = 'data-point-control';
+                controlGroup.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="text-sm font-medium text-neutral">数据点 ${index + 1}</label>
+                        <span class="text-sm font-semibold text-primary value-display">${value}</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button type="button" class="data-btn-minus w-6 h-6 bg-neutral-light rounded-full flex items-center justify-center text-neutral hover:bg-primary hover:text-white transition-colors" data-index="${index}">
+                            <i class="fa fa-minus text-xs"></i>
+                        </button>
+                        <input type="range" min="1" max="50" value="${value}" 
+                               class="flex-1 h-2 bg-neutral-light rounded-lg appearance-none cursor-pointer accent-primary"
+                               data-index="${index}">
+                        <button type="button" class="data-btn-plus w-6 h-6 bg-neutral-light rounded-full flex items-center justify-center text-neutral hover:bg-primary hover:text-white transition-colors" data-index="${index}">
+                            <i class="fa fa-plus text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(controlGroup);
+                
+                const slider = controlGroup.querySelector('input[type="range"]');
+                slider.addEventListener('input', function() {
+                    const dataIndex = parseInt(this.dataset.index);
+                    dataPoints[dataIndex] = parseInt(this.value);
+                    this.closest('.data-point-control').querySelector('.value-display').textContent = this.value;
+                    updateVisualization();
+                });
+                
+                const minusBtn = controlGroup.querySelector('.data-btn-minus');
+                minusBtn.addEventListener('click', function() {
+                    const dataIndex = parseInt(this.dataset.index);
+                    if (dataPoints[dataIndex] > 1) {
+                        dataPoints[dataIndex]--;
+                        const slider = this.closest('.data-point-control').querySelector('input[type="range"]');
+                        slider.value = dataPoints[dataIndex];
+                        this.closest('.data-point-control').querySelector('.value-display').textContent = dataPoints[dataIndex];
+                        updateVisualization();
+                    }
+                });
+                
+                const plusBtn = controlGroup.querySelector('.data-btn-plus');
+                plusBtn.addEventListener('click', function() {
+                    const dataIndex = parseInt(this.dataset.index);
+                    if (dataPoints[dataIndex] < 50) {
+                        dataPoints[dataIndex]++;
+                        const slider = this.closest('.data-point-control').querySelector('input[type="range"]');
+                        slider.value = dataPoints[dataIndex];
+                        this.closest('.data-point-control').querySelector('.value-display').textContent = dataPoints[dataIndex];
+                        updateVisualization();
+                    }
+                });
+            });
+        }
+
+        // 更新可视化
+        function updateVisualization() {
+            chart.data.datasets[0].data = dataPoints;
+            chart.data.labels = dataPoints.map((_, index) => `数据点 ${index + 1}`);
+            
+            updateStatistics();
+            
+            chart.update('none');
+        }
+
+        // 计算并更新统计数据
+        function updateStatistics() {
+            const mean = dataPoints.reduce((sum, value) => sum + value, 0) / dataPoints.length;
+            
+            const sortedData = [...dataPoints].sort((a, b) => a - b);
+            const middle = Math.floor(sortedData.length / 2);
+            const median = sortedData.length % 2 === 0 
+                ? (sortedData[middle - 1] + sortedData[middle]) / 2 
+                : sortedData[middle];
+            
+            const frequency = {};
+            dataPoints.forEach(value => {
+                frequency[value] = (frequency[value] || 0) + 1;
+            });
+            
+            let maxFreq = 0;
+            let mode = [];
+            
+            for (const value in frequency) {
+                if (frequency[value] > maxFreq) {
+                    maxFreq = frequency[value];
+                    mode = [parseInt(value)];
+                } else if (frequency[value] === maxFreq) {
+                    mode.push(parseInt(value));
+                }
+            }
+            
+            const modeValue = mode.length === dataPoints.length ? "无" : mode.join(", ");
+            
+            const variance = dataPoints.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / dataPoints.length;
+            
+            document.getElementById('mean-value').textContent = mean.toFixed(1);
+            document.getElementById('median-value').textContent = median.toFixed(1);
+            document.getElementById('mode-value').textContent = modeValue;
+            document.getElementById('variance-value').textContent = variance.toFixed(1);
+            
+            const maxValue = 50;
+            document.getElementById('mean-bar').style.width = `${(mean / maxValue) * 100}%`;
+            document.getElementById('median-bar').style.width = `${(median / maxValue) * 100}%`;
+            
+            const maxMode = mode.length > 0 ? Math.max(...mode) : 0;
+            document.getElementById('mode-bar').style.width = `${(maxMode / maxValue) * 100}%`;
+            
+            const maxVariance = 2500;
+            document.getElementById('variance-bar').style.width = `${Math.min((variance / maxVariance) * 100, 100)}%`;
+        }
+
+        // 设置滚动效果
+        function setupScrollEffects() {
+            const header = document.querySelector('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md', 'py-2');
+                    header.classList.remove('py-3');
+                } else {
+                    header.classList.remove('shadow-md', 'py-2');
+                    header.classList.add('py-3');
+                }
+            });
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 设置排序按钮
+        function setupSortButton() {
+            const sortBtn = document.getElementById('sort-btn');
+            sortBtn.addEventListener('click', function() {
+                dataPoints.sort((a, b) => a - b);
+                updateVisualization();
+                createDataPointControls();
+            });
+        }
+
+        // 设置随机生成按钮
+        function setupRandomizeButton() {
+            const randomizeBtn = document.getElementById('randomize-btn');
+            randomizeBtn.addEventListener('click', function() {
+                const minDataPoints = 5;
+                const maxDataPoints = 9;
+                const numDataPoints = Math.floor(Math.random() * (maxDataPoints - minDataPoints + 1)) + minDataPoints;
+                dataPoints = Array(numDataPoints).fill(0).map(() => Math.floor(Math.random() * 50) + 1);
+                updateVisualization();
+                createDataPointControls();
+            });
+        }
+
+        // 设置测验功能 (完整保留)
+        function setupQuiz() {
+            document.querySelectorAll('.check-answer-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const questionId = this.dataset.question;
+                    checkSingleQuestion(questionId);
+                });
+            });
+            
+            function checkSingleQuestion(questionId) {
+                const answer = document.querySelector(`input[name="${questionId}"]:checked`);
+                const feedback = document.getElementById(`${questionId}-feedback`);
+                const message = document.getElementById(`${questionId}-message`);
+                
+                if (!answer) {
+                    feedback.classList.remove('hidden');
+                    message.textContent = '请先选择一个答案！';
+                    message.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+                    message.classList.add('bg-yellow-100', 'text-yellow-700');
+                    return;
+                }
+                
+                feedback.classList.remove('hidden');
+                
+                switch(questionId) {
+                    case 'q1':
+                        if (answer.value === 'median') {
+                            message.textContent = '正确！在有极端异常值（如100）的情况下，中位数更能代表数据的中心趋势。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。这组数据包含极端异常值100，平均数会被拉高，而每个值都只出现一次，没有众数。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q2':
+                        if (answer.value === 'equal') {
+                            message.textContent = '正确！在对称分布（如正态分布）中，平均数、中位数和众数通常相等或非常接近。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。在对称分布中，三个集中趋势指标通常相等或非常接近。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q3':
+                        if (answer.value === 'mode') {
+                            message.textContent = '正确！对于鞋码这种离散分类数据，众数（最常见的鞋码）最有实际意义。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。鞋码是离散的分类数据，众数（最常见的鞋码）比平均数或中位数更有实际意义。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q4':
+                        if (answer.value === '4') {
+                            message.textContent = '正确！在这组数据中，4出现了4次，是出现次数最多的数值。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。请数一下每个数值出现的次数：2出现2次，3出现3次，4出现4次。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q5':
+                        if (answer.value === 'median') {
+                            message.textContent = '正确！当存在极端大的数值时，中位数不受极端值影响，更能代表这组数据的一般水平。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。极端值会拉高平均数，而众数可能不存在或不唯一，中位数是更好的选择。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q6':
+                        if (answer.value === 'multiple') {
+                            message.textContent = '正确！当多个数值出现次数相同时，数据集可以有多个众数。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。当多个数值出现次数相同时，数据集可以有多个众数。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q7':
+                        if (answer.value === '0') {
+                            message.textContent = '正确！当所有数据都相同时，方差为0，表示没有离散。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。当所有数据都相同时，每个数据点与平均数的差都是0，方差为0。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                    case 'q8':
+                        if (answer.value === 'spread') {
+                            message.textContent = '正确！方差主要用于衡量数据的离散程度或分布范围。';
+                            message.classList.remove('bg-red-100', 'text-red-700');
+                            message.classList.add('bg-green-100', 'text-green-700');
+                        } else {
+                            message.textContent = '不正确。方差主要用于衡量数据的离散程度，而不是集中趋势或频率。';
+                            message.classList.remove('bg-green-100', 'text-green-700');
+                            message.classList.add('bg-red-100', 'text-red-700');
+                        }
+                        break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.3.1 一次函数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+            svg: { fontCache: 'global' },
+            chtml: { scale: 1.3 }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        .mjx-chtml { font-size: 1.35em !important; }
+        .mjx-chtml .mjx-math { font-size: 1.15em !important; }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1.5rem auto;font-size:1.3rem;border:2px solid #1e293b;}
+        th{background:#0f766e;color:white;padding:1rem;font-size:1.3rem;font-weight:700;border:2px solid #1e293b;}
+        td{padding:1rem;text-align:center;border:2px solid #cbd5e1;background:white;font-weight:600;}tr:nth-child(even) td{background:#f1f5f9;}tr:hover td{background:#e2e8f0;}
+        .mjx-chtml{font-size:1.35em !important;}
+        .mjx-chtml .mjx-math { font-size: 1.15em !important; }
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .sub-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:1.1rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-right:10px;}
+        .sub-problem{margin:1.2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,0.6);border-radius:12px;border-left:4px solid #10b981;display:flex;align-items:flex-start;}
+        .sub-content{flex:1;}
+        .literacy-container{display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;}
+        .literacy-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #f59e0b;}
+        .literacy-card:nth-child(2){background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-left-color:#3b82f6;}
+        .literacy-card:nth-child(3){background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-left-color:#10b981;}
+        .literacy-card:nth-child(4){background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-left-color:#8b5cf6;}
+        .formula-display{font-size:1.4rem;font-weight:700;color:#0f766e;padding:.5rem 1.5rem;background:white;border-radius:12px;display:inline-block;margin:.5rem 0;border:2px solid #80deea;}
+        .func-demo{background:#f0fdff;border-radius:1.5rem;padding:1.5rem;margin:1.2rem 0;border:2px solid #a7d8e0;text-align:center;}
+        #linearCanvas{width:100%;max-width:500px;height:380px;border-radius:12px;background:white;border:2px solid #a7d8e0;}
+        .slider-row{display:flex;align-items:center;justify-content:center;gap:1rem;margin:.8rem 0;flex-wrap:wrap;}
+        .slider-label{font-weight:700;font-size:1rem;color:#0e7490;min-width:80px;text-align:right;}
+        input[type=range]{width:200px;height:8px;-webkit-appearance:none;background:#b2ebf2;border-radius:4px;outline:none;}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#14b8a6);cursor:pointer;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+        .message-box{background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;}
+        .message-box h4{color:#f0fdfa;font-size:1.5rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+        .message-box p{color:#ccfbf1;font-size:1.15rem;line-height:2.2;text-indent:2em;}
+        .read-card{background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border-left:8px solid #f59e0b;}
+        .read-card h4{color:#92400e;font-size:1.4rem;margin-bottom:1rem;}
+        .think-card{background:#f3e8ff;border-left:10px solid #a855f7;border-radius:1.5rem;padding:1.8rem 2rem;margin:1.8rem 0;font-weight:600;}
+        .think-card h3{font-size:1.5rem;color:#7c3aed;margin-bottom:1rem;}
+        .try-table th:first-child{width:30%;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.3.1 一次函数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解一次函数和正比例函数的概念</div>
+            <div class="target-item"><span>2</span>能正确判断一个函数是否为一次函数或正比例函数</div>
+            <div class="target-item"><span>3</span>理解正比例函数与一次函数的关系</div>
+            <div class="target-item"><span>4</span>能根据实际问题建立一次函数关系式</div>
+        </div>
+    </div>
+
+    <!-- 引入/导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🚗 <strong>暑假出行计划</strong></p>
+        <p>前面我们学习了函数的概念，知道函数是描述变量之间对应关系的数学工具。在生活中，很多问题的两个变量之间存在着<strong>线性关系</strong>：</p>
+        <ul style="padding-left:1.5rem;line-height:2;margin-top:0.5rem;">
+            <li>汽车匀速行驶时，行驶路程与时间的关系</li>
+            <li>弹簧挂上重物后，伸长量与重物质量的关系</li>
+            <li>每月固定存钱，存款总额与月份的关系</li>
+        </ul>
+        <p style="margin-top:0.5rem;">这些都可以用我们今天要学习的<strong>一次函数</strong>来刻画！</p>
+    </div>
+
+    <!-- 问题1 -->
+    <div class="section-title">📐 实际问题探究</div>
+
+    <div class="fact-card">
+        <h4>📌 问题1 —— 汽车行驶问题</h4>
+        <p>暑假里小明的爸爸带领全家去北京自驾游。汽车驶上A地的高速公路后，小明发现汽车匀速行驶的速度是95 km/h。已知A地直达北京的高速公路全程为285 km，小明想知道汽车从A地驶出后，距北京的路程和汽车在高速公路上行驶的时间有什么关系，以便根据时间估计自己距北京的路程。</p>
+        <button class="interact-btn" onclick="toggleAnswer('analyze1')">🔍 查看分析</button>
+        <div id="analyze1" class="answer-box">
+            <p><strong>分析：</strong>汽车距北京的路程随着行车时间的变化而变化。要想找出这两个变化着的量之间的关系，并据此得出相应的值，显然，应该探究这两个变量之间的函数关系式。为此，我们设汽车在高速公路上匀速行驶的时间为 $t$ h，汽车距北京的路程为 $s$ km，则不难得到 $s$ 与 $t$ 之间的函数关系式：</p>
+            <div style="text-align:center;margin:1rem 0;">
+                <div class="formula-display" style="font-size:1.8rem;display:inline-block;">
+                    $$s = 285 - 95t \quad \text{①}$$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题2 -->
+    <div class="fact-card">
+        <h4>📌 问题2 —— 弹簧伸长问题</h4>
+        <p>弹簧下端悬挂重物，弹簧会伸长。弹簧的长度 $y$ (cm) 是所挂重物质量 $x$ (kg) 的函数。已知一根弹簧在不挂重物时长6 cm。在一定的弹性限度内，每挂1 kg重物弹簧伸长0.3 cm。求这个函数关系式。</p>
+        <button class="interact-btn" onclick="toggleAnswer('solve2')">✍️ 查看解答</button>
+        <div id="solve2" class="answer-box">
+            <p><strong>解：</strong>因为每挂1 kg重物弹簧伸长0.3 cm，所以挂 $x$ kg重物时弹簧伸长 $0.3x$ cm。又因为不挂重物时弹簧的长度为6 cm，所以挂 $x$ kg重物时弹簧的长度为 $(0.3x + 6)$ cm，即有</p>
+            <div style="text-align:center;margin:1rem 0;">
+                <div class="formula-display" style="font-size:1.8rem;display:inline-block;">
+                    $$y = 0.3x + 6 \quad \text{②}$$
+                </div>
+            </div>
+            <p>这就是所求的函数关系式。（其中自变量 $x$ 的取值范围由问题的"弹性限度"确定）</p>
+        </div>
+    </div>
+
+    <!-- 想一想 -->
+    <div class="think-card">
+        <h3>💭 想一想</h3>
+        <p style="font-size:1.3rem;">问题1、问题2中得到的两个函数关系式①和②有什么共同点？</p>
+        <button class="interact-btn" onclick="toggleAnswer('thinkAns')">💡 点击查看</button>
+                <div id="thinkAns" class="answer-box" style="font-size:1.25rem;">
+            <p style="font-size:1.3rem;"><strong>共同点：</strong></p>
+            <div style="background:#f0fdff;border-radius:12px;padding:1.2rem;margin:1rem 0;">
+                <p style="margin:0.8rem 0;font-size:1.25rem;">① 函数关系式都是用<strong>自变量的一次整式</strong>表示的</p>
+                <p style="margin:0.8rem 0;font-size:1.25rem;">② 都可以表示为 $y = kx + b$ 的形式（①式可化为 $s = -95t + 285$）</p>
+                <p style="margin:0.8rem 0;font-size:1.25rem;">③ 自变量的次数都是<strong>1</strong></p>
+                <p style="margin:0.8rem 0;font-size:1.25rem;">④ 表达式都是关于自变量的<strong>整式</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 概括 -->
+    <div class="section-title">📚 概念形成</div>
+
+    <div class="explore-card" style="background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-left-color:#0891b2;">
+        <h4 style="color:#0e7490;">📖 概括 —— 一次函数的定义</h4>
+        <p>上述函数关系式都是用自变量的一次整式表示的，我们称它们为<strong style="color:#dc2626;">一次函数</strong>(linear function)。</p>
+        <div class="theorem-box" style="margin:1.5rem 0;text-align:center;">
+            <p style="font-size:1.3rem;">一次函数通常可以表示为 <strong style="color:#dc2626;font-size:1.8rem;">$y = kx + b$</strong> 的形式</p>
+            <p style="margin-top:1rem;">其中 $k$、$b$ 是常数，<strong style="color:#dc2626;">$k \neq 0$</strong></p>
+        </div>
+        <p style="margin-top:1.5rem;">特别地，当 <strong style="color:#dc2626;">$b = 0$</strong> 时，一次函数 $y = kx$（常数 $k \neq 0$）也叫做<strong style="color:#dc2626;">正比例函数</strong>(direct proportional function)。</p>
+        <div class="highlight-box" style="margin-top:1.5rem;background:rgba(255,255,255,0.7);">
+            <p><strong>⚡ 重要关系：</strong>正比例函数是一次函数当 $b=0$ 时的特殊情况</p>
+        </div>
+        <p style="margin-top:1.5rem;padding-top:1.5rem;border-top:2px dashed #80deea;">问题1、问题2中得到的函数，都是一次函数。</p>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="section-title">🔍 试一试</div>
+
+    <div class="example-card">
+        <h4>判断下列函数是否为一次函数或正比例函数</h4>
+        <div style="background:white;border-radius:16px;padding:1.5rem;margin:1.5rem 0;border:3px solid #14b8a6;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;">
+                <div style="background:#e0f7fa;border-radius:12px;padding:1rem;text-align:center;font-size:1.4rem;font-weight:700;">$y = -3x$</div>
+                <div style="background:#e0f7fa;border-radius:12px;padding:1rem;text-align:center;font-size:1.4rem;font-weight:700;">$y = 2x + 1$</div>
+                <div style="background:#e0f7fa;border-radius:12px;padding:1rem;text-align:center;font-size:1.4rem;font-weight:700;">$y = x^2 + 1$</div>
+                <div style="background:#e0f7fa;border-radius:12px;padding:1rem;text-align:center;font-size:1.4rem;font-weight:700;">$y = \dfrac{1}{x}$</div>
+                <div style="background:#e0f7fa;border-radius:12px;padding:1rem;text-align:center;font-size:1.4rem;font-weight:700;">$y = \dfrac{x}{2}$</div>
+            </div>
+            <p style="text-align:center;color:#0e7490;font-size:1.2rem;font-weight:600;">思考：哪些是一次函数？哪些是正比例函数？</p>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('try1')">💡 查看答案</button>
+        <div id="try1" class="answer-box">
+            <table class="try-table">
+                <tr>
+                    <th style="width:25%;">函数</th>
+                    <td>$y = -3x$</td>
+                    <td>$y = 2x + 1$</td>
+                    <td>$y = x^2 + 1$</td>
+                    <td>$y = \dfrac{1}{x}$</td>
+                    <td>$y = \dfrac{x}{2}$</td>
+                </tr>
+                <tr>
+                    <th>是否一次函数</th>
+                    <td style="color:#16a34a;font-weight:bold;font-size:1.3rem;">✓ 是</td>
+                    <td style="color:#16a34a;font-weight:bold;font-size:1.3rem;">✓ 是</td>
+                    <td style="color:#dc2626;font-weight:bold;font-size:1.3rem;">✗ 否</td>
+                    <td style="color:#dc2626;font-weight:bold;font-size:1.3rem;">✗ 否</td>
+                    <td style="color:#16a34a;font-weight:bold;font-size:1.3rem;">✓ 是</td>
+                </tr>
+                <tr>
+                    <th>是否正比例函数</th>
+                    <td style="color:#16a34a;font-weight:bold;font-size:1.3rem;">✓ 是</td>
+                    <td style="color:#dc2626;font-weight:bold;font-size:1.3rem;">✗ 否</td>
+                    <td style="color:#dc2626;font-weight:bold;font-size:1.3rem;">—</td>
+                    <td style="color:#dc2626;font-weight:bold;font-size:1.3rem;">—</td>
+                    <td style="color:#16a34a;font-weight:bold;font-size:1.3rem;">✓ 是</td>
+                </tr>
+            </table>
+            <div class="warn-box" style="margin-top:1.5rem;font-size:1.2rem;">
+                <strong>判断要点：</strong><br>
+                ① 一次函数：$y = kx + b$ 形式，$k \neq 0$，$x$ 的次数为1，表达式是整式<br>
+                ② 正比例函数：必须满足一次函数条件，且 $b = 0$
+            </div>
+        </div>
+    </div>
+
+    <!-- 思考 -->
+    <div class="think-card">
+        <h3>🤔 思考</h3>
+        <p style="font-size:1.3rem;">前两节（16.1节和16.2节）所出现的函数中，哪些是一次函数？</p>
+        <button class="interact-btn" onclick="toggleAnswer('think2Ans')">💡 点击查看</button>
+        <div id="think2Ans" class="answer-box">
+            <p><strong>回顾16.1节和16.2节的内容：</strong></p>
+            <p>在16.1节中，我们学习了函数的概念，举的例子如：</p>
+            <ul style="margin:1rem 0;padding-left:2rem;">
+                <li>$y = 2x$ —— <strong>是一次函数（也是正比例函数）</strong></li>
+                <li>$s = 60t$ —— <strong>是一次函数（也是正比例函数）</strong></li>
+            </ul>
+            <p>在16.2节中，我们学习了函数的图象，画过的函数如：</p>
+            <ul style="margin:1rem 0;padding-left:2rem;">
+                <li>$y = x$ —— <strong>是一次函数（也是正比例函数）</strong></li>
+                <li>$y = 2x + 1$ —— <strong>是一次函数</strong></li>
+                <li>$y = -x + 2$ —— <strong>是一次函数</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">📝 练习</div>
+
+    <div class="example-card">
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>仓库内原有粉笔400盒。如果每个星期领出36盒，求仓库内余下的粉笔盒数 $Q$ 与星期数 $t$ 之间的函数关系式。</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr1')">✍️ 答案</button>
+                <div id="pr1" class="answer-box">
+                    <p><strong>解：</strong>原有粉笔400盒，每星期领出36盒，$t$ 星期领出 $36t$ 盒。</p>
+                    <p>余下粉笔盒数：$Q = 400 - 36t$</p>
+                    <p>即函数关系式为：<strong style="color:#dc2626;font-size:1.4rem;">$Q = -36t + 400$</strong></p>
+                    <p>（其中 $t \geq 0$ 且 $400 - 36t \geq 0$，即 $0 \leq t \leq \frac{100}{9}$）</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>今年植树节，同学们种的树苗高约1.80 m。据介绍，这种树苗在10年内每年长高约0.35 m。求树高(m)与年数之间的函数关系式，并算一算4年后这些树约有多高。</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr2')">✍️ 答案</button>
+                <div id="pr2" class="answer-box">
+                    <p><strong>解：</strong>设树高为 $h$ m，年数为 $x$ 年。</p>
+                    <p>树苗原高1.80 m，每年长高0.35 m，$x$ 年长高 $0.35x$ m。</p>
+                    <p>函数关系式：<strong style="color:#dc2626;font-size:1.4rem;">$h = 0.35x + 1.80$</strong>（$0 \leq x \leq 10$）</p>
+                    <p>当 $x = 4$ 时：$h = 0.35 \times 4 + 1.80 = 1.40 + 1.80 = 3.20$ (m)</p>
+                    <p>答：4年后这些树约有 <strong>3.20 m</strong> 高。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">3</span>
+            <div class="sub-content">
+                <p>小敏的爸爸为小敏存了一份教育储蓄。首次存入1万元，以后每个月存入500元，存满3万元为止。试用函数关系式刻画存款增长的规律，并求经过多少个月可存满全额。</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr3')">✍️ 答案</button>
+                <div id="pr3" class="answer-box">
+                    <p><strong>解：</strong>设存款总额为 $y$ 元，存入月数为 $x$ 个月。</p>
+                    <p>首次存入10000元，每月存入500元，$x$ 个月存入 $500x$ 元。</p>
+                    <p>函数关系式：<strong style="color:#dc2626;font-size:1.4rem;">$y = 500x + 10000$</strong></p>
+                    <p>存满3万元时：$500x + 10000 = 30000$</p>
+                    <p>$500x = 20000$</p>
+                    <p>$x = 40$</p>
+                    <p>答：经过 <strong>40个月</strong> 可存满全额。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">4</span>
+            <div class="sub-content">
+                <p>以上3道题中的函数都是一次函数吗？为什么？</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr4')">✍️ 答案</button>
+                <div id="pr4" class="answer-box" style="font-size:1.25rem;">
+                    <p style="font-size:1.3rem;"><strong>答：</strong>都是一次函数。</p>
+                    <p style="font-size:1.3rem;margin-top:1rem;"><strong>理由：</strong></p>
+                    <div style="background:#f0fdff;border-radius:12px;padding:1.2rem;margin:1rem 0;">
+                        <p style="margin:0.8rem 0;"><strong>第1题：</strong>$Q = -36t + 400$，符合 $y = kx + b$ 形式，$k = -36 \neq 0$，是一次函数</p>
+                        <p style="margin:0.8rem 0;"><strong>第2题：</strong>$h = 0.35x + 1.80$，符合 $y = kx + b$ 形式，$k = 0.35 \neq 0$，是一次函数</p>
+                        <p style="margin:0.8rem 0;"><strong>第3题：</strong>$y = 500x + 10000$，符合 $y = kx + b$ 形式，$k = 500 \neq 0$，是一次函数</p>
+                    </div>
+                    <p style="margin-top:1rem;">这三个函数表达式都是用自变量的一次整式表示的，且自变量的系数都不为0，所以都是一次函数。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="section-title">📖 读一读</div>
+
+    <div class="read-card">
+        <h4>📜 一次函数的发展简史</h4>
+        <p style="line-height:2;">一次函数的概念源于人类对<strong>线性关系</strong>的认识。早在古埃及时期，人们就用比例关系来计算土地面积和粮食分配。17世纪，法国数学家<strong>笛卡尔</strong>创立了解析几何，将代数与几何联系起来，一次函数的图象——<strong>直线</strong>，成为研究变量关系的基本工具。</p>
+        <p style="line-height:2;margin-top:1rem;">一次函数是最简单的函数类型，但它却是理解更复杂函数（如二次函数、指数函数）的基础。在物理学中，<strong>匀速直线运动</strong>的路程-时间关系就是一次函数；在经济学中，<strong>成本-产量</strong>的线性关系也常用一次函数描述。</p>
+    </div>
+
+    <div class="read-card" style="background:linear-gradient(145deg,#e0e7ff,#c7d2fe);border-left-color:#6366f1;">
+        <h4 style="color:#4338ca;">🌍 生活中的一次函数</h4>
+        <p style="line-height:2;">一次函数无处不在，看看这些例子：</p>
+        <div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem;">
+            <div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.6rem;">📱</span>
+                <div><strong>手机话费：</strong>月租费 + 通话费 × 通话时长（$y = kx + b$）</div>
+            </div>
+            <div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.6rem;">🚕</span>
+                <div><strong>出租车费：</strong>起步价 + 单价 × 里程（$y = kx + b$）</div>
+            </div>
+            <div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.6rem;">💧</span>
+                <div><strong>水费电费：</strong>基本费 + 单价 × 用量（$y = kx + b$）</div>
+            </div>
+            <div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.6rem;">🌡️</span>
+                <div><strong>温度换算：</strong>$F = 1.8C + 32$</div>
+            </div>
+            <div style="background:white;border-radius:12px;padding:1rem;display:flex;align-items:center;gap:1rem;">
+                <span style="font-size:1.6rem;">🏷️</span>
+                <div><strong>折扣计算：</strong>实付金额 = 原价 × 折扣率（正比例函数，$b = 0$）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>一次函数</strong>：形如 $y = kx + b$（$k$、$b$为常数，$k \neq 0$），自变量次数为1</li>
+            <li><strong>正比例函数</strong>：形如 $y = kx$（$k \neq 0$），是一次函数当 $b = 0$ 时的特殊情况</li>
+            <li><strong>判断方法</strong>：① 是否为整式；② 自变量次数是否为1；③ 自变量系数是否为0</li>
+            <li><strong>实际应用</strong>：很多生活中的线性关系都可用一次函数表示</li>
+        </ul>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎯 数学核心素养</div>
+    <div class="literacy-container">
+        <div class="literacy-card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🔗</span>
+                <h4 style="color:#92400e;font-size:1.25rem;font-weight:700;">数学抽象素养</h4>
+            </div>
+            <p style="color:#78350f;line-height:1.8;font-size:1rem;">从汽车行驶、弹簧伸长等实际问题中抽象出<strong>一次函数模型</strong>，用数学语言表达现实世界中的线性关系。</p>
+        </div>
+        <div class="literacy-card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📊</span>
+                <h4 style="color:#1e40af;font-size:1.25rem;font-weight:700;">数学建模素养</h4>
+            </div>
+            <p style="color:#1e3a8a;line-height:1.8;font-size:1rem;">将生活问题转化为数学问题，建立<strong>$y = kx + b$</strong>的函数模型，并通过模型解决实际问题。</p>
+        </div>
+        <div class="literacy-card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🧩</span>
+                <h4 style="color:#065f46;font-size:1.25rem;font-weight:700;">逻辑推理素养</h4>
+            </div>
+            <p style="color:#064e3b;line-height:1.8;font-size:1rem;">通过分析一次函数与正比例函数的关系，理解<strong>特殊与一般</strong>的辩证关系，培养分类讨论的思维。</p>
+        </div>
+        <div class="literacy-card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🔢</span>
+                <h4 style="color:#5b21b6;font-size:1.25rem;font-weight:700;">数学运算素养</h4>
+            </div>
+            <p style="color:#4c1d95;line-height:1.8;font-size:1rem;">准确识别函数类型，正确确定常数 $k$ 和 $b$ 的值，培养<strong>准确、灵活</strong>的数学运算能力。</p>
+        </div>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-box">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:8rem;opacity:0.1;">💭</div>
+        <h4><span style="font-size:1.8rem;">💌</span> 教师寄语</h4>
+        <p>一次函数 $y = kx + b$ 看似简单，却是通向更复杂数学世界的<strong>基石</strong>。</p>
+        <p style="margin-top:0.8rem;">常数 $k$ 和 $b$ 决定着函数的不同特征。这就像人生——<strong>选择</strong>和<strong>起点</strong>同样重要。</p>
+        <p style="margin-top:0.8rem;">愿你像一次函数的图象一样，确定正确的方向，从合适的起点出发，走出一条<strong>笔直向上</strong>的人生轨迹！</p>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(el.style.display==='block'||el.style.display===''){
+        var c=window.getComputedStyle(el).display;
+        if(c==='block'||el.dataset.shown==='yes'){
+            el.style.display='none';
+            return;
+        }
+    }
+    el.style.display='block';
+    el.dataset.shown='yes';
+    if(window.MathJax&&MathJax.typesetPromise){
+        MathJax.typesetPromise([el]).catch(function(){});
+    }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.4 数学活动：寻找能铺满平面的任意多边形 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box { margin: 2rem 0; text-align: center; }
+        .figcaption { font-size: 1rem; color: #144a6f; margin-top: 0.3rem; text-align: center; }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+            word-break: break-word;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .image-row .img-container {
+            flex: 1 1 250px;
+            min-width: 200px;
+        }
+        /* 模拟器样式 */
+        .simulator-container {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+            background: #f5fafe;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 2px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .sim-left {
+            flex: 2;
+            background: white;
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .sim-left canvas {
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .sim-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .preview-canvas {
+            background: #eaf2fa;
+            border-radius: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+        .preview-canvas canvas {
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sim-btn {
+            background: white;
+            border: 2px solid #2b7a9c;
+            border-radius: 40px;
+            padding: 8px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1b5370;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9bb7d4;
+            text-align: center;
+            transition: 0.1s;
+        }
+        .sim-btn:hover {
+            background: #e3f0fd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #9bb7d4;
+        }
+        .sim-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #9bb7d4;
+        }
+        .sim-btn.active {
+            background: #ffd966;
+            border-color: #b37b2e;
+            color: #5d3f1a;
+            box-shadow: 0 4px 0 #b37b2e;
+        }
+        .sim-info {
+            background: #e2eaf3;
+            border-radius: 18px;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #113750;
+        }
+        .color-demo {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 4px;
+        }
+        .activity-title {
+            font-size: 1.3rem;
+            color: #0b4b78;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            border-left: 6px solid #3f8ab3;
+            padding-left: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第8章 三角形 · 8.4</span>
+    </div>
+    <h1>第8章 三角形</h1>
+    <h2>数学活动</h2>
+    <div class="chapter-intro">★ 寻找能铺满平面的任意多边形。</div>
+    <div class="lesson-title">寻找能铺满平面的任意多边形</div>
+
+    <!-- 问题导入 -->
+    <div class="intro-block">
+        <p>我们已经知道，用一种正多边形铺地面，可以铺满平面的只有正三角形、正方形和正六边形三种。那么，用一种任意的多边形铺地面，能铺满平面的有哪些多边形呢？</p>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 活动目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>通过操作发现三角形、四边形可以铺满平面</div>
+            <div class="target-item"><span>✔</span>了解六边形铺满平面的特殊条件</div>
+            <div class="target-item"><span>✔</span>认识两种特殊六边形并尝试铺砌</div>
+        </div>
+    </div>
+
+    <!-- 活动1：三角形模拟器 -->
+    <div class="activity-title">🔺 活动1：三角形</div>
+    <div class="simulator-container" id="simTriangle">
+        <div class="sim-left">
+            <canvas id="triMainCanvas" width="500" height="300"></canvas>
+        </div>
+        <div class="sim-right">
+            <div class="preview-canvas">
+                <div style="font-weight:600; margin-bottom:5px;">编辑当前三角形</div>
+                <canvas id="triEditCanvas" width="120" height="120"></canvas>
+            </div>
+            <div class="btn-group">
+                <button class="sim-btn" id="triRegular">🔺 正三角形</button>
+                <button class="sim-btn" id="triIrregular">🔻 一般三角形</button>
+                <button class="sim-btn" id="triClear">🗑️ 清空画布</button>
+                <button class="sim-btn" id="triUndo">↩️ 撤销</button>
+            </div>
+            <div class="sim-info" id="triInfo">
+                <p>当前形状: 正三角形</p>
+                <p>点击画布放置（自动旋转贴合）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 活动2：四边形模拟器 -->
+    <div class="activity-title">⬛ 活动2：四边形</div>
+    <div class="simulator-container" id="simQuad">
+        <div class="sim-left">
+            <canvas id="quadMainCanvas" width="500" height="300"></canvas>
+        </div>
+        <div class="sim-right">
+            <div class="preview-canvas">
+                <div style="font-weight:600; margin-bottom:5px;">编辑当前四边形</div>
+                <canvas id="quadEditCanvas" width="120" height="120"></canvas>
+            </div>
+            <div class="btn-group">
+                <button class="sim-btn" id="quadRegular">⬛ 正方形</button>
+                <button class="sim-btn" id="quadIrregular">🔲 一般四边形</button>
+                <button class="sim-btn" id="quadClear">🗑️ 清空画布</button>
+                <button class="sim-btn" id="quadUndo">↩️ 撤销</button>
+            </div>
+            <div class="sim-info" id="quadInfo">
+                <p>当前形状: 正方形</p>
+                <p>点击画布放置（自动旋转贴合）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 活动3：六边形模拟器 -->
+    <div class="activity-title">⬢ 活动3：六边形</div>
+    <div class="simulator-container" id="simHex">
+        <div class="sim-left">
+            <canvas id="hexMainCanvas" width="500" height="300"></canvas>
+        </div>
+        <div class="sim-right">
+            <div class="preview-canvas">
+                <div style="font-weight:600; margin-bottom:5px;">编辑当前六边形</div>
+                <canvas id="hexEditCanvas" width="120" height="120"></canvas>
+            </div>
+            <div class="btn-group">
+                <button class="sim-btn" id="hexRegular">⬢ 正六边形</button>
+                <button class="sim-btn" id="hexIrregular">🔶 一般六边形</button>
+                <button class="sim-btn" id="hexClear">🗑️ 清空画布</button>
+                <button class="sim-btn" id="hexUndo">↩️ 撤销</button>
+            </div>
+            <div class="sim-info" id="hexInfo">
+                <p>当前形状: 正六边形</p>
+                <p>点击画布放置（自动旋转贴合）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 活动4：说明（保持不变） -->
+    <div class="think-box">
+        <h4>活动4：说明</h4>
+        <p>请说明：用一种任意的多边形铺地面，能铺满平面的只可能是三角形、四边形或六边形。</p>
+        <button class="interact-btn" onclick="toggleAnswer('act4')">💡 提示</button>
+        <div id="act4" class="answer-box">
+            <p>因为多边形内角和为 $(n-2)\times180°$，围绕一点拼成周角 $360°$，则各内角平均值为 $360°/k$（$k$为围绕一点的多边形个数）。通过分析内角与边数的关系，可以推出满足条件的 $n$ 只能是3、4或6。例如，当 $n=3$ 时三角形内角和180°，可两个拼成360°；当 $n=4$ 时四边形内角和360°，可直接四个角拼成周角；当 $n=6$ 时正六边形内角120°，三个拼成360°，但一般六边形需要特殊形状才能连续铺满。</p>
+        </div>
+    </div>
+
+    <!-- 活动5：特殊六边形A和B（保持不变） -->
+    <div class="activity-title">🔷 活动5：特殊六边形</div>
+    <div class="simulator-container">
+        <div class="sim-left">
+            <canvas id="mainSpecialCanvas" width="500" height="300"></canvas>
+        </div>
+        <div class="sim-right">
+            <div class="preview-canvas">
+                <div style="font-weight:600; margin-bottom:5px;">预览当前形状</div>
+                <canvas id="previewCanvas" width="120" height="120"></canvas>
+            </div>
+            <div class="btn-group">
+                <button class="sim-btn" id="genSpecialA">🔷 生成特殊六边形A</button>
+                <button class="sim-btn" id="genSpecialB">🔶 生成特殊六边形B</button>
+                <div class="rotate-group" id="rotateGroup" style="display: none; display: flex; gap:5px;">
+                    <div class="sim-btn" id="rot0" style="flex:1;">0°</div>
+                    <div class="sim-btn" id="rot120" style="flex:1;">120°</div>
+                    <div class="sim-btn" id="rot240" style="flex:1;">240°</div>
+                </div>
+                <button class="sim-btn" id="clearSpecial">🗑️ 清空画布</button>
+                <button class="sim-btn" id="undoSpecial">↩️ 撤销</button>
+            </div>
+            <div class="sim-info" id="specialInfo">
+                <p>当前形状: 无</p>
+                <p>点击画布放置当前形状<br>特殊A自动旋转贴合<br>特殊B按选定角度放置</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>归纳推理：</strong> 从特殊多边形中发现一般规律。<br>
+        <strong>转化思想：</strong> 将多边形铺满转化为内角和问题。<br>
+        <strong>动手实践：</strong> 通过操作验证猜想。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 活动小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">任意三角形、四边形都能铺满平面</div>
+            <div class="summary-item">只有特殊的六边形（如对边平行且相等）能铺满平面</div>
+            <div class="summary-item">其他多边形（五边形、七边形等）一般不能单独铺满平面</div>
+        </div>
+    </div>
+
+    <!-- 建议 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>建议：</strong> 尝试用更多形状进行拼图，并记录你的发现。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 动手拼一拼，发现密铺的奥秘 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第8章 数学活动</div>
+</div>
+
+<script>
+// 通用折叠函数
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.toggle('show-answer');
+}
+function toggleSummary() {
+    var c = document.getElementById('summaryContent');
+    var t = document.getElementById('summaryToggle');
+    c.classList.toggle('collapsed');
+    t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+}
+
+// ---------- 模拟器基类 ----------
+function createSimulator(sides, mainCanvasId, editCanvasId, infoId, regularBtnId, irregularBtnId, clearBtnId, undoBtnId, defaultRegular = true) {
+    const mainCanvas = document.getElementById(mainCanvasId);
+    const editCanvas = document.getElementById(editCanvasId);
+    if (!mainCanvas || !editCanvas) return;
+    const ctx = mainCanvas.getContext('2d');
+    const ectx = editCanvas.getContext('2d');
+    const BASE_SCALE = 40; // 缩放因子
+    let placedPolygons = []; // 已放置的多边形 { worldVerts }
+    let currentVertices = []; // 当前形状的相对坐标
+    let dragging = false;
+    let dragIndex = -1;
+    let isRegular = defaultRegular; // 当前是否为正多边形
+
+    const info = document.getElementById(infoId);
+
+    // 生成正多边形
+    function generateRegular() {
+        const r = 0.7;
+        const verts = [];
+        for (let i = 0; i < sides; i++) {
+            const angle = -Math.PI/2 + i * 2*Math.PI/sides;
+            verts.push({ x: r * Math.cos(angle), y: r * Math.sin(angle) });
+        }
+        return verts;
+    }
+
+    // 生成一般多边形（随机凸多边形）
+    function generateIrregular() {
+        if (sides === 3) {
+            // 随机三角形
+            const a = 0.5 + Math.random() * 0.5;
+            const b = 0.5 + Math.random() * 0.5;
+            const angle = (30 + Math.random() * 120) * Math.PI / 180;
+            const cx = a + b * Math.cos(angle);
+            const cy = b * Math.sin(angle);
+            // 三个顶点：原点、a沿0°，b沿角度，然后闭合
+            let verts = [
+                { x: 0, y: 0 },
+                { x: a, y: 0 },
+                { x: a + b * Math.cos(angle), y: b * Math.sin(angle) }
+            ];
+            // 平移到中心
+            const center = getCenter(verts);
+            verts = verts.map(v => ({ x: v.x - center.cx, y: v.y - center.cy }));
+            return verts;
+        } else if (sides === 4) {
+            // 生成平行四边形（对边平行）
+            const u = { x: 0.5 + Math.random() * 0.5, y: (Math.random() - 0.5) * 0.8 };
+            const v = { x: (Math.random() - 0.5) * 0.8, y: 0.5 + Math.random() * 0.5 };
+            if (Math.random() > 0.5) u.x *= -1;
+            if (Math.random() > 0.5) u.y *= -1;
+            if (Math.random() > 0.5) v.x *= -1;
+            if (Math.random() > 0.5) v.y *= -1;
+            let verts = [
+                { x: 0, y: 0 },
+                { x: u.x, y: u.y },
+                { x: u.x + v.x, y: u.y + v.y },
+                { x: v.x, y: v.y }
+            ];
+            const center = getCenter(verts);
+            verts = verts.map(v => ({ x: v.x - center.cx, y: v.y - center.cy }));
+            return verts;
+        } else if (sides === 6) {
+            // 生成一个随机六边形（基于正六边形随机偏移顶点）
+            const baseAngle = -Math.PI/2;
+            const verts = [];
+            for (let i = 0; i < 6; i++) {
+                const angle = baseAngle + i * 2*Math.PI/6;
+                // 随机长度在0.5~0.9之间
+                const length = 0.5 + Math.random() * 0.4;
+                verts.push({
+                    x: length * Math.cos(angle),
+                    y: length * Math.sin(angle)
+                });
+            }
+            // 平移到中心
+            const center = getCenter(verts);
+            return verts.map(v => ({ x: v.x - center.cx, y: v.y - center.cy }));
+        }
+        return generateRegular(); // 保底
+    }
+
+    function getCenter(verts) {
+        let cx = 0, cy = 0;
+        verts.forEach(v => { cx += v.x; cy += v.y; });
+        return { cx: cx / verts.length, cy: cy / verts.length };
+    }
+
+    // 绘制小画布
+    function drawEditCanvas() {
+        ectx.clearRect(0, 0, 120, 120);
+        const scale = 40;
+        const cx = 60, cy = 60;
+        if (currentVertices.length < 3) return;
+        ectx.strokeStyle = "#1e3a5f";
+        ectx.lineWidth = 2;
+        ectx.beginPath();
+        ectx.moveTo(cx + currentVertices[0].x * scale, cy + currentVertices[0].y * scale);
+        for (let i = 1; i < currentVertices.length; i++) {
+            ectx.lineTo(cx + currentVertices[i].x * scale, cy + currentVertices[i].y * scale);
+        }
+        ectx.closePath();
+        ectx.fillStyle = "#f0f7fe";
+        ectx.fill();
+        ectx.stroke();
+        // 绘制顶点手柄
+        currentVertices.forEach((v, i) => {
+            ectx.beginPath();
+            ectx.arc(cx + v.x * scale, cy + v.y * scale, 4, 0, 2*Math.PI);
+            ectx.fillStyle = "#ffb347";
+            ectx.fill();
+            ectx.strokeStyle = "#a05a1a";
+            ectx.lineWidth = 1.5;
+            ectx.stroke();
+        });
+    }
+
+    // 绘制主画布
+    function drawMainCanvas() {
+        ctx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
+        // 网格
+        ctx.strokeStyle = "#eaeef5";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= mainCanvas.width; i += 20) {
+            ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, mainCanvas.height); ctx.stroke();
+        }
+        for (let i = 0; i <= mainCanvas.height; i += 20) {
+            ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(mainCanvas.width, i); ctx.stroke();
+        }
+        const colors = ['#f9d5a3','#b8d9f0','#c5e0b4','#f4b8a4','#d3b5e8','#f9e0a0'];
+        placedPolygons.forEach((poly, idx) => {
+            const verts = poly.worldVerts;
+            if (verts.length < 3) return;
+            ctx.beginPath();
+            ctx.moveTo(verts[0].x, verts[0].y);
+            for (let i = 1; i < verts.length; i++) ctx.lineTo(verts[i].x, verts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = colors[idx % colors.length];
+            ctx.fill();
+            ctx.strokeStyle = "#1e3a5f";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+
+    // 放置函数（允许旋转）
+    function placeOnEdge(poly, edgeIndex, shapeVerts) {
+        const verts = poly.worldVerts;
+        const i = edgeIndex;
+        const v1 = verts[i];
+        const v2 = verts[(i + 1) % verts.length];
+        const rel = shapeVerts;
+        const n = rel.length;
+
+        const targetDirX = v1.x - v2.x;
+        const targetDirY = v1.y - v2.y;
+        const targetLen = Math.hypot(targetDirX, targetDirY);
+        if (targetLen < 1e-6) return null;
+
+        const tolerance = 0.05;
+        const targetRelLen = targetLen / BASE_SCALE;
+
+        let bestEdgeIdx = -1;
+        let bestDiff = tolerance;
+        for (let k = 0; k < n; k++) {
+            const a = rel[k];
+            const b = rel[(k + 1) % n];
+            const relLen = Math.hypot(b.x - a.x, b.y - a.y);
+            if (Math.abs(relLen - targetRelLen) < bestDiff) {
+                bestDiff = Math.abs(relLen - targetRelLen);
+                bestEdgeIdx = k;
+            }
+        }
+        if (bestEdgeIdx === -1) return null;
+
+        const pA = rel[bestEdgeIdx];
+        const pB = rel[(bestEdgeIdx + 1) % n];
+        const edgeVecX = pB.x - pA.x;
+        const edgeVecY = pB.y - pA.y;
+
+        const angle1 = Math.atan2(targetDirY, targetDirX) - Math.atan2(edgeVecY, edgeVecX);
+        const cos1 = Math.cos(angle1);
+        const sin1 = Math.sin(angle1);
+        const rotAx1 = pA.x * cos1 - pA.y * sin1;
+        const rotAy1 = pA.x * sin1 + pA.y * cos1;
+        const cx1 = v2.x - rotAx1 * BASE_SCALE;
+        const cy1 = v2.y - rotAy1 * BASE_SCALE;
+        const worldVerts1 = rel.map(v => {
+            const rx = v.x * cos1 - v.y * sin1;
+            const ry = v.x * sin1 + v.y * cos1;
+            return { x: cx1 + rx * BASE_SCALE, y: cy1 + ry * BASE_SCALE };
+        });
+
+        const angle2 = Math.atan2(-targetDirY, -targetDirX) - Math.atan2(edgeVecY, edgeVecX);
+        const cos2 = Math.cos(angle2);
+        const sin2 = Math.sin(angle2);
+        const rotAx2 = pA.x * cos2 - pA.y * sin2;
+        const rotAy2 = pA.x * sin2 + pA.y * cos2;
+        const cx2 = v1.x - rotAx2 * BASE_SCALE;
+        const cy2 = v1.y - rotAy2 * BASE_SCALE;
+        const worldVerts2 = rel.map(v => {
+            const rx = v.x * cos2 - v.y * sin2;
+            const ry = v.x * sin2 + v.y * cos2;
+            return { x: cx2 + rx * BASE_SCALE, y: cy2 + ry * BASE_SCALE };
+        });
+
+        const oldCenter = getCenter(verts);
+        const center1 = getCenter(worldVerts1);
+        const center2 = getCenter(worldVerts2);
+        const dist1 = Math.hypot(center1.cx - oldCenter.cx, center1.cy - oldCenter.cy);
+        const dist2 = Math.hypot(center2.cx - oldCenter.cx, center2.cy - oldCenter.cy);
+        return dist1 > dist2 ? worldVerts1 : worldVerts2;
+    }
+
+    // 手动放置
+    function manualPlaceAt(mx, my) {
+        if (placedPolygons.length === 0) {
+            const worldVerts = currentVertices.map(v => ({ x: mx + v.x * BASE_SCALE, y: my + v.y * BASE_SCALE }));
+            placedPolygons.push({ worldVerts });
+            drawMainCanvas();
+            return true;
+        }
+        let bestDist = Infinity;
+        let bestPoly = null;
+        let bestEdge = -1;
+        for (let p of placedPolygons) {
+            for (let i = 0; i < p.worldVerts.length; i++) {
+                const v1 = p.worldVerts[i];
+                const v2 = p.worldVerts[(i+1) % p.worldVerts.length];
+                const midX = (v1.x + v2.x) / 2;
+                const midY = (v1.y + v2.y) / 2;
+                const d = Math.hypot(midX - mx, midY - my);
+                if (d < bestDist) {
+                    bestDist = d;
+                    bestPoly = p;
+                    bestEdge = i;
+                }
+            }
+        }
+        if (bestPoly && bestEdge !== -1) {
+            const w = placeOnEdge(bestPoly, bestEdge, currentVertices);
+            if (w) {
+                placedPolygons.push({ worldVerts: w });
+                drawMainCanvas();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 小画布拖拽
+    editCanvas.addEventListener('mousedown', (e) => {
+        const rect = editCanvas.getBoundingClientRect();
+        const mouseX = (e.clientX - rect.left) * (120 / rect.width);
+        const mouseY = (e.clientY - rect.top) * (120 / rect.height);
+        const relX = (mouseX - 60) / 40;
+        const relY = (mouseY - 60) / 40;
+        let minDist = 20;
+        dragIndex = -1;
+        currentVertices.forEach((v, i) => {
+            const d = Math.hypot(v.x - relX, v.y - relY);
+            if (d < minDist) { minDist = d; dragIndex = i; }
+        });
+        if (dragIndex !== -1) { dragging = true; e.preventDefault(); }
+    });
+
+    editCanvas.addEventListener('mousemove', (e) => {
+        if (!dragging || dragIndex === -1) return;
+        const rect = editCanvas.getBoundingClientRect();
+        const mouseX = (e.clientX - rect.left) * (120 / rect.width);
+        const mouseY = (e.clientY - rect.top) * (120 / rect.height);
+        const relX = (mouseX - 60) / 40;
+        const relY = (mouseY - 60) / 40;
+        currentVertices[dragIndex] = { x: Math.max(-1.2, Math.min(1.2, relX)), y: Math.max(-1.2, Math.min(1.2, relY)) };
+        drawEditCanvas();
+    });
+
+    window.addEventListener('mouseup', () => { dragging = false; dragIndex = -1; });
+
+    // 主画布点击
+    mainCanvas.addEventListener('click', (e) => {
+        const rect = mainCanvas.getBoundingClientRect();
+        const scaleX = mainCanvas.width / rect.width;
+        const scaleY = mainCanvas.height / rect.height;
+        const mouseX = (e.clientX - rect.left) * scaleX;
+        const mouseY = (e.clientY - rect.top) * scaleY;
+        if (!manualPlaceAt(mouseX, mouseY)) {
+            alert('无法在此处放置多边形');
+        }
+    });
+
+    // 按钮事件
+    document.getElementById(regularBtnId).addEventListener('click', () => {
+        currentVertices = generateRegular();
+        isRegular = true;
+        drawEditCanvas();
+        info.innerHTML = '<p>当前形状: 正多边形</p><p>点击画布放置（自动旋转贴合）</p>';
+    });
+    document.getElementById(irregularBtnId).addEventListener('click', () => {
+        currentVertices = generateIrregular();
+        isRegular = false;
+        drawEditCanvas();
+        info.innerHTML = '<p>当前形状: 一般多边形（可拖拽顶点）</p><p>点击画布放置（自动旋转贴合）</p>';
+    });
+    document.getElementById(clearBtnId).addEventListener('click', () => {
+        placedPolygons = [];
+        drawMainCanvas();
+    });
+    document.getElementById(undoBtnId).addEventListener('click', () => {
+        if (placedPolygons.length > 0) {
+            placedPolygons.pop();
+            drawMainCanvas();
+        }
+    });
+
+    // 初始化
+    currentVertices = generateRegular();
+    drawEditCanvas();
+}
+
+// 初始化三个模拟器
+createSimulator(3, 'triMainCanvas', 'triEditCanvas', 'triInfo', 'triRegular', 'triIrregular', 'triClear', 'triUndo', true);
+createSimulator(4, 'quadMainCanvas', 'quadEditCanvas', 'quadInfo', 'quadRegular', 'quadIrregular', 'quadClear', 'quadUndo', true);
+createSimulator(6, 'hexMainCanvas', 'hexEditCanvas', 'hexInfo', 'hexRegular', 'hexIrregular', 'hexClear', 'hexUndo', true);
+
+// 活动5特殊六边形模拟器（保持不变）
+(function() {
+    const canvas = document.getElementById('mainSpecialCanvas');
+    const previewCanvas = document.getElementById('previewCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const pctx = previewCanvas.getContext('2d');
+    const BASE_SCALE = 40;
+    let placedPolygons = [];
+    let currentVertices = [];
+    let currentType = null;
+    let currentRot = 0;
+    let dragging = false;
+    let dragIndex = -1;
+
+    const btnA = document.getElementById('genSpecialA');
+    const btnB = document.getElementById('genSpecialB');
+    const rot0 = document.getElementById('rot0');
+    const rot120 = document.getElementById('rot120');
+    const rot240 = document.getElementById('rot240');
+    const clearBtn = document.getElementById('clearSpecial');
+    const undoBtn = document.getElementById('undoSpecial');
+    const info = document.getElementById('specialInfo');
+    const rotateGroup = document.getElementById('rotateGroup');
+
+    function getCenter(verts) {
+        let cx = 0, cy = 0;
+        verts.forEach(v => { cx += v.x; cy += v.y; });
+        return { cx: cx / verts.length, cy: cy / verts.length };
+    }
+
+    function generateParallelHexagon() {
+        const rand = (min, max) => min + Math.random() * (max - min);
+        let u = { x: rand(0.3, 0.8), y: rand(0.3, 0.8) };
+        let v = { x: rand(0.3, 0.8), y: rand(0.3, 0.8) };
+        if (Math.random() > 0.5) u.x *= -1;
+        if (Math.random() > 0.5) u.y *= -1;
+        if (Math.random() > 0.5) v.x *= -1;
+        if (Math.random() > 0.5) v.y *= -1;
+        let verts = [
+            { x: u.x, y: u.y },
+            { x: u.x + v.x, y: u.y + v.y },
+            { x: v.x, y: v.y },
+            { x: -u.x, y: -u.y },
+            { x: -u.x - v.x, y: -u.y - v.y },
+            { x: -v.x, y: -v.y }
+        ];
+        const center = getCenter(verts);
+        return verts.map(v => ({ x: v.x - center.cx, y: v.y - center.cy }));
+    }
+
+    function isConvex(verts) {
+        if (verts.length < 3) return false;
+        let prev = 0;
+        for (let i = 0; i < verts.length; i++) {
+            const p1 = verts[i];
+            const p2 = verts[(i+1) % verts.length];
+            const p3 = verts[(i+2) % verts.length];
+            const v1 = { x: p2.x - p1.x, y: p2.y - p1.y };
+            const v2 = { x: p3.x - p2.x, y: p3.y - p2.y };
+            const cross = v1.x * v2.y - v1.y * v2.x;
+            if (i === 0) prev = Math.sign(cross);
+            else if (Math.sign(cross) !== prev) return false;
+        }
+        return true;
+    }
+
+    function generateAdjacentEqualHexagon() {
+        const maxAttempts = 100;
+        for (let attempt = 0; attempt < maxAttempts; attempt++) {
+            const a = 0.4 + Math.random() * 0.6;
+            const b = 0.4 + Math.random() * 0.6;
+            const phi = (60 + Math.random() * 60) * Math.PI / 180;
+            const cx = a + b * Math.cos(phi);
+            const cy = b * Math.sin(phi);
+            const c = Math.hypot(cx, cy);
+            const theta5 = Math.atan2(-cy, -cx);
+            const theta1 = 0, theta2 = Math.PI/3, theta3 = phi, theta4 = phi + Math.PI/3, theta5_ = theta5, theta6 = theta5 + Math.PI/3;
+            let points = [];
+            let x = 0, y = 0;
+            x += a * Math.cos(theta1); y += a * Math.sin(theta1); points.push({x, y});
+            x += a * Math.cos(theta2); y += a * Math.sin(theta2); points.push({x, y});
+            x += b * Math.cos(theta3); y += b * Math.sin(theta3); points.push({x, y});
+            x += b * Math.cos(theta4); y += b * Math.sin(theta4); points.push({x, y});
+            x += c * Math.cos(theta5_); y += c * Math.sin(theta5_); points.push({x, y});
+            x += c * Math.cos(theta6); y += c * Math.sin(theta6);
+            let verts = [{x:0, y:0}, ...points];
+            const center = getCenter(verts);
+            verts = verts.map(v => ({ x: v.x - center.cx, y: v.y - center.cy }));
+            if (isConvex(verts)) return verts;
+        }
+        const r = 0.7;
+        let verts = [];
+        for (let i = 0; i < 6; i++) {
+            const angle = -Math.PI/2 + i * 2*Math.PI/6;
+            verts.push({ x: r * Math.cos(angle), y: r * Math.sin(angle) });
+        }
+        return verts;
+    }
+
+    function rotateVertices(verts, angleRad) {
+        const cos = Math.cos(angleRad);
+        const sin = Math.sin(angleRad);
+        return verts.map(v => ({
+            x: v.x * cos - v.y * sin,
+            y: v.x * sin + v.y * cos
+        }));
+    }
+
+    function drawPreview() {
+        pctx.clearRect(0, 0, 120, 120);
+        if (!currentVertices.length) return;
+        let verts = currentVertices;
+        if (currentType === 'B') {
+            const rotAngle = currentRot * 2 * Math.PI / 3;
+            verts = rotateVertices(currentVertices, rotAngle);
+        }
+        const scale = 40;
+        const cx = 60, cy = 60;
+        pctx.strokeStyle = "#1e3a5f";
+        pctx.lineWidth = 2;
+        pctx.beginPath();
+        pctx.moveTo(cx + verts[0].x * scale, cy + verts[0].y * scale);
+        for (let i = 1; i < verts.length; i++) {
+            pctx.lineTo(cx + verts[i].x * scale, cy + verts[i].y * scale);
+        }
+        pctx.closePath();
+        let color;
+        if (currentType === 'A') color = '#F9CB9C';
+        else {
+            if (currentRot === 0) color = '#FFD966';
+            else if (currentRot === 1) color = '#6FA8DC';
+            else color = '#B4A7D6';
+        }
+        pctx.fillStyle = color;
+        pctx.fill();
+        pctx.stroke();
+    }
+
+    function placeOnEdgeSpecial(poly, edgeIndex, shapeVerts, allowRotation) {
+        const verts = poly.worldVerts;
+        const i = edgeIndex;
+        const v1 = verts[i];
+        const v2 = verts[(i + 1) % verts.length];
+        const rel = shapeVerts;
+        const n = rel.length;
+        const targetDirX = v1.x - v2.x;
+        const targetDirY = v1.y - v2.y;
+        const targetLen = Math.hypot(targetDirX, targetDirY);
+        if (targetLen < 1e-6) return null;
+        const tolerance = 0.05;
+
+        if (allowRotation) {
+            const targetRelLen = targetLen / BASE_SCALE;
+            let bestEdgeIdx = -1;
+            let bestDiff = tolerance;
+            for (let k = 0; k < n; k++) {
+                const a = rel[k];
+                const b = rel[(k + 1) % n];
+                const relLen = Math.hypot(b.x - a.x, b.y - a.y);
+                if (Math.abs(relLen - targetRelLen) < bestDiff) {
+                    bestDiff = Math.abs(relLen - targetRelLen);
+                    bestEdgeIdx = k;
+                }
+            }
+            if (bestEdgeIdx === -1) return null;
+            const pA = rel[bestEdgeIdx];
+            const pB = rel[(bestEdgeIdx + 1) % n];
+            const edgeVecX = pB.x - pA.x;
+            const edgeVecY = pB.y - pA.y;
+            const angle1 = Math.atan2(targetDirY, targetDirX) - Math.atan2(edgeVecY, edgeVecX);
+            const cos1 = Math.cos(angle1);
+            const sin1 = Math.sin(angle1);
+            const rotAx1 = pA.x * cos1 - pA.y * sin1;
+            const rotAy1 = pA.x * sin1 + pA.y * cos1;
+            const cx1 = v2.x - rotAx1 * BASE_SCALE;
+            const cy1 = v2.y - rotAy1 * BASE_SCALE;
+            const worldVerts1 = rel.map(v => {
+                const rx = v.x * cos1 - v.y * sin1;
+                const ry = v.x * sin1 + v.y * cos1;
+                return { x: cx1 + rx * BASE_SCALE, y: cy1 + ry * BASE_SCALE };
+            });
+            const angle2 = Math.atan2(-targetDirY, -targetDirX) - Math.atan2(edgeVecY, edgeVecX);
+            const cos2 = Math.cos(angle2);
+            const sin2 = Math.sin(angle2);
+            const rotAx2 = pA.x * cos2 - pA.y * sin2;
+            const rotAy2 = pA.x * sin2 + pA.y * cos2;
+            const cx2 = v1.x - rotAx2 * BASE_SCALE;
+            const cy2 = v1.y - rotAy2 * BASE_SCALE;
+            const worldVerts2 = rel.map(v => {
+                const rx = v.x * cos2 - v.y * sin2;
+                const ry = v.x * sin2 + v.y * cos2;
+                return { x: cx2 + rx * BASE_SCALE, y: cy2 + ry * BASE_SCALE };
+            });
+            const oldCenter = getCenter(verts);
+            const center1 = getCenter(worldVerts1);
+            const center2 = getCenter(worldVerts2);
+            const dist1 = Math.hypot(center1.cx - oldCenter.cx, center1.cy - oldCenter.cy);
+            const dist2 = Math.hypot(center2.cx - oldCenter.cx, center2.cy - oldCenter.cy);
+            return dist1 > dist2 ? worldVerts1 : worldVerts2;
+        } else {
+            const eps = 0.087;
+            for (let k = 0; k < n; k++) {
+                const a = rel[k];
+                const b = rel[(k + 1) % n];
+                const relLen = Math.hypot(b.x - a.x, b.y - a.y);
+                const shapeWorldLen = relLen * BASE_SCALE;
+                if (Math.abs(shapeWorldLen - targetLen) / targetLen > tolerance) continue;
+                const shapeDirX = b.x - a.x;
+                const shapeDirY = b.y - a.y;
+                const shapeWorldX = shapeDirX * BASE_SCALE;
+                const shapeWorldY = shapeDirY * BASE_SCALE;
+                const dot = (shapeWorldX * targetDirX + shapeWorldY * targetDirY) / (shapeWorldLen * targetLen);
+                if (Math.abs(Math.abs(dot) - 1) > eps) continue;
+                if (dot > 0) {
+                    const cx = v2.x - a.x * BASE_SCALE;
+                    const cy = v2.y - a.y * BASE_SCALE;
+                    return rel.map(v => ({ x: cx + v.x * BASE_SCALE, y: cy + v.y * BASE_SCALE }));
+                } else {
+                    const cx = v1.x - a.x * BASE_SCALE;
+                    const cy = v1.y - a.y * BASE_SCALE;
+                    return rel.map(v => ({ x: cx + v.x * BASE_SCALE, y: cy + v.y * BASE_SCALE }));
+                }
+            }
+            return null;
+        }
+    }
+
+    function manualPlaceSpecial(mx, my) {
+        if (placedPolygons.length === 0) {
+            const worldVerts = currentVertices.map(v => ({ x: mx + v.x * BASE_SCALE, y: my + v.y * BASE_SCALE }));
+            let color;
+            if (currentType === 'A') color = '#F9CB9C';
+            else {
+                if (currentRot === 0) color = '#FFD966';
+                else if (currentRot === 1) color = '#6FA8DC';
+                else color = '#B4A7D6';
+            }
+            placedPolygons.push({ worldVerts, color });
+            drawMainSpecial();
+            return true;
+        }
+        let bestDist = Infinity;
+        let bestPoly = null;
+        let bestEdge = -1;
+        for (let p of placedPolygons) {
+            for (let i = 0; i < p.worldVerts.length; i++) {
+                const v1 = p.worldVerts[i];
+                const v2 = p.worldVerts[(i+1) % p.worldVerts.length];
+                const midX = (v1.x + v2.x) / 2;
+                const midY = (v1.y + v2.y) / 2;
+                const d = Math.hypot(midX - mx, midY - my);
+                if (d < bestDist) {
+                    bestDist = d;
+                    bestPoly = p;
+                    bestEdge = i;
+                }
+            }
+        }
+        if (bestPoly && bestEdge !== -1) {
+            let shapeToPlace = currentVertices;
+            let allowRotation = true;
+            if (currentType === 'B') {
+                const rotAngle = currentRot * 2 * Math.PI / 3;
+                shapeToPlace = rotateVertices(currentVertices, rotAngle);
+                allowRotation = false;
+            }
+            const w = placeOnEdgeSpecial(bestPoly, bestEdge, shapeToPlace, allowRotation);
+            if (w) {
+                let color;
+                if (currentType === 'A') color = '#F9CB9C';
+                else {
+                    if (currentRot === 0) color = '#FFD966';
+                    else if (currentRot === 1) color = '#6FA8DC';
+                    else color = '#B4A7D6';
+                }
+                placedPolygons.push({ worldVerts: w, color });
+                drawMainSpecial();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function drawMainSpecial() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeStyle = "#eaeef5";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= canvas.width; i += 20) {
+            ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+        }
+        for (let i = 0; i <= canvas.height; i += 20) {
+            ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+        }
+        placedPolygons.forEach(poly => {
+            const verts = poly.worldVerts;
+            if (verts.length < 3) return;
+            ctx.beginPath();
+            ctx.moveTo(verts[0].x, verts[0].y);
+            for (let i = 1; i < verts.length; i++) ctx.lineTo(verts[i].x, verts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = poly.color;
+            ctx.fill();
+            ctx.strokeStyle = "#1e3a5f";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+
+    function updateUI() {
+        if (currentType === 'A') {
+            info.innerHTML = '<p>当前形状: 特殊六边形A (对边平行随机)</p><p>颜色: <span class="color-demo" style="background:#F9CB9C;"></span>橙色</p><p>点击画布放置（自动旋转贴合）</p>';
+            rotateGroup.style.display = 'none';
+        } else if (currentType === 'B') {
+            info.innerHTML = `<p>当前形状: 特殊六边形B (角度 ${currentRot*120}°)</p><p>颜色: <span class="color-demo" style="background:#FFD966;"></span>0°黄 <span class="color-demo" style="background:#6FA8DC;"></span>120°蓝 <span class="color-demo" style="background:#B4A7D6;"></span>240°紫</p><p>点击画布放置（不旋转）</p>`;
+            rotateGroup.style.display = 'flex';
+        } else {
+            info.innerHTML = '<p>当前形状: 无</p>';
+            rotateGroup.style.display = 'none';
+        }
+        drawPreview();
+    }
+
+    btnA.addEventListener('click', () => {
+        currentVertices = generateParallelHexagon();
+        currentType = 'A';
+        updateUI();
+    });
+    btnB.addEventListener('click', () => {
+        currentVertices = generateAdjacentEqualHexagon();
+        currentType = 'B';
+        currentRot = 0;
+        [rot0, rot120, rot240].forEach(b => b.classList.remove('active'));
+        rot0.classList.add('active');
+        updateUI();
+    });
+    rot0.addEventListener('click', () => {
+        if (currentType === 'B') {
+            currentRot = 0;
+            [rot0, rot120, rot240].forEach(b => b.classList.remove('active'));
+            rot0.classList.add('active');
+            updateUI();
+        }
+    });
+    rot120.addEventListener('click', () => {
+        if (currentType === 'B') {
+            currentRot = 1;
+            [rot0, rot120, rot240].forEach(b => b.classList.remove('active'));
+            rot120.classList.add('active');
+            updateUI();
+        }
+    });
+    rot240.addEventListener('click', () => {
+        if (currentType === 'B') {
+            currentRot = 2;
+            [rot0, rot120, rot240].forEach(b => b.classList.remove('active'));
+            rot240.classList.add('active');
+            updateUI();
+        }
+    });
+    clearBtn.addEventListener('click', () => {
+        placedPolygons = [];
+        drawMainSpecial();
+    });
+    undoBtn.addEventListener('click', () => {
+        if (placedPolygons.length > 0) {
+            placedPolygons.pop();
+            drawMainSpecial();
+        }
+    });
+    canvas.addEventListener('click', (e) => {
+        if (!currentVertices.length) {
+            alert('请先生成一个多边形');
+            return;
+        }
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const mouseX = (e.clientX - rect.left) * scaleX;
+        const mouseY = (e.clientY - rect.top) * scaleY;
+        if (!manualPlaceSpecial(mouseX, mouseY)) {
+            alert('无法在此处放置多边形');
+        }
+    });
+    // 初始隐藏
+    rotateGroup.style.display = 'none';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动 制作包装盒 | 华师版·七上 第3章</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #0a3144;
+            margin-bottom: 0.5rem;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        .activity-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .quote {
+            font-style: italic;
+            color: #2a5f7a;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 {
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin-bottom: 0.8rem;
+        }
+        .math-idea p {
+            font-size: 1.1rem;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 数学活动</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 动手实践，将立体图形的知识应用于包装盒的制作。</div>
+    <div class="activity-title">数学活动 制作包装盒</div>
+
+    <!-- 引入语 -->
+    <div class="intro-block">
+        <p>“祝你生日快乐，……”，当你唱着这首《生日快乐》歌时，你可能还会收到你的好朋友送给你的生日礼物。打开礼物外面的包装盒，里面包裹着的是好朋友的心意。</p>
+        <p>你知道这些包装盒是如何制作的吗？下图是一个包装盒的几种不同制作方法的表面展开示意图。</p>
+    </div>
+
+    <!-- 第一张图：生日礼物包装盒示意 -->
+    <div class="figure-box">
+        <img src="包装盒示意图.png" alt="包装盒示意图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 包装盒示意图（图片缺失）</div>
+        <div class="figcaption">图1 漂亮的生日包装盒</div>
+    </div>
+
+    <!-- 第二张图：表面展开示意图 -->
+    <div class="figure-box">
+        <img src="表面展开示意图.png" alt="表面展开示意图" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="figcaption" style="display:none; padding:2rem; background:#f0f7fe; border:1px dashed #7aa5c2; border-radius:8px;">🖼️ 表面展开示意图（图片缺失）</div>
+        <div class="figcaption">图2 包装盒的几种表面展开示意图</div>
+    </div>
+
+    <!-- 动手建议 -->
+    <div class="intro-block" style="text-align:center;">
+        <p style="font-size:1.3rem; font-weight:bold; color:#2a7faa;">动手试试看，为你的心爱之物制作一个精美合身的包装盒吧！</p>
+        <p>你可以选择自己喜欢的展开图，用卡纸剪裁、折叠，再装饰上彩带或贴纸。在制作过程中，你会更深刻地理解立体图形与平面图形之间的转化。</p>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将立体图形（包装盒）转化为平面图形（展开图），动手折叠又将平面还原为立体，深刻体会三维与二维的相互转化。<br>
+        <strong>模型思想：</strong> 通过观察不同的展开图，抽象出包装盒的结构模型，为设计包装打下基础。<br>
+        <strong>应用意识：</strong> 将几何知识应用于实际生活，解决包装问题，感受数学的实用价值。<br>
+        <strong>几何直观：</strong> 在裁剪、折叠中培养空间想象能力，发展几何直觉。</p>
+    </div>
+
+    <!-- 读一读（可折叠） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 包装盒中的数学智慧</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>你知道吗？一个小小的包装盒里藏着许多几何学问！设计师在设计包装盒时，既要考虑材料利用率（避免浪费），又要保证折叠后棱角严丝合缝。这就要求展开图必须精确，相邻的面边长相等，折叠角的大小也要合适。中国古代的“裱糊匠”不用任何胶水，仅凭纸张的折叠和穿插就能做出复杂的盒子，这需要极高的空间想象力。</p>
+            <p>现代工业中，纸盒的展开图甚至可以用数学软件自动生成，但原理仍然是几千年前的几何知识。下次你拆礼物时，不妨仔细观察一下包装盒的折痕，思考它是由哪种基本立体图形展开来的。也许你也能设计出一款独一无二的包装盒！</p>
+        </div>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 2rem 0 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第3章数学活动</div>
+</div>
+
+<!-- 图片错误处理 + 读一读折叠脚本 -->
+<script>
+    // 如果图片加载失败，显示占位符文字
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+        });
+    });
+
+    // 读一读折叠功能
+    function toggleReading() {
+        var content = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

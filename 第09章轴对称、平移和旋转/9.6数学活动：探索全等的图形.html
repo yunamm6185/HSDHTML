@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动：探索全等的图形 | 华师版·七下</title>
+    <!-- MathJax 全局配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+        body {
+            background: #f0f5fb;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.3);
+            padding: 2rem;
+            border: 1px solid #c9ddef;
+        }
+        h1 {
+            color: #0a3144;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .subtitle {
+            color: #2c5778;
+            font-size: 1.2rem;
+            margin-top: -0.2rem;
+            margin-bottom: 1.8rem;
+            padding-left: 2rem;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.8rem;
+        }
+        .activity-card {
+            background: #f8fcff;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .activity-card h2 {
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .textbook-quote {
+            background: #e9f2fa;
+            border-left: 6px solid #3f8ab3;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            color: #024d72;
+            box-shadow: 0 2px 8px rgba(0,60,80,0.1);
+        }
+        .textbook-quote p {
+            margin: 0.3rem 0;
+        }
+        .textbook-quote .fig-ref {
+            font-weight: 600;
+            color: #0b4b6b;
+        }
+        .canvas-wrapper {
+            background: #f9fcff;
+            border-radius: 24px;
+            padding: 15px;
+            border: 2px solid #b9d6ef;
+            margin: 15px 0;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,40,60,0.1);
+            border: 1px solid #c0d4e5;
+            cursor: crosshair;
+        }
+        .control-panel {
+            background: #eef4fa;
+            border-radius: 30px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 10px;
+            border: 1px solid #bacee5;
+        }
+        .slider-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            margin: 10px 0;
+        }
+        .slider-item {
+            flex: 1 1 180px;
+        }
+        .slider-item label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: #014682;
+            margin-bottom: 5px;
+        }
+        .slider-item input[type=range] {
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            background: #d0e2f2;
+        }
+        .slider-item input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: #2675a8;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .value-display {
+            min-width: 50px;
+            text-align: right;
+            color: #135b8d;
+            font-weight: 600;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px 15px;
+            flex-wrap: wrap;
+            margin: 15px 0 5px;
+        }
+        .btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+        }
+        .btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .btn-primary {
+            background: #2675a8;
+            color: white;
+            box-shadow: 0 4px 0 #0f4a6f;
+        }
+        .btn-primary:active {
+            box-shadow: 0 1px 0 #0f4a6f;
+        }
+        .btn-reflect {
+            background: #c6a0d9;
+            color: #2d1a3a;
+            box-shadow: 0 4px 0 #7b4f9e;
+        }
+        .success-message {
+            background: #d4edda;
+            border-left: 6px solid #28a745;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            color: #155724;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: none;
+        }
+        .legend {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0 0;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            border: 1px solid #666;
+        }
+        .blue-bg { background: #a5c8ff; border-color: #2c5aa0; }
+        .red-bg { background: #ffb5b5; border-color: #a03a2c; }
+        .green-bg { background: #b0e5b0; border-color: #2d6a2d; }
+        .orange-bg { background: #ffd5a5; border-color: #b26b2c; }
+        .note {
+            font-size: 0.95rem;
+            color: #305d81;
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 0.5rem 1.2rem;
+            margin-top: 0.8rem;
+        }
+        /* 确保 MathJax 公式与文字垂直对齐 */
+        mjx-container {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>数学活动：探索全等的图形</h1>
+    <div class="subtitle">平移 · 旋转 · 反射 —— 让图形重合</div>
+
+    <!-- 问题1 -->
+    <div class="activity-card">
+        <h2>🔷 问题1</h2>
+        <!-- 课本原描述（已用 LaTeX 格式化） -->
+        <div class="textbook-quote">
+            <p><span class="fig-ref">如图1</span>，已知 $\triangle ABC \cong \triangle DEF$，点 $A$、$B$、$C$ 的对应点分别是点 $D$、$E$、$F$。你知道其中的一个三角形经过怎样的变换能够与另一个三角形重合吗？</p>
+        </div>
+        <p>拖动蓝色三角形的顶点可以改变形状，红色三角形会自动保持全等。使用下方滑块调整红色三角形的位置和角度，使它们完全重合。</p>
+        <div class="canvas-wrapper">
+            <canvas id="canvas1" width="700" height="400"></canvas>
+        </div>
+        <div class="control-panel">
+            <div class="slider-group">
+                <div class="slider-item"><label>↔️ 水平平移 <span id="tx1Val" class="value-display">200</span></label><input type="range" id="tx1" min="-300" max="300" value="200" step="1"></div>
+                <div class="slider-item"><label>↕️ 垂直平移 <span id="ty1Val" class="value-display">0</span></label><input type="range" id="ty1" min="-200" max="200" value="0" step="1"></div>
+                <div class="slider-item"><label>🔄 旋转角度 <span id="rot1Val" class="value-display">$0^\circ$</span></label><input type="range" id="rot1" min="0" max="360" value="0" step="1"></div>
+            </div>
+            <div class="btn-group">
+                <button class="btn" id="reset1Btn">↺ 重置全部</button>
+                <button class="btn btn-primary" id="check1Btn">✓ 检查重合</button>
+            </div>
+            <div id="msg1" class="success-message">🎉 成功重合！</div>
+        </div>
+        <div class="legend">
+            <span class="legend-item"><span class="color-box blue-bg"></span>$\triangle ABC$ (固定，可拖动顶点)</span>
+            <span class="legend-item"><span class="color-box red-bg"></span>$\triangle DEF$ (可移动，自动保持形状一致)</span>
+        </div>
+    </div>
+
+    <!-- 问题2：带反射的三角形（顶点标记方向不同） -->
+    <div class="activity-card">
+        <h2>🔶 问题2</h2>
+        <!-- 课本原描述 -->
+        <div class="textbook-quote">
+            <p><span class="fig-ref">如图3</span>，已知 $\triangle ABC \cong \triangle DEF$，点 $A$、$B$、$C$ 的对应点分别是点 $D$、$E$、$F$。$\triangle ABC$ 经过怎样的变换能够与 $\triangle DEF$ 重合？<br><strong>（注意：图3与图1中的 $\triangle DEF$，顶点的标记方向是不相同的）</strong></p>
+        </div>
+        <p>红色三角形已预先进行镜像和平移，使其方向与蓝色不同。拖动蓝色顶点改变形状，红色会自动保持全等。使用反射按钮和滑块调整额外变换，使它们重合。</p>
+        <div class="canvas-wrapper">
+            <canvas id="canvas2" width="700" height="400"></canvas>
+        </div>
+        <div class="control-panel">
+            <div class="slider-group">
+                <div class="slider-item"><label>↔️ 水平平移 <span id="tx2Val" class="value-display">0</span></label><input type="range" id="tx2" min="-300" max="300" value="0" step="1"></div>
+                <div class="slider-item"><label>↕️ 垂直平移 <span id="ty2Val" class="value-display">0</span></label><input type="range" id="ty2" min="-200" max="200" value="0" step="1"></div>
+                <div class="slider-item"><label>🔄 旋转角度 <span id="rot2Val" class="value-display">$0^\circ$</span></label><input type="range" id="rot2" min="0" max="360" value="0" step="1"></div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-reflect" id="reflectV2">🔁 垂直镜像 (关于 $y$ 轴)</button>
+                <button class="btn btn-reflect" id="reflectH2">🔁 水平镜像 (关于 $x$ 轴)</button>
+                <button class="btn" id="reset2Btn">↺ 重置</button>
+                <button class="btn btn-primary" id="check2Btn">✓ 检查重合</button>
+            </div>
+            <div id="msg2" class="success-message">🎉 成功重合！</div>
+            <div class="note">💡 垂直镜像会反转左右方向，水平镜像反转上下方向。结合平移旋转可使方向不同的图形重合。</div>
+        </div>
+        <div class="legend">
+            <span class="legend-item"><span class="color-box blue-bg"></span>$\triangle ABC$ (固定，可拖动顶点)</span>
+            <span class="legend-item"><span class="color-box red-bg"></span>$\triangle DEF$ (可移动+反射，初始已镜像并旋转)</span>
+        </div>
+    </div>
+
+    <!-- 问题3：四边形全等 -->
+    <div class="activity-card">
+        <h2>🔷 问题3</h2>
+        <!-- 课本原描述 -->
+        <div class="textbook-quote">
+            <p><span class="fig-ref">如图4</span>，四边形 $ABCD \cong EFGH$，点 $A$、$B$、$C$、$D$ 的对应点分别是点 $E$、$F$、$G$、$H$。四边形 $ABCD$ 经过怎样的变换能够与四边形 $EFGH$ 重合？如果四边形 $EFGH$ 与图4中的四边形 $EFGH$ 的顶点标记方向不同，又应该如何操作呢？</p>
+        </div>
+        <p>橙色四边形已预先旋转 $30^\circ$ 并平移。拖动蓝色顶点改变形状，橙色会自动保持全等。使用反射按钮和滑块调整额外变换，使它们重合。</p>
+        <div class="canvas-wrapper">
+            <canvas id="canvas3" width="700" height="400"></canvas>
+        </div>
+        <div class="control-panel">
+            <div class="slider-group">
+                <div class="slider-item"><label>↔️ 水平平移 <span id="tx3Val" class="value-display">0</span></label><input type="range" id="tx3" min="-300" max="300" value="0" step="1"></div>
+                <div class="slider-item"><label>↕️ 垂直平移 <span id="ty3Val" class="value-display">0</span></label><input type="range" id="ty3" min="-200" max="200" value="0" step="1"></div>
+                <div class="slider-item"><label>🔄 旋转角度 <span id="rot3Val" class="value-display">$0^\circ$</span></label><input type="range" id="rot3" min="0" max="360" value="0" step="1"></div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-reflect" id="reflectV3">🔁 垂直镜像</button>
+                <button class="btn btn-reflect" id="reflectH3">🔁 水平镜像</button>
+                <button class="btn" id="reset3Btn">↺ 重置</button>
+                <button class="btn btn-primary" id="check3Btn">✓ 检查重合</button>
+            </div>
+            <div id="msg3" class="success-message">🎉 成功重合！</div>
+        </div>
+        <div class="legend">
+            <span class="legend-item"><span class="color-box blue-bg"></span>四边形 $ABCD$ (固定，可拖动顶点)</span>
+            <span class="legend-item"><span class="color-box orange-bg"></span>四边形 $EFGH$ (可移动+反射，基础旋转 $30^\circ$)</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ---------- 通用工具函数 ----------
+        function computeCenter(points) {
+            let sx = 0, sy = 0;
+            points.forEach(p => { sx += p.x; sy += p.y; });
+            return { x: sx / points.length, y: sy / points.length };
+        }
+
+        // 反射变换: 关于中心点反射 (垂直: x -> 2*cx - x, 水平: y -> 2*cy - y)
+        function reflectPoints(points, center, vertical, horizontal) {
+            return points.map(p => {
+                let x = p.x, y = p.y;
+                if (vertical) x = 2 * center.x - x;
+                if (horizontal) y = 2 * center.y - y;
+                return { x, y };
+            });
+        }
+
+        // 旋转变换: 绕中心旋转
+        function rotatePoints(points, center, angleDeg) {
+            const rad = angleDeg * Math.PI / 180;
+            const cos = Math.cos(rad), sin = Math.sin(rad);
+            return points.map(p => {
+                const dx = p.x - center.x;
+                const dy = p.y - center.y;
+                return {
+                    x: center.x + dx * cos - dy * sin,
+                    y: center.y + dx * sin + dy * cos
+                };
+            });
+        }
+
+        // 平移
+        function translatePoints(points, dx, dy) {
+            return points.map(p => ({ x: p.x + dx, y: p.y + dy }));
+        }
+
+        // 检查两个点集是否重合（距离阈值）
+        function checkCoincident(pts1, pts2, threshold = 8) {
+            if (pts1.length !== pts2.length) return false;
+            for (let i = 0; i < pts1.length; i++) {
+                const dx = pts1[i].x - pts2[i].x;
+                const dy = pts1[i].y - pts2[i].y;
+                if (Math.sqrt(dx*dx + dy*dy) > threshold) return false;
+            }
+            return true;
+        }
+
+        // 绘制多边形及标签
+        function drawPolygon(ctx, points, color, fillColor, labels, offset = {x:8,y:-8}) {
+            if (points.length === 0) return;
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+            ctx.closePath();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.font = 'bold 18px "Segoe UI", Arial';
+            ctx.fillStyle = '#1e2b3a';
+            ctx.shadowColor = 'white';
+            ctx.shadowBlur = 4;
+            points.forEach((p, i) => {
+                if (i < labels.length) ctx.fillText(labels[i], p.x + offset.x, p.y + offset.y);
+            });
+            ctx.shadowColor = 'transparent';
+            ctx.restore();
+        }
+
+        // 绘制背景网格
+        function drawGrid(ctx, w, h) {
+            ctx.save();
+            ctx.strokeStyle = '#e0eef9';
+            ctx.lineWidth = 0.5;
+            for (let i = 0; i <= w; i += 40) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+            }
+            for (let i = 0; i <= h; i += 40) {
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+            }
+            ctx.restore();
+        }
+
+        // ---------- 问题1: 可拖动顶点的三角形 ----------
+        (function setupQ1() {
+            const canvas = document.getElementById('canvas1');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+
+            // 蓝色固定三角形 (可拖动顶点)
+            let bluePoints = [
+                { x: 150, y: 150 }, // A
+                { x: 100, y: 280 }, // B
+                { x: 250, y: 280 }  // C
+            ];
+
+            // 变换参数
+            let tx = 200, ty = 0, rot = 0;  // 初始向右平移200，避免重合
+
+            // 拖动状态
+            let dragPoint = null; // 索引 0,1,2 或 null
+            let dragIndex = -1;
+
+            const sliders = {
+                tx: document.getElementById('tx1'),
+                ty: document.getElementById('ty1'),
+                rot: document.getElementById('rot1')
+            };
+            const vals = {
+                tx: document.getElementById('tx1Val'),
+                ty: document.getElementById('ty1Val'),
+                rot: document.getElementById('rot1Val')
+            };
+
+            function updateUI() {
+                tx = parseInt(sliders.tx.value);
+                ty = parseInt(sliders.ty.value);
+                rot = parseInt(sliders.rot.value);
+                vals.tx.textContent = tx;
+                vals.ty.textContent = ty;
+                vals.rot.textContent = rot + '°';
+                draw();
+                document.getElementById('msg1').style.display = 'none';
+            }
+
+            // 计算当前红色顶点：对蓝色点进行旋转和平移（以蓝色中心为旋转中心）
+            function getCurrentRed() {
+                const blueCenter = computeCenter(bluePoints);
+                let pts = rotatePoints(bluePoints, blueCenter, rot);
+                pts = translatePoints(pts, tx, ty);
+                return pts;
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                drawGrid(ctx, w, h);
+
+                // 绘制蓝色固定
+                drawPolygon(ctx, bluePoints, '#2c5aa0', 'rgba(165,200,255,0.6)', ['A','B','C']);
+
+                // 绘制红色移动
+                const currentRed = getCurrentRed();
+                drawPolygon(ctx, currentRed, '#a03a2c', 'rgba(255,180,180,0.6)', ['D','E','F'], {x:5,y:-5});
+            }
+
+            sliders.tx.addEventListener('input', updateUI);
+            sliders.ty.addEventListener('input', updateUI);
+            sliders.rot.addEventListener('input', updateUI);
+
+            document.getElementById('reset1Btn').addEventListener('click', ()=>{
+                sliders.tx.value = 200;
+                sliders.ty.value = 0;
+                sliders.rot.value = 0;
+                updateUI();
+            });
+
+            document.getElementById('check1Btn').addEventListener('click', ()=>{
+                const currentRed = getCurrentRed();
+                if (checkCoincident(bluePoints, currentRed)) {
+                    document.getElementById('msg1').style.display = 'block';
+                } else {
+                    alert('还没有完全重合，再试试吧');
+                }
+            });
+
+            // 拖动蓝色顶点
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                return {
+                    x: (e.clientX - rect.left) * scaleX,
+                    y: (e.clientY - rect.top) * scaleY
+                };
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                const pos = getMousePos(e);
+                // 检测蓝色顶点
+                for (let i=0; i<bluePoints.length; i++) {
+                    const dx = pos.x - bluePoints[i].x;
+                    const dy = pos.y - bluePoints[i].y;
+                    if (dx*dx + dy*dy < 100) {
+                        dragPoint = i;
+                        dragIndex = i;
+                        canvas.style.cursor = 'grabbing';
+                        e.preventDefault();
+                        return;
+                    }
+                }
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (dragPoint === null) return;
+                const pos = getMousePos(e);
+                // 边界限制
+                if (pos.x < 20 || pos.x > w-20 || pos.y < 20 || pos.y > h-20) return;
+                bluePoints[dragIndex] = pos;
+                draw();
+                document.getElementById('msg1').style.display = 'none';
+            });
+
+            canvas.addEventListener('mouseup', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+
+            updateUI();
+        })();
+
+        // ---------- 问题2: 三角形带反射 (顶点可拖动，初始为镜像并旋转) ----------
+        (function setupQ2() {
+            const canvas = document.getElementById('canvas2');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+
+            // 蓝色固定三角形 (可拖动顶点)
+            let bluePoints = [
+                { x: 150, y: 150 },
+                { x: 100, y: 280 },
+                { x: 250, y: 280 }
+            ];
+
+            // 固定初始变换：先垂直镜像，再旋转30°，再平移 (250, 50) —— 确保滑块可调范围内能重合
+            const initReflectV = true;   // 先做垂直镜像
+            const initReflectH = false;
+            const initRot = 30;           // 再旋转30°
+            const initTx = 250;            // 调整后的水平平移量，使额外平移-250可归零
+            const initTy = 50;              // 垂直平移量
+
+            // 额外变换参数（由滑块控制）
+            let extraTx = 0, extraTy = 0, extraRot = 0;
+            let extraReflectV = false, extraReflectH = false; // 注意这些是额外反射
+
+            const sliders = {
+                tx: document.getElementById('tx2'),
+                ty: document.getElementById('ty2'),
+                rot: document.getElementById('rot2')
+            };
+            const vals = {
+                tx: document.getElementById('tx2Val'),
+                ty: document.getElementById('ty2Val'),
+                rot: document.getElementById('rot2Val')
+            };
+
+            function updateUI() {
+                extraTx = parseInt(sliders.tx.value);
+                extraTy = parseInt(sliders.ty.value);
+                extraRot = parseInt(sliders.rot.value);
+                vals.tx.textContent = extraTx;
+                vals.ty.textContent = extraTy;
+                vals.rot.textContent = extraRot + '°';
+                draw();
+                document.getElementById('msg2').style.display = 'none';
+            }
+
+            // 计算当前红色顶点：
+            // 1. 对蓝色点应用固定初始变换（镜像+旋转+平移）得到红色初始位置
+            // 2. 对红色初始位置应用额外反射、旋转、平移
+            function getCurrentRed() {
+                const blueCenter = computeCenter(bluePoints);
+                // 固定初始变换：先反射（关于蓝色中心），再旋转（关于蓝色中心），再平移
+                let pts = bluePoints;
+                if (initReflectV || initReflectH) {
+                    pts = reflectPoints(pts, blueCenter, initReflectV, initReflectH);
+                }
+                pts = rotatePoints(pts, blueCenter, initRot);
+                pts = translatePoints(pts, initTx, initTy);
+
+                // 现在 pts 是红色初始位置，以它的中心为基准进行额外变换
+                const redCenter = computeCenter(pts);
+                // 额外反射
+                if (extraReflectV || extraReflectH) {
+                    pts = reflectPoints(pts, redCenter, extraReflectV, extraReflectH);
+                }
+                // 额外旋转（关于红色中心）
+                pts = rotatePoints(pts, redCenter, extraRot);
+                // 额外平移
+                pts = translatePoints(pts, extraTx, extraTy);
+                return pts;
+            }
+
+            function draw() {
+                ctx.clearRect(0,0,w,h);
+                drawGrid(ctx,w,h);
+                drawPolygon(ctx, bluePoints, '#2c5aa0', 'rgba(165,200,255,0.6)', ['A','B','C']);
+                const currentRed = getCurrentRed();
+                drawPolygon(ctx, currentRed, '#a03a2c', 'rgba(255,180,180,0.6)', ['D','E','F'], {x:5,y:-5});
+            }
+
+            sliders.tx.addEventListener('input', updateUI);
+            sliders.ty.addEventListener('input', updateUI);
+            sliders.rot.addEventListener('input', updateUI);
+
+            document.getElementById('reset2Btn').addEventListener('click', ()=>{
+                sliders.tx.value = 0;
+                sliders.ty.value = 0;
+                sliders.rot.value = 0;
+                extraReflectV = false;
+                extraReflectH = false;
+                updateUI();
+            });
+
+            document.getElementById('check2Btn').addEventListener('click', ()=>{
+                const currentRed = getCurrentRed();
+                if (checkCoincident(bluePoints, currentRed)) {
+                    document.getElementById('msg2').style.display = 'block';
+                } else {
+                    alert('还没有完全重合，试试反射按钮');
+                }
+            });
+
+            document.getElementById('reflectV2').addEventListener('click', ()=>{
+                extraReflectV = !extraReflectV;
+                updateUI();
+            });
+            document.getElementById('reflectH2').addEventListener('click', ()=>{
+                extraReflectH = !extraReflectH;
+                updateUI();
+            });
+
+            // 拖动蓝色顶点
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                return {
+                    x: (e.clientX - rect.left) * scaleX,
+                    y: (e.clientY - rect.top) * scaleY
+                };
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                const pos = getMousePos(e);
+                for (let i=0; i<bluePoints.length; i++) {
+                    const dx = pos.x - bluePoints[i].x;
+                    const dy = pos.y - bluePoints[i].y;
+                    if (dx*dx + dy*dy < 100) {
+                        dragPoint = i;
+                        dragIndex = i;
+                        canvas.style.cursor = 'grabbing';
+                        e.preventDefault();
+                        return;
+                    }
+                }
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (dragPoint === null) return;
+                const pos = getMousePos(e);
+                if (pos.x < 20 || pos.x > w-20 || pos.y < 20 || pos.y > h-20) return;
+                bluePoints[dragIndex] = pos;
+                draw();
+                document.getElementById('msg2').style.display = 'none';
+            });
+
+            canvas.addEventListener('mouseup', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+
+            updateUI();
+        })();
+
+        // ---------- 问题3: 四边形 (顶点可拖动) ----------
+        (function setupQ3() {
+            const canvas = document.getElementById('canvas3');
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+
+            // 蓝色四边形固定 (可拖动顶点)
+            let bluePoints = [
+                { x: 120, y: 200 },
+                { x: 200, y: 150 },
+                { x: 280, y: 220 },
+                { x: 180, y: 280 }
+            ];
+
+            // 基础变换：旋转30°并平移 (250,20)
+            const baseRot = 30;
+            const baseTx = 250;
+            const baseTy = 20;
+
+            // 额外变换参数
+            let extraTx = 0, extraTy = 0, extraRot = 0;
+            let extraReflectV = false, extraReflectH = false;
+
+            const sliders = {
+                tx: document.getElementById('tx3'),
+                ty: document.getElementById('ty3'),
+                rot: document.getElementById('rot3')
+            };
+            const vals = {
+                tx: document.getElementById('tx3Val'),
+                ty: document.getElementById('ty3Val'),
+                rot: document.getElementById('rot3Val')
+            };
+
+            function updateUI() {
+                extraTx = parseInt(sliders.tx.value);
+                extraTy = parseInt(sliders.ty.value);
+                extraRot = parseInt(sliders.rot.value);
+                vals.tx.textContent = extraTx;
+                vals.ty.textContent = extraTy;
+                vals.rot.textContent = extraRot + '°';
+                draw();
+                document.getElementById('msg3').style.display = 'none';
+            }
+
+            // 计算当前橙色顶点：
+            // 1. 对蓝色点应用基础旋转和平移得到中间点
+            // 2. 对中间点应用额外反射、旋转、平移
+            function getCurrentOrange() {
+                const blueCenter = computeCenter(bluePoints);
+                // 基础变换：旋转 baseRot 并平移 (baseTx, baseTy)
+                let pts = rotatePoints(bluePoints, blueCenter, baseRot);
+                pts = translatePoints(pts, baseTx, baseTy);
+                // 现在 pts 是经过基础变换的点，以其中心为基准进行额外变换
+                const currentCenter = computeCenter(pts);
+                // 额外反射
+                if (extraReflectV || extraReflectH) {
+                    pts = reflectPoints(pts, currentCenter, extraReflectV, extraReflectH);
+                }
+                // 额外旋转（关于当前中心）
+                pts = rotatePoints(pts, currentCenter, extraRot);
+                // 额外平移
+                pts = translatePoints(pts, extraTx, extraTy);
+                return pts;
+            }
+
+            function draw() {
+                ctx.clearRect(0,0,w,h);
+                drawGrid(ctx,w,h);
+                drawPolygon(ctx, bluePoints, '#2c5aa0', 'rgba(165,200,255,0.6)', ['A','B','C','D']);
+                const currentOrange = getCurrentOrange();
+                drawPolygon(ctx, currentOrange, '#b26b2c', 'rgba(255,213,165,0.6)', ['E','F','G','H'], {x:5,y:-8});
+            }
+
+            sliders.tx.addEventListener('input', updateUI);
+            sliders.ty.addEventListener('input', updateUI);
+            sliders.rot.addEventListener('input', updateUI);
+
+            document.getElementById('reset3Btn').addEventListener('click', ()=>{
+                sliders.tx.value = 0;
+                sliders.ty.value = 0;
+                sliders.rot.value = 0;
+                extraReflectV = false;
+                extraReflectH = false;
+                updateUI();
+            });
+
+            document.getElementById('check3Btn').addEventListener('click', ()=>{
+                const current = getCurrentOrange();
+                if (checkCoincident(bluePoints, current)) {
+                    document.getElementById('msg3').style.display = 'block';
+                } else {
+                    alert('没有完全重合，试试反射');
+                }
+            });
+
+            document.getElementById('reflectV3').addEventListener('click', ()=>{
+                extraReflectV = !extraReflectV;
+                updateUI();
+            });
+            document.getElementById('reflectH3').addEventListener('click', ()=>{
+                extraReflectH = !extraReflectH;
+                updateUI();
+            });
+
+            // 拖动蓝色顶点
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                return {
+                    x: (e.clientX - rect.left) * scaleX,
+                    y: (e.clientY - rect.top) * scaleY
+                };
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                const pos = getMousePos(e);
+                for (let i=0; i<bluePoints.length; i++) {
+                    const dx = pos.x - bluePoints[i].x;
+                    const dy = pos.y - bluePoints[i].y;
+                    if (dx*dx + dy*dy < 100) {
+                        dragPoint = i;
+                        dragIndex = i;
+                        canvas.style.cursor = 'grabbing';
+                        e.preventDefault();
+                        return;
+                    }
+                }
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (dragPoint === null) return;
+                const pos = getMousePos(e);
+                if (pos.x < 20 || pos.x > w-20 || pos.y < 20 || pos.y > h-20) return;
+                bluePoints[dragIndex] = pos;
+                draw();
+                document.getElementById('msg3').style.display = 'none';
+            });
+
+            canvas.addEventListener('mouseup', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                dragPoint = null;
+                canvas.style.cursor = 'crosshair';
+            });
+
+            updateUI();
+        })();
+
+    })();
+</script>
+</body>
+</html>

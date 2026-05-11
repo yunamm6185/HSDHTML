@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>华师版初中数学电子课本目录</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            background: #f5f9f0;
+            padding: 2rem 1.5rem;
+            color: #1e2a3e;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        /* ========= 标题区域（居中简约风格） ========= */
+        .header {
+            background: linear-gradient(135deg, #0f3b2c 0%, #1e6f3f 100%);
+            padding: 2.8rem 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .header::before {
+            content: "📐";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120px;
+            opacity: 0.06;
+            pointer-events: none;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .header .sub {
+            font-size: 1rem;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+        /* ========= 内容区域 ========= */
+        .content {
+            padding: 1.8rem 2rem 2.5rem;
+        }
+        .chapter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .chapter-item {
+            background: #fbfef9;
+            border-radius: 28px;
+            border: 1px solid #e2edda;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        .chapter-item:hover {
+            border-color: #bdd4aa;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .chapter-header {
+            background: #f8fff4;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #1e4620;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .chapter-header:hover {
+            background: #efffdf;
+        }
+        .chapter-name {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .folder-icon {
+            font-size: 1.4rem;
+        }
+        .toggle-icon {
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+            color: #6b8c5c;
+        }
+        .file-list {
+            padding: 0.5rem 1rem 1rem 3rem;
+            border-top: 1px solid #e5f0dc;
+            background: #ffffff;
+            display: none;
+        }
+        .file-list.open {
+            display: block;
+        }
+        .file-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .file-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.7rem 1rem;
+            background: #fafef7;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #2c5e2a;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid #e2f0da;
+        }
+        .file-link:hover {
+            background: #ecfae3;
+            border-color: #a8cf8a;
+            transform: translateX(5px);
+            color: #1b4c1a;
+        }
+        .file-icon {
+            font-size: 1.25rem;
+        }
+        .file-name {
+            font-size: 0.98rem;
+            word-break: break-word;
+        }
+        .empty-tip {
+            padding: 1rem 0;
+            color: #8ba07a;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        /* ========= 页脚区域（重新设计） ========= */
+        .footer {
+            background: #f3f9ef;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-top: 1px solid #e0edcf;
+            font-size: 0.75rem;
+            color: #6f8664;
+            line-height: 1.5;
+        }
+        .footer .footer-main {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .footer .footer-main span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .footer .copyright {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            border-top: 1px dashed #d0e2c0;
+            padding-top: 8px;
+            margin-top: 6px;
+        }
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .header {
+                padding: 2rem 1rem;
+            }
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .header .sub {
+                font-size: 0.85rem;
+            }
+            .content {
+                padding: 1.2rem;
+            }
+            .chapter-header {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+            .file-list {
+                padding-left: 1.5rem;
+            }
+            .footer {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>华师版初中数学</h1>
+        <div class="sub">新版教材 · HTML互动课件</div>
+    </div>
+    <div class="content">
+        <div class="chapter-list" id="chapterList"></div>
+    </div>
+    <div class="footer">
+        <div class="footer-main">
+            <span>📖 本目录已静态生成</span>
+            <span>🔍 点击章节展开课件列表</span>
+            <span>📁 支持子文件夹中的课件</span>
+        </div>
+        <div class="copyright">
+            © 2025 华师版初中数学电子课件 · 整理制作：孙起孟老师
+        </div>
+    </div>
+</div>
+
+<script>
+    const chapterData = [{"name": "第01章有理数", "files": [{"name": "1.1.1正数和负数", "file": "第01章有理数/1.1.1正数和负数.html"}, {"name": "1.1.2有理数", "file": "第01章有理数/1.1.2有理数.html"}, {"name": "1.2.1数轴", "file": "第01章有理数/1.2.1数轴.html"}, {"name": "1.2.2在数轴上比较数的大小", "file": "第01章有理数/1.2.2在数轴上比较数的大小.html"}, {"name": "1.3相反数", "file": "第01章有理数/1.3相反数.html"}, {"name": "1.4绝对值", "file": "第01章有理数/1.4绝对值.html"}, {"name": "1.5有理数的大小比较", "file": "第01章有理数/1.5有理数的大小比较.html"}, {"name": "1.6.1有理数的加法和加法法则", "file": "第01章有理数/1.6.1有理数的加法和加法法则.html"}, {"name": "1.6.2加法运算律", "file": "第01章有理数/1.6.2加法运算律.html"}, {"name": "1.7有理数的减法", "file": "第01章有理数/1.7有理数的减法.html"}, {"name": "1.8.1加减法统一成加法", "file": "第01章有理数/1.8.1加减法统一成加法.html"}, {"name": "1.8.2加法运算律在加减混合运算中的应用", "file": "第01章有理数/1.8.2加法运算律在加减混合运算中的应用.html"}, {"name": "1.9.1有理数的乘法法则", "file": "第01章有理数/1.9.1有理数的乘法法则.html"}, {"name": "1.9.2有理数的乘法交换律和结合律", "file": "第01章有理数/1.9.2有理数的乘法交换律和结合律.html"}, {"name": "1.9.3有理数的乘法分配律", "file": "第01章有理数/1.9.3有理数的乘法分配律.html"}, {"name": "1.10有理数的除法", "file": "第01章有理数/1.10有理数的除法.html"}, {"name": "1.11.1有理数的乘方", "file": "第01章有理数/1.11.1有理数的乘方.html"}, {"name": "1.11.2科学计数法", "file": "第01章有理数/1.11.2科学计数法.html"}, {"name": "1.12.1有理数的混合运算顺序", "file": "第01章有理数/1.12.1有理数的混合运算顺序.html"}, {"name": "1.12.2有理数的混合运算运用运算律", "file": "第01章有理数/1.12.2有理数的混合运算运用运算律.html"}, {"name": "1.13近似数", "file": "第01章有理数/1.13近似数.html"}, {"name": "1.15第1章复习", "file": "第01章有理数/1.15第1章复习.html"}, {"name": "1.16数学活动_无限循环小数能化为分数吗", "file": "第01章有理数/1.16数学活动_无限循环小数能化为分数吗.html"}]}, {"name": "第02章整式及其加减", "files": [{"name": "2.1.1用字母表示数", "file": "第02章整式及其加减/2.1.1用字母表示数.html"}, {"name": "2.1.2代数式", "file": "第02章整式及其加减/2.1.2代数式.html"}, {"name": "2.1.3列代数式", "file": "第02章整式及其加减/2.1.3列代数式.html"}, {"name": "2.2代数式的值", "file": "第02章整式及其加减/2.2代数式的值.html"}, {"name": "2.3.1单项式", "file": "第02章整式及其加减/2.3.1单项式.html"}, {"name": "2.3.2多项式", "file": "第02章整式及其加减/2.3.2多项式.html"}, {"name": "2.3.3升幂排列与降幂排列", "file": "第02章整式及其加减/2.3.3升幂排列与降幂排列.html"}, {"name": "2.4.1同类项", "file": "第02章整式及其加减/2.4.1同类项.html"}, {"name": "2.4.2合并同类项", "file": "第02章整式及其加减/2.4.2合并同类项.html"}, {"name": "2.4.3.1去括号", "file": "第02章整式及其加减/2.4.3.1去括号.html"}, {"name": "2.4.3.2添括号", "file": "第02章整式及其加减/2.4.3.2添括号.html"}, {"name": "2.4.4整式的加减", "file": "第02章整式及其加减/2.4.4整式的加减.html"}, {"name": "2.5数学活动_居民身份证号码和学籍号", "file": "第02章整式及其加减/2.5数学活动_居民身份证号码和学籍号.html"}, {"name": "2.6第2章复习", "file": "第02章整式及其加减/2.6第2章复习.html"}]}, {"name": "第03章图形的初步认识", "files": [{"name": "3.1生活中的立体图形", "file": "第03章图形的初步认识/3.1生活中的立体图形/3.1生活中的立体图形.html"}, {"name": "3.2.1.1投影", "file": "第03章图形的初步认识/3.2.1.1投影/3.2.1.1投影.html"}, {"name": "3.2.1.2三视图", "file": "第03章图形的初步认识/3.2.1.2三视图/3.2.1.2三视图.html"}, {"name": "3.2.2从视图到立体图形", "file": "第03章图形的初步认识/3.2.2由视图到立体图形/3.2.2从视图到立体图形.html"}, {"name": "3.3 立体图形的表面展开图", "file": "第03章图形的初步认识/3.3 立体图形的表面展开图/3.3 立体图形的表面展开图.html"}, {"name": "3.4平面图形", "file": "第03章图形的初步认识/3.4平面图形/3.4平面图形.html"}, {"name": "3.5.1点和线", "file": "第03章图形的初步认识/3.5.1点和线/3.5.1点和线.html"}, {"name": "3.5.2线段的长短比较", "file": "第03章图形的初步认识/3.5.2线段的长短比较/3.5.2线段的长短比较.html"}, {"name": "3.6.1角", "file": "第03章图形的初步认识/3.6.1角/3.6.1角.html"}, {"name": "3.6.2角的比较和运算", "file": "第03章图形的初步认识/3.6.2角的比较和运算/3.6.2角的比较和运算.html"}, {"name": "3.6.3余角和补角", "file": "第03章图形的初步认识/3.6.3余角和补角/3.6.3余角和补角.html"}, {"name": "3.7数学活动_制作包装盒", "file": "第03章图形的初步认识/3.7数学活动_制作包装盒/3.7数学活动_制作包装盒.html"}, {"name": "3.8第3章复习", "file": "第03章图形的初步认识/3.8第3章复习/3.8第3章复习.html"}, {"name": "3.9多个正方体的三视图", "file": "第03章图形的初步认识/3.9多个正方体的三视图/3.9多个正方体的三视图.html"}, {"name": "三视图生成立体图形", "file": "第03章图形的初步认识/3.2.2由视图到立体图形/三视图生成立体图形.html"}, {"name": "多个正方体的三视图", "file": "第03章图形的初步认识/3.8第3章复习/多个正方体的三视图.html"}, {"name": "正方体的展开与折叠（进阶版）", "file": "第03章图形的初步认识/3.3 立体图形的表面展开图/正方体的展开与折叠（进阶版）.html"}]}, {"name": "第04章相交线与平行线", "files": [{"name": "4.1.1对顶角", "file": "第04章相交线与平行线/4.1.1对顶角/4.1.1对顶角.html"}, {"name": "4.1.2垂线", "file": "第04章相交线与平行线/4.1.2垂线/4.1.2垂线.html"}, {"name": "4.1.3同位角、内错角、同旁内角", "file": "第04章相交线与平行线/4.1.3同位角、内错角、同旁内角/4.1.3同位角、内错角、同旁内角.html"}, {"name": "4.2.1平行线", "file": "第04章相交线与平行线/4.2.1平行线/4.2.1平行线.html"}, {"name": "4.2.2平行线的判定", "file": "第04章相交线与平行线/4.2.2平行线的判定/4.2.2平行线的判定.html"}, {"name": "4.2.3平行线的性质", "file": "第04章相交线与平行线/4.2.3平行线的性质/4.2.3平行线的性质.html"}, {"name": "4.3第4章复习", "file": "第04章相交线与平行线/4.3第4章复习/4.3第4章复习.html"}]}, {"name": "第05章一元一次方程", "files": [{"name": "5.1从实际问题到方程", "file": "第05章一元一次方程/5.1从实际问题到方程.html"}, {"name": "5.2.1.1等式的基本性质", "file": "第05章一元一次方程/5.2.1.1等式的基本性质/5.2.1.1等式的基本性质.html"}, {"name": "5.2.1.2方程的变形规则", "file": "第05章一元一次方程/5.2.1.2方程的变形规则.html"}, {"name": "5.2.1.3利用方程的变形解简单的一元一次方程", "file": "第05章一元一次方程/5.2.1.3利用方程的变形解简单的一元一次方程.html"}, {"name": "5.2.2.1一元一次方程的概念及解带有括号的一元一次方程", "file": "第05章一元一次方程/5.2.2.1一元一次方程的概念及解带有括号的一元一次方程.html"}, {"name": "5.2.2.2解带有分母的一元一次方程", "file": "第05章一元一次方程/5.2.2.2解带有分母的一元一次方程.html"}, {"name": "5.2.2.3列一元一次方程解决实际问题", "file": "第05章一元一次方程/5.2.2.3列一元一次方程解决实际问题.html"}, {"name": "5.3.1实践与探索之周长与面积问题", "file": "第05章一元一次方程/5.3.1实践与探索之周长与面积问题.html"}, {"name": "5.3.2实践与探索之分数与百分比问题", "file": "第05章一元一次方程/5.3.2实践与探索之分数与百分比问题.html"}, {"name": "5.3.3实践与探索之工程问题", "file": "第05章一元一次方程/5.3.3实践与探索之工程问题.html"}, {"name": "5.4数学活动 自己动手做一根杆秤", "file": "第05章一元一次方程/5.4数学活动 自己动手做一根杆秤/5.4数学活动 自己动手做一根杆秤.html"}, {"name": "5.5第5章复习", "file": "第05章一元一次方程/5.5第5章复习.html"}]}, {"name": "第06章一次方程组", "files": [{"name": "6.1二元一次方程组和它的解", "file": "第06章一次方程组/6.1二元一次方程组和它的解/6.1二元一次方程组和它的解.html"}, {"name": "6.2.1代入法1", "file": "第06章一次方程组/6.2.1代入法1.html"}, {"name": "6.2.2代入法（系数不为1及整体代入）", "file": "第06章一次方程组/6.2.2代入法（系数不为1及整体代入）.html"}, {"name": "6.2.3加减法（系数相同或互为相反数）", "file": "第06章一次方程组/6.2.3加减法（系数相同或互为相反数）.html"}, {"name": "6.2.4加减法（一般系数的方程组）", "file": "第06章一次方程组/6.2.4加减法（一般系数的方程组）.html"}, {"name": "6.2.5列二元一次方程组解决实际问题", "file": "第06章一次方程组/6.2.5列二元一次方程组解决实际问题.html"}, {"name": "6.3.1代入法解三元一次方程组", "file": "第06章一次方程组/6.3.1代入法解三元一次方程组.html"}, {"name": "6.3.2加减法解三元一次方程组", "file": "第06章一次方程组/6.3.2加减法解三元一次方程组.html"}, {"name": "6.4实践与探索", "file": "第06章一次方程组/6.4实践与探索.html"}, {"name": "6.5数学活动_升级版的消元法", "file": "第06章一次方程组/6.5数学活动_升级版的消元法.html"}, {"name": "6.6第6章复习", "file": "第06章一次方程组/6.6第6章复习.html"}]}, {"name": "第07章一元一次不等式", "files": [{"name": "7.1.1不等式", "file": "第07章一元一次不等式/7.1.1不等式.html"}, {"name": "7.1.2不等式的解集", "file": "第07章一元一次不等式/7.1.2不等式的解集.html"}, {"name": "7.2.1不等式的基本性质", "file": "第07章一元一次不等式/7.2.1不等式的基本性质/7.2.1不等式的基本性质.html"}, {"name": "7.3.1解一元一次不等式", "file": "第07章一元一次不等式/7.3.1解一元一次不等式.html"}, {"name": "7.3.2利用一元一次不等式解决实际问题", "file": "第07章一元一次不等式/7.3.2利用一元一次不等式解决实际问题.html"}, {"name": "7.4解一元一次不等式组", "file": "第07章一元一次不等式/7.4解一元一次不等式组/7.4解一元一次不等式组.html"}, {"name": "7.5数学活动_球赛出现问题", "file": "第07章一元一次不等式/7.5数学活动_球赛出现问题.html"}, {"name": "7.6第7章复习", "file": "第07章一元一次不等式/7.6第7章复习.html"}, {"name": "数轴的sgv", "file": "第07章一元一次不等式/数轴的sgv.html"}]}, {"name": "第08章三角形", "files": [{"name": "8.1.1认识三角形", "file": "第08章三角形/8.1.1认识三角形/8.1.1认识三角形.html"}, {"name": "8.1.2三角形的内角和与外角和", "file": "第08章三角形/8.1.2三角形的内角和与外角和/8.1.2三角形的内角和与外角和.html"}, {"name": "8.1.3三角形的三边关系", "file": "第08章三角形/8.1.3三角形的三边关系/8.1.3三角形的三边关系.html"}, {"name": "8.2.1多边形的内角和", "file": "第08章三角形/8.2.1多边形的内角和/8.2.1多边形的内角和.html"}, {"name": "8.2.2多边形的外角和", "file": "第08章三角形/8.2.2多边形的外角和/8.2.2多边形的外角和.html"}, {"name": "8.3.1用相同的正多边形铺设地面", "file": "第08章三角形/8.3.1用相同的正多边形铺设地面/8.3.1用相同的正多边形铺设地面.html"}, {"name": "8.3.2用多种正多边形铺设地面", "file": "第08章三角形/8.3.2用多种正多边形铺设地面/8.3.2用多种正多边形铺设地面.html"}, {"name": "8.4数学活动_寻找能铺满平面的任意多边形", "file": "第08章三角形/8.4数学活动_寻找能铺满平面的任意多边形/8.4数学活动_寻找能铺满平面的任意多边形.html"}, {"name": "8.5第8章复习", "file": "第08章三角形/8.5第8章复习/8.5第8章复习.html"}, {"name": "正多边形密铺地板模拟器", "file": "第08章三角形/正多边形密铺地板模拟器.html"}, {"name": "自由形状多边形密铺模拟器", "file": "第08章三角形/自由形状多边形密铺模拟器.html"}]}, {"name": "第09章轴对称、平移和旋转", "files": [{"name": "9.1.1生活中的轴对称", "file": "第09章轴对称、平移和旋转/9.1.1生活中的轴对称/9.1.1生活中的轴对称.html"}, {"name": "9.1.2轴对称的再认识", "file": "第09章轴对称、平移和旋转/9.1.2轴对称的再认识/9.1.2轴对称的再认识.html"}, {"name": "9.1.3作轴对称图形", "file": "第09章轴对称、平移和旋转/9.1.3作轴对称图形/9.1.3作轴对称图形.html"}, {"name": "9.1.4设计轴对称图案", "file": "第09章轴对称、平移和旋转/9.1.4设计轴对称图案/9.1.4设计轴对称图案.html"}, {"name": "9.2.1图形的平移", "file": "第09章轴对称、平移和旋转/9.2.1图形的平移/9.2.1图形的平移.html"}, {"name": "9.2.2平移的特征", "file": "第09章轴对称、平移和旋转/9.2.2平移的特征/9.2.2平移的特征.html"}, {"name": "9.3.1图形的旋转", "file": "第09章轴对称、平移和旋转/9.3.1图形的旋转/9.3.1图形的旋转.html"}, {"name": "9.3.2旋转的特征", "file": "第09章轴对称、平移和旋转/9.3.2旋转的特征/9.3.2旋转的特征.html"}, {"name": "9.3.3旋转对称图形", "file": "第09章轴对称、平移和旋转/9.3.3旋转对称图形/9.3.3旋转对称图形.html"}, {"name": "9.4.1中心对称（概念与性质）", "file": "第09章轴对称、平移和旋转/9.4.1中心对称（概念与性质）/9.4.1中心对称（概念与性质）.html"}, {"name": "9.4.2中心对称（应用与作图）", "file": "第09章轴对称、平移和旋转/9.4.2中心对称的应用（应用与作图）/9.4.2中心对称（应用与作图）.html"}, {"name": "9.5图形的全等", "file": "第09章轴对称、平移和旋转/9.5图形的全等/9.5图形的全等.html"}, {"name": "9.6数学活动：探索全等的图形", "file": "第09章轴对称、平移和旋转/9.6数学活动：探索全等的图形.html"}, {"name": "9.7第9章复习", "file": "第09章轴对称、平移和旋转/9.7第9章复习.html"}, {"name": "图形的平移", "file": "第09章轴对称、平移和旋转/图形的平移.html"}, {"name": "旋转三角形_自定义角度", "file": "第09章轴对称、平移和旋转/旋转三角形_自定义角度.html"}]}, {"name": "第10章数的开方", "files": [{"name": "10.1.1平方根", "file": "第10章数的开方/10.1.1平方根.html"}, {"name": "10.1.2立方根", "file": "第10章数的开方/10.1.2立方根.html"}, {"name": "10.2实数", "file": "第10章数的开方/10.2实数/10.2实数.html"}, {"name": "10.3数学活动_探寻纸张规格的秘密", "file": "第10章数的开方/10.3数学活动_探寻纸张规格的秘密.html"}, {"name": "10.4第10章复习", "file": "第10章数的开方/10.4第10章复习.html"}]}, {"name": "第11章整式的乘除", "files": [{"name": "11.1.1同底数幂的乘法", "file": "第11章整式的乘除/11.1.1同底数幂的乘法.html"}, {"name": "11.1.2幂的乘方", "file": "第11章整式的乘除/11.1.2幂的乘方.html"}, {"name": "11.1.3积的乘方", "file": "第11章整式的乘除/11.1.3积的乘方.html"}, {"name": "11.1.4同底数幂的除法", "file": "第11章整式的乘除/11.1.4同底数幂的除法.html"}, {"name": "11.2.1单项式与单项式相乘", "file": "第11章整式的乘除/11.2.1单项式与单项式相乘.html"}, {"name": "11.2.2单项式与多项式相乘", "file": "第11章整式的乘除/11.2.2单项式与多项式相乘.html"}, {"name": "11.2.3多项式与多项式相乘", "file": "第11章整式的乘除/11.2.3多项式与多项式相乘.html"}, {"name": "11.3.1两数和乘以这两数的差", "file": "第11章整式的乘除/11.3.1两数和乘以这两数的差.html"}, {"name": "11.3.2两数和(差)的平方", "file": "第11章整式的乘除/11.3.2两数和(差)的平方.html"}, {"name": "11.4.1单项式除以单项式", "file": "第11章整式的乘除/11.4.1单项式除以单项式.html"}, {"name": "11.4.2多项式除以单项式", "file": "第11章整式的乘除/11.4.2多项式除以单项式.html"}, {"name": "11.5.1因式分解", "file": "第11章整式的乘除/11.5.1因式分解.html"}, {"name": "11.5.2十字相乘法", "file": "第11章整式的乘除/11.5.2十字相乘法.html"}, {"name": "11.6数学活动_面积与恒等式", "file": "第11章整式的乘除/11.6数学活动_面积与恒等式.html"}, {"name": "11.7第11章复习", "file": "第11章整式的乘除/11.7第11章复习.html"}]}, {"name": "第12章全等三角形", "files": [{"name": "12.1.1命题", "file": "第12章全等三角形/12.1.1命题.html"}, {"name": "12.1.2定义、定理与证明", "file": "第12章全等三角形/12.1.2定义、定理与证明.html"}, {"name": "12.2.1全等三角形的判定条件", "file": "第12章全等三角形/12.2.1全等三角形的判定条件.html"}, {"name": "12.2.2边角边", "file": "第12章全等三角形/12.2.2边角边/12.2.2边角边.html"}, {"name": "12.2.3.1角边角（1）", "file": "第12章全等三角形/12.2.3.1角边角（1）/12.2.3.1角边角（1）.html"}, {"name": "12.2.3.2角边角（2）", "file": "第12章全等三角形/12.2.3.2角边角（2）/12.2.3.2角边角（2）.html"}, {"name": "12.2.4边边边", "file": "第12章全等三角形/12.2.4边边边/12.2.4边边边.html"}, {"name": "12.2.5斜边直角边", "file": "第12章全等三角形/12.2.5斜边直角边/12.2.5斜边直角边.html"}, {"name": "12.3.1等腰三角形的性质", "file": "第12章全等三角形/12.3.1等腰三角形的性质/12.3.1等腰三角形的性质.html"}, {"name": "12.3.2等腰三角形的判定", "file": "第12章全等三角形/12.3.2等腰三角形的判定/12.3.2等腰三角形的判定.html"}, {"name": "12.4.1互逆命题和互逆定理", "file": "第12章全等三角形/12.4.1互逆命题和互逆定理.html"}, {"name": "12.4.2线段垂直平分线", "file": "第12章全等三角形/12.4.2线段垂直平分线/12.4.2线段垂直平分线.html"}, {"name": "12.4.3角平分线", "file": "第12章全等三角形/12.4.3角平分线/12.4.3角平分线.html"}, {"name": "12.5数学活动_三角形全等的判断", "file": "第12章全等三角形/12.5数学活动_三角形全等的判断.html"}, {"name": "12.6第12章复习", "file": "第12章全等三角形/12.6第12章复习/12.6第12章复习.html"}, {"name": "三角形全等ASA_AAS学习", "file": "第12章全等三角形/三角形全等ASA_AAS学习.html"}]}, {"name": "第13章勾股定理", "files": [{"name": "13.1.1.1直角三角形三边的关系第一课时", "file": "第13章勾股定理/13.1.1.1直角三角形三边的关系第一课时/13.1.1.1直角三角形三边的关系第一课时.html"}, {"name": "13.1.1.2直角三角形三边的关系第二课时", "file": "第13章勾股定理/13.1.1.2直角三角形三边的关系第二课时/13.1.1.2直角三角形三边的关系第二课时.html"}, {"name": "13.1.2直角三角形的判定", "file": "第13章勾股定理/13.1.2直角三角形的判定/13.1.2直角三角形的判定.html"}, {"name": "13.1.3反证法", "file": "第13章勾股定理/13.1.3反证法/13.1.3反证法.html"}, {"name": "13.2.1勾股定理的应用第一课时", "file": "第13章勾股定理/13.2.1勾股定理的应用第一课时/13.2.1勾股定理的应用第一课时.html"}, {"name": "13.2.2勾股定理的应用第二课时", "file": "第13章勾股定理/13.2.2勾股定理的应用第二课时/13.2.2勾股定理的应用第二课时.html"}, {"name": "13.3数学活动探索勾股定理的无字证明", "file": "第13章勾股定理/13.3数学活动探索勾股定理的无字证明/13.3数学活动探索勾股定理的无字证明.html"}, {"name": "13.4第13章复习", "file": "第13章勾股定理/13.4第13章复习/13.4第13章复习.html"}]}, {"name": "第14章数据的收集与表示", "files": [{"name": "14.1.1数据有用吗", "file": "第14章数据的收集与表示/14.1数据的收集/14.1.1数据有用吗.html"}, {"name": "14.1.2亲自调查获取一手数据", "file": "第14章数据的收集与表示/14.1数据的收集/14.1.2亲自调查获取一手数据.html"}, {"name": "14.1.3检索文献获取二手数据", "file": "第14章数据的收集与表示/14.1数据的收集/14.1.3检索文献获取二手数据.html"}, {"name": "14.2.1频数分布直方图", "file": "第14章数据的收集与表示/14.2数据的表示/14.2.1频数分布直方图.html"}, {"name": "14.2.2扇形统计图", "file": "第14章数据的收集与表示/14.2数据的表示/14.2.2扇形统计图.html"}, {"name": "14.2.3容易误导读者的统计图", "file": "第14章数据的收集与表示/14.2数据的表示/14.2.3容易误导读者的统计图.html"}, {"name": "14.3第14章复习", "file": "第14章数据的收集与表示/14.3第14章复习/14.3第14章复习.html"}]}, {"name": "第15章分式", "files": [{"name": "15.1.1 分式的概念", "file": "第15章分式/15.1分式及其基本性质/15.1.1 分式的概念.html"}, {"name": "15.1.2 分式的基本性质", "file": "第15章分式/15.1分式及其基本性质/15.1.2 分式的基本性质.html"}, {"name": "15.2.1 分式的乘除法", "file": "第15章分式/15.2分式的运算/15.2.1 分式的乘除法.html"}, {"name": "15.2.2 分式的加减法", "file": "第15章分式/15.2分式的运算/15.2.2 分式的加减法.html"}, {"name": "15.3 分式方程的概念和解法", "file": "第15章分式/15.3分式方程/15.3 分式方程的概念和解法.html"}, {"name": "15.4.1 零指数幂与负整数指数幂", "file": "第15章分式/15.4零指数幂与负整数指数幂/15.4.1 零指数幂与负整数指数幂.html"}, {"name": "15.4.2 科学记数法", "file": "第15章分式/15.4零指数幂与负整数指数幂/15.4.2 科学记数法.html"}, {"name": "15.5 数学活动", "file": "第15章分式/15.5数学活动/15.5 数学活动.html"}, {"name": "15.6 第15章复习", "file": "第15章分式/15.6第15章复习/15.6 第15章复习.html"}]}, {"name": "第16章函数及其图象", "files": [{"name": "16.1.1 变量与函数第一课时", "file": "第16章函数及其图象/16.1变量与函数/16.1.1 变量与函数第一课时.html"}, {"name": "16.1.2 变量与函数第二课时", "file": "第16章函数及其图象/16.1变量与函数/16.1.2 变量与函数第二课时.html"}, {"name": "16.2.1 平面直角坐标系", "file": "第16章函数及其图象/16.2平面直角坐标系/16.2.1 平面直角坐标系.html"}, {"name": "16.2.2.1 函数的图象第一课时", "file": "第16章函数及其图象/16.2平面直角坐标系/16.2.2.1 函数的图象第一课时.html"}, {"name": "16.2.2.2 函数的图象第二课时", "file": "第16章函数及其图象/16.2平面直角坐标系/16.2.2.2 函数的图象第二课时.html"}, {"name": "16.3.1 一次函数", "file": "第16章函数及其图象/16.3一次函数/16.3.1 一次函数.html"}, {"name": "16.3.2.1 一次函数的图象第一课时", "file": "第16章函数及其图象/16.3一次函数/16.3.2.1 一次函数的图象第一课时.html"}, {"name": "16.3.2.2 一次函数的图象第二课时", "file": "第16章函数及其图象/16.3一次函数/16.3.2.2 一次函数的图象第二课时.html"}, {"name": "16.3.3 一次函数的性质", "file": "第16章函数及其图象/16.3一次函数/16.3.3 一次函数的性质.html"}, {"name": "16.3.4 求一次函数的表达式", "file": "第16章函数及其图象/16.3一次函数/16.3.4 求一次函数的表达式.html"}, {"name": "16.4.1 反比例函数", "file": "第16章函数及其图象/16.4反比例函数/16.4.1 反比例函数.html"}, {"name": "16.4.2 反比例函数的图象和性质", "file": "第16章函数及其图象/16.4反比例函数/16.4.2 反比例函数的图象和性质.html"}, {"name": "16.5.1 实践与探索第一课时", "file": "第16章函数及其图象/16.5实践与探索/16.5.1 实践与探索第一课时.html"}, {"name": "16.5.2 实践与探索第二课时", "file": "第16章函数及其图象/16.5实践与探索/16.5.2 实践与探索第二课时.html"}, {"name": "16.5.3 实践与探索第三课时", "file": "第16章函数及其图象/16.5实践与探索/16.5.3 实践与探索第三课时.html"}, {"name": "16.6 数学活动探索函数增减性的证明", "file": "第16章函数及其图象/数学活动/16.6 数学活动探索函数增减性的证明.html"}, {"name": "16.7 第16章复习", "file": "第16章函数及其图象/第16章复习/16.7 第16章复习.html"}]}, {"name": "第17章平行四边形", "files": [{"name": "17.1.1 平行四边形的性质第一课时", "file": "第17章平行四边形/17.1平行四边形的性质/17.1.1 平行四边形的性质第一课时.html"}, {"name": "17.1.2 平行四边形的性质第二课时", "file": "第17章平行四边形/17.1平行四边形的性质/17.1.2 平行四边形的性质第二课时.html"}, {"name": "17.1.3 平行四边形的性质第三课时", "file": "第17章平行四边形/17.1平行四边形的性质/17.1.3 平行四边形的性质第三课时.html"}, {"name": "17.1.4 平行四边形的性质第四课时", "file": "第17章平行四边形/17.1平行四边形的性质/17.1.4 平行四边形的性质第四课时.html"}, {"name": "17.2.1 平行四边形的判定第一课时", "file": "第17章平行四边形/17.2平行四边形的判定/17.2.1 平行四边形的判定第一课时.html"}, {"name": "17.2.2 平行四边形的判定第二课时", "file": "第17章平行四边形/17.2平行四边形的判定/17.2.2 平行四边形的判定第二课时.html"}, {"name": "17.2.3 平行四边形的判定第三课时", "file": "第17章平行四边形/17.2平行四边形的判定/17.2.3 平行四边形的判定第三课时.html"}, {"name": "17.2.4 平行四边形的判定第四课时", "file": "第17章平行四边形/17.2平行四边形的判定/17.2.4 平行四边形的判定第四课时.html"}, {"name": "17.2.5 平行四边形的判定第五课时", "file": "第17章平行四边形/17.2平行四边形的判定/17.2.5 平行四边形的判定第五课时.html"}, {"name": "17.3 数学活动图形的等分", "file": "第17章平行四边形/17.3数学活动/17.3 数学活动图形的等分.html"}, {"name": "17.4 第17章复习", "file": "第17章平行四边形/17.4第17章复习/17.4 第17章复习.html"}]}, {"name": "第18章矩形、菱形与正方形", "files": [{"name": "18.1.1.1 矩形的性质(第一课时)", "file": "第18章矩形、菱形与正方形/18.1.1.1 矩形的性质(第一课时)/18.1.1.1 矩形的性质(第一课时).html"}, {"name": "18.1.1.2 矩形的性质(第二课时)", "file": "第18章矩形、菱形与正方形/18.1.1.2 矩形的性质(第二课时)/18.1.1.2 矩形的性质(第二课时).html"}, {"name": "18.1.2.1 矩形的判定(第一课时)", "file": "第18章矩形、菱形与正方形/18.1.2.1 矩形的判定(第一课时)/18.1.2.1 矩形的判定(第一课时).html"}, {"name": "18.1.2.2 矩形的判定(第二课时)", "file": "第18章矩形、菱形与正方形/18.1.2.2 矩形的判定(第二课时)/18.1.2.2 矩形的判定(第二课时).html"}, {"name": "18.1.2.3 矩形的判定(第三课时)", "file": "第18章矩形、菱形与正方形/18.1.2.3 矩形的判定(第三课时)/18.1.2.3 矩形的判定(第三课时).html"}, {"name": "18.2.1.1 菱形的性质(第一课时)", "file": "第18章矩形、菱形与正方形/18.2.1.1 菱形的性质(第一课时)/18.2.1.1 菱形的性质(第一课时).html"}, {"name": "18.2.1.2 菱形的性质(第二课时)", "file": "第18章矩形、菱形与正方形/18.2.1.2 菱形的性质(第二课时)/18.2.1.2 菱形的性质(第二课时).html"}, {"name": "18.2.2.1 菱形的判定(第一课时)", "file": "第18章矩形、菱形与正方形/18.2.2.1 菱形的判定(第一课时)/18.2.2.1 菱形的判定(第一课时).html"}, {"name": "18.2.2.2 菱形的判定(第二课时)", "file": "第18章矩形、菱形与正方形/18.2.2.2 菱形的判定(第二课时)/18.2.2.2 菱形的判定(第二课时).html"}, {"name": "18.3 正方形", "file": "第18章矩形、菱形与正方形/18.3 正方形/18.3 正方形.html"}, {"name": "18.4 数学活动", "file": "第18章矩形、菱形与正方形/18.4 数学活动/18.4 数学活动.html"}, {"name": "18.5 第18章复习", "file": "第18章矩形、菱形与正方形/18.5 第18章复习/18.5 第18章复习.html"}]}, {"name": "第19章数据的分析", "files": [{"name": "19.1.1 平均数的意义", "file": "第19章数据的分析/19.1数据的集中趋势/19.1.1 平均数的意义.html"}, {"name": "19.1.2 加权平均数", "file": "第19章数据的分析/19.1数据的集中趋势/19.1.2 加权平均数.html"}, {"name": "19.1.3 中位数和众数", "file": "第19章数据的分析/19.1数据的集中趋势/19.1.3 中位数和众数.html"}, {"name": "19.1.4 平均数、中位数和众数的选用", "file": "第19章数据的分析/19.1数据的集中趋势/19.1.4 平均数、中位数和众数的选用.html"}, {"name": "19.2 方差", "file": "第19章数据的分析/19.2数据的离散程度/19.2 方差.html"}, {"name": "19.3.1 借助箱线图描述数据的分布", "file": "第19章数据的分析/19.3借助箱线图描述数据的分布/19.3.1 借助箱线图描述数据的分布.html"}, {"name": "19.3.2 借助箱线图描述数据的分布", "file": "第19章数据的分析/19.3借助箱线图描述数据的分布/19.3.2 借助箱线图描述数据的分布.html"}, {"name": "19.4第19章复习", "file": "第19章数据的分析/第19章复习/19.4第19章复习.html"}, {"name": "数据的集中趋势和离散程度", "file": "第19章数据的分析/数据的集中趋势和离散程度.html"}]}];
+
+    function buildCatalog() {
+        const container = document.getElementById('chapterList');
+        if (!chapterData.length) {
+            container.innerHTML = '<div class="empty-tip">未找到任何符合“第X章”格式的文件夹。</div>';
+            return;
+        }
+
+        for (const chapter of chapterData) {
+            const chapterDiv = document.createElement('div');
+            chapterDiv.className = 'chapter-item';
+
+            const header = document.createElement('div');
+            header.className = 'chapter-header';
+            const nameSpan = document.createElement('div');
+            nameSpan.className = 'chapter-name';
+            nameSpan.innerHTML = `<span class="folder-icon">📁</span> <span>${escapeHtml(chapter.name)}</span>`;
+            const toggleSpan = document.createElement('span');
+            toggleSpan.className = 'toggle-icon';
+            toggleSpan.innerHTML = '▶';
+            header.appendChild(nameSpan);
+            header.appendChild(toggleSpan);
+
+            const fileListDiv = document.createElement('div');
+            fileListDiv.className = 'file-list';
+
+            if (chapter.files.length === 0) {
+                const emptyMsg = document.createElement('div');
+                emptyMsg.className = 'empty-tip';
+                emptyMsg.innerHTML = '📭 该章节暂无 .html 课件文件';
+                fileListDiv.appendChild(emptyMsg);
+            } else {
+                const grid = document.createElement('div');
+                grid.className = 'file-grid';
+                for (const file of chapter.files) {
+                    const link = document.createElement('a');
+                    link.className = 'file-link';
+                    link.href = `./${file.file}`;
+                    link.target = '_blank';
+                    link.title = `点击打开课件：${file.name}`;
+                    const iconSpan = document.createElement('span');
+                    iconSpan.className = 'file-icon';
+                    iconSpan.textContent = '📄';
+                    const nameSpanFile = document.createElement('span');
+                    nameSpanFile.className = 'file-name';
+                    nameSpanFile.textContent = file.name;
+                    link.appendChild(iconSpan);
+                    link.appendChild(nameSpanFile);
+                    grid.appendChild(link);
+                }
+                fileListDiv.appendChild(grid);
+            }
+
+            chapterDiv.appendChild(header);
+            chapterDiv.appendChild(fileListDiv);
+
+            let isOpen = false;
+            header.addEventListener('click', () => {
+                if (isOpen) {
+                    fileListDiv.classList.remove('open');
+                    toggleSpan.innerHTML = '▶';
+                } else {
+                    fileListDiv.classList.add('open');
+                    toggleSpan.innerHTML = '▼';
+                }
+                isOpen = !isOpen;
+            });
+
+            container.appendChild(chapterDiv);
+        }
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    buildCatalog();
+</script>
+</body>
+</html>

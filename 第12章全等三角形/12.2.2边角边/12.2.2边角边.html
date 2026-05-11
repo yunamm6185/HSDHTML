@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>12.2.2 边角边 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* ========== 全局样式：清晰粗体，适合教学 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+
+        /* 头部 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            color: #2e5b7c;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem 0;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem 0;
+            color: #0b3b59;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 导入卡片（浅蓝色）- 精炼版本 */
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin: 1.2rem 0 2rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+            color: #144d6e;
+            box-shadow: 0 4px 0 #9fbedb;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .intro-card p {
+            margin-bottom: 0.8rem;
+        }
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 图组容器（上下排列） */
+        .figure-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 2rem 0;
+        }
+        .figure-item {
+            text-align: center;
+            background: #f9fcff;
+            border-radius: 1.5rem;
+            padding: 1rem 1rem 0.5rem 1rem;
+            border: 2px solid #c0d6e8;
+            width: fit-content;
+            max-width: 100%;
+        }
+        .figure-item .fig-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b4b78;
+            margin-top: 0.5rem;
+        }
+
+        /* 用于并排两个三角形的 flex 行 */
+        .triangle-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .triangle-base {
+            width: 240px;
+            height: 140px;
+        }
+        .triangle-base svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 探索卡片（绿色） */
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #b2cfb5;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .explore-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1d6130;
+            font-weight: 700;
+        }
+        .explore-card h4::before {
+            content: "🔍 ";
+            font-size: 1.6rem;
+        }
+
+        /* 叠合法推理卡片（浅蓝色） */
+        .deduction-card {
+            background: #e1eff9;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #2a7faa;
+            box-shadow: 0 4px 0 #9fbedb;
+            font-weight: 600;
+        }
+        .deduction-card h4 {
+            font-size: 1.4rem;
+            color: #0b4b78;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .deduction-card p {
+            margin-bottom: 0.8rem;
+        }
+
+        /* 基本事实卡片（浅黄色） */
+        .fact-card {
+            background: #fff3cd;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #eedbb2;
+            border-left: 8px solid #f0b34b;
+            font-weight: 600;
+        }
+        .fact-card h4 {
+            font-size: 1.4rem;
+            color: #7a5f2e;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .sas-highlight {
+            background-color: #c5e0d4;
+            padding: 0.6rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        /* 例题卡片 */
+        .example-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #b2cfb5;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .example-card h4 {
+            font-size: 1.4rem;
+            color: #1d6130;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .example-card h4::before {
+            content: "📐 ";
+            font-size: 1.6rem;
+        }
+
+        /* 思考卡片 */
+        .think-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #b2cfb5;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .think-card h4 {
+            font-size: 1.4rem;
+            color: #1d6130;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .think-card h4::before {
+            content: "💭 ";
+            font-size: 1.6rem;
+        }
+
+        /* 按钮和答案框 */
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0 0;
+            transition: 0.05s;
+        }
+        .interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+        }
+        .show-answer { display: block; }
+
+        /* 图形容器（用于其他小图） */
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+        svg, .figure-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .figure-container img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 0.5rem;
+        }
+
+        /* 练习区域 */
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #c0d2e8;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .sub-question { display: block; margin-left: 1.5rem; margin-top: 0.2rem; }
+
+        /* 数学思想 */
+        .math-idea {
+            background: #deedf7;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.4rem; color: #0f4a6f; font-weight: 700; }
+
+        /* 小结折叠 */
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s;
+            max-height: 600px;
+        }
+        #summaryContent.collapsed { max-height: 0; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c5ddec;
+            font-weight: 600;
+        }
+
+        /* 作业 */
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.2.2</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.2.2 边角边</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握“边角边”判定两个三角形全等</div>
+            <div class="target-item"><span>✔</span>能运用SAS进行简单的推理证明</div>
+            <div class="target-item"><span>✔</span>理解“边边角”不能判定全等</div>
+        </div>
+    </div>
+
+    <!-- 导入语：精炼版本 -->
+    <div class="intro-card">
+        <p>上一节我们已知，仅一组或两组元素相等不能判定全等。当三组元素相等时，有四种情况：两边一角、两角一边、三角、三边。</p>
+        <p>本节先研究两边一角，它有两种情形：两边及其夹角（边角边）和两边及其中一边的对角（边边角），如图12.2.1。那么，这两个三角形一定全等吗？</p>
+    </div>
+
+    <!-- 图12.2.1 边角边与边边角示意（上下排列） -->
+    <div class="figure-stack">
+        <!-- 边角边图：两个独立SVG并排（角标在左），顶点字母斜体 -->
+        <div class="figure-item">
+            <div class="triangle-row">
+                <div class="triangle-base">
+                    <svg width="240" height="140" viewBox="0 0 240 140">
+                        <path d="M5,100 L140,20 L235,100 Z" fill="none" stroke="#000" stroke-width="1.5"/>
+                        <path d="M25,100 A120,85 0 0 1 20,90" fill="none" stroke="#000" stroke-width="1.2"/>
+                        <line x1="50" y1="60" x2="70" y2="75" stroke="#000" stroke-width="1.8"/>
+                        <line x1="75" y1="85" x2="80" y2="110" stroke="#000" stroke-width="1.8"/>
+                        <line x1="85" y1="85" x2="90" y2="110" stroke="#000" stroke-width="1.8"/>
+                    </svg>
+                </div>
+                <div class="triangle-base">
+                    <svg width="240" height="140" viewBox="0 0 240 140">
+                        <path d="M5,100 L140,20 L235,100 Z" fill="none" stroke="#000" stroke-width="1.5"/>
+                        <path d="M25,100 A120,85 0 0 1 20,90" fill="none" stroke="#000" stroke-width="1.2"/>
+                        <line x1="50" y1="60" x2="70" y2="75" stroke="#000" stroke-width="1.8"/>
+                        <line x1="75" y1="85" x2="80" y2="110" stroke="#000" stroke-width="1.8"/>
+                        <line x1="85" y1="85" x2="90" y2="110" stroke="#000" stroke-width="1.8"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="fig-title">边角边</div>
+        </div>
+
+        <!-- 边边角图：两个独立SVG并排（角标在右），顶点字母斜体 -->
+        <div class="figure-item">
+            <div class="triangle-row">
+                <div class="triangle-base">
+                    <svg width="240" height="140" viewBox="0 0 240 140">
+                        <path d="M5,100 L140,20 L235,100 Z" fill="none" stroke="#000" stroke-width="1.5"/>
+                        <path d="M220,100 A15,15 0 0 0 225,90" fill="none" stroke="#000" stroke-width="1.2"/>
+                        <line x1="50" y1="60" x2="70" y2="75" stroke="#000" stroke-width="1.8"/>
+                        <line x1="75" y1="85" x2="80" y2="110" stroke="#000" stroke-width="1.8"/>
+                        <line x1="85" y1="85" x2="90" y2="110" stroke="#000" stroke-width="1.8"/>
+                    </svg>
+                </div>
+                <div class="triangle-base">
+                    <svg width="240" height="140" viewBox="0 0 240 140">
+                        <path d="M5,100 L140,20 L235,100 Z" fill="none" stroke="#000" stroke-width="1.5"/>
+                        <path d="M220,100 A15,15 0 0 0 225,90" fill="none" stroke="#000" stroke-width="1.2"/>
+                        <line x1="50" y1="60" x2="70" y2="75" stroke="#000" stroke-width="1.8"/>
+                        <line x1="75" y1="85" x2="80" y2="110" stroke="#000" stroke-width="1.8"/>
+                        <line x1="85" y1="85" x2="90" y2="110" stroke="#000" stroke-width="1.8"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="fig-title">边边角</div>
+        </div>
+    </div>
+
+    <!-- 探索：做一做 -->
+    <div class="explore-card">
+        <h4>探索</h4>
+        <p>如果两个三角形有两边及其夹角分别相等，那么这两个三角形会全等吗？为此我们以已知的两条线段和一个角为三角形的两边及其夹角，作三角形，看看你和同伴作出的三角形是否全等。</p>
+        <p><strong>做一做</strong> 如图12.2.2，已知线段$b,c$和$\angle \alpha$，试作$\triangle ABC$，使$AB=c$，$\angle A=\angle \alpha$，$AC=b$。</p>
+        <div class="figure-container">
+            <svg width="300" height="150" viewBox="0 0 300 150">
+                <line x1="20" y1="30" x2="120" y2="30" stroke="#000" stroke-width="2"/>
+                <text x="60" y="20" font-size="14" font-style="italic">b</text>
+                <line x1="20" y1="80" x2="120" y2="80" stroke="#000" stroke-width="2"/>
+                <text x="60" y="70" font-size="14" font-style="italic">c</text>
+                <line x1="150" y1="110" x2="200" y2="110" stroke="#000" stroke-width="2"/>
+                <line x1="150" y1="110" x2="170" y2="70" stroke="#000" stroke-width="2"/>
+                <text x="170" y="85" font-size="14">$\alpha$</text>
+            </svg>
+            <div class="figure-caption">图12.2.2 已知线段$b,c$和角$\alpha$</div>
+        </div>
+        <p>把你作的三角形与其他同学作的三角形进行比较，它们全等吗？换两条线段和一个角试试，是否有同样的结论？</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">💡 结论</button>
+        <div id="do1" class="answer-box">
+            <p>通过比较可以发现，所有同学作出的三角形都能完全重合，即它们全等。这说明两边及其夹角分别相等时，两个三角形全等。</p>
+        </div>
+    </div>
+
+    <!-- 叠合法推理 -->
+    <div class="deduction-card">
+        <h4>用叠合法验证</h4>
+        <p>下面我们用叠合的方法，看看你和同伴所作的两个三角形是否可以完全重合。</p>
+        <p>如图12.2.4，在$\triangle ABC$和$\triangle A'B'C'$中，已知$AB = A'B'$，$\angle A = \angle A'$，$AC = A'C'$。</p>
+        <div class="figure-container">
+            <svg width="300" height="150" viewBox="0 0 300 150">
+                <!-- 两个三角形示意，顶点字母斜体 -->
+                <polygon points="30,30 80,120 120,30" stroke="#000" fill="none" stroke-width="2"/>
+                <text x="25" y="25" font-size="12" font-style="italic">A</text>
+                <text x="75" y="130" font-size="12" font-style="italic">B</text>
+                <text x="125" y="25" font-size="12" font-style="italic">C</text>
+                <polygon points="180,30 230,120 270,30" stroke="#000" fill="none" stroke-width="2"/>
+                <text x="175" y="25" font-size="12" font-style="italic">A'</text>
+                <text x="225" y="130" font-size="12" font-style="italic">B'</text>
+                <text x="275" y="25" font-size="12" font-style="italic">C'</text>
+            </svg>
+            <div class="figure-caption">图12.2.4</div>
+        </div>
+        <p>由于$AB = A'B'$，我们可以移动$\triangle ABC$，使点$A$与点$A'$、点$B$与点$B'$重合。因为$\angle A = \angle A'$，所以可以使$\angle A$的另一边$AC$与$\angle A'$的边$A'C'$重叠在一起，而$AC = A'C'$，因此点$C$与点$C'$重合。于是$\triangle ABC$与$\triangle A'B'C'$重合，这就说明这两个三角形全等。</p>
+        <p>由此可得判定三角形全等的一个基本事实：</p>
+    </div>
+
+    <!-- 基本事实 SAS -->
+    <div class="fact-card">
+        <h4>基本事实</h4>
+        <p class="sas-highlight"><strong>两边及其夹角分别相等的两个三角形全等。</strong>（简写成“边角边”或“SAS”）</p>
+    </div>
+
+    <!-- 例1：交叉线段图，顶点字母斜体，证明默认隐藏 -->
+    <div class="example-card">
+        <h4>例1</h4>
+        <p>如图12.2.5，线段$AC$、$BD$相交于点$E$，$AE = DE$，$BE = CE$。求证：$\triangle ABE \cong \triangle DCE$。</p>
+        <div class="figure-container">
+            <svg width="400" height="300" viewBox="0 0 400 300">
+                <line x1="120" y1="60" x2="60" y2="240" stroke="#000" stroke-width="1.5"/>
+                <line x1="280" y1="60" x2="340" y2="240" stroke="#000" stroke-width="1.5"/>
+                <line x1="120" y1="60" x2="340" y2="240" stroke="#000" stroke-width="1.5"/>
+                <line x1="280" y1="60" x2="60" y2="240" stroke="#000" stroke-width="1.5"/>
+                <text x="115" y="55" font-size="16" fill="#000" font-style="italic">A</text>
+                <text x="285" y="55" font-size="16" fill="#000" font-style="italic">D</text>
+                <text x="50" y="250" font-size="16" fill="#000" font-style="italic">B</text>
+                <text x="345" y="250" font-size="16" fill="#000" font-style="italic">C</text>
+                <text x="205" y="155" font-size="16" fill="#000" font-style="italic">E</text>
+            </svg>
+            <div class="figure-caption">图12.2.5</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示证明</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>证明：</strong><br>
+            在$\triangle ABE$和$\triangle DCE$中，<br>
+            $AE = DE$ (已知)，<br>
+            $\angle AEB = \angle DEC$ (对顶角相等)，<br>
+            $BE = CE$ (已知)，<br>
+            $\therefore \triangle ABE \cong \triangle DCE$ (SAS).</p>
+        </div>
+    </div>
+
+    <!-- 例2：池塘测量图，顶点字母斜体，证明默认隐藏 -->
+    <div class="example-card">
+        <h4>例2</h4>
+        <p>如图12.2.6，有一池塘。要测池塘两端$A$、$B$间的距离，可先在平地上取一个可以直接到达$A$和$B$的点$C$，连结$AC$并延长到点$D$，使$CD = CA$。连结$BC$并延长到点$E$，使$CE = CB$。连结$DE$，那么$DE$的长就是$A$、$B$间的距离。你知道其中的道理吗？</p>
+        <div class="figure-container">
+            <svg width="400" height="350" viewBox="0 0 400 350">
+                <line x1="80" y1="60" x2="320" y2="300" stroke="#000" stroke-width="2"/>
+                <line x1="320" y1="60" x2="80" y2="300" stroke="#000" stroke-width="2"/>
+                <line x1="80" y1="300" x2="320" y2="300" stroke="#000" stroke-width="2"/>
+                <line x1="80" y1="60" x2="320" y2="60" stroke="#000" stroke-width="3"/>
+                <path d="M80,60 Q120,40 200,40 T320,60" fill="none" stroke="#000" stroke-width="2"/>
+                <path d="M320,60 Q280,80 200,80 T80,60" fill="none" stroke="#000" stroke-width="2"/>
+                <path d="M80,60 Q120,40 200,40 T320,60 Q280,80 200,80 T80,60" fill="#cceeff" opacity="0.5" stroke="none"/>
+                <circle cx="200" cy="180" r="4" fill="#000"/>
+                <path d="M190,170 A15,15 0 0 1 210,170" fill="none" stroke="#000" stroke-width="1.5"/>
+                <text x="195" y="160" font-size="18" fill="#000">1</text>
+                <path d="M190,190 A15,15 0 0 0 210,190" fill="none" stroke="#000" stroke-width="1.5"/>
+                <text x="195" y="205" font-size="18" fill="#000">2</text>
+                <text x="70" y="65" font-size="22" fill="#000" font-style="italic">A</text>
+                <text x="325" y="65" font-size="22" fill="#000" font-style="italic">B</text>
+                <text x="208" y="185" font-size="22" fill="#000" font-style="italic">C</text>
+                <text x="70" y="310" font-size="22" fill="#000" font-style="italic">E</text>
+                <text x="325" y="310" font-size="22" fill="#000" font-style="italic">D</text>
+            </svg>
+            <div class="figure-caption">图12.2.6</div>
+        </div>
+        <p><strong>已知：</strong>$AD$与$BE$相交于点$C$，$CD = CA$，$CE = CB$。<br>
+        <strong>求证：</strong>$DE = AB$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示证明</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>证明：</strong><br>
+            在$\triangle DCE$和$\triangle ACB$中，<br>
+            $CD = CA$ (已知)，<br>
+            $\angle 2 = \angle 1$ (对顶角相等)，<br>
+            $CE = CB$ (已知)，<br>
+            $\therefore \triangle DCE \cong \triangle ACB$ (SAS)。<br>
+            $\therefore DE = AB$ (全等三角形的对应边相等)。</p>
+        </div>
+    </div>
+
+    <!-- 思考：边边角不一定全等，使用图片12.2.8.png -->
+    <div class="think-card">
+        <h4>思考</h4>
+        <p>两边及其中一边的对角分别相等（即“边边角”）时，两个三角形一定全等吗？</p>
+        <p>如图12.2.8，已知线段$a$、$b$ ($b>a$)和角$\alpha$，作$\triangle ABC$，使$AC=b$，$\angle A=\angle \alpha$，$BC=a$。你会发现符合条件的三角形有两种（如图②③），因此“边边角”不能判定全等。</p>
+        <div class="figure-container">
+            <img src="12.2.8.png" alt="图12.2.8 边边角不一定全等" style="max-width:100%;">
+            <div class="figure-caption">图12.2.8 边边角不一定全等</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('think1')">💡 说明</button>
+        <div id="think1" class="answer-box">
+            <p>如图，$\triangle ABC$和$\triangle A'B'C'$满足$AC=A'C'$，$\angle A=\angle A'$，$BC=B'C'$，但两个三角形不全等。因此“边边角”不能作为判定全等的方法。</p>
+        </div>
+    </div>
+
+    <!-- 练习：三个题目，严格按照课本原题编写，使用图片练习1.png、练习2.png、练习3.png -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <!-- 练习1 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 根据下面的条件，能否判断如图所示的两个三角形全等？</p>
+            <p class="sub-question">(1) 如图①，$AC = DF$，$\angle C = \angle F$，$BC = EF$；</p>
+            <p class="sub-question">(2) 如图②，$BC = BD$，$\angle ABC = \angle ABD$。</p>
+            <div class="figure-container">
+                <img src="练习1.png" alt="练习1图" style="max-width:100%;">
+                <div class="figure-caption">第1题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 显示答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) 能，满足SAS，$AC=DF$，$\angle C=\angle F$，$BC=EF$，所以$\triangle ABC \cong \triangle DEF$。</p>
+                <p>(2) 能，$BC=BD$，$\angle ABC=\angle ABD$，$AB=AB$（公共边），所以$\triangle ABC \cong \triangle ABD$（SAS）。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如图，在$\triangle ABC$中，$AB = AC$，在$AB$、$AC$上分别截取相等的两条线段$AD$、$AE$，并连结$BE$、$CD$。求证：$\triangle ADC \cong \triangle AEB$。</p>
+            <div class="figure-container">
+                <img src="练习2.png" alt="练习2图" style="max-width:100%;">
+                <div class="figure-caption">第2题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 显示答案</button>
+            <div id="prac2" class="answer-box">
+                <p>证明：$\because AB=AC$，$AD=AE$，$\angle A=\angle A$（公共角），$\therefore \triangle ADC \cong \triangle AEB$（SAS）。</p>
+            </div>
+        </div>
+
+        <!-- 练习3 -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 如图，小明想设计一种测零件内径$AB$的卡钳。在卡钳的设计中，要使测出的$DC$的长度恰好为内径$AB$的长度，那么卡钳各部分的尺寸应满足什么条件呢？请提出你的想法。</p>
+            <div class="figure-container">
+                <img src="练习3.png" alt="练习3图" style="max-width:100%;">
+                <div class="figure-caption">第3题</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 显示答案</button>
+            <div id="prac3" class="answer-box">
+                <p>应满足：$OA=OC$，$OB=OD$，或点$O$是$AC$的中点，又是$BD$的中点。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong> 两边一角分为“边角边”和“边边角”。<br>
+        <strong>举反例：</strong> “边边角”不能判定全等，通过反例说明。<br>
+        <strong>基本事实：</strong> SAS作为判定全等的依据，可以直接使用。</p>
+    </div>
+
+    <!-- 课堂小结 折叠 -->
+    <div style="background:#d6e9f5; border-radius:1.8rem; padding:1rem 2rem; margin:1.5rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; font-size:1.5rem; font-weight:700;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">两边及其夹角分别相等的两个三角形全等（SAS）。</div>
+            <div class="summary-item">“边边角”不能判定两个三角形全等。</div>
+            <div class="summary-item">证明中常用公共边、公共角作为隐含条件。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong> 习题12.2 A组第1、2、3题，B组第4题。</span>
+    </div>
+
+    <p style="text-align: center; color:#336d9a; margin:1rem 0 0.3rem; font-weight:700;">✨ 两边夹角定全等，边边角却未必行 ✨</p>
+    <div class="footer-note">八年级上册 · 第12章 12.2.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const c = document.getElementById('summaryContent');
+        const t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.addEventListener('load', function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+<title>第16章复习 | 函数及其图象 | 华师版·八年级下册</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.9;color:#1a3a4a;padding:1.5rem;font-size:26px;}
+.textbook{max-width:1300px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.8rem;border:1px solid #a7d8e0;}
+.header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.2rem;color:#0f766e;}
+h1{font-size:2.8rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+.lesson-title{text-align:center;font-size:2.4rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+.section-title{font-size:1.8rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+.goal-box{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #4ade80;}
+.goal-box h4{font-size:1.6rem;color:#166534;margin-bottom:.5rem;}.goal-box h4::before{content:"🎯 ";}
+.intro-box{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+.intro-box h4{font-size:1.6rem;color:#1e40af;margin-bottom:.5rem;}.intro-box h4::before{content:"🚀 ";}
+.review-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #f59e0b;}
+.review-box h4{font-size:1.6rem;color:#92400e;margin-bottom:.5rem;}.review-box h4::before{content:"📖 ";}
+.question-box{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border-left:8px solid #10b981;}
+.question-box h4{font-size:1.6rem;margin-bottom:.7rem;color:#059669;}.question-box h4::before{content:"📌 ";}
+.example-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;}
+.example-card h4{font-size:1.6rem;color:#b45309;}.example-card h4::before{content:"▶ ";}
+.analysis-box{background:#eff6ff;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border-left:6px solid #3b82f6;}
+.analysis-box strong{color:#1d4ed8;}
+.think-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:3px solid #3b82f6;border-radius:1.5rem;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+.think-box h4{color:#1e40af;font-size:1.4rem;margin-bottom:.5rem;}.think-box h4::before{content:"💭 思考";}
+.summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+.summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.8rem;}
+.summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.2;}
+.practice-box{background:#fdf2f8;border:3px solid #ec4899;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;}
+.practice-box h4{font-size:1.6rem;color:#be185d;margin-bottom:.8rem;}.practice-box h4::before{content:"📝 练习";}
+.do-box{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border-left:8px solid #ec4899;}
+.do-box h4{font-size:1.4rem;color:#be185d;margin-bottom:.5rem;}.do-box h4::before{content:"✍️ 做一做 ";}
+.conclude-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border:2px solid #34d399;}
+.conclude-box h4{font-size:1.4rem;color:#065f46;margin-bottom:.5rem;}.conclude-box h4::before{content:"📐 方法归纳 ";}
+.core-box{background:linear-gradient(135deg,#fae8ff,#f5d0fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #e879f9;}
+.core-box h4{font-size:1.6rem;color:#86198f;margin-bottom:.5rem;}.core-box h4::before{content:"⭐ 核心素养";}
+.core-box ul{padding-left:1.5rem;line-height:2.2;}
+.ho-work{background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #a78bfa;}
+.ho-work h4{font-size:1.6rem;color:#6d28d9;margin-bottom:.5rem;}.ho-work h4::before{content:"📝 课后作业";}
+.highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #3b82f6;box-shadow:0 4px 15px rgba(59,130,246,0.15);position:relative;}
+.highlight-box::before{content:"📐";position:absolute;left:1.2rem;top:1.2rem;font-size:1.6rem;}
+.highlight-box p{margin:.5rem 0;padding-left:2.2rem;font-size:1.3rem;line-height:2;}
+.highlight-box strong{color:#1e40af;}
+/* 易错警示 */
+.warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1rem 0;}
+.warn-box h4{font-size:1.4rem;color:#991b1b;margin-bottom:.5rem;}.warn-box h4::before{content:"⚠️ 易错警示 ";}
+.warn-box p{font-size:1.2rem;color:#7f1d1d;line-height:1.9;}
+/* 方法卡片 */
+.method-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:1.2rem;margin:1.2rem 0;}
+.method-card{background:white;border:2px solid #b2ebf2;border-radius:1.2rem;padding:1.2rem 1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);}
+.method-card h5{font-size:1.25rem;color:#0e7490;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem;}
+.method-card h5 span{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;font-size:.9rem;font-weight:700;}
+.method-card p,.method-card ol,.method-card ul{font-size:1.05rem;line-height:1.9;color:#334155;}
+.method-card ol{padding-left:1.3rem;}
+/* 知识结构图 */
+.know-map{display:flex;flex-direction:column;align-items:center;gap:1rem;margin:1.5rem 0;}
+.know-row{display:flex;align-items:center;gap:1.5rem;justify-content:center;flex-wrap:wrap;}
+.know-box{background:#e0f2fe;border:2px solid #93c5fd;border-radius:12px;padding:.8rem 1.2rem;font-size:1.1rem;color:#1e3a5f;font-weight:600;text-align:center;min-width:120px;}
+.know-box.v{writing-mode:vertical-rl;letter-spacing:.2em;padding:1.2rem .8rem;min-width:auto;min-height:140px;}
+.know-arr{font-size:1.5rem;color:#3b82f6;}
+.know-sub{display:flex;gap:1rem;}
+.know-line{width:2px;height:30px;background:#93c5fd;margin:0 auto;}
+/* 例题解析步骤 */
+.step-box{display:flex;gap:.8rem;align-items:flex-start;margin:.8rem 0;padding:.8rem 1rem;background:#f8fafc;border-radius:10px;border-left:4px solid #14b8a6;}
+.step-num{flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:.95rem;}
+.step-text{flex:1;font-size:1.15rem;}
+p{margin:.5rem 0;}
+.katex{font-size:1.15em;}
+.math-block{text-align:center;margin:.8rem 0;}
+.interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.5rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.6rem .6rem .6rem 0;font-size:1rem;transition:all .1s;}
+.interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+.answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1.2rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.q-item{display:flex;align-items:flex-start;gap:.5rem;margin:.6rem 0;padding:.5rem .8rem;border-radius:12px;transition:background .2s;}
+.q-item:hover{background:#f0fdfa;}
+.q-text{flex:1;line-height:1.6;}
+.q-btn{white-space:nowrap;}
+.graph-caption{text-align:center;color:#6b7280;font-size:.9rem;margin-top:4px;}
+.gwrap{position:relative;display:inline-block;margin:0 auto;text-align:center;width:100%;}
+.gwrap canvas{display:block;margin:0 auto;border-radius:12px;border:1px solid #d1d5db;background:#fafafa;max-width:100%;}
+.glabel{position:absolute;pointer-events:none;text-shadow:0 0 5px #fafafa,0 0 5px #fafafa,0 0 5px #fafafa;line-height:1.2;}
+.glabel .katex{font-size:1.05em;}
+.draggable-label{cursor:move;pointer-events:auto;user-select:none;touch-action:none;}
+.data-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:1.1rem;}
+.data-table th,.data-table td{border:2px solid #b0bec5;padding:.6rem .8rem;text-align:center;}
+.data-table th{background:#e0f2fe;color:#1e3a5f;font-weight:600;}
+.data-table td{background:#fff;}
+.data-table tr:nth-child(even) td{background:#f8fafc;}
+</style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">第16章复习</div>
+
+    <!-- ===== 学习目标 ===== -->
+    <div class="goal-box">
+        <h4>复习目标</h4>
+        <ol>
+            <li>系统梳理本章知识，建立完整的知识网络。</li>
+            <li>掌握判断函数类型、求表达式、画图象、读信息等核心方法。</li>
+            <li>能综合运用一次函数和反比例函数的知识解决实际问题。</li>
+            <li>体会<strong>数形结合</strong>思想在本章中的应用。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 一、课题导入 ===== -->
+    <div class="intro-box">
+        <h4>课题导入</h4>
+        <p>同学们，本章我们踏上了一段奇妙的旅程——从现实世界的<strong>运动变化</strong>出发，认识了<strong>变量与函数</strong>，学会了在<strong>平面直角坐标系</strong>中描绘函数的图象，深入研究了<strong>一次函数</strong>和<strong>反比例函数</strong>的性质，并学会了用它们解决实际问题。</p>
+        <p style="margin-top:.5rem;">今天，让我们站在全章的高度，把这些零散的知识<strong>串成线、织成网</strong>，提炼解题的<strong>通法</strong>，攻克常见的<strong>易错点</strong>，真正掌握函数这个重要的数学工具！</p>
+    </div>
+
+    <!-- ===== 二、知识梳理 ===== -->
+    <div class="section-title">二、知识梳理</div>
+
+    <div class="know-map">
+        <div class="know-row">
+            <div class="know-box v">实际问题</div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <span style="font-size:.9rem;color:#3b82f6;">运动变化<br>相依关系</span>
+                <span class="know-arr">→</span>
+            </div>
+            <div class="know-box">变量与函数<br><span style="font-size:.85rem;font-weight:400;">（三种表示法）</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <span style="font-size:.9rem;color:#3b82f6;">数形结合</span>
+                <span class="know-arr">→</span>
+            </div>
+            <div class="know-box">平面直角坐标系<br><span style="font-size:.85rem;font-weight:400;">（点 ↔ 有序实数对）</span></div>
+        </div>
+        <div class="know-line"></div>
+        <div class="know-row know-sub">
+            <div class="know-box">一次函数<br><span style="font-size:.85rem;font-weight:400;">$y=kx+b$（$k \neq 0$）</span></div>
+            <div class="know-box">反比例函数<br><span style="font-size:.85rem;font-weight:400;">$y=\dfrac{k}{x}$（$k \neq 0$）</span></div>
+        </div>
+        <div class="know-line"></div>
+        <div class="know-row know-sub">
+            <div class="know-box" style="border-color:#f59e0b;background:#fef3c7;">图象与性质</div>
+            <div class="know-box" style="border-color:#f59e0b;background:#fef3c7;">待定系数法<br>求表达式</div>
+            <div class="know-box" style="border-color:#f59e0b;background:#fef3c7;">与方程、<br>不等式联系</div>
+            <div class="know-box" style="border-color:#f59e0b;background:#fef3c7;">实际应用</div>
+        </div>
+    </div>
+
+
+    <!-- ===== 三、方法归纳 ===== -->
+    <div class="section-title">三、方法归纳</div>
+
+    <div class="method-grid">
+        <div class="method-card">
+            <h5><span>1</span>判断函数类型的方法</h5>
+            <ol>
+                <li><strong>看关系式</strong>：$y=kx+b$（$k \neq 0$）→ 一次函数；$y=\dfrac{k}{x}$（$k \neq 0$）→ 反比例函数</li>
+                <li><strong>看变化规律</strong>：均匀变化（比值一定）→ 一次函数；乘积一定 → 反比例函数</li>
+            </ol>
+        </div>
+        <div class="method-card">
+            <h5><span>2</span>待定系数法求表达式</h5>
+            <ol>
+                <li><strong>设</strong>：设出函数表达式（如 $y=kx+b$）</li>
+                <li><strong>代</strong>：代入已知条件（点的坐标）</li>
+                <li><strong>解</strong>：解方程（组）求待定系数</li>
+                <li><strong>写</strong>：写出完整的函数表达式</li>
+            </ol>
+        </div>
+        <div class="method-card">
+            <h5><span>3</span>画函数图象的方法</h5>
+            <ol>
+                <li><strong>一次函数</strong>：两点法——找与 $x$ 轴、$y$ 轴交点，或任取两点连线</li>
+                <li><strong>反比例函数</strong>：描点法——注意 $x \neq 0$，分 $x>0$ 和 $x<0$ 分别描点</li>
+            </ol>
+        </div>
+        <div class="method-card">
+            <h5><span>4</span>看图象获取信息的方法</h5>
+            <ol>
+                <li><strong>看增减</strong>：上升 → $y$ 随 $x$ 增大而增大；下降 → $y$ 随 $x$ 增大而减小</li>
+                <li><strong>看位置</strong>：与 $x$ 轴交点 → $y=0$ 时 $x$ 的值；与 $y$ 轴交点 → $x=0$ 时的函数值</li>
+                <li><strong>看交点</strong>：两函数图象交点 → 对应方程组的解</li>
+            </ol>
+        </div>
+        <div class="method-card">
+            <h5><span>5</span>函数与方程、不等式的联系</h5>
+            <ol>
+                <li>$y=kx+b$ 中令 $y=0$ → 一元一次方程 $kx+b=0$</li>
+                <li>两函数图象<strong>交点</strong> → 对应<strong>二元一次方程组的解</strong></li>
+                <li>$y>0$ 或 $y<0$ → 对应一元一次不等式</li>
+            </ol>
+        </div>
+        <div class="method-card">
+            <h5><span>6</span>利用函数解决实际问题的步骤</h5>
+            <ol>
+                <li><strong>审</strong>：审题，找出变量和数量关系</li>
+                <li><strong>设</strong>：设自变量和因变量</li>
+                <li><strong>列</strong>：根据数量关系列函数关系式</li>
+                <li><strong>画</strong>：画出函数图象（必要时）</li>
+                <li><strong>用</strong>：利用图象或计算解决问题</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ===== 四、典例精讲 ===== -->
+    <div class="section-title">四、典例精讲</div>
+
+    <div class="example-card">
+        <h4>例1　已知一次函数 $y=kx+b$ 的图象经过点 $(2,5)$ 和 $(-1,-4)$。</h4>
+        <p>（1）求这个函数的表达式；</p>
+        <p>（2）画出这个函数的图象；</p>
+        <p>（3）判断函数值 $y$ 随 $x$ 的变化情况，并说明图象经过哪些象限。</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📖 精讲分析</button>
+        <div id="ex1" class="answer-box">
+            <div class="step-box">
+                <span class="step-num">1</span>
+                <div class="step-text"><strong>求表达式（待定系数法）</strong><br>设 $y=kx+b$，代入两点：<br>$$\begin{cases} 2k+b=5 \\ -k+b=-4 \end{cases}$$<br>两式相减：$3k=9$，$k=3$。代入得 $b=-1$。<br>∴ 函数表达式为 <strong>$y=3x-1$</strong>。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">2</span>
+                <div class="step-text"><strong>画图象（两点法）</strong><br>取 $x=0$ 得 $y=-1$ → 点 $(0,-1)$；取 $x=1$ 得 $y=2$ → 点 $(1,2)$。<br>过这两点画直线即可。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">3</span>
+                <div class="step-text"><strong>分析性质</strong><br>$k=3>0$，$b=-1<0$。<br>∵ $k>0$，∴ $y$ 随 $x$ 的增大而<strong>增大</strong>，图象从左到右<strong>上升</strong>。<br>∵ $k>0$，$b<0$，∴ 图象经过第<strong>一、三、四</strong>象限。</div>
+            </div>
+            <div class="analysis-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法提炼：</strong>本题综合了"待定系数法求表达式→两点法画图→由 $k,b$ 符号判断性质"的完整流程，是一次函数的核心考查方式。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2　如图，一次函数 $y=kx+b$ 的图象与反比例函数 $y=\dfrac{m}{x}$ 的图象交于 $A(2,3)$、$B(-3,n)$ 两点。</h4>
+        <div class="gwrap" style="width:100%;max-width:480px;margin:.5rem auto;">
+            <canvas id="ex2graph" width="480" height="360"></canvas>
+            <span class="glabel" style="left:46%;top:55%;font-weight:700;">O</span>
+            <span class="glabel" style="left:91%;top:52%;font-style:italic;font-weight:700;">$x$</span>
+            <span class="glabel" style="left:48%;top:6%;font-style:italic;font-weight:700;">$y$</span>
+            <span class="glabel draggable-label" style="left:63%;top:18%;font-size:18px;color:#dc2626;font-weight:700;">$A(2,3)$</span>
+            <span class="glabel draggable-label" style="left:26%;top:67%;font-size:18px;color:#2563eb;font-weight:700;">$B(-3,-2)$</span>
+            <span class="glabel draggable-label" style="left:76%;top:34%;font-size:16px;color:#dc2626;font-weight:600;">$y=\dfrac{6}{x}$</span>
+            <span class="glabel draggable-label" style="left:58%;top:28%;font-size:16px;color:#2563eb;font-weight:600;">$y=x+1$</span>
+        </div>
+        <p>（1）求一次函数和反比例函数的表达式；</p>
+        <p>（2）根据图象，直接写出一次函数值大于反比例函数值时 $x$ 的取值范围。</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📖 精讲分析</button>
+        <div id="ex2" class="answer-box">
+            <div class="step-box">
+                <span class="step-num">1</span>
+                <div class="step-text"><strong>求反比例函数表达式</strong><br>把 $A(2,3)$ 代入 $y=\dfrac{m}{x}$：$3=\dfrac{m}{2}$，$m=6$。<br>∴ 反比例函数为 <strong>$y=\dfrac{6}{x}$</strong>。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">2</span>
+                <div class="step-text"><strong>求点 $B$ 坐标</strong><br>把 $B(-3,n)$ 代入 $y=\dfrac{6}{x}$：$n=\dfrac{6}{-3}=-2$。<br>∴ $B(-3,-2)$。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">3</span>
+                <div class="step-text"><strong>求一次函数表达式</strong><br>把 $A(2,3)$、$B(-3,-2)$ 代入 $y=kx+b$：<br>$$\begin{cases} 2k+b=3 \\ -3k+b=-2 \end{cases}$$<br>解得 $k=1$，$b=1$。<br>∴ 一次函数为 <strong>$y=x+1$</strong>。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">4</span>
+                <div class="step-text"><strong>看图象写范围（数形结合）</strong><br>一次函数值大于反比例函数值，即一次函数图象在反比例函数图象<strong>上方</strong>。<br>观察交点 $A(2,3)$、$B(-3,-2)$，得：<br><strong>$-3&lt;x&lt;0$</strong> 或 <strong>$x&gt;2$</strong>。</div>
+            </div>
+            <div class="analysis-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法提炼：</strong>第（2）问不需要解不等式，直接利用"图象在上方的部分"就能快速写出答案——这就是<strong>数形结合</strong>思想的威力！</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3　某工厂生产某种产品，月产量 $Q$（吨）与月份 $x$（$1 \leqslant x \leqslant 12$，且 $x$ 为整数）之间的函数关系如图所示。</h4>
+        <div class="gwrap" style="width:100%;max-width:480px;margin:.5rem auto;">
+            <canvas id="ex3graph" width="480" height="320"></canvas>
+            <span class="glabel" style="left:9%;top:84%;font-weight:700;">O</span>
+            <span class="glabel" style="left:84%;top:84%;font-style:italic;font-weight:700;">$x$/月</span>
+            <span class="glabel" style="left:5%;top:6%;font-style:italic;font-weight:700;">$Q$/吨</span>
+            <span class="glabel" style="left:34%;top:26%;font-size:16px;color:#dc2626;font-weight:700;">最高点</span>
+        </div>
+        <p>（1）根据图象描述 $Q$ 随 $x$ 的变化情况；</p>
+        <p>（2）求当 $4 \leqslant x \leqslant 12$ 时，$Q$ 与 $x$ 的函数关系式；</p>
+        <p>（3）哪个月的产量最高？最高产量是多少？</p>
+
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">📖 精讲分析</button>
+        <div id="ex3" class="answer-box">
+            <div class="step-box">
+                <span class="step-num">1</span>
+                <div class="step-text"><strong>描述变化情况</strong><br>由图象可知：$1 \sim 4$ 月份产量逐月增加（图象上升），$4 \sim 12$ 月份产量逐月减少（图象下降）。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">2</span>
+                <div class="step-text"><strong>求函数关系式（待定系数法）</strong><br>设 $4 \leqslant x \leqslant 12$ 时，$Q=kx+b$。<br>由图象知直线过点 $(4,40)$ 和 $(12,24)$。<br>$$\begin{cases} 4k+b=40 \\ 12k+b=24 \end{cases}$$<br>解得 $k=-2$，$b=48$。<br>∴ <strong>$Q=-2x+48$</strong>（$4 \leqslant x \leqslant 12$，且 $x$ 为整数）。</div>
+            </div>
+            <div class="step-box">
+                <span class="step-num">3</span>
+                <div class="step-text"><strong>求最高产量</strong><br>由图象可知，$x=4$ 时图象达到最高点，$Q=40$。<br>∴ <strong>4月份的产量最高，最高产量为 40 吨</strong>。</div>
+            </div>
+            <div class="analysis-box" style="margin-top:.8rem;">
+                <p><strong>💡 方法提炼：</strong>实际问题中的函数图象往往由多段组成，要注意分段分析，并关注自变量的实际取值范围（如"整数"）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 五、易错警示 ===== -->
+    <div class="section-title">五、易错警示</div>
+
+    <div class="warn-box">
+        <h4></h4>
+        <p><strong>易错点1：反比例函数自变量取值范围</strong><br>反比例函数 $y=\dfrac{k}{x}$（$k \neq 0$）中，<strong>自变量 $x$ 不能取 0</strong>。列关系式时易漏写 "$x \neq 0$" 或 "$x>0$"（实际问题中）。</p>
+    </div>
+    <div class="warn-box">
+        <h4></h4>
+        <p><strong>易错点2：坐标轴上的点不属于任何象限</strong><br>点 $(0,-2)$ 在 $y$ 轴上，<strong>不在第四象限</strong>！横坐标为 0 或纵坐标为 0 的点在坐标轴上，不属于任何象限。</p>
+    </div>
+    <div class="warn-box">
+        <h4></h4>
+        <p><strong>易错点3：$k$ 和 $b$ 对一次函数图象的影响混淆</strong><br>$k$ 决定<strong>增减性</strong>和<strong>倾斜方向</strong>；$b$ 决定与 $y$ 轴的<strong>交点位置</strong>。<strong>两者共同决定</strong>直线经过的象限，不可只看其中一个。</p>
+    </div>
+    <div class="warn-box">
+        <h4></h4>
+        <p><strong>易错点4：实际问题中忽略自变量的取值范围</strong><br>例如：花圃长 $y=\dfrac{64}{x}$（$x>0$）；正方形中 $DP=x$（$0 \leqslant x \leqslant 4$）。实际问题中自变量往往有<strong>隐含限制</strong>，需结合题意确定。</p>
+    </div>
+
+    <!-- ===== 六、分层练习 ===== -->
+    <div class="section-title">六、分层练习</div>
+
+    <div class="practice-box">
+        <h4>A组　基础练习</h4>
+        <p><strong>1.</strong> 选择题</p>
+
+        <div class="q-item">
+            <span class="q-text">（1）点 $(0, -2)$ 在（　　）。<br>A. $x$ 轴上　　B. $y$ 轴上　　C. 第三象限　　D. 第四象限</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a1_1')">(1)</button>
+        </div>
+        <div id="a1_1" class="answer-box"><p><strong>答案：B</strong>　点 $(0, -2)$ 的横坐标为 $0$，在 $y$ 轴上。</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（2）若点 $P(2m-1, 3)$ 在第二象限，则 $m$ 的取值范围是（　　）。<br>A. $m > \dfrac{1}{2}$　　B. $m < \dfrac{1}{2}$　　C. $m \geqslant -\dfrac{1}{2}$　　D. $m \leqslant \dfrac{1}{2}$</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a1_2')">(2)</button>
+        </div>
+        <div id="a1_2" class="answer-box"><p><strong>答案：B</strong>　第二象限的点横坐标小于 $0$，即 $2m-1 < 0$，$m < \dfrac{1}{2}$。</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（3）小红爷爷饭后出去散步，从家里出发走 $20\,\mathrm{min}$ 到一个离家 $900\,\mathrm{m}$ 的街心花园，与朋友聊天 $10\,\mathrm{min}$ 后，用 $15\,\mathrm{min}$ 返回家里。下列图形中表示小红爷爷离家的距离 $y$ ($\mathrm{m}$) 与离家的时间 $x$ ($\mathrm{min}$) 之间函数关系的是（　　）。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a1_3')">(3)</button>
+        </div>
+        <div id="a1_3" class="answer-box">
+            <p><strong>答案：A</strong></p>
+            <p>分析：$0\sim20\,\mathrm{min}$ 离家距离逐渐增大到 $900\,\mathrm{m}$；$20\sim30\,\mathrm{min}$ 聊天，距离保持不变；$30\sim45\,\mathrm{min}$ 回家，距离逐渐减小到 $0$。</p>
+            <div class="gwrap" style="width:100%;max-width:420px;margin:1rem auto;">
+                <canvas id="walk" width="420" height="300"></canvas>
+                <span class="glabel" style="left:11%;top:82%;font-weight:700;">O</span>
+                <span class="glabel" style="left:89%;top:82%;font-style:italic;font-weight:700;">$x/\mathrm{min}$</span>
+                <span class="glabel" style="left:7%;top:5%;font-style:italic;font-weight:700;">$y/\mathrm{m}$</span>
+                <span class="glabel" style="left:46%;top:12%;font-size:16px;color:#374151;">900</span>
+                <span class="glabel" style="left:43%;top:90%;font-size:16px;color:#374151;">20</span>
+                <span class="glabel" style="left:62%;top:90%;font-size:16px;color:#374151;">30</span>
+                <span class="glabel" style="left:86%;top:90%;font-size:16px;color:#374151;">45</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>2.</strong> 写出下列各问题中的函数关系式，指出是哪种函数，并确定其中自变量的取值范围：</p>
+        <div class="q-item">
+            <span class="q-text">（1）在 $60\,\mathrm{km/h}$ 的匀速运动中，运动路程 $s$ ($\mathrm{km}$) 是时间 $t$ ($\mathrm{h}$) 的函数；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a2_1')">(1)</button>
+        </div>
+        <div id="a2_1" class="answer-box"><p>$s = 60t$ ($t \geqslant 0$)，是<strong>一次函数</strong>（正比例函数）。</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（2）某学校要在校园中辟出一块面积为 $64\,\mathrm{m}^2$ 的长方形土地做花圃，这个花圃的长 $y$ ($\mathrm{m}$) 是宽 $x$ ($\mathrm{m}$) 的函数。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a2_2')">(2)</button>
+        </div>
+        <div id="a2_2" class="answer-box"><p>$y = \dfrac{64}{x}$ ($x > 0$)，是<strong>反比例函数</strong>。</p></div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>3.</strong> 填空：</p>
+        <div class="q-item">
+            <span class="q-text">（1）已知函数 $y = -5x + 3$，当 $x = $ ______ 时，函数值为 $0$；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a3_1')">(1)</button>
+        </div>
+        <div id="a3_1" class="answer-box"><p>$-5x + 3 = 0$，$x = \dfrac{3}{5}$。</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（2）已知函数 $y = \dfrac{5}{x}$，当 $x = 1$ 时，$y = $ ______；当 $x = $ ______ 时，$y = 1$。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a3_2')">(2)</button>
+        </div>
+        <div id="a3_2" class="answer-box"><p>$x = 1$ 时，$y = 5$；$y = 1$ 时，$x = 5$。</p></div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>4.</strong> 画出下列函数的图象：</p>
+        <p>（1）$y = -\dfrac{x}{4}$；　（2）$y = 2 - 3x$；　（3）$y = -\dfrac{3}{x}$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('a4')">💡 画图提示</button>
+        <div id="a4" class="answer-box">
+            <p>（1）$y = -\dfrac{x}{4}$ 是过原点的直线，可取点 $(0,0)$ 和 $(4,-1)$。</p>
+            <p>（2）$y = 2 - 3x$ 是直线，取 $x=0$ 得 $(0,2)$，取 $x=1$ 得 $(1,-1)$。</p>
+            <p>（3）$y = -\dfrac{3}{x}$ 是反比例函数，图象在第二、四象限。</p>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1rem;">
+                <div class="gwrap" style="width:280px;">
+                    <canvas id="draw1" width="280" height="220"></canvas>
+                    <span class="glabel" style="left:48%;top:53%;font-weight:700;">O</span>
+                    <span class="glabel" style="left:91%;top:53%;font-style:italic;font-weight:700;">$x$</span>
+                    <span class="glabel" style="left:48%;top:8%;font-style:italic;font-weight:700;">$y$</span>
+                    <span class="glabel" style="left:58%;top:55%;font-size:14px;color:#2563eb;font-weight:600;">$y=-\dfrac{x}{4}$</span>
+                </div>
+                <div class="gwrap" style="width:280px;">
+                    <canvas id="draw2" width="280" height="220"></canvas>
+                    <span class="glabel" style="left:48%;top:53%;font-weight:700;">O</span>
+                    <span class="glabel" style="left:91%;top:53%;font-style:italic;font-weight:700;">$x$</span>
+                    <span class="glabel" style="left:48%;top:8%;font-style:italic;font-weight:700;">$y$</span>
+                    <span class="glabel" style="left:58%;top:30%;font-size:14px;color:#2563eb;font-weight:600;">$y=2-3x$</span>
+                </div>
+                <div class="gwrap" style="width:280px;">
+                    <canvas id="draw3" width="280" height="220"></canvas>
+                    <span class="glabel" style="left:48%;top:53%;font-weight:700;">O</span>
+                    <span class="glabel" style="left:91%;top:53%;font-style:italic;font-weight:700;">$x$</span>
+                    <span class="glabel" style="left:48%;top:8%;font-style:italic;font-weight:700;">$y$</span>
+                    <span class="glabel" style="left:62%;top:25%;font-size:14px;color:#2563eb;font-weight:600;">$y=-\dfrac{3}{x}$</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>5.</strong> 在直线 $y = -\dfrac{1}{2}x + 3$ 上分别找出满足下列条件的点，并写出它们的坐标：</p>
+        <div class="q-item">
+            <span class="q-text">（1）横坐标是 $-4$；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a5_1')">(1)</button>
+        </div>
+        <div id="a5_1" class="answer-box"><p>$x = -4$ 时，$y = -\dfrac{1}{2}\times(-4) + 3 = 2 + 3 = 5$。点为 $(-4, 5)$。</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（2）与 $x$ 轴的距离是 $2$ 个单位长度。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a5_2')">(2)</button>
+        </div>
+        <div id="a5_2" class="answer-box">
+            <p>与 $x$ 轴距离为 $2$，即 $|y| = 2$，$y = 2$ 或 $y = -2$。</p>
+            <p>当 $y = 2$ 时：$-\dfrac{1}{2}x + 3 = 2$，$x = 2$。点为 $(2, 2)$。</p>
+            <p>当 $y = -2$ 时：$-\dfrac{1}{2}x + 3 = -2$，$x = 10$。点为 $(10, -2)$。</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>6.</strong> 一次函数的图象经过点 $(3, 3)$ 和点 $(1, -1)$。求这个函数的表达式，并画出它的图象。</p>
+        <button class="interact-btn" onclick="toggleAnswer('a6')">💡 参考答案</button>
+        <div id="a6" class="answer-box">
+            <p>设 $y = kx + b$，代入两点：</p>
+            <p>$$\begin{cases} 3k + b = 3 \\ k + b = -1 \end{cases}$$</p>
+            <p>解得 $k = 2$，$b = -3$。</p>
+            <p>函数表达式为：$y = 2x - 3$。</p>
+            <div class="gwrap" style="width:100%;max-width:360px;margin:1rem auto;">
+                <canvas id="fig6" width="360" height="280"></canvas>
+                <span class="glabel" style="left:48%;top:57%;font-weight:700;">O</span>
+                <span class="glabel" style="left:92%;top:57%;font-style:italic;font-weight:700;">$x$</span>
+                <span class="glabel" style="left:48%;top:5%;font-style:italic;font-weight:700;">$y$</span>
+                <span class="glabel" style="left:62%;top:22%;font-size:14px;color:#2563eb;font-weight:600;">$y=2x-3$</span>
+                <span class="glabel" style="left:82%;top:16%;font-size:14px;color:#dc2626;">$(3,3)$</span>
+                <span class="glabel" style="left:64%;top:66%;font-size:14px;color:#dc2626;">$(1,-1)$</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>7.</strong> 如图，正方形 $ABCD$ 的边长为 $4$，$P$ 为边 $DC$ 上的一点。设 $DP = x$，求 $\triangle APD$ 的面积 $y$ 与 $x$ 之间的函数关系式，并画出这个函数的图象。</p>
+        <div class="gwrap" style="width:100%;max-width:280px;margin:.5rem auto;">
+            <canvas id="fig7" width="280" height="240"></canvas>
+            <span class="glabel" style="left:14%;top:6%;font-size:18px;font-weight:700;">$A$</span>
+            <span class="glabel" style="left:14%;top:78%;font-size:18px;font-weight:700;">$B$</span>
+            <span class="glabel" style="left:82%;top:78%;font-size:18px;font-weight:700;">$C$</span>
+            <span class="glabel" style="left:82%;top:6%;font-size:18px;font-weight:700;">$D$</span>
+            <span class="glabel" style="left:85%;top:48%;font-size:16px;color:#dc2626;font-weight:700;">$P$</span>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('a7')">💡 参考答案</button>
+        <div id="a7" class="answer-box">
+            <p>$\triangle APD$ 中，底 $DP = x$，高 $AD = 4$。</p>
+            <p>$$y = \dfrac{1}{2} \times x \times 4 = 2x$$</p>
+            <p>自变量取值范围：$0 \leqslant x \leqslant 4$。</p>
+            <p>图象是从 $(0,0)$ 到 $(4,8)$ 的线段（包括端点）。</p>
+            <div class="gwrap" style="width:100%;max-width:360px;margin:1rem auto;">
+                <canvas id="fig7ans" width="360" height="280"></canvas>
+                <span class="glabel" style="left:14%;top:80%;font-weight:700;">O</span>
+                <span class="glabel" style="left:87%;top:80%;font-style:italic;font-weight:700;">$x$</span>
+                <span class="glabel" style="left:14%;top:8%;font-style:italic;font-weight:700;">$y$</span>
+                <span class="glabel" style="left:68%;top:22%;font-size:14px;color:#2563eb;font-weight:600;">$y=2x$</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>8.</strong> 地表以下岩层的温度 $y$ ($^{\circ}\mathrm{C}$) 随着深度 $x$ ($\mathrm{km}$) 的变化而变化。某处 $y$ 与 $x$ 之间的关系在一定范围内可以近似地表示成公式：$y = 35x + 20$。试分别求出该处地表以下深 $7\,\mathrm{km}$、$10\,\mathrm{km}$、$15\,\mathrm{km}$ 处的岩层温度。</p>
+        <button class="interact-btn" onclick="toggleAnswer('a8')">💡 参考答案</button>
+        <div id="a8" class="answer-box">
+            <p>$x = 7$ 时，$y = 35\times7 + 20 = 265$ ($^{\circ}\mathrm{C}$)</p>
+            <p>$x = 10$ 时，$y = 35\times10 + 20 = 370$ ($^{\circ}\mathrm{C}$)</p>
+            <p>$x = 15$ 时，$y = 35\times15 + 20 = 545$ ($^{\circ}\mathrm{C}$)</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>9.</strong> 酒精的体积随温度的升高而增大，在一定范围内近似于一次函数关系。现测得一定量的酒精在 $0^{\circ}\mathrm{C}$ 时的体积是 $5.250\,\mathrm{L}$，在 $40^{\circ}\mathrm{C}$ 时的体积是 $5.481\,\mathrm{L}$。求这些酒精在 $10^{\circ}\mathrm{C}$ 和 $30^{\circ}\mathrm{C}$ 时的体积各是多少。</p>
+        <button class="interact-btn" onclick="toggleAnswer('a9')">💡 参考答案</button>
+        <div id="a9" class="answer-box">
+            <p>设 $V = kt + b$，代入 $(0, 5.250)$ 和 $(40, 5.481)$：</p>
+            <p>$b = 5.250$，$40k + 5.250 = 5.481$，$k = \dfrac{0.231}{40} = 0.005775$。</p>
+            <p>$V = 0.005775t + 5.250$</p>
+            <p>$t = 10$ 时，$V \approx 5.308\,\mathrm{L}$；$t = 30$ 时，$V \approx 5.423\,\mathrm{L}$。</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4>B组　能力提升</h4>
+        <p><strong>10.</strong> 已知点 $A(-3, a)$ 与点 $B(3, 4)$ 关于 $y$ 轴对称，求 $a$ 的值。</p>
+        <button class="interact-btn" onclick="toggleAnswer('b10')">💡 参考答案</button>
+        <div id="b10" class="answer-box"><p>关于 $y$ 轴对称的点，纵坐标相等，横坐标互为相反数。$a = 4$。</p></div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>11.</strong> （1）在平面直角坐标系中描出下列各组的点，并分别用线段把它们连起来：</p>
+        <p style="margin-left:1.5rem;">① $(1, 0)$，$(3, 0)$；　② $(1, -1)$，$(1, -3)$；</p>
+        <p style="margin-left:1.5rem;">③ $(0, 1)$，$(0, 3)$；　④ $(-1, 1)$，$(-1, 3)$；</p>
+        <p style="margin-left:1.5rem;">⑤ $(0, 2)$，$(4, 0)$；　⑥ $(-1, -1)$，$(-3, -3)$。</p>
+        <p>（2）小题（1）中连成的各线段中点的坐标分别是什么？仔细观察各中点的坐标与两个端点的坐标，你能发现它们之间有怎样的关系吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('b11')">💡 参考答案</button>
+        <div id="b11" class="answer-box">
+            <p>（2）各中点坐标：① $(2, 0)$；② $(1, -2)$；③ $(0, 2)$；④ $(-1, 2)$；⑤ $(2, 1)$；⑥ $(-2, -2)$。</p>
+            <p><strong>规律</strong>：线段中点的坐标等于两个端点坐标的平均数，即</p>
+            <p class="math-block">$$x_{\text{中}} = \dfrac{x_1 + x_2}{2},\quad y_{\text{中}} = \dfrac{y_1 + y_2}{2}$$</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>12.</strong> 从地面到高空 $11\,\mathrm{km}$ 之间，气温随高度的升高而下降，已知某地每升高 $1\,\mathrm{km}$，气温下降 $6^{\circ}\mathrm{C}$；高于 $11\,\mathrm{km}$ 时，气温几乎不再变化。设该地地面气温为 $20^{\circ}\mathrm{C}$，离地面 $x\,\mathrm{km}$ 处的气温为 $y^{\circ}\mathrm{C}$。</p>
+        <div class="q-item">
+            <span class="q-text">（1）当 $0 \leqslant x \leqslant 11$ 时，求 $y$ 与 $x$ 之间的函数关系式；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b12_1')">(1)</button>
+        </div>
+        <div id="b12_1" class="answer-box"><p>$y = 20 - 6x$ ($0 \leqslant x \leqslant 11$)</p></div>
+
+        <div class="q-item">
+            <span class="q-text">（2）画出该地气温 $y$ 关于高度 $x$（包括高于 $11\,\mathrm{km}$）的函数的图象；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b12_2')">(2)</button>
+        </div>
+        <div id="b12_2" class="answer-box">
+            <p>图象分为两段：$0 \leqslant x \leqslant 11$ 时为下降的线段；$x > 11$ 时为水平线段（$y = -46$）。</p>
+            <div class="gwrap" style="width:100%;max-width:480px;margin:1rem auto;">
+                <canvas id="temp" width="480" height="480"></canvas>
+                <span class="glabel" style="left:14%;top:52%;font-weight:700;">O</span>
+                <span class="glabel" style="left:90%;top:52%;font-style:italic;font-weight:700;">$x/\mathrm{km}$</span>
+                <span class="glabel" style="left:7%;top:6%;font-style:italic;font-weight:700;">$y/^{\circ}\mathrm{C}$</span>
+            </div>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text">（3）分别求出该地在离地面 $4.5\,\mathrm{km}$ 及 $13\,\mathrm{km}$ 处的气温。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b12_3')">(3)</button>
+        </div>
+        <div id="b12_3" class="answer-box">
+            <p>$x = 4.5$ 时，$y = 20 - 6\times4.5 = 20 - 27 = -7$ ($^{\circ}\mathrm{C}$)</p>
+            <p>$x = 13$ 时，高于 $11\,\mathrm{km}$，气温不再变化。$y = 20 - 6\times11 = -46$ ($^{\circ}\mathrm{C}$)</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>13.</strong> 如图，已知 $\triangle OAB$ 为等腰直角三角形，点 $P$、$Q$ 分别是边 $AB$、$OA$ 上的点，$OA = OB = 6$，$OQ = 4$。建立如图所示的平面直角坐标系，设点 $P$ 的坐标为 $(x, y)$，解答下列问题：</p>
+        <div class="gwrap" style="width:100%;max-width:360px;margin:.5rem auto;">
+            <canvas id="fig13" width="360" height="320"></canvas>
+            <span class="glabel draggable-label" style="left:14%;top:83%;font-size:18px;font-weight:700;">$O$</span>
+            <span class="glabel draggable-label" style="left:76%;top:86%;font-size:18px;font-weight:700;">$A$</span>
+            <span class="glabel draggable-label" style="left:12%;top:14%;font-size:18px;font-weight:700;">$B$</span>
+            <span class="glabel draggable-label" style="left:38%;top:34%;font-size:16px;color:#dc2626;font-weight:700;">$P$</span>
+            <span class="glabel draggable-label" style="left:58%;top:86%;font-size:16px;color:#374151;font-weight:700;">$Q$</span>
+            <span class="glabel draggable-label" style="left:86%;top:80%;font-style:italic;font-weight:700;">$x$</span>
+            <span class="glabel draggable-label" style="left:14%;top:2%;font-style:italic;font-weight:700;">$y$</span>
+        </div>
+        <div class="q-item">
+            <span class="q-text">（1）求 $y$ 关于 $x$ 的函数关系式，以及函数自变量的取值范围；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b13_1')">(1)</button>
+        </div>
+        <div id="b13_1" class="answer-box">
+            <p>直线 $AB$ 过 $A(6,0)$ 和 $B(0,6)$，$k = -1$，$b = 6$。</p>
+            <p>$y = -x + 6$ ($0 \leqslant x \leqslant 6$)</p>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text">（2）求 $\triangle OPQ$ 的面积 $S$ 关于 $x$ 的函数关系式；</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b13_2')">(2)</button>
+        </div>
+        <div id="b13_2" class="answer-box">
+            <p>$S = \dfrac{1}{2} \times OQ \times y = \dfrac{1}{2} \times 4 \times (-x + 6) = 12 - 2x$ ($0 \leqslant x \leqslant 6$)</p>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text">（3）如果 $\triangle OPQ$ 的面积等于 $10$，求点 $P$ 的坐标。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('b13_3')">(3)</button>
+        </div>
+        <div id="b13_3" class="answer-box">
+            <p>$12 - 2x = 10$，$x = 1$。$y = -1 + 6 = 5$。</p>
+            <p>点 $P$ 的坐标为 $(1, 5)$。</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4>C组　综合运用</h4>
+        <p><strong>14.</strong> 某厂今年前 $5$ 个月某种产品的月产量 $Q$（件）是时间 $t$（月）的函数，它的图象如图所示，则对这种产品来说，下列说法中正确的是（　　）。</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <div class="gwrap" style="width:100%;max-width:400px;">
+                <canvas id="prod" width="400" height="260"></canvas>
+                <span class="glabel" style="left:8%;top:86%;font-weight:700;">O</span>
+                <span class="glabel" style="left:88%;top:86%;font-style:italic;font-weight:700;">$t$/月</span>
+                <span class="glabel" style="left:2%;top:4%;font-style:italic;font-weight:700;">$Q$/件</span>
+                <span class="glabel" style="left:4%;top:14%;font-size:16px;color:#374151;">1000</span>
+            </div>
+        </div>
+        <p style="margin-left:1rem;">A. 1月至3月每月产量逐月增加，4、5两月每月产量逐月减少<br>B. 1月至3月每月产量逐月增加，4、5两月每月产量与3月持平<br>C. 1月至3月每月产量逐月增加，4、5两月停止生产<br>D. 1月至3月每月产量不变，4、5两月停止生产</p>
+        <button class="interact-btn" onclick="toggleAnswer('c14')">💡 参考答案</button>
+        <div id="c14" class="answer-box"><p><strong>答案：B</strong></p><p>1月至3月图象上升，说明产量逐月增加；4、5两月图象水平，说明产量与3月持平。</p></div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>15.</strong> 将函数 $y = 2x + 3$ 的图象平移，使它经过点 $(2, -1)$，求平移后的直线所对应的函数的表达式。你能想出几种不同的平移方法？请和同学交流一下。</p>
+        <button class="interact-btn" onclick="toggleAnswer('c15')">💡 参考答案</button>
+        <div id="c15" class="answer-box">
+            <p>设平移后 $y = 2x + b$（斜率不变），过 $(2, -1)$：</p>
+            <p>$-1 = 2\times2 + b$，$b = -5$。</p>
+            <p>平移后的表达式：$y = 2x - 5$。</p>
+            <p><strong>平移方法</strong>（举例）：</p>
+            <p>① 向下平移 $8$ 个单位：$y = 2x + 3 - 8 = 2x - 5$；</p>
+            <p>② 向右平移 $4$ 个单位：设 $y = 2(x-h) + 3$，过 $(2,-1)$ 得 $-1 = 2(2-h)+3$，$h=4$。</p>
+            <p>③ 先向右平移 $1$ 个单位，再向下平移 $10$ 个单位等。</p>
+        </div>
+    </div>
+
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>16.</strong> 直线 $y = \dfrac{2}{3}x - 2$ 分别交 $x$ 轴、$y$ 轴于 $A$、$B$ 两点，$O$ 是原点。</p>
+        <div class="gwrap" style="width:100%;max-width:400px;margin:.5rem auto;">
+            <canvas id="fig16" width="400" height="340"></canvas>
+            <span class="glabel" style="left:46%;top:53%;font-size:18px;font-weight:700;">$O$</span>
+            <span class="glabel" style="left:83%;top:46%;font-size:18px;font-weight:700;">$A$</span>
+            <span class="glabel" style="left:42%;top:75%;font-size:18px;font-weight:700;">$B$</span>
+        </div>
+        <div class="q-item">
+            <span class="q-text">（1）求 $\triangle AOB$ 的面积。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('c16_1')">(1)</button>
+        </div>
+        <div id="c16_1" class="answer-box">
+            <p>$A(3, 0)$，$B(0, -2)$。</p>
+            <p>$S_{\triangle AOB} = \dfrac{1}{2} \times 3 \times 2 = 3$。</p>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text">（2）过 $\triangle AOB$ 的顶点能不能画出直线把 $\triangle AOB$ 分成面积相等的两部分？若能，可以画出几条？写出这样的直线所对应的函数的表达式。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('c16_2')">(2)</button>
+        </div>
+        <div id="c16_2" class="answer-box">
+            <p><strong>能</strong>，可以画出 <strong>3 条</strong>。</p>
+            <p>三角形中，过顶点和对边中点的直线把三角形分成面积相等的两部分。</p>
+            <p>AB 中点 $M(1.5, -1)$：</p>
+            <p>① 过 $O$ 和 $M$：$y = -\dfrac{2}{3}x$</p>
+            <p>② 过 $A$ 和 $OB$ 中点 $(0, -1)$：$y = \dfrac{1}{3}x - 1$</p>
+            <p>③ 过 $B$ 和 $OA$ 中点 $(1.5, 0)$：$y = \dfrac{4}{3}x - 2$</p>
+        </div>
+    </div>
+
+    <!-- ===== 七、课堂小结 ===== -->
+    <div class="section-title">七、课堂小结</div>
+    <div class="summary-box">
+        <h4>本节课我们收获了什么？</h4>
+        <ol>
+            <li><strong>知识层面</strong>：建立了"实际问题→变量与函数→坐标系→图象与性质→应用"的完整知识网络。</li>
+            <li><strong>方法层面</strong>：掌握了待定系数法、两点法画图、看图象获取信息、数形结合等核心方法。</li>
+            <li><strong>思想层面</strong>：深刻体会了<strong>数形结合</strong>思想——用坐标把"点"与"数"联系起来，用图象把"形"与"变化规律"联系起来。</li>
+            <li><strong>能力层面</strong>：能综合运用函数知识解决实际问题，注意审题、建模、求解、检验的完整过程。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 八、课后作业 ===== -->
+    <div class="ho-work">
+        <h4></h4>
+        <ol>
+            <li>绘制本章的知识结构图（思维导图），标注各知识点之间的联系。</li>
+            <li>整理本章的错题，分析错误原因，归类到"易错警示"的四个类型中。</li>
+            <li>思考：如果两个一次函数的图象平行，它们对应的方程组有什么特点？</li>
+        </ol>
+    </div>
+
+</div>
+
+<script>
+function toggleAnswer(id){
+    var e=document.getElementById(id);
+    e.style.display=(e.style.display==='block')?'none':'block';
+}
+
+// ==================== 例2图象 ====================
+;(function(){
+    var c=document.getElementById('ex2graph'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,480,360);
+    var ox=240,oy=180,sc=35;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-5;i<=5;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,30);ctx.lineTo(ox+i*sc,330);ctx.stroke();}
+    for(var i=-4;i<=4;i++){ctx.beginPath();ctx.moveTo(30,oy-i*sc);ctx.lineTo(450,oy-i*sc);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(30,oy);ctx.lineTo(450,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,330);ctx.lineTo(ox,30);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(450,oy);ctx.lineTo(440,oy-7);ctx.lineTo(440,oy+7);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,30);ctx.lineTo(ox-7,40);ctx.lineTo(ox+7,40);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    for(var i=-5;i<=5;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+18);
+    ctx.textAlign='right';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx.fillText(i,ox-6,oy-i*sc+4);
+    // 反比例函数 y=6/x
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=2.5;
+    ctx.beginPath();
+    for(var x=-5;x<=-0.3;x+=0.05){var y=6/x;if(y>-4&&y<4){var px=ox+x*sc,py=oy-y*sc;if(x===-5)ctx.moveTo(px,py);else ctx.lineTo(px,py);}}
+    ctx.stroke();
+    ctx.beginPath();
+    for(var x=0.3;x<=5;x+=0.05){var y=6/x;if(y>-4&&y<4){var px=ox+x*sc,py=oy-y*sc;if(x===0.3)ctx.moveTo(px,py);else ctx.lineTo(px,py);}}
+    ctx.stroke();
+    // 一次函数 y=x+1
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(ox-5*sc,oy-(-4)*sc);ctx.lineTo(ox+3*sc,oy-4*sc);ctx.stroke();
+    // 交点
+    ctx.fillStyle='#dc2626';
+    ctx.beginPath();ctx.arc(ox+2*sc,oy-3*sc,5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(ox-3*sc,oy-(-2)*sc,5,0,Math.PI*2);ctx.fill();
+})();
+
+// ==================== 例3图象 ====================
+;(function(){
+    var c=document.getElementById('ex3graph'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,480,320);
+    var ox=50,oy=260,sx=30,sy=4;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=12;i++){ctx.beginPath();ctx.moveTo(ox+i*sx,20);ctx.lineTo(ox+i*sx,290);ctx.stroke();}
+    for(var i=0;i<=50;i+=10){ctx.beginPath();ctx.moveTo(20,oy-i*sy);ctx.lineTo(440,oy-i*sy);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(20,oy);ctx.lineTo(440,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,290);ctx.lineTo(ox,20);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(440,oy);ctx.lineTo(430,oy-7);ctx.lineTo(430,oy+7);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-7,30);ctx.lineTo(ox+7,30);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    for(var i=2;i<=12;i+=2) ctx.fillText(i,ox+i*sx,oy+18);
+    ctx.textAlign='right';
+    for(var i=10;i<=50;i+=10) ctx.fillText(i,ox-6,oy-i*sy+4);
+    // 折线（示意：1~4上升，4~12下降）
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox+1*sx,oy-10*sy);ctx.lineTo(ox+2*sx,oy-20*sy);ctx.lineTo(ox+3*sx,oy-35*sy);ctx.lineTo(ox+4*sx,oy-40*sy);ctx.lineTo(ox+12*sx,oy-24*sy);ctx.stroke();
+    // 所有转折点用红点标出
+    ctx.fillStyle='#dc2626';
+    var pts=[[1,10],[2,20],[3,35],[4,40],[12,24]];
+    for(var i=0;i<pts.length;i++){
+        ctx.beginPath();ctx.arc(ox+pts[i][0]*sx,oy-pts[i][1]*sy,5,0,Math.PI*2);ctx.fill();
+    }
+    // 坐标标注
+    ctx.fillStyle='#374151';ctx.font='bold 14px sans-serif';ctx.textAlign='center';
+    ctx.fillText('(1,10)',ox+1*sx,oy-10*sy-12);
+    ctx.fillText('(2,20)',ox+2*sx,oy-20*sy-12);
+    ctx.fillText('(3,35)',ox+3*sx,oy-35*sy-12);
+    ctx.fillText('(4,40)',ox+4*sx,oy-40*sy-12);
+    ctx.fillText('(12,24)',ox+12*sx,oy-24*sy-12);
+    // 虚线（从最高点垂直向下到x轴）
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+    ctx.beginPath();ctx.moveTo(ox+4*sx,oy);ctx.lineTo(ox+4*sx,oy-40*sy);ctx.stroke();
+    ctx.setLineDash([]);
+})();
+
+// ==================== 第7题图象（正方形ABCD）====================
+;(function(){
+    var c=document.getElementById('fig7'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,280,240);
+    var sx=55,sy=20,side=175;
+    // 正方形ABCD：A左上，B左下，C右下，D右上
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2.5;
+    ctx.strokeRect(sx,sy,side,side);
+    // P点在DC上（右侧边，从D往下约60%）
+    var px=sx+side,py=sy+side*0.6;
+    // 斜线AP
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(px,py);ctx.stroke();
+    // P点
+    ctx.fillStyle='#dc2626';
+    ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);ctx.fill();
+    // 标注DP=x（右侧双向箭头，从D到P）
+    var dx=px+18;
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(dx,sy);ctx.lineTo(dx,py);ctx.stroke();
+    // 箭头
+    ctx.beginPath();ctx.moveTo(dx-4,sy+8);ctx.lineTo(dx,sy);ctx.lineTo(dx+4,sy+8);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(dx-4,py-8);ctx.lineTo(dx,py);ctx.lineTo(dx+4,py-8);ctx.stroke();
+    // x文字
+    ctx.fillStyle='#374151';ctx.font='bold 13px sans-serif';ctx.textAlign='left';
+    ctx.fillText('x',dx+6,(sy+py)/2+4);
+})();
+
+// ==================== 第7题答案图象 y=2x ====================
+;(function(){
+    var c=document.getElementById('fig7ans'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,360,280);
+    var ox=60,oy=220,sc_x=55,sc_y=22;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=4;i+=2){ctx.beginPath();ctx.moveTo(ox+i*sc_x,30);ctx.lineTo(ox+i*sc_x,250);ctx.stroke();}
+    for(var i=0;i<=8;i+=4){ctx.beginPath();ctx.moveTo(30,oy-i*sc_y);ctx.lineTo(330,oy-i*sc_y);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(40,oy);ctx.lineTo(330,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,260);ctx.lineTo(ox,30);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(330,oy);ctx.lineTo(320,oy-6);ctx.lineTo(320,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,30);ctx.lineTo(ox-6,40);ctx.lineTo(ox+6,40);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    ctx.fillText('2',ox+2*sc_x,oy+18);
+    ctx.fillText('4',ox+4*sc_x,oy+18);
+    ctx.textAlign='right';
+    ctx.fillText('4',ox-6,oy-4*sc_y+4);
+    ctx.fillText('8',ox-6,oy-8*sc_y+4);
+    // 线段 y=2x (0<=x<=4)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+4*sc_x,oy-8*sc_y);ctx.stroke();
+    // 端点
+    ctx.fillStyle='#dc2626';
+    ctx.beginPath();ctx.arc(ox,oy,5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(ox+4*sc_x,oy-8*sc_y,5,0,Math.PI*2);ctx.fill();
+    // 端点坐标标注
+    ctx.fillStyle='#374151';ctx.font='bold 13px sans-serif';ctx.textAlign='center';
+    ctx.fillText('(4,8)',ox+4*sc_x,oy-8*sc_y-12);
+})();
+
+// ==================== 第13题图象（等腰直角三角形OAB）====================
+;(function(){
+    var c=document.getElementById('fig13'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,360,320);
+    var ox=60,oy=260,sc=35;
+    // 坐标轴（x轴向右，y轴向上，带箭头）
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(30,oy);ctx.lineTo(320,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,300);ctx.lineTo(ox,20);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(320,oy);ctx.lineTo(310,oy-6);ctx.lineTo(310,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-6,30);ctx.lineTo(ox+6,30);ctx.closePath();ctx.fill();
+    // 刻度（简洁标注）
+    ctx.fillStyle='#374151';ctx.font='bold 16px sans-serif';ctx.textAlign='center';
+    // AB斜边（A(6,0)到B(0,6)）
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ox+6*sc,oy);ctx.lineTo(ox,oy-6*sc);ctx.stroke();
+    // P点在AB上（取约(2,4)作为示意）
+    var px=ox+2*sc,py=oy-4*sc;
+    // OP连线
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(px,py);ctx.stroke();
+    // Q点在x轴上（OQ=4）
+    var qx=ox+4*sc,qy=oy;
+    // PQ连线
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(qx,qy);ctx.stroke();
+})();
+
+// ==================== 第16题图象（三角形AOB）====================
+;(function(){
+    var c=document.getElementById('fig16'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,400,340);
+    var ox=200,oy=170,sc=45;
+    // 坐标轴（原点居中）
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(30,oy);ctx.lineTo(380,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,310);ctx.lineTo(ox,30);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(380,oy);ctx.lineTo(370,oy-6);ctx.lineTo(370,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,30);ctx.lineTo(ox-6,40);ctx.lineTo(ox+6,40);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='bold 16px sans-serif';ctx.textAlign='center';
+    ctx.fillText('3',ox+3*sc,oy+20);
+    ctx.textAlign='right';
+    ctx.fillText('-2',ox-10,oy+2*sc+6);
+    // 直线 y=2/3x-2（取x=-2到x=4，确保经过B(0,-2)和A(3,0)）
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(ox-2*sc,oy+10/3*sc);ctx.lineTo(ox+4*sc,oy-2/3*sc);ctx.stroke();
+})();
+
+// ==================== 第4题画图答案 ====================
+;(function(){
+    // 图(1) y=-x/4
+    var c1=document.getElementById('draw1'),ctx=c1.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,280,220);
+    var ox=140,oy=120,sc=30;
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-4;i<=4;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,10);ctx.lineTo(ox+i*sc,210);ctx.stroke();}
+    for(var i=-3;i<=3;i++){ctx.beginPath();ctx.moveTo(10,oy-i*sc);ctx.lineTo(270,oy-i*sc);ctx.stroke();}
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(20,oy);ctx.lineTo(270,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,210);ctx.lineTo(ox,10);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(270,oy);ctx.lineTo(260,oy-6);ctx.lineTo(260,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,10);ctx.lineTo(ox-6,20);ctx.lineTo(ox+6,20);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#374151';ctx.font='12px sans-serif';ctx.textAlign='center';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+16);
+    ctx.textAlign='right';
+    for(var i=-3;i<=3;i++) if(i!==0) ctx.fillText(i,ox-6,oy-i*sc+4);
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(ox-4*sc,oy+1*sc);ctx.lineTo(ox+4*sc,oy-1*sc);ctx.stroke();
+    // 图(2) y=2-3x
+    var c2=document.getElementById('draw2'),ctx2=c2.getContext('2d');
+    ctx2.fillStyle='#fafafa';ctx2.fillRect(0,0,280,220);
+    ox=140;oy=120;sc=30;
+    ctx2.strokeStyle='#e5e7eb';ctx2.lineWidth=1;
+    for(var i=-4;i<=4;i++){ctx2.beginPath();ctx2.moveTo(ox+i*sc,10);ctx2.lineTo(ox+i*sc,210);ctx2.stroke();}
+    for(var i=-3;i<=3;i++){ctx2.beginPath();ctx2.moveTo(10,oy-i*sc);ctx2.lineTo(270,oy-i*sc);ctx2.stroke();}
+    ctx2.strokeStyle='#1f2937';ctx2.lineWidth=2.5;
+    ctx2.beginPath();ctx2.moveTo(20,oy);ctx2.lineTo(270,oy);ctx2.stroke();
+    ctx2.beginPath();ctx2.moveTo(ox,210);ctx2.lineTo(ox,10);ctx2.stroke();
+    ctx2.fillStyle='#1f2937';
+    ctx2.beginPath();ctx2.moveTo(270,oy);ctx2.lineTo(260,oy-6);ctx2.lineTo(260,oy+6);ctx2.closePath();ctx2.fill();
+    ctx2.beginPath();ctx2.moveTo(ox,10);ctx2.lineTo(ox-6,20);ctx2.lineTo(ox+6,20);ctx2.closePath();ctx2.fill();
+    ctx2.fillStyle='#374151';ctx2.font='11px sans-serif';ctx2.textAlign='center';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx2.fillText(i,ox+i*sc,oy+16);
+    ctx2.textAlign='right';
+    for(var i=-3;i<=3;i++) if(i!==0) ctx2.fillText(i,ox-6,oy-i*sc+4);
+    ctx2.strokeStyle='#2563eb';ctx2.lineWidth=2.5;
+    ctx2.beginPath();ctx2.moveTo(ox-1*sc,oy+5*sc);ctx2.lineTo(ox+2*sc,oy-4*sc);ctx2.stroke();
+    // 图(3) y=-3/x
+    var c3=document.getElementById('draw3'),ctx3=c3.getContext('2d');
+    ctx3.fillStyle='#fafafa';ctx3.fillRect(0,0,280,220);
+    ox=140;oy=120;sc=25;
+    ctx3.strokeStyle='#e5e7eb';ctx3.lineWidth=1;
+    for(var i=-5;i<=5;i++){ctx3.beginPath();ctx3.moveTo(ox+i*sc,10);ctx3.lineTo(ox+i*sc,210);ctx3.stroke();}
+    for(var i=-4;i<=4;i++){ctx3.beginPath();ctx3.moveTo(10,oy-i*sc);ctx3.lineTo(270,oy-i*sc);ctx3.stroke();}
+    ctx3.strokeStyle='#1f2937';ctx3.lineWidth=2.5;
+    ctx3.beginPath();ctx3.moveTo(20,oy);ctx3.lineTo(270,oy);ctx3.stroke();
+    ctx3.beginPath();ctx3.moveTo(ox,210);ctx3.lineTo(ox,10);ctx3.stroke();
+    ctx3.fillStyle='#1f2937';
+    ctx3.beginPath();ctx3.moveTo(270,oy);ctx3.lineTo(260,oy-6);ctx3.lineTo(260,oy+6);ctx3.closePath();ctx3.fill();
+    ctx3.beginPath();ctx3.moveTo(ox,10);ctx3.lineTo(ox-6,20);ctx3.lineTo(ox+6,20);ctx3.closePath();ctx3.fill();
+    ctx3.fillStyle='#374151';ctx3.font='11px sans-serif';ctx3.textAlign='center';
+    for(var i=-5;i<=5;i++) if(i!==0) ctx3.fillText(i,ox+i*sc,oy+16);
+    ctx3.textAlign='right';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx3.fillText(i,ox-6,oy-i*sc+4);
+    ctx3.strokeStyle='#2563eb';ctx3.lineWidth=2.5;
+    ctx3.beginPath();
+    for(var x=-5;x<=-0.3;x+=0.05){var y=-3/x;var px=ox+x*sc,py=oy-y*sc;if(x===-5)ctx3.moveTo(px,py);else ctx3.lineTo(px,py);}
+    ctx3.stroke();
+    ctx3.beginPath();
+    for(var x=0.3;x<=5;x+=0.05){var y=-3/x;var px=ox+x*sc,py=oy-y*sc;if(x===0.3)ctx3.moveTo(px,py);else ctx3.lineTo(px,py);}
+    ctx3.stroke();
+})();
+
+// ==================== 第6题图象 y=2x-3 ====================
+;(function(){
+    var c=document.getElementById('fig6'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,360,280);
+    var ox=180,oy=160,sc=35;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-4;i<=4;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,30);ctx.lineTo(ox+i*sc,250);ctx.stroke();}
+    for(var i=-3;i<=3;i++){ctx.beginPath();ctx.moveTo(30,oy-i*sc);ctx.lineTo(330,oy-i*sc);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(40,oy);ctx.lineTo(330,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,250);ctx.lineTo(ox,30);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(330,oy);ctx.lineTo(320,oy-6);ctx.lineTo(320,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,30);ctx.lineTo(ox-6,40);ctx.lineTo(ox+6,40);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+18);
+    ctx.textAlign='right';
+    for(var i=-3;i<=3;i++) if(i!==0) ctx.fillText(i,ox-6,oy-i*sc+4);
+    // 直线 y=2x-3
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(ox-2*sc,oy-(-7)*sc);ctx.lineTo(ox+4*sc,oy-5*sc);ctx.stroke();
+    // 两点
+    ctx.fillStyle='#dc2626';
+    ctx.beginPath();ctx.arc(ox+3*sc,oy-3*sc,5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(ox+1*sc,oy-(-1)*sc,5,0,Math.PI*2);ctx.fill();
+})();
+
+// ==================== 散步图象 ====================
+;(function(){
+    var c=document.getElementById('walk'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,400,280);
+    var ox=50,oy=240,sc_x=7.5,sc_y=0.22;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=50;i+=10){ctx.beginPath();ctx.moveTo(ox+i*sc_x,30);ctx.lineTo(ox+i*sc_x,270);ctx.stroke();}
+    for(var i=0;i<=900;i+=300){ctx.beginPath();ctx.moveTo(20,oy-i*sc_y);ctx.lineTo(380,oy-i*sc_y);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(20,oy);ctx.lineTo(380,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,270);ctx.lineTo(ox,20);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(380,oy);ctx.lineTo(370,oy-7);ctx.lineTo(370,oy+7);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-7,30);ctx.lineTo(ox+7,30);ctx.closePath();ctx.fill();
+    // 折线
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+20*sc_x,oy-900*sc_y);ctx.lineTo(ox+30*sc_x,oy-900*sc_y);ctx.lineTo(ox+45*sc_x,oy);ctx.stroke();
+    // 虚线
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+    ctx.beginPath();ctx.moveTo(ox+20*sc_x,oy);ctx.lineTo(ox+20*sc_x,oy-900*sc_y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox+30*sc_x,oy);ctx.lineTo(ox+30*sc_x,oy-900*sc_y);ctx.stroke();
+    ctx.setLineDash([]);
+})();
+
+// ==================== 气温图象 ====================
+;(function(){
+    var c=document.getElementById('temp'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,480,480);
+    var ox=80,oy=240,sc_x=22,sc_y=4;
+    // 网格
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=15;i+=5){ctx.beginPath();ctx.moveTo(ox+i*sc_x,20);ctx.lineTo(ox+i*sc_x,460);ctx.stroke();}
+    for(var i=-40;i<=40;i+=20){ctx.beginPath();ctx.moveTo(20,oy-i*sc_y);ctx.lineTo(460,oy-i*sc_y);ctx.stroke();}
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(20,oy);ctx.lineTo(460,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,460);ctx.lineTo(ox,20);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(460,oy);ctx.lineTo(450,oy-7);ctx.lineTo(450,oy+7);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-7,30);ctx.lineTo(ox+7,30);ctx.closePath();ctx.fill();
+    // 刻度
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    for(var i=5;i<=15;i+=5) ctx.fillText(i,ox+i*sc_x,oy+22);
+    ctx.textAlign='right';
+    for(var i=-40;i<=40;i+=20) if(i!==0) ctx.fillText(i,ox-8,oy-i*sc_y+5);
+    // 折线
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,oy-20*sc_y);ctx.lineTo(ox+11*sc_x,oy-(-46)*sc_y);ctx.lineTo(ox+15*sc_x,oy-(-46)*sc_y);ctx.stroke();
+    // 虚线（从转折点垂直向下到x轴）
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+    ctx.beginPath();ctx.moveTo(ox+11*sc_x,oy);ctx.lineTo(ox+11*sc_x,oy+46*sc_y);ctx.stroke();
+    ctx.setLineDash([]);
+})();
+
+// ==================== 月产量图象（第14题）====================
+;(function(){
+    var c=document.getElementById('prod'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,400,260);
+    var ox=50,oy=220,sc_x=55,sc_y=0.18;
+    // 轴
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(30,oy);ctx.lineTo(350,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,250);ctx.lineTo(ox,20);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(350,oy);ctx.lineTo(340,oy-6);ctx.lineTo(340,oy+6);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-6,30);ctx.lineTo(ox+6,30);ctx.closePath();ctx.fill();
+    // x轴刻度 1~5
+    ctx.fillStyle='#374151';ctx.font='13px sans-serif';ctx.textAlign='center';
+    for(var i=1;i<=5;i++) ctx.fillText(i,ox+i*sc_x,oy+20);
+    // y轴刻度 1000
+    ctx.textAlign='right';
+    ctx.fillText('1000',ox-8,oy-1000*sc_y+5);
+    // 水平虚线 y=1000（从y轴到x=5）
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(ox,oy-1000*sc_y);ctx.lineTo(ox+5*sc_x,oy-1000*sc_y);ctx.stroke();
+    ctx.setLineDash([]);
+    // 数据点（含原点）：0, 333, 667, 1000, 1000, 1000
+    var qs=[0,333,667,1000,1000,1000];
+    // 折线（粗虚线）
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=2.5;ctx.setLineDash([8,4]);
+    ctx.beginPath();
+    for(var i=0;i<=5;i++){
+        var px=ox+i*sc_x,py=oy-qs[i]*sc_y;
+        if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // 所有数据点（黑色圆点）
+    ctx.fillStyle='#1f2937';
+    for(var i=0;i<=5;i++){
+        var px=ox+i*sc_x,py=oy-qs[i]*sc_y;
+        ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);ctx.fill();
+    }
+    // 从3月、4月、5月向下画虚线到x轴
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+    for(var i=3;i<=5;i++){
+        var px=ox+i*sc_x,py=oy-qs[i]*sc_y;
+        ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px,oy);ctx.stroke();
+    }
+    ctx.setLineDash([]);
+})();
+
+// ==================== 可拖动标签 ====================
+;(function(){
+    var dragEl=null,startX,startY,startL,startT,wrapRect;
+    document.addEventListener('mousedown',function(e){
+        if(e.target.closest('.draggable-label')){
+            dragEl=e.target.closest('.draggable-label');
+            e.preventDefault();
+            startX=e.clientX;startY=e.clientY;
+            var wrap=dragEl.parentElement;
+            wrapRect=wrap.getBoundingClientRect();
+            startL=parseFloat(dragEl.style.left)||0;
+            startT=parseFloat(dragEl.style.top)||0;
+        }
+    });
+    document.addEventListener('mousemove',function(e){
+        if(!dragEl)return;
+        e.preventDefault();
+        var dx=e.clientX-startX,dy=e.clientY-startY;
+        dragEl.style.left=(startL+dx/wrapRect.width*100)+'%';
+        dragEl.style.top=(startT+dy/wrapRect.height*100)+'%';
+    });
+    document.addEventListener('mouseup',function(){dragEl=null;});
+})();
+
+// 等待KaTeX及auto-render加载完成后渲染
+var initAttempts = 0;
+function init(){
+    if(typeof katex !== 'undefined' && typeof renderMathInElement !== 'undefined'){
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+        });
+    } else if(initAttempts < 50){
+        initAttempts++;
+        setTimeout(init, 100);
+    } else {
+        console.error('KaTeX or auto-render failed to load');
+    }
+}
+window.onload = init;
+</script>
+</body>
+</html>

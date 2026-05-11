@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第40课时 三视图 | 华师版·七上 第3章</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            font-size: 2rem;
+            color: #1e4660;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第40课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 学会画简单立体图形的三视图，并能根据视图想象立体图形。</div>
+    <h2>3.2 立体图形的视图</h2>
+    <div class="lesson-title">第2课时 三视图</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解视图的概念，知道三视图（主视图、俯视图、左视图）</div>
+            <div class="target-item"><span>✔</span>能画出正方体、圆柱、圆锥的三视图</div>
+            <div class="target-item"><span>✔</span>通过练习初步掌握画三视图的方法</div>
+        </div>
+    </div>
+
+    <!-- 视图概念引入（130页） -->
+    <p>我们从某一方向观察物体时，看到的平面图形称为物体的一个<strong>视图</strong>（view）。视图可以看作平行光线下物体的正投影，它是一种特殊的平行投影。</p>
+    <p>如图3.2.7是三个立体图形在一个面的视图。</p>
+    <div class="figure-box"><img src="3.2.7.png" alt="图3.2.7"><div class="figcaption">图3.2.7 三个立体图形在一个面的视图</div></div>
+
+    <p>同一物体从不同的方向观察，得到的视图可能不同。为全面反映物体的形状，实际生活中，常采用多个视图刻画物体的形状。</p>
+    <p>如图3.2.8，从正面、上面和侧面（左面或右面）三个不同的方向进行观察（平行投影），可以得到三个投影，这样就可以用平面图形去刻画一个立体图形了。</p>
+    <div class="figure-box"><img src="3.2.8.png" alt="图3.2.8"><div class="figcaption">图3.2.8 三视图观察方向</div></div>
+
+    <p>从正面观察得到的投影，称为<strong>主视图</strong>；从上面观察得到的投影，称为<strong>俯视图</strong>；从侧面观察得到的投影，称为<strong>侧视图</strong>，依观察（投影）方向不同，有左视图和右视图。通常将主视图、俯视图和左（或右）视图称为一个物体的<strong>三视图</strong>。</p>
+    <p>如图3.2.9是一个螺栓。图3.2.10就是它的三视图，工人可以根据这三个图形制造出这个螺栓。</p>
+    <div class="figure-box"><img src="3.2.9.png" alt="图3.2.9"><div class="figcaption">图3.2.9 螺栓</div></div>
+    <div class="figure-box"><img src="3.2.10.png" alt="图3.2.10"><div class="figcaption">图3.2.10 螺栓的三视图</div></div>
+
+    <!-- 例1 正方体和圆柱的三视图（131页） -->
+    <div class="example-box">
+        <h4>例1</h4>
+        <p>分别画出如图3.2.11和图3.2.12所示的正方体和圆柱的三视图。</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin: 1rem 0;">
+            <div style="text-align: center;">
+                <img src="3.2.11.png" alt="图3.2.11 正方体" style="max-width:150px; border:1px solid #ccc;">
+                <div>图3.2.11 正方体</div>
+            </div>
+            <div style="text-align: center;">
+                <img src="3.2.12.png" alt="图3.2.12 圆柱" style="max-width:150px; border:1px solid #ccc;">
+                <div>图3.2.12 圆柱</div>
+            </div>
+        </div>
+        <p><strong>解：</strong> 如图3.2.13，正方体的三视图都是正方形。</p>
+        <div class="figure-box"><img src="3.2.13.png" alt="图3.2.13"><div class="figcaption">图3.2.13 正方体的三视图</div></div>
+        <p>如图3.2.14，圆柱的主视图和左视图都是长方形，俯视图是圆。</p>
+        <div class="figure-box"><img src="3.2.14.png" alt="图3.2.14"><div class="figcaption">图3.2.14 圆柱的三视图</div></div>
+        <p>观察粉笔盒、文具盒，试着画出它们的三视图。</p>
+    </div>
+
+    <!-- 例2 圆锥的三视图（132页） -->
+    <div class="example-box">
+        <h4>例2</h4>
+        <p>画出如图3.2.15所示的圆锥的三视图。</p>
+        <div style="text-align:center; margin:1rem 0;"><img src="3.2.15.png" alt="图3.2.15 圆锥" style="max-width:200px; border:1px solid #ccc;"><div>图3.2.15 圆锥</div></div>
+        <p><strong>解：</strong> 圆锥的三视图如图3.2.16所示。</p>
+        <div class="figure-box"><img src="3.2.16.png" alt="图3.2.16"><div class="figcaption">图3.2.16 圆锥的三视图</div></div>
+        <p>三视图法是描述立体图形的一种方法，以后我们还会学习更多的其他方法。</p>
+    </div>
+
+    <!-- 练习（132页） -->
+    <div class="exercises">
+        <h3>练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 画出下列立体图形的三视图。</p>
+            <div class="figure-box"><img src="第1题.png" alt="练习第1题图" style="max-width:80%;"></div>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx1')">参考三视图</button>
+            <div id="ansEx1" class="answer-box">
+                <p>（参考：圆柱的主、左视图为长方形，俯视图为圆；三棱柱的视图需根据摆放确定，此处略。）</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 图中右边是由四个相同的小长方体堆成的物体，试指出左边三个平面图形分别是这个物体的三视图中的哪个视图。</p>
+            <div class="figure-box"><img src="第2题.png" alt="练习第2题图" style="max-width:80%;"></div>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx2')">答案</button>
+            <div id="ansEx2" class="answer-box">
+                <p>（通常从左到右：主视图、俯视图、左视图，需根据实际图形确定。）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">三视图：主视图（正面）、俯视图（上面）、左视图（左面）</div>
+            <div class="summary-item">正方体三视图都是正方形；圆柱主、左视图为长方形，俯视图为圆</div>
+            <div class="summary-item">圆锥主、左视图为等腰三角形，俯视图为圆（带圆心）</div>
+            <div class="note-tip">※ 画三视图时要注意“长对正、高平齐、宽相等”。</div>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养（放在课堂小结下面） -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将三维立体图形转化为二维平面图形（三视图），实现空间问题平面化。<br>
+        <strong>模型思想：</strong> 通过三视图建立立体图形的数学模型，为工程制图打下基础。<br>
+        <strong>数形结合：</strong> 在画三视图的过程中，培养空间想象能力与几何直观。</p>
+    </div>
+
+    <!-- 读一读（可折叠） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 三视图的历史与工程应用</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>三视图起源于18世纪的法国，由数学家加斯帕尔·蒙日创立了画法几何学，成为工程制图的基础。在机械制造、建筑设计、计算机图形学等领域，三视图都是不可或缺的工具。现代CAD软件依然遵循“长对正、高平齐、宽相等”的原则生成三视图。可以说，三视图是人类将三维世界精确记录在二维平面上的伟大创造。</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P134习题3.2 A组第1、2题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第40课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) { document.getElementById(id).classList.toggle('show-answer'); }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent'), t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

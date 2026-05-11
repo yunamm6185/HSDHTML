@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.4 实践与探索 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 12px 12px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .ans-section {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .ans-section h5 {
+            font-size: 1.1rem;
+            color: #1d6130;
+            margin-bottom: 0.3rem;
+            border-left: 4px solid #47945b;
+            padding-left: 0.5rem;
+        }
+        .puzzle-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .puzzle-svg {
+            border: 1px solid #333;
+            background: #fff;
+            max-width: 100%;
+            height: auto;
+        }
+        .rect { fill: #a8d1ff; stroke: #333; stroke-width: 1; }
+        .empty-square { fill: #fff; stroke: #333; stroke-width: 1; }
+        .figure-box {
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .figcaption {
+            font-size: 0.9rem;
+            color: #4e6b82;
+            margin-top: 0.2rem;
+        }
+        .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第6章 一次方程组 · 6.4 实践与探索</span>
+    </div>
+    <h1>第6章 一次方程组</h1>
+    <div class="chapter-intro">★ 通过探索实际问题，进一步体会方程组的应用，培养建模能力。</div>
+    <div class="lesson-title">6.4 实践与探索</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析配套问题、图形问题中的等量关系，列出方程组</div>
+            <div class="target-item"><span>✔</span>掌握从图形中直接提取线性关系的方法</div>
+            <div class="target-item"><span>✔</span>体会方程组在实际生活中的广泛应用</div>
+        </div>
+    </div>
+
+    <!-- 问题1 白卡纸配套问题 -->
+    <div class="example-box">
+        <h4>问题1 包装盒配套问题</h4>
+        <p>要用20张白卡纸做长方体的包装盒，准备把这些白卡纸分成两部分，一部分做侧面，另一部分做底面。已知每张白卡纸可以做2个侧面，或者做3个底面。如果1个侧面和2个底面可以做成一个包装盒，那么如何分才能使做成的侧面和底面正好配套？</p>
+        <p>想一想，如果可以将一张白卡纸裁出一个侧面和一个底面，那么，该如何分这些白卡纸，才既能使做出的侧面和底面配套，又能充分利用白卡纸？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <div class="ans-section">
+                <h5>🔍 分析</h5>
+                <p>设用 \(x\) 张纸做侧面，\(y\) 张纸做底面，则 \(x + y = 20\)。</p>
+                <p>可做侧面 \(2x\) 个，底面 \(3y\) 个。配套关系：1个侧面配2个底面，所以 \(2 \times (2x) = 3y\)，即 \(4x = 3y\)。</p>
+            </div>
+            <div class="ans-section">
+                <h5>📐 列方程组</h5>
+                <p>\[\begin{cases} x + y = 20 \\ 4x = 3y \end{cases}\]</p>
+            </div>
+            <div class="ans-section">
+                <h5>✏️ 求解</h5>
+                <p>由 \(4x = 3y\) 得 \(y = \frac{4}{3}x\)，代入 \(x + y = 20\)：</p>
+                \[
+                x + \frac{4}{3}x = 20 \implies \frac{7}{3}x = 20 \implies x = \frac{60}{7} \approx 8.57,\quad y = \frac{80}{7} \approx 11.43
+                \]
+                <p>由于纸张张数必须是整数，因此无法刚好配套（不能有分数张纸）。</p>
+            </div>
+            <div class="ans-section">
+                <h5>💡 进一步思考（一纸两用）</h5>
+                <p>如果允许一张纸同时裁出一个侧面和一个底面，设：</p>
+                <ul>
+                    <li>\(a\) 张纸全做侧面，每张得2个侧面；</li>
+                    <li>\(b\) 张纸全做底面，每张得3个底面；</li>
+                    <li>\(c\) 张纸同时裁出一个侧面和一个底面，每张得1个侧面+1个底面。</li>
+                </ul>
+                <p>总纸张：\(a + b + c = 20\)。</p>
+                <p>侧面总数：\(2a + c\)；底面总数：\(3b + c\)。</p>
+                <p>配套条件：侧面数 : 底面数 = 1 : 2，即 \(2(2a + c) = 3b + c\)，化简得 \(4a + 2c = 3b + c\) ⇒ \(4a + c = 3b\)。</p>
+                <p>将 \(b = 20 - a - c\) 代入 \(4a + c = 3(20 - a - c)\)：</p>
+                \[
+                4a + c = 60 - 3a - 3c \implies 7a + 4c = 60
+                \]
+                <p>求非负整数解：\(a=4, c=8\) 得 \(b=8\)；\(a=8, c=1\) 得 \(b=11\)；\(a=0, c=15\) 得 \(b=5\)（此时 \(a=0\) 表示无全做侧面）。例如 \(a=4, b=8, c=8\) 时，侧面 \(2×4+8=16\)，底面 \(3×8+8=32\)，正好1:2。因此有多种分配方式，可实现配套且纸张全用。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 问题2 拼图问题，使用提供的SVG图形 -->
+    <div class="example-box">
+        <h4>问题2 拼图问题</h4>
+        <p>小明在拼图时，发现8个一样大小的小长方形，恰好可以拼成如图1所示的一个大长方形。小红看见了，说：“我来试一试。”结果小红七拼八凑，拼成如图2所示的正方形。咳，怎么中间还留下了一个洞，恰好是边长为 \(2\mathrm{mm}\) 的小正方形！你能求出这些小长方形的长和宽吗？</p>
+        <div class="puzzle-container">
+            <div>
+                <svg width="150" height="80" viewBox="0 0 150 80" class="puzzle-svg">
+                    <rect class="rect" x="0"   y="0" width="30" height="50" />
+                    <rect class="rect" x="30"  y="0" width="30" height="50" />
+                    <rect class="rect" x="60"  y="0" width="30" height="50" />
+                    <rect class="rect" x="90"  y="0" width="30" height="50" />
+                    <rect class="rect" x="120" y="0" width="30" height="50" />
+                    <rect class="rect" x="0"   y="50" width="50" height="30" />
+                    <rect class="rect" x="50"  y="50" width="50" height="30" />
+                    <rect class="rect" x="100" y="50" width="50" height="30" />
+                </svg>
+                <div class="figcaption">图1 8个小长方形拼成大长方形</div>
+            </div>
+            <div>
+                <svg width="110" height="110" viewBox="0 0 110 110" class="puzzle-svg">
+                    <rect class="rect" x="0"   y="0" width="30" height="50" />
+                    <rect class="rect" x="30"  y="0" width="30" height="50" />
+                    <rect class="rect" x="60"  y="0" width="50" height="30" />
+                    <rect class="rect" x="60"  y="30" width="50" height="30" />
+                    <rect class="empty-square" x="50" y="50" width="10" height="10" />
+                    <rect class="rect" x="0"   y="50" width="50" height="30" />
+                    <rect class="rect" x="50"  y="60" width="30" height="50" />
+                    <rect class="rect" x="80"  y="60" width="30" height="50" />
+                    <rect class="rect" x="0"   y="80" width="50" height="30" />
+                </svg>
+                <div class="figcaption">图2 拼成正方形中间有洞（洞为2mm小正方形）</div>
+            </div>
+        </div>
+
+        <!-- 探索部分（课本原样） -->
+        <div class="quote-box">
+            <p><strong>探索：</strong> 设长方形的长和宽分别为 \(x\,\text{mm}\)、\(y\,\text{mm}\)。图6.4.2给我们提供了一个信息：</p>
+            <p>\[S_{\text{大正方形}} - 8 \times S_{\text{长方形}} = 2^2,\]</p>
+            <p>即</p>
+            <p>\[(x + 2y)^2 - 8xy = 4.\]</p>
+            <p>但这是我们还没有研究过的方程！你有其他办法来解决这个问题吗？</p>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('ans2')">📌 显示另一种解法</button>
+        <div id="ans2" class="answer-box">
+            <div class="ans-section">
+                <h5>💡 从图形中直接寻找线性关系</h5>
+                <p>仔细观察图2，可以发现中间空洞的边长等于两个小长方形的宽减去一个小长方形的长。这是因为左边两个竖放的小长方形总宽度为 \(2y\)，右边两个竖放的小长方形总宽度也为 \(2y\)，而中间横放的小长方形的长度为 \(x\)，空隙恰好出现在横放与竖放之间。因此得到：</p>
+                <p>\[2y - x = 2 \quad \text{(2)}\]</p>
+                <p>同时，从图1可得：大长方形的上边由5个小长方形的宽组成，下边由3个小长方形的长组成，即</p>
+                <p>\[5y = 3x \quad \text{(1)}\]</p>
+                <p>这样就得到了一个关于 \(x, y\) 的二元一次方程组。</p>
+            </div>
+            <div class="ans-section">
+                <h5>📐 列方程组</h5>
+                <p>\[
+                \begin{cases}
+                5y = 3x & (1)\\
+                2y - x = 2 & (2)
+                \end{cases}
+                \]</p>
+            </div>
+            <div class="ans-section">
+                <h5>✏️ 求解</h5>
+                <p>由 (2) 得 \(x = 2y - 2\)，代入 (1)：</p>
+                \[
+                5y = 3(2y - 2) \implies 5y = 6y - 6 \implies y = 6
+                \]
+                <p>代入 \(x = 2×6 - 2 = 10\)。</p>
+            </div>
+            <div class="ans-section">
+                <h5>✅ 答案</h5>
+                <p>小长方形的长为 \(10\) mm，宽为 \(6\) mm。</p>
+                <p>检验：图1中 \(5y = 30\)，\(3x = 30\)，符合；图2中 \(2y - x = 12 - 10 = 2\)，符合空洞边长2mm。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>从5.3节提出的问题中选出一个，用本章的方法来处理，并比较一下两种方法，谈谈你的感受。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do')">💡 举例</button>
+        <div id="do" class="answer-box">
+            <p>例如5.3节的问题2（捐款问题）：七年级捐款占总数 \(\frac{2}{5}\)，八年级是平均数，九年级1964元，求七、八年级捐款。用一元一次方程需设总数，用二元一次方程组可直接设七、八年级分别为 \(x, y\)，得 \(\begin{cases} x = \frac{2}{5}(x+y+1964) \\ y = \frac{1}{3}(x+y+1964) \end{cases}\)，化简求解。两种方法本质相同，但方程组更直接反映多个等量关系。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：整体消元思想 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 整体消元思想</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>在解方程组时，有时我们不需要求出每个未知数的具体值，而是要求几个未知数的整体值。这种思想在古代数学中已有体现，如《九章算术》中的“方程术”就包含了整体处理的思想。例如，在“方程”章中，通过加减消元逐步求出未知数，但有时也会整体考虑。现代数学中，这种“整体代入”的方法可以简化运算，避免繁琐的求解过程。</p>
+            <p>关于整体思想的更深入应用，请参考专门的数学活动课时。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 从实际问题中抽象出方程组模型。<br>
+        <strong>化归思想：</strong> 将复杂问题转化为方程求解。<br>
+        <strong>几何直观：</strong> 从图形中直接提取线性关系。<br>
+        <strong>应用意识：</strong> 数学在生活、经济中的广泛应用。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">配套问题、图形问题常需列出方程组求解</div>
+            <div class="summary-item">从图形中可以直接观察出线性关系，避免二次方程</div>
+            <div class="summary-item">实际问题中要灵活选择方程，优化解题步骤</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本习题6.4 A组第1、2、3题，并思考B组第4题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 实践出真知，方程显神通 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第6章 6.4</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

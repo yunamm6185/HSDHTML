@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第18课时 有理数的乘方（2） | 华师版·七上 第1章 有理数</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+        }
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            position: relative;
+            display: inline-block;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+        .explore-box {
+            background: #e3f2fd;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #5f9dc9;
+            box-shadow: 0 6px 0 #3f7ba3;
+        }
+        .law-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.2rem;
+            border: 1px solid #d0e3f0;
+            box-shadow: 0 4px 0 #c0d6e6;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .law-card .law-title {
+            font-weight: 700;
+            color: #0f4a6f;
+            background: #d9eaf5;
+            border-radius: 40px;
+            padding: 0.3rem 0.5rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .law-card .law-formula {
+            font-size: 1.8rem;
+            background: #fff9c4;
+            padding: 0.3rem 0.5rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem 0;
+            border: 1px solid #f5c542;
+        }
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .grid-4 .item {
+            white-space: nowrap;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 8px;
+            padding: 0.5rem 0 0.5rem 8px;
+            margin: 0.8rem 0 0.5rem 0;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+            text-align: left;
+        }
+        .answer-box * {
+            margin: 0;
+            padding: 0;
+        }
+        .show-answer {
+            display: block;
+        }
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 8px solid #f4b84b;
+            font-size: 1.1rem;
+        }
+        .sci-note {
+            background: #e8eaf6;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #3f51b5;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+            margin-top: 1rem;
+        }
+        #summaryContent.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。</div>
+    <h2>1.11 有理数的乘方</h2>
+    <div class="lesson-title">第2课时 科学记数法</div>
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解科学记数法的意义</div>
+            <div class="target-item"><span>✔</span>掌握用科学记数法表示大数</div>
+            <div class="target-item"><span>✔</span>能将科学记数法表示的数还原</div>
+            <div class="target-item"><span>✔</span>体会10的幂的便捷性</div>
+        </div>
+    </div>
+
+    <!-- 探索10的幂 -->
+    <h3>🔍 探索：10的幂</h3>
+    <div class="explore-box">
+        <p style="font-size:1.3rem; text-align:center;">
+            \(10^2 = 100\)  \(10^3 = 1000\)  \(10^4 = 10000\)  \(10^5 = 100000\)
+        </p>
+        <p><strong>规律：</strong>10的\(n\)次幂，在1的后面有\(n\)个0。</p>
+    </div>
+
+    <!-- 问题情境 -->
+    <div class="axis-showcase">
+        <p><strong>问题：</strong>光的速度大约是 \(300\,000\,000\) m/s；截至2022年底，全世界人口数大约是 \(8\,000\,000\,000\)。这样的大数，读、写都不方便。有没有更简洁的表示方法？</p>
+    </div>
+
+    <!-- 科学记数法定义 -->
+    <h3>📐 科学记数法</h3>
+    <div class="law-card">
+        <div class="law-title">科学记数法</div>
+        <div class="law-formula">\(a \times 10^n\)</div>
+        <div class="law-desc" style="font-size:1.1rem;">
+            把一个绝对值大于10的数记成 \(a \times 10^n\) 的形式，<br>
+            其中 \(1 \leq |a| < 10\)，\(n\) 是正整数。
+        </div>
+        <div style="margin-top:1rem;">
+            <p>例如：\(8\,000\,000\,000 = 8 \times 10^9\)</p>
+            <p>\(-7\,000\,000 = -7 \times 10^6\)</p>
+        </div>
+    </div>
+
+    <!-- 例题1 -->
+    <div class="example-box" id="ex1">
+        <p><strong>例1</strong> 用科学记数法表示下列各数：</p>
+        <p>(1) 696 000； (2) 1 000 000； (3) -58 000； (4) 12 340 000。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示答案</button>
+        <div id="exampleAnswer1" class="answer-box">
+            (1) \(6.96 \times 10^5\)<br>
+            (2) \(1 \times 10^6\)<br>
+            (3) \(-5.8 \times 10^4\)<br>
+            (4) \(1.234 \times 10^7\)
+        </div>
+    </div>
+    <div class="tip-box">
+        <strong>💡 思考：</strong> 用科学记数法表示一个数时，10的指数与原数的整数位数有什么关系？<br>
+        10的指数 = 原数的整数位数 - 1
+    </div>
+
+    <!-- 例题2 -->
+    <div class="example-box" id="ex2">
+        <p><strong>例2</strong> 下列用科学记数法表示的数，原来各是什么数？</p>
+        <p>(1) \(2 \times 10^5\)； (2) \(5.18 \times 10^3\)； (3) \(7.04 \times 10^6\)； (4) \(-3.6 \times 10^4\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示答案</button>
+        <div id="exampleAnswer2" class="answer-box">
+            (1) 200 000<br>
+            (2) 5 180<br>
+            (3) 7 040 000<br>
+            (4) -36 000
+        </div>
+    </div>
+
+    <!-- 应用说明 -->
+    <div class="sci-note">
+        <p><strong>📊 科学记数法的好处：</strong></p>
+        <ul style="margin-left:2rem;">
+            <li>简化大数的读写</li>
+            <li>便于比较数量级</li>
+            <li>在科学计算中广泛应用</li>
+        </ul>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises">
+        <h3>练习</h3>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 用科学记数法表示下列各数：</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div class="exercise-text">
+                <div class="grid-4">
+                    <div class="item">(1) 80 000</div>
+                    <div class="item">(2) 100 000</div>
+                    <div class="item">(3) -12 300 000</div>
+                    <div class="item">(4) 5 780 000 000</div>
+                </div>
+            </div>
+            <div id="answer0" class="answer-box">
+                (1) \(8 \times 10^4\)<br>
+                (2) \(1 \times 10^5\)<br>
+                (3) \(-1.23 \times 10^7\)<br>
+                (4) \(5.78 \times 10^9\)
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 下列用科学记数法表示的数，原来各是什么数？</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div class="exercise-text">
+                <div class="grid-4">
+                    <div class="item">(1) \(3 \times 10^4\)</div>
+                    <div class="item">(2) \(6.02 \times 10^5\)</div>
+                    <div class="item">(3) \(1.5 \times 10^7\)</div>
+                    <div class="item">(4) \(-2.8 \times 10^3\)</div>
+                </div>
+            </div>
+            <div id="answer1" class="answer-box">
+                (1) 30 000<br>
+                (2) 602 000<br>
+                (3) 15 000 000<br>
+                (4) -2 800
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 地球离太阳约有1亿5千万千米，用科学记数法表示是多少米？</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div id="answer2" class="answer-box">
+                1亿5千万千米 = 150 000 000千米 = \(1.5 \times 10^8\)千米 = \(1.5 \times 10^{11}\)米
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：替换为天文数字与科学记数法 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 用科学记数法看宇宙</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>宇宙之大，远远超出我们的想象。如果没有科学记数法，天文学家将不得不面对一长串令人眼花缭乱的零。</p>
+            <ul style="margin-left:1.5rem;">
+                <li><strong>光年</strong>：光在真空中一年所走的距离，约 \(9.46 \times 10^{12}\) 千米。用这个单位，太阳到最近的恒星（比邻星）约4.2光年。</li>
+                <li><strong>可观测宇宙直径</strong>：约 \(9.3 \times 10^{10}\) 光年，即 \(8.8 \times 10^{23}\) 千米。</li>
+                <li><strong>太阳质量</strong>：约 \(1.989 \times 10^{30}\) 千克，相当于330 000个地球的质量。</li>
+                <li><strong>地球年龄</strong>：约 \(4.54 \times 10^9\) 年，即45.4亿年。</li>
+                <li><strong>可见恒星数量</strong>：可观测宇宙中估计有 \(10^{22}\) 到 \(10^{24}\) 颗恒星，比地球上的沙子总数还多。</li>
+            </ul>
+            <p>这些巨大的数字，如果不用科学记数法，写出来会是这样：</p>
+            <p>太阳质量 = 1 989 000 000 000 000 000 000 000 000 千克（30个零）</p>
+            <p>而用科学记数法，简洁明了：\(1.989 \times 10^{30}\) 千克。这就是10的幂的魅力！</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">科学记数法：\(a \times 10^n\)（\(1 \leq |a| < 10\)，\(n\)为正整数）</div>
+                <div class="summary-item">10的\(n\)次幂 = 1后面\(n\)个0</div>
+                <div class="summary-item">用科学记数法表示大数，简洁明了</div>
+                <div class="summary-item">还原时，指数\(n\)决定小数点移动位数</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P56 练习第1、2题；习题1.11 A组第3、4、5题。</span>
+    </div>
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 科学记数巧表示，大数读写变容易 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第18课时</div>
+</div>
+<script>
+    function toggleAnswer(index) {
+        document.getElementById('answer'+index).classList.toggle('show-answer');
+    }
+    function toggleExampleAnswer(num) {
+        document.getElementById('exampleAnswer'+num).classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var toggle = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        toggle.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

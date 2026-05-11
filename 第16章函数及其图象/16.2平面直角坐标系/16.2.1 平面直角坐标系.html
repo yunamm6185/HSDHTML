@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.2.1 平面直角坐标系 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .explore-card h4::before{content:"🔍 ";}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:.95rem;}
+        th{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.7rem;}
+        td{padding:.65rem;text-align:center;border-bottom:1px solid #e0f7fa;}
+        tr:nth-child(even) td{background:#f0fdff;}
+        tr:hover td{background:#e0f7fa;}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .warn-box{background:#fef2f2;border:2px solid #fca5a5;border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;color:#991b1b;font-weight:600;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .cinema-seats{background:linear-gradient(135deg,#1e293b,#334155);padding:20px;border-radius:16px;margin:1rem 0;text-align:center;}
+        .seat-row{display:flex;justify-content:center;align-items:center;margin:8px 0;gap:6px;}
+        .seat-label{color:#94a3b8;font-weight:600;width:30px;text-align:right;margin-right:8px;font-size:1rem;}
+        .seat{width:36px;height:36px;background:linear-gradient(145deg,#475569,#64748b);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;box-shadow:0 2px 4px rgba(0,0,0,0.3);cursor:pointer;transition:all 0.2s;}
+        .seat:hover{transform:scale(1.1);}
+        .seat.selected{background:linear-gradient(145deg,#fbbf24,#f59e0b);color:#78350f;}
+        .seat.screen{width:280px;height:12px;background:linear-gradient(145deg,#94a3b8,#cbd5e1);border-radius:6px;margin:10px auto;}
+        .coord-container{position:relative;width:100%;max-width:500px;margin:1rem auto;text-align:center;}
+        #coordCanvas{width:100%;height:400px;border-radius:12px;background:white;border:2px solid #a7d8e0;cursor:crosshair;}
+        .coord-info{margin-top:.8rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+        .coord-badge{background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:.4rem 1.2rem;border-radius:20px;font-weight:700;font-size:.95rem;}
+        .sub-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:1.1rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-right:10px;}
+        .sub-problem{margin:1.2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,0.6);border-radius:12px;border-left:4px solid #10b981;display:flex;align-items:flex-start;}
+        .sub-content{flex:1;}
+        .mouse-coord{position:fixed;top:10px;left:10px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);color:white;padding:8px 15px;border-radius:20px;font-weight:700;font-size:14px;box-shadow:0 4px 15px rgba(0,0,0,0.2);z-index:1000;}
+    </style>
+</head>
+<body>
+<div class="mouse-coord" id="mouseCoord">🖱️ 坐标：（ -- ， -- ）</div>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.2.1 平面直角坐标系</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解平面直角坐标系的构成及有关概念</div>
+            <div class="target-item"><span>2</span>能正确写出平面内点的坐标</div>
+            <div class="target-item"><span>3</span>能根据坐标在坐标系中描点</div>
+            <div class="target-item"><span>4</span>了解各象限内点的坐标符号特征</div>
+        </div>
+    </div>
+
+    <!-- 导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.15rem;">🎬 <strong>你去过电影院吗？还记得在电影院里是怎样找座位的吗？</strong></p>
+        <p>因为电影票上都标有<strong>"×排×座"</strong>的字样，所以找座位时，先找到第几排，再找到这一排的第几座就可以了。也就是说，<strong>电影院里的座位完全可以依次由两个数确定下来</strong>。</p>
+    </div>
+
+    <!-- 电影院座位示意图 -->
+    <div class="cinema-seats">
+        <div class="seat screen"></div>
+        <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:15px;">银幕</p>
+        <div class="seat-row" data-row="1">
+            <span class="seat-label">1排</span>
+            <div class="seat" data-col="1">1</div><div class="seat" data-col="2">2</div><div class="seat" data-col="3">3</div><div class="seat" data-col="4">4</div><div class="seat" data-col="5">5</div><div class="seat" data-col="6">6</div><div class="seat" data-col="7">7</div><div class="seat" data-col="8">8</div>
+        </div>
+        <div class="seat-row" data-row="2">
+            <span class="seat-label">2排</span>
+            <div class="seat" data-col="1">1</div><div class="seat" data-col="2">2</div><div class="seat" data-col="3">3</div><div class="seat" data-col="4">4</div><div class="seat" data-col="5">5</div><div class="seat" data-col="6">6</div><div class="seat" data-col="7">7</div><div class="seat" data-col="8">8</div>
+        </div>
+        <div class="seat-row" data-row="3">
+            <span class="seat-label">3排</span>
+            <div class="seat" data-col="1">1</div><div class="seat" data-col="2">2</div><div class="seat" data-col="3">3</div><div class="seat" data-col="4">4</div><div class="seat" data-col="5">5</div><div class="seat" data-col="6">6</div><div class="seat" data-col="7">7</div><div class="seat" data-col="8">8</div>
+        </div>
+        <div class="seat-row" data-row="4">
+            <span class="seat-label">4排</span>
+            <div class="seat" data-col="1">1</div><div class="seat" data-col="2">2</div><div class="seat" data-col="3">3</div><div class="seat" data-col="4">4</div><div class="seat" data-col="5">5</div><div class="seat" data-col="6">6</div><div class="seat" data-col="7">7</div><div class="seat" data-col="8">8</div>
+        </div>
+        <div style="margin-top:15px;display:flex;justify-content:center;gap:10px;align-items:center;">
+            <p style="color:#e2e8f0;font-size:1.1rem;margin:0;font-weight:600;">点击座位选中，用两个数（排，座）确定位置</p>
+            <button class="interact-btn" onclick="clearSeats()" style="background:#fbbf24;color:#78350f;padding:0.4rem 1.2rem;font-size:0.9rem;font-weight:700;box-shadow:0 4px 0 #d97706;">🔄 清除</button>
+        </div>
+        <p id="selectedSeat" style="color:#fbbf24;font-size:1.2rem;margin-top:12px;font-weight:700;min-height:1.5rem;text-shadow:0 2px 4px rgba(0,0,0,0.3);"></p>
+    </div>
+
+    <!-- 核心概念 -->
+    <div class="fact-card">
+        <h4>📌 平面直角坐标系的构成</h4>
+        <p>在数学中，我们可以用一对<strong>有序实数</strong>来确定平面上点的位置。</p>
+        <div class="theorem-box" style="margin-top:1rem;">
+            <p><strong>定义：</strong>在平面上画两条<strong>互相垂直</strong>且具有<strong>公共原点</strong>的数轴，这就建立了<strong>平面直角坐标系</strong>（rectangular coordinates system）。</p>
+            <ul style="padding-left:1.8rem;margin-top:.8rem;line-height:2;">
+                <li><strong>水平方向</strong>的数轴叫做 <strong>$x$ 轴</strong>或<strong>横轴</strong>，取向右为正方向</li>
+                <li><strong>竖直方向</strong>的数轴叫做 <strong>$y$ 轴</strong>或<strong>纵轴</strong>，取向上为正方向</li>
+                <li>两条数轴的交点 $O$（即公共的原点）叫做平面直角坐标系的<strong>原点</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 点的坐标 -->
+    <div class="fact-card">
+        <h4>📌 点的坐标</h4>
+        <p>在平面直角坐标系中，任意一点都可以用一对有序实数来表示。</p>
+        <div class="highlight-box" style="margin-top:1rem;">
+            <p>例如，图中的点 $P$，从点 $P$ 分别向 $x$ 轴和 $y$ 轴作垂线，垂足分别为点 $M$ 和点 $N$。</p>
+            <!-- 点P示意图 -->
+            <div style="display:flex;justify-content:center;margin:1.5rem 0;">
+                <canvas id="pointPCanvas" style="cursor:default;max-width:450px;width:100%;"></canvas>
+            </div>
+            <ul style="padding-left:1.8rem;margin-top:.5rem;line-height:2;">
+                <li>点 $M$ 在 $x$ 轴上对应的数为 3，称为点 $P$ 的<strong>横坐标</strong>（abscissa）</li>
+                <li>点 $N$ 在 $y$ 轴上对应的数为 2，称为点 $P$ 的<strong>纵坐标</strong>（ordinate）</li>
+                <li>依次写出点 $P$ 的横坐标和纵坐标，得到一对有序实数 $(3, 2)$，称为点 $P$ 的<strong>坐标</strong>（coordinate）</li>
+                <li>这时点 $P$ 可记作 <strong>$P(3, 2)$</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 四个象限 -->
+    <div class="section-title">📐 坐标平面的四个象限</div>
+
+    <div class="fact-card">
+        <p>在平面直角坐标系中，两条坐标轴把平面分成四个区域，分别称为<strong>第一、二、三、四象限</strong>。坐标轴上的点不属于任何一个象限。</p>
+        
+        <!-- 四个象限示意图 -->
+        <div style="display:flex;justify-content:center;margin:2rem 0;">
+            <canvas id="quadrantCanvas" style="cursor:default;max-width:600px;width:100%;"></canvas>
+        </div>
+    </div>
+
+    <!-- 坐标系交互演示 -->
+    <div class="explore-card" style="background:linear-gradient(145deg,#ecfdf5,#d1fae5);border-left-color:#10b981;">
+        <h4 style="color:#047857;">🎮 互动体验 — 平面直角坐标系</h4>
+        <p style="color:#065f46;">在下面的坐标系中<strong>移动鼠标或点击</strong>，观察点的坐标变化：</p>
+        <div class="coord-container" style="background:white;border-radius:16px;padding:1rem;box-shadow:0 4px 15px rgba(0,0,0,0.08);">
+            <canvas id="coordCanvas" style="border-radius:12px;"></canvas>
+            <div class="coord-info" style="margin-top:1rem;">
+                <div class="coord-badge" id="coordDisplay" style="font-size:1.1rem;padding:0.5rem 1.5rem;">坐标：（ -- ， -- ）</div>
+                <div class="coord-badge" id="quadrantDisplay" style="background:linear-gradient(135deg,#f59e0b,#d97706);font-size:1.1rem;padding:0.5rem 1.5rem;">所在区域：--</div>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('coordTip')" style="margin-top:1rem;background:#10b981;color:white;box-shadow:0 4px 0 #059669;">💡 使用说明</button>
+        <div id="coordTip" class="answer-box">
+            <p>✨ 将鼠标移到坐标系中任意位置，即可看到对应的坐标值和所在象限/坐标轴信息。</p>
+            <p>📌 坐标的写法：<strong>$(x, y)$</strong> —— 先写横坐标，再写纵坐标，中间用逗号隔开！</p>
+        </div>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="section-title">🔍 试一试</div>
+
+    <div class="explore-card">
+        <h4>问题 1</h4>
+        <p>在坐标系中分别描出坐标是 $(2, 3)$、$(-2, 3)$、$(3, -2)$ 的点 $Q$、$S$、$R$。</p>
+        
+        <!-- 问题1互动坐标系 -->
+        <div class="coord-container" style="margin:1.5rem 0;">
+            <canvas id="try1Canvas" style="cursor:default;"></canvas>
+            <div class="coord-info" style="margin-top:0.8rem;">
+                <button class="interact-btn" onclick="drawTry1Points()">✏️ 显示点 Q、S、R</button>
+                <button class="interact-btn" onclick="clearTry1Points()" style="background:#fef3c7;color:#92400e;box-shadow:0 4px 0 #fcd34d;">🔄 清除</button>
+            </div>
+        </div>
+        
+        <p style="margin-top:1rem;"><strong>思考：</strong>$Q(2, 3)$ 与 $P(3, 2)$ 是同一个点吗？$S(-2, 3)$ 与 $R(3, -2)$ 是同一个点吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('try1')">💡 答案与解析</button>
+        <div id="try1" class="answer-box">
+            <p><strong>解答：</strong></p>
+            <p>$(2, 3)$ 与 $(3, 2)$ <strong>不是同一个点</strong>！顺序不同，位置就不同。</p>
+            <p>$(-2, 3)$ 与 $(3, -2)$ 也<strong>不是同一个点</strong>！横纵坐标都不同。</p>
+            <div class="highlight-box" style="margin-top:0.8rem;">
+                <strong>重要结论：</strong>有序实数对 $(a, b)$ 中，$a$ 和 $b$ 的顺序很重要！$(a, b)$ 与 $(b, a)$ 通常表示不同的点。
+            </div>
+        </div>
+    </div>
+
+    <div class="explore-card">
+        <h4>问题 2</h4>
+        <p>观察图16.2.3中的点 $A$、$B$、$C$、$D$、$E$、$F$ 的坐标，思考：</p>
+        
+        <!-- 图16.2.3 -->
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;margin:1.5rem 0;">
+            <div class="coord-container" style="flex:1;min-width:300px;margin:0;">
+                <canvas id="fig1623Canvas" style="cursor:default;"></canvas>
+                <p style="text-align:center;color:#64748b;margin-top:0.5rem;font-size:0.9rem;">图 16.2.3</p>
+            </div>
+            <div style="flex:0 0 320px;min-width:300px;">
+                <div style="display:flex;flex-direction:column;gap:12px;">
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnA" onclick="togglePointCoord('A')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🔵 点A</button>
+                        <span id="coordA" style="font-weight:600;color:#0ea5e9;font-size:1.2rem;display:none;flex:0 0 110px;">（-1，2）</span>
+                        <span id="quadA" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">第二象限</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnB" onclick="togglePointCoord('B')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🟢 点B</button>
+                        <span id="coordB" style="font-weight:600;color:#10b981;font-size:1.2rem;display:none;flex:0 0 110px;">（2，1）</span>
+                        <span id="quadB" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">第一象限</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnC" onclick="togglePointCoord('C')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🟡 点C</button>
+                        <span id="coordC" style="font-weight:600;color:#f59e0b;font-size:1.2rem;display:none;flex:0 0 110px;">（2，-1）</span>
+                        <span id="quadC" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">第四象限</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnD" onclick="togglePointCoord('D')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🟠 点D</button>
+                        <span id="coordD" style="font-weight:600;color:#ef4444;font-size:1.2rem;display:none;flex:0 0 110px;">（-1，-1）</span>
+                        <span id="quadD" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">第三象限</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnE" onclick="togglePointCoord('E')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🟣 点E</button>
+                        <span id="coordE" style="font-weight:600;color:#8b5cf6;font-size:1.2rem;display:none;flex:0 0 110px;">（0，3）</span>
+                        <span id="quadE" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">不在任何象限</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
+                        <button class="interact-btn" id="btnF" onclick="togglePointCoord('F')" style="padding:0.5rem 1rem;font-size:1.1rem;white-space:nowrap;flex:0 0 70px;">🔴 点F</button>
+                        <span id="coordF" style="font-weight:600;color:#dc2626;font-size:1.2rem;display:none;flex:0 0 110px;">（-2，0）</span>
+                        <span id="quadF" style="font-weight:600;color:#64748b;font-size:1rem;display:none;">不在任何象限</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>在四个象限内的点的坐标各有什么特征？</p>
+                <button class="interact-btn" onclick="toggleAnswer('try2_1')">💡 答案</button>
+                <div id="try2_1" class="answer-box">
+                    <table style="max-width:450px;">
+                        <tr><th>象限</th><th>横坐标</th><th>纵坐标</th><th>符号</th></tr>
+                        <tr><td>第一象限</td><td>正</td><td>正</td><td>(+, +)</td></tr>
+                        <tr><td>第二象限</td><td>负</td><td>正</td><td>(−, +)</td></tr>
+                        <tr><td>第三象限</td><td>负</td><td>负</td><td>(−, −)</td></tr>
+                        <tr><td>第四象限</td><td>正</td><td>负</td><td>(+, −)</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>两条坐标轴上的点的坐标各有什么特征？</p>
+                <button class="interact-btn" onclick="toggleAnswer('try2_2')">💡 答案</button>
+                <div id="try2_2" class="answer-box">
+                    <p><strong>$x$ 轴上的点：</strong>纵坐标为 0，即 $(x, 0)$</p>
+                    <p><strong>$y$ 轴上的点：</strong>横坐标为 0，即 $(0, y)$</p>
+                    <p><strong>原点：</strong>$(0, 0)$</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 思考 -->
+    <div class="fact-card">
+        <h4>🤔 思考</h4>
+        <p>我们知道，数轴上的点和全体实数是<strong>一一对应</strong>的。上面的"试一试"也给我们这样的启发：<strong>平面直角坐标系中的点和有序实数对也是一一对应的</strong>。</p>
+        <p style="margin-top:1rem;"><strong>你能说出这句话的含义吗？</strong></p>
+        <button class="interact-btn" onclick="toggleAnswer('think')">💡 解析</button>
+        <div id="think" class="answer-box">
+            <p><strong>"一一对应"的含义：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2;">
+                <li>坐标平面内的<strong>每一个点</strong>都对应着<strong>唯一的一对有序实数</strong>（它的坐标）</li>
+                <li>反过来，<strong>每一对有序实数</strong>也都对应着坐标平面内的<strong>唯一的一个点</strong></li>
+                <li>这就是平面直角坐标系的本质——建立了"点"与"数"之间的桥梁！</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">📝 练习</div>
+
+    <div class="example-card">
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>在平面直角坐标系中描出点 $A(2, -3)$，分别找出它关于 $x$ 轴、$y$ 轴及原点的对称点，并写出这些点的坐标。</p>
+                
+                <!-- 练习题1交互坐标系 -->
+                <div style="display:flex;flex-wrap:wrap;gap:1.5rem;margin:1.5rem 0;align-items:center;justify-content:center;">
+                    <div class="coord-container" style="flex:0 1 400px;margin:0;">
+                        <canvas id="pr1Canvas" style="cursor:default;"></canvas>
+                    </div>
+                    <div style="flex:0 0 140px;display:flex;flex-direction:column;gap:12px;">
+                        <button class="interact-btn" onclick="drawPr1Point('A')" style="padding:0.6rem 1rem;font-size:1rem;white-space:nowrap;text-align:center;">✏️ 显示点A</button>
+                        <button class="interact-btn" onclick="drawPr1Point('x')" style="padding:0.6rem 1rem;font-size:1rem;white-space:nowrap;text-align:center;background:#dcfce7;color:#166534;box-shadow:0 4px 0 #86efac;">📍 关于x轴对称</button>
+                        <button class="interact-btn" onclick="drawPr1Point('y')" style="padding:0.6rem 1rem;font-size:1rem;white-space:nowrap;text-align:center;background:#fee2e2;color:#991b1b;box-shadow:0 4px 0 #fca5a5;">📍 关于y轴对称</button>
+                        <button class="interact-btn" onclick="drawPr1Point('origin')" style="padding:0.6rem 1rem;font-size:1rem;white-space:nowrap;text-align:center;background:#fef3c7;color:#92400e;box-shadow:0 4px 0 #fcd34d;">📍 关于原点对称</button>
+                        <button class="interact-btn" onclick="clearPr1Points()" style="padding:0.6rem 1rem;font-size:1rem;white-space:nowrap;text-align:center;background:#f1f5f9;color:#64748b;box-shadow:0 4px 0 #cbd5e1;">🔄 清除</button>
+                    </div>
+                </div>
+                
+                <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 答案</button>
+                <div id="pr1" class="answer-box">
+                    <p><strong>关于 $x$ 轴对称：</strong>$(2, 3)$ （横坐标不变，纵坐标变号）</p>
+                    <p><strong>关于 $y$ 轴对称：</strong>$(-2, -3)$ （纵坐标不变，横坐标变号）</p>
+                    <p><strong>关于原点对称：</strong>$(-2, 3)$ （横纵坐标都变号）</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>观察你在第1题中写出的各点的坐标，关于 $x$ 轴对称的两点的坐标之间有什么关系？关于 $y$ 轴对称的两点的坐标之间有什么关系？关于原点对称的两点的坐标之间又有什么关系？</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+                <div id="pr2" class="answer-box">
+                    <table style="max-width:600px;width:100%;border-collapse:collapse;font-size:1.15rem;box-shadow:0 4px 12px rgba(0,0,0,0.1);border-radius:12px;overflow:hidden;">
+                        <thead>
+                            <tr style="background:linear-gradient(135deg,#0ea5e9,#14b8a6);">
+                                <th style="padding:1rem 1.2rem;text-align:center;color:white;font-weight:700;border:2px solid #fff;font-size:1.2rem;">对称类型</th>
+                                <th style="padding:1rem 1.2rem;text-align:center;color:white;font-weight:700;border:2px solid #fff;font-size:1.2rem;">坐标关系</th>
+                                <th style="padding:1rem 1.2rem;text-align:center;color:white;font-weight:700;border:2px solid #fff;font-size:1.2rem;">规律</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background:#f0fdff;">
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#0e7490;">关于 $x$ 轴对称</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#334155;">$(a, b)$ → $(a, -b)$</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:700;color:#dc2626;">横同纵反</td>
+                            </tr>
+                            <tr style="background:#fff;">
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#0e7490;">关于 $y$ 轴对称</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#334155;">$(a, b)$ → $(-a, b)$</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:700;color:#dc2626;">纵同横反</td>
+                            </tr>
+                            <tr style="background:#f0fdff;">
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#0e7490;">关于原点对称</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:600;color:#334155;">$(a, b)$ → $(-a, -b)$</td>
+                                <td style="padding:1rem 1.2rem;text-align:center;border:2px solid #b2ebf2;font-weight:700;color:#dc2626;">横纵皆反</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">3</span>
+            <div class="sub-content">
+                <p>在如图所示的国际象棋棋盘中，双方四只马的位置分别是点 $A(b, 3)$、$B(d, 5)$、$C(f, 7)$、$D(h, 2)$，请在图中描出它们的位置。</p>
+                
+                <!-- 国际象棋棋盘 -->
+                <div style="margin:1.5rem 0;text-align:center;">
+                    <div id="chessBoard" style="display:inline-block;border:3px solid #475569;border-radius:4px;overflow:hidden;"></div>
+                    <p style="text-align:center;color:#64748b;margin-top:0.5rem;font-size:0.9rem;">（第 3 题）</p>
+                </div>
+                
+                <button class="interact-btn" onclick="showChessAnswer()">🔍 答案</button>
+                <button class="interact-btn" onclick="clearChessAnswer()" style="background:#f1f5f9;color:#64748b;margin-left:0.5rem;">🔄 清除</button>
+            </div>
+        </div>
+
+        <div class="sub-problem">
+            <span class="sub-number">4</span>
+            <div class="sub-content">
+                <p>你用过计算机中的画图软件吗？当鼠标在空白的工作区移动时，状态栏上就会显示两个变化的数字，这实际上就是鼠标的"坐标"。你能举出一些日常生活中的坐标的例子吗？</p>
+                <button class="interact-btn" onclick="toggleAnswer('pr4')">🔍 参考答案</button>
+                <div id="pr4" class="answer-box">
+                    <p><strong>日常生活中的坐标例子：</strong></p>
+                    <ul style="padding-left:1.5rem;line-height:2;">
+                        <li><strong>经纬度：</strong>地球上的位置用经度和纬度确定（如北京：北纬39.9°，东经116.4°）</li>
+                        <li><strong>棋盘：</strong>象棋、围棋用"列+行"确定棋子位置</li>
+                        <li><strong>地图：</strong>用"横纵坐标"或"行列"定位地点</li>
+                        <li><strong>教室座位：</strong>用"第几列第几排"确定座位</li>
+                        <li><strong>GPS导航：</strong>用坐标精确定位位置</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="section-title">📖 读一读</div>
+    
+    <div class="explore-card" style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-left-color:#f59e0b;">
+        <h4 style="color:#92400e;">📜 平面直角坐标系的历史</h4>
+        <p style="line-height:2;">平面直角坐标系是法国数学家<strong>勒内·笛卡尔</strong>（René Descartes，1596-1650）在17世纪创立的。据说，有一天笛卡尔躺在床上，看到天花板上一只苍蝇在爬，他突发奇想：如果知道苍蝇到两面相邻墙壁的距离，不就能确定苍蝇的位置了吗？</p>
+        <p style="line-height:2;margin-top:1rem;">这个想法让他创造了用<strong>两个数来确定平面上点的位置</strong>的方法，这就是平面直角坐标系的雏形。笛卡尔把代数与几何结合起来，开创了解析几何这一数学分支，为后来的微积分学奠定了基础。</p>
+        <div class="highlight-box" style="background:rgba(255,255,255,0.7);margin-top:1rem;">
+            <strong>趣闻：</strong>笛卡尔坐标系也被称为"直角坐标系"，因为坐标轴是互相垂直的。为了纪念笛卡尔，直角坐标系的英文名称就是 "Cartesian Coordinate System"（笛卡尔坐标系）。
+        </div>
+    </div>
+    
+    <div class="explore-card" style="background:linear-gradient(145deg,#e0e7ff,#c7d2fe);border-left-color:#6366f1;">
+        <h4 style="color:#4338ca;">🌍 其他的坐标系</h4>
+        <p style="line-height:2;">除了平面直角坐标系，数学中还有许多其他的坐标系：</p>
+        <ul style="line-height:2.2;padding-left:1.5rem;margin-top:0.5rem;">
+            <li><strong>极坐标系：</strong>用距离和角度来确定点的位置，常用于描述圆形运动（如雷达定位）</li>
+            <li><strong>柱坐标系：</strong>在三维空间中使用，是极坐标系在高度方向的扩展</li>
+            <li><strong>球坐标系：</strong>用两个角度和一个距离确定三维空间中的点（如地球的经纬度）</li>
+            <li><strong>斜坐标系：</strong>坐标轴不垂直，在某些工程问题中有应用</li>
+        </ul>
+        <div class="highlight-box" style="background:rgba(255,255,255,0.7);margin-top:1rem;">
+            <strong>生活中的应用：</strong>GPS导航使用的是球坐标系（经纬度+海拔），而电影院座位、棋盘则类似于平面直角坐标系。
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>平面直角坐标系</strong>由两条互相垂直、有公共原点的数轴组成</li>
+            <li>点的坐标记作 <strong>$P(x, y)$</strong>，先横后纵，顺序不能颠倒</li>
+            <li>四个象限按逆时针排列：<strong>一(+,+)、二(−,+)、三(−,−)、四(+,−)</strong></li>
+            <li><strong>坐标轴上的点不属于任何象限</strong></li>
+            <li>平面直角坐标系中的点与有序实数对是<strong>一一对应</strong>的</li>
+            <li>对称点规律：关于 $x$ 轴→$(x,-y)$；关于 $y$ 轴→$(-x,y)$；关于原点→$(-x,-y)$</li>
+        </ul>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎯 数学核心素养</div>
+    <div class="literacy-container" style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;">
+        <div class="literacy-card" style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #f59e0b;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🔗</span>
+                <h4 style="color:#92400e;font-size:1.25rem;font-weight:700;">数形结合思想</h4>
+            </div>
+            <p style="color:#78350f;line-height:1.8;font-size:1rem;">通过平面直角坐标系，将<strong>"数"</strong>与<strong>"形"</strong>完美统一。坐标让几何点有了数量描述，图形让代数关系有了直观呈现。</p>
+        </div>
+        <div class="literacy-card" style="background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #3b82f6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📍</span>
+                <h4 style="color:#1e40af;font-size:1.25rem;font-weight:700;">坐标定位思想</h4>
+            </div>
+            <p style="color:#1e3a8a;line-height:1.8;font-size:1rem;">用<strong>有序数对</strong>确定位置，建立从一维到二维的空间观念，为后续学习函数图象奠定基础。</p>
+        </div>
+        <div class="literacy-card" style="background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #10b981;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🎭</span>
+                <h4 style="color:#065f46;font-size:1.25rem;font-weight:700;">符号表征意识</h4>
+            </div>
+            <p style="color:#064e3b;line-height:1.8;font-size:1rem;">用 $P(x,y)$ 简洁表达点的位置，体会<strong>数学符号</strong>的抽象性与精确性，培养数学表达能力。</p>
+        </div>
+        <div class="literacy-card" style="background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #8b5cf6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🧩</span>
+                <h4 style="color:#5b21b6;font-size:1.25rem;font-weight:700;">数学建模观念</h4>
+            </div>
+            <p style="color:#4c1d95;line-height:1.8;font-size:1rem;">将现实中的位置问题抽象为<strong>坐标模型</strong>，感受数学来源于生活、服务于生活的应用价值。</p>
+        </div>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-box" style="background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:8rem;opacity:0.1;">💭</div>
+        <h4 style="color:#f0fdfa;font-size:1.5rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;">
+            <span style="font-size:1.8rem;">💌</span> 教师寄语
+        </h4>
+        <div style="color:#ccfbf1;font-size:1.15rem;line-height:2.2;position:relative;z-index:1;">
+            <p style="text-indent:2em;">笛卡尔从一只在天花板爬行的蜘蛛中获得灵感，创造了坐标系，将<strong>代数与几何</strong>紧密联系在一起。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">今天的你，通过学习平面直角坐标系，也在经历同样的数学发现之旅。每一个坐标 $(x,y)$ 都不只是两个数字，它是你探索数学世界的<strong>钥匙</strong>，是你描述空间位置的<strong>语言</strong>。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">愿你保持好奇，善于观察，在数学的坐标系中，找到属于自己的<strong>精彩坐标</strong>！</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if(el.style.display === 'block' || el.style.display === '') {
+        var computed = window.getComputedStyle(el).display;
+        if(computed === 'block' || el.dataset.shown === 'yes') {el.style.display='none';return;}
+    }
+    el.style.display = 'block';
+    el.dataset.shown = 'yes';
+    if(window.MathJax && MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(e){});}
+    // 如果是练习题3的答案，创建答案棋盘
+    if(id === 'pr3' && window.createChessAnswer) {
+        window.createChessAnswer();
+    }
+}
+
+// 坐标系交互绘制
+(function(){
+    var canvas = document.getElementById('coordCanvas');
+    var ctx = canvas.getContext('2d');
+
+    function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var size = Math.min(rect.width * 0.95, 480);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+
+    var hoverPt = null;
+
+    function draw(size, mx, my) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 45;
+        var range = 6; // -3 to 3 (display range)
+        var cs = (size - 2*pad) / range;
+        
+        // 原点坐标
+        var originX = pad + (range/2) * cs; // center of canvas horizontally
+        var originY = size/2; // center of canvas vertically
+
+        // 网格
+        ctx.strokeStyle = '#b8d4e3';
+        ctx.lineWidth = 1;
+        for(var i=-3;i<=3;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs; // y轴向上为正，所以用减号
+            // 竖线 (x = i)
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            // 横线 (y = i)
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+
+        // 坐标轴
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        // x轴 (从右指向左，箭头在右侧表示正方向)
+        ctx.beginPath();ctx.moveTo(pad,originY);ctx.lineTo(size-pad+10,originY);ctx.stroke();
+        // x轴箭头 (右侧)
+        ctx.beginPath();ctx.moveTo(size-pad+10,originY);ctx.lineTo(size-pad+5,originY-4);ctx.lineTo(size-pad+5,originY+4);ctx.closePath();ctx.fillStyle='#334155';ctx.fill();
+        
+        // y轴 (从下指向上，箭头在上侧表示正方向)
+        ctx.beginPath();ctx.moveTo(originX,size-pad);ctx.lineTo(originX,pad-10);ctx.stroke();
+        // y轴箭头 (上侧)
+        ctx.beginPath();ctx.moveTo(originX,pad-10);ctx.lineTo(originX-4,pad-5);ctx.lineTo(originX+4,pad-5);ctx.closePath();ctx.fill();
+
+        // 刻度和数字
+        ctx.fillStyle = '#334155'; 
+        ctx.font = 'bold 16px sans-serif';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        
+        for(var i=-3;i<=3;i++) {
+            if(i===0) continue;
+            // x轴刻度位置：i为正在右，i为负在左
+            var px = pad + (i + range/2)*cs;
+            // y轴刻度位置：i为正在上，i为负在下
+            var py = originY - i*cs;
+            
+            // x轴刻度
+            ctx.beginPath();ctx.moveTo(px,originY-5);ctx.lineTo(px,originY+5);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+24);
+            
+            // y轴刻度
+            ctx.beginPath();ctx.moveTo(originX-5,py);ctx.lineTo(originX+5,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        
+        // O标记 (原点)
+        ctx.textAlign='center';ctx.fillText('O',originX-14,originY+20);
+        
+        // 轴名
+        ctx.fillStyle='#0e7490';ctx.font='bold 18px sans-serif';
+        ctx.textAlign='center';ctx.fillText('x',size-pad+22,originY+6);
+        ctx.fillText('y',originX-6,pad-8);
+
+        // 象限标签 (修正位置)
+        ctx.font='bold 16px sans-serif';ctx.fillStyle='#64748b';
+        ctx.fillText('Ⅱ',pad+35,pad+30); // 第二象限：左上 (x<0, y>0)
+        ctx.fillText('Ⅰ',size-pad-35,pad+30); // 第一象限：右上 (x>0, y>0)
+        ctx.fillText('Ⅲ',pad+35,size-pad-20); // 第三象限：左下 (x<0, y<0)
+        ctx.fillText('Ⅳ',size-pad-35,size-pad-20); // 第四象限：右下 (x>0, y<0)
+
+        if(mx !== undefined && my !== undefined) {
+            // 计算坐标值：原点为中心，向右x增加，向上y增加
+            var cx = (mx - originX) / cs;
+            var cy = (originY - my) / cs; // y轴向上为正，所以用originY减
+            // 吸附到0.5格
+            cx = Math.round(cx*2)/2;
+            cy = Math.round(cy*2)/2;
+            // 限制在显示范围内
+            cx = Math.max(-3, Math.min(3, cx));
+            cy = Math.max(-3, Math.min(3, cy));
+            
+            var dpx = originX + cx * cs;
+            var dpy = originY - cy * cs;
+
+            // 十字线
+            ctx.strokeStyle='rgba(239,68,68,0.4)';ctx.lineWidth=1;ctx.setLineDash([5,5]);
+            ctx.beginPath();ctx.moveTo(dpx,pad);ctx.lineTo(dpx,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,dpy);ctx.lineTo(size-pad,dpy);ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 绘制点
+            ctx.fillStyle='#0ea5e9';ctx.beginPath();ctx.arc(dpx,dpy,6,0,Math.PI*2);ctx.fill();
+            ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+
+            // 更新信息显示
+            var coordText = '坐标：(' + cx.toFixed(1) + ', ' + cy.toFixed(1) + ')';
+            var quadrantText = '所在区域：';
+            if(Math.abs(cx) < 0.1 && Math.abs(cy) < 0.1) quadrantText += '原点';
+            else if(Math.abs(cx) < 0.1) quadrantText += 'y轴上';
+            else if(Math.abs(cy) < 0.1) quadrantText += 'x轴上';
+            else if(cx > 0 && cy > 0) quadrantText += '第一象限';
+            else if(cx < 0 && cy > 0) quadrantText += '第二象限';
+            else if(cx < 0 && cy < 0) quadrantText += '第三象限';
+            else quadrantText += '第四象限';
+
+            document.getElementById('coordDisplay').textContent = coordText;
+            document.getElementById('quadrantDisplay').textContent = quadrantText;
+        }
+    }
+
+    canvas.addEventListener('mousemove', function(e) {
+        var rect = canvas.getBoundingClientRect();
+        var x = (e.clientX - rect.left) * (canvas.width / rect.width / (window.devicePixelRatio||1));
+        var y = (e.clientY - rect.top) * (canvas.height / rect.height / (window.devicePixelRatio||1));
+        draw(canvas.width/(window.devicePixelRatio||1), x, y);
+    });
+
+    canvas.addEventListener('mouseleave', function() {
+        draw(canvas.width/(window.devicePixelRatio||1));
+        document.getElementById('coordDisplay').textContent = '坐标：( -- , -- )';
+        document.getElementById('quadrantDisplay').textContent = '所在区域：--';
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 问题1互动坐标系
+(function(){
+    var canvas = document.getElementById('try1Canvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var points = [];
+    
+    function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var size = Math.min(rect.width * 0.95, 400);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    function draw(size) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 40;
+        var range = 8; // -4 to 4
+        var cs = (size - 2*pad) / range;
+        var originX = pad + (range/2) * cs;
+        var originY = size/2;
+        
+        // 网格
+        ctx.strokeStyle = '#b8d4e3';
+        ctx.lineWidth = 1;
+        for(var i=-4;i<=4;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+        
+        // 坐标轴
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        ctx.beginPath();ctx.moveTo(pad,originY);ctx.lineTo(size-pad+10,originY);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(size-pad+10,originY);ctx.lineTo(size-pad+5,originY-4);ctx.lineTo(size-pad+5,originY+4);ctx.closePath();ctx.fillStyle='#334155';ctx.fill();
+        ctx.beginPath();ctx.moveTo(originX,size-pad);ctx.lineTo(originX,pad-10);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(originX,pad-10);ctx.lineTo(originX-4,pad-5);ctx.lineTo(originX+4,pad-5);ctx.closePath();ctx.fill();
+        
+        // 刻度和数字
+        ctx.fillStyle = '#64748b'; 
+        ctx.font = 'bold 16px sans-serif';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        for(var i=-4;i<=4;i++) {
+            if(i===0) continue;
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,originY-5);ctx.lineTo(px,originY+5);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+24);
+            ctx.beginPath();ctx.moveTo(originX-5,py);ctx.lineTo(originX+5,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        ctx.textAlign='center';ctx.fillText('O',originX-14,originY+20);
+        ctx.fillStyle='#0e7490';ctx.font='bold 18px sans-serif';
+        ctx.fillText('x',size-pad+20,originY+6);
+        ctx.fillText('y',originX-6,pad-8);
+        
+        // 绘制点
+        points.forEach(function(pt) {
+            var px = originX + pt.x * cs;
+            var py = originY - pt.y * cs;
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();ctx.arc(px,py,7,0,Math.PI*2);ctx.fill();
+            ctx.strokeStyle = '#fff';ctx.lineWidth = 2;ctx.stroke();
+            ctx.fillStyle = pt.color;ctx.font = 'bold 15px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(pt.label, px + 12, py - 8);
+        });
+    }
+    
+    window.drawTry1Points = function() {
+        points = [
+            {x: 2, y: 3, label: 'Q(2,3)', color: '#0ea5e9'},
+            {x: -2, y: 3, label: 'S(-2,3)', color: '#f59e0b'},
+            {x: 3, y: -2, label: 'R(3,-2)', color: '#10b981'}
+        ];
+        var size = canvas.width / (window.devicePixelRatio||1);
+        draw(size);
+    };
+    
+    window.clearTry1Points = function() {
+        points = [];
+        var size = canvas.width / (window.devicePixelRatio||1);
+        draw(size);
+    };
+    
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 图16.2.3 绘制
+(function(){
+    var canvas = document.getElementById('fig1623Canvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    
+    // 图16.2.3中的点坐标
+    var allPoints = [
+        {x: -1, y: 2, label: 'A', color: '#0ea5e9', display: 'A(-1, 2)'},
+        {x: 2, y: 1, label: 'B', color: '#10b981', display: 'B(2, 1)'},
+        {x: 2, y: -1, label: 'C', color: '#f59e0b', display: 'C(2, -1)'},
+        {x: -1, y: -1, label: 'D', color: '#ef4444', display: 'D(-1, -1)'},
+        {x: 0, y: 3, label: 'E', color: '#8b5cf6', display: 'E(0, 3)'},
+        {x: -2, y: 0, label: 'F', color: '#ec4899', display: 'F(-2, 0)'}
+    ];
+    var points = JSON.parse(JSON.stringify(allPoints));
+    var shownPoints = [];
+    
+    function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var size = Math.min(rect.width * 0.95, 400);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    function draw(size) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 40;
+        var range = 8; // -4 to 4
+        var cs = (size - 2*pad) / range;
+        var originX = pad + (range/2) * cs;
+        var originY = size/2;
+        
+        // 网格
+        ctx.strokeStyle = '#b8d4e3';
+        ctx.lineWidth = 1;
+        for(var i=-4;i<=4;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+        
+        // 坐标轴
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        ctx.beginPath();ctx.moveTo(pad,originY);ctx.lineTo(size-pad+10,originY);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(size-pad+10,originY);ctx.lineTo(size-pad+5,originY-4);ctx.lineTo(size-pad+5,originY+4);ctx.closePath();ctx.fillStyle='#334155';ctx.fill();
+        ctx.beginPath();ctx.moveTo(originX,size-pad);ctx.lineTo(originX,pad-10);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(originX,pad-10);ctx.lineTo(originX-4,pad-5);ctx.lineTo(originX+4,pad-5);ctx.closePath();ctx.fill();
+        
+        // 刻度和数字
+        ctx.fillStyle = '#64748b'; 
+        ctx.font = 'bold 16px sans-serif';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        for(var i=-4;i<=4;i++) {
+            if(i===0) continue;
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,originY-5);ctx.lineTo(px,originY+5);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+24);
+            ctx.beginPath();ctx.moveTo(originX-5,py);ctx.lineTo(originX+5,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        ctx.textAlign='center';ctx.fillText('O',originX-14,originY+20);
+        ctx.fillStyle='#0e7490';ctx.font='bold 18px sans-serif';
+        ctx.fillText('x',size-pad+20,originY+6);
+        ctx.fillText('y',originX-6,pad-8);
+        
+        // 绘制点
+        points.forEach(function(pt) {
+            var px = originX + pt.x * cs;
+            var py = originY - pt.y * cs;
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();ctx.arc(px,py,5,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle = '#334155';ctx.font = 'bold 16px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(pt.label, px + 8, py - 5);
+        });
+    }
+    
+    // 切换点坐标显示/隐藏
+    window.togglePointCoord = function(pointLabel) {
+        var coordSpan = document.getElementById('coord' + pointLabel);
+        var quadSpan = document.getElementById('quad' + pointLabel);
+        var pt = allPoints.find(function(p) { return p.label === pointLabel; });
+        if(!coordSpan || !pt) return;
+        
+        // 切换显示状态
+        if(coordSpan.style.display === 'none') {
+            coordSpan.style.display = 'inline';
+            if(quadSpan) quadSpan.style.display = 'inline';
+            // 添加到已显示列表
+            if(!shownPoints.find(function(p) { return p.label === pointLabel; })) {
+                shownPoints.push(pt);
+            }
+            // 高亮该点
+            redrawWithHighlight(pointLabel);
+        } else {
+            coordSpan.style.display = 'none';
+            if(quadSpan) quadSpan.style.display = 'none';
+            // 从已显示列表移除
+            shownPoints = shownPoints.filter(function(p) { return p.label !== pointLabel; });
+            // 重绘
+            redrawCanvas();
+        }
+    };
+    
+    // 清除
+    window.clearFig1623 = function() {
+        shownPoints = [];
+        // 隐藏所有坐标和象限显示
+        ['A','B','C','D','E','F'].forEach(function(label) {
+            var coordSpan = document.getElementById('coord' + label);
+            var quadSpan = document.getElementById('quad' + label);
+            if(coordSpan) coordSpan.style.display = 'none';
+            if(quadSpan) quadSpan.style.display = 'none';
+        });
+        redrawCanvas();
+    };
+    
+    // 重绘Canvas
+    function redrawCanvas() {
+        var size = canvas.width / (window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    // 高亮特定点重绘
+    function redrawWithHighlight(highlightLabel) {
+        var size = canvas.width / (window.devicePixelRatio||1);
+        ctx.clearRect(0,0,size,size);
+        var pad = 40;
+        var range = 8;
+        var cs = (size - 2*pad) / range;
+        var originX = pad + (range/2) * cs;
+        var originY = size/2;
+        
+        // 网格
+        ctx.strokeStyle = '#b8d4e3';
+        ctx.lineWidth = 1;
+        for(var i=-4;i<=4;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+        
+        // 坐标轴
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        ctx.beginPath();ctx.moveTo(pad,originY);ctx.lineTo(size-pad+10,originY);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(size-pad+10,originY);ctx.lineTo(size-pad+5,originY-4);ctx.lineTo(size-pad+5,originY+4);ctx.closePath();ctx.fillStyle='#334155';ctx.fill();
+        ctx.beginPath();ctx.moveTo(originX,size-pad);ctx.lineTo(originX,pad-10);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(originX,pad-10);ctx.lineTo(originX-4,pad-5);ctx.lineTo(originX+4,pad-5);ctx.closePath();ctx.fill();
+        
+        // 刻度和数字
+        ctx.fillStyle = '#64748b'; 
+        ctx.font = 'bold 16px sans-serif';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        for(var i=-4;i<=4;i++) {
+            if(i===0) continue;
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,originY-5);ctx.lineTo(px,originY+5);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+24);
+            ctx.beginPath();ctx.moveTo(originX-5,py);ctx.lineTo(originX+5,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        ctx.textAlign='center';ctx.fillText('O',originX-14,originY+20);
+        ctx.fillStyle='#0e7490';ctx.font='bold 18px sans-serif';
+        ctx.fillText('x',size-pad+20,originY+6);
+        ctx.fillText('y',originX-6,pad-8);
+        
+        // 绘制所有点
+        allPoints.forEach(function(pt) {
+            var px = originX + pt.x * cs;
+            var py = originY - pt.y * cs;
+            var isHighlighted = (pt.label === highlightLabel);
+            
+            // 如果是高亮点，画一个外圈
+            if(isHighlighted) {
+                ctx.fillStyle = 'rgba(251, 191, 36, 0.5)';
+                ctx.beginPath();ctx.arc(px,py,12,0,Math.PI*2);ctx.fill();
+            }
+            
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();ctx.arc(px,py,6,0,Math.PI*2);ctx.fill();
+            ctx.strokeStyle = '#fff';ctx.lineWidth = 2;ctx.stroke();
+            
+            ctx.fillStyle = pt.color;
+            ctx.font = isHighlighted ? 'bold 18px sans-serif' : 'bold 16px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(pt.label, px + 10, py - 6);
+        });
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 四个象限示意图绘制
+(function(){
+    var canvas = document.getElementById('quadrantCanvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    
+    function resize() {
+        var containerWidth = canvas.parentElement.clientWidth;
+        var size = Math.min(containerWidth * 0.95, 550);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    function draw(size) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 40;
+        var cardGap = 10;
+        var axisWidth = 5;
+        var originX = size/2;
+        var originY = size/2;
+        var cardSize = (size - 2*pad - axisWidth - cardGap*2) / 2;
+        
+        // 绘制四个象限卡片（圆角矩形）
+        function drawCard(x, y, w, h, color, borderColor) {
+            ctx.fillStyle = color;
+            ctx.strokeStyle = borderColor;
+            ctx.lineWidth = 4;
+            var r = 16;
+            ctx.beginPath();
+            ctx.moveTo(x+r, y);
+            ctx.lineTo(x+w-r, y);
+            ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+            ctx.lineTo(x+w, y+h-r);
+            ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+            ctx.lineTo(x+r, y+h);
+            ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+            ctx.lineTo(x, y+r);
+            ctx.quadraticCurveTo(x, y, x+r, y);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+        
+        // 第一象限（右上）- 绿色
+        drawCard(originX + axisWidth/2 + cardGap, pad, cardSize, cardSize, '#dcfce7', '#86efac');
+        // 第二象限（左上）- 红色
+        drawCard(pad, pad, cardSize, cardSize, '#fee2e2', '#fca5a5');
+        // 第三象限（左下）- 黄色
+        drawCard(pad, originY + axisWidth/2 + cardGap, cardSize, cardSize, '#fef3c7', '#fcd34d');
+        // 第四象限（右下）- 蓝色
+        drawCard(originX + axisWidth/2 + cardGap, originY + axisWidth/2 + cardGap, cardSize, cardSize, '#dbeafe', '#93c5fd');
+        
+        // 绘制坐标轴（在卡片之上）
+        ctx.strokeStyle = '#ef4444';
+        ctx.lineWidth = axisWidth;
+        ctx.lineCap = 'round';
+        // x轴
+        ctx.beginPath();ctx.moveTo(pad-8, originY);ctx.lineTo(size-pad+20, originY);ctx.stroke();
+        // x轴箭头
+        ctx.beginPath();ctx.moveTo(size-pad+20, originY);ctx.lineTo(size-pad+10, originY-8);ctx.lineTo(size-pad+10, originY+8);ctx.closePath();ctx.fillStyle='#ef4444';ctx.fill();
+        // y轴
+        ctx.beginPath();ctx.moveTo(originX, size-pad+8);ctx.lineTo(originX, pad-20);ctx.stroke();
+        // y轴箭头
+        ctx.beginPath();ctx.moveTo(originX, pad-20);ctx.lineTo(originX-8, pad-10);ctx.lineTo(originX+8, pad-10);ctx.closePath();ctx.fill();
+        
+        // 轴名（使用LaTeX风格的斜体）
+        ctx.fillStyle='#ef4444';ctx.font='italic bold 28px "Times New Roman", serif';
+        ctx.textAlign='center';ctx.fillText('x',size-pad+32,originY+8);
+        ctx.fillText('y',originX-10,pad-15);
+        
+        // 绘制象限标签（只保留象限名称）
+        ctx.textAlign = 'center';
+        
+        // 第一象限
+        var q1x = originX + axisWidth/2 + cardGap + cardSize/2;
+        var q1y = pad + cardSize/2;
+        ctx.fillStyle='#166534';ctx.font='bold 28px sans-serif';
+        ctx.fillText('第一象限', q1x, q1y + 8);
+        
+        // 第二象限
+        var q2x = pad + cardSize/2;
+        var q2y = pad + cardSize/2;
+        ctx.fillStyle='#991b1b';ctx.font='bold 28px sans-serif';
+        ctx.fillText('第二象限', q2x, q2y + 8);
+        
+        // 第三象限
+        var q3x = pad + cardSize/2;
+        var q3y = originY + axisWidth/2 + cardGap + cardSize/2;
+        ctx.fillStyle='#92400e';ctx.font='bold 28px sans-serif';
+        ctx.fillText('第三象限', q3x, q3y + 8);
+
+        // 第四象限
+        var q4x = originX + axisWidth/2 + cardGap + cardSize/2;
+        var q4y = originY + axisWidth/2 + cardGap + cardSize/2;
+        ctx.fillStyle='#1e40af';ctx.font='bold 28px sans-serif';
+        ctx.fillText('第四象限', q4x, q4y + 8);
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 点P示意图绘制
+(function(){
+    var canvas = document.getElementById('pointPCanvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    
+    function resize() {
+        var containerWidth = canvas.parentElement.clientWidth;
+        var size = Math.min(containerWidth * 0.95, 450);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        canvas.style.width = size + 'px';
+        canvas.style.height = size + 'px';
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    function draw(size) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 50;
+        var range = 10; // -5 to 5
+        var cs = (size - 2*pad) / range;
+        var originX = pad + (range/2) * cs;
+        var originY = size/2;
+        
+        // 网格
+        ctx.strokeStyle = '#e8f4f8';
+        ctx.lineWidth = 1;
+        for(var i=-5;i<=5;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+        
+        // 坐标轴（黑色）
+        ctx.strokeStyle = '#1f2937';
+        ctx.lineWidth = 3;
+        // x轴（双向）
+        ctx.beginPath();ctx.moveTo(pad-5,originY);ctx.lineTo(size-pad+15,originY);ctx.stroke();
+        // x轴箭头（正方向）
+        ctx.beginPath();ctx.moveTo(size-pad+15,originY);ctx.lineTo(size-pad+8,originY-6);ctx.lineTo(size-pad+8,originY+6);ctx.closePath();ctx.fillStyle='#1f2937';ctx.fill();
+        // y轴（双向）
+        ctx.beginPath();ctx.moveTo(originX,size-pad+5);ctx.lineTo(originX,pad-15);ctx.stroke();
+        // y轴箭头（正方向）
+        ctx.beginPath();ctx.moveTo(originX,pad-15);ctx.lineTo(originX-6,pad-8);ctx.lineTo(originX+6,pad-8);ctx.closePath();ctx.fill();
+        
+        // 刻度和数字
+        ctx.fillStyle = '#64748b'; ctx.font = 'bold 14px sans-serif';
+        for(var i=-5;i<=5;i++) {
+            if(i===0) continue;
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            // x轴刻度
+            ctx.beginPath();ctx.moveTo(px,originY-4);ctx.lineTo(px,originY+4);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+22);
+            // y轴刻度
+            ctx.beginPath();ctx.moveTo(originX-4,py);ctx.lineTo(originX+4,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        // O标记
+        ctx.textAlign='right';
+        ctx.fillText('O',originX-8,originY+22);
+        // 轴名（黑色）
+        ctx.fillStyle='#1f2937';ctx.font='italic bold 22px "Times New Roman", serif';
+        ctx.textAlign='center';ctx.fillText('x',size-pad+25,originY+6);
+        ctx.fillText('y',originX-10,pad-8);
+        
+        // 点P(3,2) - 在第一象限
+        var px = originX + 3*cs;
+        var py = originY - 2*cs;
+        
+        // 垂线（虚线）
+        ctx.strokeStyle = '#0ea5e9';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6,4]);
+        // P到x轴的垂线
+        ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(px,originY);ctx.stroke();
+        // P到y轴的垂线
+        ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(originX,py);ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // 垂足M和N（调整位置避免与坐标轴数字重叠）
+        ctx.fillStyle = '#0ea5e9';
+        ctx.font = 'bold 16px sans-serif';
+        // M在x轴上（放在点下方，避免与数字3重叠）
+        ctx.textAlign = 'center';
+        ctx.fillText('M', px, originY + 55);
+        ctx.beginPath();ctx.arc(px,originY,4,0,Math.PI*2);ctx.fill();
+        // N在y轴上（放在点左侧，避免与数字2重叠）
+        ctx.textAlign = 'right';
+        ctx.fillText('N', originX - 28, py + 5);
+        ctx.beginPath();ctx.arc(originX,py,4,0,Math.PI*2);ctx.fill();
+        
+        // 点P
+        ctx.fillStyle = '#dc2626';
+        ctx.beginPath();ctx.arc(px,py,8,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle = '#fff';ctx.lineWidth = 2;ctx.stroke();
+        // P标签（显示为P(3,2)）
+        ctx.fillStyle = '#dc2626';
+        ctx.font = 'bold 18px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('P(3,2)', px + 12, py - 12);
+        
+        // 坐标标注（放在垂足位置）
+        ctx.fillStyle = '#0ea5e9';
+        ctx.font = 'bold 14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('3', px, originY + 22);
+        ctx.textAlign = 'right';
+        ctx.fillText('2', originX - 10, py + 5);
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 练习题1交互坐标系
+(function(){
+    var canvas = document.getElementById('pr1Canvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var points = [];
+    
+    function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var size = Math.min(rect.width * 0.95, 400);
+        canvas.width = size * (window.devicePixelRatio||1);
+        canvas.height = size * (window.devicePixelRatio||1);
+        ctx.scale(window.devicePixelRatio||1, window.devicePixelRatio||1);
+        draw(size);
+    }
+    
+    function draw(size) {
+        ctx.clearRect(0,0,size,size);
+        var pad = 40;
+        var range = 10; // -5 to 5
+        var cs = (size - 2*pad) / range;
+        var originX = pad + (range/2) * cs;
+        var originY = size/2;
+        
+        // 网格
+        ctx.strokeStyle = '#b8d4e3';
+        ctx.lineWidth = 1;
+        for(var i=-5;i<=5;i++){
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,pad);ctx.lineTo(px,size-pad);ctx.stroke();
+            ctx.beginPath();ctx.moveTo(pad,py);ctx.lineTo(size-pad,py);ctx.stroke();
+        }
+        
+        // 坐标轴
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        ctx.beginPath();ctx.moveTo(pad,originY);ctx.lineTo(size-pad+10,originY);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(size-pad+10,originY);ctx.lineTo(size-pad+5,originY-4);ctx.lineTo(size-pad+5,originY+4);ctx.closePath();ctx.fillStyle='#334155';ctx.fill();
+        ctx.beginPath();ctx.moveTo(originX,size-pad);ctx.lineTo(originX,pad-10);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(originX,pad-10);ctx.lineTo(originX-4,pad-5);ctx.lineTo(originX+4,pad-5);ctx.closePath();ctx.fill();
+        
+        // 刻度和数字
+        ctx.fillStyle = '#64748b'; 
+        ctx.font = 'bold 16px sans-serif';
+        ctx.strokeStyle = '#334155';
+        ctx.lineWidth = 2;
+        for(var i=-5;i<=5;i++) {
+            if(i===0) continue;
+            var px = pad + (i + range/2)*cs;
+            var py = originY - i*cs;
+            ctx.beginPath();ctx.moveTo(px,originY-5);ctx.lineTo(px,originY+5);ctx.stroke();
+            ctx.textAlign='center';ctx.fillText(i,px,originY+24);
+            ctx.beginPath();ctx.moveTo(originX-5,py);ctx.lineTo(originX+5,py);ctx.stroke();
+            ctx.textAlign='right';ctx.fillText(i,originX-10,py+5);
+        }
+        ctx.textAlign='center';ctx.fillText('O',originX-14,originY+20);
+        ctx.fillStyle='#0e7490';ctx.font='bold 18px sans-serif';
+        ctx.fillText('x',size-pad+20,originY+6);
+        ctx.fillText('y',originX-6,pad-8);
+        
+        // 绘制点
+        points.forEach(function(pt) {
+            var px = originX + pt.x * cs;
+            var py = originY - pt.y * cs;
+            ctx.fillStyle = pt.color;
+            ctx.beginPath();ctx.arc(px,py,7,0,Math.PI*2);ctx.fill();
+            ctx.strokeStyle = '#fff';ctx.lineWidth = 2;ctx.stroke();
+            ctx.fillStyle = pt.color;ctx.font = 'bold 15px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(pt.label, px + 12, py - 8);
+        });
+    }
+    
+    window.drawPr1Point = function(type) {
+        if(type === 'A') {
+            points = [{x: 2, y: -3, label: 'A(2,-3)', color: '#0ea5e9'}];
+        } else if(type === 'x') {
+            points = [
+                {x: 2, y: -3, label: 'A(2,-3)', color: '#0ea5e9'},
+                {x: 2, y: 3, label: "A'(2,3)", color: '#166534'}
+            ];
+        } else if(type === 'y') {
+            points = [
+                {x: 2, y: -3, label: 'A(2,-3)', color: '#0ea5e9'},
+                {x: -2, y: -3, label: "A'(-2,-3)", color: '#991b1b'}
+            ];
+        } else if(type === 'origin') {
+            points = [
+                {x: 2, y: -3, label: 'A(2,-3)', color: '#0ea5e9'},
+                {x: -2, y: 3, label: "A'(-2,3)", color: '#92400e'}
+            ];
+        }
+        var size = canvas.width / (window.devicePixelRatio||1);
+        draw(size);
+    };
+    
+    window.clearPr1Points = function() {
+        points = [];
+        var size = canvas.width / (window.devicePixelRatio||1);
+        draw(size);
+    };
+    
+    window.addEventListener('resize', resize);
+    resize();
+})();
+
+// 国际象棋棋盘绘制
+(function(){
+    var boardContainer = document.getElementById('chessBoard');
+    var answerContainer = document.getElementById('chessBoardAnswer');
+    
+    var cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    var rows = [1, 2, 3, 4, 5, 6, 7, 8];
+    var cellSize = 40;
+    
+    // 创建棋盘的函数
+    function createChessBoard(container, showHorses) {
+        if(!container) return;
+        
+        // 创建SVG棋盘
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', cellSize * 8 + 30);
+        svg.setAttribute('height', cellSize * 8 + 30);
+        svg.style.display = 'block';
+        
+        // 绘制棋盘格
+        for(var r = 0; r < 8; r++) {
+            for(var c = 0; c < 8; c++) {
+                var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', 25 + c * cellSize);
+                rect.setAttribute('y', 5 + (7-r) * cellSize);
+                rect.setAttribute('width', cellSize);
+                rect.setAttribute('height', cellSize);
+                // 黑白格交替
+                var isWhite = (r + c) % 2 === 0;
+                rect.setAttribute('fill', isWhite ? '#f8fafc' : '#94a3b8');
+                svg.appendChild(rect);
+            }
+        }
+        
+        // 列标签 (a-h)
+        for(var c = 0; c < 8; c++) {
+            var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', 25 + c * cellSize + cellSize/2);
+            text.setAttribute('y', cellSize * 8 + 25);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('font-size', '14');
+            text.setAttribute('font-weight', 'bold');
+            text.setAttribute('fill', '#334155');
+            text.textContent = cols[c];
+            svg.appendChild(text);
+        }
+        
+        // 行标签 (1-8)
+        for(var r = 0; r < 8; r++) {
+            var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', 15);
+            text.setAttribute('y', 5 + (7-r) * cellSize + cellSize/2 + 5);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('font-size', '14');
+            text.setAttribute('font-weight', 'bold');
+            text.setAttribute('fill', '#334155');
+            text.textContent = rows[r];
+            svg.appendChild(text);
+        }
+        
+        // 标记四个马的位置（仅在答案中显示）
+        if(showHorses) {
+            var horses = [
+                {col: 'b', row: 3, label: 'A'},
+                {col: 'd', row: 5, label: 'B'},
+                {col: 'f', row: 7, label: 'C'},
+                {col: 'h', row: 2, label: 'D'}
+            ];
+            
+            horses.forEach(function(horse) {
+                var c = cols.indexOf(horse.col);
+                var r = rows.indexOf(horse.row);
+                var cx = 25 + c * cellSize + cellSize/2;
+                var cy = 5 + (7-r) * cellSize + cellSize/2;
+                
+                // 绘制马的位置标记（圆形）
+                var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', cx);
+                circle.setAttribute('cy', cy);
+                circle.setAttribute('r', 12);
+                circle.setAttribute('fill', '#dc2626');
+                circle.setAttribute('stroke', '#fff');
+                circle.setAttribute('stroke-width', '2');
+                svg.appendChild(circle);
+                
+                // 标签
+                var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', cx);
+                text.setAttribute('y', cy + 5);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '14');
+                text.setAttribute('font-weight', 'bold');
+                text.setAttribute('fill', '#fff');
+                text.textContent = horse.label;
+                svg.appendChild(text);
+            });
+        }
+        
+        container.appendChild(svg);
+    }
+    
+    // 创建主棋盘（不显示马）
+    createChessBoard(boardContainer, false);
+    
+    // 在题目图上显示答案（ABCD）
+    window.showChessAnswer = function() {
+        if(!boardContainer) return;
+        var svg = boardContainer.querySelector('svg');
+        if(!svg) return;
+        
+        // 如果已经显示过了，不再重复添加
+        if(svg.querySelector('.chess-answer')) return;
+        
+        var horses = [
+            {col: 'b', row: 3, label: 'A'},
+            {col: 'd', row: 5, label: 'B'},
+            {col: 'f', row: 7, label: 'C'},
+            {col: 'h', row: 2, label: 'D'}
+        ];
+        
+        horses.forEach(function(horse) {
+            var c = cols.indexOf(horse.col);
+            var r = rows.indexOf(horse.row);
+            var cx = 25 + c * cellSize + cellSize/2;
+            var cy = 5 + (7-r) * cellSize + cellSize/2;
+            
+            // 绘制马的位置标记（圆形）
+            var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', cx);
+            circle.setAttribute('cy', cy);
+            circle.setAttribute('r', 12);
+            circle.setAttribute('fill', '#dc2626');
+            circle.setAttribute('stroke', '#fff');
+            circle.setAttribute('stroke-width', '2');
+            circle.setAttribute('class', 'chess-answer');
+            svg.appendChild(circle);
+            
+            // 标签
+            var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', cx);
+            text.setAttribute('y', cy + 5);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('font-size', '14');
+            text.setAttribute('font-weight', 'bold');
+            text.setAttribute('fill', '#fff');
+            text.setAttribute('class', 'chess-answer');
+            text.textContent = horse.label;
+            svg.appendChild(text);
+        });
+    };
+    
+    // 清除题目图上的答案
+    window.clearChessAnswer = function() {
+        if(!boardContainer) return;
+        var svg = boardContainer.querySelector('svg');
+        if(!svg) return;
+        
+        var answers = svg.querySelectorAll('.chess-answer');
+        answers.forEach(function(el) {
+            el.remove();
+        });
+    };
+})();
+
+// 页面鼠标实时坐标显示
+(function(){
+    var coordDisplay = document.getElementById('mouseCoord');
+    if(!coordDisplay) return;
+    
+    document.addEventListener('mousemove', function(e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        coordDisplay.textContent = '🖱️ 坐标：（ ' + x + ' ， ' + y + ' ）';
+    });
+})();
+
+// 电影院座位点击交互
+(function(){
+    var seats = document.querySelectorAll('.cinema-seats .seat:not(.screen)');
+    var selectedSeatDisplay = document.getElementById('selectedSeat');
+    
+    seats.forEach(function(seat) {
+        seat.addEventListener('click', function() {
+            // 移除其他选中状态
+            seats.forEach(function(s) { s.classList.remove('selected'); });
+            // 添加当前选中状态
+            this.classList.add('selected');
+            
+            // 获取排和座
+            var row = this.parentElement.getAttribute('data-row');
+            var col = this.getAttribute('data-col');
+            
+            // 显示选中信息
+            if(selectedSeatDisplay) {
+                selectedSeatDisplay.textContent = '已选中：' + row + '排' + col + '座';
+            }
+        });
+    });
+    
+    // 清除按钮功能
+    window.clearSeats = function() {
+        seats.forEach(function(s) { s.classList.remove('selected'); });
+        if(selectedSeatDisplay) {
+            selectedSeatDisplay.textContent = '';
+        }
+    };
+})();
+</script>
+</body>
+</html>

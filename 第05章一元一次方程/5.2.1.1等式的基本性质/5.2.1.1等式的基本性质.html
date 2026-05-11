@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.1 等式的性质 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .property-box {
+            background: #e1f0de;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .property-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .if-then {
+            background-color: #fff3cd;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #f4b84b;
+            margin: 0.5rem 0;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.2.1 等式的性质与方程的简单变形</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 从天平出发，理解等式的性质，掌握方程变形的依据。</div>
+    <div class="lesson-title">5.2.1 等式的性质与方程的简单变形</div>
+    <div class="sub-title">第一课时 等式的基本性质</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解等式的两条基本性质</div>
+            <div class="target-item"><span>✔</span>能运用等式的性质进行简单的等式变形</div>
+            <div class="target-item"><span>✔</span>体会天平平衡与等式性质的类比</div>
+        </div>
+    </div>
+
+    <!-- 导入：天平 -->
+    <div class="figure-box">
+        <img src="5.2.1.png" alt="图5.2.1 平衡天平">
+        <div class="figcaption">图5.2.1 平衡的天平</div>
+    </div>
+    <p>如图，天平处于平衡状态，它表示左、右两个盘内物体的质量 $a$、$b$ 是相等的。如图5.2.2，若在平衡天平两边的盘内都添上（或都拿去）质量相等的物体，则天平仍然平衡。如图5.2.3，若把平衡天平两边盘内物体的质量都扩大相同的倍数或都缩小到原来的几分之一，则天平仍然平衡。</p>
+
+    <!-- 等式的基本性质 -->
+    <div class="property-box">
+        <h4>🔬 等式的基本性质</h4>
+        <ol>
+            <li><strong>性质1</strong>：等式两边都加上（或都减去）同一个数或同一个整式，所得结果仍是等式。
+                <div class="if-then">如果 $a = b$，那么 $a + c = b + c$，$a - c = b - c$。</div>
+            </li>
+            <li><strong>性质2</strong>：等式两边都乘以（或都除以）同一个数（除数不能为0），所得结果仍是等式。
+                <div class="if-then">如果 $a = b$，那么 $ac = bc$，$\dfrac{a}{c} = \dfrac{b}{c}$（$c \neq 0$）。</div>
+            </li>
+        </ol>
+    </div>
+
+    <!-- 练习（课本第8页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <ol>
+            <li>回答下列问题，并说明理由：
+                <br>(1) 由 $a = b$ 能不能得到 $a - 2 = b - 2$？
+                <br>(2) 由 $m = n$ 能不能得到 $-\dfrac{m}{3} = -\dfrac{n}{3}$？
+                <br>(3) 由 $2a = 6b$ 能不能得到 $a = 3b$？
+                <br>(4) 由 $\dfrac{x}{2} = \dfrac{y}{3}$ 能不能得到 $3x = 2y$？
+            </li>
+            <li>填空，使所得结果仍是等式，并说明是根据哪一条等式性质得到的：
+                <br>(1) 如果 $x - 2 = 5$，那么 $x = 5 + \_\_$；
+                <br>(2) 如果 $3x = 10 - 2x$，那么 $3x + \_\_ = 10$；
+                <br>(3) 如果 $2x = 7$，那么 $x = \_\_$；
+                <br>(4) 如果 $\dfrac{x - 1}{2} = 3$，那么 $x - 1 = \_\_$。
+            </li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">🔍 参考答案</button>
+        <div id="ans1" class="answer-box">
+            <p>1. (1) 能，根据性质1；(2) 能，根据性质2（两边除以3再乘-1）；(3) 能，根据性质2（两边除以2）；(4) 能，根据性质2（两边乘6）。</p>
+            <p>2. (1) 加2，性质1；(2) 加2x，性质1；(3) 除以2，性质2，填 $\frac{7}{2}$；(4) 乘2，性质2，填6。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代对等式的认识（修改后，避免出现方程组） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 中国古代的“等”与“衡”</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>我国古代很早就有“权衡”的概念——用天平或杆秤称量物体，追求两边的平衡。《九章算术》中虽然出现了“方程”一词，但更早的《墨经》里就记载了“平，同高也”，意思是平行线间的距离相等，这体现了古人对“相等”的认识。正是基于生活中随处可见的平衡现象，人们逐渐抽象出等式的基本性质：平衡的两边同时增加或减少相同的量，仍然平衡；同时扩大或缩小相同的倍数，仍然平衡。这种朴素的思考，为后来代数学的发展奠定了基础。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从天平平衡抽象出等式的基本性质。<br>
+        <strong>模型思想：</strong> 等式的性质是解方程的理论模型。<br>
+        <strong>推理思想：</strong> 运用等式的性质进行等量变换，培养逻辑推理能力。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.2.1 第1题(1)(2)（选做）。</span>
+    </div>
+
+    <!-- 寄语（移到作业下面） -->
+    <p class="quote">✨ 等式如天平，两边同变仍平衡，性质是解方程的根本。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.2.1 第一课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

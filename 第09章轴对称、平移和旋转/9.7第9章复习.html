@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9章 轴对称、平移与旋转 · 复习 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 1rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        /* 知识结构图容器 */
+        .mindmap-section {
+            background: #f9fcff;
+            border-radius: 28px;
+            padding: 1.5rem 1rem;
+            margin: 1.5rem 0 2.5rem;
+            border: 2px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+            overflow: visible;
+        }
+        .mindmap-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+        .lightning {
+            color: #00bcd4;
+            font-size: 32px;
+            margin-right: 8px;
+        }
+        .mindmap-header .title {
+            font-size: 24px;
+            color: #e64340;
+            font-weight: bold;
+        }
+        .mindmap-container {
+            position: relative;
+            width: 100%;
+            max-width: 980px;
+            height: 600px;
+            margin: 0 auto;
+            background: #f9fcff;
+            font-size: 16px;
+        }
+        .mindmap-box {
+            background-color: #c8ebf5;
+            border: 1px solid #7fc1d6;
+            padding: 6px 10px;
+            font-size: 16px;
+            color: #1e2b3a;
+            border-radius: 2px;
+            white-space: pre-line;
+            position: absolute;
+            box-shadow: 0 2px 6px rgba(0,60,80,0.1);
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        .main-box {
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.5;
+            background-color: #b3ddf2;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .line-h, .line-v {
+            position: absolute;
+            background-color: #4a6b7c;
+        }
+        .line-h { height: 1px; }
+        .line-v { width: 1px; }
+
+        /* 优化各框宽度，使其更贴合文字内容 */
+        .box-axis { left: 140px; top: 5px; width: 100px; text-align: center; }
+        .box-axis-desc { left: 260px; top: 5px; width: 420px; }
+        .box-trans { left: 140px; top: 85px; width: 100px; text-align: center; }
+        .box-trans-desc { left: 260px; top: 75px; width: 500px; }
+        .box-rot { left: 140px; top: 165px; width: 100px; text-align: center; }
+        .box-rot-desc { left: 260px; top: 155px; width: 550px; }
+        .box-rot-sym { left: 300px; top: 250px; width: 120px; text-align: center; }
+        .box-center-sym { left: 440px; top: 250px; width: 120px; text-align: center; }
+        .box-common { left: 260px; top: 340px; width: 620px; }
+        .box-congruent { left: 300px; top: 440px; width: 150px; text-align: center; }
+        .box-congruent-desc { left: 470px; top: 425px; width: 400px; }
+
+        /* 连线位置微调（配合新宽度） */
+        .line-v-main { left: 92px; top: 0; height: 380px; }
+        .line-h-axis1 { left: 92px; top: 35px; width: 48px; }
+        .line-h-axis2 { left: 240px; top: 35px; width: 20px; }
+        .line-h-trans1 { left: 92px; top: 112px; width: 48px; }
+        .line-h-trans2 { left: 240px; top: 112px; width: 20px; }
+        .line-h-rot1 { left: 92px; top: 190px; width: 48px; }
+        .line-h-rot2 { left: 240px; top: 190px; width: 20px; }
+        .line-v-rot-sym { left: 200px; top: 190px; height: 60px; }
+        .line-h-rot-sym { left: 200px; top: 250px; width: 100px; }
+        .line-h-center-sym { left: 420px; top: 270px; width: 20px; }
+        .line-h-common { left: 92px; top: 380px; width: 168px; }
+        .line-v-congruent { left: 360px; top: 380px; height: 60px; }
+        .line-h-congruent { left: 450px; top: 460px; width: 20px; }
+
+        /* 习题卡片 */
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+            overflow: hidden;
+        }
+        .exercise-item strong {
+            color: #0f4a6f;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            color: #0a4a6f;
+        }
+        .answer-box.show-answer {
+            max-height: 300px;
+            padding: 0.5rem 1rem;
+            background: #e8f4fc;
+            border-radius: 12px;
+        }
+
+        /* 示意图统一样式 */
+        .figure-canvas {
+            display: block;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+            width: 240px;
+            height: 140px;
+        }
+        .figure-svg {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        .figure-svg svg {
+            width: 100%;
+            max-width: 160px;          /* 进一步缩小，与canvas图协调 */
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .square { stroke: #333; stroke-width: 2; fill: none; }
+        .triangle { fill: rgba(100,150,255,0.4); stroke: #0066cc; stroke-width: 2; }
+        .label { font-size: 14px; font-family: "Microsoft YaHei", sans-serif; fill: #333; }
+        .rotate-tip { font-size: 13px; fill: #ff6600; font-weight: bold; }
+        .congruent-tip { font-size: 14px; fill: #e63946; font-weight: bold; text-anchor: middle; }
+        .center-point { fill: red; }
+        .extension-line { stroke: #999; stroke-width: 1; stroke-dasharray: 4 2; }
+        .equal-side { stroke: #2a9d8f; stroke-width: 1.5; stroke-dasharray: 2 1; }
+
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0; color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; font-size: 1.5rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden; transition: max-height 0.4s ease; max-height: 0; margin-top: 0;
+        }
+        .reading-content.expanded { max-height: 600px; margin-top: 1rem; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        .wish {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #2675a8;
+            margin: 2rem 0 1rem;
+            padding: 1rem;
+            background: #f0f7fe;
+            border-radius: 60px;
+            border: 1px solid #b0d4ee;
+        }
+        .hint-text {
+            color: #888;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 复习</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title" style="font-size:1.8rem; background:#e6f2fc; border-radius:50px; padding:0.4rem 1.8rem; display:inline-block; margin:1rem 0 1.5rem 0; border:2px solid #b1d1e8;">复习与小结</div>
+
+    <!-- 复习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解轴对称、平移、旋转的概念与性质</div>
+            <div class="target-item"><span>✔</span>掌握中心对称和旋转对称图形的特征</div>
+            <div class="target-item"><span>✔</span>能运用图形变换设计图案</div>
+            <div class="target-item"><span>✔</span>理解全等图形及其变换关系</div>
+        </div>
+    </div>
+
+    <!-- 知识结构（框宽已优化） -->
+    <div class="mindmap-section">
+        <div class="mindmap-header">
+            <span class="lightning">⚡</span>
+            <span class="title">一、知识结构</span>
+        </div>
+        <div class="mindmap-container">
+            <div class="mindmap-box main-box">图形之间的变换关系</div>
+            <div class="mindmap-box box-axis">轴对称</div>
+            <div class="mindmap-box box-axis-desc">连结对应点的线段被对称轴垂直平分</div>
+            <div class="mindmap-box box-trans">平移</div>
+            <div class="mindmap-box box-trans-desc">连结对应点的线段平行（或在同一条直线上）且相等<br>对应线段平行（或在同一条直线上）且相等</div>
+            <div class="mindmap-box box-rot">旋转</div>
+            <div class="mindmap-box box-rot-desc">对应点与旋转中心的距离相等<br>每一点都绕旋转中心按同一方向旋转了同样大小的角度</div>
+            <div class="mindmap-box box-rot-sym">旋转对称</div>
+            <div class="mindmap-box box-center-sym">中心对称</div>
+            <div class="mindmap-box box-common">在轴对称、平移与旋转这些图形变换下，线段的长度不变，角的大小不变，变换前后的两个图形是全等图形</div>
+            <div class="mindmap-box box-congruent">全等多边形</div>
+            <div class="mindmap-box box-congruent-desc">全等多边形的对应边、对应角分别相等<br>边、角分别对应相等的两个多边形全等</div>
+
+            <div class="line-v line-v-main"></div>
+            <div class="line-h line-h-axis1"></div>
+            <div class="line-h line-h-axis2"></div>
+            <div class="line-h line-h-trans1"></div>
+            <div class="line-h line-h-trans2"></div>
+            <div class="line-h line-h-rot1"></div>
+            <div class="line-h line-h-rot2"></div>
+            <div class="line-v line-v-rot-sym"></div>
+            <div class="line-h line-h-rot-sym"></div>
+            <div class="line-h line-h-center-sym"></div>
+            <div class="line-h line-h-common"></div>
+            <div class="line-v line-v-congruent"></div>
+            <div class="line-h line-h-congruent"></div>
+        </div>
+    </div>
+
+    <!-- 典型习题 -->
+    <h2>📐 典型习题</h2>
+    <div class="exercise-item">
+        <p><strong>1.</strong> 如图，$\triangle ABC$ 与 $\triangle DEF$ 关于直线 $l$ 对称，$AB=5$，$BC=6$，$AC=7$，求 $\triangle DEF$ 的周长。</p>
+        <canvas id="figEx1" width="240" height="140" class="figure-canvas"></canvas>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 显示答案</button>
+        <div id="ex1" class="answer-box">
+            <p>$\triangle DEF$ 的周长为 $5+6+7=18$。（轴对称变换不改变图形形状和大小）</p>
+        </div>
+    </div>
+    <div class="exercise-item">
+        <p><strong>3.</strong> $\triangle ABC$ 绕点 $O$ 逆时针旋转 $60^\circ$ 得到 $\triangle A'B'C'$，若 $\angle A=30^\circ$，$\angle B=50^\circ$，求 $\angle C'$ 的度数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 显示答案</button>
+        <div id="ex3" class="answer-box">
+            <p>旋转前后对应角相等，$\angle C=\angle C'=180^\circ-30^\circ-50^\circ=100^\circ$。</p>
+        </div>
+    </div>
+    <div class="exercise-item">
+        <p><strong>4.</strong> 下列图形中，是中心对称图形但不是轴对称图形的是（　）<br>A. 等边三角形　B. 平行四边形　C. 正方形　D. 圆</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">🔍 显示答案</button>
+        <div id="ex4" class="answer-box">
+            <p>平行四边形是中心对称图形，但不是轴对称图形（一般情况）。选 B。</p>
+        </div>
+    </div>
+
+    <!-- 练习题 -->
+    <h2>✏️ 练习题</h2>
+    <div class="exercise-item">
+        <p><strong>1.</strong> 已知 $\triangle ABC \cong \triangle DEF$，$\angle A=70^\circ$，$\angle B=50^\circ$，求 $\angle F$ 的度数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+        <div id="p1" class="answer-box">
+            <p>$\angle C=60^\circ$，所以 $\angle F=\angle C=60^\circ$。</p>
+        </div>
+    </div>
+    <div class="exercise-item">
+        <p><strong>2.</strong> 如图，四边形 $ABCD$ 是正方形，$E$ 是 $CD$ 上一点，将 $\triangle ADE$ 顺时针旋转 $90^\circ$ 后与 $\triangle ABF$ 重合，请指出旋转中心和旋转角度。</p>
+        <!-- SVG 大小适中（160px） -->
+        <div class="figure-svg">
+            <svg width="160" height="160" viewBox="0 0 400 400" style="max-width:100%; height:auto;">
+                <polygon class="square" points="120,120 280,120 280,280 120,280" />
+                <line class="extension-line" x1="280" y1="280" x2="280" y2="40" />
+                <text class="label" x="110" y="115">A</text>
+                <text class="label" x="285" y="115">B</text>
+                <text class="label" x="285" y="290">C</text>
+                <text class="label" x="110" y="290">D</text>
+                <text class="label" x="200" y="290">E</text>
+                <text class="label" x="285" y="55">F</text>
+                <line class="equal-side" x1="120" y1="140" x2="120" y2="220" />
+                <line class="equal-side" x1="140" y1="120" x2="220" y2="120" />
+                <line class="equal-side" x1="120" y1="280" x2="200" y2="280" />
+                <line class="equal-side" x1="280" y1="40"  x2="280" y2="120" />
+                <polygon class="triangle" points="120,120 120,280 200,280" />
+                <polygon class="triangle" points="120,120 280,120 280,40" />
+                <circle class="center-point" cx="120" cy="120" r="4" />
+                <text class="label" x="90" y="95" fill="red">旋转中心A</text>
+                <text class="rotate-tip" x="160" y="160">顺时针旋转90°</text>
+                <text class="congruent-tip" x="200" y="320">△ADE ≌ △ABF</text>
+            </svg>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+        <div id="p2" class="answer-box">
+            <p>旋转中心为点 $A$，旋转角度为 $90^\circ$。</p>
+        </div>
+    </div>
+    <div class="exercise-item">
+        <p><strong>3.</strong> 在方格纸中，将 $\triangle ABC$ 先向右平移 $3$ 格，再向上平移 $2$ 格，画出平移后的三角形。</p>
+        <canvas id="figP3" width="240" height="140" class="figure-canvas"></canvas>
+        <div class="hint-text">请在上图基础上画出平移后的三角形</div>
+        <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 提示</button>
+        <div id="p3" class="answer-box">
+            <p>分别将三个顶点按方向移动相同格数，再连接。</p>
+        </div>
+    </div>
+    <div class="exercise-item">
+        <p><strong>4.</strong> 判断下列英文字母哪些是轴对称图形？哪些是中心对称图形？<br>A, H, N, O, S, X, Z</p>
+        <button class="interact-btn" onclick="toggleAnswer('p4')">🔍 答案</button>
+        <div id="p4" class="answer-box">
+            <p>轴对称：A, H, O, X；中心对称：H, N, O, S, X, Z。</p>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 对称之美</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>对称不仅存在于数学中，更广泛存在于自然界、建筑、艺术之中。雪花具有六重旋转对称，蝴蝶具有轴对称，伊斯兰几何图案常常利用旋转对称创造出复杂而精美的装饰。在建筑中，故宫、天坛、埃菲尔铁塔等都体现了对称的美感。平移则创造重复的韵律，如长城上的垛口、音乐中的旋律反复。理解对称，能帮助我们更好地欣赏世界。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <h2>📌 课堂小结</h2>
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div class="summary-item">轴对称：对应点连线被对称轴垂直平分，图形全等。</div>
+        <div class="summary-item">平移：对应线段平行且相等，对应点连线平行且相等。</div>
+        <div class="summary-item">旋转：对应点到旋转中心距离相等，旋转角相等。</div>
+        <div class="summary-item">中心对称：旋转 $180^\circ$，对称点连线经过中心且被平分。</div>
+        <div class="summary-item">全等：变换前后图形大小、形状相同。</div>
+    </div>
+
+    <!-- 数学思想或核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 通过轴对称、平移、旋转等变换研究图形关系。<br>
+        <strong>模型观念：</strong> 建立对称模型解决实际问题（如最短路径、图案设计）。<br>
+        <strong>几何直观：</strong> 借助图形变换理解全等、对称性质。<br>
+        <strong>文化理解：</strong> 体会数学在人类文明中的对称之美。</p>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成复习题 A组 第1~8题，B组 第9~11题；利用轴对称、平移或旋转设计一个图案，并写出设计意图。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="wish">
+        🌟 对称的世界，变换的思维，愿你在几何中发现更多的美！ 🌟
+    </div>
+
+    <div class="footer-note">数学 七年级下册 · 第9章 复习</div>
+</div>
+
+<script>
+    function drawFigures() {
+        const ex1 = document.getElementById('figEx1');
+        if (ex1) {
+            const ctx = ex1.getContext('2d');
+            ctx.clearRect(0,0,240,140);
+            ctx.strokeStyle = '#2c5aa0';
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(40,100); ctx.lineTo(20,30); ctx.lineTo(70,30); ctx.closePath(); ctx.stroke();
+            ctx.fillStyle = '#a5c8ff'; ctx.fill();
+            ctx.fillStyle = '#000'; ctx.font = 'bold 12px Arial';
+            ctx.fillText('A',30,110); ctx.fillText('B',5,30); ctx.fillText('C',80,30);
+            ctx.beginPath(); ctx.setLineDash([4,2]); ctx.moveTo(120,20); ctx.lineTo(120,130); ctx.strokeStyle = '#e74c3c'; ctx.stroke(); ctx.setLineDash([]);
+            ctx.beginPath(); ctx.moveTo(180,100); ctx.lineTo(160,30); ctx.lineTo(210,30); ctx.closePath(); ctx.strokeStyle = '#a03a2c'; ctx.stroke();
+            ctx.fillStyle = '#ffb5b5'; ctx.fill();
+            ctx.fillText('D',170,110); ctx.fillText('E',145,30); ctx.fillText('F',220,30);
+        }
+        const p3 = document.getElementById('figP3');
+        if (p3) {
+            const ctx = p3.getContext('2d');
+            ctx.clearRect(0,0,240,140);
+            ctx.strokeStyle = '#ddd'; ctx.lineWidth = 0.5;
+            for (let i=0; i<=240; i+=20) { ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,140); ctx.stroke(); }
+            for (let i=0; i<=140; i+=20) { ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(240,i); ctx.stroke(); }
+            ctx.beginPath(); ctx.moveTo(40,100); ctx.lineTo(60,50); ctx.lineTo(80,100); ctx.closePath();
+            ctx.strokeStyle = '#2c5aa0';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.fillStyle = '#a5c8ff';
+            ctx.fill();
+            ctx.fillStyle = '#000';
+            ctx.font = '12px Arial';
+            ctx.fillText('A',30,105);
+            ctx.fillText('B',50,45);
+            ctx.fillText('C',90,105);
+        }
+    }
+
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+    window.onload = function() {
+        document.getElementById('readingContent').classList.add('expanded');
+        document.getElementById('readingToggle').textContent = '▲';
+        drawFigures();
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

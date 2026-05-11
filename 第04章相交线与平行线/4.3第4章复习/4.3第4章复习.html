@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 相交线与平行线 章末复习 | 华师版·七上</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号，使用斜线平行符号 -->
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {
+                packages: {'[+]': ['ams']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    parallel: "{\\mathrel{/\\mkern-5mu/}}"
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        h3 {
+            font-size: 1.5rem;
+            color: #0b4b78;
+            margin: 1.2rem 0 0.8rem;
+            padding-left: 0.8rem;
+            border-left: 4px solid #58a9d4;
+        }
+        h4 {
+            font-size: 1.2rem;
+            color: #0f4a6f;
+            margin: 1rem 0 0.5rem;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 2000px;
+            margin-top: 1rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 8em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+        .symbol-note {
+            background: #e6f2fa;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #014682;
+            border-left: 4px solid #2675a8;
+        }
+        /* 知识结构树 */
+        .mind-tree {
+            background: #f5fafe;
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid #b9d6ef;
+        }
+        .mind-tree ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        .mind-tree li {
+            margin: 0.5rem 0;
+            position: relative;
+        }
+        .mind-tree li::before {
+            content: "●";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: -1.2rem;
+            top: 0;
+        }
+        .mind-tree .branch {
+            font-weight: bold;
+            color: #144a6f;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        .mind-tree .leaf {
+            color: #1e2b3a;
+            margin-left: 1rem;
+        }
+        /* 交互式画布样式 */
+        .interactive-panel {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            background: #f5fafe;
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 2px solid #b0d4ee;
+        }
+        .canvas-container {
+            flex: 2;
+            text-align: center;
+        }
+        .canvas-container canvas {
+            border: 2px solid #2675a8;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            height: auto;
+        }
+        .control-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .model-btn {
+            background: white;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.8rem 1rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+        }
+        .model-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .model-btn.active {
+            background: #2675a8;
+            color: white;
+            box-shadow: 0 4px 0 #0f4a6f;
+        }
+        .aux-btn {
+            background: #f4b84b;
+            color: #1e2b3a;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c58b2c;
+            transition: 0.1s;
+            margin-top: 0.5rem;
+        }
+        .aux-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #c58b2c;
+        }
+        .example-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+            display: block;
+        }
+        .reading-block img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第4章 相交线与平行线 · 章末复习</span>
+    </div>
+    <h1>第4章 相交线与平行线</h1>
+    <div class="chapter-intro">★ 系统梳理相交线与平行线的知识结构，掌握核心概念与典型问题的分析方法。</div>
+    <div class="lesson-title">章末复习</div>
+
+    <!-- ================= 详细知识结构 ================= -->
+    <div class="learning-targets">
+        <h3>📚 知识结构详图</h3>
+        <div class="mind-tree">
+            <ul>
+                <li class="branch">相交线
+                    <ul>
+                        <li class="leaf">对顶角：概念、性质（对顶角相等）</li>
+                        <li class="leaf">邻补角：概念、性质（邻补角互补）</li>
+                        <li class="leaf">垂线：定义、画法、基本事实（过一点有且只有一条垂线）、垂线段最短、点到直线的距离、垂直平分线（中垂线）</li>
+                        <li class="leaf">三线八角：同位角（F型）、内错角（Z型）、同旁内角（U型）</li>
+                    </ul>
+                </li>
+                <li class="branch">平行线
+                    <ul>
+                        <li class="leaf">定义：在同一平面内不相交的两条直线</li>
+                        <li class="leaf">基本事实：过直线外一点有且只有一条直线与这条直线平行</li>
+                        <li class="leaf">平行线的判定：同位角相等、内错角相等、同旁内角互补 → 两直线平行</li>
+                        <li class="leaf">平行线的性质：两直线平行 → 同位角相等、内错角相等、同旁内角互补</li>
+                        <li class="leaf">平行线的传递性：若 $a\parallel b$，$b\parallel c$，则 $a\parallel c$</li>
+                        <li class="leaf">同一平面内，垂直于同一直线的两直线平行</li>
+                    </ul>
+                </li>
+                <li class="branch">尺规作图
+                    <ul>
+                        <li class="leaf">作一个角等于已知角</li>
+                        <li class="leaf">过直线外一点作平行线（利用同位角相等）</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <p style="margin-top:1rem;">⚠️ 注意：平行线的判定与性质互为逆用，解题时要分清已知条件是“角的关系”还是“平行关系”。</p>
+    </div>
+
+    <!-- 核心概念速查表（折叠展开） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSection('coreContent', 'coreToggle')">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📖 核心概念速查表</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="coreToggle">▼</span>
+        </div>
+        <div id="coreContent" style="overflow:hidden; transition: max-height 0.3s ease; max-height: 2000px;">
+            <table>
+                <tr><th>类型</th><th>定义</th><th>性质/判定</th><th>符号语言</th></tr>
+                <tr><td>对顶角</td><td>两条直线相交，有公共顶点且两边互为反向延长线的两个角</td><td>对顶角相等</td><td>$\because \angle 1$与$\angle 3$是对顶角，$\therefore \angle 1=\angle 3$</td></tr>
+                <tr><td>邻补角</td><td>有一条公共边，另一边互为反向延长线的两个角</td><td>邻补角互补</td><td>$\because \angle 1$与$\angle 2$是邻补角，$\therefore \angle 1+\angle 2=180^\circ$</td></tr>
+                <tr><td>垂线</td><td>两条直线相交成直角，其中一条叫另一条的垂线</td><td>过一点有且只有一条直线与已知直线垂直</td><td>$\because AB\perp CD$，$\therefore \angle AOC=90^\circ$</td></tr>
+                <tr><td>点到直线距离</td><td>从直线外一点到这条直线的垂线段的长度</td><td>垂线段最短</td><td>点$P$到直线$l$的距离$=$垂线段$PA$的长度</td></tr>
+                <tr><td>同位角</td><td>在截线同侧，被截线同一方</td><td>判定：若相等→平行；性质：若平行→相等</td><td>“F”型</td></tr>
+                <tr><td>内错角</td><td>在截线两侧，被截线之间</td><td>判定：若相等→平行；性质：若平行→相等</td><td>“Z”型</td></tr>
+                <tr><td>同旁内角</td><td>在截线同侧，被截线之间</td><td>判定：若互补→平行；性质：若平行→互补</td><td>“U”型</td></tr>
+                <tr><td>平行线</td><td>同一平面内不相交的两条直线</td><td>传递性；判定与性质见上</td><td>$a\parallel b$</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 题型1：相交线与对顶角、垂直计算 -->
+    <div class="example-box">
+        <h4>📐 题型1 · 相交线中的计算</h4>
+        <p><strong>例1</strong> 如图，直线$AB$、$CD$相交于点$O$，$OE$平分$\angle BOD$，$OF$平分$\angle COE$，$\angle AOD:\angle BOE = 4:1$，求$\angle AOF$的度数。</p>
+        <img src="例题1.png" alt="例题1图示：直线相交，OE、OF为角平分线">
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <p>设$\angle BOE = x$，则$\angle AOD = 4x$。<br>
+            $\because OE$平分$\angle BOD$，$\therefore \angle DOE = \angle BOE = x$，$\angle BOD = 2x$。<br>
+            $\because \angle AOD + \angle BOD = 180^\circ$（邻补角），$\therefore 4x + 2x = 180^\circ$，解得 $x = 30^\circ$。<br>
+            $\therefore \angle AOD = 120^\circ$，$\angle BOD = 60^\circ$，$\angle DOE = 30^\circ$。<br>
+            $\because \angle COE + \angle DOE = 180^\circ$，$\therefore \angle COE = 150^\circ$。<br>
+            $\because OF$平分$\angle COE$，$\therefore \angle COF = \angle EOF = 75^\circ$。<br>
+            $\because \angle AOC$与$\angle AOD$是邻补角，$\therefore \angle AOC = 60^\circ$。<br>
+            $\therefore \angle AOF = \angle AOC + \angle COF = 60^\circ + 75^\circ = 135^\circ$。</p>
+        </div>
+    </div>
+
+    <!-- 题型2：三线八角的识别（已修正） -->
+    <div class="example-box">
+        <h4>📐 题型2 · 三线八角的识别</h4>
+        <p><strong>例2</strong> 如图，下列判断：①$\angle 1$与$\angle 8$是同位角；②$\angle 2$与$\angle 3$是同位角；③$\angle 3$与$\angle 5$是内错角；④$\angle 4$与$\angle 8$是同旁内角。其中正确的有（ ）</p>
+        <img src="例题2.png" alt="例题2图示：两条直线被第三条直线所截，标注1~8">
+        <button class="interact-btn" onclick="toggleAnswer('ans2')">📌 显示答案</button>
+        <div id="ans2" class="answer-box">
+            <p>根据“三线八角”位置特征分析：<br>
+            • $\angle 1$与$\angle 8$在截线同侧、被截线之外 → 它们不是同位角，故①说法错误；<br>
+            • $\angle 2$与$\angle 3$是同一个顶点处的邻补角，不是两条被截线与截线形成的角，故②说法错误；<br>
+            • $\angle 3$与$\angle 5$在截线两侧、被截线之间 → 它们是内错角，故③说法正确；<br>
+            • $\angle 4$与$\angle 8$在截线同侧、被截线同一方 → 它们是同位角，故④说法错误。<br>
+            因此，正确的判断只有③。</p>
+        </div>
+    </div>
+
+    <!-- 题型3：平行线的判定 -->
+    <div class="example-box">
+        <h4>📐 题型3 · 平行线的判定</h4>
+        <p><strong>例3</strong> 如图，已知$\angle 1 = \angle 2$，$\angle 3 + \angle 4 = 180^\circ$，求证：$AB\parallel EF$。</p>
+        <img src="例题3.png" alt="例题3图示：三条直线AB、CD、EF，∠1=∠2，∠3+∠4=180°">
+        <button class="interact-btn" onclick="toggleAnswer('ans3')">📌 显示证明</button>
+        <div id="ans3" class="answer-box">
+            <p>$\because \angle 1 = \angle 2$ (已知)，$\therefore AB\parallel CD$ (同位角相等，两直线平行)。<br>
+            $\because \angle 3 + \angle 4 = 180^\circ$ (已知)，$\therefore CD\parallel EF$ (同旁内角互补，两直线平行)。<br>
+            $\therefore AB\parallel EF$ (平行于同一直线的两直线平行)。</p>
+        </div>
+    </div>
+
+    <!-- 题型4：平行线的性质 -->
+    <div class="example-box">
+        <h4>📐 题型4 · 平行线的性质</h4>
+        <p><strong>例4</strong> 如图，$AB\parallel CD$，$\angle ABE = 120^\circ$，$\angle DCE = 25^\circ$，求$\angle BEC$的度数。</p>
+        <img src="例题4.png" alt="例题4图示：AB∥CD，折线E连接，类似“Z”形">
+        <button class="interact-btn" onclick="toggleAnswer('ans4')">📌 显示解答</button>
+        <div id="ans4" class="answer-box">
+            <p>过点$E$作$EF\parallel AB$，则$\angle B + \angle BEF = 180^\circ$ (两直线平行，同旁内角互补)，$\therefore \angle BEF = 60^\circ$。<br>
+            $\because AB\parallel CD$，$EF\parallel AB$，$\therefore EF\parallel CD$，$\therefore \angle FEC = \angle C = 25^\circ$ (两直线平行，内错角相等)。<br>
+            $\therefore \angle BEC = \angle BEF + \angle FEC = 60^\circ + 25^\circ = 85^\circ$。</p>
+        </div>
+    </div>
+
+    <!-- 题型5：分类讨论（原练习4） -->
+    <div class="example-box">
+        <h4>📐 题型5 · 分类讨论</h4>
+        <p><strong>例5</strong> 如果一个角的两边与另一个角的两边分别平行，且一个角比另一个角的$2$倍少$30^\circ$，求这两个角的度数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans5')">📌 显示解答</button>
+        <div id="ans5" class="answer-box">
+            <p>设较小角为$x$，则较大角为$2x-30^\circ$。分两种情况：<br>
+            ①两角相等：$x = 2x-30 \Rightarrow x=30^\circ$，两角均为$30^\circ$；<br>
+            ②两角互补：$x + (2x-30)=180 \Rightarrow x=70^\circ$，较大角$110^\circ$。<br>
+            $\therefore$ 两角为$30^\circ,30^\circ$或$70^\circ,110^\circ$。</p>
+        </div>
+    </div>
+
+    <!-- 题型6：平行线拐点模型专题（原例题5，现例题6） -->
+    <div class="example-box">
+        <h4>📐 题型6 · 平行线拐点模型专题</h4>
+        <p><strong>核心方法：</strong>过拐点作已知直线的平行线，将角的关系转化。</p>
+        
+        <!-- 交互式画布 + 按钮（无角度标注，无结论，字母调大，偏移量按要求） -->
+        <div class="interactive-panel">
+            <div class="canvas-container">
+                <canvas id="modelCanvas" width="750" height="350"></canvas>
+            </div>
+            <div class="control-panel">
+                <button class="model-btn active" id="btnPig" onclick="setModel('pig')">🐷 猪蹄模型</button>
+                <button class="model-btn" id="btnPencil" onclick="setModel('pencil')">✏️ 铅笔模型</button>
+                <button class="model-btn" id="btnStinky" onclick="setModel('stinky')">👟 臭脚模型</button>
+                <button class="model-btn" id="btnBroken" onclick="setModel('broken')">🦴 骨折模型</button>
+                <button class="model-btn" id="btnMulti" onclick="setModel('multi')">🔗 多拐点模型</button>
+                <button class="aux-btn" id="auxBtn" onclick="toggleAuxiliary()">🔍 显示辅助线</button>
+                <!-- 结论框已移除 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读1：墨家几何（原内容，保持不变） -->
+    <div class="reading-block" id="readingBlock1">
+        <div class="reading-header" onclick="toggleReading('readingContent1', 'toggleIcon1')">
+            <h4>📖 读一读 · 墨家几何与平行线</h4>
+            <span class="toggle-icon" id="toggleIcon1">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent1">
+            <p>中国古代最早的几何学定义之一出自战国时期的《墨经》。墨家学派在《墨经》中记载了许多几何概念的定义，例如：</p>
+            <ul>
+                <li><strong>“平，同高也”</strong>——这可以理解为平行线间的距离处处相等，正是我们学过的平行线的一条重要性质。</li>
+                <li><strong>“直，参也”</strong>——以三点共线来解释“直”。</li>
+                <li><strong>“圆，一中同长也”</strong>——圆是一个中心到圆周等长，相当于现代圆的定义。</li>
+            </ul>
+            <p>这些定义比欧几里得《几何原本》早约一百年，体现了我国古代学者对几何概念的深刻洞察。在建筑中，平行线的应用比比皆是：故宫的宫殿立柱、古代房屋的梁架结构，都依赖平行与垂直来保证稳固与美观。</p>
+            <div style="text-align:center; margin:1rem 0;">
+                <svg width="280" height="120" viewBox="0 0 280 120">
+                    <rect x="40" y="20" width="200" height="60" fill="none" stroke="#8a6d3b" stroke-width="2" stroke-dasharray="5 3" />
+                    <line x1="70" y1="20" x2="70" y2="80" stroke="black" stroke-width="2" />
+                    <line x1="210" y1="20" x2="210" y2="80" stroke="black" stroke-width="2" />
+                    <line x1="110" y1="20" x2="110" y2="80" stroke="black" stroke-width="2" />
+                    <line x1="150" y1="20" x2="150" y2="80" stroke="black" stroke-width="2" />
+                    <text x="90" y="100" font-size="12">平行立柱，同高也</text>
+                </svg>
+            </div>
+            <p>《墨经》中还讨论了“有间”、“盈”、“撄”等概念，涉及点、线、面、体的关系。这些成就表明，中国古代数学不仅重视计算，也有严谨的几何思想。</p>
+        </div>
+    </div>
+
+    <!-- 读一读2：潜望镜中的平行线（修改后，不使用字母，通俗易懂） -->
+    <div class="reading-block" id="readingBlock2">
+        <div class="reading-header" onclick="toggleReading('readingContent2', 'toggleIcon2')">
+            <h4>📖 读一读 · 潜望镜中的平行线</h4>
+            <span class="toggle-icon" id="toggleIcon2">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent2">
+            <p>潜望镜是一种利用光线反射改变光路的光学仪器，常用于潜艇、坦克等观察敌情。它的核心原理可以用我们学过的平行线知识来解释。</p>
+            <div style="text-align:center; margin:1rem 0;">
+                <img src="例题6.png" alt="潜望镜原理图" style="max-width:100%; border-radius:8px;">
+            </div>
+            <p>观察图片，潜望镜中有两面镜子，它们互相平行放置。光线从上方射入，经过两次反射后从下方射出。根据光的反射规律，光线在镜面上的入射角度与反射角度总是相等的。你可以这样想象：光线在两面镜子之间拐了两个弯。</p>
+            <p>因为两面镜子是平行的，所以光线在第一次反射后形成的角度与第二次反射前的角度恰好相等（这就像平行线间的内错角相等）。这样一来，进入潜望镜的光线和离开潜望镜的光线方向就变得一致了——也就是说，它们互相平行。这个巧妙的设计使得观察者能够通过潜望镜看到被障碍物挡住的目标，而视线方向并没有改变。</p>
+            <p>你看，数学中平行线的性质在现实生活中的应用多么神奇！</p>
+        </div>
+    </div>
+
+    <!-- 章末总结与思想方法 -->
+    <div class="math-idea">
+        <h4>🧠 章末总结</h4>
+        <p><strong>数学思想：</strong> 转化思想（由线推角、由角推线）、模型思想（三线八角基本模型、拐点模型）、分类讨论（角的两边分别平行问题）、数形结合。</p>
+        <p><strong>易错提醒：</strong> ①判定与性质不要混淆；②同位角、内错角、同旁内角必须找准截线与被截线；③垂线段最短中“垂线段”与“距离”的区别；④作图要保留痕迹并写出结论。</p>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本复习题A组、B组，整理本章错题本。</span>
+    </div>
+
+    <!-- 尾部 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 相交平行一线牵，角的关系紧相连 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第4章 复习</div>
+</div>
+
+<script>
+    // ---------- 交互式画布逻辑 ----------
+    const canvas = document.getElementById('modelCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 直线端点：A左，B右；C左，D右（保持不变）
+    const A = { x: 50, y: 120 };
+    const B = { x: 500, y: 120 };
+    const C = { x: 50, y: 280 };
+    const D = { x: 500, y: 280 };
+
+    // 预设拐点坐标（用于单拐点模型）
+    const modelPoints = {
+        pig: { x: 380, y: 200 },     // 猪蹄模型（右侧内部居中）
+        pencil: { x: 600, y: 200 },   // 铅笔模型（右侧外部，x=600，按要求调整）
+        stinky: { x: 380, y: 310 },   // 臭脚模型（下方外部）
+        broken: { x: 380, y: 90 }     // 骨折模型（上方外部）
+    };
+    // 多拐点模型的两个拐点（按要求更新）
+    const multiPoints = [
+        { x: 300, y: 180 },   // E1
+        { x: 350, y: 220 }    // E2
+    ];
+
+    // 当前模型
+    let currentModel = 'pig';
+    let showAuxiliary = false; // 是否显示辅助线
+
+    // 绘制函数（字母调大，偏移量按最新要求）
+    function drawModel(model) {
+        // 清除画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // 绘制两条平行线 AB 和 CD
+        ctx.beginPath();
+        ctx.strokeStyle = '#2675a8';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([]);
+        ctx.moveTo(A.x, A.y);
+        ctx.lineTo(B.x, B.y);
+        ctx.stroke();
+        ctx.moveTo(C.x, C.y);
+        ctx.lineTo(D.x, D.y);
+        ctx.stroke();
+
+        // 标注直线端点（字体增大至26px）
+        ctx.font = 'bold 26px "Segoe UI", sans-serif';
+        ctx.fillStyle = '#2675a8';
+        ctx.fillText('A', A.x - 30, A.y - 15);
+        ctx.fillText('B', B.x + 15, B.y - 15);
+        ctx.fillText('C', C.x - 30, C.y + 25);
+        ctx.fillText('D', D.x + 15, D.y + 25);
+
+        // 根据模型绘制折线和拐点
+        if (model === 'multi') {
+            // 多拐点：两个点 E1, E2
+            const [E1, E2] = multiPoints;
+
+            // 绘制拐点
+            ctx.fillStyle = '#4caf50';
+            ctx.beginPath();
+            ctx.arc(E1.x, E1.y, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(E2.x, E2.y, 8, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // 标注拐点（字体26px，E1放在左侧上方 E1.x-45, E1.y-5；E2放在左侧下方 E2.x-45, E2.y+15）
+            ctx.fillStyle = '#1e2b3a';
+            ctx.font = 'bold 26px "Segoe UI", sans-serif';
+            ctx.fillText('E₁', E1.x - 45, E1.y - 5);
+            ctx.fillText('E₂', E2.x - 45, E2.y + 15);
+
+            // 绘制折线 B -> E1 -> E2 -> D
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(E1.x, E1.y);
+            ctx.lineTo(E2.x, E2.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.stroke();
+
+            // 辅助线（若开启）：过每个拐点作平行于AB的直线
+            if (showAuxiliary) {
+                ctx.beginPath();
+                ctx.strokeStyle = '#f4b84b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([8, 4]);
+                ctx.moveTo(50, E1.y);
+                ctx.lineTo(700, E1.y);
+                ctx.stroke();
+                ctx.moveTo(50, E2.y);
+                ctx.lineTo(700, E2.y);
+                ctx.stroke();
+
+                // 标注辅助线 F（字体22px）
+                ctx.font = 'bold 22px "Segoe UI", sans-serif';
+                ctx.fillStyle = '#f4b84b';
+                ctx.fillText('F₁', 680, E1.y - 15);
+                ctx.fillText('F₂', 680, E2.y - 15);
+            }
+        } else {
+            // 单拐点模型
+            const E = modelPoints[model];
+
+            // 绘制拐点
+            ctx.fillStyle = '#4caf50';
+            ctx.beginPath();
+            ctx.arc(E.x, E.y, 8, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // 标注拐点（字体26px，根据模型使用不同偏移量）
+            ctx.fillStyle = '#1e2b3a';
+            ctx.font = 'bold 26px "Segoe UI", sans-serif';
+            let offsetX, offsetY;
+            if (model === 'pig') {
+                offsetX = -20; offsetY = -10; // 左上方
+            } else if (model === 'pencil') {
+                offsetX = 20; offsetY = -10;   // 右上方
+            } else if (model === 'stinky') {
+                offsetX = 10; offsetY = 30;    // 右下方
+            } else if (model === 'broken') {
+                offsetX = 5; offsetY = -20;    // 右上方
+            }
+            ctx.fillText('E', E.x + offsetX, E.y + offsetY);
+
+            // 绘制折线 B -> E -> D
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 3]);
+            ctx.moveTo(B.x, B.y);
+            ctx.lineTo(E.x, E.y);
+            ctx.lineTo(D.x, D.y);
+            ctx.stroke();
+
+            // 辅助线（若开启）
+            if (showAuxiliary) {
+                ctx.beginPath();
+                ctx.strokeStyle = '#f4b84b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([8, 4]);
+                ctx.moveTo(50, E.y);
+                ctx.lineTo(700, E.y);
+                ctx.stroke();
+
+                // 标注辅助线 F
+                ctx.font = 'bold 22px "Segoe UI", sans-serif';
+                ctx.fillStyle = '#f4b84b';
+                ctx.fillText('F', 680, E.y - 15);
+            }
+        }
+    }
+
+    // 切换模型函数
+    window.setModel = function(model) {
+        currentModel = model;
+        // 更新按钮激活状态
+        document.querySelectorAll('.model-btn').forEach(btn => btn.classList.remove('active'));
+        if (model === 'pig') document.getElementById('btnPig').classList.add('active');
+        else if (model === 'pencil') document.getElementById('btnPencil').classList.add('active');
+        else if (model === 'stinky') document.getElementById('btnStinky').classList.add('active');
+        else if (model === 'broken') document.getElementById('btnBroken').classList.add('active');
+        else if (model === 'multi') document.getElementById('btnMulti').classList.add('active');
+        drawModel(model);
+    };
+
+    // 切换辅助线
+    window.toggleAuxiliary = function() {
+        showAuxiliary = !showAuxiliary;
+        const btn = document.getElementById('auxBtn');
+        btn.textContent = showAuxiliary ? '🔍 隐藏辅助线' : '🔍 显示辅助线';
+        drawModel(currentModel);
+    };
+
+    // 初始绘制
+    drawModel('pig');
+
+    // ---------- 原有的函数 ----------
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSection(contentId, toggleId) {
+        var c = document.getElementById(contentId);
+        var t = document.getElementById(toggleId);
+        if (c.style.maxHeight !== '0px' && c.style.maxHeight !== '0') {
+            c.style.maxHeight = '0';
+            t.textContent = '▶';
+        } else {
+            c.style.maxHeight = '2000px';
+            t.textContent = '▼';
+        }
+    }
+    function toggleReading(contentId, iconId) {
+        var c = document.getElementById(contentId);
+        var icon = document.getElementById(iconId);
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    // 绑定两个读一读的点击事件
+    document.getElementById('readingBlock1').querySelector('.reading-header').onclick = function() {
+        toggleReading('readingContent1', 'toggleIcon1');
+    };
+    document.getElementById('readingBlock2').querySelector('.reading-header').onclick = function() {
+        toggleReading('readingContent2', 'toggleIcon2');
+    };
+</script>
+</body>
+</html>

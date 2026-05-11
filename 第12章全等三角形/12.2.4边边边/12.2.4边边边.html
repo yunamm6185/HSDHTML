@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>12.2.4 边边边 (SSS) | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+        }
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .explore-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1d6130;
+        }
+        .explore-card h4::before {
+            content: "🔍 ";
+        }
+        .experiment-container {
+            background: white;
+            border-radius: 2rem;
+            margin-top: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+        .triangle-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            padding: 20px 24px;
+        }
+        .triangle-individual {
+            flex: 1;
+            min-width: 380px;
+            background: #fefefe;
+            border-radius: 28px;
+            border: 1px solid #eef2fa;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .triangle-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 12px 16px;
+            background: #f8fafd;
+            border-bottom: 1px solid #eef2fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .triangle1-title { color: #1e40af; }
+        .triangle2-title { color: #c2410c; }
+        .valid-badge {
+            font-size: 0.85rem;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 40px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+        .canvas-wrapper {
+            padding: 12px;
+            text-align: center;
+            background: #fff;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #fafdff;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2edf5;
+        }
+        .info-bar {
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid #eef2fa;
+            background: #fefefe;
+        }
+        .controls-panel {
+            padding: 12px 16px;
+            background: #fafcff;
+            border-top: 1px solid #eef2fa;
+        }
+        .control-group {
+            margin-bottom: 14px;
+        }
+        .control-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .step-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 40px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-btn:hover { background: #e9eef3; }
+        .value-badge {
+            background: #eef2ff;
+            padding: 2px 12px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+        }
+        .slider-wrapper input {
+            flex: 1;
+            height: 6px;
+        }
+        .compare-result {
+            border-radius: 24px;
+            padding: 12px;
+            text-align: center;
+            margin: 16px 20px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .congruent-true {
+            background: #d9f0e3;
+            color: #0b5e2e;
+        }
+        .congruent-false {
+            background: #ffe6e5;
+            color: #b91c1c;
+        }
+        .info-note {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 10px 16px;
+            margin: 8px 20px 20px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .fact-card {
+            background: #fff3cd;
+            border-left: 8px solid #f0b34b;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .fact-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #b85c1a;
+        }
+        .example-card {
+            background: #e5f3e2;
+            border-left: 8px solid #3a8b4f;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .deduction-card {
+            background: #e1eff9;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .example-card h4 {
+            font-size: 1.4rem;
+            color: #1d6130;
+        }
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .fig-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+        .fig-row .figure-container {
+            flex: 1;
+            min-width: 240px;
+            margin: 0;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.3rem;
+            font-size: 0.9rem;
+        }
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+        }
+        .interact-btn:active { transform: translateY(2px); }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.9rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .exercise-item .figure-container {
+            max-width: 500px;
+            margin: 0.5rem 0;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+        .exercise-item img {
+            max-height: 180px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .summary-section, .math-idea, .reading-section, .homework-box, .message-box {
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-weight: 500;
+        }
+        .summary-section {
+            background: #d6e9f5;
+            border-left: 6px solid #30829b;
+        }
+        .math-idea {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+        }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 8px solid #e6b422;
+        }
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .highlight {
+            background: #c5e0d4;
+            padding: 0.6rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .summary-table th, .summary-table td {
+            border: 1px solid #b8d2e9;
+            padding: 10px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .summary-table th {
+            background: #e2effa;
+            font-weight: 700;
+        }
+        .divider {
+            margin: 1.5rem 0 1rem;
+            border-top: 2px dashed #b8d2e9;
+        }
+        @media (max-width: 900px) {
+            .triangle-panel { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.2.4</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.2.4 边边边 (SSS)</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握“边边边”判定全等的基本事实</div>
+            <div class="target-item"><span>✔</span>能运用SSS进行几何推理证明</div>
+            <div class="target-item"><span>✔</span>理解三角形稳定性，会用尺规作图作角</div>
+        </div>
+    </div>
+
+    <!-- 引入：三角相等不一定全等 图12.2.17 -->
+    <div class="intro-card">
+        <p>我们已经讨论了两个三角形有两边一角、两角一边分别相等时的情况。如果两个三角形有三个角分别相等，那么这两个三角形是否一定全等呢？如图12.2.17所示，两个三角形的三个角分别相等，但边长不同，它们不全等。因此，三角相等不能判定全等。</p>
+    </div>
+    <div class="figure-container">
+        <img src="12.2.17.png" alt="图12.2.17 三角相等不全等" style="max-width:320px;">
+        <div class="figure-caption">图12.2.17 三个角分别相等的两个三角形不一定全等</div>
+    </div>
+
+    <div class="intro-card">
+        <p>最后，如果两个三角形有三条边分别相等，那么这两个三角形是否一定全等呢？为此我们以已知的三条线段为三角形的三边，作三角形，看看你和同伴作出的三角形是否全等。</p>
+    </div>
+
+    <!-- 做一做：完整课本内容 + 动态交互工具，并排显示图12.2.18和12.2.19 -->
+    <div class="explore-card">
+        <h4>做一做</h4>
+        <p>如图12.2.18，已知线段 $a, b, c$，试作 $\triangle ABC$，使 $BC = a$，$AC = b$，$AB = c$。</p>
+        <div class="fig-row">
+            <div class="figure-container">
+                <img src="12.2.18.png" alt="图12.2.18 已知线段a,b,c" style="max-width:260px;">
+                <div class="figure-caption">图12.2.18 已知线段 $a, b, c$</div>
+            </div>
+            <div class="figure-container">
+                <img src="12.2.19.png" alt="图12.2.19 作三角形" style="max-width:260px;">
+                <div class="figure-caption">图12.2.19 作法示意图</div>
+            </div>
+        </div>
+        <p><strong>作法：</strong><br>
+        (1) 作线段 $BC$，使 $BC = a$；<br>
+        (2) 以点 $B$ 为圆心、线段 $c$ 的长为半径作圆弧，以点 $C$ 为圆心、线段 $b$ 的长为半径作圆弧，两弧相交于点 $A$；<br>
+        (3) 连结 $AB, AC$。<br>
+        如图12.2.19，$\triangle ABC$ 即为所要求作的三角形。</p>
+        <p>把你作的三角形与其他同学作的三角形进行比较，或剪下你作的三角形，放到其他同学作的三角形上，看看是否完全重合。所作的三角形都全等吗？<br>
+        换三条线段，试试看，是否有同样的结论？</p>
+        <p>由以上操作，可以发现它们完全重合，所作的三角形都全等。</p>
+
+        <div class="divider"></div>
+        <p style="margin: 0.8rem 0 0.5rem; font-weight: 500;">我们也可以借助下面的交互工具，动态调整边长，亲身体验“边边边”判定：</p>
+
+        <!-- 动态交互实验 -->
+        <div id="experimentContainer" class="experiment-container"></div>
+        <button class="interact-btn" onclick="toggleAnswer('expSSS')">📐 实验结论</button>
+        <div id="expSSS" class="answer-box">
+            <p>通过动态实验可以发现：当两个三角形的三条边长度分别相等时，它们能够完全重合，形状大小完全相同。这验证了基本事实“三边分别相等的两个三角形全等”（SSS）。</p>
+        </div>
+    </div>
+
+    <!-- 最初版基本事实卡片 -->
+    <div class="fact-card">
+        <h4>基本事实</h4>
+        <p class="highlight"><strong>三边分别相等的两个三角形全等。</strong>（简写成“边边边”或“SSS”）</p>
+        <p>三角形具有稳定性，正是源于SSS判定——当三边固定，三角形唯一确定。</p>
+    </div>
+
+    <!-- 例6 图12.2.20 -->
+    <div class="example-card">
+        <h4>例6</h4>
+        <p>如图12.2.20，在四边形$ABCD$中，$AD = CB$，$AB = CD$。求证：$\angle B = \angle D$。</p>
+        <div class="figure-container">
+            <img src="12.2.20.png" alt="图12.2.20 四边形ABCD" style="max-width:280px;">
+            <div class="figure-caption">图12.2.20 四边形ABCD</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex6')">✍️ 显示证明</button>
+        <div id="ex6" class="answer-box">
+            <p><strong>证明：</strong><br>
+            连结$AC$。<br>
+            在$\triangle ABC$和$\triangle CDA$中，<br>
+            $\because AB = CD$ (已知)，<br>
+            $BC = DA$ (已知)，<br>
+            $AC = CA$ (公共边)，<br>
+            $\therefore \triangle ABC \cong \triangle CDA$ (SSS)。<br>
+            $\therefore \angle B = \angle D$ (全等三角形的对应角相等)。</p>
+        </div>
+    </div>
+
+    <!-- 例7 尺规作图作角等于已知角 图12.2.21 图12.2.22调整尺寸 -->
+    <div class="example-card">
+        <h4>例7</h4>
+        <p>利用尺规作图作一个角等于已知角，其依据就是SSS。如图12.2.21，已知$\angle AOB$，求作$\angle A'O'B' = \angle AOB$，作法后证明两角相等。</p>
+        <div class="figure-container">
+            <img src="12.2.21.png" alt="图12.2.21 作一个角等于已知角" style="max-width:400px; width:100%; height:auto;">
+            <div class="figure-caption">图12.2.21 尺规作图作角</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex7')">📐 证明过程</button>
+        <div id="ex7" class="answer-box">
+            <div class="figure-container" style="margin-top:0.5rem;">
+                <img src="12.2.22.png" alt="图12.2.22 证明用图" style="max-width:400px; width:100%; height:auto;">
+                <div class="figure-caption">图12.2.22 证明$\triangle C'O'D' \cong \triangle COD$</div>
+            </div>
+            <p><strong>证明：</strong> 如图12.2.22，连结$CD$、$C'D'$。<br>
+            由作图知：$O'C' = OC$，$O'D' = OD$，$C'D' = CD$。<br>
+            在$\triangle C'O'D'$和$\triangle COD$中，<br>
+            $\because O'C' = OC$，$O'D' = OD$，$C'D' = CD$，<br>
+            $\therefore \triangle C'O'D' \cong \triangle COD$ (SSS)。<br>
+            $\therefore \angle C'O'D' = \angle COD$，即$\angle A'O'B' = \angle AOB$。</p>
+        </div>
+    </div>
+
+    <!-- 思考：角平分线作图 图12.2.23 -->
+    <div class="deduction-card">
+        <h4>思考</h4>
+        <p>如图12.2.23，我们曾利用尺规作图作出已知角$\angle AOB$的平分线。你能证明射线$OP$确实是$\angle AOB$的平分线吗？</p>
+        <div class="figure-container">
+            <img src="12.2.23.png" alt="图12.2.23 作角平分线" style="max-width:280px;">
+            <div class="figure-caption">图12.2.23 作角平分线</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('angleBisector')">📐 证明</button>
+        <div id="angleBisector" class="answer-box">
+            <p>由作法可知$OM = ON$，$MP = NP$，又$OP = OP$，根据SSS可得$\triangle OMP \cong \triangle ONP$，所以$\angle MOP = \angle NOP$，即$OP$平分$\angle AOB$。</p>
+        </div>
+    </div>
+
+    <!-- 读一读（课本原文） -->
+    <div class="reading-section">
+        <h4>📖 读一读</h4>
+        <p>至此，我们已经学习了关于全等三角形的三个基本事实，这是进行演绎推理的重要依据，它们是我们通过探索发现的判定方法，其本质与用变换给出的全等三角形定义是一致的，即在这些条件下，两个三角形一定可以通过图形的基本变换（轴对称、平移和旋转）而相互重合。</p>
+    </div>
+
+    <!-- 概括：表格总结全等判定 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; margin-bottom:1rem;">📊 概括</h3>
+        <p>我们可以将前面在对全等三角形判定的探索中得到的结论归纳成下表：</p>
+        <table class="summary-table">
+            <thead>
+                <tr><th rowspan="2">分别相等的元素</th><th colspan="2">两边一角</th><th colspan="2">两角一边</th><th rowspan="2">三角</th><th rowspan="2">三边</th>    </tr>
+                <tr><th>两边及其夹角</th><th>两边及其中一边的对角</th><th>两角及其夹边</th><th>两角及其中一角的对边</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>三角形是否全等</td><td>一定 (SAS)</td><td>不一定</td><td>一定 (ASA)</td><td>一定 (AAS)</td><td>不一定</td><td>一定 (SSS)</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 课堂练习：使用课本原题，答案已修正 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 练习</h3>
+        
+        <div class="exercise-item">
+            <p class="exercise-question">1. 根据题图及相应的条件，能否判定下面分别给出的两个三角形全等？</p>
+            <div class="figure-container img-plain">
+                <img src="第1题.png" alt="第1题图" style="max-height:180px; width:auto;">
+            </div>
+            <p>(1)如图①，线段$AD$与$BC$相交于点$O$，$AO = DO$，$BO = CO$。$\triangle ABO$和$\triangle DCO$。<br>
+            (2)如图②，$AC = AD$，$BC = BD$。$\triangle ABC$和$\triangle ABD$。<br>
+            (3)如图③，线段$AC$与$BD$相交于点$O$，$\angle A = \angle C$，$\angle B = \angle D$。$\triangle ABO$和$\triangle CDO$。<br>
+            (4)如图④，$\angle CAB = \angle DBA$，$\angle 1 = \angle 2$。$\triangle ABC$和$\triangle BAD$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1)全等，SAS；(2)全等，SSS；(3)<strong>不全等</strong>（只有两角相等，但边不一定对应相等）；(4)全等，ASA（由$\angle 1=\angle 2$得$\angle ABC=\angle BAD$，加上公共边$AB$）。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如图，点$B,E,C,F$在同一条直线上，$AB = DE$，$AC = DF$，$BE = CF$。</p>
+            <div class="figure-container img-plain">
+                <img src="第2题.png" alt="第2题图" style="max-height:150px; width:auto;">
+            </div>
+            <p>(1)求证：$\angle A = \angle D$；(2)找出图中互相平行的线段，说明你的理由。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>(1)由$BE=CF$得$BE+EC=CF+EC$，即$BC=EF$。在$\triangle ABC$和$\triangle DEF$中，$AB=DE$，$AC=DF$，$BC=EF$，∴ $\triangle ABC \cong \triangle DEF$(SSS)，∴ $\angle A = \angle D$。<br>
+                (2)$AB \parallel DE$，$AC \parallel DF$。理由：由全等得$\angle ABC = \angle DEF$，∴ $AB \parallel DE$；$\angle ACB = \angle DFE$，∴ $AC \parallel DF$。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 如图，点$C,D$是线段$AB$上的点，$AD = BC$，$AF = BE$，$CF = DE$。求证：$\triangle ACF \cong \triangle BDE$。图中还有其他的全等三角形吗？说明你的理由。</p>
+            <div class="figure-container img-plain">
+                <img src="第3题.png" alt="第3题图" style="max-height:150px; width:auto;">
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p><strong>证明：</strong> 由$AD=BC$得$AD+DC=BC+DC$，即$AC=BD$。在$\triangle ACF$和$\triangle BDE$中，$AF=BE$，$CF=DE$，$AC=BD$，∴ $\triangle ACF \cong \triangle BDE$(SSS)。<br>
+                <strong>其他全等三角形：</strong> $\triangle ADH \cong \triangle BCI$（ASA），$\triangle EHG \cong \triangle FIG$（AAS）。理由如下：由$\triangle ACF \cong \triangle BDE$可得$\angle A = \angle B$，$\angle AFC = \angle BED$，从而可证相关三角形全等。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• 三边分别相等的两个三角形全等（SSS），是判定全等的基本事实之一。</div>
+        <div>• 三角形稳定性源于SSS：给定三边，三角形唯一确定。</div>
+        <div>• 利用SSS可以证明线段相等、角相等，也是尺规作图作角等于已知角及作角平分线的依据。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 通过构造全等三角形将角相等或线段相等的问题转化。<br>
+        <strong>分类讨论：</strong> 全等判定方法中，SSS是最基础最严格的判定之一。<br>
+        <strong>推理意识：</strong> 基本事实是几何推理的起点，演绎证明体现严谨性。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong> 课本习题12.2 A组第5、6题，B组第9题；完成练习册SSS专项练习。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 三边若相等，全等定乾坤；SSS显威力，推理步步真。 ✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第12章 12.2.4 边边边</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // 动态实验脚本（SSS交互工具，固定物理比例，边长变化直观，步长0.1，三边0时画点居中，全等判定基于三边集合相等）
+    (function() {
+        const container = document.getElementById('experimentContainer');
+        if (!container) return;
+        container.innerHTML = `
+<div class="triangle-panel">
+    <div class="triangle-individual">
+        <div class="triangle-title triangle1-title">
+            <span>🔷 三角形 ABC <span id="tri1Status" class="valid-badge">有效</span></span>
+            <button class="example-btn" id="resetTri1Btn">重置 (5, 6, 7 cm)</button>
+        </div>
+        <div class="canvas-wrapper"><canvas id="canvas1" width="600" height="460"></canvas></div>
+        <div class="info-bar" id="tri1Details">三边: AB / BC / CA</div>
+        <div class="controls-panel">
+            <div class="control-group"><div class="control-label"><span>📏 边 AB (c)</span><span class="value-badge" id="valAB1">5.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="1" data-side="AB" data-delta="-0.1">-</button><input type="range" id="sideAB1" min="0" max="12" step="0.1" value="5"><button class="step-btn" data-tri="1" data-side="AB" data-delta="0.1">+</button></div></div>
+            <div class="control-group"><div class="control-label"><span>📏 边 BC (a)</span><span class="value-badge" id="valBC1">6.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="1" data-side="BC" data-delta="-0.1">-</button><input type="range" id="sideBC1" min="0" max="12" step="0.1" value="6"><button class="step-btn" data-tri="1" data-side="BC" data-delta="0.1">+</button></div></div>
+            <div class="control-group"><div class="control-label"><span>📏 边 CA (b)</span><span class="value-badge" id="valCA1">7.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="1" data-side="CA" data-delta="-0.1">-</button><input type="range" id="sideCA1" min="0" max="12" step="0.1" value="7"><button class="step-btn" data-tri="1" data-side="CA" data-delta="0.1">+</button></div></div>
+        </div>
+    </div>
+    <div class="triangle-individual">
+        <div class="triangle-title triangle2-title">
+            <span>🟠 三角形 A'B'C' <span id="tri2Status" class="valid-badge">有效</span></span>
+            <button class="example-btn" id="resetTri2Btn">重置 (5, 6, 7 cm)</button>
+        </div>
+        <div class="canvas-wrapper"><canvas id="canvas2" width="600" height="460"></canvas></div>
+        <div class="info-bar" id="tri2Details">三边: A'B' / B'C' / C'A'</div>
+        <div class="controls-panel">
+            <div class="control-group"><div class="control-label"><span>📏 边 A'B'</span><span class="value-badge" id="valAB2">5.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="2" data-side="AB" data-delta="-0.1">-</button><input type="range" id="sideAB2" min="0" max="12" step="0.1" value="5"><button class="step-btn" data-tri="2" data-side="AB" data-delta="0.1">+</button></div></div>
+            <div class="control-group"><div class="control-label"><span>📏 边 B'C'</span><span class="value-badge" id="valBC2">6.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="2" data-side="BC" data-delta="-0.1">-</button><input type="range" id="sideBC2" min="0" max="12" step="0.1" value="6"><button class="step-btn" data-tri="2" data-side="BC" data-delta="0.1">+</button></div></div>
+            <div class="control-group"><div class="control-label"><span>📏 边 C'A'</span><span class="value-badge" id="valCA2">7.0 cm</span></div><div class="slider-wrapper"><button class="step-btn" data-tri="2" data-side="CA" data-delta="-0.1">-</button><input type="range" id="sideCA2" min="0" max="12" step="0.1" value="7"><button class="step-btn" data-tri="2" data-side="CA" data-delta="0.1">+</button></div></div>
+        </div>
+    </div>
+</div>
+<div id="compareResult" class="compare-result congruent-true">✅ 全等判定：当前三边分别相等 → 根据SSS，两三角形全等</div>
+<div class="info-note">💡 分别调整两个三角形的三边长度(cm)，系统自动判断能否构成三角形并比较三边是否对应相等。当三组边分别相等(允许误差0.05cm)时，判定全等。<strong>边长越大，图形越大</strong>，直观反映实际长度变化。</div>`;
+
+        const canvas1 = document.getElementById('canvas1'), ctx1 = canvas1.getContext('2d');
+        const canvas2 = document.getElementById('canvas2'), ctx2 = canvas2.getContext('2d');
+        canvas1.width = 600; canvas1.height = 460;
+        canvas2.width = 600; canvas2.height = 460;
+
+        let tri1 = { AB:5, BC:6, CA:7, valid:true };
+        let tri2 = { AB:5, BC:6, CA:7, valid:true };
+
+        function isValidTriangle(a,b,c) {
+            if (a === 0 && b === 0 && c === 0) return true;
+            return (a + b > c && a + c > b && b + c > a && a >= 0 && b >= 0 && c >= 0);
+        }
+
+        const PIXEL_PER_CM = 22;
+
+        function computeTrianglePointsAndCenter(sideAB, sideBC, sideCA, canvasW, canvasH) {
+            const c = sideAB, a = sideBC, b = sideCA;
+            
+            if (a === 0 && b === 0 && c === 0) {
+                const centerX = canvasW / 2;
+                const centerY = canvasH / 2;
+                return { A: { x: centerX, y: centerY }, B: { x: centerX, y: centerY }, C: { x: centerX, y: centerY }, scale: 1, isDegenerate: true };
+            }
+            
+            if (!isValidTriangle(a,b,c)) return null;
+            
+            const cosA = (b*b + c*c - a*a) / (2*b*c);
+            const sinA = Math.sqrt(1 - cosA*cosA);
+            const Ax = 0, Ay = 0;
+            const Bx = c, By = 0;
+            const Cx = b * cosA, Cy = b * sinA;
+            
+            const minX = Math.min(Ax, Bx, Cx);
+            const maxX = Math.max(Ax, Bx, Cx);
+            const minY = Math.min(Ay, By, Cy);
+            const maxY = Math.max(Ay, By, Cy);
+            const width_cm = maxX - minX;
+            const height_cm = maxY - minY;
+            
+            const margin = 50;
+            const availableW = canvasW - 2 * margin;
+            const availableH = canvasH - 2 * margin;
+            
+            let scale = PIXEL_PER_CM;
+            let scaledW = width_cm * scale;
+            let scaledH = height_cm * scale;
+            if (scaledW > availableW || scaledH > availableH) {
+                scale = Math.min(availableW / width_cm, availableH / height_cm);
+            }
+            
+            const centerX_cm = (minX + maxX) / 2;
+            const centerY_cm = (minY + maxY) / 2;
+            const offsetX = canvasW / 2 - centerX_cm * scale;
+            const offsetY = canvasH / 2 - centerY_cm * scale;
+            
+            function transform(x, y) {
+                return { x: x * scale + offsetX, y: y * scale + offsetY };
+            }
+            
+            return { A: transform(Ax, Ay), B: transform(Bx, By), C: transform(Cx, Cy), scale, isDegenerate: false };
+        }
+
+        function drawTriangle(ctx, sideAB, sideBC, sideCA, color, labels) {
+            const w = ctx.canvas.width, h = ctx.canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const points = computeTrianglePointsAndCenter(sideAB, sideBC, sideCA, w, h);
+            if (!points) {
+                ctx.font = "bold 20px 'Segoe UI'";
+                ctx.fillStyle = "#b91c1c";
+                ctx.fillText("⚠️ 无法构成三角形", w/2-120, h/2);
+                return false;
+            }
+            const { A, B, C, isDegenerate } = points;
+            
+            if (isDegenerate) {
+                ctx.fillStyle = color === 'blue' ? "#3b82f6" : "#f97316";
+                ctx.beginPath();
+                ctx.arc(A.x, A.y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.fillStyle = color === 'blue' ? "#1e40af" : "#c2410c";
+                ctx.font = "bold 16px 'Segoe UI'";
+                ctx.fillText(labels[0], A.x-18, A.y-8);
+                ctx.fillText(labels[1], B.x+8, B.y-8);
+                ctx.fillText(labels[2], C.x+10, C.y-8);
+                ctx.font = "14px 'Segoe UI'";
+                ctx.fillStyle = "#2d5a7a";
+                ctx.fillText("0 cm", A.x-12, A.y-20);
+                ctx.fillText("0 cm", B.x+12, B.y-20);
+                ctx.fillText("0 cm", C.x-30, C.y-20);
+                return true;
+            }
+            
+            ctx.beginPath();
+            ctx.moveTo(A.x, A.y);
+            ctx.lineTo(B.x, B.y);
+            ctx.lineTo(C.x, C.y);
+            ctx.closePath();
+            ctx.fillStyle = color === 'blue' ? "rgba(59,130,246,0.15)" : "rgba(249,115,22,0.15)";
+            ctx.fill();
+            ctx.strokeStyle = color === 'blue' ? "#3b82f6" : "#f97316";
+            ctx.lineWidth = 2.5;
+            ctx.stroke();
+            ctx.fillStyle = color === 'blue' ? "#1e40af" : "#c2410c";
+            ctx.font = "bold 20px 'Segoe UI'";
+            ctx.fillText(labels[0], A.x-18, A.y-8);
+            ctx.fillText(labels[1], B.x+8, B.y-8);
+            ctx.fillText(labels[2], C.x+10, C.y-8);
+            ctx.font = "14px 'Segoe UI'";
+            ctx.fillStyle = "#2d5a7a";
+            const midAB = { x: (A.x+B.x)/2, y: (A.y+B.y)/2 - 12 };
+            const midBC = { x: (B.x+C.x)/2 + 8, y: (B.y+C.y)/2 - 10 };
+            const midAC = { x: (A.x+C.x)/2 - 18, y: (A.y+C.y)/2 - 10 };
+            ctx.fillText(`${sideAB.toFixed(1)} cm`, midAB.x, midAB.y);
+            ctx.fillText(`${sideBC.toFixed(1)} cm`, midBC.x, midBC.y);
+            ctx.fillText(`${sideCA.toFixed(1)} cm`, midAC.x, midAC.y);
+            return true;
+        }
+
+        function updateTriangle(triId) {
+            const is1 = triId === 1;
+            let AB = is1 ? parseFloat(document.getElementById('sideAB1').value) : parseFloat(document.getElementById('sideAB2').value);
+            let BC = is1 ? parseFloat(document.getElementById('sideBC1').value) : parseFloat(document.getElementById('sideBC2').value);
+            let CA = is1 ? parseFloat(document.getElementById('sideCA1').value) : parseFloat(document.getElementById('sideCA2').value);
+            if (isNaN(AB)) AB = 0;
+            if (isNaN(BC)) BC = 0;
+            if (isNaN(CA)) CA = 0;
+            
+            const valid = isValidTriangle(AB, BC, CA);
+            if (is1) { tri1 = { AB, BC, CA, valid }; }
+            else { tri2 = { AB, BC, CA, valid }; }
+            const ctx = is1 ? ctx1 : ctx2;
+            const color = is1 ? 'blue' : 'orange';
+            const labels = is1 ? ['A','B','C'] : ["A'","B'","C'"];
+            let drawOk = false;
+            if (valid) {
+                drawOk = drawTriangle(ctx, AB, BC, CA, color, labels);
+            } else {
+                ctx.clearRect(0,0,600,460);
+                ctx.font = "bold 20px 'Segoe UI'";
+                ctx.fillStyle = "#b91c1c";
+                ctx.fillText("⚠️ 无法构成三角形", 200, 220);
+            }
+            if (is1) {
+                document.getElementById('valAB1').innerText = AB.toFixed(1)+" cm";
+                document.getElementById('valBC1').innerText = BC.toFixed(1)+" cm";
+                document.getElementById('valCA1').innerText = CA.toFixed(1)+" cm";
+                document.getElementById('tri1Status').innerText = valid ? "✅ 有效" : "⚠️ 无效";
+                document.getElementById('tri1Details').innerHTML = valid ? `三边: AB=${AB.toFixed(1)} cm, BC=${BC.toFixed(1)} cm, CA=${CA.toFixed(1)} cm` : "不能构成三角形";
+            } else {
+                document.getElementById('valAB2').innerText = AB.toFixed(1)+" cm";
+                document.getElementById('valBC2').innerText = BC.toFixed(1)+" cm";
+                document.getElementById('valCA2').innerText = CA.toFixed(1)+" cm";
+                document.getElementById('tri2Status').innerText = valid ? "✅ 有效" : "⚠️ 无效";
+                document.getElementById('tri2Details').innerHTML = valid ? `三边: A'B'=${AB.toFixed(1)} cm, B'C'=${BC.toFixed(1)} cm, C'A'=${CA.toFixed(1)} cm` : "不能构成三角形";
+            }
+            if (!tri1.valid || !tri2.valid) {
+                document.getElementById('compareResult').className = "compare-result congruent-false";
+                document.getElementById('compareResult').innerHTML = "❌ 存在无效三角形，无法判定全等";
+                return;
+            }
+            const eps = 0.08;
+            // 全等判定：比较三边集合（排序后相等）
+            const sides1 = [tri1.AB, tri1.BC, tri1.CA].sort((a,b)=>a-b);
+            const sides2 = [tri2.AB, tri2.BC, tri2.CA].sort((a,b)=>a-b);
+            const eq = (Math.abs(sides1[0]-sides2[0])<=eps && Math.abs(sides1[1]-sides2[1])<=eps && Math.abs(sides1[2]-sides2[2])<=eps);
+            if (eq) {
+                document.getElementById('compareResult').className = "compare-result congruent-true";
+                document.getElementById('compareResult').innerHTML = "✅ 全等判定：三边长度集合相等 → 根据SSS，两三角形全等";
+            } else {
+                document.getElementById('compareResult').className = "compare-result congruent-false";
+                document.getElementById('compareResult').innerHTML = "❌ 不全等：三边长度集合不相同。调整使三边对应相等即可验证SSS。";
+            }
+        }
+
+        function bindSliders(triId) {
+            const ab = document.getElementById(`sideAB${triId}`), bc = document.getElementById(`sideBC${triId}`), ca = document.getElementById(`sideCA${triId}`);
+            const update = () => updateTriangle(triId);
+            ab.addEventListener('input', update); bc.addEventListener('input', update); ca.addEventListener('input', update);
+        }
+        bindSliders(1); bindSliders(2);
+        document.getElementById('resetTri1Btn').addEventListener('click', () => { document.getElementById('sideAB1').value="5"; document.getElementById('sideBC1').value="6"; document.getElementById('sideCA1').value="7"; updateTriangle(1); });
+        document.getElementById('resetTri2Btn').addEventListener('click', () => { document.getElementById('sideAB2').value="5"; document.getElementById('sideBC2').value="6"; document.getElementById('sideCA2').value="7"; updateTriangle(2); });
+        document.querySelectorAll('.step-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tri = btn.getAttribute('data-tri');
+                const side = btn.getAttribute('data-side');
+                const delta = parseFloat(btn.getAttribute('data-delta'));
+                let inp = null;
+                if (side === 'AB') inp = document.getElementById(`sideAB${tri}`);
+                else if (side === 'BC') inp = document.getElementById(`sideBC${tri}`);
+                else if (side === 'CA') inp = document.getElementById(`sideCA${tri}`);
+                if (inp) { let v = parseFloat(inp.value) + delta; v = Math.min(parseFloat(inp.max), Math.max(parseFloat(inp.min), v)); inp.value = v; updateTriangle(parseInt(tri)); }
+            });
+        });
+        updateTriangle(1); updateTriangle(2);
+    })();
+</script>
+</body>
+</html>

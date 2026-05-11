@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>19.1.1 平均数的意义 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']], macros: { bar: ["\\overline{#1}", 1] } },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="../assets/js/statistics.js"></script>
+    <script src="../assets/js/chart-utils.js"></script>
+    <script src="../assets/js/quiz.js"></script>
+    <script src="../assets/js/interaction.js"></script>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <style>
+        html{font-size:18px;}
+        body{font-size:1.1rem;line-height:1.7;}
+        .textbook p{font-size:1.1rem;}
+        .example-card p{font-size:1.1rem;}
+        .btn{font-size:1.05rem;padding:.6rem 1.2rem;}
+        .highlight-box{font-size:1.1rem;}
+        .answer-box{font-size:1.1rem;}
+        .summary-box li{font-size:1.1rem;}
+        .homework-box{font-size:1.1rem;}
+        .message-box{font-size:1.1rem;}
+        .learning-targets .target-item{font-size:1.1rem;}
+        .intro-card p{font-size:1.1rem;}
+        .real-life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:.8rem 0;}
+        .real-life-item{background:#fff;border-radius:.8rem;padding:.8rem 1rem;text-align:center;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .2s;}
+        .real-life-item:hover{transform:translateY(-3px);}
+        .real-life-item .icon{font-size:2rem;}
+        .real-life-item .value{font-size:1.3rem;font-weight:700;color:var(--primary);}
+        .real-life-item .label{font-size:.85rem;color:var(--text-secondary);}
+        .real-app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.8rem;margin:.8rem 0;}
+        .real-app-item{background:#fff;border-radius:.8rem;padding:.8rem 1rem;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.04);}
+        .real-app-item h5{color:var(--primary);margin-bottom:.3rem;font-size:1rem;}
+        .comparison-box{display:flex;gap:1rem;margin:1rem 0;flex-wrap:wrap;}
+        .comparison-item{flex:1;min-width:250px;padding:1.2rem;border-radius:1rem;text-align:center;color:#fff;font-weight:600;}
+        .cm-arithmetic{background:linear-gradient(135deg,var(--primary),#0284c7);}
+        .cm-weighted{background:linear-gradient(135deg,#f5576c,#e11d48);}
+        .weight-bar{height:30px;background:#e2e8f0;border-radius:15px;overflow:hidden;margin:.5rem 0;display:flex;}
+        .weight-segment{height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem;transition:all .3s;}
+        .slider-container{margin:.6rem 0;}
+        .slider-container label{display:flex;justify-content:space-between;font-weight:600;}
+        .slider-container input[type=range]{width:100%;accent-color:var(--primary);margin:.3rem 0;}
+        .compare-three{display:flex;flex-wrap:wrap;gap:1rem;margin:.8rem 0;}
+        .compare-three>div{flex:1;min-width:240px;}
+        .smart-recommend{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border-radius:1.2rem;padding:1.5rem;margin:1.2rem 0;border:2px solid #93c5fd;}
+        .smart-recommend h4{color:#1e40af;font-size:1.25rem;margin-bottom:.8rem;}
+        .data-input-row{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.8rem 0;}
+        .data-input-row input{flex:1;min-width:200px;padding:.5rem .8rem;font-size:1rem;border:2px solid var(--border);border-radius:8px;font-family:inherit;}
+        .mislead-demo{background:var(--highlight-red);border:2px solid #fca5a5;border-radius:1.2rem;padding:1.2rem 1.6rem;margin:1.2rem 0;}
+        .mislead-demo h4{color:#991b1b;font-size:1.2rem;margin-bottom:.6rem;}
+        .recommend-result{background:#fff;border-radius:.8rem;padding:1rem;margin-top:.8rem;border:1px solid var(--border);animation:bounceIn .4s ease;}
+        .recommend-result .rec-badge{display:inline-block;padding:.3rem 1rem;border-radius:2rem;font-weight:700;font-size:.95rem;color:#fff;}
+        .rec-avg{background:var(--primary);}.rec-med{background:var(--accent);}.rec-mode{background:var(--warning);}
+        .score-display{text-align:center;font-size:1.3rem;font-weight:700;color:var(--primary);margin:1rem 0;padding:.8rem;background:var(--highlight-blue);border-radius:1rem;display:none;}
+        @media (max-width:768px){.real-life-grid,.real-app-grid{grid-template-columns:repeat(2,1fr);}.data-input-row{flex-direction:column;}.data-input-row input{width:100%;min-width:auto;}.smart-recommend{padding:1rem;}}
+        @media (max-width:480px){.real-life-grid,.real-app-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.1 平均数的意义</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解算术平均数的概念和计算公式</div>
+            <div class="target-item"><span>2</span>掌握平均数的计算方法</div>
+            <div class="target-item"><span>3</span>掌握平均数与总量、个数之间的关系</div>
+            <div class="target-item"><span>4</span>能利用平均数解决实际问题</div>
+        </div>
+    </div>
+
+    <!-- 情境导入 -->
+    <div class="intro-card">
+        <p style="font-size:1.1rem;">🌟 <strong>情境导入</strong></p>
+        <p>解决一些与不确定现象有关的问题，常常离不开收集和分析数据。有了一组数据以后，怎样表达和概括这组数据呢？能否找到某些指标作为这组数据的代表呢？</p>
+        <p>我们在小学阶段已经学过的<strong>平均数</strong>，就经常被用来作为一组数据的代表。</p>
+    </div>
+
+    <!-- 定义与公式 -->
+    <div class="example-card">
+        <h4>📖 平均数的定义</h4>
+        <p>一般地，对于$n$个数据$x_1, x_2, \cdots, x_n$，我们把</p>
+        <div class="formula-box">
+            $\bar{x} = \dfrac{x_1 + x_2 + \cdots + x_n}{n} $
+        </div>
+        <p>叫做这$n$个数的<strong>算术平均数</strong>，简称<strong>平均数</strong>，记作$\bar{x}$（读作"x bar"）。</p>
+        <div class="key-point"><strong>平均数的意义：</strong>平均数反映了一组数据的集中趋势，是这组数据的"平均水平"的代表值。</div>
+    </div>
+
+    <!-- 例1：植树竞赛 -->
+    <div class="example-card">
+        <h4>例1：植树竞赛活动</h4>
+        <p>植树节到了，某单位组织职工开展植树竞赛活动，根据植树量统计了相应的职工人数，结果如图19.1.1所示。</p>
+        <div class="canvas-container">
+            <canvas id="treeBar" height="240"></canvas>
+        </div>
+        <p>请根据图中信息计算：</p>
+        <p>(1) 总共有多少人参加了本次活动？</p>
+        <p>(2) 总共植树多少棵？</p>
+        <p>(3) 平均每人植树多少棵？</p>
+        <button class="btn" onclick="toggleAnswer('ex1Sol')">💡 显示答案</button>
+        <div id="ex1Sol" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>(1) 参加本次活动的总人数：$1 + 8 + 1 + 10 + 8 + 3 + 1 = 32$（人）</p>
+            <p>(2) 总共植树：$3\times8 + 4\times1 + 5\times10 + 6\times8 + 7\times3 + 8\times1 = 24+4+50+48+21+8 = 155$（棵）</p>
+            <p>(3) 平均每人植树：$\bar{x} = \dfrac{155}{32} \approx 4.8$（棵）</p>
+        </div>
+        <div class="highlight-box"><strong>思考：</strong>植树竞赛活动的冠军植树多少棵？</div>
+    </div>
+
+    <!-- 例2：各班人数 -->
+    <div class="example-card">
+        <h4>例2：八年级各班人数分布</h4>
+        <p>小文所在的八年级(1)班共有学生40人，图19.1.2是该校八年级各班学生人数占全校八年级学生总人数的分布情况。</p>
+        <div class="canvas-container">
+            <canvas id="pieChart" height="250"></canvas>
+        </div>
+        <p>(1) 请计算该校八年级平均每班学生人数；</p>
+        <p>(2) 请计算各班学生人数，并绘制条形统计图。</p>
+        <button class="btn" onclick="toggleAnswer('ex2Sol')">💡 显示答案</button>
+        <div id="ex2Sol" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p>(1) 该校八年级学生总人数为 $40 \div 20\% = 200$（人），</p>
+            <p>所以平均每班学生人数为 $200 \div 5 = 40$（人）。</p>
+            <p>(2) 八年级(2)班学生人数：$200 \times 23\% = 46$（人）；</p>
+            <p>　　八年级(3)班学生人数：$200 \times 20\% = 40$（人）；</p>
+            <p>　　八年级(4)班学生人数：$200 \times 18\% = 36$（人）；</p>
+            <p>　　八年级(5)班学生人数：$200 \times 19\% = 38$（人）。</p>
+            <p>条形统计图如下：</p>
+            <div class="canvas-container">
+                <canvas id="barChart" height="240"></canvas>
+            </div>
+        </div>
+        <div class="highlight-box"><strong>思考：</strong>如图19.1.3②，在你所绘制的条形统计图中画出一条代表平均人数40的水平线。图中代表各班人数的五个条形，有的高于这条水平线，有的低于这条水平线。想一想，水平线上方超出部分与下方不足部分在数量上有什么关系？<br><br><em>提示：将水平线上方的超出部分剪下来，是否恰好填满下方的不足部分？</em></div>
+        <p style="margin-top:.6rem;"><button class="btn btn-primary" onclick="drawMeanLine()">📏 画出平均数水平线</button></p>
+    </div>
+
+    <!-- 平均数计算器 -->
+    <div class="section-title">🧮 平均数计算器</div>
+    <div class="data-input-area">
+        <p>请输入数据（用逗号分隔）：</p>
+        <input type="text" id="dataInput" placeholder="例如：85, 92, 78, 90, 88" style="width:100%;max-width:400px;padding:.6rem;font-size:1rem;border:2px solid var(--border);border-radius:8px;">
+        <button class="btn btn-primary" onclick="calculateMean()">计算平均数</button>
+    </div>
+    <div class="result-display" id="calcResult"></div>
+
+    <!-- 📖 读一读：生活中的平均数 -->
+    <div class="section-title">📖 读一读：生活中的平均数</div>
+    <div style="background:linear-gradient(135deg,#fffbeb,#fef3c7);border-radius:1.5rem;padding:1.5rem;margin:.8rem 0;border:3px solid #fbbf24;">
+
+        <p style="font-size:1.2rem;text-align:center;margin-bottom:1.2rem;color:#92400e;">
+            平均数在我们的生活中<strong>无处不在</strong>，看看下面这些熟悉的例子吧！
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;">
+            <!-- 卡片1：平均身高 -->
+            <div style="flex:1;min-width:200px;max-width:280px;background:#fff;border-radius:1.2rem;padding:1.2rem;text-align:center;box-shadow:0 4px 12px rgba(245,158,11,.15);border:2px solid #fde68a;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                <div style="font-size:3rem;line-height:1;margin-bottom:.3rem;">📏</div>
+                <div style="font-size:2.2rem;font-weight:900;color:#d97706;line-height:1.2;">167.9<span style="font-size:1.1rem;font-weight:600;">cm</span></div>
+                <div style="font-size:1.05rem;color:#92400e;font-weight:600;margin:.3rem 0;">中国18岁男性<br>平均身高</div>
+                <div style="margin-top:.6rem;background:#fef3c7;border-radius:10px;padding:.4rem .6rem;font-size:.85rem;color:#92400e;">
+                    📏 个人差异：<br>155cm ~ 195cm
+                </div>
+            </div>
+
+            <!-- 卡片2：平均气温 -->
+            <div style="flex:1;min-width:200px;max-width:280px;background:#fff;border-radius:1.2rem;padding:1.2rem;text-align:center;box-shadow:0 4px 12px rgba(239,68,68,.12);border:2px solid #fecaca;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                <div style="font-size:3rem;line-height:1;margin-bottom:.3rem;">🌡️</div>
+                <div style="font-size:2.2rem;font-weight:900;color:#dc2626;line-height:1.2;">15<span style="font-size:1.1rem;font-weight:600;">°C</span></div>
+                <div style="font-size:1.05rem;color:#991b1b;font-weight:600;margin:.3rem 0;">地球年平均气温</div>
+                <div style="margin-top:.6rem;background:#fee2e2;border-radius:10px;padding:.4rem .6rem;font-size:.85rem;color:#991b1b;">
+                    🌍 各地差异：<br>−60°C ~ 50°C
+                </div>
+            </div>
+
+            <!-- 卡片3：平均成绩 -->
+            <div style="flex:1;min-width:200px;max-width:280px;background:#fff;border-radius:1.2rem;padding:1.2rem;text-align:center;box-shadow:0 4px 12px rgba(59,130,246,.12);border:2px solid #bfdbfe;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                <div style="font-size:3rem;line-height:1;margin-bottom:.3rem;">📊</div>
+                <div style="font-size:2.2rem;font-weight:900;color:#2563eb;line-height:1.2;">75<span style="font-size:1.1rem;font-weight:600;">分</span></div>
+                <div style="font-size:1.05rem;color:#1e3a8a;font-weight:600;margin:.3rem 0;">班级数学平均成绩</div>
+                <div style="margin-top:.6rem;background:#dbeafe;border-radius:10px;padding:.4rem .6rem;font-size:.85rem;color:#1e3a8a;">
+                    📝 有人考115分，<br>有人考15分
+                </div>
+            </div>
+
+            <!-- 卡片4：平均工资 -->
+            <div style="flex:1;min-width:200px;max-width:280px;background:#fff;border-radius:1.2rem;padding:1.2rem;text-align:center;box-shadow:0 4px 12px rgba(34,197,94,.12);border:2px solid #bbf7d0;transition:transform .2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+                <div style="font-size:3rem;line-height:1;margin-bottom:.3rem;">💰</div>
+                <div style="font-size:2.2rem;font-weight:900;color:#16a34a;line-height:1.2;">8000<span style="font-size:1.1rem;font-weight:600;">元</span></div>
+                <div style="font-size:1.05rem;color:#14532d;font-weight:600;margin:.3rem 0;">城镇单位<br>月平均工资</div>
+                <div style="margin-top:.6rem;background:#dcfce7;border-radius:10px;padding:.4rem .6rem;font-size:.85rem;color:#14532d;">
+                    💼 高薪可达十万，<br>低薪不足两千
+                </div>
+            </div>
+        </div>
+
+        <!-- 警示框 -->
+        <div style="margin-top:1.2rem;background:linear-gradient(135deg,#fff,#fef2f2);border-radius:1rem;padding:1rem 1.2rem;border:2px dashed #f87171;">
+            <p style="font-size:1.15rem;margin:0 0 .5rem 0;"><strong>⚠️ 重要提醒：</strong></p>
+            <p style="font-size:1.05rem;color:#991b1b;margin:0;line-height:1.6;">
+                平均数只是一个<strong>代表值</strong>，它会掩盖个体之间的差异！<br>
+                例如：你的数学老师和姚明的平均身高超过了2米，但这能代表你数学老师的真实身高吗？
+            </p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">✏️ 课堂练习</div>
+    <div class="example-card">
+        <p><strong>练习1：</strong>甲、乙两所学校号召学生向希望小学捐赠图书。已知甲校800名学生平均每人捐书4.5本；乙校学生比甲校少80人。如果要达到相同的捐书总量，那么乙校学生平均每人要捐书多少本？</p>
+        <button class="btn" onclick="toggleAnswer('pr1')">显示答案</button>
+        <div id="pr1" class="answer-box"><p>甲校捐书总量：$800\times4.5=3600$（本）；乙校人数：$800-80=720$（人）；乙校平均：$3600\div720=\mathbf{5}$（本）</p></div>
+    </div>
+    <div class="example-card">
+        <p><strong>练习2：</strong>某省统计数据显示，2021年下半年平均每月进出口总额为3703亿元。如图是根据该省2021年下半年每月的进出口总额情况绘制的。不计算下半年的进出口总额，你能将缺少的一点补在虚线恰当的位置上吗？</p>
+        <div class="canvas-container"><canvas id="tradeChart" height="220"></canvas></div>
+        <button class="btn" onclick="toggleAnswer('pr2')">显示答案</button>
+        <div id="pr2" class="answer-box"><p>下半年总额：$3703\times6=22218$（亿元）；</p><p>已知5个月总额：$3400+3600+3700+3700+3800=18200$（亿元）；</p><p>11月：$22218-18200=\mathbf{4018}$（亿元）</p></div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📝 课堂小结</h4>
+        <ul>
+            <li><strong>定义：</strong>$\bar{x} = \dfrac{x_1 + x_2 + \cdots + x_n}{n}$，读作"$x$ bar"</li>
+            <li><strong>意义：</strong>反映数据的集中趋势，代表这组数据的"平均水平"</li>
+            <li><strong>关系：</strong>总量 = 平均数 × 个数；平均数 = 总量 ÷ 个数</li>
+            <li><strong>特点：</strong>比平均数大的数据的偏差之和，等于比平均数小的数据的偏差之和</li>
+            <li><strong>应用：</strong>已知平均数和个数可以求总量；已知总量和个数可以求平均数</li>
+        </ul>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>收集班级同学的一分钟跳绳数，计算平均数；思考：平均数能否代表这组数据的一般水平？</span>
+    </div>
+    <div class="message-box"><p>✨ 平均数，看整体，求和除数记心间；代表水平需谨慎，极端值影响要看穿！✨</p></div>
+    <div class="footer-note">八年级下册 · 第19章 19.1.1 平均数的意义</div>
+</div>
+
+<script>
+// ==================== 工具函数 ====================
+// 注册 annotation 插件
+if(typeof Chart !== 'undefined' && window.chartjsPluginAnnotation) Chart.register(window.chartjsPluginAnnotation);
+// toggleAnswer 已由 interaction.js 提供
+
+// ==================== 例1：植树量条形图 (Chart.js) ====================
+let treeChart=null;
+function drawTreeBar(){
+    const ctx=document.getElementById('treeBar').getContext('2d');
+    if(treeChart)treeChart.destroy();
+    treeChart=new Chart(ctx,{type:'bar',data:{labels:['0棵','3棵','4棵','5棵','6棵','7棵','8棵'],datasets:[{label:'人数',data:[1,8,1,10,8,3,1],backgroundColor:['#94a3b8','#ef4444','#f59e0b','#10b981','#0ea5e9','#8b5cf6','#f43f5e'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:true,plugins:{title:{display:true,text:'参加活动者植树量统计图',font:{size:18}},legend:{display:false}},scales:{y:{title:{display:true,text:'人数'},ticks:{stepSize:2}}},animation:{duration:800}}});
+}
+
+// ==================== 例2：扇形图 (Chart.js) ====================
+let pieChart=null;
+function drawPieChart(){
+    const ctx=document.getElementById('pieChart').getContext('2d');
+    if(pieChart)pieChart.destroy();
+    pieChart=new Chart(ctx,{type:'pie',data:{labels:['八(1)班 20%','八(2)班 23%','八(3)班 20%','八(4)班 18%','八(5)班 19%'],datasets:[{data:[20,23,20,18,19],backgroundColor:['#ef4444','#f59e0b','#10b981','#0ea5e9','#8b5cf6']}]},options:{responsive:true,maintainAspectRatio:true,plugins:{title:{display:true,text:'各班人数占全校八年级学生总人数分布图',font:{size:18}}},animation:{duration:1000}}});
+}
+
+// ==================== 例2：条形图 (Chart.js) ====================
+let barChart=null;
+function drawBarChart(showMeanLine=false){
+    const ctx=document.getElementById('barChart').getContext('2d');
+    if(barChart)barChart.destroy();
+    const plugins=showMeanLine?{title:{display:true,text:'某校八年级各班学生人数统计图',font:{size:18}},annotation:{annotations:{meanLine:{type:'line',yMin:40,yMax:40,borderColor:'#ef4444',borderWidth:3,borderDash:[10,5],label:{display:true,content:'',backgroundColor:'#ef4444',color:'#fff',font:{size:14}}}}}}:{title:{display:true,text:'某校八年级各班学生人数统计图',font:{size:18}}};
+    barChart=new Chart(ctx,{type:'bar',data:{labels:['八(1)班','八(2)班','八(3)班','八(4)班','八(5)班'],datasets:[{label:'人数',data:[40,46,40,36,38],backgroundColor:ctx=>{const v=ctx.raw;return v>40?'#ef4444':v<40?'#0ea5e9':'#f59e0b';},borderRadius:6}]},options:{responsive:true,maintainAspectRatio:true,plugins:plugins,animation:{duration:800}}});
+}
+function drawMeanLine(){
+    drawBarChart(true);
+}
+
+// ==================== 平均数计算器 ====================
+function calculateMean(){
+    const input=document.getElementById('dataInput').value.trim();
+    const data=input.split(/[,，\s]+/).map(parseFloat).filter(v=>!isNaN(v));
+    if(data.length===0){alert('请输入有效数据！');return;}
+    const sum=data.reduce((a,b)=>a+b,0),mean=sum/data.length;
+    const r=document.getElementById('calcResult');r.style.display='block';
+    r.innerHTML=`数据：${data.join(', ')}<br>个数：${data.length}<br>总和：${sum}<br><strong style="font-size:1.3rem;">平均数 = ${mean.toFixed(2)}</strong>`;
+}
+
+// ==================== 练习2：进出口折线图 (Chart.js) ====================
+let tradeChart=null;
+function drawTradeChart(){
+    const ctx=document.getElementById('tradeChart').getContext('2d');
+    if(tradeChart)tradeChart.destroy();
+    tradeChart=new Chart(ctx,{type:'line',data:{labels:['7月','8月','9月','10月','11月','12月'],datasets:[{label:'进出口总额（亿元）',data:[3400,3600,3700,3700,null,3800],borderColor:'#0ea5e9',backgroundColor:'rgba(14,165,233,0.1)',tension:.3,pointRadius:6,spanGaps:false}]},options:{responsive:true,maintainAspectRatio:true,plugins:{title:{display:true,text:'某省2021年下半年每月进出口总额统计图',font:{size:18}}},scales:{y:{min:3200,max:4200,title:{display:true,text:'进出口总额/亿元'}}},animation:{duration:800}}});
+}
+
+// ==================== 初始化 ====================
+window.onload=function(){
+    drawTreeBar();drawPieChart();drawBarChart();drawTradeChart();
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>第13章 全等三角形 章节复习 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;
+        }
+        .textbook {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        .intro-card {
+            background: #e8f4f8;
+            border-left: 8px solid #3a9fd5;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0 1.5rem;
+        }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 0 #9fbede;
+            margin: 0.5rem 0 0.2rem;
+            font-size: 0.95rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.2rem;
+            margin: 0.6rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.95rem;
+        }
+        .show-answer { display: block; }
+        .figure-inline {
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+        .big-img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .warning {
+            background: #fff0e0;
+            border-left: 6px solid #e67e22;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            margin: 0.8rem 0;
+        }
+        /* 纵向卡片布局核心样式 */
+        .vertical-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .knowledge-card {
+            background: #f8fbfe;
+            border-radius: 1.8rem;
+            border: 1px solid #cde0ef;
+            overflow: hidden;
+        }
+        .knowledge-header {
+            background: #e2effa;
+            padding: 0.8rem 1.2rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #0f4a6e;
+            border-bottom: 2px solid #b8d2e9;
+        }
+        .knowledge-content {
+            padding: 1rem;
+        }
+        .method-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .method-table th, .method-table td {
+            border: 1px solid #c0d8ec;
+            padding: 8px 6px;
+            text-align: center;
+        }
+        .method-table th {
+            background: #eef4fa;
+        }
+        .badge {
+            background: #e6f2fb;
+            border-radius: 30px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2675a8;
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+        .two-col {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .two-col > div {
+            flex: 1;
+            min-width: 200px;
+        }
+        .logic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+        .logic-item {
+            background: #f4f9fe;
+            padding: 0.4rem 0.8rem;
+            border-radius: 1rem;
+            border-left: 4px solid #2675a8;
+        }
+        @media (max-width: 700px) {
+            .two-col { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第13章 全等三角形 · 章节复习</span>
+    </div>
+    <h1>第13章 全等三角形</h1>
+    <div class="lesson-title">章节复习</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 复习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>回顾全等三角形的定义、性质与判定方法</div>
+            <div class="target-item"><span>✔</span>灵活运用全等三角形证明线段相等、角相等</div>
+            <div class="target-item"><span>✔</span>掌握等腰三角形、角平分线、垂直平分线的性质与判定</div>
+            <div class="target-item"><span>✔</span>理解命题、逆命题与互逆定理的逻辑关系</div>
+            <div class="target-item"><span>✔</span>提升逻辑推理与几何证明能力</div>
+        </div>
+    </div>
+
+    <!-- 模块一：引入 -->
+    <div class="intro-card">
+        <h3>🔍 为什么需要证明？—— 视觉的“陷阱”</h3>
+        <p>下图是由方格纸剪拼而成：将图1按粗线剪开，再按图2拼合，方格图的面积竟然“增加”了一个平方单位！你相信吗？</p>
+        <div class="figure-inline">
+            <img src="12.6.1.png" alt="拼图趣题" class="big-img" style="max-height:300px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.6.1.png%3C%2Ftext%3E%3C%2Fsvg%3E'">
+        </div>
+        <p>实际上，中间有一个平行四边形裂缝，三点并不共线——视觉错觉欺骗了我们。这个例子告诉我们：<strong>观察和实验不能替代逻辑证明</strong>。几何结论必须经过严格的演绎推理才能确认。</p>
+        <p>今天我们将系统地复习全等三角形这一重要的推理工具。</p>
+    </div>
+
+    <!-- 模块二：知识结构思维导图 + 判定方法对比表融合（纵向卡片布局） -->
+    <div class="card theorem-card">
+        <h3>📌 知识结构思维导图（纵向卡片式）</h3>
+        <div class="vertical-grid">
+            <!-- 卡片1：定义与性质 -->
+            <div class="knowledge-card">
+                <div class="knowledge-header">📖 定义 & ✨ 性质</div>
+                <div class="knowledge-content">
+                    <p><strong>定义：</strong> 能够完全重合的两个三角形是全等三角形。</p>
+                    <p><strong>性质：</strong></p>
+                    <ul style="margin-left:1.2rem;">
+                        <li>对应边相等</li>
+                        <li>对应角相等</li>
+                        <li>对应高、中线、角平分线相等</li>
+                        <li>面积、周长相等</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 卡片2：判定方法对比表（整合进思维导图） -->
+            <div class="knowledge-card">
+                <div class="knowledge-header">🔧 判定方法（SSS, SAS, ASA, AAS, HL）</div>
+                <div class="knowledge-content">
+                    <table class="method-table">
+                        <thead>
+                            <tr><th>方法</th><th>简写</th><th>条件</th><th>依据</th><th>注意</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>边边边</td><td>SSS</td><td>三边对应相等</td><td>基本事实</td><td>—</td></tr>
+                            <tr><td>边角边</td><td>SAS</td><td>两边及其夹角对应相等</td><td>基本事实</td><td>角必须是夹角</td></tr>
+                            <tr><td>角边角</td><td>ASA</td><td>两角及其夹边对应相等</td><td>基本事实</td><td>—</td></tr>
+                            <tr><td>角角边</td><td>AAS</td><td>两角及其中一角的对边相等</td><td>定理</td><td>可由ASA推导</td></tr>
+                            <tr><td>斜边直角边</td><td>HL</td><td>斜边和一条直角边对应相等</td><td>定理</td><td>仅直角三角形</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="warning" style="margin-top:0.5rem;">⚠️ <strong>易错警示：</strong> SSA（两边及一边的对角）<strong>不能</strong>判定全等；判定时需注意对应顶点顺序。</div>
+                </div>
+            </div>
+
+            <!-- 卡片3：特殊图形应用（等腰、等边、角平分线、垂直平分线）定理与逆定理书写完整 -->
+            <div class="knowledge-card">
+                <div class="knowledge-header">📐 特殊图形（全等知识的应用）</div>
+                <div class="knowledge-content">
+                    <div class="two-col">
+                        <div>
+                            <p><strong>🔺 等腰三角形</strong><br>
+                            <span class="badge">性质定理</span> 等边对等角（等腰三角形的两个底角相等）<br>
+                            <span class="badge">判定定理</span> 等角对等边（有两个角相等的三角形是等腰三角形）</p>
+                            <p><strong>🔻 等边三角形</strong><br>
+                            <span class="badge">性质</span> 三边相等，三个角都等于60°<br>
+                            <span class="badge">判定</span> ①三个角都相等；②有一个角是60°的等腰三角形</p>
+                        </div>
+                        <div>
+                            <p><strong>✂️ 角平分线</strong><br>
+                            <span class="badge">性质定理</span> 角平分线上的点到角两边的距离相等<br>
+                            <span class="badge">判定定理</span> 角的内部到角两边距离相等的点在角的平分线上</p>
+                            <p><strong>📏 垂直平分线</strong><br>
+                            <span class="badge">性质定理</span> 线段垂直平分线上的点到线段两端点的距离相等<br>
+                            <span class="badge">判定定理</span> 到线段两端距离相等的点在线段的垂直平分线上</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 卡片4：逻辑基石（纵向排列） -->
+            <div class="knowledge-card">
+                <div class="knowledge-header">🧠 逻辑基石</div>
+                <div class="knowledge-content">
+                    <div class="logic-list">
+                        <div class="logic-item">📖 命题：表示判断的语句，由条件和结论两部分组成</div>
+                        <div class="logic-item">🔄 逆命题：将原命题的条件和结论互换得到的新命题</div>
+                        <div class="logic-item">📚 定理：经过逻辑推理证明为真的命题</div>
+                        <div class="logic-item">🔁 互逆定理：如果一个定理的逆命题也是定理，那么它们互为逆定理</div>
+                        <div class="logic-item">🔍 证明：根据已知条件、定义、基本事实、定理，通过演绎推理判断命题正确性的过程</div>
+                    </div>
+                    <div style="margin-top:0.8rem; text-align:center; background:#eef4fa; padding:0.3rem; border-radius:2rem; font-size:0.85rem;">
+                        💡 全等三角形是沟通几何性质与判定的桥梁
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模块三：典型例题 -->
+    <!-- 例1：复习题第19题（删除标题括号文字，删除答案） -->
+    <div class="card example-card">
+        <h3>📝 典型例题1</h3>
+        <p>如图，在$\triangle ABC$和$\triangle BAD$中，$AD$与$BC$相交于点$O$，$\angle 1 = \angle 2$，请你添加一个条件（不再添加其他线段，不再标注或使用其他字母），使$AC = BD$，并给出证明。</p>
+        <div class="figure-inline">
+            <img src="复习题19.png" alt="复习题19图" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E%E5%A4%8D%E4%B9%A0%E9%A2%9819.png%3C%2Ftext%3E%3C%2Fsvg%3E'">
+        </div>
+        <!-- 不添加答案按钮，完全删除答案 -->
+    </div>
+
+    <!-- 例2：角平分线性质与等腰直角三角形 -->
+    <div class="card example-card">
+        <h3>📝 典型例题2</h3>
+        <p>如图，在Rt$\triangle ABC$中，$\angle C = 90^\circ$，$AC = BC$，$AD$平分$\angle BAC$交$BC$于点$D$，$DE \perp AB$于点$E$。求证：$\triangle BDE$的周长等于$AB$的长。</p>
+        <div class="figure-inline">
+            <img src="例题2.png" alt="例题2图形" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E%E4%BE%8B%E9%A2%982.png%3C%2Ftext%3E%3C%2Fsvg%3E'">
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 证明</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>证明：</strong> ∵ $AD$平分$\angle BAC$，$\angle C = 90^\circ$，$DE \perp AB$，∴ $DC = DE$（角平分线性质定理）。<br>
+            又$AC = BC$，且$\angle C = 90^\circ$，∴ $\triangle ABC$是等腰直角三角形，$\angle B = 45^\circ$，∴ $\triangle BDE$也是等腰直角三角形，∴ $BE = DE$。<br>
+            ∴ $\triangle BDE$的周长 $= BD + DE + BE = BD + DC + BE = BC + BE = AC + BE = AE + BE = AB$。</p>
+        </div>
+    </div>
+
+    <!-- 例3：垂直平分线的分类讨论（删除答案，将注意改为按钮） -->
+    <div class="card example-card">
+        <h3>📝 典型例题3</h3>
+        <p>在$\triangle ABC$中，$AB$的垂直平分线交直线$BC$于点$D$，$AC$的垂直平分线交直线$BC$于点$E$，且$DE = 4\,\text{cm}$，$BD = 6\,\text{cm}$，$EC = 5\,\text{cm}$。求线段$BC$的长。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3_note')">📌 提示</button>
+        <div id="ex3_note" class="answer-box">
+            <p>点$D$、$E$可能在$BC$线段上，也可能在延长线上，需根据不同的位置关系分类讨论计算$BC$的长度。具体数值结果不唯一。</p>
+        </div>
+        <!-- 不提供具体答案 -->
+    </div>
+
+    <!-- 例4：逆命题拓展题 -->
+    <div class="card example-card">
+        <h3>📝 典型例题4（逆命题拓展）</h3>
+        <p>已知命题：“等腰三角形两腰上的中线相等”。</p>
+        <p>(1) 写出它的逆命题；<br>
+        (2) 判断逆命题的真假，若为真，请给出证明；若为假，请举出反例。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex4')">🔍 解答</button>
+        <div id="ex4" class="answer-box">
+            <p><strong>(1) 逆命题：</strong> 如果一个三角形两边上的中线相等，那么这个三角形是等腰三角形。</p>
+            <p><strong>(2) 是真命题。</strong> 证明如下：<br>
+            在$\triangle ABC$中，设$AB$边上的中线$CD$与$AC$边上的中线$BE$相等，即$BE = CD$。<br>
+            取$BC$中点$F$，连接$EF$、$DF$，可证$\triangle BEF \cong \triangle CDF$（SSS），得$\angle EBF = \angle DCF$，进而$\angle ABC = \angle ACB$，所以$AB = AC$，即$\triangle ABC$是等腰三角形。<br>
+            （注：也可通过重心性质或倍长中线法证明）</p>
+        </div>
+    </div>
+
+    <!-- 模块四：逻辑体系——性质与判定互逆 -->
+    <div class="card math-idea-card">
+        <h3>🧠 逻辑体系：性质与判定互逆</h3>
+        <p>本章中，许多重要的定理成对出现，互为逆定理。理解这种互逆关系，能帮助我们从“性质”和“判定”两个方向灵活解决几何问题。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-around; margin: 1rem 0;">
+            <div style="flex:1; min-width:180px; background:#f4f9fe; border-radius:1.2rem; padding:0.6rem; text-align:center;">
+                <div style="font-weight:800;">等腰三角形</div>
+                <div style="border-top:2px solid #b8d2e9; margin:0.4rem 0;"></div>
+                <div>性质：等边对等角</div>
+                <div>⬅️ 互逆 ➡️</div>
+                <div>判定：等角对等边</div>
+            </div>
+            <div style="flex:1; min-width:180px; background:#f4f9fe; border-radius:1.2rem; padding:0.6rem; text-align:center;">
+                <div style="font-weight:800;">角平分线</div>
+                <div style="border-top:2px solid #b8d2e9; margin:0.4rem 0;"></div>
+                <div>性质：角平分线上的点到角两边距离相等</div>
+                <div>⬅️ 互逆 ➡️</div>
+                <div>判定：角的内部到角两边距离相等的点在角的平分线上</div>
+            </div>
+            <div style="flex:1; min-width:180px; background:#f4f9fe; border-radius:1.2rem; padding:0.6rem; text-align:center;">
+                <div style="font-weight:800;">垂直平分线</div>
+                <div style="border-top:2px solid #b8d2e9; margin:0.4rem 0;"></div>
+                <div>性质：线段垂直平分线上的点到线段两端距离相等</div>
+                <div>⬅️ 互逆 ➡️</div>
+                <div>判定：到线段两端距离相等的点在线段的垂直平分线上</div>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('logicMore')">📖 关于逆命题的说明</button>
+        <div id="logicMore" class="answer-box">
+            <p>原命题正确，逆命题不一定正确。例如“对顶角相等”的逆命题“相等的角是对顶角”是假命题。<br>
+            但当一个定理的逆命题也是定理时，它们就称为互逆定理，这是几何推理中非常重要的双向逻辑结构。</p>
+        </div>
+    </div>
+
+    <!-- 复习总结 -->
+    <div class="summary-card">
+        <h3>📌 本章总结</h3>
+        <ul style="margin-left:1.5rem;">
+            <li><strong>核心定义：</strong> 能够完全重合的两个三角形是全等三角形。</li>
+            <li><strong>五大判定：</strong> SSS, SAS, ASA, AAS, HL（直角三角形）。</li>
+            <li><strong>重要性质：</strong> 全等三角形的对应边、对应角相等。</li>
+            <li><strong>特殊图形：</strong> 等腰三角形（等边对等角、三线合一）、等边三角形、角平分线、垂直平分线。</li>
+            <li><strong>逻辑基石：</strong> 命题→逆命题→互逆定理，证明必须“言必有据”。</li>
+        </ul>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom:0.5rem;">📚 课后作业</h3>
+        <ul style="margin-left:1.8rem; font-weight:500;">
+            <li>课本复习题A组第3、5、7题，B组第2、4题。</li>
+            <li>整理本章思维导图，标注各定理间的互逆关系。</li>
+            <li>思考：举一个生活中需要“证明”而不仅仅是“观察”的例子。</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 全等形中藏奥秘，判定性质巧运用；逻辑推理步步稳，几何世界任遨游！ ✨<br>
+        温故而知新，可以为师矣。</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第13章 全等三角形 章节复习 | 互动课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', () => {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

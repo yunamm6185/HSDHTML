@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3 实践与探索（第一课时） | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 8px solid #30829b;
+        }
+        .summary-box h4 { font-size: 1.5rem; color: #0f5669; margin-bottom: 0.8rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .discuss-box {
+            background: #fff3cd;
+            border-radius: 20px;
+            padding: 1rem 2rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+        }
+        .fill-blank {
+            display: inline-block;
+            border-bottom: 2px solid #333;
+            min-width: 4em;
+            height: 1.2em;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.3 实践与探索</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 通过探索实际问题，进一步体会方程是刻画现实世界的有效模型。</div>
+    <div class="lesson-title">5.3 实践与探索</div>
+    <div class="sub-title">第一课时 长方形周长与面积</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析几何图形中的等量关系，列方程求解</div>
+            <div class="target-item"><span>✔</span>探索周长一定时长和宽的变化对面积的影响</div>
+            <div class="target-item"><span>✔</span>体会数学建模思想和分类讨论思想</div>
+        </div>
+    </div>
+
+    <!-- 问题1 -->
+    <div class="example-box">
+        <h4>问题1 用一根长60cm的铁丝围成一个长方形</h4>
+        <p>(1) 如果长方形的宽是长的 $\dfrac{2}{3}$，求这个长方形的长和宽；</p>
+        <p>(2) 如果长方形的宽比长少4cm，求这个长方形的面积；</p>
+        <p>(3) 比较小题(1)(2)所得的两个长方形面积的大小，还能围出面积更大的长方形吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <p><strong>(1) 解：</strong>设长为 $x$ cm，则宽为 $\frac{2}{3}x$ cm。由周长公式得 $2(x + \frac{2}{3}x) = 60$，即 $2 \cdot \frac{5}{3}x = 60$，$\frac{10}{3}x = 60$，$x = 18$。宽为 $\frac{2}{3} \times 18 = 12$ cm。所以长为18cm，宽为12cm。</p>
+            <p><strong>(2) 解：</strong>设长为 $x$ cm，则宽为 $(x-4)$ cm。由周长 $2(x + x-4) = 60$，得 $2(2x-4)=60$，$4x-8=60$，$4x=68$，$x=17$，宽为13cm。面积 $S = 17 \times 13 = 221$ cm²。</p>
+            <p><strong>(3) 解：</strong>(1)中面积 $S_1 = 18 \times 12 = 216$ cm²，(2)中面积 $S_2 = 221$ cm²，所以 $S_2 > S_1$。通过探索发现，当长和宽越接近时面积越大，当长和宽相等（即正方形）时面积最大。设边长为 $a$，则 $4a=60$，$a=15$，面积 $S=225$ cm²，比前两个都大。所以还能围出面积更大的长方形，即正方形时面积最大。</p>
+        </div>
+    </div>
+
+    <!-- 讨论 -->
+    <div class="discuss-box">
+        <p><strong>讨论：</strong>每小题中如何设未知数？在小题(2)中，能不能直接设长方形的面积为 $x\,\text{cm}^2$？若不能，该怎么办？</p>
+    </div>
+
+    <!-- 探索 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <p>将小题(2)中的宽比长少4cm改为少3cm、2cm、1cm、0cm（即变为正方形），长方形的面积有什么变化？</p>
+        <button class="interact-btn" onclick="toggleAnswer('explore1')">📊 显示结果</button>
+        <div id="explore1" class="answer-box">
+            <p>设长为 $x$ cm，则宽为 $x - d$ cm（$d$ 为少的厘米数），周长得 $2(x + x - d) = 60$，解得 $x = 15 + \frac{d}{2}$，宽 $= 15 - \frac{d}{2}$，面积 $S = (15 + \frac{d}{2})(15 - \frac{d}{2}) = 225 - \frac{d^2}{4}$。</p>
+            <p>当 $d = 4$ 时，$S = 225 - 4 = 221$；$d = 3$ 时，$S = 225 - 2.25 = 222.75$；$d = 2$ 时，$S = 225 - 1 = 224$；$d = 1$ 时，$S = 225 - 0.25 = 224.75$；$d = 0$ 时，$S = 225$。</p>
+            <p>可见，长和宽越接近，面积越大，当为正方形时面积最大。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：古代“方田”问题 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 古代“方田”问题</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》第一章“方田”专门讨论各种形状的田地面积计算。其中对于长方形，给出了“广从相乘得积步”的公式（即长×宽）。古代数学家早已认识到，在周长相等的长方形中，正方形的面积最大。这一结论后来被古希腊数学家证明，也是现代优化思想的雏形。</p>
+            <p>有趣的是，若将铁丝围成任意封闭曲线，面积最大的是圆。这其中的道理涉及更深层次的数学知识，你有兴趣去认识它们吗？</p>
+        </div>
+    </div>
+
+    <!-- 练习1（橡皮泥捏圆柱） -->
+    <div class="example-box">
+        <h4>练习1</h4>
+        <p>一块长、宽、高分别为4cm、3cm、2cm的长方体橡皮泥，要用它来捏一个底面半径为1.5cm的圆柱，圆柱的高是多少？（精确到0.1cm，$\pi$ 取3.14）</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac1')">📌 显示解答</button>
+        <div id="prac1" class="answer-box">
+            <p>解：长方体体积 $V = 4 \times 3 \times 2 = 24\,\text{cm}^3$。</p>
+            <p>设圆柱高为 $h$ cm，则 $\pi \times 1.5^2 \times h = 24$。</p>
+            <p>$h = \dfrac{24}{3.14 \times 2.25} \approx \dfrac{24}{7.065} \approx 3.4\,\text{cm}$。</p>
+            <p>答：圆柱的高约为3.4cm。</p>
+        </div>
+    </div>
+
+    <!-- 练习2（圆柱形瓶倒水） -->
+    <div class="example-box">
+        <h4>练习2</h4>
+        <p>在一个底面直径5cm、高18cm的圆柱形瓶内装满水，再将瓶内的水倒入一个底面直径6cm、高10cm的圆柱形玻璃杯中，能否完全装下？若装不下，那么瓶内水面还有多高？若未能装满，求杯内水面离杯口的距离。</p>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">📌 显示解答</button>
+        <div id="prac2" class="answer-box">
+            <p>解：瓶的容积 $V_1 = \pi \times (5/2)^2 \times 18 = \pi \times 6.25 \times 18 = 112.5\pi$。</p>
+            <p>杯的容积 $V_2 = \pi \times (6/2)^2 \times 10 = \pi \times 9 \times 10 = 90\pi$。</p>
+            <p>因为 $112.5\pi > 90\pi$，所以装不下。</p>
+            <p>剩余水体积 $V_1 - V_2 = 22.5\pi$，瓶内水面下降高度 $h = \dfrac{22.5\pi}{\pi \times 6.25} = \dfrac{22.5}{6.25} = 3.6\,\text{cm}$。</p>
+            <p>瓶内水面还有 $18 - 3.6 = 14.4\,\text{cm}$。</p>
+            <p>答：不能完全装下，瓶内水面还有14.4cm高。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📌 课堂小结</h4>
+        <div class="summary-item">利用方程解决几何问题，关键是抓住体积或周长等量关系</div>
+        <div class="summary-item">在周长固定的情况下，长方形长与宽越接近，面积越大；正方形时面积最大</div>
+        <div class="summary-item">体积不变时，形状变化可通过方程求解</div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将几何问题转化为方程求解。<br>
+        <strong>数形结合：</strong> 结合图形分析数量关系。<br>
+        <strong>优化思想：</strong> 探索周长一定时面积的变化规律。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.3.1 第1、2题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 在变化中寻找不变，方程帮你抓住本质。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.3 第一课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

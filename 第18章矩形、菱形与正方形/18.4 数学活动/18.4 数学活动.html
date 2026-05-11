@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.4 数学活动 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+            if (el.style.display === 'block') el.classList.add('show-answer'); else el.classList.remove('show-answer');
+        }
+        function initCanvases() {
+            var slider = document.getElementById('aSlider');
+            if (slider) {
+                slider.addEventListener('input', function() {
+                    drawAct1(parseFloat(this.value));
+                    updateLabel(parseFloat(this.value));
+                });
+                drawAct1(parseFloat(slider.value));
+                updateLabel(parseFloat(slider.value));
+            }
+            drawAct1Static();
+
+            // 活动二 图1 动态剪拼滑块
+            var s2 = document.getElementById('sAct2_1');
+            if (s2) {
+                s2.addEventListener('input', function() {
+                    var t = parseFloat(this.value) / 100;
+                    drawAct2_1(t);
+                    var lbl = document.getElementById('lblAct2_1');
+                    if (lbl) {
+                        if (t > 0.95) { lbl.textContent = '矩形'; lbl.style.color = '#2563a0'; }
+                        else if (t < 0.02) { lbl.textContent = '平行四边形'; lbl.style.color = '#1a3a5c'; }
+                        else { lbl.textContent = '平移中 ···'; lbl.style.color = '#a82035'; }
+                    }
+                });
+            }
+            drawAct2_1(0);
+        }
+        /* ===== 活动二：图1 平行四边形 → 矩形（动态平移） ===== */
+        function drawAct2_1(t) {
+            if (t === undefined) t = 0;
+            var c = document.getElementById('cAct2_1'); if (!c) return;
+            var ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            var y0 = 85, bh = 72, skew = 25;
+            var pAx = 55, pBx = 170, pCx = pBx - skew, pDx = pAx - skew;
+            var pAy = y0 - bh/2, pBy = y0 - bh/2, pCy = y0 + bh/2, pDy = y0 + bh/2;
+            var Ex = pAx, Ey = pDy; // 垂足 E
+            var topLen = pBx - pAx; // 平移距离
+            var dx = t * topLen;
+
+            // --- 1. 四边形 ABCE（剪开后留下的部分，始终在左边） ---
+            ctx.fillStyle = 'rgba(26,58,92,0.06)';
+            ctx.beginPath(); ctx.moveTo(pAx, pAy); ctx.lineTo(pBx, pBy);
+            ctx.lineTo(pCx, pCy); ctx.lineTo(Ex, Ey); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+            ctx.stroke();
+
+            // --- 2. 剪开线 AE（红色虚线） ---
+            ctx.setLineDash([5,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.6;
+            ctx.beginPath(); ctx.moveTo(pAx, pAy); ctx.lineTo(Ex, Ey); ctx.stroke(); ctx.setLineDash([]);
+            // 垂足 E
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(Ex, Ey, 3, 0, Math.PI*2); ctx.fill();
+
+            // --- 3. 三角形 ADE 原位置的虚线轮廓（t>0时显示） ---
+            if (t > 0.02) {
+                ctx.setLineDash([3,3]); ctx.strokeStyle = '#999'; ctx.lineWidth = 1.2;
+                ctx.beginPath(); ctx.moveTo(pAx, pAy); ctx.lineTo(pDx, pDy); ctx.lineTo(Ex, Ey); ctx.closePath(); ctx.stroke();
+                ctx.setLineDash([]);
+            }
+
+            // --- 4. 移动中的三角形 ADE（红色填充） ---
+            var tAx = pAx + dx, tAy = pAy;
+            var tDx = pDx + dx, tDy = pDy;
+            var tEx = Ex + dx, tEy = Ey;
+            ctx.fillStyle = 'rgba(168,32,53,0.20)';
+            ctx.beginPath(); ctx.moveTo(tAx, tAy); ctx.lineTo(tDx, tDy); ctx.lineTo(tEx, tEy); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(tAx, tAy); ctx.lineTo(tDx, tDy); ctx.lineTo(tEx, tEy); ctx.closePath(); ctx.stroke();
+
+            // --- 5. 三角形滑出左侧边界时的剪影 ---
+            if (t < 0.01) {
+                ctx.fillStyle = 'rgba(168,32,53,0.20)';
+                ctx.beginPath(); ctx.moveTo(pAx, pAy); ctx.lineTo(pDx, pDy); ctx.lineTo(Ex, Ey); ctx.closePath(); ctx.fill();
+                ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // --- 6. 矩形外框（t接近1时高亮显示） ---
+            var rectX = pAx, rectY = pAy, rectW = topLen, rectH = bh;
+            if (t > 0.85) {
+                var alpha = Math.min(1, (t - 0.85) / 0.15);
+                ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 2.5; ctx.globalAlpha = alpha;
+                ctx.strokeRect(rectX, rectY, rectW, rectH); ctx.globalAlpha = 1;
+                ctx.font = 'bold 14px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0'; ctx.globalAlpha = alpha;
+                ctx.fillText('矩形', pAx + topLen/2 - 13, pAy + rectH + 16); ctx.globalAlpha = 1;
+            }
+
+            // --- 7. 箭头（显示平移方向） ---
+            if (t < 0.9) {
+                var arrX = Ex + 15 + dx * 0.45;
+                ctx.fillStyle = '#2563a0'; ctx.font = 'bold 18px sans-serif';
+                ctx.fillText('→', arrX, y0 + 3);
+            }
+
+            // --- 8. 顶点标注 ---
+            ctx.font = 'bold 17px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', pAx - 20, pAy - 8); ctx.fillText('B', pBx + 2, pBy - 8);
+            ctx.fillText('C', pCx - 4, pCy + 16); ctx.fillText('D', pDx - 16, pDy + 18);
+            ctx.font = 'bold 20px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('E', Ex - 4, Ey + 20);
+
+            // --- 9. 状态提示 ---
+            ctx.font = 'bold 13px STKaiti,KaiTi'; ctx.fillStyle = t > 0.9 ? '#2563a0' : '#1a3a5c';
+            var statusText = t > 0.95 ? '矩形' : (t < 0.02 ? '平行四边形' : '平移三角形 ADE ···');
+            ctx.fillText(statusText, w - 160, h - 10);
+
+            // 图号
+            ctx.font = 'bold 14px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('图 1', w/2 - 15, h - 8);
+        }
+
+        /* ===== 活动二：图2 梯形 → 矩形 ===== */
+        function drawAct2_2() {
+            var c = document.getElementById('cAct2_2'); if (!c) return;
+            var ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            var x0 = w/2, y0 = 95, topW = 70, botW = 120, th = 55;
+            var gap = (botW - topW) / 2; // 两侧超出宽度
+
+            // 梯形顶点 (A左上, B右上, D左下, C右下)
+            var Ax = x0 - topW/2, Ay = y0 - th/2;
+            var Bx = x0 + topW/2, By = y0 - th/2;
+            var Dx = x0 - botW/2, Dy = y0 + th/2;
+            var Cx = x0 + botW/2, Cy = y0 + th/2;
+
+            // 剪开点：上底两端点垂直投影到下底上的点
+            var Ex = Ax, Ey = Dy; // 左垂足
+            var Fx = Bx, Fy = Cy; // 右垂足
+
+            // --- 上方：拼成的矩形（虚线框，预览位置） ---
+            var rx = Dx, ry = 18, rw = botW, rh = th;
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 1.8;
+            ctx.strokeRect(rx, ry, rw, rh); ctx.setLineDash([]);
+            ctx.fillStyle = 'rgba(37,99,160,0.06)';
+            ctx.fillRect(rx, ry, rw, rh);
+            // 矩形内虚线（表示拼接缝）
+            ctx.setLineDash([3,3]); ctx.strokeStyle = '#888'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(rx + gap, ry); ctx.lineTo(rx + gap, ry + rh); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(rx + botW - gap, ry); ctx.lineTo(rx + botW - gap, ry + rh); ctx.stroke(); ctx.setLineDash([]);
+            ctx.font = 'bold 12px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0';
+            ctx.fillText('矩形', x0 - 12, ry - 6);
+
+            // --- 旋转箭头（从梯形两侧指向矩形两侧） ---
+            ctx.setLineDash([3,3]); ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 1.3;
+            // 左侧：从左下三角形绕到左上
+            ctx.beginPath(); ctx.arc(Dx - 10, y0, 28, Math.PI*0.2, Math.PI*1.3, false); ctx.stroke();
+            // 右侧：从右下三角形绕到右上
+            ctx.beginPath(); ctx.arc(Cx + 10, y0, 28, Math.PI*1.8, Math.PI*0.7, true); ctx.stroke(); ctx.setLineDash([]);
+            // 箭头头部
+            ctx.fillStyle = '#2563a0';
+            ctx.beginPath(); ctx.moveTo(Dx - 8, y0 - 28); ctx.lineTo(Dx - 16, y0 - 20); ctx.lineTo(Dx - 2, y0 - 18); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(Cx + 8, y0 - 28); ctx.lineTo(Cx + 2, y0 - 18); ctx.lineTo(Cx + 16, y0 - 20); ctx.fill();
+
+            // --- 下方：梯形主体 ---
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Bx, By); ctx.lineTo(Cx, Cy); ctx.lineTo(Dx, Dy); ctx.closePath(); ctx.fill(); ctx.stroke();
+
+            // 剪开线（红色虚线）：从上底端点向底边作的线
+            ctx.setLineDash([5,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Ex, Ey); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(Bx, By); ctx.lineTo(Fx, Fy); ctx.stroke(); ctx.setLineDash([]);
+
+            // 两侧三角形阴影 + 编号（底部）
+            ctx.fillStyle = 'rgba(168,32,53,0.18)';
+            ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Dx, Dy); ctx.lineTo(Ex, Ey); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(Bx, By); ctx.lineTo(Cx, Cy); ctx.lineTo(Fx, Fy); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Dx, Dy); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(Bx, By); ctx.lineTo(Cx, Cy); ctx.stroke();
+
+            // 编号 ①②（底部三角形内 + 梯形内部）
+            ctx.font = 'bold 13px sans-serif'; ctx.fillStyle = '#a82035';
+            ctx.fillText('①', Dx + 8, Dy - 5);
+            ctx.fillText('②', Cx - 18, Cy - 5);
+            ctx.fillText('①', Ax + 5, y0 + 3);
+            ctx.fillText('②', Bx - 18, y0 + 3);
+
+            // 顶点标注
+            ctx.font = 'bold 12px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', Ax - 12, Ay - 5); ctx.fillText('B', Bx + 4, By - 5);
+            ctx.fillText('C', Cx + 4, Cy + 14); ctx.fillText('D', Dx - 14, Dy + 14);
+
+            // 图号
+            ctx.font = 'bold 14px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('图 2', x0 - 15, h - 8);
+        }
+
+        /* ===== 活动二：图3 矩形 → 三角形 ===== */
+        function drawAct2_3() {
+            var c = document.getElementById('cAct2_3'); if (!c) return;
+            var ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            var x0 = w/2, yRect = 105, rw = 105, rh = 55;
+            var rx = x0 - rw/2, ry = yRect - rh/2;
+
+            // --- 上方：拼成的三角形（实线） ---
+            var ty = 18;
+            var tTop = {x:x0, y:ty}, tL = {x:rx, y:ry+rh}, tR = {x:rx+rw, y:ry+rh};
+            ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(37,99,160,0.1)';
+            ctx.beginPath(); ctx.moveTo(tTop.x, tTop.y); ctx.lineTo(tL.x, tL.y); ctx.lineTo(tR.x, tR.y); ctx.closePath(); ctx.fill(); ctx.stroke();
+            // 三角形内的中垂线（虚线）
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#888'; ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(tTop.x, tTop.y); ctx.lineTo(x0, tL.y); ctx.stroke(); ctx.setLineDash([]);
+            ctx.font = 'bold 12px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0';
+            ctx.fillText('三角形', x0 - 18, ty - 6);
+
+            // --- 旋转箭头（从矩形两侧指向三角形两侧） ---
+            ctx.setLineDash([3,3]); ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 1.3;
+            // 左侧弧形箭头
+            ctx.beginPath(); ctx.arc(rx - 12, yRect - 5, 26, Math.PI*0.15, Math.PI*1.15, false); ctx.stroke();
+            // 右侧弧形箭头
+            ctx.beginPath(); ctx.arc(rx + rw + 12, yRect - 5, 26, Math.PI*1.85, Math.PI*0.85, true); ctx.stroke(); ctx.setLineDash([]);
+            // 箭头头部
+            ctx.fillStyle = '#2563a0';
+            ctx.beginPath(); ctx.moveTo(rx - 6, yRect - 30); ctx.lineTo(rx - 16, yRect - 22); ctx.lineTo(rx - 2, yRect - 20); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(rx + rw + 6, yRect - 30); ctx.lineTo(rx + rw + 2, yRect - 20); ctx.lineTo(rx + rw + 16, yRect - 22); ctx.fill();
+
+            // --- 下方：矩形主体（实线） ---
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.strokeRect(rx, ry, rw, rh); ctx.fillRect(rx, ry, rw, rh);
+
+            // 剪线（红色虚线）：从顶部中点到底边两角
+            var ex = x0, ey = ry;
+            var flx = rx, fly = ry + rh;
+            var frx = rx + rw, fry = ry + rh;
+            ctx.setLineDash([5,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(flx, fly); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(frx, fry); ctx.stroke(); ctx.setLineDash([]);
+
+            // 两侧三角形阴影（①②）
+            ctx.fillStyle = 'rgba(168,32,53,0.18)';
+            ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(flx, fly); ctx.lineTo(x0 - rw/5, yRect + rh/3); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(frx, fry); ctx.lineTo(x0 + rw/5, yRect + rh/3); ctx.closePath(); ctx.fill();
+
+            // 编号 ①②（矩形内部两侧）
+            ctx.font = 'bold 14px sans-serif'; ctx.fillStyle = '#a82035';
+            ctx.fillText('①', rx + 8, yRect + 5);
+            ctx.fillText('②', rx + rw - 20, yRect + 5);
+
+            // 图号
+            ctx.font = 'bold 14px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('图 3', x0 - 15, h - 8);
+        }
+
+        /* ===== 活动二：图4 任意四边形 → 各种图形 ===== */
+        function drawAct2_4() {
+            var c = document.getElementById('cAct2_4'); if (!c) return;
+            var ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+
+            // 辅助：画弧形旋转箭头
+            function arcArrow(cx, cy, r, s, e, ccw) {
+                ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 1.4; ctx.setLineDash([3,3]);
+                ctx.beginPath(); ctx.arc(cx, cy, r, s, e, ccw); ctx.stroke(); ctx.setLineDash([]);
+                var x = cx + r * Math.cos(e), y = cy + r * Math.sin(e);
+                var ang = e + (ccw ? -1 : 1) * 0.35;
+                ctx.fillStyle = '#2563a0';
+                ctx.beginPath(); ctx.moveTo(x, y);
+                ctx.lineTo(x + 7*Math.cos(ang+2.4), y + 7*Math.sin(ang+2.4));
+                ctx.lineTo(x + 7*Math.cos(ang-2.4), y + 7*Math.sin(ang-2.4)); ctx.fill();
+            }
+
+            // ===== 第一行：原始四边形 → 分四块 =====
+            // 左侧：原始四边形 ABCD
+            var qx = 120, qy = 70;
+            var QA = {x:qx-28,y:qy+18}, QB = {x:qx-5,y:qy-28}, QC = {x:qx+32,y:qy-20}, QD = {x:qx+48,y:qy+16};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.beginPath(); ctx.moveTo(QA.x,QA.y); ctx.lineTo(QB.x,QB.y); ctx.lineTo(QC.x,QC.y); ctx.lineTo(QD.x,QD.y); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.font = 'bold 12px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', QA.x-14, QA.y+4); ctx.fillText('B', QB.x-12, QB.y-4);
+            ctx.fillText('C', QC.x+4, QC.y-4); ctx.fillText('D', QD.x+4, QD.y+4);
+            // → 箭头
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 22px sans-serif';
+            ctx.fillText('→', qx+72, qy);
+
+            // 右侧：对边中点连线分四块
+            var rx = 300, ry = 70;
+            var RA = {x:rx-32,y:ry+20}, RB = {x:rx-8,y:ry-28}, RC = {x:rx+30,y:ry-22}, RD = {x:rx+46,y:ry+18};
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#bbb'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.moveTo(RA.x,RA.y); ctx.lineTo(RB.x,RB.y); ctx.lineTo(RC.x,RC.y); ctx.lineTo(RD.x,RD.y); ctx.closePath(); ctx.stroke(); ctx.setLineDash([]);
+            // 中点连线
+            var mAB = {x:(RA.x+RB.x)/2, y:(RA.y+RB.y)/2};
+            var mBC = {x:(RB.x+RC.x)/2, y:(RB.y+RC.y)/2};
+            var mCD = {x:(RC.x+RD.x)/2, y:(RC.y+RD.y)/2};
+            var mDA = {x:(RD.x+RA.x)/2, y:(RD.y+RA.y)/2};
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.moveTo(mAB.x,mAB.y); ctx.lineTo(mCD.x,mCD.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(mBC.x,mBC.y); ctx.lineTo(mDA.x,mDA.y); ctx.stroke();
+            [mAB,mBC,mCD,mDA].forEach(function(p){ ctx.fillStyle='#a82035'; ctx.beginPath(); ctx.arc(p.x,p.y,2.5,0,Math.PI*2); ctx.fill(); });
+            // 编号
+            ctx.font = 'bold 11px sans-serif'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('①', rx-5, ry-6); ctx.fillText('②', rx+12, ry-4);
+            ctx.fillText('③', rx+6, ry+14); ctx.fillText('④', rx-18, ry+10);
+            // 四块旋转箭头
+            arcArrow(rx, ry-36, 16, Math.PI*0.6, Math.PI*0.2, true);
+            arcArrow(rx+50, ry, 16, Math.PI*1.6, Math.PI*1.2, true);
+            arcArrow(rx, ry+36, 16, Math.PI*1.4, Math.PI*1.8, false);
+            arcArrow(rx-50, ry, 16, Math.PI*0.4, Math.PI*0.8, false);
+            // ↓ 箭头
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 20px sans-serif';
+            ctx.fillText('↓', rx+58, ry+58);
+
+            // ===== 第二行：三个结果 =====
+            // 左：平行四边形
+            var px = 110, py = 210;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.beginPath(); ctx.moveTo(px-26,py+20); ctx.lineTo(px+8,py-20); ctx.lineTo(px+46,py-20); ctx.lineTo(px+12,py+20); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.font = 'bold 13px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0';
+            ctx.fillText('平行四边形', px-28, py+42);
+            arcArrow(px-38, py-22, 20, Math.PI*1.3, Math.PI*1.8, false);
+            arcArrow(px+52, py-22, 20, Math.PI*1.2, Math.PI*0.7, true);
+
+            // 中：矩形
+            var mx = 310, my = 210;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.strokeRect(mx-30, my-20, 60, 40); ctx.fillRect(mx-30, my-20, 60, 40);
+            ctx.font = 'bold 13px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0';
+            ctx.fillText('矩形', mx-12, my+42);
+            arcArrow(mx-42, my-22, 20, Math.PI*1.3, Math.PI*1.8, false);
+            arcArrow(mx+48, my-22, 20, Math.PI*1.2, Math.PI*0.7, true);
+
+            // 右：三角形
+            var tx = 510, ty = 210;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5; ctx.fillStyle = 'rgba(26,58,92,0.07)';
+            ctx.beginPath(); ctx.moveTo(tx, ty-28); ctx.lineTo(tx-36, ty+20); ctx.lineTo(tx+36, ty+20); ctx.closePath(); ctx.fill(); ctx.stroke();
+            ctx.font = 'bold 13px STKaiti,KaiTi'; ctx.fillStyle = '#2563a0';
+            ctx.fillText('三角形', tx-18, ty+42);
+            arcArrow(tx-38, ty-22, 20, Math.PI*1.3, Math.PI*1.8, false);
+            arcArrow(tx+40, ty-22, 20, Math.PI*1.2, Math.PI*0.7, true);
+
+            // 图号
+            ctx.font = 'bold 16px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('图 4', w/2 - 18, h - 10);
+        }
+        var tableFilled = false;
+        function fillTable() {
+            if (tableFilled) { toggleAnswer('explore1'); return; }
+            var ids = ['tInv1','tVar1','tName2','tInv2','tVar2','tInv3','tVar3','tName4','tInv4','tVar4'];
+            var vals = [
+                '四边相等，关于 AC、BD 都轴对称', '—',
+                '筝形', 'AB=AD，CB=CD，关于 AC 轴对称', 'AB \u2260 BC，只关于 AC 轴对称',
+                'CB = CD，\u25b3BCD 是等腰三角形', '四边形退化为三角形',
+                '筝形', 'AB=AD，CB=CD，关于 AC 轴对称', 'AB \u2260 BC，A 在 O 右侧'
+            ];
+            for (var i = 0; i < ids.length; i++) {
+                var td = document.getElementById(ids[i]);
+                td.textContent = vals[i];
+                var cls = td.getAttribute('data-filled');
+                if (!cls) { td.classList.add('td-filled'); td.setAttribute('data-filled','1'); }
+            }
+            tableFilled = true;
+            toggleAnswer('explore1');
+        }
+        /* 活动一：静态4图 */
+        function drawAct1Static() {
+            const c = document.getElementById('cAct1Static'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const stages = [
+                { label:'图1', A:{x:-55,y:0}, ox:65 },
+                { label:'图2', A:{x:-25,y:0}, ox:195 },
+                { label:'图3', A:{x:0,y:0},   ox:325 },
+                { label:'图4', A:{x:25,y:0},  ox:455 }
+            ];
+            const oy = 105;
+            stages.forEach(st => {
+                const ox = st.ox, a = st.A;
+                const B = {x:0,y:45}, C = {x:55,y:0}, D = {x:0,y:-45}, O = {x:0,y:0};
+                ctx.fillStyle = 'rgba(26,58,92,0.08)';
+                ctx.beginPath(); ctx.moveTo(a.x+ox,a.y+oy); ctx.lineTo(B.x+ox,B.y+oy);
+                ctx.lineTo(C.x+ox,C.y+oy); ctx.lineTo(D.x+ox,D.y+oy); ctx.closePath(); ctx.fill();
+                ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+                ctx.beginPath(); ctx.moveTo(a.x+ox,a.y+oy); ctx.lineTo(B.x+ox,B.y+oy);
+                ctx.lineTo(C.x+ox,C.y+oy); ctx.lineTo(D.x+ox,D.y+oy); ctx.closePath(); ctx.stroke();
+                ctx.setLineDash([4,3]); ctx.strokeStyle = '#888'; ctx.lineWidth = 1.2;
+                ctx.beginPath(); ctx.moveTo(B.x+ox,B.y+oy); ctx.lineTo(D.x+ox,D.y+oy); ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+                ctx.beginPath(); ctx.moveTo(a.x+ox,a.y+oy); ctx.lineTo(C.x+ox,C.y+oy); ctx.stroke();
+                ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x+ox,O.y+oy,4,0,Math.PI*2); ctx.fill();
+                ctx.fillStyle = '#2563a0'; [a,B,C,D].forEach(p => { ctx.beginPath(); ctx.arc(p.x+ox,p.y+oy,3.5,0,Math.PI*2); ctx.fill(); });
+                ctx.font = 'bold 14px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+                ctx.fillText('A', a.x+ox-14, a.y+oy+5); ctx.fillText('B', B.x+ox-14, B.y+oy+5);
+                ctx.fillText('C', C.x+ox+5, C.y+oy+5); ctx.fillText('D', D.x+ox+5, D.y+oy-4);
+                if (st.label === '图3') { ctx.fillStyle = '#a82035'; ctx.font = 'bold 12px sans-serif'; ctx.fillText('A(O)', a.x+ox-24, a.y+oy-8); }
+                ctx.font = 'bold 15px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+                ctx.fillText(st.label, ox-8, 180);
+            });
+        }
+        function updateLabel(ax) {
+            const label = document.getElementById('stageLabel');
+            if (!label) return;
+            let txt = '', color = '#1a3a5c';
+            if (Math.abs(ax) < 2) { txt = '等腰三角形（A与O重合）'; color = '#a82035'; }
+            else if (Math.abs(ax - (-55)) < 3) { txt = '菱形'; color = '#0d6b4a'; }
+            else if (ax < -2) { txt = '筝形（A在O左侧）'; color = '#2563a0'; }
+            else { txt = '筝形（A在O右侧）'; color = '#2563a0'; }
+            label.textContent = txt; label.style.color = color;
+        }
+        /* 活动一：菱形变身 — 动态交互，A沿AC水平移动 */
+        function drawAct1(ax) {
+            const c = document.getElementById('cAct1'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            if (ax === undefined) ax = -55;
+            const ox = w/2, oy = h/2 + 15;
+            const B = {x:0, y:55}, C = {x:100, y:0}, D = {x:0, y:-55}, O = {x:0, y:0};
+            const A = {x:ax, y:0};
+            // 浅色填充
+            ctx.fillStyle = 'rgba(26,58,92,0.08)';
+            ctx.beginPath(); ctx.moveTo(A.x+ox, A.y+oy);
+            ctx.lineTo(B.x+ox, B.y+oy); ctx.lineTo(C.x+ox, C.y+oy);
+            ctx.lineTo(D.x+ox, D.y+oy); ctx.closePath(); ctx.fill();
+            // 轮廓实线
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x+ox, A.y+oy);
+            ctx.lineTo(B.x+ox, B.y+oy); ctx.lineTo(C.x+ox, C.y+oy);
+            ctx.lineTo(D.x+ox, D.y+oy); ctx.closePath(); ctx.stroke();
+            // BD 对角线（虚线）
+            ctx.setLineDash([5,4]); ctx.strokeStyle = '#888'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(B.x+ox, B.y+oy); ctx.lineTo(D.x+ox, D.y+oy); ctx.stroke();
+            ctx.setLineDash([]);
+            // AC 对角线（实线红色）
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x+ox, A.y+oy); ctx.lineTo(C.x+ox, C.y+oy); ctx.stroke();
+            // O点标记
+            ctx.fillStyle = '#a82035'; ctx.beginPath();
+            ctx.arc(O.x+ox, O.y+oy, 5, 0, Math.PI*2); ctx.fill();
+            // 端点标记
+            ctx.fillStyle = '#2563a0'; [A,B,C,D].forEach(p => {
+                ctx.beginPath(); ctx.arc(p.x+ox, p.y+oy, 4.5, 0, Math.PI*2); ctx.fill();
+            });
+            // 标注
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x+ox-30, A.y+oy+6); ctx.fillText('B', B.x+ox-5, B.y+oy+25);
+            ctx.fillText('C', C.x+ox+16, C.y+oy+6); ctx.fillText('D', D.x+ox-6, D.y+oy-16);
+            ctx.fillStyle = '#555'; ctx.font = '20px sans-serif';
+            ctx.fillText('O', O.x+ox-20, O.y+oy+20);
+            // A=O时特殊标注
+            if (Math.abs(ax) < 2) {
+                ctx.fillStyle = '#a82035'; ctx.font = 'bold 16px sans-serif';
+                ctx.fillText('A(O)', A.x+ox-30, A.y+oy-12);
+            }
+            // 底部提示：当前A的位置
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('A点位置 x = ' + Math.round(ax), 20, h-10);
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .activity-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .activity-box h4 { color: #166534; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; }
+        th, td { border: 2px solid #d0d7e0; padding: 0.8rem; text-align: center; min-width: 80px; }
+        th { background: #e8ecf2; color: var(--color-primary); font-weight: 700; }
+        .q-card { background: #fff; border: 2px solid var(--color-primary); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; box-shadow: 0 2px 10px rgba(26,58,92,0.06); }
+        .q-card h4 { color: var(--color-primary); font-weight: 700; margin-bottom: 0.5rem; }
+        .fill-blank { display: inline-block; min-width: 120px; border-bottom: 2px solid #1a3a5c; margin: 0 4px; }
+        .blank-cell { border-bottom: 2px solid #ccc; min-height: 2rem; display: block; }
+        .fixed-table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; table-layout: fixed; }
+        .fixed-table th, .fixed-table td { border: 2px solid #d0d7e0; padding: 0.6rem; text-align: center; vertical-align: middle; height: 70px; }
+        .fixed-table th { background: #e8ecf2; color: var(--color-primary); font-weight: 700; }
+        .fixed-table td { font-size: 1.2rem; color: #000; }
+        .fixed-table td.td-filled { color: #a82035; font-weight: 800; }
+        .placeholder { display: inline-block; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.4 数学活动</span>
+    </div>
+    <h1>18.4 数学活动</h1>
+    <div class="lesson-title">探索图形变化中的不变量</div>
+
+    <!-- 活动一 -->
+    <div class="section-title">活动一：菱形的变身</div>
+    <div class="think-box">
+        <p>我们已经知道，<strong>一组邻边相等的平行四边形是菱形</strong>，它具有很多很好的性质：轴对称、四条边相等、两条对角线互相垂直。</p>
+        <p style="margin-top:0.5rem;">现在让我们从菱形出发，让<strong>一个顶点动起来</strong>——把菱形 $ABCD$ 的一个顶点 $A$ 看成一个动点，将其沿对角线 $AC$ 逐渐向顶点 $C$ 移动。</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <canvas id="cAct1" width="600" height="260" style="max-width:100%;"></canvas>
+        </div>
+        <div style="text-align:center;margin:0.5rem 0 1rem;">
+            <span style="font-weight:700;color:#1a3a5c;margin-right:0.8rem;">拖动滑块移动点 A：</span>
+            <input type="range" id="aSlider" min="-100" max="100" value="-100" step="0.5"
+                   style="width:300px;vertical-align:middle;accent-color:#a82035;">
+            <span style="font-weight:700;margin-left:0.8rem;color:#0d6b4a;" id="stageLabel">菱形</span>
+        </div>
+        <div style="max-width:480px;margin:0.5rem auto;text-align:center;background:#f0f9ff;border:2px solid #bae6fd;border-radius:1.5rem;padding:0.8rem 1.2rem;color:#0369a1;font-weight:600;">
+            试试把 A 点拖到 <strong style="color:#a82035;">O 点（中间）</strong>和 <strong style="color:#a82035;">C 点右侧</strong>看看发生什么！
+        </div>
+    </div>
+
+    <div class="q-card" style="background:#f3f8f5;">
+        <h4>思考</h4>
+        <p>如图 1，把菱形 $ABCD$ 的一个顶点 $A$ 看成一个动点，将其沿对角线 $AC$ 逐渐向顶点 $C$ 移动，形成如图 2 至图 4 的一系列图形。</p>
+        <!-- 图1-图4 静态展示 -->
+        <div style="text-align:center;margin:1rem 0;">
+            <canvas id="cAct1Static" width="600" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <p>我们可以看到，图形 $ABCD$ 的形状发生了一系列的变化，那么在这样的变化过程中，该图形的性质，有哪些<strong>始终保持不变</strong>，哪些又发生了<strong>一些变化</strong>？</p>
+        <p style="margin-top:0.8rem;">对于变化过程中的<strong>图 2</strong>和<strong>图 4</strong>，它们与生活中哪些物件的形状相似？你能否给它们起一个较为合适的名称呢？</p>
+        <p style="margin-top:0.8rem;">请将你的探索与发现，归纳成如下的表格：</p>
+        <table class="fixed-table" id="exploreTable">
+            <tr>
+                <th rowspan="2" style="width:80px;">图形</th>
+                <th rowspan="2" style="width:120px;">名称</th>
+                <th colspan="2">性质</th>
+            </tr>
+            <tr>
+                <th style="width:35%;">不变量</th>
+                <th style="width:35%;">变量</th>
+            </tr>
+            <tr style="height:70px;">
+                <td>图 1</td>
+                <td id="tName1">菱形</td>
+                <td id="tInv1"><span class="placeholder">&nbsp;</span></td>
+                <td id="tVar1"><span class="placeholder">&nbsp;</span></td>
+            </tr>
+            <tr style="height:70px;">
+                <td>图 2</td>
+                <td id="tName2"><span class="placeholder">&nbsp;</span></td>
+                <td id="tInv2"><span class="placeholder">&nbsp;</span></td>
+                <td id="tVar2"><span class="placeholder">&nbsp;</span></td>
+            </tr>
+            <tr style="height:70px;">
+                <td>图 3</td>
+                <td id="tName3">等腰三角形</td>
+                <td id="tInv3"><span class="placeholder">&nbsp;</span></td>
+                <td id="tVar3"><span class="placeholder">&nbsp;</span></td>
+            </tr>
+            <tr style="height:70px;">
+                <td>图 4</td>
+                <td id="tName4"><span class="placeholder">&nbsp;</span></td>
+                <td id="tInv4"><span class="placeholder">&nbsp;</span></td>
+                <td id="tVar4"><span class="placeholder">&nbsp;</span></td>
+            </tr>
+        </table>
+        <button class="interact-btn" onclick="fillTable()">查看参考分析</button>
+        <div id="explore1" class="answer-box">
+            <p><strong>分析要点：</strong></p>
+            <p>在 $A$ 沿 $AC$ 移动的过程中，始终不变的性质有：图形始终关于对角线 $AC$ 成<strong>轴对称</strong>；始终有 $AB = AD$，$CB = CD$（因为 $B$、$D$ 关于 $AC$ 对称）。</p>
+            <p>发生变化的性质有：$AB$（$AD$）的长度逐渐变短（$A$ 向 $O$ 移动时）或变长（$A$ 越过 $O$ 后）；$\angle ABC$、$\angle ADC$ 的大小在变化；图形的面积也在变化。</p>
+            <p style="margin-top:0.5rem;"><strong>图 2 和图 4 的名称：</strong>它们的形状都类似于生活中的<strong>风筝</strong>，在数学上称为<strong>筝形</strong>（kite）。</p>
+        </div>
+    </div>
+
+    <!-- 活动二 -->
+    <div class="section-title">活动二：四边形的变身术</div>
+    <div class="activity-box">
+        <p>我们知道，一个平行四边形总可以剪开拼成一个矩形（如图 1）。</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <canvas id="cAct2_1" width="500" height="180" style="max-width:100%;"></canvas>
+        </div>
+        <div style="text-align:center;margin:0.3rem 0 0.8rem;">
+            <span style="font-weight:700;color:#1a3a5c;margin-right:0.5rem;">拖动实现剪拼：</span>
+            <input type="range" id="sAct2_1" min="0" max="100" value="0" step="0.5"
+                   style="width:260px;vertical-align:middle;accent-color:#a82035;">
+            <span style="font-weight:700;margin-left:0.5rem;color:#1a3a5c;" id="lblAct2_1">平行四边形</span>
+        </div>
+        <p>一个梯形可以剪开拼成一个矩形（如图 2），一个矩形可以剪开拼成一个三角形（如图 3）。</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <img src="图2和图3.jpg" alt="图2和图3" style="max-width:100%;border:1px solid #eee;border-radius:8px;">
+        </div>
+        <p style="margin-top:0.5rem;"><strong>那么任意一个四边形呢？</strong>它也可以剪开拼成各种各样的图形。<br>在硬纸板上任画一个四边形，沿某些直线剪开，用 <strong>平移</strong> 或 <strong>旋转</strong>，你能把剪开的图形拼成一个平行四边形吗？观察一下，你也试试看。</p>
+        <p style="margin-top:0.5rem;">再用同样的方法，试试能否拼成一个<strong>矩形</strong>？能否拼成一个<strong>三角形</strong>？</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <img src="图4.jpg" alt="图4" style="max-width:100%;border:1px solid #eee;border-radius:8px;">
+        </div>
+    </div>
+
+
+
+    <div class="q-card">
+        <h4>思考</h4>
+        <p>想想看，在这些剪拼过程中，都用到了图形的什么变换？</p>
+        <button class="interact-btn" onclick="toggleAnswer('explore2')">查看参考分析</button>
+        <div id="explore2" class="answer-box">
+            <p><strong>图（1）平行四边形 → 矩形：</strong>沿高剪下一个直角三角形，将该三角形<strong>平移</strong>到另一侧，即拼成矩形。用到了<strong>平移变换</strong>。</p>
+            <p><strong>图（2）梯形 → 矩形：</strong>取两腰的中点，沿中点连线剪开，将两个小三角形分别<strong>旋转</strong> 180° 到上侧，即可拼成矩形。用到了<strong>旋转变换</strong>。</p>
+            <p><strong>图（3）矩形 → 三角形：</strong>从矩形上边中点沿两条线段剪到左右下角，将两侧的两个直角三角形<strong>旋转</strong>向上，即可拼成一个大三角形。用到了<strong>旋转变换</strong>。</p>
+            <p><strong>图（4）任意四边形 → 平行四边形/矩形/三角形：</strong>取四边形四边中点，沿对边中点连线剪开，分成四块（①②③④），通过适当的<strong>平移</strong>和<strong>旋转</strong>即可拼成平行四边形、矩形或三角形。</p>
+            <p style="margin-top:0.8rem;"><strong>规律总结：</strong>所有这些剪拼变换都<strong>保持面积不变</strong>，体现了<strong>等积变换</strong>的思想。核心方法是：确定剪开的位置（如中点、高线），然后运用<strong>平移</strong>或<strong>旋转</strong>将剪开的图形块重新组合。</p>
+        </div>
+    </div>
+
+    <div class="section-title">课堂小结</div>
+    <div class="think-box">
+        <ul>
+            <li>图形变化中，"变中有不变"——某些性质始终不变（如轴对称性），某些性质会发生变化。</li>
+            <li>四边形的剪拼变换体现了<strong>等积变换</strong>的思想，常用到平移、旋转、轴对称。</li>
+        </ul>
+    </div>
+
+    <div class="section-title">核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>几何直观：</strong>通过图形的动态变化过程，感受图形间的内在联系和演变规律。</p>
+        <p><strong>推理能力：</strong>在变化中寻找不变的性质，培养"变中求不变"的数学思维。</p>
+    </div>
+
+    <div class="teacher-msg">
+        变中有不变，不变中有变——这正是数学的魅力所在。愿你在图形变化中感受到几何的灵动之美！
+    </div>
+
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

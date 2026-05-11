@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5章 一元一次方程 章末复习 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 8em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .symbol-note {
+            background: #e6f2fa;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #014682;
+            border-left: 4px solid #2675a8;
+        }
+        /* 三行卡片布局 */
+        .knowledge-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .knowledge-card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 8px 16px rgba(0,40,60,0.1);
+            border: 1px solid #b9d6ef;
+            transition: transform 0.2s;
+            width: 100%;
+        }
+        .knowledge-card:hover {
+            transform: translateY(-4px);
+        }
+        .knowledge-card h4 {
+            font-size: 1.5rem;
+            color: #0b4b78;
+            border-bottom: 2px solid #58a9d4;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .knowledge-card h4 span {
+            font-size: 1.8rem;
+        }
+        .knowledge-tag {
+            display: inline-block;
+            background: #e1f0de;
+            border-radius: 30px;
+            padding: 0.4rem 1.2rem;
+            margin: 0.4rem;
+            font-size: 1rem;
+            border: 1px solid #47945b;
+            color: #1d6130;
+        }
+        .knowledge-sub {
+            margin-top: 1rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid #2675a8;
+            background-color: #f5fafe;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0 16px 16px 0;
+        }
+        .knowledge-sub p {
+            margin: 0.3rem 0;
+            font-weight: 500;
+        }
+        .badge-icon {
+            background: #2675a8;
+            color: white;
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 章末复习</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 系统梳理一元一次方程的知识结构，掌握解法与应用，体会方程是刻画现实世界的有效模型。</div>
+    <div class="lesson-title">章末复习</div>
+
+    <!-- 知识结构图（三行卡片） -->
+    <div class="learning-targets">
+        <h3>📚 知识结构图</h3>
+        <div class="knowledge-stack">
+            <!-- 卡片1：概念与性质 -->
+            <div class="knowledge-card">
+                <h4><span>📌</span> 概念与性质</h4>
+                <div>
+                    <span class="knowledge-tag">方程</span>
+                    <span class="knowledge-tag">方程的解</span>
+                    <span class="knowledge-tag">一元一次方程</span>
+                </div>
+                <div class="knowledge-sub">
+                    <p><span class="badge-icon">性质1</span> $a=b \Rightarrow a\pm c = b\pm c$</p>
+                    <p><span class="badge-icon">性质2</span> $a=b \Rightarrow ac=bc,\ \frac{a}{c}=\frac{b}{c}\ (c\neq0)$</p>
+                </div>
+            </div>
+            <!-- 卡片2：解法步骤 -->
+            <div class="knowledge-card">
+                <h4><span>⚙️</span> 解法步骤</h4>
+                <div>
+                    <span class="knowledge-tag">去分母</span>
+                    <span class="knowledge-tag">去括号</span>
+                    <span class="knowledge-tag">移项</span>
+                    <span class="knowledge-tag">合并同类项</span>
+                    <span class="knowledge-tag">系数化为1</span>
+                </div>
+                <div class="knowledge-sub">
+                    <p>依据：等式性质</p>
+                    <p>目标：$x=a$</p>
+                </div>
+            </div>
+            <!-- 卡片3：实际应用 -->
+            <div class="knowledge-card">
+                <h4><span>🌍</span> 实际应用</h4>
+                <div>
+                    <span class="knowledge-tag">和差倍分</span>
+                    <span class="knowledge-tag">行程问题</span>
+                    <span class="knowledge-tag">工程问题</span>
+                    <span class="knowledge-tag">利润问题</span>
+                    <span class="knowledge-tag">分配问题</span>
+                </div>
+                <div class="knowledge-sub">
+                    <p>步骤：审、设、找、列、解、验、答</p>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top:1rem;">方程是解决实际问题的有力工具，解方程的本质是变形求出未知数的值。</p>
+    </div>
+
+    <!-- 核心概念回顾（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSection('coreContent', 'coreToggle')">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📖 核心概念回顾</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="coreToggle">▼</span>
+        </div>
+        <div id="coreContent" style="overflow:hidden; transition: max-height 0.3s ease; max-height: 2000px;">
+            <table>
+                <tr><th>概念</th><th>定义/性质</th><th>符号语言</th></tr>
+                <tr><td>方程</td><td>含有未知数的等式</td><td>$45+x=3(13+x)$</td></tr>
+                <tr><td>方程的解</td><td>使方程左右两边相等的未知数的值</td><td>$x=3$ 是 $45+x=3(13+x)$ 的解</td></tr>
+                <tr><td>一元一次方程</td><td>只含一个未知数，未知数的次数都是1，两边都是整式</td><td>$3x+2=5x-1$</td></tr>
+                <tr><td>等式的性质1</td><td>等式两边都加上(或减去)同一个数或整式，结果仍相等</td><td>若 $a=b$，则 $a\pm c=b\pm c$</td></tr>
+                <tr><td>等式的性质2</td><td>等式两边都乘以(或除以)同一个非0数，结果仍相等</td><td>若 $a=b$，则 $ac=bc$，$\frac{a}{c}=\frac{b}{c}$($c\neq0$)</td></tr>
+                <tr><td>移项</td><td>将方程中的某些项改变符号后，从一边移到另一边</td><td>$2x-3=5x$ → $2x-5x=3$</td></tr>
+                <tr><td>去分母</td><td>方程两边乘以各分母的最小公倍数</td><td>$\frac{x}{2}-1=\frac{x}{3}$ → $3x-6=2x$</td></tr>
+                <tr><td>解方程的一般步骤</td><td>去分母、去括号、移项、合并同类项、系数化为1</td><td>（视方程特点灵活运用）</td></tr>
+                <tr><td>列方程解应用题</td><td>审、设、找、列、解、验、答</td><td>—</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 题型1：从实际问题到方程 -->
+    <div class="example-box">
+        <h4>📐 题型1 · 从实际问题到方程</h4>
+        <p><strong>例1</strong> 小明今年13岁，爸爸今年45岁，经过几年爸爸的年龄是小明年龄的3倍？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答</button>
+        <div id="ans1" class="answer-box">
+            <p>解：设经过 $x$ 年，则爸爸 $45+x$ 岁，小明 $13+x$ 岁。</p>
+            \[
+            \begin{aligned}
+            45+x &= 3(13+x) \\
+            45+x &= 39+3x \\
+            x-3x &= 39-45 \\
+            -2x &= -6 \\
+            x &= 3
+            \end{aligned}
+            \]
+            <p>答：经过3年爸爸的年龄是小明年龄的3倍。</p>
+        </div>
+    </div>
+
+    <!-- 题型2：等式的性质 -->
+    <div class="example-box">
+        <h4>📐 题型2 · 等式的性质</h4>
+        <p><strong>例2</strong> 下列变形中，正确的是（ ）<br>
+        A. 由 $3x+2=5$ 得 $3x=5-2$<br>
+        B. 由 $2x=3$ 得 $x=\frac{2}{3}$<br>
+        C. 由 $\frac{x}{2}=0$ 得 $x=2$<br>
+        D. 由 $3=x-2$ 得 $x=-2-3$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans2')">📌 显示答案</button>
+        <div id="ans2" class="answer-box">
+            <p>A正确，依据等式性质1，移项要变号；B应为 $x=\frac{3}{2}$；C应为 $x=0$；D应为 $x=3+2=5$。故选A。</p>
+        </div>
+    </div>
+
+    <!-- 题型3：解一元一次方程（常规） -->
+    <div class="example-box">
+        <h4>📐 题型3 · 解一元一次方程</h4>
+        <p><strong>例3</strong> 解方程：$\dfrac{2x-1}{3} - \dfrac{5x+1}{6} = 1$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans3')">📌 显示解答</button>
+        <div id="ans3" class="answer-box">
+            <p>解：去分母（两边乘以6）</p>
+            \[
+            \begin{aligned}
+            \frac{2x-1}{3} - \frac{5x+1}{6} &= 1 \\
+            2(2x-1) - (5x+1) &= 6 \\
+            4x-2 -5x -1 &= 6 \\
+            -x-3 &= 6 \\
+            -x &= 9 \\
+            x &= -9
+            \end{aligned}
+            \]
+        </div>
+    </div>
+
+    <!-- 题型4：含括号的方程 -->
+    <div class="example-box">
+        <h4>📐 题型4 · 含括号的方程</h4>
+        <p><strong>例4</strong> 解方程：$3(2x-1) = 2(1-x) + 4$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans4')">📌 显示解答</button>
+        <div id="ans4" class="answer-box">
+            \[
+            \begin{aligned}
+            3(2x-1) &= 2(1-x) + 4 \\
+            6x-3 &= 2-2x+4 \\
+            6x-3 &= 6-2x \\
+            6x+2x &= 6+3 \\
+            8x &= 9 \\
+            x &= \frac{9}{8}
+            \end{aligned}
+            \]
+        </div>
+    </div>
+
+    <!-- 题型5：和差倍分问题 -->
+    <div class="example-box">
+        <h4>📐 题型5 · 和差倍分问题</h4>
+        <p><strong>例5</strong> 某班学生分两组参加植树活动，第一组26人，第二组22人，现要将第一组的人数调整为第二组的一半，应从第一组调多少人到第二组？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans5')">📌 显示解答</button>
+        <div id="ans5" class="answer-box">
+            <p>解：设应从第一组调 $x$ 人到第二组。</p>
+            \[
+            \begin{aligned}
+            26-x &= \frac{1}{2}(22+x) \\
+            2(26-x) &= 22+x \\
+            52-2x &= 22+x \\
+            -2x - x &= 22 - 52 \\
+            -3x &= -30 \\
+            x &= 10
+            \end{aligned}
+            \]
+            <p>答：应从第一组调10人到第二组。</p>
+        </div>
+    </div>
+
+    <!-- 题型6：图形问题 -->
+    <div class="example-box">
+        <h4>📐 题型6 · 图形问题</h4>
+        <p><strong>例6</strong> 用一根长60cm的铁丝围成一个长方形，使长方形的宽比长少4cm，求这个长方形的面积。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans6')">📌 显示解答</button>
+        <div id="ans6" class="answer-box">
+            <p>解：设长为 $x$ cm，则宽为 $(x-4)$ cm。</p>
+            \[
+            \begin{aligned}
+            2(x + x-4) &= 60 \\
+            2(2x-4) &= 60 \\
+            4x-8 &= 60 \\
+            4x &= 68 \\
+            x &= 17
+            \end{aligned}
+            \]
+            <p>宽 $=17-4=13$ cm，面积 $S=17\times13=221$ cm²。</p>
+            <p>答：长方形的面积为221 cm²。</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 课堂练习</h3>
+        <div class="exercise-item">
+            <p><strong>1. 填空</strong> 当 $x=$______时，代数式 $4x-5$ 与 $3x-6$ 的值互为相反数。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 答案</button>
+            <div id="ex1" class="answer-box">$\frac{11}{7}$ (由 $4x-5+3x-6=0$ 解得)</div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2. 解方程</strong> $\dfrac{x+1}{2} - \dfrac{2x-1}{3} = 1$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 答案</button>
+            <div id="ex2" class="answer-box">
+                \[
+                \begin{aligned}
+                \frac{x+1}{2} - \frac{2x-1}{3} &= 1 \\
+                3(x+1) - 2(2x-1) &= 6 \\
+                3x+3 -4x+2 &= 6 \\
+                -x+5 &= 6 \\
+                -x &= 1 \\
+                x &= -1
+                \end{aligned}
+                \]
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3. 解答</strong> 某车间有28名工人，生产一种螺栓和螺母，每人每天平均生产螺栓12个或螺母18个，要求一个螺栓配两个螺母，应分配多少人生产螺栓，多少人生产螺母，才能使每天生产的产品刚好配套？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 答案</button>
+            <div id="ex3" class="answer-box">
+                <p>设生产螺栓 $x$ 人，则生产螺母 $(28-x)$ 人。</p>
+                \[
+                \begin{aligned}
+                2 \times 12x &= 18(28-x) \\
+                24x &= 504 - 18x \\
+                24x+18x &= 504 \\
+                42x &= 504 \\
+                x &= 12
+                \end{aligned}
+                \]
+                <p>生产螺母 $28-12=16$ 人。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：丢番图的墓志铭与中国古代方程 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 方程的历史</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>古希腊数学家丢番图的墓志铭上刻着一道方程题：“上帝给予的童年占六分之一，又过十二分之一，两颊长胡，再过七分之一，点燃起结婚的蜡烛。五年之后天赐贵子，可怜迟到的宁馨儿，享年仅及其父之半，便进入冰冷的墓。悲伤只有用数论的研究去弥补，又过四年，他也走完了人生的旅途。”你能算出丢番图去世时的年龄吗？</p>
+            <p>设丢番图活了 $x$ 岁，则 $\frac{1}{6}x + \frac{1}{12}x + \frac{1}{7}x + 5 + \frac{1}{2}x + 4 = x$，解得 $x=84$。</p>
+            <p>中国古代《九章算术》第八章“方程”专门讨论线性方程组的解法，使用了“直除法”（相当于加减消元法），比欧洲同类方法早一千多年。后来宋元时期的“天元术”更是直接设未知数列一元方程，与现代方法几乎一致。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将实际问题转化为方程模型。<br>
+        <strong>化归思想：</strong> 通过去分母、移项等将复杂方程化为 $ax=b$ 的形式。<br>
+        <strong>符号意识：</strong> 用字母表示未知数，发展抽象思维。<br>
+        <strong>应用意识：</strong> 方程在生活、经济、工程中的广泛应用。</p>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 整理本章错题，完成复习题A组、B组。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 方程是数学的桥梁，连接已知与未知，通向真理的彼岸。✨</p>
+    <div class="footer-note">数学 七年级下册 · 第5章 复习</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSection(contentId, toggleId) {
+        var c = document.getElementById(contentId);
+        var t = document.getElementById(toggleId);
+        if (c.style.maxHeight !== '0px' && c.style.maxHeight !== '0') {
+            c.style.maxHeight = '0';
+            t.textContent = '▶';
+        } else {
+            c.style.maxHeight = '2000px';
+            t.textContent = '▼';
+        }
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

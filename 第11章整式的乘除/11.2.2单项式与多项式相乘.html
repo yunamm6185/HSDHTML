@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.2.2 单项式与多项式相乘 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+        }
+        .cloud-note::before { content: "💡"; font-size: 1.5rem; margin-right: 0.5rem; }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+        .exercise-item {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.2rem;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+        .sub-question { display: block; margin-left: 1rem; }
+        .answer-box p.sub-answer { margin: 0.2rem 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .fill-blank {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.3rem;
+            font-weight: bold;
+        }
+        .do-box {
+            background: #d9eaf5;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2a7faa;
+        }
+        .do-box h4 {
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin-bottom: 0.8rem;
+        }
+        .do-box h4::before { content: "✍️"; margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第11章 整式的乘除 · 11.2.2</span>
+    </div>
+    <h1>第11章 整式的乘除</h1>
+    <div class="lesson-title">11.2.2 单项式与多项式相乘</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解单项式与多项式相乘的运算法则</div>
+            <div class="target-item"><span>✔</span>能熟练运用法则进行计算和化简</div>
+            <div class="target-item"><span>✔</span>体会乘法分配律在整式乘法中的应用</div>
+        </div>
+    </div>
+
+    <!-- 做一做（导入） -->
+    <div class="do-box">
+        <h4>做一做</h4>
+        <p>计算： $2a^{2}\cdot(3a^{2}-5b)$</p>
+        <button class="interact-btn" onclick="toggleAnswer('doAns')">🔍 显示解答</button>
+        <div id="doAns" class="answer-box">
+            <p>$2a^{2}\cdot 3a^{2} - 2a^{2}\cdot 5b = 6a^{4} - 10a^{2}b$。</p>
+        </div>
+    </div>
+
+    <!-- 例2（课本例2） -->
+    <div class="example-box">
+        <h4>例2 计算</h4>
+        <p>$(-2a^{2})\cdot (3ab^{2} - 5ab^{3})$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>\[
+            \begin{aligned}
+            (-2a^{2})\cdot (3ab^{2} - 5ab^{3}) &= (-2a^{2})\cdot 3ab^{2} + (-2a^{2})\cdot (-5ab^{3})\\
+            &= -6a^{3}b^{2} + 10a^{3}b^{3}.
+            \end{aligned}
+            \]</p>
+        </div>
+    </div>
+
+    <!-- 概括（法则） -->
+    <div class="concept-box">
+        <strong>概括</strong><br>
+        单项式与多项式相乘，将单项式分别乘以多项式的每一项，再将所得的积相加。<br>
+        实际上，这是乘法分配律 $(a(b+c)=ab+ac)$ 在整式运算中的体现。
+    </div>
+
+    <!-- 补充例题（化简类） -->
+    <div class="example-box">
+        <h4>例3 化简</h4>
+        <p>$x(x^{2}-1) + 2x^{2}(x+1) - 3x(2x-5)$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>\[
+            \begin{aligned}
+            &x(x^{2}-1) + 2x^{2}(x+1) - 3x(2x-5)\\
+            =&\ x^{3}-x + 2x^{3}+2x^{2} - 6x^{2}+15x\\
+            =&\ (x^{3}+2x^{3}) + (2x^{2}-6x^{2}) + (-x+15x)\\
+            =&\ 3x^{3} -4x^{2} +14x.
+            \end{aligned}
+            \]</p>
+        </div>
+    </div>
+
+    <!-- 练习区 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 练习1 计算 -->
+        <div class="exercise-item">
+            <p class="exercise-question">1. 计算：</p>
+            <span class="sub-question">$(1)\ 3x^{3}y\cdot (2xy^{2} - 3xy)$；</span>
+            <span class="sub-question">$(2)\ 2x\cdot (3x^{2} - xy + y^{2})$。</span>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p class="sub-answer">(1) $3x^{3}y\cdot 2xy^{2} = 6x^{4}y^{3}$，$3x^{3}y\cdot (-3xy) = -9x^{4}y^{2}$，结果为 $6x^{4}y^{3} - 9x^{4}y^{2}$；</p>
+                <p class="sub-answer">(2) $2x\cdot 3x^{2}=6x^{3}$，$2x\cdot (-xy)=-2x^{2}y$，$2x\cdot y^{2}=2xy^{2}$，结果为 $6x^{3} - 2x^{2}y + 2xy^{2}$。</p>
+            </div>
+        </div>
+
+        <!-- 练习2 化简（课本练习2） -->
+        <div class="exercise-item">
+            <p class="exercise-question">2. 化简：$x(x^{2} - 1) + 2x^{2}(x + 1) - 3x(2x - 5)$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>展开得 $x^{3}-x+2x^{3}+2x^{2}-6x^{2}+15x = 3x^{3} -4x^{2} +14x$。</p>
+            </div>
+        </div>
+
+        <!-- 补充练习（含负号） -->
+        <div class="exercise-item">
+            <p class="exercise-question">3. 计算：$(-2ab)\cdot (3a^{2} - 2ab + 4b^{2})$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>$(-2ab)\cdot 3a^{2} = -6a^{3}b$，$(-2ab)\cdot (-2ab) = 4a^{2}b^{2}$，$(-2ab)\cdot 4b^{2} = -8ab^{3}$，结果为 $-6a^{3}b + 4a^{2}b^{2} -8ab^{3}$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：乘法分配律的历史 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 乘法分配律的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>乘法分配律 $a(b+c)=ab+ac$ 是算术与代数中最基本的运算律之一。古埃及人和巴比伦人在计算中已不自觉地使用它。古希腊数学家欧几里得在《几何原本》中用几何方式证明了该定律：以线段 $b+c$ 为一边、$a$ 为另一边作矩形，其面积等于两个小矩形之和。这一思想后来推广到多项式乘法，成为整式运算的基石。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将单项式乘多项式转化为单项式乘单项式，再合并同类项。<br>
+        <strong>数形结合：</strong> 用矩形面积解释乘法分配律。<br>
+        <strong>化归思想：</strong> 新知识转化为旧知识（乘法分配律）。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">单项式×多项式 = 单项式×多项式的每一项，再把积相加。</div>
+            <div class="summary-item">注意符号：每一项都要乘，包括前面的符号。</div>
+            <div class="summary-item">最后合并同类项，化为最简形式。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题11.2 A组第2、3题，B组第7题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 分配律是桥梁，单项式与多项式牵手 ✨</p>
+    <div class="footer-note">八年级上册 · 第11章 11.2.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

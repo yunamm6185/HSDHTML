@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.2.2 函数的图象(第一课时) | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.7;color:#1a3a4a;padding:1.5rem;font-size:22px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.5rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:.95rem;color:#0f766e;}
+        h1{font-size:2.4rem;color:#0f766e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .learning-targets{background:linear-gradient(145deg,#e0f7fa,#b2ebf2);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 0 2rem;border:1px solid #80deea;box-shadow:0 5px 0 #4dd0e1;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #0891b2;padding-left:1rem;color:#0e7490;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #4dd0e1;border:1px solid #b2ebf2;}
+        .target-item span{background:linear-gradient(135deg,#0ea5e9 0%,#14b8a6 100%);color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+        .intro-card{background:#e0f7fa;border-radius:2rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #0891b2;font-weight:600;}
+        .explore-card{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 1.8rem;margin:1.4rem 0;border-left:8px solid #10b981;font-weight:600;}
+        .explore-card h4{font-size:1.4rem;margin-bottom:.7rem;color:#059669;}
+        .fact-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .fact-card h4{font-size:1.5rem;margin-bottom:.6rem;color:#b45309;}
+        .theorem-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:3px solid #f59e0b;border-radius:1.5rem;padding:1.2rem 2rem;margin:1rem 0;font-size:1.15rem;font-weight:600;color:#78350f;}
+        .example-card{background:#ecfdf5;border-left:8px solid #10b981;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 0;font-weight:600;}
+        .example-card h4{font-size:1.35rem;color:#047857;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.35rem 1.3rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.5rem 0 0;font-size:.9rem;transition:all .15s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .interact-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.2rem;padding:1rem 1.5rem;margin:.8rem 0;border:2px solid #93c5fd;}
+        .section-title{font-size:1.6rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.4rem;margin-bottom:.8rem;}
+        .summary-box ul,.summary-box ol{padding-left:1.5rem;line-height:2;}
+        p{margin:.5rem 0;}
+        .sub-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,#10b981,#059669);color:white;font-size:1.1rem;font-weight:700;border-radius:50%;flex-shrink:0;margin-right:10px;}
+        .sub-problem{margin:1.2rem 0;padding:1rem 1.2rem;background:rgba(255,255,255,0.6);border-radius:12px;border-left:4px solid #10b981;display:flex;align-items:flex-start;}
+        .sub-content{flex:1;}
+        .gaijua-block{display:flex;align-items:flex-start;gap:1rem;background:#ecf5ff;border-radius:1.5rem;padding:1.3rem 1.8rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+        .gaijua-tag{background:#1d4ed8;color:white;font-size:1.1rem;font-weight:700;padding:.35rem .9rem;border-radius:.5rem;white-space:nowrap;flex-shrink:0;margin-top:.15rem;letter-spacing:2px;}
+        .gaijua-text{flex:1;line-height:1.9;}
+        .ex-label{color:#be185d;font-weight:700;}
+        .ex-analysis{color:#0369a1;font-weight:700;}
+        canvas{display:block;border-radius:12px;background:white;margin:0 auto;}
+        .canvas-wrap{text-align:center;margin:1rem auto;}
+        .canvas-cap{font-size:.9rem;color:#64748b;margin-top:.4rem;}
+
+        /* 气温图 */
+        .temp-chart-container{position:relative;width:100%;max-width:800px;margin:1rem auto;}
+        #tempCanvas{width:100%;height:350px;border-radius:12px;background:linear-gradient(to bottom,#e0f7fa,#ffffff);}
+        .chart-info{display:flex;justify-content:space-around;flex-wrap:wrap;gap:1rem;margin-top:.8rem;}
+        .info-item{background:white;border-radius:12px;padding:.6rem 1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.06);border:2px solid #a7d8e0;text-align:center;min-width:120px;}
+        .info-item .label{font-size:.85rem;color:#64748b;}
+        .info-item .value{font-size:1.3rem;font-weight:700;color:#0e7490;}
+
+        /* 三步按钮 */
+        .step-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin:1rem 0;justify-content:center;}
+        .step-btn{padding:.5rem 1.6rem;border:none;border-radius:40px;font-weight:700;cursor:pointer;font-size:.95rem;transition:all .2s;display:flex;align-items:center;gap:.4rem;}
+        .step-btn:disabled{opacity:.4;cursor:not-allowed;}
+        .step-btn:not(:disabled):hover{transform:translateY(-2px);}
+        .step-btn:not(:disabled):active{transform:translateY(1px);}
+        .btn-list{background:linear-gradient(135deg,#f59e0b,#d97706);color:white;box-shadow:0 4px 0 #b45309;}
+        .btn-plot{background:linear-gradient(135deg,#10b981,#059669);color:white;box-shadow:0 4px 0 #047857;}
+        .btn-line{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:white;box-shadow:0 4px 0 #0369a1;}
+        .step-progress{display:flex;align-items:center;gap:.5rem;margin-top:.6rem;font-weight:600;color:#64748b;font-size:.95rem;}
+        .step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;transition:all .3s;}
+        .step-dot.active{background:linear-gradient(135deg,#f59e0b,#d97706);color:white;transform:scale(1.15);}
+        .step-dot.done{background:#10b981;color:white;}
+        .step-dot.pending{background:#e2e8f0;color:#94a3b8;}
+        .step-line-bar{height:3px;flex:1;background:#e2e8f0;border-radius:2px;overflow:hidden;}
+        .step-line-fill{height:100%;background:#10b981;border-radius:2px;transition:width .5s ease;}
+        @keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+        .val-table td.filling{animation:popIn .3s ease;}
+        table.val-table{border-collapse:collapse;margin:1rem auto;font-size:1rem;}
+        table.val-table th,table.val-table td{border:1.5px solid #be185d;padding:.5rem .9rem;text-align:center;min-width:50px;}
+        table.val-table th{background:#fce7f3;color:#9d174d;font-weight:700;}
+        table.val-table td{background:white;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.2.2 函数的图象（第一课时）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解函数图象的概念，知道图象是点的集合</div>
+            <div class="target-item"><span>2</span>掌握用"描点法"画函数图象的三个步骤</div>
+            <div class="target-item"><span>3</span>能用描点法画出简单函数的图象</div>
+        </div>
+    </div>
+
+    <!-- 引入情境 -->
+    <div class="intro-card">
+        <p>在 16.1 节的问题 1 中，我们曾经从<strong>图 16.1.1 的气温曲线</strong>上获得许多信息，回答了一些问题。现在让我们来作一些理性的思考。先考虑一个简单的问题：你是如何在图中找到各个时刻的气温的？</p>
+    </div>
+
+    <!-- 图16.1.1 气温变化动态图 -->
+    <div class="temp-chart-container">
+        <canvas id="tempCanvas"></canvas>
+        <div class="chart-info">
+            <div class="info-item"><div class="label">当前时刻</div><div class="value" id="curTime">--:--</div></div>
+            <div class="info-item"><div class="label">当前气温</div><div class="value" id="curTemp">--°C</div></div>
+            <div class="info-item"><div class="label">最高气温</div><div class="value">5°C</div></div>
+            <div class="info-item"><div class="label">最低气温</div><div class="value">-4°C</div></div>
+        </div>
+    </div>
+
+    <div class="intro-card" style="margin-top:1.2rem;">
+        <p>图 16.1.1 中，有一个平面直角坐标系，它的横轴是 $t$ 轴，表示时间；它的纵轴是 $T$ 轴，表示气温。这一气温曲线实际上给出了某日的气温 $T$（°C）与时间 $t$（h）之间的函数关系。例如，上午 10 时的气温是 2°C，表现在气温曲线上，就是可以找到这样的对应点，它的坐标是 $(10,\,2)$。实质上也就是说，当 $t=10$ 时，对应的函数值 $T=2$。气温曲线上每一个点的坐标 $(t,T)$，表示时间为 $t$（h）时的气温是 $T$（°C）。</p>
+        <p style="margin-top:.8rem;">气温曲线是用图象表示函数关系的一个实际例子。那么，什么是函数的图象呢？</p>
+    </div>
+
+    <!-- 概括：函数图象定义 -->
+    <div class="gaijua-block">
+        <div class="gaijua-tag">概括</div>
+        <div class="gaijua-text">
+            一般来说，<strong>函数的图象</strong>是由平面直角坐标系中一系列的点组成的。图象上每一点的坐标 $(x,\,y)$ 表示函数的一对对应值，它的横坐标 $x$ 表示自变量的某一个值，纵坐标 $y$ 表示与该自变量对应的函数值。
+        </div>
+    </div>
+
+    <!-- 例1 -->
+    <div class="section-title">✏️ 例题</div>
+
+    <div class="example-card">
+        <h4 style="font-size:1.35rem;color:#047857;">
+            <span class="ex-label">▶ 例1</span>　画出函数 $y=\dfrac{1}{2}x^2$ 的图象。
+        </h4>
+        <p style="margin-top:.6rem;"><span class="ex-analysis">分析</span>　要画出一个函数的图象，关键是要画出图象上的一些点，为此，首先在自变量的取值范围内，适当取一些自变量的值，并求出对应的函数值。</p>
+
+        <!-- 三步按钮 -->
+        <div class="step-btns">
+            <button class="step-btn btn-list" id="ex1BtnList" onclick="ex1Step(1)">📋 第一步：列表</button>
+            <button class="step-btn btn-plot" id="ex1BtnPlot" disabled onclick="ex1Step(2)">📍 第二步：描点</button>
+            <button class="step-btn btn-line" id="ex1BtnLine" disabled onclick="ex1Step(3)">〰️ 第三步：连线</button>
+        </div>
+        <div class="step-progress">
+            <div class="step-dot active" id="ex1Dot1">1</div>
+            <div class="step-line-bar"><div class="step-line-fill" id="ex1Bar" style="width:0%"></div></div>
+            <div class="step-dot pending" id="ex1Dot2">2</div>
+            <div class="step-line-bar"><div class="step-line-fill" id="ex1Bar2" style="width:0%"></div></div>
+            <div class="step-dot pending" id="ex1Dot3">3</div>
+        </div>
+
+        <!-- 列表 -->
+        <div id="ex1S1" class="answer-box">
+            <p style="margin-bottom:.6rem;"><strong>第一步：列表</strong>——取 $x$ 的值，计算对应的 $y$ 值：</p>
+            <table class="val-table">
+                <tr>
+                    <th>$x$</th>
+                    <td>$\cdots$</td>
+                    <td id="ex1x1" style="opacity:0;">$-3$</td><td id="ex1x2" style="opacity:0;">$-2$</td><td id="ex1x3" style="opacity:0;">$-1$</td><td id="ex1x4" style="opacity:0;">$0$</td><td id="ex1x5" style="opacity:0;">$1$</td><td id="ex1x6" style="opacity:0;">$2$</td><td id="ex1x7" style="opacity:0;">$3$</td>
+                    <td>$\cdots$</td>
+                </tr>
+                <tr>
+                    <th>$y=\frac{1}{2}x^2$</th>
+                    <td>$\cdots$</td>
+                    <td id="ex1y1" style="opacity:0;"></td><td id="ex1y2" style="opacity:0;"></td><td id="ex1y3" style="opacity:0;"></td><td id="ex1y4" style="opacity:0;"></td><td id="ex1y5" style="opacity:0;"></td><td id="ex1y6" style="opacity:0;"></td><td id="ex1y7" style="opacity:0;"></td>
+                    <td>$\cdots$</td>
+                </tr>
+            </table>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p><strong>注意：</strong>列表时，自变量取值要合理，通常取关于原点对称的值，便于观察函数图象的对称性。</p>
+            </div>
+        </div>
+
+        <!-- 描点 -->
+        <div id="ex1S2" class="answer-box">
+            <p style="margin-bottom:.6rem;"><strong>第二步：描点</strong>——在坐标系中描出表格中各点：</p>
+            <div class="canvas-wrap">
+                <canvas id="canvas1Plot" style="max-width:500px;width:100%;"></canvas>
+                <p class="canvas-cap">图 16.2.4</p>
+            </div>
+        </div>
+
+        <!-- 连线结论（复用第二步的canvas，只在canvas上方追加文字说明） -->
+        <div id="ex1S3" class="answer-box">
+            <div class="highlight-box">
+                <p><strong>第三步：连线</strong>——用平滑的曲线按自变量由小到大的顺序连接各点。</p>
+                <p style="margin-top:.6rem;"><strong>结论：</strong>从图象可以看出，$y=\dfrac{1}{2}x^2$ 的图象是一条开口向上的<strong>抛物线</strong>，关于 $y$ 轴对称，顶点在原点。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="section-title">📝 练习</div>
+
+    <!-- 练习1 -->
+    <div class="example-card">
+        <div class="sub-problem">
+            <span class="sub-number">1</span>
+            <div class="sub-content">
+                <p>画出函数 $y=\dfrac{1}{2}x$ 的图象。</p>
+                <p style="margin-top:.5rem;color:#64748b;font-size:.95rem;">（提示：取 $x=-3,-2,-1,0,1,2,3$，列表、描点、连线）</p>
+                <div class="step-btns">
+                    <button class="step-btn btn-list" id="pr1BtnList" onclick="pr1Step(1)">📋 第一步：列表</button>
+                    <button class="step-btn btn-plot" id="pr1BtnPlot" disabled onclick="pr1Step(2)">📍 第二步：描点</button>
+                    <button class="step-btn btn-line" id="pr1BtnLine" disabled onclick="pr1Step(3)">〰️ 第三步：连线</button>
+                </div>
+                <div class="step-progress">
+                    <div class="step-dot active" id="pr1Dot1">1</div>
+                    <div class="step-line-bar"><div class="step-line-fill" id="pr1Bar" style="width:0%"></div></div>
+                    <div class="step-dot pending" id="pr1Dot2">2</div>
+                    <div class="step-line-bar"><div class="step-line-fill" id="pr1Bar2" style="width:0%"></div></div>
+                    <div class="step-dot pending" id="pr1Dot3">3</div>
+                </div>
+                <div id="pr1TableWrap" class="answer-box">
+                    <p style="margin-bottom:.6rem;"><strong>第一步：列表</strong>——取 $x$ 的值，计算对应的 $y$ 值：</p>
+                    <table class="val-table">
+                        <tr>
+                            <th>$x$</th>
+                            <td>$\cdots$</td>
+                            <td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td>
+                            <td>$\cdots$</td>
+                        </tr>
+                        <tr>
+                            <th>$y=\frac{1}{2}x$</th>
+                            <td>$\cdots$</td>
+                            <td id="pr1y1" style="opacity:0;"></td><td id="pr1y2" style="opacity:0;"></td><td id="pr1y3" style="opacity:0;"></td><td id="pr1y4" style="opacity:0;"></td><td id="pr1y5" style="opacity:0;"></td><td id="pr1y6" style="opacity:0;"></td><td id="pr1y7" style="opacity:0;"></td>
+                            <td>$\cdots$</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="canvas-wrap" style="margin-top:1rem;">
+                    <canvas id="canvasPr1" style="max-width:420px;width:100%;"></canvas>
+                    <p class="canvas-cap">（第 1 题）</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 练习2 -->
+        <div class="sub-problem">
+            <span class="sub-number">2</span>
+            <div class="sub-content">
+                <p>画出函数 $y=-\dfrac{6}{x}$ 的图象。</p>
+                <div class="step-btns">
+                    <button class="step-btn btn-list" id="pr2BtnList" onclick="pr2Step(1)">📋 第一步：列表</button>
+                    <button class="step-btn btn-plot" id="pr2BtnPlot" disabled onclick="pr2Step(2)">📍 第二步：描点</button>
+                    <button class="step-btn btn-line" id="pr2BtnLine" disabled onclick="pr2Step(3)">〰️ 第三步：连线</button>
+                </div>
+                <div class="step-progress">
+                    <div class="step-dot active" id="pr2Dot1">1</div>
+                    <div class="step-line-bar"><div class="step-line-fill" id="pr2Bar" style="width:0%"></div></div>
+                    <div class="step-dot pending" id="pr2Dot2">2</div>
+                    <div class="step-line-bar"><div class="step-line-fill" id="pr2Bar2" style="width:0%"></div></div>
+                    <div class="step-dot pending" id="pr2Dot3">3</div>
+                </div>
+                <div id="pr2TableWrap" class="answer-box">
+                    <p style="margin-bottom:.6rem;"><strong>第一步：列表</strong>——取 $x$ 的值，计算对应的 $y$ 值：</p>
+                    <table class="val-table">
+                        <tr>
+                            <th>$x$</th>
+                            <td>$\cdots$</td>
+                            <td>$-6$</td><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$-\frac{1}{2}$</td>
+                            <td>$\cdots$</td>
+                            <td>$\frac{1}{2}$</td><td>$1$</td><td>$2$</td><td>$3$</td><td>$6$</td>
+                            <td>$\cdots$</td>
+                        </tr>
+                        <tr>
+                            <th>$y=-\frac{6}{x}$</th>
+                            <td>$\cdots$</td>
+                            <td id="pr2y1" style="opacity:0;"></td><td id="pr2y2" style="opacity:0;"></td>
+                            <td id="pr2y3" style="opacity:0;"></td><td id="pr2y4" style="opacity:0;"></td>
+                            <td id="pr2y5" style="opacity:0;"></td>
+                            <td>$\cdots$</td>
+                            <td id="pr2y6" style="opacity:0;"></td>
+                            <td id="pr2y7" style="opacity:0;"></td><td id="pr2y8" style="opacity:0;"></td>
+                            <td id="pr2y9" style="opacity:0;"></td><td id="pr2y10" style="opacity:0;"></td>
+                            <td>$\cdots$</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="canvas-wrap" style="margin-top:1rem;">
+                    <canvas id="canvasPr2" style="max-width:420px;width:100%;"></canvas>
+                    <p class="canvas-cap">（第 2 题）</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li>函数的图象是由坐标平面内一系列点组成的</li>
+            <li>画函数图象的三个步骤：<strong>列表 → 描点 → 连线</strong></li>
+            <li>列表：适当取自变量的值，求出对应函数值</li>
+            <li>描点：以自变量为横坐标、函数值为纵坐标描点</li>
+            <li>连线：用<strong>平滑的曲线</strong>按自变量从小到大的顺序连接各点</li>
+        </ul>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="section-title">📖 读一读</div>
+
+    <div class="explore-card" style="background:linear-gradient(145deg,#e0e7ff,#c7d2fe);border-left-color:#6366f1;">
+        <h4 style="color:#4338ca;">📊 从图象中读取信息</h4>
+        <p style="line-height:2;">上节课我们学会了如何<strong>画出</strong>函数图象，但函数图象的价值远不止于此。在实际问题中，我们常常需要根据已经给出的函数图象来<strong>获取信息、分析规律、解决问题</strong>。</p>
+        <p style="line-height:2;margin-top:.5rem;">例如，从一张<strong>行程图</strong>中，我们可以看出：</p>
+        <ul style="line-height:2.2;padding-left:1.5rem;margin-top:0.5rem;">
+            <li><strong>起点和终点</strong>——图象从哪里开始、到哪里结束</li>
+            <li><strong>变化趋势</strong>——图象是上升、下降还是水平</li>
+            <li><strong>转折点</strong>——图象在哪里发生了方向改变</li>
+            <li><strong>特殊点坐标</strong>——从图象上读出关键点的横、纵坐标</li>
+        </ul>
+        <div class="highlight-box" style="background:rgba(255,255,255,0.7);margin-top:1rem;">
+            <strong>思考：</strong>函数图象不仅能"画出来"，更能"读进去"——下节课我们将学习如何从图象中获取丰富的信息！
+        </div>
+    </div>
+
+    <!-- 数学核心素养 -->
+    <div class="section-title">🎯 数学核心素养</div>
+    <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.2rem;margin:1.5rem 0;">
+        <div style="background:linear-gradient(145deg,#fef3c7,#fde68a);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #f59e0b;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🔗</span>
+                <h4 style="color:#92400e;font-size:1.25rem;font-weight:700;">数形结合思想</h4>
+            </div>
+            <p style="color:#78350f;line-height:1.8;font-size:1rem;">通过函数图象，将<strong>"数"</strong>（函数解析式）与<strong>"形"</strong>（曲线图形）统一。列表、描点、连线的过程，正是数形转化的具体体现。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#dbeafe,#bfdbfe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #3b82f6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📐</span>
+                <h4 style="color:#1e40af;font-size:1.25rem;font-weight:700;">几何直观能力</h4>
+            </div>
+            <p style="color:#1e3a8a;line-height:1.8;font-size:1rem;">通过画函数图象，培养<strong>从图象中获取信息</strong>的能力。看到曲线的走向、对称性、顶点位置，就能感知函数的变化趋势。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#d1fae5,#a7f3d0);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #10b981;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">📊</span>
+                <h4 style="color:#065f46;font-size:1.25rem;font-weight:700;">数据分析观念</h4>
+            </div>
+            <p style="color:#064e3b;line-height:1.8;font-size:1rem;">列表→描点→连线的过程，本质上就是<strong>收集数据、整理数据、表达数据</strong>的过程，是数据分析的基本方法。</p>
+        </div>
+        <div style="background:linear-gradient(145deg,#e9d5ff,#d8b4fe);border-radius:1.5rem;padding:1.3rem 1.5rem;border-left:6px solid #8b5cf6;">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;">
+                <span style="font-size:1.8rem;">🧩</span>
+                <h4 style="color:#5b21b6;font-size:1.25rem;font-weight:700;">数学建模观念</h4>
+            </div>
+            <p style="color:#4c1d95;line-height:1.8;font-size:1rem;">用函数图象来<strong>描述现实世界中的变化规律</strong>，如气温变化、运动轨迹等，感受数学建模的过程与价值。</p>
+        </div>
+    </div>
+
+    <!-- 寄语 -->
+    <div style="background:linear-gradient(135deg,#0f766e,#14b8a6);border-radius:2rem;padding:2rem 2.5rem;margin:2rem 0;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-20px;right:-20px;font-size:8rem;opacity:0.1;">💭</div>
+        <h4 style="color:#f0fdfa;font-size:1.5rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;">
+            <span style="font-size:1.8rem;">💌</span> 教师寄语
+        </h4>
+        <div style="color:#ccfbf1;font-size:1.15rem;line-height:2.2;position:relative;z-index:1;">
+            <p style="text-indent:2em;">今天我们学会了"列表、描点、连线"三步画函数图象。这看似简单的三个步骤，却是<strong>数形结合</strong>的起点。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">从数字到图形，从抽象到直观，函数图象让看不见的规律变成了看得见的曲线。正如笛卡尔用坐标系架起了代数与几何的桥梁，你也在用描点法架起数字与图形之间的桥梁。</p>
+            <p style="text-indent:2em;margin-top:0.8rem;">记住：每一条优美的曲线背后，都有无数个精确的坐标点在默默支撑。数学的美，就在这<strong>数与形的交融</strong>之中！</p>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ============================================================
+   公共：toggleAnswer
+   ============================================================ */
+function toggleAnswer(id) {
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(el.style.display === 'block' || el.dataset.shown === 'yes') {
+        el.style.display = 'none';
+        return;
+    }
+    el.style.display = 'block';
+    el.dataset.shown = 'yes';
+    if(window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise([el]).catch(function(){});
+    }
+}
+
+// MathJax 渲染
+function mjRender(el) {
+    if(window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]).catch(function(){});
+}
+
+// 填入表格
+function fillCell(id, latex, delay) {
+    setTimeout(function(){
+        var td = document.getElementById(id);
+        if(!td) return;
+        td.innerHTML = '$$' + latex + '$$';
+        td.classList.add('filling');
+        td.style.opacity = '1';
+        mjRender(td);
+    }, delay);
+}
+
+// 进度条
+function updateProgress(prefix, step) {
+    for(var i=1;i<=3;i++){
+        var dot = document.getElementById(prefix+'Dot'+i);
+        dot.className = 'step-dot';
+        if(i < step) dot.classList.add('done');
+        else if(i === step) dot.classList.add('active');
+        else dot.classList.add('pending');
+    }
+    document.getElementById(prefix+'Bar').style.width = (step>=2?'100%':'0%');
+    document.getElementById(prefix+'Bar2').style.width = (step>=3?'100%':'0%');
+}
+
+/* ============================================================
+   气温图
+   ============================================================ */
+(function(){
+    var canvas = document.getElementById('tempCanvas');
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var hoveredHour = null;
+    var tempData = [
+        {h:0,t:-4},{h:1,t:-4},{h:2,t:-4.5},{h:3,t:-4},{h:4,t:-3.5},
+        {h:5,t:-3},{h:6,t:-4},{h:7,t:-3},{h:8,t:-2},{h:9,t:0},
+        {h:10,t:2},{h:11,t:3.5},{h:12,t:4.5},{h:13,t:5},
+        {h:14,t:5},{h:15,t:4.5},{h:16,t:3.5},{h:17,t:2},
+        {h:18,t:0},{h:19,t:-1},{h:20,t:-2},{h:21,t:-3},
+        {h:22,t:-3.5},{h:23,t:-4},{h:24,t:-4}
+    ];
+
+    function draw(highlightH) {
+        highlightH = (highlightH === undefined) ? hoveredHour : highlightH;
+        var dpr = window.devicePixelRatio || 1;
+        var W = canvas.width / dpr, H = canvas.height / dpr;
+        ctx.clearRect(0,0,W,H);
+        var pL=45, pR=25, pT=25, pB=40;
+        var cW=W-pL-pR, cH=H-pT-pB;
+
+        // 网格
+        ctx.strokeStyle='#e0f2fe'; ctx.lineWidth=1;
+        for(var i=-6;i<=8;i+=2){
+            var y=pT+cH-(i+6)*cH/14;
+            ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();
+            ctx.fillStyle='#94a3b8';ctx.font='12px sans-serif';ctx.textAlign='right';ctx.fillText(i+'°C',pL-6,y+4);
+        }
+        for(var i=0;i<=24;i+=4){
+            var x=pL+i*cW/24;
+            ctx.beginPath();ctx.moveTo(x,pT);ctx.lineTo(x,H-pB);ctx.stroke();
+            ctx.fillStyle='#94a3b8';ctx.textAlign='center';ctx.fillText(i+'时',x,H-pB+18);
+        }
+
+        // 曲线
+        ctx.strokeStyle='#0ea5e9';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.beginPath();
+        for(var i=0;i<tempData.length;i++){
+            var x=pL+tempData[i].h*cW/24, y=pT+cH-(tempData[i].t+6)*cH/14;
+            if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+
+        // 渐变填充
+        var grad=ctx.createLinearGradient(0,pT,0,H-pB);
+        grad.addColorStop(0,'rgba(14,165,233,0.3)');grad.addColorStop(1,'rgba(14,165,233,0.02)');
+        ctx.fillStyle=grad;ctx.beginPath();
+        ctx.moveTo(pL+tempData[0].h*cW/24,H-pB);
+        for(var i=0;i<tempData.length;i++){var x=pL+tempData[i].h*cW/24,y=pT+cH-(tempData[i].t+6)*cH/14;ctx.lineTo(x,y);}
+        ctx.lineTo(pL+24*cW/24,H-pB);ctx.fill();
+
+        // 蓝色数据点
+        for(var i=0;i<tempData.length;i++){
+            var x=pL+tempData[i].h*cW/24, y=pT+cH-(tempData[i].t+6)*cH/14;
+            ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fillStyle='#0ea5e9';ctx.fill();
+        }
+
+        // 红点
+        if(highlightH !== null){
+            var closest=tempData[0],minD=999;
+            for(var i=0;i<tempData.length;i++){var d=Math.abs(tempData[i].h-highlightH);if(d<minD){minD=d;closest=tempData[i];}}
+            var rx=pL+closest.h*cW/24, ry=pT+cH-(closest.t+6)*cH/14;
+            ctx.beginPath();ctx.arc(rx,ry,7,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();
+            ctx.strokeStyle='white';ctx.lineWidth=2;ctx.stroke();
+            ctx.fillStyle='#1e293b';ctx.font='bold 13px sans-serif';ctx.textAlign='center';
+            ctx.fillText('('+closest.h+', '+closest.t.toFixed(1)+')',rx,ry-14);
+        }
+
+        // 轴标签
+        ctx.fillStyle='#0e7490';ctx.font='bold 14px sans-serif';ctx.textAlign='center';
+        ctx.fillText('时间 t / 时',W/2,H-2);
+        ctx.save();ctx.translate(14,H/2);ctx.rotate(-Math.PI/2);ctx.fillText('气温 T / °C',0,0);ctx.restore();
+    }
+
+    canvas.addEventListener('mousemove',function(e){
+        var rect=canvas.getBoundingClientRect(),mx=e.clientX-rect.left;
+        var pL=45,pR=25,cW=rect.width-pL-pR;
+        var hour=((mx-pL)/cW*24);hour=Math.max(0,Math.min(24,hour));hoveredHour=hour;
+        var closest=tempData[0],minD=999;
+        for(var i=0;i<tempData.length;i++){var d=Math.abs(tempData[i].h-hour);if(d<minD){minD=d;closest=tempData[i];}}
+        document.getElementById('curTime').textContent=closest.h+':00';
+        document.getElementById('curTemp').textContent=closest.t.toFixed(1)+'°C';
+        draw(hour);
+    });
+    canvas.addEventListener('mouseleave',function(){
+        hoveredHour=null;
+        document.getElementById('curTime').textContent='--:--';
+        document.getElementById('curTemp').textContent='--°C';
+        draw(null);
+    });
+
+    function resize(){
+        var w = Math.max(canvas.parentElement.clientWidth, 400);
+        var dpr = window.devicePixelRatio || 1;
+        canvas.width = w * dpr;
+        canvas.height = 350 * dpr;
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        draw();
+    }
+    window.addEventListener('resize',resize);
+    if(document.readyState==='complete') resize();
+    else window.addEventListener('load', resize);
+})();
+
+/* ============================================================
+   通用坐标系绘制
+   ============================================================ */
+function drawCoord(ctx,W,H,ox,oy,ux,uy,xMin,xMax,yMin,yMax){
+    ctx.strokeStyle='#b8d4e3';ctx.lineWidth=1;
+    // 网格线范围扩大2格，让边界外也有方格
+    var gxMin=xMin-2,gxMax=xMax+2,gyMin=yMin-2,gyMax=yMax+2;
+    for(var xi=gxMin;xi<=gxMax;xi++){var px=ox+xi*ux;if(px<0||px>W)continue;ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,H);ctx.stroke();}
+    for(var yi=gyMin;yi<=gyMax;yi++){var py=oy-yi*uy;if(py<0||py>H)continue;ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(W,py);ctx.stroke();}
+    ctx.strokeStyle='#334155';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(0,oy);ctx.lineTo(W,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,H);ctx.lineTo(ox,0);ctx.stroke();
+    ctx.fillStyle='#334155';
+    ctx.beginPath();ctx.moveTo(W-2,oy);ctx.lineTo(W-10,oy-4);ctx.lineTo(W-10,oy+4);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,12);ctx.lineTo(ox-4,22);ctx.lineTo(ox+4,22);ctx.closePath();ctx.fill();
+    ctx.font='bold 14px sans-serif';ctx.strokeStyle='#334155';ctx.lineWidth=1.5;
+    for(var xi=xMin;xi<=xMax;xi++){if(xi===0)continue;var px=ox+xi*ux;ctx.beginPath();ctx.moveTo(px,oy-4);ctx.lineTo(px,oy+4);ctx.stroke();ctx.fillStyle='#64748b';ctx.textAlign='center';ctx.fillText(xi,px,oy+18);}
+    for(var yi=yMin;yi<=yMax;yi++){if(yi===0)continue;var py=oy-yi*uy;ctx.beginPath();ctx.moveTo(ox-4,py);ctx.lineTo(ox+4,py);ctx.stroke();ctx.fillStyle='#64748b';ctx.textAlign='right';ctx.fillText(yi,ox-6,py+5);}
+    ctx.fillStyle='#64748b';ctx.textAlign='right';ctx.fillText('O',ox-4,oy+18);
+    ctx.fillStyle='#0e7490';ctx.font='bold 15px sans-serif';ctx.textAlign='left';ctx.fillText('x',W-6,oy-6);ctx.textAlign='center';ctx.fillText('y',ox+8,10);
+}
+
+function initCanvas(id,xRange,yRange,aspectRatio){
+    var cv=document.getElementById(id);if(!cv)return null;
+    var ctx=cv.getContext('2d');
+    var dpr=window.devicePixelRatio||1;
+    var W=Math.min(cv.parentElement.clientWidth||400,460);
+    var H=aspectRatio?Math.round(W*aspectRatio):W;
+    cv.width=W*dpr;cv.height=H*dpr;
+    cv.style.width=W+'px';cv.style.height=H+'px';
+    ctx.scale(dpr,dpr);
+    var pad=44;
+    var ux=Math.floor((W-2*pad)/xRange);
+    var uy=Math.floor((H-2*pad)/yRange);
+    var ox=pad+Math.floor(xRange/2)*ux;
+    var oy=pad+Math.floor(yRange/2)*uy;
+    return {cv:cv,ctx:ctx,W:W,H:H,ox:ox,oy:oy,ux:ux,uy:uy};
+}
+
+/* ============================================================
+   例1：y = x²/2
+   ============================================================ */
+var ex1StepDone=[false,false,false];
+var ex1Pts=[[-3,4.5],[-2,2],[-1,0.5],[0,0],[1,0.5],[2,2],[3,4.5]];
+var ex1YVals=['4.5','2','0.5','0','0.5','2','4.5'];
+var ex1CanvasInfo=null;
+
+function ex1Step(step){
+    // toggle：已展示则隐藏，未展示则显示
+    if(ex1StepDone[step-1]){
+        ex1StepDone[step-1]=false;
+        document.getElementById('ex1S'+step).style.display='none';
+        document.getElementById('ex1Btn'+['','List','Plot','Line'][step]).disabled=false;
+        // 隐藏后续步骤并重置canvas
+        for(var j=step;j<3;j++){
+            ex1StepDone[j]=false;
+            document.getElementById('ex1S'+(j+1)).style.display='none';
+            document.getElementById('ex1Btn'+['','List','Plot','Line'][j+1]).disabled=true;
+        }
+        // 重置canvas（step2或3被隐藏时）
+        if(step>=2){
+            ex1CanvasInfo=null;
+        }
+        updateProgress('ex1', step>1?step-1:1);
+        return;
+    }
+    ex1StepDone[step-1]=true;
+    if(step<3)document.getElementById('ex1Btn'+['','List','Plot','Line'][step+1]).disabled=false;
+    updateProgress('ex1',step);
+
+    if(step===1){
+        document.getElementById('ex1S1').style.display='block';
+        mjRender(document.getElementById('ex1S1'));
+        for(var i=0;i<7;i++){
+            fillCell('ex1y'+(i+1),ex1YVals[i],200+i*120);
+            (function(idx){
+                setTimeout(function(){
+                    var td=document.getElementById('ex1x'+(idx+1));
+                    if(td)td.style.opacity='1';
+                },150+idx*120);
+            })(i);
+        }
+    } else if(step===2){
+        document.getElementById('ex1S2').style.display='block';
+        setTimeout(function(){
+            ex1CanvasInfo=initCanvas('canvas1Plot',10,6,0.85);
+            if(!ex1CanvasInfo)return;
+            // 手动调整 y 轴参数：y 范围 0~5，等比例，垂直居中
+            var pad=44;
+            ex1CanvasInfo.uy = ex1CanvasInfo.ux;
+            ex1CanvasInfo.oy = pad + Math.floor((ex1CanvasInfo.H - 2*pad + 5*ex1CanvasInfo.uy) / 2);
+            var ctx=ex1CanvasInfo.ctx,W=ex1CanvasInfo.W,H=ex1CanvasInfo.H,ox=ex1CanvasInfo.ox,oy=ex1CanvasInfo.oy,ux=ex1CanvasInfo.ux,uy=ex1CanvasInfo.uy;
+            drawCoord(ctx,W,H,ox,oy,ux,uy,-5,5,0,5);
+            ex1Pts.forEach(function(p,idx){
+                setTimeout(function(){
+                    var px=ox+p[0]*ux,py=oy-p[1]*uy;
+                    var r=0;
+                    function grow(){r+=0.8;if(r>5)r=5;ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fillStyle='#374151';ctx.fill();if(r<5)requestAnimationFrame(grow);}
+                    grow();
+                },150+idx*150);
+            });
+        },60);
+    } else if(step===3){
+        document.getElementById('ex1S3').style.display='block';
+        mjRender(document.getElementById('ex1S3'));
+        // 如果canvas被重置过，重新初始化
+        if(!ex1CanvasInfo){
+            ex1CanvasInfo=initCanvas('canvas1Plot',10,6,0.85);
+            if(!ex1CanvasInfo)return;
+            var pad=44;
+            ex1CanvasInfo.uy = ex1CanvasInfo.ux;
+            ex1CanvasInfo.oy = pad + Math.floor((ex1CanvasInfo.H - 2*pad + 5*ex1CanvasInfo.uy) / 2);
+        }
+        var ctx=ex1CanvasInfo.ctx,W=ex1CanvasInfo.W,H=ex1CanvasInfo.H,ox=ex1CanvasInfo.ox,oy=ex1CanvasInfo.oy,ux=ex1CanvasInfo.ux,uy=ex1CanvasInfo.uy;
+        var startTime=performance.now(),duration=1500;
+        function animateLine(now){
+            var t=Math.min((now-startTime)/duration,1);
+            ctx.clearRect(0,0,W,H);
+            drawCoord(ctx,W,H,ox,oy,ux,uy,-5,5,0,5);
+            ctx.strokeStyle='#0ea5e9';ctx.lineWidth=2.5;ctx.beginPath();
+            var started=false;
+            for(var xi=-5*t;xi<=5*t;xi+=0.05){
+                var yi=xi*xi/2;
+                if(yi>5.5){started=false;continue;}
+                var px=ox+xi*ux,py=oy-yi*uy;
+                if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);
+            }
+            ctx.stroke();
+            ex1Pts.forEach(function(p){ctx.beginPath();ctx.arc(ox+p[0]*ux,oy-p[1]*uy,5,0,Math.PI*2);ctx.fillStyle='#374151';ctx.fill();});
+            if(t<1)requestAnimationFrame(animateLine);
+        }
+        requestAnimationFrame(animateLine);
+    }
+}
+
+/* ============================================================
+   练习1：y = x/2
+   ============================================================ */
+var pr1StepDone=[false,false,false];
+var pr1YVals=['-1.5','-1','-0.5','0','0.5','1','1.5'];
+var pr1Pts=[[-3,-1.5],[-2,-1],[-1,-0.5],[0,0],[1,0.5],[2,1],[3,1.5]];
+var pr1CanvasInfo=null;
+
+function pr1Step(step){
+    if(pr1StepDone[step-1]){
+        pr1StepDone[step-1]=false;
+        // 隐藏step1表格
+        if(step===1) document.getElementById('pr1TableWrap').style.display='none';
+        document.getElementById('pr1Btn'+['','List','Plot','Line'][step]).disabled=false;
+        // 隐藏后续步骤
+        for(var j=step;j<3;j++){
+            pr1StepDone[j]=false;
+            if(j===0) document.getElementById('pr1TableWrap').style.display='none';
+            document.getElementById('pr1Btn'+['','List','Plot','Line'][j+1]).disabled=true;
+        }
+        // 重置canvas（step2+被隐藏时）
+        if(step>=2) {
+            pr1CanvasInfo=null;
+            var cv1=document.getElementById('canvasPr1');
+            if(cv1){var c1=cv1.getContext('2d');c1.clearRect(0,0,cv1.width,cv1.height);}
+        }
+        updateProgress('pr1', step>1?step-1:1);
+        return;
+    }
+    pr1StepDone[step-1]=true;
+    document.getElementById('pr1Btn'+['','List','Plot','Line'][step]).disabled=true;
+    if(step<3)document.getElementById('pr1Btn'+['','List','Plot','Line'][step+1]).disabled=false;
+    updateProgress('pr1',step);
+
+    if(step===1){
+        // 显示表格 - 用弹出卡片展示
+        var box=document.getElementById('pr1TableWrap');
+        box.style.display='block';
+        mjRender(box);
+        for(var i=0;i<7;i++){
+            fillCell('pr1y'+(i+1),pr1YVals[i],150+i*100);
+        }
+    } else if(step===2){
+        // 获取或初始化canvas
+        if(!pr1CanvasInfo){
+            pr1CanvasInfo=initCanvas('canvasPr1',8,8,1);
+            if(pr1CanvasInfo) drawCoord(pr1CanvasInfo.ctx,pr1CanvasInfo.W,pr1CanvasInfo.H,pr1CanvasInfo.ox,pr1CanvasInfo.oy,pr1CanvasInfo.ux,pr1CanvasInfo.uy,-4,4,-4,4);
+        }
+        if(!pr1CanvasInfo)return;
+        var ctx=pr1CanvasInfo.ctx,ox=pr1CanvasInfo.ox,oy=pr1CanvasInfo.oy,ux=pr1CanvasInfo.ux,uy=pr1CanvasInfo.uy;
+        pr1Pts.forEach(function(p,idx){
+            setTimeout(function(){
+                var px=ox+p[0]*ux,py=oy-p[1]*uy;
+                var r=0;
+                function grow(){r+=0.8;if(r>5)r=5;ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();if(r<5)requestAnimationFrame(grow);}
+                grow();
+            },80+idx*120);
+        });
+    } else if(step===3){
+        if(!pr1CanvasInfo)return;
+        var ctx=pr1CanvasInfo.ctx,W=pr1CanvasInfo.W,H=pr1CanvasInfo.H,ox=pr1CanvasInfo.ox,oy=pr1CanvasInfo.oy,ux=pr1CanvasInfo.ux,uy=pr1CanvasInfo.uy;
+        var progress=0;
+        function animateLine(){
+            progress+=3;if(progress>200)progress=200;
+            var t=progress/200;
+            ctx.clearRect(0,0,W,H);
+            drawCoord(ctx,W,H,ox,oy,ux,uy,-4,4,-4,4);
+            // 点
+            pr1Pts.forEach(function(p){ctx.beginPath();ctx.arc(ox+p[0]*ux,oy-p[1]*uy,5,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();});
+            // 线
+            var xStart=-4*t,xEnd=4*t;
+            var px1=ox+xStart*ux,py1=oy-(xStart/2)*uy;
+            var px2=ox+xEnd*ux,py2=oy-(xEnd/2)*uy;
+            ctx.strokeStyle='#0ea5e9';ctx.lineWidth=2.5;
+            ctx.beginPath();ctx.moveTo(px1,py1);ctx.lineTo(px2,py2);ctx.stroke();
+            if(progress<200)requestAnimationFrame(animateLine);
+        }
+        animateLine();
+    }
+}
+
+/* ============================================================
+   练习2：y = -6/x
+   ============================================================ */
+var pr2StepDone=[false,false,false];
+var pr2YVals=['1','2','3','6','12','-12','-6','-3','-2','-1'];
+var pr2Pts=[[-6,1],[-3,2],[-2,3],[-1,6],[-0.5,12],[0.5,-12],[1,-6],[2,-3],[3,-2],[6,-1]];
+var pr2CanvasInfo=null;
+
+function pr2Step(step){
+    if(pr2StepDone[step-1]){
+        pr2StepDone[step-1]=false;
+        if(step===1) document.getElementById('pr2TableWrap').style.display='none';
+        document.getElementById('pr2Btn'+['','List','Plot','Line'][step]).disabled=false;
+        for(var j=step;j<3;j++){
+            pr2StepDone[j]=false;
+            if(j===0) document.getElementById('pr2TableWrap').style.display='none';
+            document.getElementById('pr2Btn'+['','List','Plot','Line'][j+1]).disabled=true;
+        }
+        if(step>=2) {
+            pr2CanvasInfo=null;
+            var cv2=document.getElementById('canvasPr2');
+            if(cv2){var c2=cv2.getContext('2d');c2.clearRect(0,0,cv2.width,cv2.height);}
+        }
+        updateProgress('pr2', step>1?step-1:1);
+        return;
+    }
+    pr2StepDone[step-1]=true;
+    document.getElementById('pr2Btn'+['','List','Plot','Line'][step]).disabled=true;
+    if(step<3)document.getElementById('pr2Btn'+['','List','Plot','Line'][step+1]).disabled=false;
+    updateProgress('pr2',step);
+
+    if(step===1){
+        document.getElementById('pr2TableWrap').style.display='block';
+        mjRender(document.getElementById('pr2TableWrap'));
+        for(var i=0;i<10;i++){
+            fillCell('pr2y'+(i+1),pr2YVals[i],150+i*100);
+        }
+    } else if(step===2){
+        if(!pr2CanvasInfo){
+            pr2CanvasInfo=initCanvas('canvasPr2',14,14,1);
+            if(pr2CanvasInfo) drawCoord(pr2CanvasInfo.ctx,pr2CanvasInfo.W,pr2CanvasInfo.H,pr2CanvasInfo.ox,pr2CanvasInfo.oy,pr2CanvasInfo.ux,pr2CanvasInfo.uy,-7,7,-7,7);
+        }
+        if(!pr2CanvasInfo)return;
+        var ctx=pr2CanvasInfo.ctx,ox=pr2CanvasInfo.ox,oy=pr2CanvasInfo.oy,ux=pr2CanvasInfo.ux,uy=pr2CanvasInfo.uy;
+        pr2Pts.forEach(function(p,idx){
+            if(Math.abs(p[1])>7.5)return;
+            setTimeout(function(){
+                var px=ox+p[0]*ux,py=oy-p[1]*uy;
+                var r=0;
+                function grow(){r+=0.8;if(r>5)r=5;ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();if(r<5)requestAnimationFrame(grow);}
+                grow();
+            },80+idx*120);
+        });
+    } else if(step===3){
+        if(!pr2CanvasInfo)return;
+        var ctx=pr2CanvasInfo.ctx,W=pr2CanvasInfo.W,H=pr2CanvasInfo.H,ox=pr2CanvasInfo.ox,oy=pr2CanvasInfo.oy,ux=pr2CanvasInfo.ux,uy=pr2CanvasInfo.uy;
+        var progress=0;
+        function animateCurve(){
+            progress+=3;if(progress>300)progress=300;
+            var t=progress/300;
+            ctx.clearRect(0,0,W,H);
+            drawCoord(ctx,W,H,ox,oy,ux,uy,-7,7,-7,7);
+            // 点
+            pr2Pts.forEach(function(p){if(Math.abs(p[1])>7.5)return;ctx.beginPath();ctx.arc(ox+p[0]*ux,oy-p[1]*uy,5,0,Math.PI*2);ctx.fillStyle='#ef4444';ctx.fill();});
+            // 左支
+            ctx.strokeStyle='#10b981';ctx.lineWidth=2.5;ctx.beginPath();
+            var started=false,xRange=7*t;
+            for(var xi=-xRange;xi<=-0.12;xi+=0.05){
+                var yi=-6/xi;if(Math.abs(yi)>7.5){started=false;continue;}
+                var px=ox+xi*ux,py=oy-yi*uy;
+                if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);
+            }
+            ctx.stroke();
+            // 右支
+            ctx.beginPath();started=false;
+            for(var xi=0.12;xi<=xRange;xi+=0.05){
+                var yi=-6/xi;if(Math.abs(yi)>7.5){started=false;continue;}
+                var px=ox+xi*ux,py=oy-yi*uy;
+                if(!started){ctx.moveTo(px,py);started=true;}else ctx.lineTo(px,py);
+            }
+            ctx.stroke();
+            if(progress<300)requestAnimationFrame(animateCurve);
+        }
+        animateCurve();
+    }
+}
+</script>
+</body>
+</html>

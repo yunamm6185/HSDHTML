@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.1.2.1 矩形的判定（一）| 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+            if (el.style.display === 'block') el.classList.add('show-answer');
+            else el.classList.remove('show-answer');
+        }
+        function initCanvases() {
+            drawTryIt3(); drawTryIt4(); drawProof1(); drawProofJT2(); drawExample4(); drawPrac1(); drawPrac2(); drawPrac3();
+        }
+        function drawTryIt3() {
+            const c = document.getElementById('cTryIt3'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:150}, B = {x:340,y:150}, C = {x:340,y:50}, D = {x:80,y:50};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x+12,A.y); ctx.lineTo(A.x+12,A.y-12); ctx.lineTo(A.x,A.y-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x-12,B.y); ctx.lineTo(B.x-12,B.y-12); ctx.lineTo(B.x,B.y-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x+12,D.y); ctx.lineTo(D.x+12,D.y+12); ctx.lineTo(D.x,D.y+12); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 165); ctx.fillText('B', 345, 165);
+            ctx.fillText('C', 345, 45); ctx.fillText('D', 58, 45);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+            ctx.fillText('图18.1.8', 180, 185);
+        }
+        function drawTryIt4() {
+            const c = document.getElementById('cTryIt4'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const O = {x:210,y:110};
+            const A = {x:154,y:131}, B = {x:249,y:156}, C = {x:266,y:90}, D = {x:171,y:64};
+            ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1; ctx.setLineDash([5,5]);
+            ctx.setLineDash([]);
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(O.x,O.y,60,0,Math.PI*2); ctx.stroke();
+            ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#a82035';
+            [A,B,C,D,O].forEach(p => { ctx.beginPath(); ctx.arc(p.x,p.y,4,0,Math.PI*2); ctx.fill(); });
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 135, 138); ctx.fillText('B', 255, 165);
+            ctx.fillText('C', 272, 88); ctx.fillText('D', 150, 62);
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 20px STKaiti,KaiTi';
+            ctx.fillText('O', O.x+8, O.y-8);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+            ctx.fillText('图18.1.9', 180, 185);
+        }
+        function drawProof1() {
+            const c = document.getElementById('cProof1'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:150}, B = {x:340,y:150}, C = {x:340,y:50}, D = {x:80,y:50};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x+12,A.y); ctx.lineTo(A.x+12,A.y-12); ctx.lineTo(A.x,A.y-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x-12,B.y); ctx.lineTo(B.x-12,B.y-12); ctx.lineTo(B.x,B.y-12); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x+12,D.y); ctx.lineTo(D.x+12,D.y+12); ctx.lineTo(D.x,D.y+12); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 165); ctx.fillText('B', 345, 165);
+            ctx.fillText('C', 345, 45); ctx.fillText('D', 58, 45);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('∠A=∠B=∠D=90°', 140, 180);
+        }
+        function drawProofJT2() {
+            const c = document.getElementById('cProofJT2'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:150}, B = {x:340,y:150}, C = {x:340,y:50}, D = {x:80,y:50};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 165); ctx.fillText('B', 345, 165);
+            ctx.fillText('C', 345, 45); ctx.fillText('D', 58, 45);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+            ctx.fillText('图18.1.10', 180, 185);
+        }
+        function drawExample4() {
+            const c = document.getElementById('cEx4'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:20}, B = {x:80,y:170}, C = {x:300,y:170}, D = {x:300,y:20};
+            const O = {x:190,y:95};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,4,0,Math.PI*2); ctx.fill();
+            const E = {x:117,y:45}, F = {x:117,y:145}, G = {x:263,y:145}, H = {x:263,y:45};
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(E.x,E.y); ctx.lineTo(F.x,F.y); ctx.lineTo(G.x,G.y); ctx.lineTo(H.x,H.y); ctx.closePath(); ctx.stroke();
+            ctx.fillStyle = '#a82035';
+            [E,F,G,H].forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill(); });
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 20); ctx.fillText('B', 58, 180);
+            ctx.fillText('C', 305, 180); ctx.fillText('D', 305, 20);
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 24px STKaiti,KaiTi';
+            ctx.fillText('E', 98, 55); ctx.fillText('F', 98, 148);
+            ctx.fillText('G', 268, 150); ctx.fillText('H', 268, 55);
+            ctx.fillText('O', O.x-10, O.y-10);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+            ctx.fillText('图18.1.11', 180, 195);
+        }
+        function drawPrac1() {
+            const c = document.getElementById('cPrac1'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const O = {x:210,y:110}, r=70;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(O.x,O.y,r,0,Math.PI*2); ctx.stroke();
+            const A = {x:O.x-59,y:O.y-36}, C = {x:O.x-59,y:O.y+36};
+            const B = {x:O.x+59,y:O.y+36}, D = {x:O.x+59,y:O.y-36};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(C.x,C.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x,D.y); ctx.lineTo(A.x,A.y); ctx.stroke();
+            ctx.fillStyle = '#a82035';
+            [A,B,C,D,O].forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,4,0,Math.PI*2); ctx.fill(); });
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x-22, A.y-5); ctx.fillText('B', B.x+8, B.y+22);
+            ctx.fillText('C', C.x-22, C.y+22); ctx.fillText('D', D.x+8, D.y-5);
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 20px STKaiti,KaiTi';
+            ctx.fillText('O', O.x-6, O.y-6);
+        }
+        function drawPrac2() {
+            const c = document.getElementById('cPrac2'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:40}, B = {x:80,y:160}, C = {x:300,y:160}, D = {x:300,y:40};
+            const O = {x:190,y:100};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,4,0,Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(A.x+8,A.y+10,12,0.2,2.1); ctx.stroke();
+            ctx.beginPath(); ctx.arc(B.x+10,B.y-10,12,-2.3,-0.1); ctx.stroke();
+            ctx.font = 'bold 22px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('1', A.x+8, A.y+40); ctx.fillText('2', B.x+8, B.y-30);
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 48); ctx.fillText('B', 58, 170);
+            ctx.fillText('C', 305, 170); ctx.fillText('D', 305, 48);
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 20px STKaiti,KaiTi';
+            ctx.fillText('O', O.x-6, O.y-10);
+        }
+        function drawPrac3() {
+            const c = document.getElementById('cPrac3'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:150}, B = {x:340,y:150}, C = {x:340,y:50}, D = {x:80,y:50};
+            const F = {x:160,y:150}, E = {x:260,y:50};
+            const O = {x:210,y:100};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(F.x,F.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(F.x,F.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x,D.y); ctx.lineTo(E.x,E.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(E.x,E.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(E.x,E.y); ctx.lineTo(F.x,F.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.fillStyle = '#a82035';
+            [E,F,O].forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,4,0,Math.PI*2); ctx.fill(); });
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(B.x-12,B.y); ctx.lineTo(B.x-12,B.y-12); ctx.lineTo(B.x,B.y-12); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 165); ctx.fillText('B', 345, 165);
+            ctx.fillText('C', 345, 45); ctx.fillText('D', 58, 45);
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 20px STKaiti,KaiTi';
+            ctx.fillText('E', E.x, E.y-10); ctx.fillText('F', F.x, F.y+25);
+            ctx.fillText('O', O.x+6, O.y+20);
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.7rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .theorem-text { font-weight: 800; color: #0a4d32; border-bottom: 2px solid #0a4d32; display: inline-block; margin: 0.5rem 0; font-size: 1.3rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .layout-flex { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 320px; }
+        .layout-visual { max-width: 100%; width: 420px; margin-bottom: 0.5rem; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .bubble { background: #fff1f2; border: 2px solid #fda4af; border-radius: 2rem; padding: 1rem 1.5rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(225,29,72,0.08); }
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; }
+        .objective-card { background: #f0f9ff; border: 2px solid #bae6fd; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .objective-card h4 { color: #0369a1; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.1 矩形</span>
+    </div>
+    <h1>18.1.2 矩形的判定</h1>
+    <div class="lesson-title">第 1 课时：判定定理 1 与判定定理 2</div>
+
+    <div class="section-title">学习目标</div>
+    <div class="objective-card">
+        <h4>本节课的学习目标：</h4>
+        <p>1. 探索并掌握矩形的判定定理1：有三个角是直角的四边形是矩形。</p>
+        <p>2. 探索并掌握矩形的判定定理2：对角线相等的平行四边形是矩形。</p>
+        <p>3. 能运用矩形的判定方法解决简单问题。</p>
+    </div>
+
+    <div class="section-title">情景导入</div>
+    <p>我们已经知道，有一个角是直角的平行四边形是矩形——这是矩形的<strong>定义</strong>。我们可以依此判定一个四边形是不是矩形。除此之外，我们能否找到其他判定矩形的方法呢？</p>
+    <p>矩形具有如下特殊性质：① 四个角都是直角；② 两条对角线相等。这些性质对我们寻找判定矩形的方法有什么启示？</p>
+
+    <div class="section-title">知识铺垫 / 复习回顾</div>
+    <div class="think-box">
+        <p>1. <strong>矩形定义：</strong>有一个角是直角的平行四边形是矩形。</p>
+        <p>2. <strong>矩形性质定理1：</strong>矩形的四个角都是直角。</p>
+        <p>3. <strong>矩形性质定理2：</strong>矩形的对角线相等。</p>
+        <p class="text" style="color:var(--color-accent-red);">思考：这些性质的逆命题是否都成立？</p>
+    </div>
+
+    <!-- 判定定理1 -->
+    <div class="section-title">新知探索：判定定理 1</div>
+    <div class="theorem-card" style="background:#fff;border:2px solid var(--color-primary);border-left-width:12px;padding:2rem;">
+        <h4 style="color:var(--color-primary);font-size:1.8rem;margin-bottom:1rem;">试一试</h4>
+        <p>由矩形的性质"四个角都是直角"反思：如果一个四边形的四个角都是直角，那它肯定是矩形。但条件能否再减少一些？<strong>三个角是直角的四边形是矩形吗？</strong></p>
+        <p style="margin-top:1rem;"><strong>作图——作一个三个角都是直角的四边形：</strong></p>
+        <p>(1) 任意作两条互相垂直的线段 $AB$、$AD$；</p>
+        <p>(2) 过点 $B$ 作垂直于 $AB$ 的直线 $l$；</p>
+        <p>(3) 过点 $D$ 作垂直于 $AD$ 的直线 $m$，与直线 $l$ 相交于点 $C$。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="cTryIt3" width="420" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <p>四边形 $ABCD$ 即为所要求作的四边形。观察你所作的图形，<strong>它是一个矩形吗？</strong></p>
+        <div class="bubble" style="width:100%;max-width:none;">
+            四边形 $ABCD$ 中，$\angle A = \angle B = \angle C = 90^\circ$，由四边形内角和为 $360^\circ$ 可得 $\angle D = 90^\circ$。且由垂直关系可证对边平行，从而是平行四边形。因此它是矩形。
+        </div>
+    </div>
+
+    <div class="section-title">矩形的判定定理 1</div>
+    <div class="theorem-card">
+        <h4>判定定理 1</h4>
+        <p class="theorem-text">有三个角是直角的四边形是矩形。</p>
+        <button class="interact-btn" onclick="toggleAnswer('proofJT1')">查看证明</button>
+        <div id="proofJT1" class="answer-box">
+            <div style="text-align:center;margin-bottom:0.5rem;">
+                <canvas id="cProof1" width="420" height="200" style="max-width:100%;"></canvas>
+            </div>
+            <p><strong>已知：</strong>在四边形 $ABCD$ 中，$\angle A = \angle B = \angle C = 90^\circ$。</p>
+            <p><strong>求证：</strong>四边形 $ABCD$ 是矩形。</p>
+            <p><strong>证明：</strong>$\because \angle A = \angle B = 90^\circ$，$\therefore \angle A + \angle B = 180^\circ$。</p>
+            <p>$\therefore AD \parallel BC$（同旁内角互补，两直线平行）。</p>
+            <p>同理，$\because \angle B = \angle C = 90^\circ$，$\therefore AB \parallel DC$。</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是平行四边形。</p>
+            <p>又 $\because \angle A = 90^\circ$，$\therefore$ 四边形 $ABCD$ 是矩形（矩形的定义）。</p>
+        </div>
+    </div>
+
+    <!-- 判定定理2 -->
+    <div class="section-title">新知探索：判定定理 2</div>
+    <div class="think-box">
+        <h4>思考：从对角线的角度</h4>
+        <p>对角线相等，是矩形所特有的性质。那么从对角线的角度，你可以得到关于矩形判定的什么猜想？</p>
+        <p>猜想：<strong>如果一个平行四边形的两条对角线相等，那么这个平行四边形是矩形。</strong></p>
+    </div>
+
+    <div class="theorem-card" style="background:#fff;border:2px solid var(--color-primary);border-left-width:12px;padding:2rem;">
+        <h4 style="color:var(--color-primary);font-size:1.8rem;margin-bottom:1rem;">试一试</h4>
+        <p>作一个对角线相等的平行四边形：</p>
+        <p>(1) 任意作两条相交的直线，交点记为 $O$；</p>
+        <p>(2) 以点 $O$ 为圆心、适当长为半径作弧，在两条直线上分别截取相等的四条线段 $OA$、$OB$、$OC$、$OD$；</p>
+        <p>(3) 顺次连结所得的四点。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="cTryIt4" width="420" height="220" style="max-width:100%;"></canvas>
+        </div>
+        <p>四边形 $ABCD$ 的两条对角线相等且互相平分，即 $AC = BD$。</p>
+        <p>和你的同伴交流一下，看看这个平行四边形是不是矩形。</p>
+    </div>
+
+    <div class="section-title">矩形的判定定理 2</div>
+    <div class="theorem-card">
+        <h4>判定定理 2</h4>
+        <p class="theorem-text">对角线相等的平行四边形是矩形。</p>
+        <p style="margin-top:0.5rem;"><strong>已知：</strong>如图 18.1.10，四边形 $ABCD$ 是平行四边形，$AC = BD$。</p>
+        <p><strong>求证：</strong>四边形 $ABCD$ 是矩形。</p>
+        <button class="interact-btn" onclick="toggleAnswer('proofJT2')">查看完整证明</button>
+        <div id="proofJT2" class="answer-box">
+            <div style="text-align:center;margin-bottom:0.5rem;">
+                <canvas id="cProofJT2" width="420" height="200" style="max-width:100%;"></canvas>
+            </div>
+            <p><strong>证明：</strong>$\because$ 四边形 $ABCD$ 是平行四边形，</p>
+            <p>$\therefore AB = DC$（平行四边形对边相等）。</p>
+            <p>又 $\because AC = BD$（已知），$BC = CB$（公共边），</p>
+            <p>$\therefore \triangle ABC \cong \triangle DCB$（SSS）。</p>
+            <p>$\therefore \angle ABC = \angle DCB$。</p>
+            <p>又 $\because AB \parallel DC$，$\therefore \angle ABC + \angle DCB = 180^\circ$。</p>
+            <p>$\therefore \angle ABC = \angle DCB = 90^\circ$。</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是矩形（有一个角是直角的平行四边形是矩形）。</p>
+            <p><strong>实际应用：</strong>这一判定方法在日常生活中经常被应用。例如，木工师傅在制作门框或其他矩形形状的物体时，常用<strong>测量对角线的方法</strong>来检验产品是否符合要求。</p>
+        </div>
+    </div>
+
+    <!-- 例4 -->
+    <div class="section-title">例题精讲</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-amber);">
+        <p><strong>例4</strong> 如图 18.1.11，点 $O$ 是矩形 $ABCD$ 的对角线 $AC$ 与 $BD$ 的交点，$E$、$F$、$G$、$H$ 分别是 $AO$、$BO$、$CO$、$DO$ 上的一点，且 $AE = BF = CG = DH$。<br>求证：四边形 $EFGH$ 是矩形。</p>
+        <div style="text-align:center;margin:0.8rem 0;">
+            <canvas id="cEx4" width="420" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx4')">查看证明</button>
+        <div id="ansEx4" class="answer-box">
+            <p><strong>证明：</strong>$\because$ 四边形 $ABCD$ 是矩形，</p>
+            <p>$\therefore AC = BD$；</p>
+            <p>$AO = CO = \frac{1}{2}AC$，$BO = DO = \frac{1}{2}BD$。</p>
+            <p>$\therefore AO = BO = CO = DO$。</p>
+            <p>$\because AE = BF = CG = DH$，</p>
+            <p>$\therefore OE = OF = OG = OH$。</p>
+            <p>$\therefore$ 四边形 $EFGH$ 是平行四边形。</p>
+            <p>$\because EO + OG = FO + OH$，</p>
+            <p>$\therefore EG = FH$。</p>
+            <p>$\therefore$ 四边形 $EFGH$ 是矩形（对角线相等的平行四边形是矩形）。</p>
+        </div>
+    </div>
+
+    <!-- 方法归纳 -->
+    <div class="section-title">方法归纳</div>
+    <div class="method-summary">
+        <h4>矩形的判定方法总结</h4>
+        <p>现在我们有三种方法判定矩形：</p>
+        <p>1. <strong>定义法：</strong>有一个角是直角的平行四边形是矩形。</p>
+        <p>2. <strong>角判定法：</strong>有三个角是直角的四边形是矩形。（判定定理1）</p>
+        <p>3. <strong>对角线判定法：</strong>对角线相等的平行四边形是矩形。（判定定理2）</p>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">练一练</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p><strong>1.</strong> 如图，$AB$、$CD$ 是 $⊙O$ 的两条直径，四边形 $ACBD$ 是矩形吗？证明你的结论。</p>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cPrac1" width="420" height="220" style="max-width:100%;"></canvas>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac1')">查看答案</button>
+        <div id="prac1" class="answer-box">
+            <p><strong>是矩形。</strong>$\because AB$、$CD$ 是直径，$\therefore OA = OB = OC = OD$。</p>
+            <p>$\therefore$ 四边形 $ACBD$ 是平行四边形（对角线互相平分）。</p>
+            <p>又 $\because AB = CD$（均为直径），$\therefore$ 四边形 $ACBD$ 是矩形（对角线相等的平行四边形是矩形）。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p><strong>2.</strong> 如图，在 $\square ABCD$ 中，$\angle 1 = \angle 2$。此时，四边形 $ABCD$ 是矩形吗？为什么？</p>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cPrac2" width="420" height="200" style="max-width:100%;"></canvas>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">查看答案</button>
+        <div id="prac2" class="answer-box">
+            <p><strong>是矩形。</strong>$\because$ 四边形 $ABCD$ 是平行四边形，对角线互相平分，</p>
+            <p>$\therefore OA = OC$，$OB = OD$。</p>
+            <p>$\because \angle 1 = \angle 2$，即 $\angle OAB = \angle OBA$，</p>
+            <p>$\therefore OA = OB$（等角对等边）。</p>
+            <p>$\therefore OA = OB = OC = OD$，即 $AC = BD$。</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是矩形（对角线相等的平行四边形是矩形）。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p><strong>3.</strong> 如图，在四边形 $ABCD$ 中，$BF = DE$，$AC$ 与 $EF$ 互相平分并相交于点 $O$，$\angle B = 90^\circ$。<br>求证：四边形 $ABCD$ 是矩形。</p>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cPrac3" width="420" height="200" style="max-width:100%;"></canvas>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">查看答案</button>
+        <div id="prac3" class="answer-box">
+            <p><strong>证明：</strong>$\because AC$ 与 $EF$ 互相平分于点 $O$，</p>
+            <p>$\therefore$ 四边形 $AFCE$ 是平行四边形（对角线互相平分的四边形是平行四边形）。</p>
+            <p>$\therefore AF = CE$，$AF \parallel CE$。</p>
+            <p>$\because BF = DE$，</p>
+            <p>$\therefore AF + BF = CE + DE$，即 $AB = CD$。</p>
+            <p>又 $\because AF \parallel CE$，$\therefore AB \parallel CD$。</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是平行四边形（一组对边平行且相等）。</p>
+            <p>又 $\because \angle B = 90^\circ$，</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是矩形（有一个角是直角的平行四边形是矩形）。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">课堂小结</div>
+    <div class="think-box">
+        <ul>
+            <li>通过"试一试"的动手操作，探索出矩形的判定方法。</li>
+            <li>掌握了<strong>判定定理1</strong>：有三个角是直角的四边形是矩形。</li>
+            <li>掌握了<strong>判定定理2</strong>：对角线相等的平行四边形是矩形。</li>
+            <li>能从角的角和对角线的角度灵活判定矩形。</li>
+        </ul>
+    </div>
+
+    <div class="section-title">核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>逻辑推理：</strong>通过性质命题的逆命题探索，体会"性质"与"判定"之间的互逆逻辑关系。</p>
+        <p><strong>数学建模：</strong>运用尺规作图探索几何规律，体验"猜想—验证—证明"的科学研究方法。</p>
+    </div>
+
+    <div class="teacher-msg">
+        判定与性质是一对"镜像"——从性质出发，逆向思考，就能找到判定的钥匙。这正是几何证明的魅力所在！
+    </div>
+
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.2 实践与探索(第二课时) | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.9;color:#1a3a4a;padding:1.5rem;font-size:26px;}
+        .textbook{max-width:1300px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.8rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.2rem;color:#0f766e;}
+        h1{font-size:2.8rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.4rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .section-title{font-size:1.8rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .goal-box{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #4ade80;}
+        .goal-box h4{font-size:1.6rem;color:#166534;margin-bottom:.5rem;}.goal-box h4::before{content:"🎯 ";}
+        .goal-box ol{padding-left:1.5rem;line-height:2.2;}
+        .intro-box{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+        .intro-box h4{font-size:1.6rem;color:#1e40af;margin-bottom:.5rem;}.intro-box h4::before{content:"🚀 ";}
+        .review-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #f59e0b;}
+        .review-box h4{font-size:1.6rem;color:#92400e;margin-bottom:.5rem;}.review-box h4::before{content:"📖 ";}
+        .question-box{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border-left:8px solid #10b981;}
+        .question-box h4{font-size:1.6rem;margin-bottom:.7rem;color:#059669;}.question-box h4::before{content:"📌 ";}
+        .example-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;}
+        .example-card h4{font-size:1.6rem;color:#b45309;}.example-card h4::before{content:"▶ ";}
+        .analysis-box{background:#eff6ff;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border-left:6px solid #3b82f6;}
+        .analysis-box strong{color:#1d4ed8;}
+        .think-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:3px solid #3b82f6;border-radius:1.5rem;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+        .think-box h4{color:#1e40af;font-size:1.4rem;margin-bottom:.5rem;}.think-box h4::before{content:"💭 思考";}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.2;}
+        .practice-box{background:#fdf2f8;border:3px solid #ec4899;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;}
+        .practice-box h4{font-size:1.6rem;color:#be185d;margin-bottom:.8rem;}.practice-box h4::before{content:"📝 练习";}
+        .do-box{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border-left:8px solid #ec4899;}
+        .do-box h4{font-size:1.4rem;color:#be185d;margin-bottom:.5rem;}.do-box h4::before{content:"✍️ 做一做 ";}
+        .conclude-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border:2px solid #34d399;}
+        .conclude-box h4{font-size:1.4rem;color:#065f46;margin-bottom:.5rem;}.conclude-box h4::before{content:"📐 方法归纳 ";}
+        .core-box{background:linear-gradient(135deg,#fae8ff,#f5d0fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #e879f9;}
+        .core-box h4{font-size:1.6rem;color:#86198f;margin-bottom:.5rem;}.core-box h4::before{content:"⭐ 核心素养";}
+        .core-box ul{padding-left:1.5rem;line-height:2.2;}
+        .ho-work{background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #a78bfa;}
+        .ho-work h4{font-size:1.6rem;color:#6d28d9;margin-bottom:.5rem;}.ho-work h4::before{content:"📝 课后作业";}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #3b82f6;box-shadow:0 4px 15px rgba(59,130,246,0.15);position:relative;}
+        .highlight-box::before{content:"📐";position:absolute;left:1.2rem;top:1.2rem;font-size:1.6rem;}
+        .highlight-box p{margin:.5rem 0;padding-left:2.2rem;font-size:1.3rem;line-height:2;}
+        .highlight-box strong{color:#1e40af;}
+        p{margin:.5rem 0;}
+        .katex{font-size:1.15em;}
+        .math-block{text-align:center;margin:.8rem 0;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.5rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.6rem .6rem .6rem 0;font-size:1rem;transition:all .1s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1.2rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .q-item{display:flex;align-items:flex-start;gap:.5rem;margin:.6rem 0;padding:.5rem .8rem;border-radius:12px;transition:background .2s;}
+        .q-item:hover{background:#f0fdfa;}
+        .q-text{flex:1;line-height:1.6;}
+        .q-btn{white-space:nowrap;}
+        .practice-row{display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0 0 1.5rem;}
+        .graph-caption{text-align:center;color:#6b7280;font-size:.9rem;margin-top:4px;}
+        .gwrap{position:relative;display:inline-block;margin:0 auto;text-align:center;width:100%;}
+        .gwrap canvas{display:block;margin:0 auto;border-radius:12px;border:1px solid #d1d5db;background:#fafafa;max-width:100%;}
+        .glabel{position:absolute;pointer-events:none;text-shadow:0 0 5px #fafafa,0 0 5px #fafafa,0 0 5px #fafafa;line-height:1.2;}
+        .glabel .katex{font-size:1.05em;}
+        .draggable-label{cursor:move;pointer-events:auto;user-select:none;touch-action:none;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>16.5 实践与探索</h1>
+    <div class="lesson-title">16.5.2 实践与探索（第二课时）</div>
+
+    <!-- ===== 学习目标 ===== -->
+    <div class="goal-box">
+        <h4>学习目标</h4>
+        <ol>
+            <li>理解一次函数与一元一次方程的关系，知道函数图象与 $x$ 轴交点的横坐标就是方程的解。</li>
+            <li>理解一次函数与一元一次不等式的关系，能利用函数图象求不等式的解集。</li>
+            <li>体会数形结合思想在解决方程、不等式问题中的应用。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课题导入 ===== -->
+    <div class="intro-box">
+        <h4>课题导入</h4>
+        <p>上节课我们学习了一次函数与二元一次方程组的关系。那么，<strong>一次函数</strong>与<strong>一元一次方程</strong>、<strong>一元一次不等式</strong>之间又有怎样的联系呢？今天我们将通过画图观察，发现它们之间的内在规律。</p>
+    </div>
+
+    <!-- ===== 复习回顾 ===== -->
+    <div class="review-box">
+        <h4>复习回顾</h4>
+        <p>一次函数 $y = kx + b$（$k \neq 0$）的图象是一条<strong>直线</strong>。</p>
+        <p>直线与 $x$ 轴的交点处，<strong>纵坐标 $y = 0$</strong>。</p>
+        <p>直线在 $x$ 轴上方时，$y > 0$；在 $x$ 轴下方时，$y < 0$。</p>
+    </div>
+
+    <!-- ===== 新知探索 ===== -->
+    <div class="section-title">🔍 新知探索</div>
+
+    <div class="question-box">
+        <h4>问题2</h4>
+        <p>画出函数 $y = \dfrac{3}{2}x + 3$ 的图象，根据图象，说明：</p>
+        <div class="q-item">
+            <span class="q-text">（1）$x$ 取什么值时，函数值 $y$ 等于 $0$？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a1')">（1）</button>
+        </div>
+        <div class="q-item">
+            <span class="q-text">（2）$x$ 取什么值时，函数值 $y$ 大于 $0$？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a2')">（2）</button>
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;">
+            <div class="gwrap" style="width:100%;max-width:700px;">
+                <canvas id="g1" width="700" height="450" style="width:100%;height:auto;"></canvas>
+                <span class="glabel" style="left:40%;top:62.2%;font-weight:700;">O</span>
+                <span class="glabel" style="left:74.5%;top:63%;font-style:italic;font-weight:700;">$x$</span>
+                <span class="glabel" style="left:40%;top:4.4%;font-style:italic;font-weight:700;">$y$</span>
+                <span class="glabel draggable-label" style="left:51.4%;top:13.3%;font-size:22px;color:#2563eb;font-weight:600;">$y=\frac32x+3$</span>
+                <span class="glabel draggable-label" style="left:22%;top:55%;font-size:21px;color:#ef4444;font-weight:700;">$(-2,0)$</span>
+            </div>
+            <p class="graph-caption">图16.5.4</p>
+        </div>
+
+        <div id="a1" class="answer-box">
+            <p><strong>（1）$x$ 取什么值时，函数值 $y$ 等于 $0$：</strong></p>
+            <p>函数图象与 $x$ 轴交于点 $(-2,0)$，即当 $x = -2$ 时，$y = 0$。</p>
+            <p>这也说明一元一次方程 $\dfrac{3}{2}x + 3 = 0$ 的解是 $x = -2$。</p>
+        </div>
+        <div id="a2" class="answer-box">
+            <p><strong>（2）$x$ 取什么值时，函数值 $y$ 大于 $0$：</strong></p>
+            <p>观察图象，当 $x > -2$ 时，直线在 $x$ 轴上方，$y > 0$。</p>
+            <p>即不等式 $\dfrac{3}{2}x + 3 > 0$ 的解集是 $x > -2$。</p>
+        </div>
+    </div>
+
+    <!-- ===== 思考 ===== -->
+    <div class="think-box">
+        <h4></h4>
+        <p>由问题2，想一想：一元一次方程 $\dfrac{3}{2}x + 3 = 0$ 的解、不等式 $\dfrac{3}{2}x + 3 > 0$ 的解集与函数 $y = \dfrac{3}{2}x + 3$ 的图象有什么关系？</p>
+        <button class="interact-btn" onclick="toggleAnswer('tk1')">💡 思考答案</button>
+        <div id="tk1" class="answer-box">
+            <p><strong>一元一次方程</strong> $\dfrac{3}{2}x + 3 = 0$ 的解 $x = -2$，就是函数 $y = \dfrac{3}{2}x + 3$ 的图象与 $x$ 轴<strong>交点的横坐标</strong>。</p>
+            <p><strong>不等式</strong> $\dfrac{3}{2}x + 3 > 0$ 的解集 $x > -2$，就是函数图象在 $x$ 轴<strong>上方</strong>时对应自变量 $x$ 的取值范围。</p>
+        </div>
+    </div>
+
+    <!-- ===== 概括总结 ===== -->
+    <div class="section-title">📐 概括总结</div>
+
+    <div class="highlight-box">
+        <p>一次函数 $y = kx + b$ 的图象与 $x$ 轴交点的<strong>横坐标</strong>，就是一元一次方程 $kx + b = 0$ 的解。</p>
+        <p>不等式 $kx + b > 0$（或 $< 0$）的<strong>解集</strong>，就是函数图象在 $x$ 轴<strong>上方</strong>（或<strong>下方</strong>）时对应自变量 $x$ 的取值范围。</p>
+    </div>
+
+    <!-- ===== 做一做 ===== -->
+    <div class="do-box">
+        <h4></h4>
+        <p>对于函数 $y = -2x + 4$，不画图，直接说出方程 $-2x + 4 = 0$ 的解和不等式 $-2x + 4 > 0$ 的解集。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">💡 参考答案</button>
+        <div id="do1" class="answer-box">
+            <p>方程 $-2x + 4 = 0$ 的解：$x = 2$。</p>
+            <p>不等式 $-2x + 4 > 0$ 的解集：$x < 2$（注意 $k = -2 < 0$，$y$ 随 $x$ 增大而减小）。</p>
+        </div>
+    </div>
+
+    <!-- ===== 方法归纳 ===== -->
+    <div class="conclude-box">
+        <h4></h4>
+        <p>利用一次函数图象解方程或不等式，其实质是<strong>数形结合</strong>：把代数问题转化为几何直观。</p>
+        <p>关键要找准图象与 $x$ 轴的<strong>交点</strong>，再根据图象在 $x$ 轴的上方或下方确定解集。</p>
+    </div>
+
+    <!-- ===== 练习 ===== -->
+    <div class="practice-box">
+        <h4></h4>
+        <div class="q-item">
+            <span class="q-text"><strong>1.</strong> 不等式 $\dfrac{3}{2}x + 3 \le 0$ 的解集与函数 $y = \dfrac{3}{2}x + 3$ 的图象有什么关系？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('p1')">1</button>
+        </div>
+        <div id="p1" class="answer-box">
+            <p>不等式 $\dfrac{3}{2}x + 3 \le 0$ 的解集是 $x \le -2$，对应函数图象在 $x$ 轴上及 $x$ 轴下方时自变量 $x$ 的取值范围。</p>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text"><strong>2.</strong> 一次函数 $y = (a-2)x - 3 + a$ 的图象经过第一、三、四象限，求 $a$ 的取值范围。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('p2')">2</button>
+        </div>
+        <div id="p2" class="answer-box">
+            <p>图象经过第一、三象限，说明 $k = a - 2 > 0$（$y$ 随 $x$ 增大而增大），即 $a > 2$；</p>
+            <p>图象经过第四象限，说明与 $y$ 轴交点在负半轴，即 $-3 + a < 0$，$a < 3$。</p>
+            <p>综上，$2 < a < 3$。</p>
+        </div>
+
+        <div class="q-item">
+            <span class="q-text"><strong>3.</strong> 编制一道相关的练习题，继续探究一次函数与一元一次方程、一元一次不等式的关系。</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('p3')">3</button>
+        </div>
+        <div id="p3" class="answer-box">
+            <p><strong>示例：</strong>已知函数 $y = 3x - 6$，画出它的图象，并说明方程 $3x - 6 = 0$ 的解和不等式 $3x - 6 < 0$ 的解集。</p>
+            <p><strong>答案：</strong>方程的解 $x = 2$；不等式的解集 $x < 2$。</p>
+        </div>
+    </div>
+
+    <!-- ===== 核心素养 ===== -->
+    <div class="core-box">
+        <h4></h4>
+        <ul>
+            <li><strong>数学抽象</strong>：将一元一次方程、不等式的求解问题抽象为一次函数图象的位置关系。</li>
+            <li><strong>直观想象</strong>：通过观察直线与 $x$ 轴的交点及上下位置，直观得到方程的解和不等式的解集。</li>
+            <li><strong>数形结合</strong>：体会代数问题几何化、几何问题代数化的数学思想。</li>
+        </ul>
+    </div>
+
+    <!-- ===== 课堂小结 ===== -->
+    <div class="summary-box">
+        <h4>课堂小结</h4>
+        <ol>
+            <li>一次函数与一元一次方程：函数图象与 $x$ 轴交点的横坐标就是方程的解。</li>
+            <li>一次函数与一元一次不等式：图象在 $x$ 轴上方（下方）对应的 $x$ 范围就是不等式 $>0$（$<0$）的解集。</li>
+            <li>注意 $k$ 的正负会影响不等式解集的方向。</li>
+            <li>数形结合是解决代数问题的重要思想方法。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课后作业 ===== -->
+    <div class="ho-work">
+        <h4></h4>
+        <ol>
+            <li>整理课堂笔记，归纳一次函数与方程、不等式的关系。</li>
+            <li>利用函数图象，求不等式 $2x - 4 > 0$ 的解集。</li>
+            <li>思考：若一次函数 $y = kx + b$ 的图象不经过第三象限，$k$、$b$ 应满足什么条件？</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var e=document.getElementById(id);
+    e.style.display=(e.style.display==='block')?'none':'block';
+}
+
+// ==================== 可拖动标签 ====================
+(function(){
+    var dragEl=null,startX,startY,startL,startT,wrapRect;
+    document.addEventListener('mousedown',function(e){
+        if(e.target.closest('.draggable-label')){
+            dragEl=e.target.closest('.draggable-label');
+            e.preventDefault();
+            startX=e.clientX;startY=e.clientY;
+            var wrap=dragEl.parentElement;
+            wrapRect=wrap.getBoundingClientRect();
+            startL=parseFloat(dragEl.style.left)||0;
+            startT=parseFloat(dragEl.style.top)||0;
+        }
+    });
+    document.addEventListener('mousemove',function(e){
+        if(!dragEl)return;
+        e.preventDefault();
+        var dx=e.clientX-startX,dy=e.clientY-startY;
+        dragEl.style.left=(startL+dx/wrapRect.width*100)+'%';
+        dragEl.style.top=(startT+dy/wrapRect.height*100)+'%';
+    });
+    document.addEventListener('mouseup',function(){dragEl=null;});
+})();
+
+// ==================== 图16.5.4 ====================
+;(function(){
+    var c=document.getElementById('g1'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,700,450);
+    var ox=280,oy=280,sc=40;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,20);ctx.lineTo(ox+i*sc,430);ctx.stroke();}
+    for(var i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(40,oy-i*sc);ctx.lineTo(520,oy-i*sc);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(40,oy);ctx.lineTo(520,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox,430);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(520,oy);ctx.lineTo(510,oy-8);ctx.lineTo(510,oy+8);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-8,30);ctx.lineTo(ox+8,30);ctx.closePath();ctx.fill();
+
+    ctx.fillStyle='#374151';ctx.font='16px sans-serif';ctx.textAlign='center';
+    for(var i=-5;i<=3;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+20);
+    ctx.textAlign='right';
+    for(var i=-2;i<=5;i++) if(i!==0) ctx.fillText(i,ox-12,oy-i*sc+7);
+
+    // y=1.5x+3 (蓝)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(ox-4*sc,oy+3*sc);ctx.lineTo(ox+2*sc,oy-6*sc);ctx.stroke();
+    // 交点 (-2,0)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox-2*sc,oy,10,0,Math.PI*2);ctx.fill();
+    // 外圈白光让红点更醒目
+    ctx.strokeStyle='white';ctx.lineWidth=3;ctx.beginPath();ctx.arc(ox-2*sc,oy,10,0,Math.PI*2);ctx.stroke();
+})();
+
+// 等待KaTeX及auto-render加载完成后渲染（最多等待5秒）
+var initAttempts = 0;
+function init(){
+    if(typeof katex !== 'undefined' && typeof renderMathInElement !== 'undefined'){
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+        });
+    } else if(initAttempts < 50){
+        initAttempts++;
+        setTimeout(init, 100);
+    } else {
+        console.error('KaTeX or auto-render failed to load');
+    }
+}
+window.onload = init;
+</script>
+</body>
+</html>

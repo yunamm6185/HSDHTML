@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, viewport-fit=cover">
+    <title>16.6 数学活动：探索函数增减性的证明 | 华师版·八年级下册</title>
+    <script>MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #d2eef3 0%, #c2e4e9 100%);
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Roboto', system-ui, -apple-system, 'Noto Sans', sans-serif;
+            font-weight: 500;
+            line-height: 1.65;
+            color: #0a2c36;
+            padding: 2rem 1.2rem;
+            /* 基础字号从18px提升到20px */
+            font-size: 20px;
+        }
+
+        /* 主容器 */
+        .textbook {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 45px -18px rgba(0, 64, 64, 0.4), 0 0 0 1px rgba(132, 204, 195, 0.3);
+            padding: 2.2rem 2.5rem;
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 1rem;
+                font-size: 18px; /* 移动端稍小但仍比原版大 */
+            }
+            .textbook {
+                padding: 1.5rem;
+                border-radius: 2rem;
+            }
+        }
+
+        /* 头部元信息 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #7fd1cc;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1rem; /* 原0.9rem增大 */
+            color: #1f6e64;
+            letter-spacing: 0.3px;
+        }
+
+        h1 {
+            font-size: 2.6rem; /* 原2.2增大 */
+            color: #146b5e;
+            font-weight: 750;
+            letter-spacing: -0.3px;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 85px;
+            height: 5px;
+            background: linear-gradient(95deg, #2bb4ad, #3b9e9a);
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .lesson-title {
+            text-align: center;
+            font-size: 2.1rem; /* 原1.9增大 */
+            background: linear-gradient(135deg, #e6f9fb, #ccf1f0);
+            padding: 1rem 1.2rem;
+            border-radius: 70px;
+            border: 1px solid #afe0dc;
+            margin: 1.2rem 0 2rem;
+            font-weight: 750;
+            color: #0e6b60;
+            box-shadow: 0 4px 10px rgba(0, 80, 72, 0.08);
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(115deg, #effbfe, #e0f4f2);
+            border-radius: 2rem;
+            padding: 1.6rem 2.2rem;
+            margin: 1.5rem 0 2rem;
+            border: none;
+            box-shadow: 0 8px 18px -10px rgba(20, 100, 90, 0.2);
+        }
+
+        .learning-targets h3 {
+            margin: 0 0 1.2rem;
+            font-size: 1.9rem; /* 原1.6增大 */
+            border-left: 6px solid #1e9f8f;
+            padding-left: 1rem;
+            color: #0c6b5e;
+        }
+
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .target-item {
+            background: white;
+            border-radius: 60px;
+            padding: 0.6rem 1.8rem 0.6rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            font-size: 1.05rem; /* 增大 */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03), 0 0 0 1px #bee6e2;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+        }
+
+        .target-item span {
+            background: linear-gradient(145deg, #31b7ab, #179488);
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        /* 卡片通用 */
+        .explore-card, .fact-card, .example-card, .reading-section, .summary-box {
+            transition: all 0.2s ease;
+        }
+
+        .explore-card {
+            background: #f1fef9;
+            border-radius: 2rem;
+            padding: 1.5rem 2.2rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #24b394;
+            box-shadow: 0 5px 14px rgba(0, 80, 70, 0.08);
+            font-size: 1.05rem;
+        }
+
+        .fact-card {
+            background: #fff7e8;
+            border-left: 8px solid #f3aa3e;
+            border-radius: 2rem;
+            padding: 1.5rem 2.2rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
+            font-size: 1.05rem;
+        }
+
+        .theorem-box {
+            background: linear-gradient(120deg, #fff2cf, #fee9bc);
+            border: 2px solid #f5bc70;
+            border-radius: 1.8rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0;
+            font-weight: 550;
+            color: #6b4c25;
+            font-size: 1.05rem;
+        }
+
+        .example-card {
+            background: #f1fef9;
+            border-left: 8px solid #2abf8f;
+            border-radius: 2rem;
+            padding: 1.5rem 2.2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 20px -12px rgba(0, 80, 70, 0.2);
+        }
+
+        .example-card h4 {
+            font-size: 1.6rem;
+            color: #1d7e64;
+            margin-bottom: 0.9rem;
+            font-weight: 750;
+        }
+
+        /* 按钮 */
+        .interact-btn {
+            background: #d2f0f0;
+            border: none;
+            color: #146b5e;
+            padding: 0.55rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9ac9c2;
+            transition: all 0.2s;
+            font-size: 1rem;
+            margin-top: 0.7rem;
+        }
+
+        .interact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(30, 140, 120, 0.2);
+            background: #c1e9e7;
+        }
+
+        .answer-box {
+            background: #ffffffea;
+            border: 2px solid #a0ddd7;
+            border-radius: 1.8rem;
+            padding: 1.4rem 1.8rem;
+            margin-top: 1.2rem;
+            display: none;
+            font-size: 1rem;
+            line-height: 1.65;
+            box-shadow: 0 6px 12px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 表格 */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 1.2rem 0;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            font-size: 1rem;
+        }
+
+        th {
+            background: linear-gradient(115deg, #2fafa3, #1f9486);
+            color: white;
+            padding: 0.9rem;
+            font-weight: 650;
+            font-size: 1.05rem;
+        }
+
+        td {
+            padding: 0.85rem;
+            text-align: center;
+            background-color: #fefef7;
+            border-bottom: 1px solid #caeae6;
+            font-size: 1rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(120deg, #e7f0fd, #deebfc);
+            border-radius: 1.4rem;
+            padding: 1rem 1.5rem;
+            border-left: 5px solid #5993d2;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+
+        .warn-box {
+            background: #ffe9e9;
+            border: 2px solid #f9b5b5;
+            border-radius: 1.4rem;
+            padding: 1rem 1.5rem;
+            color: #b13b3b;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem; /* 增大 */
+            color: #1f7e6e;
+            font-weight: 780;
+            margin: 2.2rem 0 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid #77cdc2;
+            display: inline-block;
+            letter-spacing: -0.2px;
+        }
+
+        .summary-box {
+            background: linear-gradient(125deg, #e4f9ef, #cef0e4);
+            border-radius: 2rem;
+            padding: 1.8rem 2.2rem;
+            border: 1px solid #87cfbf;
+            box-shadow: 0 12px 22px -14px rgba(20, 90, 70, 0.2);
+            font-size: 1.05rem;
+        }
+
+        .proof-step {
+            background: #ffffff;
+            border: 2px solid #bde0db;
+            border-radius: 1.5rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1rem 0;
+            transition: all 0.2s;
+            font-size: 1.02rem;
+        }
+
+        .proof-step h5 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #0891b2;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .reading-section {
+            background: #fffbe6;
+            border-left: 8px solid #eab308;
+            border-radius: 2rem;
+            padding: 1.5rem 2.2rem;
+            margin: 2rem 0;
+            font-size: 1.05rem;
+        }
+
+        .reading-section h4 {
+            font-size: 1.55rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .compare-props {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 700px) {
+            .compare-props {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .lesson-title {
+                font-size: 1.7rem;
+            }
+            body {
+                font-size: 18px;
+            }
+            .example-card h4 {
+                font-size: 1.4rem;
+            }
+            .target-item {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* 数学公式稍大 */
+        mjx-container {
+            font-size: 1.1rem;
+        }
+
+        ul, ol {
+            padding-left: 1.7rem;
+        }
+        li {
+            margin: 0.4rem 0;
+        }
+        .intro-card {
+            background: linear-gradient(125deg, #def5f2, #cbece8);
+            border-radius: 2rem;
+            padding: 1.4rem 2.2rem;
+            border-left: 8px solid #209e8b;
+            font-size: 1.08rem;
+        }
+        button, .interact-btn {
+            font-family: inherit;
+        }
+        p {
+            margin: 0.7rem 0;
+        }
+        .summary-box ul li, .summary-box ol li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>📚 华东师范大学出版社·数学 八年级下册</span>
+        <span>第16章 · 函数及其图象</span>
+    </div>
+    <h1>第16章 函数及其图象</h1>
+    <div class="lesson-title">16.6 数学活动 — 探索函数增减性的证明</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解函数“增减性”的数学描述</div>
+            <div class="target-item"><span>2</span>掌握用代数方法证明一次函数的增减性</div>
+            <div class="target-item"><span>3</span>了解用代数方法分析反比例函数在各区间的单调性</div>
+            <div class="target-item"><span>4</span>体会代数证明与几何直观的一致性</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p>🧮 <strong>前面我们通过观察函数图象，得出了“一次函数当 $k>0$ 时 $y$ 随 $x$ 增大而增大”这样的结论。但是观察只能给我们猜想——如何从数学上严格证明这些结论呢？这就是今天要探索的内容——用代数方法证明函数的增减性。</strong></p>
+    </div>
+
+    <!-- 增减性的定义 -->
+    <div class="section-title">📖 一、函数增减性的定义</div>
+
+    <div class="fact-card">
+        <h4>📌 增函数与减函数的描述</h4>
+        <div class="theorem-box">
+            <p><strong>定义：</strong></p>
+            <ul style="padding-left:1.5rem;line-height:2.2;">
+                <li>对于函数 $y =$ (关于 $x$ 的表达式)，如果在某个范围内，任意取 $x_1 < x_2$，设对应的函数值分别为 $y_1$ 和 $y_2$，都有 $\boldsymbol{y_1 < y_2}$，则称这个函数在这个范围上是<strong>增函数</strong>（<strong>单调递增</strong>）。</li>
+                <li>如果在某个范围内，任意取 $x_1 < x_2$，都有 $\boldsymbol{y_1 > y_2}$，则称这个函数在这个范围上是<strong>减函数</strong>（<strong>单调递减</strong>）。</li>
+            </ul>
+            <p style="margin-top:.6rem;"><strong>核心思想：</strong>取两个自变量比较大小 → 比较对应的函数值大小。如果自变量越大函数值也越大，就是增函数；自变量越大函数值反而越小，就是减函数！</p>
+        </div>
+    </div>
+
+    <!-- 核心活动：证明一次函数增减性 -->
+    <div class="section-title">🔬 二、探究活动 — 用代数法证明一次函数的增减性</div>
+
+    <div class="explore-card">
+        <h4>问题：证明一次函数 $y = kx + b$ 的增减性与 $k$ 的关系</h4>
+        <p>我们需要分别讨论 $k > 0$ 和 $k < 0$ 两种情况。</p>
+    </div>
+
+    <div class="compare-props">
+        <div class="proof-step">
+            <h5><span>1</span>当 $k > 0$ 时</h5>
+            <p><strong>任取 $x_1 < x_2$，设 $y_1 = kx_1 + b$，$y_2 = kx_2 + b$。</strong></p>
+            <p>因为 $k > 0$, 且 $x_1 < x_2$</p>
+            <p>所以 $kx_1 < kx_2$（不等式两边乘正数，方向不变）</p>
+            <p>因此 $kx_1 + b < kx_2 + b$</p>
+            <p>即 $\boxed{y_1 < y_2}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p>✅ <strong>结论：</strong>当 $k > 0$ 时，一次函数 $y = kx+b$ 是<strong>增函数</strong>（在整个实数范围内都成立）</p>
+            </div>
+        </div>
+
+        <div class="proof-step">
+            <h5><span>2</span>当 $k < 0$ 时</h5>
+            <p><strong>任取 $x_1 < x_2$，设 $y_1 = kx_1 + b$，$y_2 = kx_2 + b$。</strong></p>
+            <p>因为 $k < 0$, 且 $x_1 < x_2$ → $x_2 - x_1 > 0$</p>
+            <p>所以 $k(x_2 - x_1) < 0$（负数 × 正数 ＜ 0）</p>
+            <p>即 $kx_2 - kx_1 < 0$</p>
+            <p>所以 $kx_2 + b < kx_1 + b$，也就是 $y_2 < y_1$</p>
+            <p>即 $\boxed{y_1 > y_2}$</p>
+            <div class="highlight-box" style="margin-top:.8rem;">
+                <p>✅ <strong>结论：</strong>当 $k < 0$ 时，一次函数 $y = kx+b$ 是<strong>减函数</strong>（在整个实数范围内都成立）</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fact-card">
+        <h4>📌 定理总结</h4>
+        <div class="theorem-box">
+            <p style="text-align:center;"><strong>对于一次函数 $y = kx + b$（$k \neq 0$）：</strong></p>
+            <table style="margin:.8rem auto;">
+                <tr><th>$k$ 的符号</th><th>单调性</th><th>直观理解</th></tr>
+                <tr><td>$k > 0$</td><td><strong>增函数</strong>（在所有实数上）</td><td>“左低右高”</td></tr>
+                <tr><td>$k < 0$</td><td><strong>减函数</strong>（在所有实数上）</td><td>“左高右低”</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 反比例函数的证明 -->
+    <div class="section-title">🔬 三、反比例函数的单调性证明</div>
+
+    <div class="example-card">
+        <h4>例1 证明反比例函数 $y = \frac{k}{x}$（$k > 0$）在 $(0, +\infty)$ 上的单调性</h4>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 完整证明过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>求证：</strong>当 $k > 0$ 时，$y = \frac{k}{x}$ 在 $(0, +\infty)$ 上是减函数。</p>
+            <p><strong>证明：</strong></p>
+            <p>任取 $x_1, x_2 \in (0, +\infty)$，且设 $0 < x_1 < x_2$。对应的函数值 $y_1 = \frac{k}{x_1}$，$y_2 = \frac{k}{x_2}$。</p>
+            <p>比较 $y_1$ 与 $y_2$ 的大小：</p>
+            <p>$$y_1 - y_2 = \frac{k}{x_1} - \frac{k}{x_2} = k\left(\frac{1}{x_1} - \frac{1}{x_2}\right) = k\cdot\frac{x_2-x_1}{x_1 x_2}$$</p>
+            <p>分析各项符号：
+                <br>• $k > 0$（已知条件）
+                <br>• $x_2 - x_1 > 0$（因为 $x_1 < x_2$）
+                <br>• $x_1 x_2 > 0$（因为 $x_1 > 0, x_2 > 0$）
+            </p>
+            <p>所以 $y_1 - y_2 > 0$ → $y_1 > y_2$</p>
+            <p>即任取 $x_1 < x_2$ 都有 $y_1 > y_2$，符合减函数定义。</p>
+            <p>∴ 当 $k > 0$ 时，$\displaystyle y = \frac{k}{x}$ 在 $(0,+\infty)$ 上是<strong>减函数</strong> ✅</p>
+            <div class="warn-box" style="margin-top:.8rem;">
+                ⚠️ 注意：反比例函数并不是在整个定义域（$x \neq 0$）上具有统一的单调性。它在每个单独的区间 $(-\infty,0)$ 和 $(0,+\infty)$ 内分别是单调的，但不能说在整个定义域上单调。
+            </div>
+        </div>
+    </div>
+
+    <!-- 应用例题 -->
+    <div class="section-title">✅ 四、利用增减性解题</div>
+
+    <div class="example-card">
+        <h4>例2 利用增减性比较函数值的大小</h4>
+        <p>(1) 已知 $y = 3x - 5$（$k=3>0$，因此是增函数）。若 $a+1 > a-2$，那么当 $x = a+1$ 时的函数值与当 $x = a-2$ 时的函数值哪个大？</p>
+        <p>(2) 已知点 $A(-1, y_1)$、$B(3, y_2)$ 在 $y = -2x + 7$ 的图象上，判断 $y_1$ 与 $y_2$ 的大小。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>(1)</strong> 因为 $y = 3x-5$ 中 $k=3 > 0$，函数随 $x$ 增大而增大。</p>
+            <p>由 $a+1 > a-2$ 可知自变量 $x=a+1$ 大于 $x=a-2$，因此对应的函数值也更大。</p>
+            <p>所以 $\boxed{\text{当 }x=a+1\text{ 时的函数值} > \text{当 }x=a-2\text{ 时的函数值}}$。</p>
+            <p><strong>(2)</strong> 因为 $y = -2x+7$ 中 $k=-2 < 0$，函数随 $x$ 增大而减小。</p>
+            <p>自变量 $-1 < 3$，所以 $x=-1$ 对应的函数值 $y_1$ 大于 $x=3$ 对应的函数值 $y_2$，即 $\boldsymbol{y_1 > y_2}$。</p>
+            <p>验证：$y_1 = -2\times(-1)+7 = 9$；$y_2 = -2\times3+7 = 1$ → 确实 $9 > 1$ ✓</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例3 综合应用</h4>
+        <p>已知一次函数 $y = (2m-3)x + m+4$，若 $y$ 随 $x$ 的增大而减小，且 $y$ 轴截距大于 -2，求整数 $m$ 的值。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex3')">✍️ 解答过程</button>
+        <div id="ex3" class="answer-box">
+            <p><strong>条件分析：</strong></p>
+            <ol style="padding-left:1.5rem;line-height:2;">
+                <li>y 随 x 增大而减小 → 减函数 → $k < 0$<br>→ $2m-3 < 0$ → $m < \frac32$</li>
+                <li>y 轴截距 > -2<br>截距 = $m+4$（令 $x=0$）<br>→ $m+4 > -2$ → $m > -6$</li>
+                <li>$k \neq 0$ → $2m-3 \neq 0$ → $m \neq \frac32$（已包含在条件1中）</li>
+            </ol>
+            <p>综合得：<strong>$-6 < m < \frac32$</strong></p>
+            <p>满足条件的整数 $m$ 有：<strong>-5, -4, -3, -2, -1, 0, 1</strong></p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="example-card">
+        <h4>📝 课堂练习</h4>
+        <p><strong>1.</strong> 用定义证明：函数 $y = -4x + 10$ 在全体实数上是减函数。</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr1')">🔍 证明思路</button>
+        <div id="pr1" class="answer-box">
+            <p>任取 $x_1 < x_2$，设 $y_1 = -4x_1+10$，$y_2 = -4x_2+10$。</p>
+            <p>计算 $y_1 - y_2 = (-4x_1+10) - (-4x_2+10) = -4(x_1 - x_2) = 4(x_2 - x_1)$。</p>
+            <p>因为 $x_2 > x_1$，所以 $x_2 - x_1 > 0$，从而 $y_1 - y_2 > 0$，即 $y_1 > y_2$。</p>
+            <p>根据定义，当 $x_1 < x_2$ 时有 $y_1 > y_2$，所以函数 $y = -4x+10$ 是减函数。✓</p>
+        </div>
+
+        <p style="margin-top:1.2rem;"><strong>2.</strong>已知反比例函数 $y=\frac{k}{x}$ 经过点 $P(2, -3)$：</p>
+        <p>&nbsp;&nbsp;(1) 求 $k$ 并写出函数表达式 &nbsp;&nbsp;(2) 该函数在哪个区间上是增函数？</p>
+        <button class="interact-btn" onclick="toggleAnswer('pr2')">🔍 答案</button>
+        <div id="pr2" class="answer-box">
+            <p><strong>(1)</strong> 代入 $(2,-3)$：$-3 = \frac{k}{2}$ → $\boldsymbol{k = -6}$</p>
+            <p>表达式：$\displaystyle y = \frac{-6}{x}$</p>
+            <p><strong>(2)</strong> 因为 $k = -6 < 0$</p>
+            <p>根据反比例函数性质：当 $k<0$ 时，在 $(-\infty, 0)$ 和 $(0, +\infty)$ 每个区间上都是<strong>增函数</strong>（注意不能说在整个定义域上单调递增，必须分开区间叙述）。</p>
+        </div>
+    </div>
+
+    <!-- 数学阅读 -->
+    <div class="reading-section">
+        <h4 style="color:#b5780a;">📖 数学阅读 — 单调性的价值</h4>
+        <p>函数的<strong>单调性</strong>（即增减性）是函数最重要的基本性质之一，它帮助我们不画图也能分析函数的变化趋势。</p>
+        <ul style="padding-left:1.5rem;line-height:2;">
+            <li>利用单调性可以方便地<strong>比较函数值的大小</strong>，解决许多实际问题中的最优化判断。</li>
+            <li>单调性也是求解<strong>方程近似解</strong>和<strong>不等式</strong>的重要工具，例如利用单调性可以确定解的个数或范围。</li>
+            <li>在未来的数学学习中（如高中），我们会用更丰富的方法研究更复杂函数的单调性，但“作差法”这种从定义出发的证明将是永恒的基石。</li>
+            <li>正因为单调函数保持“一一对应”的关系，它在实际问题中常用于建立反函数模型。</li>
+        </ul>
+        <p>今天我们用<strong>作差法</strong>从代数上严格证明了基本函数的单调性，这为今后学习函数分析奠定了严谨的基础！</p>
+    </div>
+
+    <div class="summary-box">
+        <h4>🧠 课堂小结</h4>
+        <ul>
+            <li><strong>增减性定义</strong>：任意取 $x_1<x_2$，比较对应的函数值 $y_1$ 与 $y_2$ 的大小。</li>
+            <li><strong>一次函数</strong>：$k>0$ → 增函数；$k<0$ → 减函数（在所有实数上成立）。</li>
+            <li><strong>反比例函数</strong>：在每个象限内有单调性，但在整个定义域（$x \neq 0$）上没有统一的单调性，必须分区间讨论。</li>
+            <li><strong>证明方法——作差法</strong>：计算 $y_1 - y_2$，通过符号分析来判定增减性。</li>
+            <li><strong>数形结合</strong>：代数证明的结果与我们从图象中观察到的结论完全一致，验证了数学的严谨性。</li>
+        </ul>
+    </div>
+</div>
+<script>
+function toggleAnswer(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var currentDisplay = window.getComputedStyle(el).display;
+    if(currentDisplay === 'block') {
+        el.style.display = 'none';
+    } else {
+        el.style.display = 'block';
+        if(window.MathJax && MathJax.typesetPromise) {
+            MathJax.typesetPromise([el]).catch(function(err){ console.log("MathJax渲染提醒:", err); });
+        }
+    }
+}
+</script>
+</body>
+</html>

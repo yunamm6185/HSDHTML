@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>14.2.2 扇形统计图 | 华师版·八年级上册</title>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:linear-gradient(135deg,#e8ecf4 0%,#d4dce8 100%);font-family:'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;font-weight:500;line-height:1.8;color:#1e3b5a;padding:2rem 3rem;font-size:20px;min-height:100vh;}
+        .textbook{max-width:1200px;margin:0 auto;background:#ffffff;border-radius:24px;box-shadow:0 8px 40px rgba(40,60,120,0.15),0 2px 8px rgba(0,0,0,0.06);padding:0;overflow:hidden;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #b8c4dc;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#3d4a6e;}
+        .header-meta{text-align:center;font-size:1rem;color:#6a7ba8;padding:.9rem 2rem;background:#f5f7ff;border-bottom:1px solid #dde3f5;letter-spacing:.03em;}
+        .chapter-title{text-align:center;padding:2.5rem 2rem 1.5rem;background:linear-gradient(135deg,#2d3a6e 0%,#4a5fae 50%,#3d5a9e 100%);color:white;position:relative;overflow:hidden;}
+        .chapter-title::before{content:'';position:absolute;top:-60px;right:-40px;width:260px;height:260px;background:rgba(255,255,255,0.05);border-radius:50%;}
+        .chapter-title::after{content:'';position:absolute;bottom:-80px;right:80px;width:180px;height:180px;background:rgba(255,255,255,0.04);border-radius:50%;}
+        .chapter-title h1{font-size:2.6rem;font-weight:700;margin:0 0 .4rem;position:relative;z-index:1;color:white;line-height:1.3;}
+        .chapter-title .section-label{font-size:1.25rem;opacity:.9;margin:.5rem 0;position:relative;z-index:1;color:rgba(255,255,255,.88);}
+        .chapter-title .lesson-title{display:inline-block;background:rgba(255,255,255,.18);border-radius:40px;padding:.4rem 1.5rem;font-size:1.25rem;font-weight:600;margin-top:.6rem;position:relative;z-index:1;color:white;letter-spacing:.04em;}
+        .content-body{padding:2rem 3rem 2.5rem;}
+        .section-title{font-size:1.8rem;color:#2d3a5e;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #5b6eae;}
+        .section-title::before{content:' ';display:inline-block;width:8px;height:1.8rem;background:linear-gradient(180deg,#5b6eae,#3b82f6);border-radius:4px;margin-right:.8rem;vertical-align:middle;}
+        .learning-targets{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.3rem 2rem;margin:1rem 1.5rem 2rem;border:1px solid #c4cce0;box-shadow:0 5px 0 #a8b8cc;}
+        .learning-targets h3{margin:0 0 .8rem;font-size:1.5rem;border-left:6px solid #5b6eae;padding-left:1rem;color:#2d3a5e;}
+        .target-grid{display:flex;flex-wrap:wrap;gap:.8rem;}
+        .target-item{background:white;border-radius:40px;padding:.4rem 1.5rem .4rem .9rem;display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:1rem;box-shadow:0 3px 0 #b4c4d8;border:1px solid #c8d2e2;}
+        .target-item span{background:#5b6eae;color:white;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-weight:bold;}
+.intro-card{background:linear-gradient(135deg,#e8ecf4,#dde3ee);border-radius:2rem;padding:1.8rem 2rem;margin:1.4rem 1.5rem;border-left:8px solid #5b6eae;font-weight:600;}
+.fact-card{background:#fff8e1;border-left:8px solid #d4a017;border-radius:1.8rem;padding:1.4rem 1.8rem;margin:1.4rem 1.5rem;}
+.example-card{background:#e8f4e8;border-left:8px solid #4a7c4f;border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.4rem 1.5rem;}
+        .section-title{font-size:1.6rem;color:#2d3a5e;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #5b6eae;}
+        .summary-section{background:#dce4f0;border-left:6px solid #5b6eae;border-radius:1.8rem;padding:1.2rem 2rem;margin:1.5rem 1.5rem;}
+        .footer-note{text-align:right;color:#3d4a6e;border-top:2px solid #c4cee0;padding-top:.8rem;margin-top:1.5rem;font-size:.95rem;}
+        table{width:100%;border-collapse:collapse;margin:1rem auto;}th,td{padding:10px 14px;text-align:center;border:1px solid #d4dae8;}
+        th{background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;}tr:nth-child(even){background:#f8fafc;}tr:hover{background:#eef2f7;}
+        ul,ol{margin-left:25px;line-height:2;}
+        p{margin:.5rem 0;}
+        canvas{max-width:100%;height:auto;border-radius:12px;display:block;}
+        .chart-container{background:#f8f9ff;border:2px solid #d4dae8;border-radius:1rem;padding:1.5rem;margin:1.5rem 1.5rem;text-align:center;}
+        .pie-charts-row{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;align-items:flex-start;}
+        .pie-chart-wrapper{text-align:center;min-width:260px;}
+        .pie-chart-wrapper canvas{margin:0 auto;display:block;}
+        .formula-box{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border:2px solid #5b6eae;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem 1.5rem;text-align:center;}
+        .formula-box h3{color:#2d3a5e;margin-bottom:1rem;font-size:1.3rem;}
+        .step-card{background:linear-gradient(135deg,#e8ecf4,#dde3ee);border-left:6px solid #5b6eae;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 1.5rem;}
+        .step-card ol{margin-top:.8rem;}
+        .highlight-box{background:linear-gradient(120deg,#e8ecf4,#f0ebff);padding:.3rem .8rem;border-radius:8px;font-weight:700;color:#3d4a6e;display:inline;}
+        .warning-box{background:#fff8e1;border-left:6px solid #d4a017;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 1.5rem;}
+        .think-box{background:#fff3e0;border-left:6px solid #e65100;border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 1.5rem;}
+        .concept-highlight{background:linear-gradient(145deg,#e8ecf4,#dde3ee);border:2px solid #5b6eae;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem 1.5rem;}
+        .concept-highlight h3{color:#2d3a5e;font-size:1.35rem;margin-bottom:.8rem;}
+        .key-point{background:#e8f4e8;border-left:6px solid #4a7c4f;border-radius:1.5rem;padding:1rem 1.5rem;margin:1rem 1.5rem;}
+        .legend-container{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-top:1rem;}
+        .legend-item{display:flex;align-items:center;gap:.4rem;font-size:.9rem;padding:.25rem .6rem;background:#f8f9ff;border-radius:20px;border:1px solid #d4dae8;}
+        .legend-color{width:16px;height:16px;border-radius:4px;flex-shrink:0;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">华师版·八年级上册 | 第14章 数据的收集与表示</div>
+
+    <div class="chapter-title">
+        <div class="section-label">14.2 数据的表示</div>
+        <h1>第十四章 数据的收集与表示</h1>
+        <div><span class="lesson-title">14.2.2 扇形统计图</span></div>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>📌 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解扇形统计图的概念和特点（整体=1/100%）</div>
+            <div class="target-item"><span>2</span>掌握扇形圆心角的计算公式</div>
+            <div class="target-item"><span>3</span>能够用Canvas制作扇形统计图</div>
+            <div class="target-item"><span>4</span>学会从扇形统计图中读取和分析信息</div>
+        </div>
+    </div>
+
+    <!-- 问题情境 -->
+    <div class="section-title">📊 一、问题情境：长时间看屏幕后的不适症状</div>
+
+    <div class="intro-card">
+        <p><strong>问题情境：</strong>就长时间持续看屏幕后感觉最不舒服的一个症状，一些同学在汇报他们的调查结果时，收集了不同人群的数据。下面是三张反映调查结果的<span class="highlight-box">扇形统计图</span>。</p>
+    </div>
+
+    <!-- 交互式扇形图 Canvas -->
+    <div class="chart-container">
+        <p style="font-weight:600;color:#2d3a5e;margin-bottom:1rem;">长时间看屏幕后不适症状的分布情况</p>
+        <div class="pie-charts-row" style="display:flex;flex-wrap:nowrap;justify-content:space-between;gap:1.5rem;">
+            <div class="pie-chart-wrapper" style="flex:1;min-width:0;background:linear-gradient(145deg,#fff5f5 0%,#ffe0e0 100%);border:3px solid #e74c3c;border-radius:16px;padding:1rem;">
+                <p style="font-weight:700;margin-bottom:.8rem;color:#c0392b;font-size:1rem;background:#fff;padding:.4rem .8rem;border-radius:20px;display:inline-block;border:2px solid #e74c3c;">👥 全体被调查人群</p>
+                <canvas id="pieAll" width="240" height="240"></canvas>
+                <div id="legendAll" class="legend-container" style="font-size:.85rem;margin-top:.8rem;"></div>
+            </div>
+            <div class="pie-chart-wrapper" style="flex:1;min-width:0;background:linear-gradient(145deg,#f0f8ff 0%,#d6eaf8 100%);border:3px solid #3498db;border-radius:16px;padding:1rem;">
+                <p style="font-weight:700;margin-bottom:.8rem;color:#2980b9;font-size:1rem;background:#fff;padding:.4rem .8rem;border-radius:20px;display:inline-block;border:2px solid #3498db;">🧒 不满18岁人群</p>
+                <canvas id="pieYoung" width="240" height="240"></canvas>
+                <div id="legendYoung" class="legend-container" style="font-size:.85rem;margin-top:.8rem;"></div>
+            </div>
+            <div class="pie-chart-wrapper" style="flex:1;min-width:0;background:linear-gradient(145deg,#f0f8ff 0%,#d6eaf8 100%);border:3px solid #3498db;border-radius:16px;padding:1rem;">
+                <p style="font-weight:700;margin-bottom:.8rem;color:#2980b9;font-size:1rem;background:#fff;padding:.4rem .8rem;border-radius:20px;display:inline-block;border:2px solid #3498db;">👨 18岁以上人群</p>
+                <canvas id="pieAdult" width="240" height="240"></canvas>
+                <div id="legendAdult" class="legend-container" style="font-size:.85rem;margin-top:.8rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="think-box">
+        <strong>💭 思考讨论：</strong>
+        <ol>
+            <li>图中各个扇形分别代表什么？</li>
+            <li>人们长时间持续看屏幕后感觉最不舒服的症状是什么？</li>
+            <li>对于不同年龄的人群，情况有没有不同？</li>
+            <li>全体人群中感觉眼睛疲倦的占35%，而不满18岁人群中感觉眼睛疲倦的占45%。这是否意味着：不满18岁人群中眼睛疲倦的人数 > 全体人群中眼睛疲倦的人数？为什么？</li>
+        </ol>
+    </div>
+
+    <!-- 核心概念 -->
+    <div class="section-title">📖 二、扇形统计图的概念</div>
+
+    <div class="concept-highlight" style="background:linear-gradient(145deg,#f0f7ff,#e8f0f8);border:3px solid #4a7c9e;border-radius:1.5rem;padding:1.8rem 2rem;margin:1.5rem;box-shadow:0 4px 15px rgba(74,124,158,0.12);">
+        <h3 style="color:#2d3a5e;font-size:1.4rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;">
+            <span style="background:#4a7c9e;color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;">🔑</span>
+            核心概念
+        </h3>
+        <div style="background:white;padding:1.2rem 1.5rem;border-radius:12px;margin-bottom:1rem;border-left:4px solid #4a7c9e;">
+            <p style="font-size:1.1rem;margin:0;"><strong>扇形统计图</strong>是用<span class="highlight-box" style="background:linear-gradient(120deg,#fff3cd,#ffeaa7);padding:.2rem .6rem;border-radius:6px;font-weight:700;">整个圆代表所研究的总体（即100%，或整体为1）</span>，用圆中各个扇形代表组成总体的各个部分的统计图。</p>
+        </div>
+        <div style="background:#e8f4e8;padding:1rem 1.5rem;border-radius:12px;border-left:4px solid #4a7c4f;">
+            <p style="margin:0;"><strong>✨ 主要特点：</strong>可以清晰地呈现总体中<strong style="color:#4a7c4f;">各部分所占百分比的多少</strong></p>
+        </div>
+    </div>
+
+    <div class="fact-card">
+        <strong>⚠️ 重要提醒：</strong>
+        <p>不同的两个扇形统计图，如果它们的<strong>总体数量不相等</strong>，那么占比大的那个部分的数量<strong>并不一定也大</strong>。</p>
+        <p style="margin-top:.6rem;">例如：全体人群中感觉眼睛疲倦的占35%（对应全体人数），而不满18岁人群中感觉眼睛疲倦的占45%（只对应不满18岁人数）。因为不满18岁人群只是全体的一部分，所以45%的部分数量一定小于35%的全体数量。</p>
+    </div>
+
+    <!-- 圆心角计算 -->
+    <div class="section-title">📐 三、圆心角与百分比的关系</div>
+
+    <div class="formula-box" style="background:linear-gradient(145deg,#f0f7ff 0%,#e0edff 100%);border:3px solid #4a7c9e;border-radius:1.8rem;padding:2rem 2.5rem;margin:1.5rem;text-align:center;box-shadow:0 8px 25px rgba(74,124,158,0.18),inset 0 1px 0 rgba(255,255,255,0.6);">
+        <h3 style="color:#2d3a5e;margin-bottom:1.5rem;font-size:1.5rem;display:flex;align-items:center;justify-content:center;gap:.6rem;">
+            <span style="background:linear-gradient(135deg,#4a7c9e,#5b6eae);color:white;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 3px 8px rgba(74,124,158,0.3);">📐</span>
+            核心公式
+        </h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;margin:1.2rem 0;">
+            <div style="background:linear-gradient(145deg,#ffffff,#f8fbff);padding:1.2rem 1.8rem;border-radius:16px;border:2px solid #4a7c9e;flex:1;min-width:280px;box-shadow:0 4px 12px rgba(74,124,158,0.1);transition:transform 0.2s;">
+                $$\text{圆心角度数} = 360^\circ \times \text{百分比}$$
+                <p style="font-size:.95rem;color:#5b6eae;margin-top:.6rem;font-weight:500;background:#e8f4ff;display:inline-block;padding:.3rem .8rem;border-radius:20px;">已知百分比，求圆心角</p>
+            </div>
+            <div style="background:linear-gradient(145deg,#ffffff,#f8fbff);padding:1.2rem 1.8rem;border-radius:16px;border:2px solid #7c8fcf;flex:1;min-width:280px;box-shadow:0 4px 12px rgba(124,143,207,0.1);transition:transform 0.2s;">
+                $$\text{百分比} = \frac{\text{圆心角度数}}{360^\circ} \times 100\%$$
+                <p style="font-size:.95rem;color:#7c8fcf;margin-top:.6rem;font-weight:500;background:#f0f4ff;display:inline-block;padding:.3rem .8rem;border-radius:20px;">已知圆心角，求百分比</p>
+            </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fff8e1 0%,#fff3cd 100%);padding:1rem 1.5rem;border-radius:12px;margin-top:1.2rem;border:2px solid #d4a017;box-shadow:0 3px 10px rgba(212,160,23,0.15);">
+            <strong style="color:#8b6914;font-size:1.1rem;">🔑 关键关系：</strong>
+            <span style="color:#5a4a0a;font-weight:600;">整个圆 = $360^\circ$ = $100\%$ = 总体</span>
+        </div>
+    </div>
+
+    <div class="key-point">
+        <strong>💡 理解要点：</strong>
+        <ul>
+            <li>整个圆就是 $100\%$，即 $360^\circ$，相当于整体为 $1$</li>
+            <li>已知某一扇形的圆心角 → 可求出该部分的百分比大小</li>
+            <li>已知某一部分的百分比 → 可求出对应的扇形圆心角度数</li>
+            <li>所有扇形的圆心角之和必须等于 $360^\circ$，所有百分比之和等于 $100\%$</li>
+        </ul>
+    </div>
+
+    <!-- 圆心角计算器 -->
+    <div class="calculator-container" style="background:linear-gradient(145deg,#f8faff 0%,#eef4ff 100%);border:3px solid #4a7c9e;border-radius:1.8rem;padding:2rem 2.5rem;margin:1.5rem;box-shadow:0 8px 30px rgba(74,124,158,0.15),inset 0 1px 0 rgba(255,255,255,0.8);">
+        <h3 style="color:#2d3a5e;margin-bottom:1.5rem;text-align:center;font-size:1.4rem;display:flex;align-items:center;justify-content:center;gap:.6rem;">
+            <span style="background:linear-gradient(135deg,#4a7c9e,#5b6eae);color:white;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 12px rgba(74,124,158,0.3);">🧮</span>
+            圆心角计算器
+        </h3>
+        <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;align-items:flex-end;background:linear-gradient(135deg,#ffffff 0%,#f8fbff 100%);padding:1.5rem;border-radius:16px;border:2px solid #d4e0f0;">
+            <div style="flex:1;min-width:160px;">
+                <label style="display:block;margin-bottom:.6rem;font-weight:700;color:#2d3a5e;font-size:1.05rem;">该部分数量</label>
+                <input type="number" id="calcPart" placeholder="例如：35" style="width:100%;padding:.8rem 1rem;border:2px solid #b8c8e0;border-radius:12px;font-size:1.1rem;background:#ffffff;transition:all 0.2s;box-shadow:inset 0 2px 4px rgba(0,0,0,0.05);" oninput="calculateAngle()">
+            </div>
+            <div style="font-size:1.8rem;color:#7c8fcf;font-weight:300;padding-bottom:.8rem;">÷</div>
+            <div style="flex:1;min-width:160px;">
+                <label style="display:block;margin-bottom:.6rem;font-weight:700;color:#2d3a5e;font-size:1.05rem;">总体数量</label>
+                <input type="number" id="calcTotal" placeholder="例如：100" style="width:100%;padding:.8rem 1rem;border:2px solid #b8c8e0;border-radius:12px;font-size:1.1rem;background:#ffffff;transition:all 0.2s;box-shadow:inset 0 2px 4px rgba(0,0,0,0.05);" oninput="calculateAngle()">
+            </div>
+            <div style="font-size:1.8rem;color:#7c8fcf;font-weight:300;padding-bottom:.8rem;">=</div>
+            <div style="flex:1;min-width:140px;">
+                <label style="display:block;margin-bottom:.6rem;font-weight:700;color:#2d3a5e;font-size:1.05rem;">百分比</label>
+                <div id="calcPercent" style="background:linear-gradient(145deg,#ffffff,#f0f7ff);padding:.8rem 1rem;border-radius:12px;border:2px solid #5b6eae;font-weight:700;color:#2d3a5e;font-size:1.1rem;text-align:center;box-shadow:0 2px 8px rgba(91,110,174,0.1);">--%</div>
+            </div>
+            <div style="font-size:1.5rem;color:#7c8fcf;font-weight:300;padding-bottom:.8rem;">× 360°</div>
+            <div style="font-size:1.8rem;color:#7c8fcf;font-weight:300;padding-bottom:.8rem;">=</div>
+            <div style="flex:1;min-width:140px;">
+                <label style="display:block;margin-bottom:.6rem;font-weight:700;color:#2d3a5e;font-size:1.05rem;">圆心角</label>
+                <div id="calcAngle" style="background:linear-gradient(135deg,#4a7c9e,#5b6eae);color:white;padding:.8rem 1rem;border-radius:12px;font-weight:700;font-size:1.2rem;text-align:center;box-shadow:0 4px 15px rgba(74,124,158,0.3);">--°</div>
+            </div>
+        </div>
+        <div style="margin-top:1.2rem;padding:1rem 1.2rem;background:linear-gradient(135deg,#fff8e1 0%,#fff3cd 100%);border-radius:12px;border:2px solid #d4a017;box-shadow:0 3px 10px rgba(212,160,23,0.12);">
+            <strong style="color:#8b6914;">💡 使用说明：</strong>
+            <span style="color:#5a4a0a;">输入该部分的数量和总体数量，计算器会自动算出百分比和对应的圆心角度数。</span>
+        </div>
+    </div>
+
+    <!-- 例题：人口数据 -->
+    <div class="section-title">📊 四、例题：全国人口年龄结构</div>
+
+    <div class="example-card">
+        <h3 style="color:#2d3a5e;margin-bottom:.8rem;font-size:1.25rem;">【例题】国家统计局2010年和2020年人口普查数据</h3>
+        <p>下表是国家统计局2010年和2020年两次全国人口普查中不同年龄段的人口数。请完成表格中的占比和圆心角计算，并绘制扇形统计图。</p>
+    </div>
+
+    <div style="margin:1.5rem;">
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">年龄段</th>
+                    <th colspan="3">2010年</th>
+                    <th colspan="3">2020年</th>
+                </tr>
+                <tr>
+                    <th>人口数（万人）</th>
+                    <th>占比</th>
+                    <th>圆心角</th>
+                    <th>人口数（万人）</th>
+                    <th>占比</th>
+                    <th>圆心角</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0~14岁</td>
+                    <td>22246</td>
+                    <td>16.60%</td>
+                    <td>$59.8^\circ$</td>
+                    <td>25338</td>
+                    <td>17.95%</td>
+                    <td>$64.6^\circ$</td>
+                </tr>
+                <tr>
+                    <td>15~59岁</td>
+                    <td>93962</td>
+                    <td>70.14%</td>
+                    <td>$252.5^\circ$</td>
+                    <td>89438</td>
+                    <td>63.35%</td>
+                    <td>$228.1^\circ$</td>
+                </tr>
+                <tr>
+                    <td>60岁及以上</td>
+                    <td>17765</td>
+                    <td>13.26%</td>
+                    <td>$47.7^\circ$</td>
+                    <td>26402</td>
+                    <td>18.70%</td>
+                    <td>$67.3^\circ$</td>
+                </tr>
+                <tr style="background-color:#e8ecf4;font-weight:700;">
+                    <td>总计</td>
+                    <td>133973</td>
+                    <td>100%</td>
+                    <td>$360^\circ$</td>
+                    <td>141178</td>
+                    <td>100%</td>
+                    <td>$360^\circ$</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 制作步骤 -->
+    <div class="step-card">
+        <h3 style="color:#2d3a5e;margin-bottom:.5rem;">✏️ 制作扇形统计图的步骤</h3>
+        <ol>
+            <li><strong>求百分比：</strong>各年龄段的人口数 ÷ 总人口数 × 100%<br>
+                例如：$22246 \div 133973 \approx 16.60\%$
+            </li>
+            <li><strong>算圆心角：</strong>$360^\circ \times$ 该部分百分比<br>
+                例如：$360^\circ \times 16.60\% \approx 59.8^\circ$
+            </li>
+            <li><strong>画扇形：</strong>按照计算的圆心角在圆中画出各个扇形</li>
+            <li><strong>作标记：</strong>在每个扇形中标明名称和对应的百分比</li>
+        </ol>
+    </div>
+
+    <!-- 交互式扇形图制作演示 -->
+    <div class="chart-container" style="background:linear-gradient(145deg,#f8f9ff,#e8ecf4);">
+        <h3 style="color:#2d3a5e;margin-bottom:1rem;">🎨 交互式扇形图制作演示</h3>
+        <p style="margin-bottom:1rem;color:#3d4a6e;">输入各部分的数据，实时生成扇形统计图</p>
+        
+        <div style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+            <div style="flex:1;min-width:280px;">
+                <div style="background:white;border-radius:12px;padding:1rem;border:2px solid #d4dae8;">
+                    <h4 style="color:#2d3a5e;margin-bottom:.8rem;">数据输入</h4>
+                    <div id="pieInputs" style="display:flex;flex-direction:column;gap:.6rem;">
+                        <div style="display:flex;gap:.5rem;align-items:center;">
+                            <div style="width:20px;height:20px;background:#e74c3c;border-radius:4px;"></div>
+                            <input type="text" id="label1" value="项目A" style="flex:1;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;">
+                            <input type="number" id="value1" value="30" style="width:80px;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;" oninput="updateInteractivePie()">
+                        </div>
+                        <div style="display:flex;gap:.5rem;align-items:center;">
+                            <div style="width:20px;height:20px;background:#3498db;border-radius:4px;"></div>
+                            <input type="text" id="label2" value="项目B" style="flex:1;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;">
+                            <input type="number" id="value2" value="25" style="width:80px;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;" oninput="updateInteractivePie()">
+                        </div>
+                        <div style="display:flex;gap:.5rem;align-items:center;">
+                            <div style="width:20px;height:20px;background:#2ecc71;border-radius:4px;"></div>
+                            <input type="text" id="label3" value="项目C" style="flex:1;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;">
+                            <input type="number" id="value3" value="25" style="width:80px;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;" oninput="updateInteractivePie()">
+                        </div>
+                        <div style="display:flex;gap:.5rem;align-items:center;">
+                            <div style="width:20px;height:20px;background:#f39c12;border-radius:4px;"></div>
+                            <input type="text" id="label4" value="项目D" style="flex:1;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;">
+                            <input type="number" id="value4" value="20" style="width:80px;padding:.4rem .8rem;border:1px solid #c4cce0;border-radius:8px;" oninput="updateInteractivePie()">
+                        </div>
+                    </div>
+                    <div style="margin-top:1rem;padding:.8rem;background:#e8f4e8;border-radius:8px;">
+                        <strong>总计：</strong><span id="pieTotal" style="font-weight:700;color:#4a7c4f;">100</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="flex:1;min-width:280px;text-align:center;">
+                <canvas id="interactivePie" width="280" height="280" style="margin:0 auto;"></canvas>
+                <div id="interactiveLegend" class="legend-container" style="margin-top:.8rem;"></div>
+            </div>
+        </div>
+        
+        <div style="margin-top:1rem;padding:1rem;background:#fff8e1;border-radius:10px;border-left:4px solid #d4a017;">
+            <strong>📊 计算过程展示：</strong>
+            <div id="calculationSteps" style="margin-top:.5rem;font-family:monospace;font-size:.95rem;color:#3d4a6e;">
+                <!-- 动态生成计算步骤 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 人口结构扇形图 -->
+    <div class="chart-container">
+        <p style="font-weight:600;color:#2d3a5e;margin-bottom:1rem;">全国人口年龄结构对比（Canvas 绘制）</p>
+        <div class="pie-charts-row" style="display:flex;flex-wrap:nowrap;justify-content:center;gap:3rem;">
+            <div class="pie-chart-wrapper" style="flex:0 0 auto;">
+                <canvas id="pie2010" width="320" height="280"></canvas>
+                <p style="font-weight:600;margin-top:.6rem;color:#3d4a6e;">2010年全国人口年龄结构</p>
+            </div>
+            <div class="pie-chart-wrapper" style="flex:0 0 auto;">
+                <canvas id="pie2020" width="320" height="280"></canvas>
+                <p style="font-weight:600;margin-top:.6rem;color:#3d4a6e;">2020年全国人口年龄结构</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-point">
+        <strong>📈 从扇形统计图中可以读出的信息：</strong>
+        <ul>
+            <li>2020年，0~14岁人口占比略有增加（从16.60%到17.95%）</li>
+            <li>15~59岁人口占比明显下降（从70.14%到63.35%）</li>
+            <li>60岁及以上人口占比明显增加（从13.26%到18.70%）</li>
+            <li><strong>人口老龄化趋势明显</strong></li>
+        </ul>
+    </div>
+
+    <!-- 即时反馈练习题 -->
+    <div class="section-title">✏️ 五、即时反馈练习</div>
+
+    <div class="quiz-container" style="background:linear-gradient(145deg,#f8f9ff,#e8ecf4);border:2px solid #5b6eae;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem;">
+        <h3 style="color:#2d3a5e;margin-bottom:1rem;">📝 练习题 1：圆心角计算</h3>
+        <p style="margin-bottom:1rem;">某班级40名学生参加兴趣小组，各小组人数如下表：</p>
+        <table style="margin-bottom:1rem;">
+            <thead>
+                <tr><th>小组</th><th>人数</th><th>百分比</th><th>圆心角</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>体育</td><td>12人</td><td><input type="text" id="q1p1" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">%</td><td><input type="text" id="q1a1" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">°</td></tr>
+                <tr><td>音乐</td><td>8人</td><td><input type="text" id="q1p2" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">%</td><td><input type="text" id="q1a2" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">°</td></tr>
+                <tr><td>美术</td><td>6人</td><td><input type="text" id="q1p3" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">%</td><td><input type="text" id="q1a3" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">°</td></tr>
+                <tr><td>科技</td><td>14人</td><td><input type="text" id="q1p4" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">%</td><td><input type="text" id="q1a4" style="width:80px;padding:.3rem;border:1px solid #c4cce0;border-radius:6px;">°</td></tr>
+            </tbody>
+        </table>
+        <button onclick="checkQuiz1()" style="background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;border:none;padding:.6rem 1.5rem;border-radius:10px;font-size:1rem;cursor:pointer;font-weight:600;">检查答案</button>
+        <div id="quiz1Result" style="margin-top:1rem;padding:1rem;border-radius:10px;display:none;"></div>
+    </div>
+
+    <div class="quiz-container" style="background:linear-gradient(145deg,#f8f9ff,#e8ecf4);border:2px solid #5b6eae;border-radius:1.5rem;padding:1.5rem 2rem;margin:1.5rem;">
+        <h3 style="color:#2d3a5e;margin-bottom:1rem;">📝 练习题 2：概念辨析</h3>
+        <p style="margin-bottom:1rem;">判断下列说法是否正确：</p>
+        
+        <div style="margin-bottom:1rem;padding:1rem;background:white;border-radius:10px;">
+            <p><strong>①</strong> 扇形统计图中，圆心角越大，表示该部分占总体的百分比越大。</p>
+            <div style="margin-top:.5rem;">
+                <label style="margin-right:1rem;"><input type="radio" name="q2a" value="true"> 正确</label>
+                <label><input type="radio" name="q2a" value="false"> 错误</label>
+            </div>
+        </div>
+        
+        <div style="margin-bottom:1rem;padding:1rem;background:white;border-radius:10px;">
+            <p><strong>②</strong> 比较两个扇形统计图时，百分比大的部分，其数量一定也大。</p>
+            <div style="margin-top:.5rem;">
+                <label style="margin-right:1rem;"><input type="radio" name="q2b" value="true"> 正确</label>
+                <label><input type="radio" name="q2b" value="false"> 错误</label>
+            </div>
+        </div>
+        
+        <div style="margin-bottom:1rem;padding:1rem;background:white;border-radius:10px;">
+            <p><strong>③</strong> 一个扇形统计图中所有扇形的圆心角之和等于360°。</p>
+            <div style="margin-top:.5rem;">
+                <label style="margin-right:1rem;"><input type="radio" name="q2c" value="true"> 正确</label>
+                <label><input type="radio" name="q2c" value="false"> 错误</label>
+            </div>
+        </div>
+        
+        <button onclick="checkQuiz2()" style="background:linear-gradient(135deg,#5b6eae,#7c8fcf);color:white;border:none;padding:.6rem 1.5rem;border-radius:10px;font-size:1rem;cursor:pointer;font-weight:600;">检查答案</button>
+        <div id="quiz2Result" style="margin-top:1rem;padding:1rem;border-radius:10px;display:none;"></div>
+    </div>
+
+    <!-- 思考练习 -->
+    <div class="section-title">🤔 六、思考与练习</div>
+
+    <div class="think-box">
+        <strong>思考：</strong>如果要制作一张关于你所在班级同学最喜欢的运动项目的扇形统计图，你需要做哪些准备？
+        <ul style="margin-top:.6rem;">
+            <li>需要收集哪些数据？</li>
+            <li>如何确定每个扇形的圆心角？</li>
+            <li>所有圆心角加起来应该是多少度？</li>
+        </ul>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">📝 七、课堂小结</div>
+
+    <div class="summary-section">
+        <h3 style="color:#2d3a5e;margin-bottom:.8rem;font-size:1.25rem;">本课知识梳理</h3>
+        
+        <p><strong>1. 扇形统计图的特点</strong></p>
+        <ul>
+            <li>用<strong>整个圆代表总体</strong>（100%，或整体为1）</li>
+            <li>各<strong>扇形代表各部分</strong>，其大小反映该部分占总体的百分比</li>
+            <li>可以清晰地比较各部分占比的大小关系</li>
+        </ul>
+
+        <p style="margin-top:1rem;"><strong>2. 核心公式</strong></p>
+        <p>$$\text{圆心角} = 360^\circ \times \text{百分比}, \quad \text{百分比之和} = 100\%, \quad \text{圆心角之和} = 360^\circ$$</p>
+
+        <p style="margin-top:1rem;"><strong>3. 制作步骤</strong></p>
+        <ol>
+            <li><strong>求百分比</strong> — 计算各部分占总体的百分比</li>
+            <li><strong>算圆心角</strong> — 用 $360^\circ$ 乘以各部分百分比</li>
+            <li><strong>画扇形</strong> — 按圆心角大小画出各扇形</li>
+            <li><strong>作标记</strong> — 在每个扇形上标明名称和百分比</li>
+        </ol>
+
+        <p style="margin-top:1rem;"><strong>4. 注意事项</strong></p>
+        <ul>
+            <li>⚠️ 比较两个扇形统计图时，<strong>要注意总体数量是否相等</strong></li>
+            <li>⚠️ 总体不同时，<strong>百分比大的部分数量不一定大</strong></li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <p>华师版 · 八年级上册 · 第14章 数据的收集与表示 · 14.2.2 扇形统计图</p>
+    </div>
+</div>
+
+<script>
+// ====== 颜色配置 ======
+// 不适症状扇形图使用高对比度配色方案
+const SYMPTOM_COLORS = [
+    '#e74c3c',  // 眼睛疲倦 - 醒目红色
+    '#3498db',  // 颈部酸痛 - 明亮蓝色
+    '#2ecc71',  // 头痛头晕 - 鲜绿色
+    '#f39c12',  // 腰背疼痛 - 橙色
+    '#9b59b6'   // 其他症状 - 紫色
+];
+
+const COLORS = [
+    '#5b6eae', '#7c8fcf', '#a8b5d4', '#c4cee0', 
+    '#e89b5e', '#4a7c59', '#c45c5c', '#8b6bb3',
+    '#5ba88f', '#d4855e'
+];
+
+// 人口年龄结构专用高对比度配色
+const POPULATION_COLORS = [
+    '#3498db',  // 0~14岁 - 明亮蓝色
+    '#e74c3c',  // 15~59岁 - 醒目红色
+    '#2ecc71'   // 60岁+ - 鲜绿色
+];
+
+// ====== 通用饼图绘制函数 ======
+function drawPieChart(canvasId, data, options = {}) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const centerX = W / 2;
+    const centerY = options.legendSpace ? H / 2 - 10 : H / 2;
+    const radius = Math.min(W, H) / 2 - (options.legendSpace ? 30 : 20);
+    
+    ctx.clearRect(0, 0, W, H);
+
+    let startAngle = -Math.PI / 2; // 从12点钟方向开始
+    const total = data.reduce((sum, d) => sum + d.value, 0);
+
+    data.forEach((item, i) => {
+        const sliceAngle = (item.value / total) * 2 * Math.PI;
+        const endAngle = startAngle + sliceAngle;
+        const color = item.color || COLORS[i % COLORS.length];
+
+        // 绘制扇形
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 绘制标签
+        if (!options.noLabel) {
+            const midAngle = startAngle + sliceAngle / 2;
+            const labelRadius = radius * 0.68;
+            const labelX = centerX + Math.cos(midAngle) * labelRadius;
+            const labelY = centerY + Math.sin(midAngle) * labelRadius;
+
+            const percent = ((item.value / total) * 100).toFixed(1);
+            
+            ctx.save();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 13px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 文字阴影增强可读性
+            ctx.shadowColor = 'rgba(0,0,0,0.4)';
+            ctx.shadowBlur = 3;
+            ctx.fillText(`${percent}%`, labelX, labelY);
+            ctx.restore();
+        }
+
+        startAngle = endAngle;
+    });
+
+    // 绘制中心装饰圆（甜甜圈效果）
+    if (options.donut) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = '#d4dae8';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    // 绘制图例（在画布下方）
+    if (options.drawLegend && options.legendId) {
+        const legendContainer = document.getElementById(options.legendId);
+        if (legendContainer) {
+            legendContainer.innerHTML = '';
+            data.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'legend-item';
+                const colorBox = document.createElement('div');
+                colorBox.className = 'legend-color';
+                colorBox.style.backgroundColor = item.color || COLORS[i % COLORS.length];
+                const text = document.createTextNode(`${item.name} ${((item.value/total)*100).toFixed(1)}%`);
+                div.appendChild(colorBox);
+                div.appendChild(text);
+                legendContainer.appendChild(div);
+            });
+        }
+    }
+}
+
+// ====== 绘制带内部标签的饼图 ======
+function drawLabeledPieChart(canvasId, data) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const centerX = 100;
+    const pieTop = H / 2;
+    const radius = 85;
+    
+    ctx.clearRect(0, 0, W, H);
+
+    let startAngle = -Math.PI / 2;
+    const total = data.reduce((sum, d) => sum + d.value, 0);
+
+    data.forEach((item, i) => {
+        const sliceAngle = (item.value / total) * 2 * Math.PI;
+        const endAngle = startAngle + sliceAngle;
+        const color = item.color || COLORS[i % COLORS.length];
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, pieTop);
+        ctx.arc(centerX, pieTop, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#fff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // 百分比标签
+        const midAngle = startAngle + sliceAngle / 2;
+        const lr = radius * 0.65;
+        const lx = centerX + Math.cos(midAngle) * lr;
+        const ly = pieTop + Math.sin(midAngle) * lr;
+        const pct = ((item.value / total) * 100).toFixed(1);
+        
+        ctx.save();
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 13px "Microsoft YaHei", sans-serif';
+        ctx.shadowColor = 'rgba(0,0,0,0.4)';
+        ctx.shadowBlur = 3;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(pct + '%', lx, ly);
+        ctx.restore();
+
+        startAngle = endAngle;
+    });
+
+    // 图例 - 垂直排列在右侧（仅显示名称，不显示百分数）
+    let legendX = 200;
+    let legendY = H / 2 - (data.length * 32) / 2;
+    data.forEach((item, i) => {
+        const y = legendY + i * 32;
+        const color = item.color || COLORS[i % COLORS.length];
+        
+        // 色块
+        ctx.fillStyle = color;
+        ctx.fillRect(legendX, y, 18, 18);
+        ctx.strokeStyle = '#ccc';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(legendX, y, 18, 18);
+        
+        // 仅显示名称
+        ctx.fillStyle = '#2d3a5e';
+        ctx.font = 'bold 14px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(`${item.name}`, legendX + 28, y + 9);
+    });
+}
+
+// ====== 绘制不适症状扇形图（使用指定高对比度颜色） ======
+function drawSymptomPieChart(canvasId, data, options = {}) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const centerX = W / 2;
+    const centerY = H / 2;
+    const radius = Math.min(W, H) / 2 - 25;
+    
+    ctx.clearRect(0, 0, W, H);
+
+    let startAngle = -Math.PI / 2;
+    const total = data.reduce((sum, d) => sum + d.value, 0);
+
+    data.forEach((item, i) => {
+        const sliceAngle = (item.value / total) * 2 * Math.PI;
+        const endAngle = startAngle + sliceAngle;
+        const color = item.color || SYMPTOM_COLORS[i % SYMPTOM_COLORS.length];
+
+        // 绘制扇形
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // 绘制标签
+        if (!options.noLabel) {
+            const midAngle = startAngle + sliceAngle / 2;
+            const labelRadius = radius * 0.65;
+            const labelX = centerX + Math.cos(midAngle) * labelRadius;
+            const labelY = centerY + Math.sin(midAngle) * labelRadius;
+
+            const percent = ((item.value / total) * 100).toFixed(1);
+            
+            ctx.save();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 13px "Microsoft YaHei", sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 文字阴影增强可读性
+            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowBlur = 4;
+            ctx.fillText(`${percent}%`, labelX, labelY);
+            ctx.restore();
+        }
+
+        startAngle = endAngle;
+    });
+
+    // 绘制中心装饰圆（甜甜圈效果）
+    if (options.donut) {
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    // 绘制图例（在画布下方）
+    if (options.drawLegend && options.legendId) {
+        const legendContainer = document.getElementById(options.legendId);
+        if (legendContainer) {
+            legendContainer.innerHTML = '';
+            data.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'legend-item';
+                div.style.background = '#ffffff';
+                div.style.border = '2px solid ' + (item.color || SYMPTOM_COLORS[i % SYMPTOM_COLORS.length]);
+                div.style.margin = '2px';
+                const colorBox = document.createElement('div');
+                colorBox.className = 'legend-color';
+                colorBox.style.backgroundColor = item.color || SYMPTOM_COLORS[i % SYMPTOM_COLORS.length];
+                colorBox.style.width = '14px';
+                colorBox.style.height = '14px';
+                const text = document.createTextNode(`${item.name}`);
+                div.appendChild(colorBox);
+                div.appendChild(text);
+                legendContainer.appendChild(div);
+            });
+        }
+    }
+}
+
+// ====== 圆心角计算器 ======
+function calculateAngle() {
+    const part = parseFloat(document.getElementById('calcPart').value);
+    const total = parseFloat(document.getElementById('calcTotal').value);
+    
+    if (part && total && total > 0) {
+        const percent = (part / total * 100).toFixed(2);
+        const angle = (part / total * 360).toFixed(1);
+        document.getElementById('calcPercent').textContent = percent + '%';
+        document.getElementById('calcAngle').textContent = angle + '°';
+    } else {
+        document.getElementById('calcPercent').textContent = '--%';
+        document.getElementById('calcAngle').textContent = '--°';
+    }
+}
+
+// ====== 交互式扇形图更新 ======
+// 交互式扇形图使用高对比度配色
+const INTERACTIVE_COLORS = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12'];
+
+function updateInteractivePie() {
+    const canvas = document.getElementById('interactivePie');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const centerX = W / 2;
+    const centerY = H / 2;
+    const radius = 100;
+    
+    // 收集数据
+    const data = [];
+    let total = 0;
+    for (let i = 1; i <= 4; i++) {
+        const label = document.getElementById('label' + i).value || '项目' + i;
+        const value = parseFloat(document.getElementById('value' + i).value) || 0;
+        if (value > 0) {
+            data.push({ name: label, value: value, color: INTERACTIVE_COLORS[i-1] });
+            total += value;
+        }
+    }
+    
+    document.getElementById('pieTotal').textContent = total;
+    
+    ctx.clearRect(0, 0, W, H);
+    
+    if (total === 0) {
+        ctx.fillStyle = '#999';
+        ctx.font = '14px "Microsoft YaHei", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('请输入数据', centerX, centerY);
+        return;
+    }
+    
+    // 绘制扇形
+    let startAngle = -Math.PI / 2;
+    let calcSteps = '';
+    
+    data.forEach((item, i) => {
+        const sliceAngle = (item.value / total) * 2 * Math.PI;
+        const endAngle = startAngle + sliceAngle;
+        const percent = (item.value / total * 100).toFixed(1);
+        const angleDeg = (item.value / total * 360).toFixed(1);
+        
+        // 绘制扇形
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = item.color;
+        ctx.fill();
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // 绘制百分比标签
+        const midAngle = startAngle + sliceAngle / 2;
+        const labelRadius = radius * 0.65;
+        const labelX = centerX + Math.cos(midAngle) * labelRadius;
+        const labelY = centerY + Math.sin(midAngle) * labelRadius;
+        
+        ctx.save();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 12px "Microsoft YaHei", sans-serif';
+        ctx.shadowColor = 'rgba(0,0,0,0.4)';
+        ctx.shadowBlur = 3;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(percent + '%', labelX, labelY);
+        ctx.restore();
+        
+        // 生成计算步骤
+        calcSteps += `<div style="margin:.3rem 0;">${item.name}: ${item.value}/${total} = ${percent}% → 360°×${percent}% = ${angleDeg}°</div>`;
+        
+        startAngle = endAngle;
+    });
+    
+    // 更新图例
+    const legendContainer = document.getElementById('interactiveLegend');
+    if (legendContainer) {
+        legendContainer.innerHTML = '';
+        data.forEach((item, i) => {
+            const percent = (item.value / total * 100).toFixed(1);
+            const div = document.createElement('div');
+            div.className = 'legend-item';
+            div.innerHTML = `<div class="legend-color" style="background:${item.color}"></div><span>${item.name} ${percent}%</span>`;
+            legendContainer.appendChild(div);
+        });
+    }
+    
+    // 更新计算步骤
+    const stepsContainer = document.getElementById('calculationSteps');
+    if (stepsContainer) {
+        stepsContainer.innerHTML = calcSteps || '请输入数据以查看计算过程';
+    }
+}
+
+// ====== 页面加载完成后绘制所有图表 ======
+window.addEventListener('load', function() {
+
+    // ---- 1. 全体被调查人群 ----
+    drawSymptomPieChart('pieAll', [
+        { name: '眼睛疲倦', value: 35, color: SYMPTOM_COLORS[0] },
+        { name: '颈部酸痛', value: 20, color: SYMPTOM_COLORS[1] },
+        { name: '头痛头晕', value: 20, color: SYMPTOM_COLORS[2] },
+        { name: '腰背疼痛', value: 15, color: SYMPTOM_COLORS[3] },
+        { name: '其他症状', value: 10, color: SYMPTOM_COLORS[4] }
+    ], { noLabel: false, donut: false, legendId: 'legendAll', drawLegend: true });
+
+    // ---- 2. 不满18岁人群 ----
+    drawSymptomPieChart('pieYoung', [
+        { name: '眼睛疲倦', value: 45, color: SYMPTOM_COLORS[0] },
+        { name: '颈部酸痛', value: 20, color: SYMPTOM_COLORS[1] },
+        { name: '头痛头晕', value: 20, color: SYMPTOM_COLORS[2] },
+        { name: '腰背疼痛', value: 10, color: SYMPTOM_COLORS[3] },
+        { name: '其他症状', value: 5, color: SYMPTOM_COLORS[4] }
+    ], { noLabel: false, donut: false, legendId: 'legendYoung', drawLegend: true });
+
+    // ---- 3. 18岁以上人群 ----
+    drawSymptomPieChart('pieAdult', [
+        { name: '眼睛疲倦', value: 25, color: SYMPTOM_COLORS[0] },
+        { name: '颈部酸痛', value: 20, color: SYMPTOM_COLORS[1] },
+        { name: '头痛头晕', value: 25, color: SYMPTOM_COLORS[2] },
+        { name: '腰背疼痛', value: 20, color: SYMPTOM_COLORS[3] },
+        { name: '其他症状', value: 10, color: SYMPTOM_COLORS[4] }
+    ], { noLabel: false, donut: false, legendId: 'legendAdult', drawLegend: true });
+
+    // ---- 4. 2010年人口年龄结构 ----
+    drawLabeledPieChart('pie2010', [
+        { name: '0~14岁', value: 16.60, color: POPULATION_COLORS[0] },
+        { name: '15~59岁', value: 70.14, color: POPULATION_COLORS[1] },
+        { name: '60岁+', value: 13.26, color: POPULATION_COLORS[2] }
+    ]);
+
+    // ---- 5. 2020年人口年龄结构 ----
+    drawLabeledPieChart('pie2020', [
+        { name: '0~14岁', value: 17.95, color: POPULATION_COLORS[0] },
+        { name: '15~59岁', value: 63.35, color: POPULATION_COLORS[1] },
+        { name: '60岁+', value: 18.70, color: POPULATION_COLORS[2] }
+    ]);
+    
+    // ---- 6. 初始化交互式扇形图 ----
+    updateInteractivePie();
+
+});
+
+// ====== 练习题检查函数 ======
+function checkQuiz1() {
+    const answers = {
+        p1: '30', a1: '108',
+        p2: '20', a2: '72',
+        p3: '15', a3: '54',
+        p4: '35', a4: '126'
+    };
+    
+    let correct = 0;
+    let total = 8;
+    let feedback = '<h4 style="margin-bottom:.8rem;">📊 答题结果：</h4>';
+    
+    for (let i = 1; i <= 4; i++) {
+        const pVal = document.getElementById('q1p' + i).value.trim();
+        const aVal = document.getElementById('q1a' + i).value.trim();
+        const correctP = answers['p' + i];
+        const correctA = answers['a' + i];
+        
+        const pCorrect = pVal === correctP;
+        const aCorrect = aVal === correctA;
+        
+        if (pCorrect) correct++;
+        if (aCorrect) correct++;
+        
+        feedback += `<div style="margin:.5rem 0;padding:.5rem;background:${pCorrect && aCorrect ? '#e8f4e8' : '#fff8e1'};border-radius:6px;">`;
+        feedback += `第${i}组：百分比 ${pCorrect ? '✓' : '✗ (正确:' + correctP + '%)'}，圆心角 ${aCorrect ? '✓' : '✗ (正确:' + correctA + '°)'}`;
+        feedback += '</div>';
+    }
+    
+    feedback += `<div style="margin-top:1rem;padding:.8rem;background:${correct === total ? '#e8f4e8' : '#fff8e1'};border-radius:8px;font-weight:600;">`;
+    feedback += `得分：${correct}/${total} ${correct === total ? '🎉 全对！' : '继续加油！'}`;
+    feedback += '</div>';
+    
+    const resultDiv = document.getElementById('quiz1Result');
+    resultDiv.innerHTML = feedback;
+    resultDiv.style.display = 'block';
+    resultDiv.style.background = correct === total ? '#e8f4e8' : '#fff8e1';
+    resultDiv.style.borderLeft = `4px solid ${correct === total ? '#4a7c4f' : '#d4a017'}`;
+}
+
+function checkQuiz2() {
+    const answers = { q2a: 'true', q2b: 'false', q2c: 'true' };
+    const explanations = {
+        q2a: '圆心角与百分比成正比，圆心角越大，百分比越大。',
+        q2b: '比较两个扇形统计图时，如果总体数量不同，百分比大的部分数量不一定大。',
+        q2c: '整个圆代表总体，圆心角之和必须等于360°。'
+    };
+    
+    let correct = 0;
+    let feedback = '<h4 style="margin-bottom:.8rem;">📊 答题结果：</h4>';
+    
+    for (let q of ['q2a', 'q2b', 'q2c']) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        const userAnswer = selected ? selected.value : null;
+        const correctAnswer = answers[q];
+        const isCorrect = userAnswer === correctAnswer;
+        
+        if (isCorrect) correct++;
+        
+        feedback += `<div style="margin:.5rem 0;padding:.5rem;background:${isCorrect ? '#e8f4e8' : '#fff8e1'};border-radius:6px;">`;
+        feedback += `<strong>题${q.slice(-1)}：</strong>${isCorrect ? '✓ 正确' : '✗ 错误'}<br>`;
+        feedback += `<span style="font-size:.9rem;color:#666;">${explanations[q]}</span>`;
+        feedback += '</div>';
+    }
+    
+    feedback += `<div style="margin-top:1rem;padding:.8rem;background:${correct === 3 ? '#e8f4e8' : '#fff8e1'};border-radius:8px;font-weight:600;">`;
+    feedback += `得分：${correct}/3 ${correct === 3 ? '🎉 全对！' : '继续加油！'}`;
+    feedback += '</div>';
+    
+    const resultDiv = document.getElementById('quiz2Result');
+    if (resultDiv) {
+        resultDiv.innerHTML = feedback;
+        resultDiv.style.display = 'block';
+        resultDiv.style.background = correct === 3 ? '#e8f4e8' : '#fff8e1';
+        resultDiv.style.borderLeft = `4px solid ${correct === 3 ? '#4a7c4f' : '#d4a017'}`;
+        resultDiv.style.padding = '1rem';
+        resultDiv.style.borderRadius = '10px';
+        resultDiv.style.marginTop = '1rem';
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第45课时 线段的长短比较 | 华师版·七上 第3章</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 例题样式 */
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .example-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #accee5;
+        }
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        .example-graph {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .example-graph svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第45课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 学会比较线段的长短，掌握尺规作图的基本方法。</div>
+    <h2>3.5 最基本的图形——点和线</h2>
+    <div class="lesson-title">第2课时 线段的长短比较</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握比较线段长短的两种方法：度量法和叠合法</div>
+            <div class="target-item"><span>✔</span>能用尺规作一条线段等于已知线段</div>
+            <div class="target-item"><span>✔</span>理解线段中点的概念，能进行线段的和差计算</div>
+            <div class="target-item"><span>✔</span>培养几何作图能力和逻辑推理能力</div>
+        </div>
+    </div>
+
+    <!-- 引入：比较个子高矮 -->
+    <div class="intro-block">
+        <p>记得你和同学是怎样比较个子高矮的吗？可能大家通常会用下面两种办法：一是让两人分别说出自己的身高，对比一下；二是让两人背对背地站在同一块平地上，脚底平齐，观看两人的头顶，直接比出高矮（图3.5.7）。</p>
+        <p>那么，我们可以怎样比较两条线段的长短呢？</p>
+    </div>
+    <div class="figure-box">
+        <img src="3.5.7.png" alt="图3.5.7">
+        <div class="figcaption">图3.5.7 比较个子高矮</div>
+    </div>
+
+    <!-- 方法一：度量法 -->
+    <p>你一定会发现，两条线段也可以通过类似的方法来比较长短。对于图3.5.8中的线段 \(AB\) 、 \(CD\) , 我们用刻度尺量一下, 就可以知道它们的长短了。这是第一种方法。</p>
+    <div class="figure-box">
+        <img src="3.5.8.png" alt="图3.5.8">
+        <div class="figcaption">图3.5.8 比较线段AB和CD</div>
+    </div>
+    <p>这里线段 \(AB\) 比线段 \(CD\) 短, 我们可以记为 \(AB < CD\) (或 \(CD > AB\))。</p>
+
+    <!-- 方法二：叠合法 -->
+    <p>比较两条线段的长短的第二种方法与直接比较个子高矮一样, 就是把其中一条线段移到另一条线段上去加以比较. 如图3.5.9, 将线段 \(AB\) 移到线段 \(CD\) 上, 让点 \(A\) 和点 \(C\) 重合, 观察另外两个端点 \(B\) 、 \(D\) 的位置, 便可确定这两条线段的长短。图中点 \(B\) 落在线段 \(CD\) 的内部, 可以知道线段 \(AB\) 比线段 \(CD\) 短, 也就是 \(AB < CD\) 。</p>
+    <div class="figure-box">
+        <img src="3.5.9.png" alt="图3.5.9">
+        <div class="figcaption">图3.5.9 叠合法</div>
+    </div>
+    <p>如果点 \(B\) 落在线段 \(CD\) 的延长线上呢? 如果点 \(B\) 恰好与点 \(D\) 重合, 那么可以知道两条线段一样长, 即线段 \(AB\) 与线段 \(CD\) 相等, 记为 \(AB = CD\)。</p>
+
+    <!-- 做一做：作一条线段等于已知线段 -->
+    <div class="try-box">
+        <h4>做一做</h4>
+        <p>如图3.5.10, \(MN\) 为已知线段, 你能用直尺和圆规准确地作一条与 \(MN\) 相等的线段吗?</p>
+        <div class="figure-box">
+            <img src="3.5.10.png" alt="图3.5.10">
+            <div class="figcaption">图3.5.10 已知线段MN</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansMN')">📌 作法</button>
+        <div id="ansMN" class="answer-box">
+            <p>如图3.5.11，我们可以先作射线 \(AB\) ，然后用圆规量出线段 \(MN\) 的长，再在射线 \(AB\) 上截取 \(AC = MN\) ，这样就将线段 \(MN\) 移到射线 \(AB\) 上，线段 \(AC\) 就是所要求作的线段。</p>
+        </div>
+        <div class="figure-box">
+            <img src="3.5.11.png" alt="图3.5.11">
+            <div class="figcaption">图3.5.11 作线段等于已知线段</div>
+        </div>
+    </div>
+
+    <!-- 试一试：作一条线段等于已知线段的2倍 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <p>用直尺和圆规作一条线段等于已知线段的2倍。</p>
+        <!-- 无图，可让学生自行操作 -->
+    </div>
+
+    <!-- 中点概念 -->
+    <p>把一条线段分成两条相等线段的点，叫做这条线段的<strong>中点</strong>（midpoint）。在图3.5.12中，点 \(C\) 是线段 \(AB\) 的中点，可以写成 \(AC = CB = \frac{1}{2} AB\), 或 \(AB = 2AC = 2CB\)。</p>
+    <div class="figure-box">
+        <img src="3.5.12.png" alt="图3.5.12">
+        <div class="figcaption">图3.5.12 中点</div>
+    </div>
+
+    <!-- 线段和差计算示例 -->
+    <p>又如图3.5.13， \(AB = 6\mathrm{cm}\) ，点 \(C\) 是线段 \(AB\) 的中点，点 \(D\) 是线段 \(CB\) 的中点，那么 \(AD\) 有多长呢？</p>
+    <div class="figure-box">
+        <img src="3.5.13.png" alt="图3.5.13">
+        <div class="figcaption">图3.5.13 求AD的长</div>
+    </div>
+    <button class="interact-btn" onclick="toggleAnswer('ansAD')">📌 解答</button>
+    <div id="ansAD" class="answer-box">
+        <p>因为点 \(C\) 是线段 \(AB\) 的中点，所以 \(AC = CB = \frac{1}{2} AB = 3\mathrm{cm}\)。<br>
+        又因为点 \(D\) 是线段 \(CB\) 的中点，所以 \(CD = \frac{1}{2} CB = 1.5\mathrm{cm}\)。<br>
+        所以 \(AD = AC + CD = 3 + 1.5 = 4.5\mathrm{cm}\)。</p>
+    </div>
+
+    <!-- ===== 线段中点例题（双中点模型） ===== -->
+    <div class="example-box">
+        <h4>📐 例题1 · 双中点模型（点在线段上）</h4>
+        <div class="example-item">
+            <p>如图，已知线段 \(AB = 10\mathrm{cm}\)，点 \(C\) 在线段 \(AB\) 上，且 \(AC = 4\mathrm{cm}\)。点 \(M\) 是线段 \(AC\) 的中点，点 \(N\) 是线段 \(BC\) 的中点。求线段 \(MN\) 的长。</p>
+            <!-- SVG 图形 (字母位置已修正，字号加大) -->
+            <div class="example-graph">
+                <svg width="400" height="80" viewBox="0 0 400 80">
+                    <!-- 线段 AB -->
+                    <line x1="50" y1="40" x2="350" y2="40" stroke="#000" stroke-width="2" />
+                    <!-- 端点标记 -->
+                    <circle cx="50" cy="40" r="3" fill="#000" />
+                    <circle cx="350" cy="40" r="3" fill="#000" />
+                    <!-- 点 C -->
+                    <circle cx="170" cy="40" r="3" fill="#000" />
+                    <!-- 中点 M -->
+                    <circle cx="110" cy="40" r="3" fill="#f00" />
+                    <!-- 中点 N -->
+                    <circle cx="260" cy="40" r="3" fill="#00f" />
+                    
+                    <!-- 字母标注 (字号加大) -->
+                    <text x="50" y="20" text-anchor="middle" font-size="18">A</text>
+                    <text x="350" y="20" text-anchor="middle" font-size="18">B</text>
+                    <text x="170" y="20" text-anchor="middle" font-size="18">C</text>
+                    <text x="110" y="60" text-anchor="middle" font-size="18" fill="#f00">M</text>
+                    <text x="260" y="60" text-anchor="middle" font-size="18" fill="#00f">N</text>
+                    
+                    <!-- 标注线段长度 (字号加大) -->
+                    <text x="90" y="12" font-size="14">AC=4cm</text>
+                    <text x="190" y="12" font-size="14">BC=6cm</text>
+                </svg>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx1')">📌 显示解答</button>
+            <div id="ansEx1" class="answer-box">
+                <p>∵ 点 \(M\) 是 \(AC\) 的中点，\(AC = 4\mathrm{cm}\)，</p>
+                <p>∴ \(MC = \frac{1}{2} AC = \frac{1}{2} \times 4 = 2\mathrm{cm}\)。</p>
+                <p>∵ \(AB = 10\mathrm{cm}\)，\(AC = 4\mathrm{cm}\)，</p>
+                <p>∴ \(BC = AB - AC = 10 - 4 = 6\mathrm{cm}\)。</p>
+                <p>∵ 点 \(N\) 是 \(BC\) 的中点，</p>
+                <p>∴ \(CN = \frac{1}{2} BC = \frac{1}{2} \times 6 = 3\mathrm{cm}\)。</p>
+                <p>∴ \(MN = MC + CN = 2 + 3 = 5\mathrm{cm}\)。</p>
+                <p><strong>结论：</strong> \(MN = 5\mathrm{cm}\)，恰好等于 \(AB\) 的一半。</p>
+            </div>
+        </div>
+
+        <h4 style="margin-top:2rem;">📐 例题2 · 双中点模型（点在线段延长线上）</h4>
+        <div class="example-item">
+            <p>如图，已知线段 \(AB = 8\mathrm{cm}\)，点 \(C\) 在线段 \(AB\) 的延长线上，且 \(BC = 4\mathrm{cm}\)。点 \(M\) 是线段 \(AC\) 的中点，点 \(N\) 是线段 \(BC\) 的中点。求线段 \(MN\) 的长。</p>
+            <!-- SVG 图形 (字母位置已修正，字号加大) -->
+            <div class="example-graph">
+                <svg width="450" height="80" viewBox="0 0 450 80">
+                    <!-- 线段 AB 及其延长线 -->
+                    <line x1="50" y1="40" x2="250" y2="40" stroke="#000" stroke-width="2" />
+                    <line x1="250" y1="40" x2="350" y2="40" stroke="#000" stroke-width="2" stroke-dasharray="5 3" />
+                    <!-- 端点标记 -->
+                    <circle cx="50" cy="40" r="3" fill="#000" />
+                    <circle cx="250" cy="40" r="3" fill="#000" />
+                    <circle cx="350" cy="40" r="3" fill="#000" />
+                    <!-- 中点 M -->
+                    <circle cx="200" cy="40" r="3" fill="#f00" />
+                    <!-- 中点 N -->
+                    <circle cx="300" cy="40" r="3" fill="#00f" />
+                    
+                    <!-- 字母标注 (字号加大) -->
+                    <text x="50" y="20" text-anchor="middle" font-size="18">A</text>
+                    <text x="250" y="20" text-anchor="middle" font-size="18">B</text>
+                    <text x="350" y="20" text-anchor="middle" font-size="18">C</text>
+                    <text x="200" y="60" text-anchor="middle" font-size="18" fill="#f00">M</text>
+                    <text x="300" y="60" text-anchor="middle" font-size="18" fill="#00f">N</text>
+                    
+                    <!-- 标注线段长度 (字号加大) -->
+                    <text x="120" y="12" font-size="14">AB=8cm</text>
+                    <text x="270" y="12" font-size="14">BC=4cm</text>
+                </svg>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansEx2')">📌 显示解答</button>
+            <div id="ansEx2" class="answer-box">
+                <p>∵ \(AB = 8\mathrm{cm}\)，\(BC = 4\mathrm{cm}\)，</p>
+                <p>∴ \(AC = AB + BC = 8 + 4 = 12\mathrm{cm}\)。</p>
+                <p>∵ 点 \(M\) 是 \(AC\) 的中点，</p>
+                <p>∴ \(MC = \frac{1}{2} AC = \frac{1}{2} \times 12 = 6\mathrm{cm}\)。</p>
+                <p>∵ 点 \(N\) 是 \(BC\) 的中点，</p>
+                <p>∴ \(NC = \frac{1}{2} BC = \frac{1}{2} \times 4 = 2\mathrm{cm}\)。</p>
+                <p>观察图形，\(MN = MC - NC = 6 - 2 = 4\mathrm{cm}\)。</p>
+                <p><strong>结论：</strong> \(MN = 4\mathrm{cm}\)，恰好等于 \(\frac{1}{2} AB\)。</p>
+                <p style="margin-top:0.5rem; color:#2a5f7a;">※ 无论点 \(C\) 在线段 \(AB\) 上还是延长线上，\(MN = \frac{1}{2} AB\) 恒成立（双中点模型）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习（课本第29页）—— 题目已补充完整，并为1、2题添加答案按钮，答案已修正 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>练习</h3>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>1.</strong> 根据所示图形填空：</p>
+            <div class="figure-box">
+                <img src="第1题.png" alt="第1题图">
+                <div class="figcaption">（第1题）</div>
+            </div>
+            <p style="margin-top:0.5rem;">(1) \(AB + BC = \_\_\_\_\) &nbsp;&nbsp; (2) \(AD = \_\_\_\_ + CD\)<br>
+            (3) \(CD = AD - \_\_\_\_\) &nbsp;&nbsp; (4) \(BD = CD + \_\_\_\_ = AD - \_\_\_\_\)<br>
+            (5) \(AC - AB + CD = \_\_\_\_ = BC + \_\_\_\_\)</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansP1')">📌 显示答案</button>
+            <div id="ansP1" class="answer-box">
+                <p>(1) \(AB + BC = AC\)</p>
+                <p>(2) \(AD = AC + CD\)</p>
+                <p>(3) \(CD = AD - AC\)</p>
+                <p>(4) \(BD = CD + BC = AD - AB\)</p>
+                <p>(5) \(AC - AB + CD = BD = BC + CD\)</p>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>2.</strong> 如图，已知点 \(C\) 是线段 \(AD\) 的中点， \(AC = 1.5\mathrm{cm}\) ， \(BC = 2.2\mathrm{cm}\) ，那么 \(AD = (\quad)\mathrm{cm}\) ， \(BD = (\quad)\mathrm{cm}\)。</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP2')">📌 显示答案</button>
+            <div id="ansP2" class="answer-box">
+                <p>∵ \(C\) 是 \(AD\) 的中点，\(AC = 1.5\mathrm{cm}\)，</p>
+                <p>∴ \(AD = 2 \times AC = 3\mathrm{cm}\)。</p>
+                <p>由图形可知，点 \(B\) 在 \(C\) 和 \(D\) 之间，</p>
+                <p>则 \(BD = BC - CD = 2.2 - 1.5 = 0.7\mathrm{cm}\)。</p>
+                <p>∴ \(AD = 3\mathrm{cm}\)，\(BD = 0.7\mathrm{cm}\)。</p>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>3.</strong> 请通过直接观察，分别比较下列三组图形中线段 \(a\) 、 \(b\) 的长短，再用刻度尺量一量，看看你的观察结果是否正确。</p>
+            <div class="figure-box">
+                <img src="第3题.png" alt="第3题图">
+                <div class="figcaption">（第3题）</div>
+            </div>
+        </div>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>4.</strong> 已知线段 \(MN\) 和线段 \(OP\) ，用直尺和圆规作一条线段 \(AB\) ，使 \(AB = MN + OP\) 。（不写作法，保留作图痕迹）</p>
+            <div class="figure-box">
+                <img src="第4题.png" alt="第4题图">
+                <div class="figcaption">（第4题）</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">比较线段长短：度量法、叠合法</div>
+            <div class="summary-item">尺规作图：作一条线段等于已知线段</div>
+            <div class="summary-item">中点定义：将线段分成两条相等线段的点</div>
+            <div class="summary-item">线段的和差计算：\(AD = AC + CD\) 等</div>
+            <div class="summary-item">双中点模型：\(MN = \frac{1}{2} AB\)（点C在线段AB上或其延长线上）</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong> 将比较线段长短与比较身高进行类比。<br>
+        <strong>数形结合：</strong> 用数量表示线段长度，用图形表示线段关系。<br>
+        <strong>转化思想：</strong> 通过截取、叠加将线段的和差转化为作图操作。<br>
+        <strong>分类讨论思想：</strong> 点C在线段上或延长线上时，中点结论统一。</p>
+    </div>
+
+    <!-- 读一读：尺规作图的历史 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 尺规作图的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>尺规作图起源于古希腊，数学家们发现只用没有刻度的直尺和圆规，可以作出许多几何图形，如等边三角形、正方形、正五边形等。著名的“几何三大难题”（三等分角、化圆为方、倍立方）就是尺规作图无法解决的问题，它们的解决推动了数学的深入发展。今天，尺规作图仍是培养几何思维的重要工具。</p>
+        </div>
+    </div>
+
+    <!-- 读一读：欧拉公式（使用 LaTeX，并插入图片） -->
+    <div class="reading-block" id="readingBlockEuler">
+        <div class="reading-header" onclick="toggleReadingEuler()">
+            <h4>📖 读一读 · 欧拉公式</h4>
+            <span class="toggle-icon" id="toggleIconEuler">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContentEuler">
+            <p>欧拉公式被誉为“上帝创造的公式”之一，它简单而深刻地揭示了多面体的顶点、棱和面之间的关系：</p>
+            <p style="text-align:center; font-size:1.4rem; margin:1rem 0;">
+                \[ V - E + F = 2 \]
+            </p>
+            <p>其中 \(V\) 表示顶点数，\(E\) 表示棱数，\(F\) 表示面数。</p>
+            
+            <!-- 插入的图片，无说明文字 -->
+            <div class="figure-box" style="margin:1rem 0;">
+                <img src="欧拉公式.png" alt="欧拉公式图示" style="max-width:100%; border:1px solid #ccc; border-radius:8px;">
+            </div>
+            
+            <p>随便找一个多面体数一数：</p>
+            <ul style="margin-left:2rem;">
+                <li>正方体：\(V=8,\ E=12,\ F=6\) → \(8-12+6=2\)</li>
+                <li>四面体：\(V=4,\ E=6,\ F=4\) → \(4-6+4=2\)</li>
+                <li>五棱柱：\(V=10,\ E=15,\ F=7\) → \(10-15+7=2\)</li>
+                <li>八面体：\(V=6,\ E=12,\ F=8\) → \(6-12+8=2\)</li>
+            </ul>
+            <p>无论多面体多么奇特（只要表面是完整的凸多面体），这个关系永远成立！它是由瑞士大数学家 <strong>欧拉</strong> 在1750年发现的，因此用他的名字命名。</p>
+            <p>欧拉公式就像多面体的“身份证”，把三个最直观的量（顶点、棱、面）完美地联系在一起。后来，这个公式被推广到了更广阔的领域——<strong>拓扑学</strong>中，成为研究曲面分类的基础。</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本P31习题3.5 A组第4题；用尺规作一条线段等于已知线段的三倍。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第45课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReadingEuler() {
+        var c = document.getElementById('readingContentEuler');
+        var icon = document.getElementById('toggleIconEuler');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

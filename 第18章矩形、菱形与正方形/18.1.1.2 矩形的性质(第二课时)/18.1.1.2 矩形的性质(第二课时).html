@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.1.1.2 矩形的性质（二）| 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+            if (el.style.display === 'block') el.classList.add('show-answer');
+            else el.classList.remove('show-answer');
+        }
+        function initCanvases() {
+            drawEx2(); drawEx3(); drawPrac1(); drawPrac2(); drawPrac3();
+        }
+        function drawEx2() {
+            const c = document.getElementById('cEx2'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // A左上, B左下, C右下, D右上
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:300,y:160}, D = {x:300,y:40};
+            // E是AC上的垂足：BE⊥AC。A(60,40) C(340,160)，B(60,160)
+            const Ex = 111, Ey = 65;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 对角线AC
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            // BE⊥AC
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(Ex,Ey); ctx.stroke();
+            // E点标记
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); 
+       
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 305, 170); ctx.fillText('D', 305, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('E', Ex+5, Ey);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+            
+        }
+        function drawEx3() {
+            const c = document.getElementById('cEx3'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // A左上, B左下, C右下, D右上
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:300,y:160}, D = {x:300,y:40};
+            const O = {x:180,y:100};
+            // E在BO上，AE⊥BO。取E为BO中点附近
+            const Ex = 120, Ey = 130;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 对角线AC和BD
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            // O点
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,5,0,Math.PI*2); ctx.fill();
+            // AE线
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(Ex,Ey); ctx.stroke();
+            // E点标记
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(Ex,Ey,5,0,Math.PI*2); ctx.fill();
+            
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 308, 170); ctx.fillText('D', 308, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('O', O.x-5, O.y-8);
+            ctx.fillStyle = '#a82035'; ctx.fillText('E', Ex-5, Ey+25);
+            ctx.font = '16px STKaiti,KaiTi'; ctx.fillStyle = '#666';
+    
+        }
+        function drawPrac1() {
+            const c = document.getElementById('cPrac1'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:340,y:160}, D = {x:340,y:40};
+            const E = {x:180,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(E.x,E.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 348, 170); ctx.fillText('D', 348, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('E', E.x-8, 32);
+        }
+        function drawPrac2() {
+            const c = document.getElementById('cPrac2'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:268,y:160}, D = {x:268,y:40};
+            const O = {x:164,y:100};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,5,0,Math.PI*2); ctx.fill();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 275, 170); ctx.fillText('D', 275, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('O', O.x-5, O.y-10);
+            ctx.font = '16px'; ctx.fillStyle = '#666';
+           
+        }
+        function drawPrac3() {
+            const c = document.getElementById('cPrac3'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:340,y:160}, D = {x:340,y:40};
+            const O = {x:200,y:100};
+            const P = {x:150,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,5,0,Math.PI*2); ctx.fill();
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(P.x,P.y); ctx.lineTo(O.x,O.y); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(P.x,P.y,5,0,Math.PI*2); ctx.fill();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 348, 170); ctx.fillText('D', 348, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('O', O.x-10, O.y+25);
+            ctx.fillText('P', P.x-20, P.y-10);
+            ctx.font = '16px'; ctx.fillStyle = '#666';
+            ctx.fillText('AB=8, BC=15', 130, 195);
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.7rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .theorem-text { font-weight: 800; color: #0a4d32; border-bottom: 2px solid #0a4d32; display: inline-block; margin: 0.5rem 0; font-size: 1.3rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .layout-flex { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 320px; }
+        .layout-visual { max-width: 100%; width: 420px; margin-bottom: 0.5rem; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .bubble { background: #fff1f2; border: 2px solid #fda4af; border-radius: 2rem; padding: 1rem 1.5rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(225,29,72,0.08); }
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; }
+        .objective-card { background: #f0f9ff; border: 2px solid #bae6fd; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .objective-card h4 { color: #0369a1; margin-bottom: 0.5rem; }
+        .highlight-box { background: #fefce8; border: 2px solid #facc15; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .highlight-box h4 { color: #854d0e; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.1 矩形</span>
+    </div>
+    <h1>18.1.1 矩形的性质</h1>
+    <div class="lesson-title">第 2 课时：矩形性质的应用</div>
+
+    <div class="section-title">学习目标</div>
+    <div class="objective-card">
+        <h4>本节课的学习目标：</h4>
+        <p>1. 熟练运用矩形的性质进行有关的计算和证明。</p>
+        <p>2. 掌握面积法、勾股定理在矩形问题中的应用。</p>
+        <p>3. 体会矩形性质与直角三角形性质的内在联系。</p>
+    </div>
+
+    <div class="section-title">知识铺垫 / 复习回顾</div>
+    <div class="think-box">
+        <h4>矩形的性质回顾</h4>
+        <p>1. 矩形的四个角都是<strong>直角</strong>。</p>
+        <p>2. 矩形的对角线<strong>相等</strong>且<strong>互相平分</strong>。</p>
+        <p>3. 矩形是<strong>轴对称图形</strong>，有 <strong>2 条</strong>对称轴。</p>
+        <p>4. 矩形是<strong>中心对称图形</strong>，对称中心为对角线的交点。</p>
+    </div>
+
+    <!-- 例2 -->
+    <div class="section-title">例题解析</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <h4>例 2</h4>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p>如图，在矩形 $ABCD$ 中，$AB = 3$，$BC = 4$，$BE \perp AC$，垂足为点 $E$。求 $BE$ 的长。</p>
+                <button class="interact-btn" onclick="toggleAnswer('solEx2')">查看解析</button>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cEx2" width="420" height="200"></canvas>
+            </div>
+        </div>
+        <div id="solEx2" class="answer-box">
+            <p><strong>解：</strong>在矩形 $ABCD$ 中，$\angle ABC = 90^\circ$。</p>
+            <p>在 $\text{Rt}\triangle ABC$ 中，由勾股定理：</p>
+            <p>$AC = \sqrt{AB^2 + BC^2} = \sqrt{3^2 + 4^2} = \sqrt{25} = 5$。</p>
+            <p>利用面积法：$S_{\triangle ABC} = \frac{1}{2} \cdot AB \cdot BC = \frac{1}{2} \cdot AC \cdot BE$，</p>
+            <p>$\therefore \frac{1}{2} \times 3 \times 4 = \frac{1}{2} \times 5 \times BE$，</p>
+            <p>$\therefore BE = \frac{3 \times 4}{5} = 2.4$。</p>
+            <p><strong>答：</strong>$BE$ 的长为 $2.4$。</p>
+        </div>
+    </div>
+
+    <!-- 例3 -->
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <h4>例 3</h4>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p>如图，在矩形 $ABCD$ 中，对角线 $AC$ 与 $BD$ 相交于点 $O$，$AE$ 垂直且平分线段 $BO$，垂足为点 $E$。$BD = 15\text{ cm}$。求 $AC$ 与 $AB$ 的长。</p>
+                <button class="interact-btn" onclick="toggleAnswer('solEx3')">查看解析</button>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cEx3" width="420" height="220"></canvas>
+            </div>
+        </div>
+        <div id="solEx3" class="answer-box">
+            <p><strong>解：</strong>$\because$ 四边形 $ABCD$ 是矩形，</p>
+            <p>$\therefore AC = BD = 15$（矩形的对角线相等）。</p>
+            <p>$\therefore AO = \frac{1}{2}AC = 7.5$。</p>
+            <p>又 $\because AE$ 垂直平分 $BO$，</p>
+            <p>$\therefore AB = AO = 7.5$（线段垂直平分线上的点到线段两端距离相等）。</p>
+            <p><strong>答：</strong>$AC$ 的长为 $15\text{ cm}$，$AB$ 的长为 $7.5\text{ cm}$。</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">练一练</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>1.</strong> 如图，在矩形 $ABCD$ 中，$E$ 是边 $AD$ 上的一点。试说明 $\triangle BCE$ 的面积与矩形 $ABCD$ 的面积之间的关系。</p>
+        <div class="layout-visual">
+            <canvas id="cPrac1" width="420" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac1')">查看答案</button>
+        <div id="prac1" class="answer-box">
+            <p><strong>解：</strong>$\because$ 四边形 $ABCD$ 是矩形，$\therefore AD \parallel BC$，$AB \perp BC$。</p>
+            <p>$\triangle BCE$ 以 $BC$ 为底，高为 $AB$（$E$ 到 $BC$ 的距离等于 $AB$）。</p>
+            <p>$\therefore S_{\triangle BCE} = \dfrac{1}{2} \cdot BC \cdot AB = \dfrac{1}{2} S_{\text{矩形}ABCD}$。</p>
+            <p>即 $\triangle BCE$ 的面积等于矩形 $ABCD$ 面积的一半。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>2.</strong> 如图，在矩形 $ABCD$ 中，对角线 $AC$ 与 $BD$ 相交于点 $O$，$\angle AOB = 60^\circ$，$AB = 3.6$。求 $AC$、$AD$ 的长。（精确到 $0.1$）</p>
+        <div class="layout-visual">
+            <canvas id="cPrac2" width="420" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">查看答案</button>
+        <div id="prac2" class="answer-box">
+            <p><strong>解：</strong>$\because$ 矩形对角线相等且互相平分，$\therefore OA = OB$。</p>
+            <p>$\because \angle AOB = 60^\circ$，$\therefore \triangle AOB$ 是等边三角形。</p>
+            <p>$\therefore OA = OB = AB = 3.6$，$\therefore AC = 2OA = 7.2$。</p>
+            <p>在 $\text{Rt}\triangle ABC$ 中，$BC = \sqrt{AC^2 - AB^2} = \sqrt{7.2^2 - 3.6^2} = \sqrt{38.88} \approx 6.2$。</p>
+            <p>$\because AD = BC$，$\therefore AD \approx 6.2$。</p>
+            <p><strong>答：</strong>$AC = 7.2$，$AD \approx 6.2$。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>3.</strong> 如图，点 $P$ 是矩形 $ABCD$ 的边 $AD$ 上的一个动点，矩形的两条边长 $AB$、$BC$ 分别为 $8$ 和 $15$。求点 $P$ 到矩形的两条对角线 $AC$ 和 $BD$ 的距离之和。（提示：记对角线 $AC$ 与 $BD$ 的交点为点 $O$，连结 $OP$）</p>
+        <div class="layout-visual">
+            <canvas id="cPrac3" width="420" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">查看答案</button>
+        <div id="prac3" class="answer-box">
+            <p><strong>解：</strong>设点 $P$ 到 $AC$、$BD$ 的距离分别为 $h_1$、$h_2$。</p>
+            <p>$\because OA = OC$，$\therefore S_{\triangle APC} = 2S_{\triangle APO}$，$S_{\triangle APD} = S_{\triangle CPD}$。</p>
+            <p>连结 $OP$，$\because OA = OD$，$S_{\triangle AOD} = \dfrac{1}{4}S_{\text{矩形}ABCD} = \dfrac{1}{4} \times 8 \times 15 = 30$。</p>
+            <p>又 $S_{\triangle AOD} = S_{\triangle AOP} + S_{\triangle DOP} = \dfrac{1}{2} \cdot OA \cdot h_1 + \dfrac{1}{2} \cdot OD \cdot h_2$。</p>
+            <p>$\because OA = OD = \dfrac{1}{2}AC$，$AC = \sqrt{8^2+15^2} = 17$，$\therefore OA = 8.5$。</p>
+            <p>$\therefore 30 = \dfrac{1}{2} \times 8.5 \times (h_1 + h_2)$，$\therefore h_1 + h_2 = \dfrac{60}{8.5} = \dfrac{120}{17}$。</p>
+            <p><strong>答：</strong>点 $P$ 到两条对角线的距离之和为 $\dfrac{120}{17}$。</p>
+        </div>
+    </div>
+
+    <!-- 方法归纳 -->
+    <div class="section-title">方法归纳</div>
+    <div class="method-summary">
+        <h4>矩形性质的应用策略</h4>
+        <p>1. <strong>面积法：</strong>利用矩形中直角三角形的面积相等关系解题（如例2）。</p>
+        
+        <p>2. <strong>勾股定理：</strong>在矩形中，利用直角三角形求边长或对角线长。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">课堂小结</div>
+    <div class="think-box">
+        <ul>
+            <li>熟练运用矩形的四条性质进行计算和证明。</li>
+            
+            <li>体会了从矩形性质到直角三角形性质的特殊化思想。</li>
+        </ul>
+    </div>
+
+    <!-- 核心素养 -->
+    <div class="section-title">核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>逻辑推理：</strong>灵活运用矩形的性质进行几何计算与证明，发展演绎推理能力。</p>
+        <p><strong>数学运算：</strong>利用勾股定理、面积法和方程思想解决矩形中的线段长度与角度计算问题。</p>
+        <p><strong>直观想象：</strong>通过对称性分析和图形变换，建立几何元素之间的数量关系。</p>
+    </div>
+
+    <!-- 教师寄语 -->
+    <div class="teacher-msg">
+        矩形不仅是几何图形，更是一扇窗。从矩形的边角关系中，我们学会用性质解决问题——数学之美，在于灵活运用！
+    </div>
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.1.4 设计轴对称图案 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 150px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+
+        /* 带底色和英文的概念框 */
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        
+        .construction-box {
+            background: #e8f0f7;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #7fa9c7;
+        }
+        .construction-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #135b8d;
+            margin-bottom: 0.8rem;
+        }
+        .step-list {
+            list-style-type: decimal;
+            padding-left: 1.8rem;
+            margin: 0.5rem 0;
+        }
+        .step-list li {
+            margin: 0.3rem 0;
+        }
+
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        
+        /* 图片样式 */
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        
+        .break-line {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* 红蓝三角形互动样式 */
+        .triangle-container {
+            background: #1e2b3a;
+            border-radius: 24px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #b9d6ef;
+        }
+        .triangle-header {
+            color: #f5e7d3;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        .triangle-header strong {
+            color: #ffb870;
+            font-size: 2rem;
+            margin: 0 6px;
+        }
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .filter-btn {
+            background: #1f3240;
+            border: none;
+            color: #cbd5e0;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #3f5e72;
+            box-shadow: 0 2px 4px #00000040;
+        }
+        .filter-btn.active {
+            background: #ffa05e;
+            color: #0f1a24;
+            border-color: #ffcf9a;
+            font-weight: 700;
+            box-shadow: 0 0 12px #ffa05eaa;
+        }
+        .filter-btn:hover {
+            background: #2d4658;
+            color: white;
+        }
+        .triangle-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            justify-content: center;
+            padding: 8px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            background: #0f1a24;
+            border-radius: 20px;
+            padding: 15px;
+        }
+        .triangle-card {
+            background: #1f2e38;
+            border-radius: 16px;
+            padding: 10px 4px 8px;
+            text-align: center;
+            box-shadow: 0 6px 10px #00000060;
+            border: 1px solid #3b5565;
+            transition: 0.15s ease;
+        }
+        .triangle-card:hover {
+            transform: translateY(-3px);
+            border-color: #ffb476;
+        }
+        .triangle-canvas {
+            width: 80px;
+            height: 80px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            background: #16232e;
+            box-shadow: inset 0 0 0 2px #4c6a7c;
+        }
+        .axis-tag {
+            font-size: 0.7rem;
+            background: #10222b;
+            padding: 3px 8px;
+            border-radius: 20px;
+            color: #b0d0e8;
+            display: inline-block;
+            border: 1px solid #3c6072;
+            margin-top: 5px;
+        }
+        .legend {
+            color: #9bb7c9;
+            font-size: 0.8rem;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .legend span {
+            display: inline-block;
+            margin: 0 8px;
+        }
+        
+        /* 折叠容器 */
+        .collapse-container {
+            margin-top: 15px;
+        }
+        .collapse-content {
+            display: none;
+        }
+        .collapse-content.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.1.4</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.1 轴对称 —— 4. 设计轴对称图案</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>了解轴对称图案在生活中的应用</div>
+            <div class="target-item"><span>✔</span>掌握用折纸法设计轴对称图案</div>
+            <div class="target-item"><span>✔</span>能通过多次轴对称变换创作图案</div>
+        </div>
+    </div>
+
+    <!-- 导入：生活中的轴对称图案 使用 生活中的轴对称.png -->
+    <div class="figure-box">
+        <p style="font-size:1.1rem;">在商标、衣料图案和众多的日用品上，我们可以看到不少丰富多彩的装饰图案，仔细观察这些装饰图案，你会发现其中有许多轴对称图形。</p>
+        <div class="image-container">
+            <img src="生活中的轴对称.png" alt="生活中的轴对称图案" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🏷️ 商标、衣料、瓷器纹样</div>
+            <div class="image-caption">生活中的轴对称图案</div>
+        </div>
+    </div>
+
+    <!-- 图9.1.19 两个轴对称图形 使用 9.1.19.png -->
+    <div class="explore-box">
+        <h4>图9.1.19 轴对称图案</h4>
+        <div class="image-container">
+            <img src="9.1.19.png" alt="图9.1.19 轴对称图案" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🌸 轴对称图案 图9.1.19</div>
+            <div class="image-caption">图9.1.19</div>
+        </div>
+        <p>这两个轴对称图形有多少条对称轴？我们可以利用轴对称的方法来作出它们吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('symAxisCount')">🔍 显示答案</button>
+        <div id="symAxisCount" class="answer-box">
+            <p>图案①有4条对称轴（水平、垂直及两条对角线）；图案②有4条对称轴。</p>
+        </div>
+    </div>
+
+    <!-- 折纸设计步骤 (图9.1.20) 使用 9.1.20.png -->
+    <div class="guide-text">
+        <strong>📄 折纸设计步骤</strong>：请准备一张正方形纸片，按图9.1.20所示的5个步骤来作。
+    </div>
+
+    <!-- 图9.1.20 五步图 -->
+    <div class="image-container">
+        <img src="9.1.20.png" alt="图9.1.20 折纸设计五步骤" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">折纸设计五步骤</div>
+        <div class="image-caption">图9.1.20 折纸设计五步骤</div>
+    </div>
+
+    <!-- 步骤说明 -->
+    <div class="guide-text" style="margin-top:1rem;">
+        <p>（1）如图9.1.20①，在正方形纸片上用虚线作出4条对称轴；</p>
+        <p>（2）如图9.1.20②，在其中一个三角形中，作出图形形状的基本线条（注意：不同的线条最终会得到不同的图案，你可以自己设计线条，而不必和教科书中的一样）；</p>
+        <p>（3）如图9.1.20③，按照其中一条斜的对称轴作出（2）中图形的对称图形；</p>
+        <p>（4）如图9.1.20④，按照另一条斜的对称轴作出（3）中图形的对称图形；</p>
+        <p>（5）如图9.1.20⑤，按照水平（或垂直）的对称轴作出（4）中图形的对称图形，从而得到图9.1.19①中的图形。</p>
+    </div>
+
+    <!-- 方法说明 -->
+    <div class="concept-box">
+        <strong>设计方法总结</strong>：作好之后，你可以在图案上涂上你喜欢的颜色，擦掉其他多余的线条，一幅对称的图案就完成了。作轴对称图形只是图案设计的一种方法，我们以后还会接触更多的方法。当然，如果我们用一些美术知识，就可以设计出更多漂亮的图案了。
+    </div>
+
+    <!-- 练习 (使用 练习1.png, 练习2.png, 练习3.png) -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 如图，已知△ABC，分别作出△ABC关于AB、BC、CA对称的三角形。</p>
+            <div class="image-container">
+                <img src="练习1.png" alt="练习1 三角形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">△ABC 练习1</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 提示</button>
+            <div id="prac1" class="answer-box">
+                <p>分别以AB、BC、CA为对称轴，作出点A、B、C的对称点，再连接。</p>
+            </div>
+        </div>
+        
+        <!-- 练习2：插入红蓝三角形互动，添加折叠按钮 -->
+        <div class="exercise-item">
+            <p><strong>2.</strong> 用四块如图所示的图形拼成一个正方形，形成轴对称的图案，与你的同伴比一比，看谁的拼法多。</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 基本图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🔲 练习2 基本图形</div>
+            </div>
+            
+            <!-- 折叠按钮 -->
+            <button class="interact-btn" id="toggleTriangleBtn">🔍 展示轴对称拼图示例 (54种)</button>
+            
+            <!-- 红蓝三角形互动演示 (默认隐藏) -->
+            <div id="triangleCollapse" class="collapse-content">
+                <div class="triangle-container">
+                    <div class="triangle-header">
+                        🔴🔵 红蓝三角形 · 2×2 轴对称全集 <strong>54</strong> 种
+                    </div>
+                    
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-filter="all">全部 (54)</button>
+                        <button class="filter-btn" data-filter="V_only">只竖轴 (12)</button>
+                        <button class="filter-btn" data-filter="H_only">只横轴 (12)</button>
+                        <button class="filter-btn" data-filter="D1_only">只主对角 (12)</button>
+                        <button class="filter-btn" data-filter="D2_only">只副对角 (12)</button>
+                        <button class="filter-btn" data-filter="VH">双轴 V+H (2)</button>
+                        <button class="filter-btn" data-filter="D1D2">双轴 D1+D2 (2)</button>
+                        <button class="filter-btn" data-filter="all4">四轴全 (2)</button>
+                    </div>
+
+                    <div id="triangleGallery" class="triangle-gallery"></div>
+
+                    <div class="legend">
+                        <span><i style="font-style:normal; background:#1d3b4a; padding:2px 8px; border-radius:20px;">V</i> 垂直中线</span>
+                        <span><i style="font-style:normal; background:#1d3b4a; padding:2px 8px; border-radius:20px;">H</i> 水平中线</span>
+                        <span><i style="font-style:normal; background:#1d3b4a; padding:2px 8px; border-radius:20px;">D1</i> 主对角线</span>
+                        <span><i style="font-style:normal; background:#1d3b4a; padding:2px 8px; border-radius:20px;">D2</i> 副对角线</span>
+                        <span>🔴 红 · 🔵 蓝</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="exercise-item">
+            <p><strong>3.</strong> 仿照教科书中给出的步骤，利用题图设计一个轴对称图案。</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 设计区" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">🎨 练习3 设计区</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>几何直观：</strong> 通过对称变换创造美。<br>
+        <strong>创新意识：</strong> 自主设计个性化轴对称图案。<br>
+        <strong>应用意识：</strong> 将数学对称应用于艺术设计。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">轴对称图案广泛应用于生活、艺术、建筑。</div>
+            <div class="summary-item">折纸设计法：利用多次轴对称生成复杂图案。</div>
+            <div class="summary-item">设计关键：基本图形 + 对称轴选择。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.1 A组第5题，B组第8题；用折纸法设计一个轴对称图案并涂色。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.1.4</div>
+</div>
+
+<script>
+    // ==================== 红蓝三角形互动代码 ====================
+    (function() {
+        // 四种基本画法
+        const T = [
+            // T0: 左上红, 右下蓝 (副对角线, 红色在左上)
+            (ctx, x, y, s) => {
+                ctx.fillStyle = '#f25c5c'; // 红
+                ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x+s, y); ctx.lineTo(x, y+s); ctx.fill();
+                ctx.fillStyle = '#4a8fe0'; // 蓝
+                ctx.beginPath(); ctx.moveTo(x+s, y); ctx.lineTo(x+s, y+s); ctx.lineTo(x, y+s); ctx.fill();
+            },
+            // T1: 右上红, 左下蓝 (主对角线, 红色在右上)
+            (ctx, x, y, s) => {
+                ctx.fillStyle = '#f25c5c';
+                ctx.beginPath(); ctx.moveTo(x+s, y); ctx.lineTo(x+s, y+s); ctx.lineTo(x, y); ctx.fill();
+                ctx.fillStyle = '#4a8fe0';
+                ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y+s); ctx.lineTo(x+s, y+s); ctx.fill();
+            },
+            // T2: 左上蓝, 右下红 (副对角线, 蓝色在左上)
+            (ctx, x, y, s) => {
+                ctx.fillStyle = '#4a8fe0';
+                ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x+s, y); ctx.lineTo(x, y+s); ctx.fill();
+                ctx.fillStyle = '#f25c5c';
+                ctx.beginPath(); ctx.moveTo(x+s, y); ctx.lineTo(x+s, y+s); ctx.lineTo(x, y+s); ctx.fill();
+            },
+            // T3: 右上蓝, 左下红 (主对角线, 蓝色在右上)
+            (ctx, x, y, s) => {
+                ctx.fillStyle = '#4a8fe0';
+                ctx.beginPath(); ctx.moveTo(x+s, y); ctx.lineTo(x+s, y+s); ctx.lineTo(x, y); ctx.fill();
+                ctx.fillStyle = '#f25c5c';
+                ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y+s); ctx.lineTo(x+s, y+s); ctx.fill();
+            }
+        ];
+
+        // 镜像映射
+        const vMap = [1, 0, 3, 2];  // 垂直镜像
+        const hMap = [3, 2, 1, 0];  // 水平镜像
+        const d1Map = [0, 3, 2, 1]; // 主对角线镜像
+        const d2Map = [2, 1, 0, 3]; // 副对角线镜像
+
+        // 判断函数
+        function isV(cfg) {
+            return cfg[1] === vMap[cfg[0]] && cfg[3] === vMap[cfg[2]];
+        }
+        function isH(cfg) {
+            return cfg[2] === hMap[cfg[0]] && cfg[3] === hMap[cfg[1]];
+        }
+        function isD1(cfg) {
+            const [a, b, c, d] = cfg;
+            return (a === 0 || a === 2) && (d === 0 || d === 2) && (c === d1Map[b]);
+        }
+        function isD2(cfg) {
+            const [a, b, c, d] = cfg;
+            return (b === 1 || b === 3) && (c === 1 || c === 3) && (d === d2Map[a]);
+        }
+
+        // 枚举所有 4^4 = 256 种组合
+        const allConfigs = [];
+        for (let a = 0; a < 4; a++) {
+            for (let b = 0; b < 4; b++) {
+                for (let c = 0; c < 4; c++) {
+                    for (let d = 0; d < 4; d++) {
+                        const cfg = [a, b, c, d];
+                        const flags = {
+                            V: isV(cfg),
+                            H: isH(cfg),
+                            D1: isD1(cfg),
+                            D2: isD2(cfg)
+                        };
+                        if (flags.V || flags.H || flags.D1 || flags.D2) {
+                            allConfigs.push({ cfg, flags });
+                        }
+                    }
+                }
+            }
+        }
+
+        // 绘制对称轴
+        function drawAxis(ctx, size, flags) {
+            ctx.save();
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([3, 2]);
+            ctx.strokeStyle = '#ffb870';
+            
+            if (flags.V) {
+                ctx.beginPath(); ctx.moveTo(size/2, 0); ctx.lineTo(size/2, size); ctx.stroke();
+            }
+            if (flags.H) {
+                ctx.beginPath(); ctx.moveTo(0, size/2); ctx.lineTo(size, size/2); ctx.stroke();
+            }
+            if (flags.D1) {
+                ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(size, size); ctx.stroke();
+            }
+            if (flags.D2) {
+                ctx.beginPath(); ctx.moveTo(size, 0); ctx.lineTo(0, size); ctx.stroke();
+            }
+            ctx.setLineDash([]);
+            ctx.restore();
+        }
+
+        // 获取对称轴标签
+        function getAxisLabel(flags) {
+            const parts = [];
+            if (flags.V) parts.push('V');
+            if (flags.H) parts.push('H');
+            if (flags.D1) parts.push('D1');
+            if (flags.D2) parts.push('D2');
+            return parts.join('+') || '无';
+        }
+
+        // 绘制缩略图
+        function drawThumb(canvas, cfg, flags) {
+            const ctx = canvas.getContext('2d');
+            const size = 80; 
+            const s = size / 2; 
+            ctx.clearRect(0, 0, size, size);
+            
+            T[cfg[0]](ctx, 0, 0, s);
+            T[cfg[1]](ctx, s, 0, s);
+            T[cfg[2]](ctx, 0, s, s);
+            T[cfg[3]](ctx, s, s, s);
+            
+            drawAxis(ctx, size, flags);
+            
+            ctx.strokeStyle = '#4c6a7c';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(0, 0, size, size);
+        }
+
+        // 渲染画廊
+        const gallery = document.getElementById('triangleGallery');
+        function render(filter = 'all') {
+            gallery.innerHTML = '';
+
+            let filtered = allConfigs;
+            if (filter === 'V_only') {
+                filtered = allConfigs.filter(item => item.flags.V && !item.flags.H && !item.flags.D1 && !item.flags.D2);
+            } else if (filter === 'H_only') {
+                filtered = allConfigs.filter(item => item.flags.H && !item.flags.V && !item.flags.D1 && !item.flags.D2);
+            } else if (filter === 'D1_only') {
+                filtered = allConfigs.filter(item => item.flags.D1 && !item.flags.V && !item.flags.H && !item.flags.D2);
+            } else if (filter === 'D2_only') {
+                filtered = allConfigs.filter(item => item.flags.D2 && !item.flags.V && !item.flags.H && !item.flags.D1);
+            } else if (filter === 'VH') {
+                filtered = allConfigs.filter(item => item.flags.V && item.flags.H && !item.flags.D1 && !item.flags.D2);
+            } else if (filter === 'D1D2') {
+                filtered = allConfigs.filter(item => item.flags.D1 && item.flags.D2 && !item.flags.V && !item.flags.H);
+            } else if (filter === 'all4') {
+                filtered = allConfigs.filter(item => item.flags.V && item.flags.H && item.flags.D1 && item.flags.D2);
+            }
+
+            filtered.sort((a, b) => getAxisLabel(a.flags).localeCompare(getAxisLabel(b.flags)));
+
+            filtered.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'triangle-card';
+
+                const canvas = document.createElement('canvas');
+                canvas.width = 80;
+                canvas.height = 80;
+                canvas.className = 'triangle-canvas';
+                drawThumb(canvas, item.cfg, item.flags);
+
+                const tag = document.createElement('div');
+                tag.className = 'axis-tag';
+                tag.textContent = getAxisLabel(item.flags);
+
+                card.appendChild(canvas);
+                card.appendChild(tag);
+                gallery.appendChild(card);
+            });
+
+            if (filtered.length === 0) {
+                gallery.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#aaa; padding:30px;">✨ 没有符合该过滤条件的图形</div>';
+            }
+        }
+
+        // 按钮逻辑
+        const filterBtns = document.querySelectorAll('.triangle-container .filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                render(filter);
+            });
+        });
+
+        // 初始渲染
+        render('all');
+    })();
+
+    // ==================== 折叠按钮控制 ====================
+    const toggleBtn = document.getElementById('toggleTriangleBtn');
+    const collapseContent = document.getElementById('triangleCollapse');
+    
+    toggleBtn.addEventListener('click', () => {
+        if (collapseContent.classList.contains('show')) {
+            collapseContent.classList.remove('show');
+            toggleBtn.textContent = '🔍 展示轴对称拼图示例 (54种)';
+        } else {
+            collapseContent.classList.add('show');
+            toggleBtn.textContent = '🔍 隐藏轴对称拼图示例';
+        }
+    });
+
+    // ==================== 通用函数 ====================
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    
+    // 图片加载失败处理
+    window.onload = function() {
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        
+        if (window.MathJax) {
+            MathJax.typesetPromise?.();
+        }
+    };
+</script>
+</body>
+</html>

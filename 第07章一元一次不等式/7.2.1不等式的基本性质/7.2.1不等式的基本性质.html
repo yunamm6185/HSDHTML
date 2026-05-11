@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.2 不等式的基本性质 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .image-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .image-item {
+            text-align: center;
+        }
+        .image-item img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+        }
+        .sub-example {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #b0d4ee;
+            padding-top: 1rem;
+        }
+        .sub-example p {
+            margin-bottom: 0.5rem;
+        }
+        .blank-space {
+            font-family: 'Courier New', monospace;
+            background-color: #f9f9f9;
+            border-bottom: 2px solid #2675a8;
+            padding: 0.2rem 0.5rem;
+            margin: 0 0.2rem;
+            min-width: 4em;
+            display: inline-block;
+            text-align: center;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            white-space: pre;
+            position: relative;
+            line-height: 1.4;
+        }
+        .blank-space::before {
+            content: "(";
+            opacity: 0.8;
+            position: absolute;
+            left: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .blank-space::after {
+            content: ")";
+            opacity: 0.8;
+            position: absolute;
+            right: 0.2em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 7.2</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <h2>7.2 不等式的基本性质</h2>
+    <div class="chapter-intro">★ 类比等式的基本性质，探索不等式的基本性质，理解它们的区别与联系。</div>
+    <div class="lesson-title">7.2 不等式的基本性质</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握不等式的基本性质1、2、3</div>
+            <div class="target-item"><span>✔</span>能运用不等式的基本性质进行简单的推理</div>
+            <div class="target-item"><span>✔</span>理解不等式性质与等式性质的区别</div>
+        </div>
+    </div>
+
+    <!-- 温故知新：等式的基本性质（带数学表达式） -->
+    <div class="intro-block">
+        <h4>📌 温故知新</h4>
+        <p><strong>等式的基本性质：</strong></p>
+        <ul>
+            <li>性质1：如果 $a = b$，那么 $a \pm c = b \pm c$。</li>
+            <li>性质2：如果 $a = b$，那么 $ac = bc$，$\frac{a}{c} = \frac{b}{c}$（$c \neq 0$）。</li>
+        </ul>
+        <p>那么，不等式是否也有类似的性质呢？</p>
+    </div>
+
+    <!-- 探索：天平引入 -->
+    <div class="explore-box">
+        <h4>探索</h4>
+        <div class="figure-box">
+            <img src="7.2.1.png" alt="图7.2.1 倾斜的天平：a > b">
+            <div class="figcaption">图7.2.1 倾斜的天平：a > b</div>
+        </div>
+        <p>如图7.2.1所示，一个倾斜的天平两边分别放有重物，其质量分别为 \(a\) 和 \(b\)，且 \(a > b\)。如果在两边盘中分别加上等质量的砝码 \(c\)，那么盘子仍然像原来那样倾斜，即有 \(a + c > b + c\)。</p>
+    </div>
+
+    <!-- 概括：性质1 -->
+    <div class="highlight">
+        <p><strong>不等式的基本性质1</strong> 如果 $a > b$，那么</p>
+        <p>\[a + c > b + c,\quad a - c > b - c.\]</p>
+        <p>这就是说，不等式两边都加上（或都减去）同一个数，不等号的方向不变。</p>
+    </div>
+
+    <!-- 试一试：乘法填空（新） -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>将不等式 $7 > 4$ 的两边都乘以同一个数，例如 $3$、$2$、$1$、$0$、$-1$、$-2$、$-3$，比较所得结果的大小，用“<”“>”或“=”填空：</p>
+        <p>
+            $7 \times 3 \quad \_\_\_\_\_\_ \quad 4 \times 3$,<br>
+            $7 \times 2 \quad \_\_\_\_\_\_ \quad 4 \times 2$,<br>
+            $7 \times 1 \quad \_\_\_\_\_\_ \quad 4 \times 1$,<br>
+            $7 \times 0 \quad \_\_\_\_\_\_ \quad 4 \times 0$,<br>
+            $7 \times (-1) \quad \_\_\_\_\_\_ \quad 4 \times (-1)$,<br>
+            $7 \times (-2) \quad \_\_\_\_\_\_ \quad 4 \times (-2)$,<br>
+            $7 \times (-3) \quad \_\_\_\_\_\_ \quad 4 \times (-3)$,
+        </p>
+        <p>......从中你能发现什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('try')">💡 显示答案</button>
+        <div id="try" class="answer-box">
+            <p>结果依次为：</p>
+            <p>$21 > 12$，$14 > 8$，$7 > 4$，$0 = 0$，$-7 < -4$，$-14 < -8$，$-21 < -12$。</p>
+            <p><strong>发现：</strong> 不等式两边乘以同一个正数，不等号方向不变；乘以0时变为等式；乘以同一个负数，不等号方向改变。</p>
+        </div>
+    </div>
+
+    <!-- 性质2、3 -->
+    <div class="highlight">
+        <p><strong>不等式的基本性质2</strong> 如果 $a > b$，且 $c > 0$，那么</p>
+        <p>\[a c > b c,\quad \frac{a}{c} > \frac{b}{c}.\]</p>
+        <p>即不等式两边都乘以（或都除以）同一个正数，不等号的方向不变。</p>
+        <p><strong>不等式的基本性质3</strong> 如果 $a > b$，且 $c < 0$，那么</p>
+        <p>\[a c < b c,\quad \frac{a}{c} < \frac{b}{c}.\]</p>
+        <p>即不等式两边都乘以（或都除以）同一个负数，不等号的方向改变。</p>
+    </div>
+
+    <!-- 例1 -->
+    <div class="example-box">
+        <h4>例1 说明下列结论的正确性：</h4>
+        <p>(1) 如果 $a - b > 0$，那么 $a > b$；</p>
+        <p>(2) 如果 $a - b < 0$，那么 $a < b$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">📌 显示解答</button>
+        <div id="ex1" class="answer-box">
+            <p>(1) 因为 $a - b > 0$，两边都加上 $b$，由性质1得 $a - b + b > 0 + b$，即 $a > b$。</p>
+            <p>(2) 因为 $a - b < 0$，两边都加上 $b$，由性质1得 $a - b + b < 0 + b$，即 $a < b$。</p>
+        </div>
+    </div>
+
+    <!-- 思考：交换条件和结论 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>交换例1中两道小题的条件和结论，其正确性不变。你能说明理由吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('think2')">💡 显示推理</button>
+        <div id="think2" class="answer-box">
+            <p>由 $a > b$，两边减去 $b$ 得 $a - b > 0$；由 $a < b$，两边减去 $b$ 得 $a - b < 0$。所以 $a > b$ 与 $a - b > 0$ 可以相互转化，$a < b$ 与 $a - b < 0$ 也可以相互转化。</p>
+        </div>
+    </div>
+
+    <!-- 例2 -->
+    <div class="example-box">
+        <h4>例2 利用不等式的基本性质说明下列结论的正确性：</h4>
+        <p>(1) 如果 $a > b$，$c > d$，那么 $a + c > b + d$；</p>
+        <p>(2) 如果 $a,b,c,d$ 都是正数，且 $a > b$，$c > d$，那么 $a c > b d$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">📌 显示解答</button>
+        <div id="ex2" class="answer-box">
+            <p>(1) 由 $a > b$ 得 $a + c > b + c$；由 $c > d$ 得 $b + c > b + d$。根据传递性，$a + c > b + d$。</p>
+            <p>(2) 由 $a > b$ 且 $c > 0$ 得 $a c > b c$；由 $c > d$ 且 $b > 0$ 得 $b c > b d$。所以 $a c > b d$。</p>
+        </div>
+    </div>
+
+    <!-- 概括：不等式的传递性 -->
+    <div class="highlight">
+        <p>由数的大小比较可知，不等关系具有<strong>传递性</strong>：</p>
+        <p>如果 $a > b$ 且 $b > c$，那么 $a > c$。</p>
+        <p>它也可以作为推理的依据。</p>
+    </div>
+
+    <!-- 例3 比较大小 -->
+    <div class="example-box">
+        <h4>例3 比较下列各组数的大小：</h4>
+        <p>(1) $|a|$ 与 $|a| + 1$；</p>
+        <p>(2) $|a|$ 与 $2|a|$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans3')">📌 显示解答</button>
+        <div id="ans3" class="answer-box">
+            <p><strong>(1)</strong> 因为 $1 > 0$，根据不等式的基本性质1，在 $|a|$ 两边同时加上 $1$ 得 $|a| + 1 > |a|$，所以 $|a| + 1 > |a|$。</p>
+            <p><strong>(2)</strong> 因为 $|a| \ge 0$，分两种情况：</p>
+            <ul>
+                <li>若 $|a| > 0$，则 $2 > 0$，根据性质2，两边同乘 $2$ 得 $2|a| > |a|$；</li>
+                <li>若 $|a| = 0$，则 $2|a| = 0$，所以 $2|a| = |a|$。</li>
+            </ul>
+            <p>综上，$2|a| \ge |a|$，当且仅当 $|a| = 0$ 时取等号。</p>
+        </div>
+    </div>
+
+    <!-- 练习（课本第10页） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 说出下列不等式变形的依据：</p>
+            <p>(1) 由 $x - 2 > 0$，得 $x > 2$；</p>
+            <p>(2) 由 $1 - 2x \leqslant 0$，得 $x \geqslant \frac12$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 参考答案</button>
+            <div id="prac1" class="answer-box">
+                <p>(1) 依据性质1，两边都加上2。</p>
+                <p>(2) 两边都减去1得 $-2x \leqslant -1$，再除以 $-2$（负数）不等号方向改变，得 $x \geqslant \frac12$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 利用不等式的基本性质说明下列结论的正确性：</p>
+            <p>(1) 一个数加上一个正数比这个数大；</p>
+            <p>(2) 一个数加上一个负数比这个数小。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 参考答案</button>
+            <div id="prac2" class="answer-box">
+                <p>设这个数为 $a$，加上 $c$。</p>
+                <p>(1) 若 $c > 0$，由性质2，$a + c > a + 0 = a$，所以 $a + c > a$。</p>
+                <p>(2) 若 $c < 0$，由性质3，$a + c < a + 0 = a$，所以 $a + c < a$。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 一个正数乘以一个数，一定比这个正数大吗？为什么？</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 参考答案</button>
+            <div id="prac3" class="answer-box">
+                <p>不一定。如果乘的数大于1，则乘积更大；如果乘的数等于1，则相等；如果乘的数在0和1之间，则乘积变小；如果乘的数是负数，则乘积为负，比原数小。所以结论不成立。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 习题7.2 A组（部分） -->
+    <div class="exercises" style="background-color: #eef4fa; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b9d6ef;">
+        <h3>📚 习题7.2 A组</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 已知 $a > b$，判断下列不等式是否正确：</p>
+            <p>(1) $a - 1 > b - 1$；</p>
+            <p>(2) $2 - a > 2 - b$；</p>
+            <p>(3) $a + b > 2b$；</p>
+            <p>(4) $2 - a < 1 - b$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('exer1')">🔍 参考答案</button>
+            <div id="exer1" class="answer-box">
+                <p>(1) 正确，性质1。</p>
+                <p>(2) 错误，因为 $ -a < -b$，所以 $2 - a < 2 - b$。</p>
+                <p>(3) 正确，$a > b$ 两边加 $b$ 得 $a + b > 2b$。</p>
+                <p>(4) 错误，由 $a > b$ 得 $-a < -b$，两边加2得 $2 - a < 2 - b$，与 $1 - b$ 无法直接比较。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 下列变形是否正确？请说明理由。</p>
+            <p>(1) 由 $3 - 2a > 1$ 得到 $a < 1$；</p>
+            <p>(2) 由 $3b - 2a \leqslant 3a - 2b$ 得到 $a \leqslant b$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('exer2')">🔍 参考答案</button>
+            <div id="exer2" class="answer-box">
+                <p>(1) 正确。$3 - 2a > 1$ 两边减3得 $-2a > -2$，除以 $-2$ 得 $a < 1$。</p>
+                <p>(2) 正确。移项得 $3b + 2b \leqslant 3a + 2a$，即 $5b \leqslant 5a$，除以5得 $b \leqslant a$，即 $a \geqslant b$。所以 $a \leqslant b$ 不一定成立，应为 $a \geqslant b$。原题结论错误。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：不等号的由来 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 不等号的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>1631年，英国数学家哈里奥特创造了符号“>”和“<”，分别表示“大于”和“小于”。在此之前，人们用单词表示不等关系。由于这些符号简便直观，最终被广泛接受并沿用至今。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>类比思想：</strong> 与等式的基本性质类比，探究不等式性质。<br>
+        <strong>分类讨论：</strong> 乘以或除以正数、负数时不等号方向不同。<br>
+        <strong>推理能力：</strong> 运用性质进行简单证明。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">性质1：加减同一个数，方向不变</div>
+            <div class="summary-item">性质2：乘除同一个正数，方向不变</div>
+            <div class="summary-item">性质3：乘除同一个负数，方向改变</div>
+            <div class="summary-item">不等式的传递性：若 $a > b$ 且 $b > c$，则 $a > c$</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题7.2 A组第3题，B组第4、5题（选做）。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 不等式的性质，解不等式的基石 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第7章 7.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

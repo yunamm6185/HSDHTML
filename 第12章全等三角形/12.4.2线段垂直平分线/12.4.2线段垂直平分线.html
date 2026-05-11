@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.4.2 线段垂直平分线 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        .intro-card {
+            background: #e8f4f8;
+            border-left: 8px solid #3a9fd5;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .explore-card {
+            background: #eef4e8;
+            border-left: 8px solid #5b8c5a;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #2c6079;
+            margin-top: 0.5rem;
+        }
+        .figure-inline {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        .figure-inline img {
+            max-width: 95%;
+            max-height: 240px;
+            border-radius: 20px;
+            background: #f9f9fc;
+            border: 1px solid #cfe0f0;
+            padding: 6px;
+            object-fit: contain;
+        }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9fbede;
+            margin: 0.8rem 0 0.2rem;
+            font-size: 1rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.8rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1.2rem 1.2rem 0;
+            font-size: 1rem;
+        }
+        .show-answer { display: block; }
+        .exercise-item {
+            margin-top: 1.8rem;
+            border-bottom: 1px dashed #c6daea;
+            padding-bottom: 1rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 → 12.4.2 线段垂直平分线</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.4.2 线段垂直平分线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解线段垂直平分线的概念</div>
+            <div class="target-item"><span>✔</span>探索并掌握线段垂直平分线的性质定理</div>
+            <div class="target-item"><span>✔</span>探索并掌握线段垂直平分线的判定定理</div>
+            <div class="target-item"><span>✔</span>会运用性质与判定进行证明</div>
+            <div class="target-item"><span>✔</span>经历“探索—发现—证明”的过程，培养推理能力</div>
+        </div>
+    </div>
+
+    <!-- 导入：课本原话 -->
+    <div class="intro-card">
+        <h3>📖 导入</h3>
+        <p>我们已经知道线段是轴对称图形，线段的垂直平分线是线段的对称轴。如图12.4.1，直线$MN$是线段$AB$的垂直平分线，点$P$是$MN$上任意一点，连结$PA$、$PB$。将线段$AB$沿直线$MN$对折，我们发现$PA$与$PB$完全重合。</p>
+        <div class="figure-inline">
+            <img src="12.4.1.png" alt="图12.4.1 线段垂直平分线" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.1 线段垂直平分线上的点到两端距离相等</div>
+        </div>
+        <p>由此我们得到线段垂直平分线的性质定理。</p>
+    </div>
+
+    <!-- 性质定理（先呈现） -->
+    <div class="card theorem-card">
+        <h3>📐 线段垂直平分线的性质定理</h3>
+        <p><strong>线段垂直平分线上的点到线段两端的距离相等。</strong></p>
+        <div class="figure-inline">
+            <img src="12.4.1.png" alt="图12.4.1 性质定理图形" style="max-height:160px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.1 已知$MN \perp AB$，$AC=BC$，求证$PA=PB$</div>
+        </div>
+        <p><strong>已知：</strong>如图12.4.1，$MN \perp AB$，垂足为$C$，$AC = BC$，点$P$是直线$MN$上的任意一点。<br>
+        <strong>求证：</strong>$PA = PB$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('propProof')">📐 证明</button>
+        <div id="propProof" class="answer-box">
+            <p><strong>证明：</strong> $\because MN \perp AB$，$\therefore \angle PCA = \angle PCB = 90^\circ$。<br>
+            在$\triangle PCA$和$\triangle PCB$中，<br>
+            $AC = BC$（已知），$\angle PCA = \angle PCB$（已证），$PC = PC$（公共边），<br>
+            $\therefore \triangle PCA \cong \triangle PCB$（SAS）。$\therefore PA = PB$。</p>
+        </div>
+    </div>
+
+    <!-- 探索：性质定理的逆命题 -->
+    <div class="explore-card">
+        <h3>🔍 探索</h3>
+        <p>这一定理描述了线段垂直平分线的性质，那么反过来会有什么结果呢？</p>
+        <p>写出该性质定理的逆命题，想想看，其逆命题是否是一个真命题？</p>
+        <p><strong>性质定理：</strong> 线段垂直平分线上的点到线段两端的距离相等。</p>
+        <p><strong>逆命题：</strong> ________________________________________。</p>
+        <button class="interact-btn" onclick="toggleAnswer('inverseProp')">📝 显示逆命题</button>
+        <div id="inverseProp" class="answer-box">
+            <strong>逆命题：</strong> 到线段两端距离相等的点在线段的垂直平分线上。
+        </div>
+        <p>你能证明这个逆命题是真命题吗？下面给出两种证明方法（两种证法均可参考图12.4.3）。</p>
+        <div class="figure-inline">
+            <img src="12.4.3.png" alt="图12.4.3 判定定理证明辅助线" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.3 判定定理证明图形（两种证法共用）</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('inverseProof1')">📐 证法一（作垂线）</button>
+        <div id="inverseProof1" class="answer-box">
+            <p><strong>已知：</strong>如图12.4.3，$QA = QB$。<br>
+            <strong>求证：</strong>点$Q$在线段$AB$的垂直平分线上。<br>
+            <strong>证明：</strong>过点$Q$作$QC \perp AB$，垂足为$C$。<br>
+            在Rt$\triangle QCA$和Rt$\triangle QCB$中，<br>
+            $QA = QB$（已知），$QC = QC$（公共边），<br>
+            $\therefore$ Rt$\triangle QCA \cong$ Rt$\triangle QCB$（HL）。$\therefore AC = BC$。<br>
+            又$QC \perp AB$，$\therefore$点$Q$在线段$AB$的垂直平分线上。</p>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('inverseProof2')">📐 证法二（取中点）</button>
+        <div id="inverseProof2" class="answer-box">
+            <p><strong>已知：</strong>如图12.4.3，$QA = QB$，设$AB$的中点为$C$，连结$QC$。<br>
+            <strong>求证：</strong>$QC \perp AB$。<br>
+            <strong>证明：</strong>在$\triangle QCA$和$\triangle QCB$中，<br>
+            $QA = QB$（已知），$AC = BC$（中点定义），$QC = QC$（公共边），<br>
+            $\therefore \triangle QCA \cong \triangle QCB$（SSS）。$\therefore \angle QCA = \angle QCB$。<br>
+            又$\angle QCA + \angle QCB = 180^\circ$，$\therefore \angle QCA = \angle QCB = 90^\circ$。<br>
+            故$QC \perp AB$，即点$Q$在线段$AB$的垂直平分线上。</p>
+        </div>
+    </div>
+
+    <!-- 判定定理（正式） -->
+    <div class="card theorem-card">
+        <h3>🔄 线段垂直平分线的判定定理</h3>
+        <p><strong>到线段两端距离相等的点在线段的垂直平分线上。</strong></p>
+        <p>于是，性质定理和判定定理互为逆定理。</p>
+    </div>
+
+    <!-- 过渡语：为“试一试”铺垫 -->
+    <div class="fact-card">
+        <p>📌 <strong>上述两条定理互为逆定理，根据上述两条定理，我们就能证明：三角形三边的垂直平分线交于一点！</strong></p>
+    </div>
+
+    <!-- 试一试：三角形三边的垂直平分线交于一点 -->
+    <div class="explore-card">
+        <h3>📌 试一试</h3>
+        <p>如图12.4.4，要证明三角形三边的垂直平分线交于一点，只需证明其中两条边的垂直平分线的交点一定在第三条边的垂直平分线上。</p>
+        <div class="figure-inline">
+            <img src="12.4.4.png" alt="图12.4.4 三边垂直平分线共点" style="max-height:170px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.4 三角形三边垂直平分线交于一点</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('tryProof')">📐 证明思路</button>
+        <div id="tryProof" class="answer-box">
+            <p>设$\triangle ABC$中，边$AB$和$AC$的垂直平分线交于点$O$，则$OA = OB$，$OA = OC$，所以$OB = OC$。<br>
+            因此点$O$也在$BC$的垂直平分线上。故三角形三边的垂直平分线交于一点。</p>
+        </div>
+        <p>试试看，你能独立写出完整的证明过程吗？</p>
+    </div>
+
+    <!-- 课堂练习（课本习题12.4 A组相关） -->
+    <div class="card" style="background:#f9f5f0;">
+        <h3>✍️ 课堂练习</h3>
+        <div class="exercise-item">
+            <div class="exercise-question">1. 如图，已知点$A$、$B$和直线$l$，在直线$l$上求作一点$P$，使$PA = PB$。（保留作图痕迹）</div>
+            <div class="figure-inline"><img src="第1题.png" alt="第1题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第1题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">📐 作法</button>
+            <div id="prac1" class="answer-box">
+                连接$AB$，作线段$AB$的垂直平分线，与直线$l$的交点即为点$P$。
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-question">2. 如图，$BD \perp AC$，垂足为$E$，$AE = CE$。求证：$AB + CD = AD + CB$。</div>
+            <div class="figure-inline"><img src="第2题.png" alt="第2题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第2题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 证明</button>
+            <div id="prac2" class="answer-box">
+                由$AE=CE$且$BD \perp AC$知，$BD$是$AC$的垂直平分线，$\therefore AB=CB$，$AD=CD$。<br>
+                $\therefore AB+CD = CB+AD$，即$AB+CD = AD+CB$。
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-question">3. 如图，在$\triangle ABC$中，已知点$D$在边$BC$上，且$BD + AD = BC$。求证：点$D$在边$AC$的垂直平分线上。</div>
+            <div class="figure-inline"><img src="第3题.png" alt="第3题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第3题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 证明</button>
+            <div id="prac3" class="answer-box">
+                由$BD + AD = BC$，且$BC = BD + DC$，得$AD = DC$。<br>
+                因此点$D$到$A$、$C$距离相等，根据判定定理，点$D$在$AC$的垂直平分线上。
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：垂直平分线的应用（增加多个不超纲实例） -->
+    <div class="reading-card">
+        <h4>📖 读一读 · 生活中的垂直平分线</h4>
+        <p>线段垂直平分线在实际生活中有着广泛的应用，下面再举几个例子：</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>选址问题：</strong> 在公路旁修建一个加油站，要求到两个村庄的距离相等，那么加油站应建在两个村庄连线的垂直平分线与公路的交点处。</li>
+            <li><strong>学校选址：</strong> 要在两个小区之间建一所学校，使学校到两个小区的距离相等，学校应建在连接两个小区线段的垂直平分线上。</li>
+            <li><strong>三角形仓库：</strong> 有一块三角形土地，要在内部建一个仓库，使仓库到三个顶点的距离相等，那么仓库的位置就是三角形三边垂直平分线的交点。</li>
+            <li><strong>电脑字体设计：</strong> 在设计对称字体（如“A”、“H”）时，设计师常利用垂直平分线来保证左右对称，使字形美观。</li>
+            <li><strong>考古测量：</strong> 考古学家在挖掘圆形遗迹时，通过测量弦的垂直平分线交点来确定圆心位置，进而恢复古建筑的原貌。</li>
+        </ul>
+        <p>这些应用都体现了数学知识从实践中来，又回到实践中去的思想。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-card">
+        <h3>📌 课堂小结</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>性质定理</strong>：垂直平分线上的点到线段两端距离相等。</li>
+            <li><strong>判定定理</strong>：到线段两端距离相等的点在线段的垂直平分线上。</li>
+            <li>两个定理互为逆定理。</li>
+            <li>三角形三边的垂直平分线交于一点（可通过证明得到）。</li>
+            <li>探索方法：观察—猜想—证明，是几何学习的重要途径。</li>
+        </ul>
+    </div>
+
+    <!-- 数学思想与素养 -->
+    <div class="math-idea-card">
+        <h4>🧠 数学思想 · 核心素养</h4>
+        <p><strong>• 转化思想：</strong> 将几何问题转化为全等三角形证明；<br>
+        <strong>• 逆向思维：</strong> 性质与判定互逆，体会逻辑双向性；<br>
+        <strong>• 归纳推理：</strong> 从特殊到一般，从实验操作到演绎证明；<br>
+        <strong>• 模型思想：</strong> 垂直平分线是解决“到两点距离相等”问题的基本模型。</p>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom: 0.5rem;">📚 课后作业</h3>
+        <ul style="margin-left: 1.8rem; font-weight: 500;">
+            <li>课本习题12.4 A组第2题（求角度）、B组第1题；</li>
+            <li>练习册《线段垂直平分线》课时作业；</li>
+            <li>思考：用两种方法证明判定定理（作垂线法和取中点法）。</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 垂直平分线，性质记心间；到两端等距，判定亦不难。 ✨<br>
+        探索猜想再证明，几何学习乐无边！</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第12章 12.4.2 线段垂直平分线 | 互动课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', () => {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

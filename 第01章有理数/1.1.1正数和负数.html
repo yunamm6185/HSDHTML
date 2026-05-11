@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1课时 正数和负数 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数等 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        /* 页眉装饰 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 540;
+            color: #1e5780;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 530;
+            color: #2b4f6e;
+            margin: 1.4rem 0 0.4rem 0;
+            border-bottom: 1px dashed #b3cee5;
+            padding-bottom: 4px;
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e1f0fa, #d2e6f5);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .weather-block {
+            background: linear-gradient(145deg, #f3f9ff, #e3eff9);
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .weather-temp {
+            font-size: 3.5rem;
+            font-weight: 650;
+            color: #005b96;
+            background: white;
+            padding: 0.2rem 1.8rem;
+            border-radius: 60px;
+            box-shadow: inset 0 -3px 0 #aac7e0;
+            line-height: 1.2;
+        }
+
+        .weather-temp small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #1c5777;
+        }
+
+        .weather-desc {
+            font-size: 1.2rem;
+            color: #043753;
+        }
+
+        .weather-desc span {
+            background: #ffecaa;
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            margin: 0 0.2rem;
+            font-weight: 550;
+        }
+
+        .quote-note {
+            background-color: #fffef2;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #2675a8;
+            font-size: 1.1rem;
+            color: #113750;
+            box-shadow: 0 4px 8px rgba(0, 30, 50, 0.08);
+        }
+
+        .example-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            background: #f6fafd;
+            border-radius: 24px;
+            padding: 1.6rem 2rem;
+            margin: 1rem 0 1.5rem 0;
+            border: 1px solid #cddeec;
+        }
+
+        .example-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #d7e5f1;
+            padding-bottom: 0.7rem;
+        }
+
+        .example-item:last-child {
+            border-bottom: none;
+        }
+
+        .example-icon {
+            font-size: 1.6rem;
+            background: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 60, 100, 0.15);
+        }
+
+        .example-text {
+            flex: 1;
+        }
+
+        .highlight {
+            background: #fff0c0;
+            padding: 0.1rem 0.4rem;
+            border-radius: 8px;
+            font-weight: 550;
+            color: #004b7c;
+        }
+
+        .summary-box {
+            background-color: #ddeeff;
+            border-radius: 24px;
+            padding: 1.3rem 2rem;
+            margin: 1.8rem 0;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #73b1d6;
+        }
+
+        .summary-box p {
+            font-size: 1.15rem;
+            margin: 0.5rem 0;
+        }
+
+        .attention {
+            background: #fde6d2;
+            border-radius: 30px;
+            padding: 0.6rem 1.8rem;
+            display: inline-block;
+            font-weight: 600;
+            color: #a13e00;
+            border: 1px solid #ffb27a;
+            margin: 0.5rem 0 0 0;
+        }
+
+        /* 交互按钮样式 */
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.8rem 2rem;
+            margin: 0.8rem 0 0.5rem 1.5rem;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1.05rem;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 折叠区域 */
+        .reading-block {
+            background-color: #eaf3e8;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+            transition: transform 0.2s;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+
+        .exercises {
+            background-color: #fcfcff;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        .number-list {
+            background: #f2f0fa;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 1.1rem;
+            font-family: 'Courier New', monospace;
+            word-spacing: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        /* 课堂小结卡片 (可折叠) */
+        .summary-card {
+            background: #e2eff0;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #a4cbd7;
+        }
+        .summary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .summary-header h3 {
+            margin: 0;
+            color: #0f5669;
+            border-left: 8px solid #30829b;
+            padding-left: 1rem;
+        }
+        .summary-toggle {
+            font-size: 1.8rem;
+            color: #1e6f82;
+        }
+        .summary-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 300px;
+            margin-top: 1rem;
+        }
+        .summary-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .summary-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+        .summary-point {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.1rem;
+        }
+
+        /* 寄语卡片 */
+        .message-box {
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 2rem 0 0.5rem;
+            padding: 0.5rem;
+            border-top: 1px dashed #accee5;
+            padding-top: 1.5rem;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+
+        .math-negative {
+            color: #b13e3e;
+            font-weight: 500;
+        }
+
+        .math-positive {
+            color: #1c7842;
+        }
+
+        .frac {
+            display: inline-block;
+            font-size: 0.95em;
+            vertical-align: middle;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+
+        /* 新增：第一课时标题居中加底色 */
+        .first-lesson-title {
+            text-align: center;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+            margin: 1rem 0 1.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 540;
+            color: #1e5780;
+        }
+    </style>
+</head>
+<body>
+    <div class="textbook">
+        <!-- 头部信息 -->
+        <div class="header-meta">
+            <span class="version">华师版·七年级上册</span>
+            <span class="chapter-tag">第1章 有理数</span>
+        </div>
+
+        <!-- 主标题 -->
+        <h1>第1章 有理数</h1>
+        <div class="chapter-intro">
+            ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+        </div>
+
+        <!-- 引入情景：沈阳天气（仍属于章节导入） -->
+        <div class="weather-block">
+            <div class="weather-temp">
+                −12<span style="font-size:2rem;">°</span>C <small style="font-size:1.4rem;">~ 3°C</small>
+            </div>
+            <div class="weather-desc">
+                <span>🌨️ 今天沈阳降温了</span> 最低 −12℃ (零下12℃) ，最高 3℃ (零上3℃)
+            </div>
+        </div>
+
+        <!-- 核心描述（章节导入延续） -->
+        <div class="quote-note">
+            <strong>📘 某天，沈阳的最低温度是 −12℃，表示零下12℃，可以读作“负12摄氏度”。</strong> 这里，出现了负数。我们将会看到，除了表示温度以外，还有许多量需要用负数来表示。引进了负数，数的家庭将变得更加绚丽多彩，更加便于应用。
+        </div>
+
+        <!-- 第一课时标题 -->
+        <h2>1.1 有理数的引入</h2>
+        <h3 class="first-lesson-title">第一课时 正数和负数</h3>
+
+        <!-- 学习目标模块（位于课时标题下） -->
+        <div class="learning-targets">
+            <h3>🎯 本课时学习目标</h3>
+            <div class="target-grid">
+                <div class="target-item"><span>✔</span>理解相反意义的量</div>
+                <div class="target-item"><span>✔</span>会用正负数表示</div>
+                <div class="target-item"><span>✔</span>知道0的特殊性</div>
+                <div class="target-item"><span>✔</span>能识别正负数</div>
+            </div>
+        </div>
+
+        <!-- 正数和负数子标题（保持原小节编号） -->
+        <h3>1. 正数和负数</h3>
+        <p style="font-size:1.1rem; margin-bottom:0.8rem;">日常生活中，有许多具有相反意义的量，可以用正数和负数来表示。我们看几个例子：</p>
+
+        <!-- 三个经典例子 配合图标 -->
+        <div class="example-grid">
+            <div class="example-item">
+                <span class="example-icon">🚗</span>
+                <div class="example-text">
+                    <strong>(1) 汽车向东行驶3.5 km 和向西行驶2.5 km</strong><br>
+                    如果规定向东为正，那么向西为负。向东3.5 km记作 <span class="highlight">3.5 km</span>，向西2.5 km记作 <span class="highlight">−2.5 km</span>。
+                </div>
+            </div>
+            <div class="example-item">
+                <span class="example-icon">💰</span>
+                <div class="example-text">
+                    <strong>(2) 收入500元和支出237元</strong><br>
+                    如果规定收入为正，那么支出为负。收入500元记作 <span class="highlight">500元</span>，支出237元记作 <span class="highlight">−237元</span>。
+                </div>
+            </div>
+            <div class="example-item">
+                <span class="example-icon">🌊</span>
+                <div class="example-text">
+                    <strong>(3) 水位升高1.2 m 和下降0.7 m</strong><br>
+                    如果规定升高为正，那么下降为负。升高1.2 m记作 <span class="highlight">1.2 m</span>，下降0.7 m记作 <span class="highlight">−0.7 m</span>。
+                </div>
+            </div>
+        </div>
+
+        <!-- 概括部分 -->
+        <div class="summary-box">
+            <h4 style="margin-top:0; border:none; padding-left:0;">📌 概括</h4>
+            <p>在以上出现的数中，像 <span class="math-negative">−12</span>、<span class="math-negative">−2.5</span>、<span class="math-negative">−237</span>、<span class="math-negative">−0.7</span> 这样的数是 <strong>负数</strong> (negative number)，像 <span class="math-positive">3</span>、<span class="math-positive">3.5</span>、<span class="math-positive">500</span>、<span class="math-positive">1.2</span> 这样的数是 <strong>正数</strong> (positive number)。正数前面有时也可放上一个 “+” (读作“正”) 号，如 7 可以写成 +7。</p>
+            <div class="attention">⚠️ 注意：0 既不是正数，也不是负数。</div>
+        </div>
+
+        <!-- 读一读：数的产生与发展（折叠交互，默认折叠） -->
+        <div class="reading-block" id="readingBlock">
+            <div class="reading-header" onclick="toggleReading()">
+                <h3>📖 读一读 · 数的产生与发展</h3>
+                <span class="toggle-icon" id="toggleIcon">▶</span>
+            </div>
+            <div class="reading-content collapsed" id="readingContent">
+                <p>我们学过各种各样的数，那么，数是怎样产生并发展起来的呢？<br>
+                我们知道，为了表示物体的个数或者顺序，产生了整数 1, 2, 3, …；为了表示“没有”，引入了数0；有时分配、测量的结果不是整数，需要用分数（小数）表示；为了表示具有相反意义的量，我们又引进了负数……总之，生产和生活的需要促进了数的产生、发展。</p>
+            </div>
+        </div>
+
+        <!-- 练习部分 (优化交互布局) -->
+        <div class="exercises">
+            <h3>练习</h3>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">1. 举出几对具有相反意义的量，并用正数和负数来表示。</span>
+                    <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+                </div>
+                <div id="answer0" class="answer-box">
+                    例如：收入100元记作+100元，支出50元记作-50元；电梯上升5层记作+5层，下降2层记作-2层。
+                </div>
+            </div>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">2. 珠穆朗玛峰8848.86 m，吐鲁番盆地-154.31 m，请说出实际意义。海平面用什么数表示？</span>
+                    <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+                </div>
+                <div id="answer1" class="answer-box">
+                    8848.86 m表示高于海平面8848.86米；-154.31 m表示低于海平面154.31米；海平面用0表示。
+                </div>
+            </div>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">3. 下列各数中，哪些是正数？哪些是负数？</span>
+                    <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+                </div>
+                <div class="number-list">+6, −21, 54, 0, <span class="frac">22/7</span>, −3.14, 0.001, −999</div>
+                <div id="answer2" class="answer-box">
+                    正数：+6, 54, 22/7, 0.001；负数：-21, -3.14, -999；0既不是正数也不是负数。
+                </div>
+            </div>
+            <div class="exercise-item">
+                <div class="exercise-header">
+                    <span class="exercise-text">4. “一个数，如果不是正数，就必定是负数。”这句话对不对？为什么？</span>
+                    <button class="interact-btn" onclick="toggleAnswer(3)">显示答案</button>
+                </div>
+                <div id="answer3" class="answer-box">
+                    不对。因为0既不是正数也不是负数，所以一个数可能既不是正数也不是负数。
+                </div>
+            </div>
+            <p style="color: #3b6e9b; font-size:0.95rem; margin-top:0.5rem;">（点击按钮查看参考答案，思考后再看哦）</p>
+        </div>
+
+        <!-- 课堂小结 (可折叠，默认折叠) -->
+        <div class="summary-card">
+            <div class="summary-header" onclick="toggleSummary()">
+                <h3>📌 课堂小结</h3>
+                <span class="summary-toggle" id="summaryToggle">▶</span>
+            </div>
+            <div class="summary-content collapsed" id="summaryContent">
+                <div class="summary-points">
+                    <div class="summary-point">正数 > 0</div>
+                    <div class="summary-point">负数 < 0</div>
+                    <div class="summary-point">0 是分界点</div>
+                    <div class="summary-point">相反意义用正负表示</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作业布置 -->
+        <div style="background:#b3d6ed; border-radius: 60px; padding: 1rem 2.5rem; margin:2rem 0 1rem; display:flex; align-items:center; gap:1.5rem;">
+            <span style="font-size:2.5rem;">📚</span>
+            <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P5 练习第2、3题；寻找生活中3个用正负数表示的例子，明天分享。</span>
+        </div>
+
+        <!-- 寄语（与原始HTML格式一致） -->
+        <hr>
+        <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 负数让数的世界更完整，让我们一起探索有理数的奥秘吧 ✨</p>
+
+        <!-- 页脚 -->
+        <div class="footer-note">
+            数学 七年级上册 · 第1课时
+        </div>
+    </div>
+
+    <script>
+        // 答案切换函数
+        function toggleAnswer(index) {
+            var answerDiv = document.getElementById('answer' + index);
+            if (answerDiv) {
+                answerDiv.classList.toggle('show-answer');
+            }
+        }
+
+        // 读一读折叠
+        function toggleReading() {
+            var content = document.getElementById('readingContent');
+            var icon = document.getElementById('toggleIcon');
+            content.classList.toggle('collapsed');
+            icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+        }
+
+        // 课堂小结折叠
+        function toggleSummary() {
+            var content = document.getElementById('summaryContent');
+            var toggle = document.getElementById('summaryToggle');
+            content.classList.toggle('collapsed');
+            toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+        }
+    </script>
+</body>
+</html>

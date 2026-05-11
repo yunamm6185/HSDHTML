@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.2 解一元一次方程（第三课时） | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .sub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0f4a6f;
+            margin: -1rem 0 2rem 0;
+            font-weight: 500;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            text-align: center;
+            color: #316a8c;
+            font-size: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .summary-box {
+            background: #cfe2ec;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 8px solid #30829b;
+        }
+        .summary-box h4 { font-size: 1.5rem; color: #0f5669; margin-bottom: 0.8rem; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .try-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .try-box h4::before { content: "🔧"; margin-right: 0.5rem; }
+        /* 自定义表格样式 */
+        .ex6-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border: 1px solid #b0d4ee;
+        }
+        .ex6-table th, .ex6-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .ex6-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        .ex7-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border: 1px solid #b0d4ee;
+        }
+        .ex7-table th, .ex7-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .ex7-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        /* 步骤强调背景 */
+        .step-highlight {
+            background: #b8d9ff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0.2rem 0;
+        }
+        /* 答案表格样式（与例题一致） */
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border: 1px solid #b0d4ee;
+        }
+        .answer-table th, .answer-table td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        .answer-table th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        .eq-note {
+            margin-top: 0.5rem;
+            font-weight: 500;
+            color: #1d6130;
+        }
+        .solve-step {
+            margin: 1rem 0;
+            background: #f5fafe;
+            padding: 0.8rem;
+            border-radius: 8px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第5章 一元一次方程 · 5.2.2 解一元一次方程</span>
+    </div>
+    <h1>第5章 一元一次方程</h1>
+    <div class="chapter-intro">★ 掌握解一元一次方程的基本步骤，能解带括号、带分母的方程，并能解决实际问题。</div>
+    <div class="lesson-title">5.2.2 解一元一次方程</div>
+    <div class="sub-title">第三课时 列一元一次方程解决实际问题</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能分析实际问题中的数量关系，找出等量关系</div>
+            <div class="target-item"><span>✔</span>会设未知数列出一元一次方程</div>
+            <div class="target-item"><span>✔</span>掌握列方程解应用题的一般步骤</div>
+        </div>
+    </div>
+
+    <!-- 例6（天平问题，3列3行表格） -->
+    <div class="example-box">
+        <h4>例6 如图，天平的两个盘中分别盛有51g和45g盐，问：应从A盘中拿出多少克盐放到B盘中，才能使天平平衡？</h4>
+        <table class="ex6-table">
+            <tr>
+                <th>盘别</th>
+                <th>A盘</th>
+                <th>B盘</th>
+            </tr>
+            <tr>
+                <td>原有盐/g</td>
+                <td>51</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td>变化</td>
+                <td>拿出$x$ g</td>
+                <td>得到$x$ g</td>
+            </tr>
+            <tr>
+                <td>现有盐/g</td>
+                <td>$51-x$</td>
+                <td>$45+x$</td>
+            </tr>
+        </table>
+        <p style="margin-top:0.5rem;"><strong>等量关系：</strong>A盘现有盐 = B盘现有盐 → $51-x = 45+x$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex6')">📌 显示解答</button>
+        <div id="ex6" class="answer-box">
+            <p>解：设应从A盘中拿出$x$克盐放到B盘中。</p>
+            <p>根据题意，得</p>
+            \[
+            \begin{aligned}
+            51 - x &= 45 + x \\
+            \text{移项，得} & \\
+            -x - x &= 45 - 51 \\
+            -2x &= -6 \\
+            \text{系数化为1，得} & \\
+            x &= 3
+            \end{aligned}
+            \]
+            <p>经检验，$x = 3$符合题意。</p>
+            <p>答：应从A盘中拿出3g盐放到B盘中。</p>
+        </div>
+    </div>
+
+    <!-- 例7（搬书问题，4列4行表格） -->
+    <div class="example-box">
+        <h4>例7 新学期开学，学校团委组织八年级65位新团员将教科书从仓库搬到七年级新生教室。女同学每人每次搬3包，男同学每人每次搬4包。每位同学搬了2次，共搬了450包。问：这些新团员中有多少位男同学？</h4>
+        <table class="ex7-table">
+            <tr>
+                <th></th>
+                <th>男同学</th>
+                <th>女同学</th>
+                <th>总数</th>
+            </tr>
+            <tr>
+                <td>人数</td>
+                <td>$x$</td>
+                <td>$65-x$</td>
+                <td>65</td>
+            </tr>
+            <tr>
+                <td>每人每次搬书/包</td>
+                <td>4</td>
+                <td>3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>搬书次数</td>
+                <td>2</td>
+                <td>2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>共搬书包数</td>
+                <td>$4\times2\times x = 8x$</td>
+                <td>$3\times2\times(65-x)=6(65-x)$</td>
+                <td>450</td>
+            </tr>
+        </table>
+        <p style="margin-top:0.5rem;"><strong>等量关系：</strong>男同学搬书包数 + 女同学搬书包数 = 450 → $8x + 6(65-x) = 450$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex7')">📌 显示解答</button>
+        <div id="ex7" class="answer-box">
+            <p>解：设男同学有$x$人，则女同学有$(65-x)$人。</p>
+            <p>根据题意，得</p>
+            \[
+            \begin{aligned}
+            8x + 6(65 - x) &= 450 \\
+            8x + 390 - 6x &= 450 \\
+            2x + 390 &= 450 \\
+            2x &= 60 \\
+            x &= 30
+            \end{aligned}
+            \]
+            <p>经检验，$x = 30$符合题意。</p>
+            <p>答：这些新团员中有30位男同学。</p>
+        </div>
+    </div>
+
+    <!-- 概括：列方程解应用题的关键（步骤加深底色） -->
+    <div class="summary-box">
+        <h4>📌 概括</h4>
+        <p>列一元一次方程解决实际问题，关键在于抓住问题中的等量关系，列出方程。求得方程的解后，经过检验，得到实际问题的解答。</p>
+        <p>这一过程也可以简单地表述为：</p>
+        <div style="text-align:center; margin:1rem 0;">
+            <span class="step-highlight">实际问题</span> → 
+            <span class="step-highlight">设未知数、列方程</span> → 
+            <span class="step-highlight">解方程</span> → 
+            <span class="step-highlight">检验</span> → 
+            <span class="step-highlight">答案</span>
+        </div>
+        <p>其中分析和抽象的过程通常包括：</p>
+        <ul style="margin-left:2rem;">
+            <li><strong>弄清题意和其中的数量关系</strong>，用字母表示适当的未知数（设元）；</li>
+            <li><strong>找出问题中所给出的等量关系</strong>，它反映了未知量与已知量之间的关系；</li>
+            <li>对这个等量关系中涉及的量，<strong>列出相关的代数式</strong>，根据等量关系，列出方程。</li>
+        </ul>
+        <p>在设未知数和作出解答时，应注意量的单位。</p>
+    </div>
+
+    <!-- 试一试：拆分为两个问题，每个问题有分析和解答两个按钮 -->
+    <div class="try-box">
+        <h4>试一试</h4>
+        <p>解答下面两个问题，注意比较这两个问题中的数量关系：</p>
+        
+        <!-- 问题1 -->
+        <div style="margin-top:1.5rem; border-top:2px dashed #b0d4ee; padding-top:1rem;">
+            <p><strong>问题1：</strong>小亮和老师一起整理了一篇教学材料，准备录入成电子稿。按篇幅估计，老师单独录入需4h完成，小亮单独录入需6h完成。小亮先录入了1h后，老师开始一起录入，问：还需要多少小时完成？</p>
+            <div class="btn-group">
+                <button class="interact-btn" onclick="toggleAnswer('try1-analysis')">📊 显示分析表格</button>
+                <button class="interact-btn" onclick="toggleAnswer('try1-solution')">📝 显示解答过程</button>
+            </div>
+            <div id="try1-analysis" class="answer-box">
+                <table class="answer-table">
+                    <tr>
+                        <th>人员</th>
+                        <th>工作效率</th>
+                        <th>工作时间/h</th>
+                        <th>工作量</th>
+                    </tr>
+                    <tr>
+                        <td>老师</td>
+                        <td>$\frac{1}{4}$</td>
+                        <td>$x$（合作部分）</td>
+                        <td>$\frac{1}{4}x$</td>
+                    </tr>
+                    <tr>
+                        <td>小亮</td>
+                        <td>$\frac{1}{6}$</td>
+                        <td>$1$（先做）+ $x$（合作）</td>
+                        <td>$\frac{1}{6}\times1 + \frac{1}{6}x = \frac{1}{6} + \frac{1}{6}x$</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>等量关系：</strong>老师工作量 + 小亮工作量 = 总工作量1</td>
+                        <td>$\frac{1}{4}x + \left(\frac{1}{6} + \frac{1}{6}x\right) = 1$</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="try1-solution" class="answer-box">
+                <div class="solve-step">
+                    <p>解：设还需要$x$小时完成。</p>
+                    <p>根据题意，得</p>
+                    \[
+                    \begin{aligned}
+                    \frac{1}{4}x + \frac{1}{6} + \frac{1}{6}x &= 1 \\
+                    \text{合并同类项，得} & \\
+                    \left(\frac{1}{4} + \frac{1}{6}\right)x + \frac{1}{6} &= 1 \\
+                    \frac{5}{12}x + \frac{1}{6} &= 1 \\
+                    \text{移项，得} & \\
+                    \frac{5}{12}x &= 1 - \frac{1}{6} \\
+                    \frac{5}{12}x &= \frac{5}{6} \\
+                    \text{系数化为1，得} & \\
+                    x &= \frac{5}{6} \times \frac{12}{5} \\
+                    x &= 2
+                    \end{aligned}
+                    \]
+                    <p>经检验，$x = 2$符合题意。</p>
+                    <p>答：还需要2小时完成。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 问题2 -->
+        <div style="margin-top:1.5rem; border-top:2px dashed #b0d4ee; padding-top:1rem;">
+            <p><strong>问题2：</strong>甲、乙两车分别从相距360km的两地相向开出，已知甲车的速度为60km/h，乙车的速度为90km/h。若甲车先开1h，问：乙车开出多少小时后两车相遇？</p>
+            <div class="btn-group">
+                <button class="interact-btn" onclick="toggleAnswer('try2-analysis')">📊 显示分析表格</button>
+                <button class="interact-btn" onclick="toggleAnswer('try2-solution')">📝 显示解答过程</button>
+            </div>
+            <div id="try2-analysis" class="answer-box">
+                <table class="answer-table">
+                    <tr>
+                        <th>车辆</th>
+                        <th>速度/(km/h)</th>
+                        <th>行驶时间/h</th>
+                        <th>路程/km</th>
+                    </tr>
+                    <tr>
+                        <td>甲车</td>
+                        <td>60</td>
+                        <td>$1$（先行）+ $x$（相遇过程）</td>
+                        <td>$60\times1 + 60x = 60 + 60x$</td>
+                    </tr>
+                    <tr>
+                        <td>乙车</td>
+                        <td>90</td>
+                        <td>$x$</td>
+                        <td>$90x$</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><strong>等量关系：</strong>甲车路程 + 乙车路程 = 总路程360km</td>
+                        <td>$(60 + 60x) + 90x = 360$</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="try2-solution" class="answer-box">
+                <div class="solve-step">
+                    <p>解：设乙车开出$x$小时后两车相遇。</p>
+                    <p>根据题意，得</p>
+                    \[
+                    \begin{aligned}
+                    60 + 60x + 90x &= 360 \\
+                    60 + 150x &= 360 \\
+                    \text{移项，得} & \\
+                    150x &= 360 - 60 \\
+                    150x &= 300 \\
+                    \text{系数化为1，得} & \\
+                    x &= 2
+                    \end{aligned}
+                    \]
+                    <p>经检验，$x = 2$符合题意。</p>
+                    <p>答：乙车开出2小时后两车相遇。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习（课本第16页练习1、2） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <ol>
+            <li>学校田径队的小刚同学在400m跑测试时，先以6m/s的平均速度跑了大部分路程，再以8m/s的速度冲刺到达终点，成绩为1min5s。问：小刚同学在冲刺阶段花了多少时间？</li>
+            <li>在第1题中，若问“小刚同学在离终点多远处开始冲刺”，该如何求解？</li>
+        </ol>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 参考答案</button>
+        <div id="prac3" class="answer-box">
+            <p>1. 设冲刺阶段花了$x$秒，则 $6(65 - x) + 8x = 400$，解得 $x = 5$（秒）。</p>
+            <p>2. 设离终点$x$米处开始冲刺，则 $\dfrac{400 - x}{6} + \dfrac{x}{8} = 65$，解得 $x = 40$（米）。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>📌 课堂小结</h4>
+        <div class="summary-item">列方程解应用题的关键是找出等量关系</div>
+        <div class="summary-item">设未知数时注意单位，并明确未知数的含义</div>
+        <div class="summary-item">解出方程后要检验是否符合实际意义</div>
+        <div class="summary-item">常见等量关系：行程问题、工程问题、分配问题等</div>
+    </div>
+
+    <!-- 读一读：中国古代一元一次方程应用（替换为《九章算术》盈不足问题） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 《九章算术》中的盈不足问题</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》是我国古代著名的数学著作，其中第七章“盈不足”专门讨论一类盈亏问题，这些问题都可以化为一元一次方程求解。例如：“今有共买鸡，人出九，盈十一；人出六，不足十六。问人数、鸡价各几何？”</p>
+            <p>意思是：一些人共同买鸡，每人出9钱，则多出11钱；每人出6钱，则差16钱。问人数和鸡价各是多少？</p>
+            <p>设人数为 $x$，根据两种付款方式的总价相等，可得方程：
+            \[ 9x - 11 = 6x + 16 \]
+            移项得 $9x - 6x = 16 + 11$，即 $3x = 27$，解得 $x = 9$。鸡价为 $9 \times 9 - 11 = 70$ 钱。</p>
+            <p>这种“盈不足”问题在《九章算术》中给出了统一的解法，称为“盈不足术”，实际上就是设未知数列一元一次方程求解。这是中国古代数学在世界数学史上的重要贡献。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>建模思想：</strong> 将实际问题转化为数学方程，体会数学的应用价值。<br>
+        <strong>符号意识：</strong> 用字母表示未知数，发展抽象思维。<br>
+        <strong>应用意识：</strong> 学会用方程解决生活中的问题。</p>
+    </div>
+
+    <!-- 课后作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题5.2.2 第3、4题。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p class="quote">✨ 方程是连接数学与现实的桥梁，学会它，你将拥有解决实际问题的金钥匙。✨</p>
+
+    <div class="footer-note">数学 七年级下册 · 第5章 5.2.2 第三课时</div>
+</div>
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

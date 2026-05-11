@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10课时 有理数的减法 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        /* 学习目标卡片 - 柔和的蓝色 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入块 - 极浅蓝 */
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 探究模块 - 暖白 */
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+
+        /* 法则强调框 */
+        .law-box {
+            background: #ffe599;
+            border-radius: 40px;
+            padding: 1rem 2rem;
+            margin: 1rem 0;
+            border: 2px solid #f5c542;
+            box-shadow: 0 4px 0 #e0a800;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        /* 代数推导框 */
+        .deduction-box {
+            background: #e6f0fa;
+            border-radius: 30px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #2a7faa;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+        }
+
+        /* 例题框 - 加深蓝灰色 */
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        /* 答案框 - 用于递等式 */
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.8rem 2rem;
+            margin: 0.8rem 0 0.5rem 1.5rem;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            word-break: break-word;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            font-family: 'Courier New', monospace;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 练习区 - 浅紫灰 */
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        /* 读一读 - 浅绿（化归思想） */
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 400px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content p {
+            margin-bottom: 0.8rem;
+        }
+        .reading-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .reading-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .emph-orange { color: #a13e00; font-weight: 600; }
+
+        /* 作业布置 */
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">
+        ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+    </div>
+
+    <h2>1.7 有理数的减法</h2>
+
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数减法法则</div>
+            <div class="target-item"><span>✔</span>会将减法转化为加法进行计算</div>
+            <div class="target-item"><span>✔</span>能熟练进行有理数减法运算</div>
+            <div class="target-item"><span>✔</span>体会化归思想在数学中的应用</div>
+        </div>
+    </div>
+
+    <!-- 导入：珠峰与吐鲁番温差问题 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">🏔️ 珠穆朗玛峰海拔8848.86m，吐鲁番盆地海拔-154.31m。珠峰比吐鲁番盆地高多少米？</p>
+        <p>列式：\(8848.86 - (-154.31)\)。怎样计算呢？</p>
+    </div>
+
+    <!-- 新知探究：减法法则（含代数推导） -->
+    <h3>🔍 探究：有理数的减法法则</h3>
+    <div class="axis-showcase">
+        <p>计算：\((-8) - (-3)\)。根据减法的意义，就是求一个数“？”，使 \((?) + (-3) = -8\)。</p>
+        <p>由加法运算，\((-5) + (-3) = -8\)，所以 \((-8) - (-3) = -5\)。</p>
+        <p>同时，\((-8) + (+3) = -5\)。因此 \((-8) - (-3) = (-8) + (+3)\)。</p>
+        
+        <div class="deduction-box">
+            <p>一般地，对于任意有理数 \(a, b\)，由减法的意义，\(a - b\) 就是要求一个数“？”，使</p>
+            <p style="text-align:center">\((?) + b = a\)。</p>
+            <p>因为</p>
+            <p style="text-align:center">\([a + (-b)] + b = a + [(-b) + b]\) （加法结合律）<br>
+            \(= a + 0\) （加法法则3：互为相反数的两个数相加得0）<br>
+            \(= a\) （加法法则4：一个数与0相加，仍得这个数），</p>
+            <p>所以 \(a - b = a + (-b)\)。</p>
+        </div>
+
+        <div class="law-box">
+            <p><strong>有理数的减法法则：</strong> \(a - b = a + (-b)\)</p>
+            <p>减去一个数，等于加上这个数的相反数。</p>
+        </div>
+    </div>
+
+    <!-- 例题（课本例，四个小题，四个答案框） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例</strong> 计算：</p>
+        <p>(1) \((-32) - (+5)\)； (2) \(7.3 - (-6.8)\)； (3) \((-2) - (-25)\)； (4) \(12 - 21\)。</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;">
+            <button class="interact-btn" onclick="toggleExampleAnswer(1)">显示(1)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(2)">显示(2)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(3)">显示(3)答案</button>
+            <button class="interact-btn" onclick="toggleExampleAnswer(4)">显示(4)答案</button>
+        </div>
+        <div id="exampleAnswer1" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            (1) \((-32) - (+5) = (-32) + (-5) = -37\)
+        </div>
+        <div id="exampleAnswer2" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            (2) \(7.3 - (-6.8) = 7.3 + 6.8 = 14.1\)
+        </div>
+        <div id="exampleAnswer3" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            (3) \((-2) - (-25) = (-2) + 25 = 23\)
+        </div>
+        <div id="exampleAnswer4" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            (4) \(12 - 21 = 12 + (-21) = -9\)
+        </div>
+    </div>
+
+    <!-- 巩固练习（课本P32练习第1、2、3题） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习1：填空 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 在下列括号内填上适当的数：<br>
+                (1) \((-2) - (-3) = (-2) + ( \quad )\)；<br>
+                (2) \(0 - (-4) = 0 + ( \quad )\)；<br>
+                (3) \((-6) - 3 = (-6) + ( \quad )\)；<br>
+                (4) \(1 - (+39) = 1 + ( \quad )\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(0)">显示答案</button>
+            </div>
+            <div id="answer0" class="answer-box" style="margin-left:0;">
+                (1) \(+3\)； (2) \(+4\)； (3) \(-3\)； (4) \(-39\)。
+            </div>
+        </div>
+
+        <!-- 练习2：计算 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：<br>
+                (1) \((+3) - (-2)\)； (2) \((-1) - (+2)\)； (3) \(0 - (-3)\)；<br>
+                (4) \(1 - 5\)； (5) \((-23.6) - (-12.4)\)； (6) \(\dfrac{2}{3} - \left(-\dfrac{1}{2}\right)\)。</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div id="answer1" class="answer-box" style="margin-left:0;">
+                (1) \((+3) - (-2) = 3 + 2 = 5\) <br>
+                (2) \((-1) - (+2) = -1 + (-2) = -3\) <br>
+                (3) \(0 - (-3) = 0 + 3 = 3\) <br>
+                (4) \(1 - 5 = 1 + (-5) = -4\) <br>
+                (5) \((-23.6) - (-12.4) = -23.6 + 12.4 = -11.2\) <br>
+                (6) \(\frac{2}{3} - \left(-\frac{1}{2}\right) = \frac{2}{3} + \frac{1}{2} = \frac{4}{6} + \frac{3}{6} = \frac{7}{6}\)
+            </div>
+        </div>
+
+        <!-- 练习3：填空（温差） -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 填空：<br>
+                (1) 温度 \(3^{\circ}C\) 比 \(-8^{\circ}C\) 高 \(\_\_\_\) \(^{\circ}C\)；<br>
+                (2) 温度 \(-9^{\circ}C\) 比 \(-1^{\circ}C\) 低 \(\_\_\_\) \(^{\circ}C\)；<br>
+                (3) 海拔 \(-20\mathrm{m}\) 比 \(-30\mathrm{m}\) 高 \(\_\_\_\) m；<br>
+                (4) 从海拔 \(22\mathrm{m}\) 到 \(-10\mathrm{m}\)，下降了 \(\_\_\_\) m。</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div id="answer2" class="answer-box" style="margin-left:0;">
+                (1) \(3 - (-8) = 3 + 8 = 11\) <br>
+                (2) 低 \(-9 - (-1) = -9 + 1 = -8\)，即低8℃ <br>
+                (3) \((-20) - (-30) = -20 + 30 = 10\) <br>
+                (4) 下降 \(22 - (-10) = 22 + 10 = 32\)
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：化归思想 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 化归思想——将新知识变成老朋友</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>在数学中，我们经常把新遇到的、不会的问题，想办法变成我们已经会解决的问题。这种思想叫做<strong>“化归”</strong>，简单说就是“将未知转化为已知”。</p>
+            
+            <p>小学时，我们就接触过化归：例如，计算 \(3 + (?) = 5\)，我们想 (?) 是多少，就用减法 \(5 - 3 = 2\)。反过来，减法 \(5 - 3\) 也可以看作是求“5 加上 3 的相反数”。今天学习的减法法则 \(a - b = a + (-b)\)，正是把减法转化成了加法——而加法我们已经很熟悉了！</p>
+            
+            <p>在本章中，其实已经多次用到化归思想：</p>
+            <ul>
+                <li><strong>比较负数的大小</strong>：我们不会直接比较两个负数，但会先求它们的绝对值（变成正数），再比较绝对值的大小，最后得出结论“绝对值大的反而小”。</li>
+                <li><strong>简化符号</strong>：像 \(-(-3)\) 这样的式子，我们利用相反数的概念，把它转化为 \(+3\)，这也是化归。</li>
+                <li><strong>绝对值运算</strong>：求一个负数的绝对值，我们转化为求它的相反数（正数）。</li>
+            </ul>
+            
+            <p>以后我们还会遇到很多这样的例子：比如把除法转化为乘法，把乘方转化为乘法，把复杂的算式逐步化简……化归思想是学习数学最重要的法宝之一。掌握了它，你就能不断用旧知识解决新问题，越学越轻松！</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+        </div>
+        <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">减法法则：\(a - b = a + (-b)\)</div>
+                <div class="summary-item">减去一个数，等于加上这个数的相反数</div>
+                <div class="summary-item">减法可统一为加法运算</div>
+                <div class="summary-item">化归思想：将新问题转化为已学知识</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P33 练习第1、2题；习题1.7 A组第1、2题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 减法变加法，化归显神通 ✨</p>
+
+    <div class="footer-note">
+        数学 七年级上册 · 第10课时
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById('answer' + index);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer(num) {
+        const answerDiv = document.getElementById('exampleAnswer' + num);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+            content.style.maxHeight = '300px';
+            toggle.textContent = '▼';
+        } else {
+            content.style.maxHeight = '0';
+            toggle.textContent = '▶';
+        }
+    }
+</script>
+</body>
+</html>

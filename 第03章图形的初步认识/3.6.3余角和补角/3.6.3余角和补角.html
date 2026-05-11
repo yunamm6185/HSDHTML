@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第48课时 余角和补角 | 华师版·七上 第3章</title>
+    <!-- 引入 MathJax 以正确渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .try-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .try-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .try-box h4::before { content: "🔬"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        .note-tip {
+            font-size: 0.95rem;
+            color: #2d5a7a;
+            margin-top: 0.5rem;
+            font-style: italic;
+            background: #e1f0fa;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        /* 例题样式 */
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .example-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #accee5;
+        }
+        .example-item:last-child {
+            border-bottom: none;
+        }
+        .example-graph {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .example-graph img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第3章 图形的初步认识 · 第48课时</span>
+    </div>
+    <h1>第3章 图形的初步认识</h1>
+    <div class="chapter-intro">★ 理解余角和补角的概念，探索角之间的特殊数量关系。</div>
+    <h2>3.6 角</h2>
+    <div class="lesson-title">第3课时 余角和补角</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解余角和补角的定义</div>
+            <div class="target-item"><span>✔</span>掌握“同角（等角）的余角相等”“同角（等角）的补角相等”</div>
+            <div class="target-item"><span>✔</span>能进行余角和补角的简单计算</div>
+            <div class="target-item"><span>✔</span>体会角与角之间的数量关系在实际中的应用</div>
+        </div>
+    </div>
+
+    <!-- 引入：三角尺中的特殊角 -->
+    <div class="intro-block">
+        <p>在我们所用的一副三角尺中，每块都有一个角是 \(90^{\circ}\)，而其他两个角，一块是 \(30^{\circ}\) 与 \(60^{\circ}\)，另一块都是 \(45^{\circ}\)，它们的和都是 \(90^{\circ}\)。</p>
+        <p>在图3.6.17中，用量角器量一量两组图中各角的大小，发现也有这样的特殊关系。</p>
+    </div>
+    <div class="figure-box">
+        <img src="3.6.17.png" alt="图3.6.17">
+        <div class="figcaption">图3.6.17 互余的角</div>
+    </div>
+
+    <!-- 余角和补角定义 -->
+    <p>两个角的和等于 \(90^{\circ}\)（直角），就说这两个角<strong>互为余角</strong>（complementary angle），简称互余。</p>
+    <p>例如，如果 \(\angle 1 + \angle 2 = 90^{\circ}\)，那么 \(\angle 1\) 是 \(\angle 2\) 的余角， \(\angle 2\) 也是 \(\angle 1\) 的余角。反过来，如果两个角互余，那么把这两个角如图3.6.18那样拼在一起的话，就构成一个直角。</p>
+    <div class="figure-box">
+        <img src="3.6.18.png" alt="图3.6.18">
+        <div class="figcaption">图3.6.18 互余拼成直角</div>
+    </div>
+
+    <p>同样，如果两个角的和等于 \(180^{\circ}\)（平角），就说这两个角<strong>互为补角</strong>（supplementary angle），简称互补。如图3.6.19， \(\angle 3 + \angle 4 = 180^{\circ}\)，所以 \(\angle 3\) 、 \(\angle 4\) 互为补角。</p>
+    <div class="figure-box">
+        <img src="3.6.19.png" alt="图3.6.19">
+        <div class="figcaption">图3.6.19 互补拼成平角</div>
+    </div>
+
+    <!-- 思考：余角和补角的性质 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>想想看，如果 \(\angle 1\) 与 \(\angle 2\) 互余， \(\angle 3\) 与 \(\angle 4\) 互余， \(\angle 2 = \angle 4\) ，那么 \(\angle 1\) 与 \(\angle 3\) 有什么关系？相等角的补角又有什么关系？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansThink')">💡 显示结论</button>
+        <div id="ansThink" class="answer-box">
+            <p>\(\angle 1 = \angle 3\)（等角的余角相等）；两个相等角的补角也相等。</p>
+        </div>
+        <p style="margin-top:1rem;">由此可得性质：<strong>同角或等角的余角相等；同角或等角的补角相等。</strong></p>
+    </div>
+
+    <!-- 例3 求余角和补角 -->
+    <div class="example-box">
+        <h4>📐 例3</h4>
+        <p>已知 \(\angle \alpha = 50^{\circ}17^{\prime}\) ，求 \(\angle \alpha\) 的余角和补角。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansEx3')">📌 显示解答</button>
+        <div id="ansEx3" class="answer-box">
+            <p>\(\angle \alpha\) 的余角 \(= 90^{\circ} - 50^{\circ}17^{\prime} = 39^{\circ}43^{\prime}\)</p>
+            <p>\(\angle \alpha\) 的补角 \(= 180^{\circ} - 50^{\circ}17^{\prime} = 129^{\circ}43^{\prime}\)</p>
+        </div>
+    </div>
+
+    <!-- 练习（三个小题的图合并，放在第1题之后、第2题之前） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>练习</h3>
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>1.</strong> 说出图中互余和互补的角。</p>
+        </div>
+
+        <!-- 图片放在第1题之后，第2题之前 -->
+        <div class="figure-box" style="margin:1rem 0;">
+            <img src="第1题第2题第3题.png" alt="练习第1-3题图">
+            <div class="figcaption">（第1、2、3题共用图）</div>
+        </div>
+
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>2.</strong> 如图，有两堵围墙，有人想测量地面上所形成的 \(\angle AOB\) 的度数，但人又不能进入围墙，只能站在墙外，请问该如何测量？</p>
+        </div>
+
+        <div class="exercise-item" style="margin-bottom:2rem; border-bottom:1px dashed #accee5; padding-bottom:1.5rem;">
+            <p><strong>3.</strong> 如图，已知 \(\angle AOB\) ，利用尺规作图作一个角等于该角的补角。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">余角：两个角的和等于90°；补角：两个角的和等于180°</div>
+            <div class="summary-item">性质：同角或等角的余角相等；同角或等角的补角相等</div>
+            <div class="summary-item">余角、补角是反映角与角之间数量关系的概念，与位置无关</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从具体图形中抽象出“互余”“互补”的数量关系。<br>
+        <strong>转化思想：</strong> 将角的计算问题转化为代数运算（加减法）。<br>
+        <strong>模型思想：</strong> 余角、补角是几何中的基本数量模型，广泛应用于几何证明和实际问题。</p>
+    </div>
+
+    <!-- 读一读：生活中的余角和补角（已删除台球段落） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 生活中的余角和补角</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>你知道吗？余角和补角在我们的生活中随处可见！</p>
+            <p>🌳 <strong>植树中的数学</strong>：当我们把小树苗扶正时，歪斜的树苗和地面形成一个角，而树苗应该垂直于地面，这两个角的和正好是90°——它们互余！</p>
+            <p>🛠️ <strong>工具中的学问</strong>：工人用铁锹挖地时，铁锹与地面形成的两个角刚好拼成一个平角（180°），这两个角就是互补的关系。</p>
+            <p>🧩 <strong>折纸游戏</strong>：拿一张长方形纸，随意折一下，展开后你会发现很多余角和补角。比如把一个角折起来，折痕两边的小角往往互余。</p>
+            <p>原来数学就在我们身边，只要留心观察，处处都能发现余角和补角的身影！</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本P41-42习题3.6 A组第1、2、3题；寻找生活中互余或互补的角，记录下来并与同学分享。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 从具体到抽象，用数学的眼光看世界 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第48课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

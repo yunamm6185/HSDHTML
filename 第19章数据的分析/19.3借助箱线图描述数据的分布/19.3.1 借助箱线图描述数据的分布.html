@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+<title>19.3 借助箱线图描述数据的分布 | 华师版·八年级下册</title>
+<script>MathJax={tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" defer></script>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<style>
+/*===== 课堂投影专用：简洁、高对比度、无动画 =====*/
+:root{
+  --accent:#0ea5e9;--dark:#1e293b;--gray:#64748b;--border:#d1d5db;
+  --bg-light:#f8fafc;--bg-card:#ffffff;
+}
+
+body{
+  font-size:22px;line-height:1.9;
+  background:#f1f5f9;color:var(--dark);
+}
+.textbook{
+  background:#fff;border:1px solid var(--border);
+  border-radius:6px;max-width:1100px;margin:0 auto;padding:2rem 2.5rem;
+}
+h1{font-size:2.6rem;color:var(--dark);margin:.5rem 0;}
+h1::after{content:'';display:block;width:80px;height:4px;background:var(--accent);margin-top:6px;}
+.lesson-title{
+  font-size:2.4rem;text-align:center;color:var(--dark);
+  background:var(--bg-light);padding:.8rem 1.5rem;
+  border:1px solid var(--border);border-radius:6px;
+  margin:1rem 0;font-weight:700;
+}
+.header-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:1.15rem;color:var(--gray);border-bottom:2px solid var(--accent);
+  padding-bottom:.6rem;margin-bottom:1rem;
+}
+.section-title{
+  font-size:1.8rem;color:var(--dark);font-weight:700;
+  margin:1.8rem 0 .8rem;padding-bottom:.3rem;
+  border-bottom:3px solid var(--accent);display:inline-block;
+}
+
+/*===== 统一正文大小 =====*/
+p,li{font-size:1.15rem;}
+.example-card,.think-box,.summary-box,.answer-box,.message-box{
+  font-size:1.15rem;
+}
+
+/*===== 学习目标 =====*/
+.learning-targets{
+  padding:1rem 0;margin:1rem 0 1.5rem;
+  border-top:2px solid #e2e8f0;border-bottom:2px solid #e2e8f0;
+}
+.learning-targets h3{font-size:1.8rem;margin:0 0 1rem;font-weight:700;color:var(--dark);}
+.target-grid{display:flex;flex-wrap:wrap;gap:1rem;}
+.target-item{
+  font-size:1.15rem;padding:.4rem 0;display:flex;align-items:center;gap:.6rem;
+  background:none;border:none;border-radius:0;box-shadow:none;
+}
+.target-item span{
+  width:36px;height:36px;font-size:1.05rem;
+  background:var(--accent);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;flex-shrink:0;
+}
+
+/*===== 卡片 =====*/
+.example-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-left:4px solid var(--accent);border-radius:4px;
+  margin:1rem 0;padding:1rem 1.5rem;
+}
+.example-card ol{padding-left:1.8rem;line-height:2.1;}
+.example-card li{margin:.3rem 0;}
+
+/*===== 思考框 =====*/
+.think-box{
+  background:#eff6ff;border:1px solid #93c5fd;
+  border-left:4px solid var(--accent);border-radius:4px;
+  margin:1rem 0;padding:1rem 1.5rem;
+}
+.think-box h4{color:var(--dark);margin-bottom:.6rem;font-size:1.6rem;}
+.think-box ol{margin-top:.4rem;padding-left:1.6rem;}
+
+/*===== 小结框 =====*/
+.summary-box{
+  background:#f0fdf4;border:1px solid #86efac;
+  border-radius:4px;padding:1.2rem 1.6rem;margin:1rem 0;
+}
+.summary-box h4{font-size:1.6rem;margin-bottom:.5rem;}
+.summary-box ol{padding-left:1.8rem;line-height:2.1;}
+.summary-box li{margin:.3rem 0;}
+
+/*===== 消息框 =====*/
+.message-box{
+  background:#fefce8;border:1px solid #facc15;
+  border-radius:4px;text-align:center;padding:1rem 1.5rem;margin:1rem 0;
+}
+.message-box p{color:#854d0e;font-weight:700;}
+
+/*===== 图表容器 =====*/
+.chart-box{
+  background:#fff;border:1px solid var(--border);
+  border-radius:4px;padding:1.4rem;
+  margin:1.4rem auto;max-width:720px;
+}
+.chart-title{text-align:center;font-weight:700;color:var(--dark);margin-bottom:.8rem;font-size:1.5rem;}
+
+/*===== 按钮 =====*/
+.btn-primary{
+  background:var(--accent);color:#fff;border:none;border-radius:6px;
+  cursor:pointer;font-weight:600;font-size:1.15rem;padding:.6rem 2.5rem;
+}
+.btn-primary:hover{opacity:.85;}
+
+/*===== 解答区域 =====*/
+.answer-box{
+  display:none;background:#f8fafc;
+  border:2px dashed var(--accent);border-radius:4px;
+  padding:1.4rem;margin-top:1.2rem;
+}
+.answer-box ol{padding-left:1.8rem;line-height:2.1;}
+.answer-box li{margin:.4rem 0;}
+
+/*===== 表格通用 =====*/
+.table-caption{text-align:center;color:var(--gray);font-size:1.15rem;margin:.5rem 0 1.2rem;font-weight:600;}
+table{width:100%;border-collapse:collapse;margin:1rem auto;font-size:1.15rem;}
+table th,table td{padding:.8rem;text-align:center;border:1px solid var(--border);}
+table th{background:var(--bg-light);font-weight:700;}
+
+/*===== 页脚 =====*/
+.footer-note{
+  font-size:1.05rem;color:var(--gray);text-align:center;
+  padding:1.2rem;border-top:1px solid var(--border);margin-top:1.2rem;
+}
+
+/*===== 强调 =====*/
+strong{color:#0e7490;font-weight:700;}
+
+/*===== SVG =====*/
+svg{max-height:70vh;}
+
+/*===== 表格19.3.1 响应式样式 =====*/
+.table-1931{
+  width:100%;
+  border-collapse:collapse;
+  margin:0 auto;background:transparent;
+}
+.table-1931 th, .table-1931 td{
+  width:14.28%;padding:0.8rem 0.5rem;font-size:1.15rem;
+  text-align:center;font-weight:600;color:#475569;
+  border:1.5px solid #d1d5db;
+}
+.table-1931 th{
+  color:#1e293b;font-weight:700;
+  background:#f1f5f9;
+}
+.table-1931 tr:nth-child(even) td{background:#f8fafc;}
+.table-1931 td.highlight{
+  color:#0284c7;font-weight:700;
+  background:#e0f2fe !important;
+}
+/* 中等屏幕 */
+@media (max-width:900px){
+  .table-1931 th, .table-1931 td{padding:0.6rem 0.4rem;font-size:1rem;}
+}
+/* 小屏幕 */
+@media (max-width:600px){
+  .table-1931 th, .table-1931 td{padding:0.4rem 0.25rem;font-size:.82rem;}
+}
+
+/*===== 全局响应式 =====*/
+@media (max-width:768px){
+  body{font-size:16px;}
+  h1{font-size:1.8rem;}
+  .lesson-title{font-size:1.6rem;}
+  .section-title{font-size:1.3rem;}
+  .chart-box{padding:1rem;}
+  .learning-targets h3,.summary-box h4,.think-box h4{font-size:1.15rem;}
+  .example-card,.think-box,.summary-box,.message-box{animation:none;opacity:1;}
+  .chart-box{animation:none;opacity:1;}
+}
+</style>
+</head>
+<body>
+<div class="textbook">
+<div class="header-meta"><span>华东师范大学出版社·数学 八年级下册</span><span>第19章 · 数据的分析</span></div>
+<h1>第19章 数据的分析</h1>
+<div class="lesson-title">19.3.1 借助箱线图描述数据的分布</div>
+
+<div class="learning-targets"><h3>学习目标</h3>
+<div class="target-grid">
+<div class="target-item"><span>1</span>理解箱线图的结构和五数概括的含义</div>
+<div class="target-item"><span>2</span>掌握四分位数的计算方法</div>
+<div class="target-item"><span>3</span>会用箱线图分析数据的分布特征</div>
+<div class="target-item"><span>4</span>能够识别数据中的异常值</div>
+</div></div>
+
+<div class="example-card">
+<p>除了我们学过的频数分布直方图，我们还可以用<strong>箱线图</strong>来描述数据的分布。它基于中位数，能快速展示数据的整体特征。</p>
+</div>
+
+<div class="section-title">问题1</div>
+<div class="example-card">
+<p>某市去年4月30天的空气质量指数（AQI）如下：</p>
+<p>60，39，65，82，60，89，109，81，73，69，</p>
+<p>103，156，62，41，55，123，164，73，45，90，</p>
+<p>64，54，70，59，73，86，91，58，63，82。</p>
+<p>怎样描述该市去年4月AQI的分布情况呢？</p>
+</div>
+
+<div class="example-card">
+<p><strong>分析</strong>　我们可以使用频数分布表和频数分布直方图描述它们的分布情况：</p>
+</div>
+
+<div class="section-title">表19.3.1</div>
+<div style="display:flex;justify-content:center;margin:1.5rem 0;">
+<table class="table-1931">
+<tr><th>AQI（$x$）</th><th>$25&lt;x\le 50$</th><th>$50&lt;x\le 75$</th><th>$75&lt;x\le 100$</th><th>$100&lt;x\le 125$</th><th>$125&lt;x\le 150$</th><th>$150&lt;x\le 175$</th></tr>
+<tr><td>频数</td><td>3</td><td class="highlight">15</td><td>7</td><td>3</td><td>0</td><td>2</td></tr>
+</table>
+</div>
+<p class="table-caption">某市去年4月AQI的频数分布表</p>
+
+<div class="chart-box">
+<div class="chart-title">图19.3.1 某市去年4月AQI的频数分布直方图</div>
+<svg viewBox="0 0 560 320" style="width:100%;height:auto;">
+<defs>
+<linearGradient id="barGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#0284c7"/></linearGradient>
+<linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#0369a1"/></linearGradient>
+</defs>
+<line x1="60" y1="280" x2="520" y2="280" stroke="#475569" stroke-width="2"/>
+<line x1="60" y1="280" x2="60" y2="20" stroke="#475569" stroke-width="2"/>
+<g font-size="17" fill="#475569">
+<text x="50" y="286" text-anchor="end">0</text><line x1="55" y1="280" x2="520" y2="280" stroke="#e2e8f0"/>
+<text x="50" y="240" text-anchor="end">3</text><line x1="55" y1="240" x2="520" y2="240" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="50" y="200" text-anchor="end">6</text><line x1="55" y1="200" x2="520" y2="200" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="50" y="160" text-anchor="end">9</text><line x1="55" y1="160" x2="520" y2="160" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="50" y="120" text-anchor="end">12</text><line x1="55" y1="120" x2="520" y2="120" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="50" y="80" text-anchor="end">15</text><line x1="55" y1="80" x2="520" y2="80" stroke="#e2e8f0" stroke-dasharray="4"/>
+</g>
+<text x="15" y="150" text-anchor="middle" fill="#475569" font-size="17" transform="rotate(-90 15 150)">频数</text>
+<g font-size="17" fill="#475569" text-anchor="middle">
+<text x="95" y="300">25</text><text x="155" y="300">50</text><text x="215" y="300">75</text>
+<text x="275" y="300">100</text><text x="335" y="300">125</text><text x="395" y="300">150</text><text x="455" y="300">175</text>
+</g>
+<text x="290" y="320" fill="#475569" font-size="17" text-anchor="middle">AQI</text>
+<rect x="70" y="240" width="50" height="40" rx="2" fill="url(#barGrad1)" stroke="#0284c7" stroke-width="1"/>
+<rect x="130" y="80" width="50" height="200" rx="2" fill="url(#barGrad2)" stroke="#0369a1" stroke-width="1"/>
+<rect x="190" y="187" width="50" height="93" rx="2" fill="url(#barGrad1)" stroke="#0284c7" stroke-width="1"/>
+<rect x="250" y="240" width="50" height="40" rx="2" fill="url(#barGrad1)" stroke="#0284c7" stroke-width="1"/>
+<rect x="310" y="280" width="50" height="0" rx="2" fill="url(#barGrad1)" stroke="#0284c7" stroke-width="1"/>
+<rect x="370" y="253" width="50" height="27" rx="2" fill="url(#barGrad1)" stroke="#0284c7" stroke-width="1"/>
+<g font-size="16" fill="#fff" text-anchor="middle" font-weight="700">
+<text x="95" y="265">3</text><text x="155" y="180">15</text><text x="215" y="233">7</text>
+<text x="275" y="265">3</text><text x="335" y="290">0</text><text x="395" y="268">2</text>
+</g>
+</svg>
+<p style="text-align:center;font-size:1rem;color:#64748b;margin-top:.3rem;">（注：图中每组的起点值属于上一组，每组的终点值属于本组）</p>
+</div>
+
+<div class="example-card">
+<p><strong>从直方图可以看出：</strong></p>
+<p>• 73%的天数AQI在50~100之间（良）</p>
+<p>• 有2天AQI异常大（156、164）</p>
+<p>• 数据分布不对称，偏向较低AQI</p>
+</div>
+
+<div class="example-card">
+<p>统计工作者还会使用另一种名为<strong>箱线图</strong>的统计图来描述一组数据的分布情况，图19.3.2就是计算机依据该市去年4月AQI数据画出的箱线图。</p>
+</div>
+
+<div class="chart-box">
+<div class="chart-title">图19.3.2 某市去年4月AQI的箱线图</div>
+<svg viewBox="0 0 520 340" style="width:100%;height:auto;">
+<defs>
+<linearGradient id="boxFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#e0f2fe"/></linearGradient>
+</defs>
+<line x1="80" y1="310" x2="460" y2="310" stroke="#475569" stroke-width="2"/>
+<line x1="80" y1="310" x2="80" y2="20" stroke="#475569" stroke-width="2"/>
+<g font-size="17" fill="#475569">
+<text x="70" y="316" text-anchor="end">0</text>
+<text x="70" y="256" text-anchor="end">40</text>
+<text x="70" y="196" text-anchor="end">80</text>
+<text x="70" y="136" text-anchor="end">120</text>
+<text x="70" y="76" text-anchor="end">160</text>
+</g>
+<line x1="75" y1="250" x2="460" y2="250" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="75" y1="190" x2="460" y2="190" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="75" y1="130" x2="460" y2="130" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="75" y1="70" x2="460" y2="70" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="15" y="170" text-anchor="middle" fill="#475569" font-size="17" transform="rotate(-90 15 170)">AQI</text>
+<g font-size="17" fill="#475569" text-anchor="middle">
+<text x="80" y="330"></text><text x="160" y="330">40</text><text x="240" y="330">80</text><text x="320" y="330">120</text><text x="400" y="330">160</text>
+</g>
+<!-- 箱体 -->
+<rect x="150" y="176" width="60" height="44" rx="3" fill="url(#boxFill)" stroke="#0ea5e9" stroke-width="2"/>
+<!-- 中位数线 -->
+<line x1="150" y1="203" x2="210" y2="203" stroke="#ef4444" stroke-width="2.5"/>
+<!-- 下须 -->
+<line x1="180" y1="220" x2="180" y2="252" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="168" y1="252" x2="192" y2="252" stroke="#0ea5e9" stroke-width="2"/>
+<!-- 上须 -->
+<line x1="180" y1="176" x2="180" y2="126" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="168" y1="126" x2="192" y2="126" stroke="#0ea5e9" stroke-width="2"/>
+<!-- 异常值 -->
+<circle cx="280" cy="76" r="5" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/>
+<circle cx="280" cy="64" r="5" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/>
+<!-- 标注 -->
+<line x1="210" y1="176" x2="320" y2="176" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="181" fill="#475569" font-size="16">上四分位数89</text>
+<line x1="210" y1="203" x2="320" y2="203" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="208" fill="#475569" font-size="16">中位数71.5</text>
+<line x1="210" y1="220" x2="320" y2="220" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="225" fill="#475569" font-size="16">下四分位数60</text>
+<line x1="192" y1="126" x2="320" y2="126" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="131" fill="#475569" font-size="16">上边缘123</text>
+<line x1="192" y1="252" x2="320" y2="252" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="257" fill="#475569" font-size="16">下边缘39</text>
+<line x1="285" y1="70" x2="320" y2="70" stroke="#94a3b8" stroke-width="1"/>
+<text x="325" y="75" fill="#f59e0b" font-size="16" font-weight="600">异常值156和164</text>
+</svg>
+</div>
+
+<div class="example-card">
+<p><strong>箱线图的构成：</strong></p>
+<p>• <strong>异常值</strong>：离其他数据较远的点（156、164）</p>
+<p>• <strong>触须</strong>：连接箱体到最大值/最小值</p>
+<p>• <strong>箱体</strong>：包含Q₁、中位数、Q₃</p>
+<p>• <strong>五数概括</strong>：最小值、Q₁、中位数、Q₃、最大值</p>
+</div>
+
+<div class="example-card">
+<p><strong>箱线图的原理：</strong>用中位数将数据一分为二，再分别求两侧的中位数，得到四个等分。</p>
+</div>
+
+<div class="chart-box">
+<div class="chart-title">图19.3.3 下四分位数、中位数和上四分位数将所有数据分为四等份</div>
+<svg viewBox="0 0 740 140" style="width:auto;height:auto;">
+<line x1="20" y1="60" x2="770" y2="60" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+<g font-size="12" fill="#1e293b" text-anchor="middle" font-weight="600">
+<text x="35" y="55">39</text><text x="58" y="55">41</text><text x="81" y="55">45</text>
+<text x="104" y="55">54</text><text x="127" y="55">55</text><text x="150" y="55">58</text>
+<text x="173" y="55">59</text><text x="196" y="55">60</text><text x="219" y="55">60</text>
+<text x="242" y="55">62</text><text x="265" y="55">63</text><text x="288" y="55">64</text>
+<text x="311" y="55">65</text><text x="334" y="55">69</text><text x="357" y="55">70</text>
+<text x="380" y="55">73</text><text x="403" y="55">73</text><text x="426" y="55">73</text>
+<text x="449" y="55">81</text><text x="472" y="55">82</text><text x="495" y="55">82</text>
+<text x="518" y="55">86</text><text x="541" y="55">89</text><text x="564" y="55">90</text>
+<text x="587" y="55">91</text><text x="610" y="55">103</text><text x="633" y="55">109</text>
+<text x="656" y="55">123</text><text x="679" y="55">156</text><text x="702" y="55">164</text>
+</g>
+<!-- Q1 -->
+<line x1="196" y1="60" x2="196" y2="82" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="196" y1="82" x2="196" y2="108" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="5"/>
+<rect x="173" y="116" width="46" height="20" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1"/>
+<text x="196" y="132" fill="#0284c7" font-size="16" text-anchor="middle" font-weight="700">Q₁=60</text>
+<!-- Q2 -->
+<line x1="368" y1="60" x2="368" y2="82" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="368" y1="82" x2="368" y2="108" stroke="#ef4444" stroke-width="2" stroke-dasharray="5"/>
+<rect x="336" y="116" width="64" height="20" rx="10" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+<text x="368" y="132" fill="#dc2626" font-size="16" text-anchor="middle" font-weight="700">Q₂=71.5</text>
+<!-- Q3 -->
+<line x1="541" y1="60" x2="541" y2="82" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="541" y1="82" x2="541" y2="108" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="5"/>
+<rect x="518" y="116" width="46" height="20" rx="10" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1"/>
+<text x="541" y="132" fill="#0284c7" font-size="16" text-anchor="middle" font-weight="700">Q₃=89</text>
+</svg>
+</div>
+
+<div class="example-card">
+<p><strong>计算过程：</strong></p>
+<p>• 30个数据排序，中位数 = (70+73)÷2 = <strong>71.5</strong>（50%位置）</p>
+<p>• 左侧15个数据的中位数 = <strong>60</strong>（Q₁，25%位置）</p>
+<p>• 右侧15个数据的中位数 = <strong>89</strong>（Q₃，75%位置）</p>
+</div>
+
+<div class="example-card">
+<p><strong>从箱线图得出的结论：</strong></p>
+<p>• 有2个异常值，适合用中位数代表一般水平</p>
+<p>• 50%的天数AQI在60~89之间</p>
+<p>• 25%的天数AQI < 60，25%的天数AQI > 89</p>
+<p>• 数据分布不对称，偏向较低AQI</p>
+</div>
+
+
+<div class="think-box">
+<h4>思考</h4>
+<p>要寻找以下信息，可以借助上面的频数分布直方图还是箱线图？</p>
+<ol>
+<li>该市去年4月AQI有没有异常值；</li>
+<li>按AQI排序分段后，天数最多或最少的那一段AQI的变化范围；</li>
+<li>该市去年4月AQI不超过75的天数；</li>
+<li>该市去年4月空气质量最好的七八天里，AQI的变化范围。</li>
+</ol>
+</div>
+
+<div class="example-card">
+<p><strong>两种图的对比：</strong></p>
+<p>• <strong>频数分布直方图</strong>：等距分组，回答"每段有多少数据"</p>
+<p>• <strong>箱线图</strong>：四等分数据，回答"中间50%的数据范围"</p>
+<p>• <strong>异常值</strong>：箱线图会自动标记，提示不适合用平均数代表</p>
+</div>
+
+<div class="section-title">例题</div>
+<div class="example-card">
+<p><strong></strong> 某班40名学生身高的数据信息如图所示。</p>
+</div>
+
+<div style="display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+<div class="chart-box" style="flex:1.4;min-width:340px;max-width:520px;">
+<div class="chart-title">人数</div>
+<svg viewBox="0 0 420 330" style="width:100%;height:auto;">
+<defs>
+<linearGradient id="exBarGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#0284c7"/></linearGradient>
+<linearGradient id="exBarGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0ea5e9"/><stop offset="100%" stop-color="#0369a1"/></linearGradient>
+</defs>
+<line x1="50" y1="280" x2="390" y2="280" stroke="#475569" stroke-width="2"/>
+<line x1="50" y1="280" x2="50" y2="40" stroke="#475569" stroke-width="2"/>
+<g font-size="17" fill="#475569">
+<text x="42" y="286" text-anchor="end">0</text><line x1="46" y1="280" x2="390" y2="280" stroke="#e2e8f0"/>
+<text x="42" y="242" text-anchor="end">4</text><line x1="46" y1="242" x2="390" y2="242" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="42" y="205" text-anchor="end">8</text><line x1="46" y1="205" x2="390" y2="205" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="42" y="167" text-anchor="end">12</text><line x1="46" y1="167" x2="390" y2="167" stroke="#e2e8f0" stroke-dasharray="4"/>
+<text x="42" y="130" text-anchor="end">16</text><line x1="46" y1="130" x2="390" y2="130" stroke="#e2e8f0" stroke-dasharray="4"/>
+</g>
+<text x="18" y="165" text-anchor="middle" fill="#475569" font-size="17" transform="rotate(-90 18 165)">人数</text>
+<g font-size="17" fill="#475569" text-anchor="middle">
+<text x="50" y="300">150</text><text x="135" y="300">157</text><text x="220" y="300">164</text><text x="305" y="300">171</text><text x="390" y="300">178</text>
+</g>
+<text x="220" y="320" fill="#475569" font-size="17" text-anchor="middle">身高/cm</text>
+<rect x="50" y="160" width="85" height="120" rx="3" fill="url(#exBarGrad1)" stroke="#0284c7" stroke-width="1"/>
+<rect x="135" y="70" width="85" height="210" rx="3" fill="url(#exBarGrad2)" stroke="#0369a1" stroke-width="1"/>
+<rect x="220" y="55" width="85" height="225" rx="3" fill="url(#exBarGrad2)" stroke="#0369a1" stroke-width="1"/>
+<rect x="305" y="235" width="85" height="45" rx="3" fill="url(#exBarGrad1)" stroke="#0284c7" stroke-width="1"/>
+<g font-size="18" fill="#fff" text-anchor="middle" font-weight="700">
+<text x="92" y="225">8</text><text x="177" y="180">14</text><text x="262" y="170">15</text><text x="347" y="265">3</text>
+</g>
+</svg>
+
+</div>
+
+<div class="chart-box" style="flex:1;min-width:280px;max-width:380px;">
+<div class="chart-title">身高/cm</div>
+<svg viewBox="0 0 320 360" style="width:100%;height:auto;">
+<defs>
+<linearGradient id="exBoxFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#e0f2fe"/></linearGradient>
+</defs>
+<line x1="60" y1="330" x2="280" y2="330" stroke="#475569" stroke-width="2"/>
+<line x1="60" y1="330" x2="60" y2="30" stroke="#475569" stroke-width="2"/>
+<g font-size="17" fill="#475569">
+<text x="52" y="336" text-anchor="end">145</text><text x="52" y="293" text-anchor="end">150</text><text x="52" y="256" text-anchor="end">155</text><text x="52" y="218" text-anchor="end">160</text>
+<text x="52" y="181" text-anchor="end">165</text><text x="52" y="143" text-anchor="end">170</text><text x="52" y="106" text-anchor="end">175</text><text x="52" y="68" text-anchor="end">180</text>
+</g>
+<line x1="56" y1="293" x2="280" y2="293" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="256" x2="280" y2="256" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="218" x2="280" y2="218" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="181" x2="280" y2="181" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="143" x2="280" y2="143" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="106" x2="280" y2="106" stroke="#e2e8f0" stroke-dasharray="4"/>
+<line x1="56" y1="68" x2="280" y2="68" stroke="#e2e8f0" stroke-dasharray="4"/>
+<rect x="145" y="172" width="50" height="61" rx="3" fill="url(#exBoxFill)" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="145" y1="202" x2="195" y2="202" stroke="#ef4444" stroke-width="2.5"/>
+<line x1="170" y1="232" x2="170" y2="293" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="158" y1="293" x2="182" y2="293" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="170" y1="172" x2="170" y2="97" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="158" y1="97" x2="182" y2="97" stroke="#0ea5e9" stroke-width="2"/>
+<line x1="195" y1="172" x2="250" y2="172" stroke="#94a3b8" stroke-width="1"/>
+<text x="255" y="177" fill="#475569" font-size="16" font-weight="600">Q₃=166</text>
+<line x1="195" y1="202" x2="250" y2="202" stroke="#94a3b8" stroke-width="1"/>
+<text x="255" y="207" fill="#475569" font-size="16" font-weight="600">Q₂=162</text>
+<line x1="195" y1="232" x2="250" y2="232" stroke="#94a3b8" stroke-width="1"/>
+<text x="255" y="237" fill="#475569" font-size="16" font-weight="600">Q₁=158</text>
+<line x1="182" y1="97" x2="250" y2="97" stroke="#94a3b8" stroke-width="1"/>
+<text x="255" y="102" fill="#475569" font-size="16" font-weight="600">上边缘176</text>
+<line x1="182" y1="293" x2="250" y2="293" stroke="#94a3b8" stroke-width="1"/>
+<text x="255" y="298" fill="#475569" font-size="16" font-weight="600">下边缘150</text>
+</svg>
+</div>
+</div>
+
+<div class="example-card">
+<p>请回答以下问题：</p>
+<ol>
+<li>从图中你能直接读出这40名学生身高的平均数、中位数和众数吗？</li>
+<li>一定有身高为176 cm的学生吗？一定有身高为178 cm的学生吗？</li>
+<li>依身高将同学们排序，中间50%的学生其身高处于哪个范围？</li>
+<li>不低于157 cm的学生在全班学生中占比多少？</li>
+</ol>
+<div style="text-align:center;margin-top:1rem;">
+<button class="btn btn-primary" id="btnAnswerEx3">查看解答</button>
+</div>
+<div id="answerEx3" class="answer-box" style="margin-top:1rem;">
+<p><strong>解：</strong></p>
+<ol>
+<li><strong>不能直接从图中读出示数。</strong>频数分布直方图不显示平均数；箱线图能直接读出中位数 = <strong>162 cm</strong>，但众数和平均数都无法从这两种图中直接读出。</li>
+<li>箱线图上边缘为 <strong>176 cm</strong>，说明至少有一名学生身高为176 cm，<strong>一定有身高为176 cm的学生</strong>；但上边缘不是178 cm，因此<strong>不一定有身高为178 cm的学生</strong>（最大值即为176 cm）。</li>
+<li>中间50%的学生身高处于下四分位数到上四分位数之间，即 <strong>Q₁=158 cm 到 Q₃=166 cm</strong>。</li>
+<li>不低于157 cm 即身高 ≥157 cm。从直方图可知：157~164有 <strong>14人</strong>，164~171有 <strong>15人</strong>，171~178有 <strong>3人</strong>，共 14+15+3 = <strong>32人</strong>，占比为 32 ÷ 40 = <strong>80%</strong>。</li>
+</ol>
+</div>
+</div>
+
+<div class="summary-box">
+<h4>课堂小结</h4>
+<ol>
+<li><strong>五数概括：</strong>最小值、下四分位数Q1、中位数Q2、上四分位数Q3、最大值（除去异常值后）</li>
+<li><strong>四分位数：</strong>先将数据排序，用中位数将数据分为两部分，再分别求两部分的中位数</li>
+<li><strong>箱线图：</strong>用一条竖线（触须）连接最大值和最小值，中间用箱体标出Q1~Q3，中位数线在箱体内</li>
+<li><strong>异常值：</strong>计算机软件会自动甄别并标记，提示此时用平均数作为代表不太合适</li>
+<li>频数分布直方图回答"每一段内有多少个数据"；箱线图回答"中间50%的数据处在哪个范围"</li>
+</ol>
+</div>
+
+<div class="message-box">
+<p>五数概括看分布，四分位数显特征；箱线图里全看遍，异常数值无处藏！</p>
+</div>
+
+<div class="footer-note">八年级下册 · 第19章 19.3 借助箱线图描述数据的分布</div>
+</div>
+<script>
+(function(){
+  var btn=document.getElementById('btnAnswerEx3');
+  var answer=document.getElementById('answerEx3');
+  var visible=false;
+  btn.addEventListener('click',function(){
+    if(!visible){
+      answer.style.display='block';
+      this.textContent='收起解答';
+      this.style.background='linear-gradient(135deg,#94a3b8,#64748b)';
+    }else{
+      answer.style.display='none';
+      this.textContent='查看解答';
+      this.style.background='';
+    }
+    visible=!visible;
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>16.5.1 实践与探索(第一课时) | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#e6f4f7;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.9;color:#1a3a4a;padding:1.5rem;font-size:26px;}
+        .textbook{max-width:1300px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(13,148,136,0.25);padding:2rem 2.8rem;border:1px solid #a7d8e0;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #14b8a6;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1.2rem;color:#0f766e;}
+        h1{font-size:2.8rem;color:#0f766e;font-weight:700;}h1::after{content:'';display:block;width:75px;height:5px;background:linear-gradient(135deg,#0ea5e9,#14b8a6);border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.4rem;color:#0f766e;background:linear-gradient(145deg,#e0f7fa,#b2ebf2);padding:.6rem 1.2rem;border-radius:60px;border:3px solid #80deea;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .section-title{font-size:1.8rem;color:#0e7490;font-weight:700;margin:2rem 0 1rem;padding-bottom:.4rem;border-bottom:3px solid #14b8a6;}
+        .goal-box{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #4ade80;}
+        .goal-box h4{font-size:1.6rem;color:#166534;margin-bottom:.5rem;}.goal-box h4::before{content:"🎯 ";}
+        .goal-box ol{padding-left:1.5rem;line-height:2.2;}
+        .intro-box{background:linear-gradient(135deg,#e0f2fe,#dbeafe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #93c5fd;}
+        .intro-box h4{font-size:1.6rem;color:#1e40af;margin-bottom:.5rem;}.intro-box h4::before{content:"🚀 ";}
+        .review-box{background:linear-gradient(135deg,#fef9c3,#fef3c7);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #f59e0b;}
+        .review-box h4{font-size:1.6rem;color:#92400e;margin-bottom:.5rem;}.review-box h4::before{content:"📖 ";}
+        .question-box{background:#ecfdf5;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border-left:8px solid #10b981;}
+        .question-box h4{font-size:1.6rem;margin-bottom:.7rem;color:#059669;}.question-box h4::before{content:"📌 ";}
+        .example-card{background:#fef3c7;border-left:8px solid #f59e0b;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;}
+        .example-card h4{font-size:1.6rem;color:#b45309;}.example-card h4::before{content:"▶ ";}
+        .analysis-box{background:#eff6ff;border-radius:1.2rem;padding:1rem 1.5rem;margin:1rem 0;border-left:6px solid #3b82f6;}
+        .analysis-box strong{color:#1d4ed8;}
+        .think-box{background:linear-gradient(135deg,#dbeafe,#bfdbfe);border:3px solid #3b82f6;border-radius:1.5rem;padding:1.2rem 1.5rem;margin:1.2rem 0;}
+        .think-box h4{color:#1e40af;font-size:1.4rem;margin-bottom:.5rem;}.think-box h4::before{content:"💭 思考";}
+        .summary-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;border:2px solid #34d399;}
+        .summary-box h4{color:#065f46;font-size:1.6rem;margin-bottom:.8rem;}
+        .summary-box ol,.summary-box ul{padding-left:1.5rem;line-height:2.2;}
+        .practice-box{background:#fdf2f8;border:3px solid #ec4899;border-radius:1.8rem;padding:1.5rem 2rem;margin:1.5rem 0;}
+        .practice-box h4{font-size:1.6rem;color:#be185d;margin-bottom:.8rem;}.practice-box h4::before{content:"📝 练习";}
+        .do-box{background:linear-gradient(135deg,#fce7f3,#fbcfe8);border-radius:1.8rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border-left:8px solid #ec4899;}
+        .do-box h4{font-size:1.4rem;color:#be185d;margin-bottom:.5rem;}.do-box h4::before{content:"✍️ 做一做 ";}
+        .conclude-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:1.5rem;padding:1.2rem 1.8rem;margin:1.2rem 0;border:2px solid #34d399;}
+        .conclude-box h4{font-size:1.4rem;color:#065f46;margin-bottom:.5rem;}.conclude-box h4::before{content:"📐 方法归纳 ";}
+        .core-box{background:linear-gradient(135deg,#fae8ff,#f5d0fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #e879f9;}
+        .core-box h4{font-size:1.6rem;color:#86198f;margin-bottom:.5rem;}.core-box h4::before{content:"⭐ 核心素养";}
+        .core-box ul{padding-left:1.5rem;line-height:2.2;}
+        .ho-work{background:linear-gradient(135deg,#f3e8ff,#ede9fe);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.4rem 0;border:2px solid #a78bfa;}
+        .ho-work h4{font-size:1.6rem;color:#6d28d9;margin-bottom:.5rem;}.ho-work h4::before{content:"📝 课后作业";}
+        .highlight-box{background:linear-gradient(135deg,#dbeafe,#e0e7ff);border-radius:1.8rem;padding:1.5rem 2rem;margin:1.2rem 0;border-left:8px solid #3b82f6;box-shadow:0 4px 15px rgba(59,130,246,0.15);position:relative;}
+        .highlight-box::before{content:"📐";position:absolute;left:1.2rem;top:1.2rem;font-size:1.6rem;}
+        .highlight-box p{margin:.5rem 0;padding-left:2.2rem;font-size:1.3rem;line-height:2;}
+        .highlight-box strong{color:#1e40af;}
+        p{margin:.5rem 0;}
+        .katex{font-size:1.15em;}
+        .math-block{text-align:center;margin:.8rem 0;}
+        .interact-btn{background:#e0f7fa;border:none;color:#0e7490;padding:.5rem 1.5rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #4dd0e1;margin:.6rem .6rem .6rem 0;font-size:1rem;transition:all .1s;}
+        .interact-btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 #4dd0e1;}
+        .answer-box{background:#f0fdff;border:2px dashed #80deea;border-radius:1.2rem;padding:1.2rem 1.5rem;margin-top:.6rem;display:none;animation:fadeIn .4s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+        .q-item{display:flex;align-items:flex-start;gap:.5rem;margin:.6rem 0;padding:.5rem .8rem;border-radius:12px;transition:background .2s;}
+        .q-item:hover{background:#f0fdfa;}
+        .q-text{flex:1;line-height:1.6;}
+        .q-btn{white-space:nowrap;}
+        .practice-row{display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0 0 1.5rem;}
+        .graph-caption{text-align:center;color:#6b7280;font-size:.9rem;margin-top:4px;}
+        .gwrap{position:relative;display:inline-block;margin:0 auto;text-align:center;width:100%;}
+        .gwrap canvas{display:block;margin:0 auto;border-radius:12px;border:1px solid #d1d5db;background:#fafafa;max-width:100%;}
+        .glabel{position:absolute;pointer-events:none;text-shadow:0 0 5px #fafafa,0 0 5px #fafafa,0 0 5px #fafafa;line-height:1.2;}
+        .glabel .katex{font-size:1.05em;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>📚 华东师范大学出版社·数学 八年级下册</span><span>第16章 · 函数及其图象</span></div>
+    <h1>16.5 实践与探索</h1>
+    <div class="lesson-title">16.5.1 实践与探索（第一课时）</div>
+
+    <!-- ===== 学习目标 ===== -->
+    <div class="goal-box">
+        <h4>学习目标</h4>
+        <ol>
+            <li>能利用一次函数图象解决实际问题（如方案选择、费用比较）。</li>
+            <li>理解一次函数与二元一次方程组的关系，知道<strong>交点坐标就是方程组的解</strong>。</li>
+            <li>会用图象法求二元一次方程组的解。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课题导入 ===== -->
+    <div class="intro-box">
+        <h4>课题导入</h4>
+        <p>在日常生活中，我们常常会遇到<strong>方案选择</strong>的问题：去哪个印刷厂更划算？选择哪种出行方式更省钱？今天我们就来学习如何利用<strong>一次函数</strong>的图象来解决这类实际问题，以及发现一次函数与二元一次方程组之间的内在联系。</p>
+    </div>
+
+    <!-- ===== 复习回顾 ===== -->
+    <div class="review-box">
+        <h4>复习回顾</h4>
+        <p>一次函数 $y = kx + b$（$k \neq 0$）的图象是一条<strong>直线</strong>。</p>
+        <p>两条直线的交点坐标，<strong>同时满足</strong>两个函数的表达式。</p>
+        <p>如何利用图象求两条直线的交点？如何利用交点解决实际问题？这就是本节要探索的内容。</p>
+    </div>
+
+    <!-- ===== 新知探索 ===== -->
+    <div class="section-title">🔍 新知探索</div>
+
+    <div class="question-box">
+        <h4>问题1</h4>
+        <p>某单位准备印制一批证书。当地有甲、乙两个印刷厂，它们的印制质量都很好。甲厂收费分为<strong>制版费</strong>和<strong>印刷费</strong>两部分；乙厂不收制版费，直接按印刷数量收费，当印刷证书超过2千本时单价有优惠。甲、乙两厂的收费 $y$（千元）关于印制的证书数量 $x$（千本）的函数图象如图16.5.1所示。</p>
+
+        <div class="gwrap" style="width:800px;">
+            <canvas id="g1" width="800" height="530"></canvas>
+            <span class="glabel" style="left:82px;top:432px;">O</span>
+            <span class="glabel" style="left:775px;top:428px;font-style:italic;font-weight:700;">$x$</span>
+            <span class="glabel" style="left:80px;top:6px;font-style:italic;font-weight:700;">$y$</span>
+            <span class="glabel" style="left:695px;top:450px;font-size:21px;color:#374151;">$x$/千本</span>
+            <span class="glabel" style="left:6px;top:24px;font-size:21px;color:#374151;">$y$/千元</span>
+            <span class="glabel" style="left:683px;top:95px;font-size:22px;color:#dc2626;font-weight:700;">甲</span>
+            <span class="glabel" style="left:683px;top:152px;font-size:22px;color:#2563eb;font-weight:700;">乙</span>
+            <span class="glabel" style="left:63px;top:364px;font-size:20px;">$(0,1)$</span>
+            <span class="glabel" style="left:510px;top:185px;font-size:20px;color:#374151;">$(6,4)$</span>
+        </div>
+        <p class="graph-caption">图16.5.1</p>
+
+        <p style="margin-top:1rem;"><strong>（1）根据图象回答：</strong></p>
+        <div class="q-item">
+            <span class="q-text">① 甲厂的制版费及印刷费单价各是多少？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a1')">①</button>
+        </div>
+        <div class="q-item">
+            <span class="q-text">② 印制证书多少本时，两厂实际收费相同？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a2')">②</button>
+        </div>
+        <div class="q-item">
+            <span class="q-text">③ 当印制证书8千本时，选择哪个印刷厂比较划算？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a3')">③</button>
+        </div>
+        <div class="q-item">
+            <span class="q-text">（2）如果甲厂想把8千本证书印制的订单争取到手，在不降低制版费的前提下，印刷费部分的单价至少应降低多少？</span>
+            <button class="interact-btn q-btn" onclick="toggleAnswer('a4')">（2）</button>
+        </div>
+        <div id="a1" class="answer-box">
+            <p><strong>① 甲厂的制版费及印刷费单价：</strong></p>
+            <p>甲厂直线经过点 $(0,1)$，说明 $x=0$ 时 $y=1$，即甲厂的<strong>制版费为1千元</strong>。</p>
+            <p>甲厂直线还经过点 $(6,4)$，可求得 $k = \frac{4-1}{6-0} = 0.5$，即 $y = 0.5x + 1$，印刷费单价为<strong>0.5千元/千本</strong>。</p>
+        </div>
+        <div id="a2" class="answer-box">
+            <p><strong>② 印制证书多少本时，两厂实际收费相同：</strong></p>
+            <p>两条直线的交点坐标为 $(6,4)$，即印制<strong>6千本</strong>时，两厂收费相同（均为4千元）。</p>
+        </div>
+        <div id="a3" class="answer-box">
+            <p><strong>③ 当印制证书8千本时，选择哪个印刷厂比较划算：</strong></p>
+            <p>甲厂：$0.5\times8+1=5$（千元），乙厂约4.5千元。选择<strong>乙厂</strong>比较划算。</p>
+        </div>
+        <div id="a4" class="answer-box">
+            <p><strong>（2）如果甲厂想把8千本证书印制的订单争取到手，在不降低制版费的前提下，印刷费部分的单价至少应降低多少：</strong></p>
+            <p>设新单价为 $k'$，则 $8k'+1 \leq 4.5$，得 $k' \leq 0.4375$。</p>
+            <p>至少降低 $0.5 - 0.4375 = 0.0625$（千元/千本）。</p>
+        </div>
+    </div>
+
+    <!-- ===== 思考 ===== -->
+    <div class="think-box">
+        <h4></h4>
+        <p><strong>（1）</strong>"收费相同"在图象上怎样反映出来？</p>
+        <p><strong>（2）</strong>如何在图象上看出收费的多少？</p>
+        <button class="interact-btn" onclick="toggleAnswer('tk1')">💡 思考答案</button>
+        <div id="tk1" class="answer-box">
+            <p><strong>（1）</strong>"收费相同"反映在图象上是<strong>两条直线的交点</strong>处。</p>
+            <p><strong>（2）</strong>对同一 $x$ 值，比较两条直线的纵坐标：纵坐标小的收费少。</p>
+        </div>
+    </div>
+
+    <!-- ===== 概括总结 ===== -->
+    <div class="section-title">📐 概括总结</div>
+
+    <div class="highlight-box">
+        <p>我们看到，两个一次函数图象的<strong>交点处</strong>，自变量和对应的函数值同时满足两个函数关系式。而这两个函数关系式可以看成关于 $x$、$y$ 的两个方程，所以<strong>交点的坐标就是这两个方程组成的方程组的解</strong>。</p>
+    </div>
+
+    <!-- 图16.5.2 -->
+    <div class="example-card" style="text-align:center;">
+        <p>例如，图16.5.2中的两条直线 $y = 2x - 5$ 和 $y = -x + 1$，它们的交点坐标 $(2, -1)$ 就是方程组</p>
+        <div class="math-block">$$\begin{cases} y = 2x - 5 \\ y = -x + 1 \end{cases}$$</div>
+        <p>的解 $\begin{cases} x = 2 \\ y = -1 \end{cases}$</p>
+
+        <div class="gwrap" style="width:700px;">
+            <canvas id="g2" width="700" height="500"></canvas>
+            <span class="glabel" style="left:340px;top:262px;font-weight:700;">O</span>
+            <span class="glabel" style="left:665px;top:256px;font-style:italic;font-weight:700;">$x$</span>
+            <span class="glabel" style="left:340px;top:14px;font-style:italic;font-weight:700;">$y$</span>
+            <span class="glabel" style="left:430px;top:75px;font-size:22px;color:#2563eb;font-weight:600;">$y=2x-5$</span>
+            <span class="glabel" style="left:38px;top:60px;font-size:22px;color:#dc2626;font-weight:600;">$y=-x+1$</span>
+            <span class="glabel" style="left:447px;top:318px;font-size:21px;">$(2,-1)$</span>
+        </div>
+        <p class="graph-caption">图16.5.2</p>
+    </div>
+
+    <!-- ===== 例题 ===== -->
+    <div class="section-title">📖 例题讲解</div>
+
+    <div class="example-card">
+        <h4 style="text-align:center;">例 利用一次函数的图象，求二元一次方程组的解</h4>
+
+        <p style="margin-top:1rem;">利用一次函数的图象，求二元一次方程组的解：</p>
+        <div class="math-block" style="font-size:1.3rem;">
+            $$\begin{cases} y = x + 5 \\ x + 2y = -2 \end{cases}$$
+        </div>
+
+        <div style="text-align:center;margin-top:1rem;">
+            <div class="gwrap" style="width:100%;max-width:700px;">
+                <canvas id="g3" width="700" height="520" style="width:100%;height:auto;"></canvas>
+                <span class="glabel" style="left:48.6%;top:54.2%;font-weight:700;">O</span>
+                <span class="glabel" style="left:95%;top:53.1%;font-style:italic;font-weight:700;">$x$</span>
+                <span class="glabel" style="left:48.6%;top:6.5%;font-style:italic;font-weight:700;">$y$</span>
+                <span class="glabel" style="left:63.9%;top:13.1%;font-size:22px;color:#dc2626;font-weight:600;">$y=x+5$</span>
+                <span class="glabel" style="left:2.1%;top:29.8%;font-size:22px;color:#2563eb;font-weight:600;">$y=-\frac12x-1$</span>
+                <span class="glabel" style="left:8.9%;top:43.3%;font-size:21px;">$(-4,1)$</span>
+            </div>
+            <p class="graph-caption">图16.5.3</p>
+        </div>
+
+        <div style="margin-top:1rem;">
+            <button class="interact-btn" onclick="toggleAnswer('ex-analysis')" style="margin:.8rem .6rem .8rem 0;">📐 分析思路</button>
+            <div id="ex-analysis" class="answer-box" style="margin-bottom:.8rem;">
+                <div class="analysis-box" style="text-align:left;">
+                    <p><strong>分析</strong> 方程组中第一个方程已经为一次函数的形式，第二个方程可变形为一次函数的形式：$x + 2y = -2 \quad\Rightarrow\quad y = -\frac{1}{2}x - 1$</p>
+                </div>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex-solution')" style="margin:.8rem .6rem .8rem 0;">✅ 解答过程</button>
+            <div id="ex-solution" class="answer-box">
+                <p>如图16.5.3，分别作出一次函数 $y = x + 5$ 和 $y = -\frac{1}{2}x - 1$ 的图象，得到它们的交点坐标 $(-4, 1)$，即方程组的解为 $\begin{cases} x = -4 \\ y = 1 \end{cases}$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 做一做 ===== -->
+    <div class="do-box">
+        <h4></h4>
+        <p>用图象法解方程组的关键步骤是什么？和同伴说一说。</p>
+        <button class="interact-btn" onclick="toggleAnswer('do1')">💡 参考答案</button>
+        <div id="do1" class="answer-box">
+            <ol style="padding-left:1.5rem;line-height:2.2;">
+                <li>将每个方程变形为 $y = kx + b$ 的形式；</li>
+                <li>在同一坐标系中画出这两个一次函数的图象；</li>
+                <li>找到两条直线的<strong>交点</strong>；</li>
+                <li>交点的横纵坐标就是方程组的解。</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ===== 方法归纳 ===== -->
+    <div class="conclude-box">
+        <h4></h4>
+        <p>利用一次函数图象解二元一次方程组，其本质是：<strong>将方程组的解转化为两条直线的交点坐标</strong>。</p>
+        <p>图象法可以直观地得到方程组的<strong>近似解</strong>，也可以通过计算得到<strong>精确解</strong>。</p>
+    </div>
+
+    <!-- ===== 练习 ===== -->
+    <div class="practice-box">
+        <h4></h4>
+        <p><strong>1.</strong> 在16.3节问题1中，已知小明由 $A$ 地乘车前往北京，汽车距北京的路程与行驶时间之间的函数关系式为 $s = 285 - 95t$；若另有小亮同时从北京乘车沿同一路线回 $A$ 地，其函数关系式为 $s = 105t$。这里 $t$（h）表示汽车行驶的时间，$s$（km）表示汽车距北京的路程。在同一个平面直角坐标系中画出这两个函数的图象，并说明交点的实际意义。</p>
+
+        <div class="gwrap" style="width:700px;">
+            <canvas id="g4" width="700" height="480"></canvas>
+            <span class="glabel" style="left:52px;top:405px;font-weight:700;">O</span>
+            <span class="glabel" style="left:672px;top:394px;font-style:italic;font-weight:700;">$t$</span>
+            <span class="glabel" style="left:48px;top:12px;font-style:italic;font-weight:700;">$s$</span>
+            <span class="glabel" style="left:592px;top:430px;font-size:21px;color:#374151;">$t$/h</span>
+            <span class="glabel" style="left:4px;top:22px;font-size:21px;color:#374151;">$s$/km</span>
+            <span class="glabel" style="left:240px;top:44px;font-size:22px;color:#2563eb;font-weight:600;">$s=285-95t$</span>
+            <span class="glabel" style="left:310px;top:345px;font-size:22px;color:#dc2626;font-weight:600;">$s=105t$</span>
+            <span class="glabel" style="left:265px;top:133px;font-size:21px;">交点</span>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('p1')">💡 解答提示</button>
+        <div id="p1" class="answer-box">
+            <p><strong>解答：</strong>小明 $s = 285 - 95t$，小亮 $s = 105t$。交点表示<strong>相遇</strong>。</p>
+            <p>令 $285 - 95t = 105t$，得 $t=1.425$ h，$s=149.625$ km。</p>
+            <p>出发约1.43小时后，在距北京约149.6 km处相遇。</p>
+        </div>
+
+        <p style="margin-top:1.5rem;"><strong>2.</strong> 利用图象解下列方程组：</p>
+        <div class="practice-row">
+            <p>（1）$\begin{cases} y = -2x - 1 \\ y = \frac{1}{2}x + 4 \end{cases}$</p>
+            <p>（2）$\begin{cases} 2x - y = 2 \\ x + y = -5 \end{cases}$</p>
+        </div>
+
+        <button class="interact-btn" onclick="toggleAnswer('p2')">💡 答案</button>
+        <div id="p2" class="answer-box">
+            <div style="display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;">
+                <div style="text-align:center;flex:1;min-width:300px;">
+                    <p><strong>（1）</strong>得 $\begin{cases} x=-2 \\ y=3 \end{cases}$</p>
+                    <div class="gwrap" style="width:480px;">
+                        <canvas id="gp21" width="480" height="400"></canvas>
+                        <span class="glabel" style="left:232px;top:222px;font-weight:700;">O</span>
+                        <span class="glabel" style="left:455px;top:216px;font-style:italic;font-weight:700;">$x$</span>
+                        <span class="glabel" style="left:232px;top:8px;font-style:italic;font-weight:700;">$y$</span>
+                        <span class="glabel" style="left:62px;top:90px;font-size:20px;color:#dc2626;font-weight:600;">$y=-2x-1$</span>
+                        <span class="glabel" style="left:320px;top:60px;font-size:20px;color:#2563eb;font-weight:600;">$y=\frac12x+4$</span>
+                        <span class="glabel" style="left:155px;top:118px;font-size:18px;">$(-2,3)$</span>
+                    </div>
+                </div>
+                <div style="text-align:center;flex:1;min-width:300px;">
+                    <p><strong>（2）</strong>变形为 $\begin{cases} y=2x-2 \\ y=-x-5 \end{cases}$，得 $\begin{cases} x=-1 \\ y=-4 \end{cases}$</p>
+                    <div class="gwrap" style="width:480px;">
+                        <canvas id="gp22" width="480" height="400"></canvas>
+                        <span class="glabel" style="left:232px;top:282px;font-weight:700;">O</span>
+                        <span class="glabel" style="left:455px;top:276px;font-style:italic;font-weight:700;">$x$</span>
+                        <span class="glabel" style="left:232px;top:8px;font-style:italic;font-weight:700;">$y$</span>
+                        <span class="glabel" style="left:300px;top:210px;font-size:20px;color:#dc2626;font-weight:600;">$y=2x-2$</span>
+                        <span class="glabel" style="left:60px;top:300px;font-size:20px;color:#2563eb;font-weight:600;">$y=-x-5$</span>
+                        <span class="glabel" style="left:190px;top:348px;font-size:18px;">$(-1,-4)$</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 核心素养 ===== -->
+    <div class="core-box">
+        <h4></h4>
+        <ul>
+            <li><strong>数学建模</strong>：将印刷厂收费问题抽象为一次函数模型，体会数学与生活的联系。</li>
+            <li><strong>直观想象</strong>：通过观察两条直线的交点，直观理解二元一次方程组的解。</li>
+            <li><strong>逻辑推理</strong>：由图象上点的坐标特征，推理出实际问题的数量关系与结论。</li>
+        </ul>
+    </div>
+
+    <!-- ===== 课堂小结 ===== -->
+    <div class="summary-box">
+        <h4>课堂小结</h4>
+        <ol>
+            <li>一次函数与实际问题：建立模型，利用图象比较方案优劣。</li>
+            <li>一次函数与方程组的关系：交点坐标就是方程组的解。</li>
+            <li>图象法解方程组步骤：变形 → 画图 → 找交点 → 写出解。</li>
+            <li>注意实际问题中自变量的取值范围。</li>
+        </ol>
+    </div>
+
+    <!-- ===== 课后作业 ===== -->
+    <div class="ho-work">
+        <h4></h4>
+        <ol>
+            <li>整理课堂笔记，复述一次函数与二元一次方程组的关系。</li>
+            <li>用图象法解方程组 $\begin{cases} 3x - y = 4 \\ 2x + y = 1 \end{cases}$。</li>
+            <li>思考：两个一次函数图象平行时，对应的方程组解的情况如何？</li>
+        </ol>
+    </div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    var e=document.getElementById(id);
+    e.style.display=(e.style.display==='block')?'none':'block';
+}
+
+// ==================== 图16.5.1 ====================
+;(function(){
+    var c=document.getElementById('g1'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,800,530);
+    var ox=90,oy=435,sx=72,sy=65;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=9;i++){ctx.beginPath();ctx.moveTo(ox+i*sx,oy);ctx.lineTo(ox+i*sx,oy-6*sy);ctx.stroke();}
+    for(var i=0;i<=6;i++){ctx.beginPath();ctx.moveTo(ox,oy-i*sy);ctx.lineTo(ox+9*sx,oy-i*sy);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,12);ctx.lineTo(ox,oy);ctx.lineTo(785,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,12);ctx.lineTo(ox-8,25);ctx.lineTo(ox+8,25);ctx.closePath();ctx.fillStyle='#1f2937';ctx.fill();
+    ctx.beginPath();ctx.moveTo(785,oy);ctx.lineTo(775,oy-8);ctx.lineTo(775,oy+8);ctx.closePath();ctx.fill();
+
+    // 刻度数字：x轴1~8，y轴1~6
+    ctx.fillStyle='#374151';ctx.font='17px sans-serif';ctx.textAlign='center';
+    for(var i=1;i<=8;i++) ctx.fillText(i,ox+i*sx,oy+26);
+    ctx.textAlign='right';
+    for(var i=1;i<=6;i++) ctx.fillText(i,ox-10,oy-i*sy+7);
+
+    // 甲厂 y=0.5x+1 (红)，经过(0,1)和(8,5)
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(ox,oy-1*sy);ctx.lineTo(ox+8*sx,oy-5*sy);ctx.stroke();
+
+    // 乙厂折线 (蓝)：两段 (0,0)→(2,3)→(8,4.5)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+2*sx,oy-3*sy);ctx.lineTo(ox+8*sx,oy-4.5*sy);ctx.stroke();
+
+    // 交点 (6,4)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox+6*sx,oy-4*sy,9,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox+6*sx,oy);ctx.lineTo(ox+6*sx,oy-4*sy);ctx.lineTo(ox,oy-4*sy);ctx.stroke();ctx.setLineDash([]);
+
+    // (2,2) 和 (2,3) 垂虚线
+    ctx.fillStyle='#4b5563';ctx.beginPath();ctx.arc(ox+2*sx,oy-2*sy,5,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox+2*sx,oy);ctx.lineTo(ox+2*sx,oy-2*sy);ctx.lineTo(ox,oy-2*sy);ctx.stroke();ctx.setLineDash([]);
+    ctx.fillStyle='#4b5563';ctx.beginPath();ctx.arc(ox+2*sx,oy-3*sy,5,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox+2*sx,oy);ctx.lineTo(ox+2*sx,oy-3*sy);ctx.lineTo(ox,oy-3*sy);ctx.stroke();ctx.setLineDash([]);
+
+    ctx.fillStyle='#4b5563';ctx.beginPath();ctx.arc(ox,oy-1*sy,5,0,Math.PI*2);ctx.fill();
+})();
+
+// ==================== 图16.5.2 ====================
+;(function(){
+    var c=document.getElementById('g2'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,700,500);
+    var ox=350,oy=260,sc=45;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-5;i<=5;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,18);ctx.lineTo(ox+i*sc,482);ctx.stroke();}
+    for(var i=-5;i<=5;i++){ctx.beginPath();ctx.moveTo(38,oy-i*sc);ctx.lineTo(662,oy-i*sc);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(38,oy);ctx.lineTo(662,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,18);ctx.lineTo(ox,482);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(662,oy);ctx.lineTo(652,oy-8);ctx.lineTo(652,oy+8);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,18);ctx.lineTo(ox-8,28);ctx.lineTo(ox+8,28);ctx.closePath();ctx.fill();
+
+    // 刻度：x轴-4~4，y轴-5~3
+    ctx.fillStyle='#374151';ctx.font='17px sans-serif';ctx.textAlign='center';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+28);
+    ctx.textAlign='right';
+    for(var i=-5;i<=3;i++) if(i!==0) ctx.fillText(i,ox-14,oy-i*sc+7);
+
+    // y=2x-5 (蓝)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-1*sc,oy+7*sc);ctx.lineTo(ox+4.5*sc,oy-4*sc);ctx.stroke();
+    // y=-x+1 (红)
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-3.5*sc,oy-4.5*sc);ctx.lineTo(ox+4.5*sc,oy+3.5*sc);ctx.stroke();
+    // 交点 (2,-1)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox+2*sc,oy+1*sc,9,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox+2*sc,oy);ctx.lineTo(ox+2*sc,oy+1*sc);ctx.lineTo(ox,oy+1*sc);ctx.stroke();ctx.setLineDash([]);
+})();
+
+// ==================== 图16.5.3 ====================
+;(function(){
+    var c=document.getElementById('g3'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,700,520);
+    var ox=350,oy=280,sc=50;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-5;i<=5;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,8);ctx.lineTo(ox+i*sc,502);ctx.stroke();}
+    for(var i=-5;i<=5;i++){ctx.beginPath();ctx.moveTo(38,oy-i*sc);ctx.lineTo(662,oy-i*sc);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(38,oy);ctx.lineTo(662,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,8);ctx.lineTo(ox,502);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(662,oy);ctx.lineTo(652,oy-8);ctx.lineTo(652,oy+8);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,8);ctx.lineTo(ox-8,18);ctx.lineTo(ox+8,18);ctx.closePath();ctx.fill();
+
+    // 刻度：x轴-5~2，y轴-2~5
+    ctx.fillStyle='#374151';ctx.font='17px sans-serif';ctx.textAlign='center';
+    for(var i=-5;i<=2;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+28);
+    ctx.textAlign='right';
+    for(var i=-2;i<=5;i++) if(i!==0) ctx.fillText(i,ox-14,oy-i*sc+7);
+
+    // y=x+5 (红)：从(-5,0)到(1,6)，画布裁剪
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-5*sc,oy);ctx.lineTo(ox+1.5*sc,oy-6.5*sc);ctx.stroke();
+    // y=-0.5x-1 (蓝)：从(-5,1.5)到(3,-2.5)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-5*sc,oy-1.5*sc);ctx.lineTo(ox+3*sc,oy+2.5*sc);ctx.stroke();
+    // 交点 (-4,1)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox-4*sc,oy-1*sc,9,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox-4*sc,oy);ctx.lineTo(ox-4*sc,oy-1*sc);ctx.lineTo(ox,oy-1*sc);ctx.stroke();ctx.setLineDash([]);
+})();
+
+// ==================== 练习1 ====================
+;(function(){
+    var c=document.getElementById('g4'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,700,480);
+    var ox=60,oy=410,scX=190,scY=1.1;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=0;i<=4;i++){ctx.beginPath();ctx.moveTo(ox+i*scX,oy);ctx.lineTo(ox+i*scX,20);ctx.stroke();}
+    for(var i=0;i<=5;i++){ctx.beginPath();ctx.moveTo(ox,oy-i*70);ctx.lineTo(ox+3.5*scX,oy-i*70);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(ox,18);ctx.lineTo(ox,oy);ctx.lineTo(680,oy);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(ox,18);ctx.lineTo(ox-8,30);ctx.lineTo(ox+8,30);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(680,oy);ctx.lineTo(670,oy-8);ctx.lineTo(670,oy+8);ctx.closePath();ctx.fill();
+
+    ctx.fillStyle='#374151';ctx.font='17px sans-serif';ctx.textAlign='center';
+    for(var i=1;i<=3;i++) ctx.fillText(i,ox+i*scX,oy+28);
+    ctx.textAlign='right';
+    var sv=[0,100,200,300,400];
+    for(var i=1;i<=4;i++) ctx.fillText(sv[i],ox-10,oy-i*70+7);
+
+    // 小明 s=285-95t (蓝)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(ox,oy-285*scY);ctx.lineTo(ox+3*scX,oy);ctx.stroke();
+    // 小亮 s=105t (红)
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+2.8*scX,oy-294*scY);ctx.stroke();
+    // 交点
+    var tx=1.425,ts=149.625;
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox+tx*scX,oy-ts*scY,9,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+    ctx.beginPath();ctx.moveTo(ox+tx*scX,oy);ctx.lineTo(ox+tx*scX,oy-ts*scY);ctx.lineTo(ox,oy-ts*scY);ctx.stroke();ctx.setLineDash([]);
+})();
+
+// ==================== 练习2（1） ====================
+;(function(){
+    var c=document.getElementById('gp21'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,480,400);
+    var ox=240,oy=200,sc=25;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,20);ctx.lineTo(ox+i*sc,380);ctx.stroke();}
+    for(var i=-8;i<=8;i++){ctx.beginPath();ctx.moveTo(40,oy-i*sc);ctx.lineTo(440,oy-i*sc);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(40,oy);ctx.lineTo(460,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox,380);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(460,oy);ctx.lineTo(450,oy-8);ctx.lineTo(450,oy+8);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-8,30);ctx.lineTo(ox+8,30);ctx.closePath();ctx.fill();
+
+    ctx.fillStyle='#374151';ctx.font='15px sans-serif';ctx.textAlign='center';
+    for(var i=-4;i<=4;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+24);
+    ctx.textAlign='right';
+    for(var i=-6;i<=6;i+=2) if(i!==0) ctx.fillText(i,ox-10,oy-i*sc+6);
+
+    // y=-2x-1 (红)
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-4*sc,oy-7*sc);ctx.lineTo(ox+3*sc,oy+7*sc);ctx.stroke();
+    // y=0.5x+4 (蓝)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-4*sc,oy-2*sc);ctx.lineTo(ox+4*sc,oy-6*sc);ctx.stroke();
+    // 交点 (-2,3)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox-2*sc,oy-3*sc,8,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(ox-2*sc,oy);ctx.lineTo(ox-2*sc,oy-3*sc);ctx.lineTo(ox,oy-3*sc);ctx.stroke();ctx.setLineDash([]);
+})();
+
+// ==================== 练习2（2） ====================
+;(function(){
+    var c=document.getElementById('gp22'),ctx=c.getContext('2d');
+    ctx.fillStyle='#fafafa';ctx.fillRect(0,0,480,400);
+    var ox=240,oy=200,sc=25;
+
+    ctx.strokeStyle='#e5e7eb';ctx.lineWidth=1;
+    for(var i=-6;i<=6;i++){ctx.beginPath();ctx.moveTo(ox+i*sc,20);ctx.lineTo(ox+i*sc,380);ctx.stroke();}
+    for(var i=-8;i<=8;i++){ctx.beginPath();ctx.moveTo(40,oy-i*sc);ctx.lineTo(440,oy-i*sc);ctx.stroke();}
+
+    ctx.strokeStyle='#1f2937';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(40,oy);ctx.lineTo(460,oy);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox,380);ctx.stroke();
+    ctx.fillStyle='#1f2937';
+    ctx.beginPath();ctx.moveTo(460,oy);ctx.lineTo(450,oy-8);ctx.lineTo(450,oy+8);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(ox,20);ctx.lineTo(ox-8,30);ctx.lineTo(ox+8,30);ctx.closePath();ctx.fill();
+
+    ctx.fillStyle='#374151';ctx.font='15px sans-serif';ctx.textAlign='center';
+    for(var i=-3;i<=3;i++) if(i!==0) ctx.fillText(i,ox+i*sc,oy+24);
+    ctx.textAlign='right';
+    for(var i=-4;i<=4;i+=2) if(i!==0) ctx.fillText(i,ox-10,oy-i*sc+6);
+
+    // y=2x-2 (红)
+    ctx.strokeStyle='#dc2626';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-3*sc,oy+8*sc);ctx.lineTo(ox+3*sc,oy-4*sc);ctx.stroke();
+    // y=-x-5 (蓝)
+    ctx.strokeStyle='#2563eb';ctx.lineWidth=3.5;
+    ctx.beginPath();ctx.moveTo(ox-3*sc,oy+2*sc);ctx.lineTo(ox+3*sc,oy+8*sc);ctx.stroke();
+    // 交点 (-1,-4)
+    ctx.fillStyle='#ef4444';ctx.beginPath();ctx.arc(ox-1*sc,oy+4*sc,8,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#6b7280';ctx.lineWidth=2;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(ox-1*sc,oy);ctx.lineTo(ox-1*sc,oy+4*sc);ctx.lineTo(ox,oy+4*sc);ctx.stroke();ctx.setLineDash([]);
+})();
+
+// 等待KaTeX及auto-render加载完成后渲染（最多等待5秒）
+var initAttempts = 0;
+function init(){
+    if(typeof katex !== 'undefined' && typeof renderMathInElement !== 'undefined'){
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+        });
+    } else if(initAttempts < 50){
+        initAttempts++;
+        setTimeout(init, 100);
+    } else {
+        console.error('KaTeX or auto-render failed to load');
+    }
+}
+window.onload = init;
+</script>
+</body>
+</html>

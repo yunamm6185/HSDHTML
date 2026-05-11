@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1.2 垂线 | 华师版·七上 第4章</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第4章 相交线与平行线 · 4.1.2</span>
+    </div>
+    <h1>第4章 相交线与平行线</h1>
+    <div class="chapter-intro">★ 理解垂线的概念，掌握垂线的性质，认识点到直线的距离。</div>
+    <h2>4.1 相交线</h2>
+    <div class="lesson-title">第2课时 垂线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解垂线、垂足的概念</div>
+            <div class="target-item"><span>✔</span>掌握垂线的性质：过一点有且只有一条直线与已知直线垂直</div>
+            <div class="target-item"><span>✔</span>了解垂直平分线和点到直线的距离</div>
+            <div class="target-item"><span>✔</span>能画一条直线的垂线，并度量点到直线的距离</div>
+        </div>
+    </div>
+
+    <!-- 引入：旋转得到垂直 -->
+    <div class="intro-block">
+        <p>如图4.1.4①，直线 \(AB\) 与 \(CD\) 相交于点 \(O\)。将直线 \(CD\) 绕着点 \(O\) 旋转，使 \(\angle BOD\) 为直角（如图4.1.4②）。此时，两条直线互相垂直。</p>
+    </div>
+    <div class="figure-box">
+        <img src="4.1.4.png" alt="图4.1.4 相交线旋转成垂直">
+        <div class="figcaption">图4.1.4 垂直的形成</div>
+    </div>
+
+    <!-- 垂线定义 -->
+    <p>当两条直线 \(AB, CD\) 相交所成的四个角中有一个为直角时，其他三个角也都成为直角，此时，直线 \(AB, CD\) 互相垂直（perpendicular），记作“\(AB \perp CD\)”，它们的交点 \(O\) 叫做垂足（foot of a perpendicular）。其中一条直线叫做另一条直线的垂线（perpendicular line）。</p>
+
+    <!-- 生活中的垂直 -->
+    <div class="figure-box">
+        <img src="4.1.5.png" alt="图4.1.5 生活中的垂直">
+        <div class="figcaption">图4.1.5 生活中的垂直实例</div>
+    </div>
+
+    <!-- 试一试：过直线外一点画垂线 -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>经过直线 \(AB\) 外一点 \(P\)，按图4.1.6所示的两种方法，画出垂直于直线 \(AB\) 的直线。这样的垂线能画多少条呢？</p>
+        <div class="figure-box">
+            <img src="4.1.6.png" alt="图4.1.6 过直线外一点画垂线">
+            <div class="figcaption">图4.1.6 过直线外一点画垂线</div>
+        </div>
+    </div>
+
+    <!-- 过直线上一点画垂线 -->
+    <div class="figure-box">
+        <img src="4.1.7.png" alt="图4.1.7 过直线上一点画垂线">
+        <div class="figcaption">图4.1.7</div>
+    </div>
+    <p>如图4.1.7，你能经过直线 \(AB\) 上一点 \(P\)，画出垂直于直线 \(AB\) 的直线吗？这样的垂线能画多少条呢？</p>
+
+    <!-- 垂线的基本事实 -->
+    <div style="background: #e6f2fa; border-radius: 20px; padding: 1rem 2rem; margin: 1rem 0;">
+        <p style="font-size:1.3rem; font-weight:bold;">🔷 垂线的基本事实：</p>
+        <p>在同一平面内，过一点有且只有一条直线与已知直线垂直。</p>
+    </div>
+
+    <!-- 垂直平分线（中垂线） -->
+    <p>对于线段的垂线，有一种特殊且重要的情况：如图4.1.8，直线 \(CD\) 经过线段 \(AB\) 的中点 \(O\)，并且垂直于线段 \(AB\)，则 \(AO = BO\)，\(AB \perp CD\)。我们把垂直并且平分一条线段的直线叫做这条线段的<strong>垂直平分线</strong>（perpendicular bisector），<strong>又称中垂线</strong>。</p>
+    <div class="figure-box">
+        <img src="4.1.8.png" alt="图4.1.8 垂直平分线">
+        <div class="figcaption">图4.1.8 线段的垂直平分线</div>
+    </div>
+
+    <!-- 点到直线的距离 -->
+    <p>在图4.1.9所示的方格图中，点 \(A\) 是直线 \(l\) 外一点，\(AB\) 与直线 \(l\) 垂直，点 \(B\) 为垂足。点 \(A\) 与直线 \(l\) 上各点的距离长短不一，其中最短的是线段 \(AB\)，线段 \(AB\) 叫做点 \(A\) 到直线 \(l\) 的<strong>垂线段</strong>。从直线外一点到这条直线的垂线段的长度，叫做<strong>点到直线的距离</strong>。例如，线段 \(AB\) 的长度就是点 \(A\) 到直线 \(l\) 的距离。</p>
+    <div class="figure-box">
+        <img src="4.1.9.png" alt="图4.1.9 点到直线的距离">
+        <div class="figcaption">图4.1.9 垂线段最短</div>
+    </div>
+
+    <!-- 体育跳远测量 -->
+    <div class="think-box">
+        <h4>想一想</h4>
+        <p>体育课上是怎样测量跳远成绩的？你知道其中的原因吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('ansSport')">💡 显示解释</button>
+        <div id="ansSport" class="answer-box">
+            <p>跳远成绩测量的是从起跳板到沙坑中最近接触点的垂线段长度，因为垂线段最短，所以这样测量最公平。</p>
+        </div>
+    </div>
+
+    <!-- 做一做：小海龟，带答案按钮显示图片“做一做小海龟.png” -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>如图4.1.10，小海龟位于图中点A处，按下述口令移动：前进3格；向右转 \(90^{\circ}\)，前进5格；向左转 \(90^{\circ}\)，前进3格；向左转 \(90^{\circ}\)，前进6格；向右转 \(90^{\circ}\)，后退6格；最后向右转 \(90^{\circ}\)，前进1格。用粗线将小海龟经过的路线描出来，看一看是什么图形。</p>
+        <div class="figure-box">
+            <img src="4.1.10.png" alt="图4.1.10 小海龟移动">
+            <div class="figcaption">图4.1.10 小海龟的路径</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansTurtle')">🐢 显示结果</button>
+        <div id="ansTurtle" class="answer-box">
+            <img src="做一做小海龟.png" alt="小海龟路径结果" style="max-width:100%; border-radius:8px;">
+        </div>
+    </div>
+
+    <!-- 练习区 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 第1题 填空题，配图第1题.png -->
+        <div class="exercise-item">
+            <p><strong>1.</strong> 如图，\(\angle ABD = 90^{\circ}\)，在下列各语句中填入适当的文字或数字：</p>
+            <div class="figure-box">
+                <img src="第1题.png" alt="第1题图">
+                <div class="figcaption">（第1题）</div>
+            </div>
+            <p>（1）点 \(B\) 在直线______上，点 \(D\) 在直线______外；<br>
+            （2）直线______与直线______相交于点 \(A\)，点 \(D\) 是直线______与直线______的交点，又是直线______与直线______的交点，又是直线______与直线______的交点；<br>
+            （3）直线______垂直于直线______，垂足为点______；<br>
+            （4）过点 \(D\) 有且只有______条直线与直线 \(AC\) 垂直。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansP1')">🔍 参考答案</button>
+            <div id="ansP1" class="answer-box">
+                <p>（1）\(AC\)，\(AC\)；（2）\(AD\)，\(AC\)，\(AD\)，\(CD\)，\(AD\)，\(BD\)，\(BD\)，\(CD\)；（3）\(DB\)，\(AC\)，\(B\)；（4）一。</p>
+            </div>
+        </div>
+
+        <!-- 第2题 画垂线并测量距离，配图第2题.png -->
+        <div class="exercise-item">
+            <p><strong>2.</strong> 在如图所示的各个三角形中，分别过点 \(C\) 画出直线 \(AB\) 的垂线，并量出三角形顶点 \(C\) 到直线 \(AB\) 的距离。（精确到 \(1 \mathrm{~mm}\)）</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP2')">📏 提示</button>
+            <div id="ansP2" class="answer-box">
+                <p>用三角板画垂线，再用刻度尺量出垂线段的长度。具体数值需实际测量。</p>
+            </div>
+        </div>
+
+        <!-- 第3题 方格图，配图第3题.png，提示恢复为最初简洁版 -->
+        <div class="exercise-item">
+            <p><strong>3.</strong> 在如图所示的方格图中，按下述要求画图并回答问题：</p>
+            <div class="figure-box">
+                <img src="第3题.png" alt="第3题图">
+                <div class="figcaption">（第3题）</div>
+            </div>
+            <p>（1）过点 \(C\) 画出线段 \(AB\) 的垂线，垂足为点 \(D\)；<br>
+            （2）量出点 \(C\) 到线段 \(AB\) 所在直线的距离（精确到 \(1 \mathrm{~mm}\)）；<br>
+            （3）画出线段 \(AB\) 的垂直平分线。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ansP3')">🔍 提示</button>
+            <div id="ansP3" class="answer-box">
+                <p>（1）利用方格直接画垂线；（2）垂线段 \(CD\) 的长度即为距离；（3）取 \(AB\) 中点，作垂线。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">垂线定义：两条直线相交成直角，其中一条叫做另一条的垂线</div>
+            <div class="summary-item">垂线性质：过一点有且只有一条直线与已知直线垂直</div>
+            <div class="summary-item">垂直平分线（中垂线）：垂直且平分一条线段的直线</div>
+            <div class="summary-item">点到直线的距离：垂线段的长度</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从实际物体中抽象出垂直的概念。<br>
+        <strong>数形结合：</strong> 利用方格纸画垂线，用刻度尺度量距离。<br>
+        <strong>模型思想：</strong> 垂线段最短在实际问题中的应用（如跳远测量）。</p>
+    </div>
+
+    <!-- 读一读：生活中的垂直 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 生活中的垂直</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>🏗️ <strong>建筑中的垂直</strong>：墙体与地面垂直，保证房屋稳固。</p>
+            <p>🚏 <strong>人行道与路口</strong>：街道交叉处的斑马线通常与道路垂直，方便行人过街。</p>
+            <p>📐 <strong>三角尺</strong>：我们用的三角尺就有直角，用来检验垂直。</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本习题4.1 A组第4、5题；用折纸的方法折出两条互相垂直的直线。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 垂直是相交的特殊情形，也是构建图形的基础 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第52课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

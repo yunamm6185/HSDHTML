@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>19.1.3 中位数和众数 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\(','\)']], displayMath: [['$$','$$'],['\[','\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <style>
+        /* ===== 全局字体增大 ===== */
+        html{font-size:20px;}
+        @media (max-width:768px){html{font-size:17px;}}
+        @media (max-width:480px){html{font-size:15px;}}
+
+        /* ===== 问题列表 ===== */
+        .question-list{padding-left:0;list-style:none;counter-reset:q;}
+        .question-list li{margin:1.2rem 0;padding-left:2.4rem;position:relative;line-height:2;}
+        .question-list li::before{counter-increment:q;content:'(' counter(q) ')';position:absolute;left:0;font-weight:700;color:var(--accent);font-size:1.1rem;}
+        .data-inline{background:linear-gradient(135deg,#f0fdfa,#e0f7fa);padding:.3rem .8rem;border-radius:.5rem;font-weight:700;color:#0f766e;border:1.5px solid #99f6e4;white-space:nowrap;}
+        .blank{display:inline-block;min-width:100px;border-bottom:2.5px solid #0e7490;margin:0 .4rem;text-align:center;color:var(--text-secondary);font-weight:600;}
+
+        /* ===== 排序演示区 ===== */
+        .sort-demo{background:linear-gradient(135deg,#f8fafc,#f1f5f9);border:2px solid #cbd5e1;border-radius:1.2rem;padding:1.5rem;margin:1.2rem 0;text-align:center;}
+        .sort-demo .sort-row{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;margin:1rem 0;min-height:3.5rem;align-items:center;}
+        .sort-demo .num{display:inline-flex;width:2.6rem;height:2.6rem;align-items:center;justify-content:center;border-radius:.5rem;background:#fff;border:2px solid #cbd5e1;font-weight:700;color:#334155;box-shadow:0 2px 5px rgba(0,0,0,.1);font-size:1rem;transition:all .3s;}
+        .sort-demo .num.mid{background:linear-gradient(135deg,#fecaca,#fca5a5);border-color:#ef4444;color:#991b1b;box-shadow:0 3px 10px rgba(239,68,68,.3);transform:scale(1.15);}
+        .sort-demo .num.sorted{background:#ecfdf5;border-color:#10b981;color:#065f46;}
+        .sort-demo .num.removed{opacity:.25;transform:scale(.85);border-style:dashed;}
+        .sort-demo .step-info{font-size:1rem;color:#475569;margin:.5rem 0;font-weight:600;min-height:1.8rem;}
+
+        /* ===== 表格 ===== */
+        .big-table{width:100%;border-collapse:collapse;box-shadow:0 4px 20px rgba(0,0,0,.1);margin:1rem 0;font-size:1rem;border:2px solid #0284c7;border-radius:.8rem;overflow:hidden;}
+        .big-table th,.big-table td{border:1.5px solid #cbd5e1;padding:.65rem .5rem;text-align:center;}
+        .big-table th{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.2);}
+        .big-table td{background:#fff;font-weight:600;color:#1e293b;}
+        .big-table tr:nth-child(even) td{background:#f0fdfa;}
+        .big-table tr:hover td{background:#e0f2fe;}
+
+        .freq-table{width:100%;border-collapse:collapse;box-shadow:0 4px 20px rgba(0,0,0,.1);margin:1rem 0;border:2px solid #0284c7;border-radius:.8rem;overflow:hidden;}
+        .freq-table th,.freq-table td{border:1.5px solid #cbd5e1;padding:.55rem .3rem;text-align:center;font-size:.95rem;}
+        .freq-table th{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;font-weight:700;}
+        .freq-table td{background:#fff;font-weight:600;color:#1e293b;}
+        .freq-table tr:nth-child(even) td{background:#f0fdfa;}
+        .freq-table tr:hover td{background:#e0f2fe;}
+
+        /* ===== 读一读（书本样式） ===== */
+        .read-card{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:1.5rem;padding:1.8rem 2rem;margin:1.5rem 0;position:relative;border:3px solid #93c5fd;box-shadow:0 4px 15px rgba(59,130,246,.15);}
+        .read-card::before{content:'';position:absolute;top:-3px;left:2rem;right:2rem;height:3px;background:#1e40af;border-radius:3px;}
+        .read-card h4{display:flex;align-items:center;gap:.6rem;color:#1e40af;margin-bottom:1rem;font-size:1.2rem;font-weight:700;}
+        .read-card h4::before{content:'\1F4D6';font-size:1.3rem;}
+        .read-card p{color:#1e3a8a;line-height:2;font-size:1.05rem;}
+
+        /* ===== 思考框 ===== */
+        .think-card{background:linear-gradient(135deg,#f0fdfa,#ccfbf1);border-left:6px solid var(--accent);border-radius:0 1.2rem 1.2rem 0;padding:1.4rem 1.8rem;margin:1.2rem 0;font-weight:600;box-shadow:0 3px 12px rgba(20,184,166,.12);position:relative;}
+        .think-card strong{color:#0f766e;font-size:1.1rem;}
+
+        /* ===== 三种代表值可视化卡片 ===== */
+        .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:1.5rem 0;}
+        .compare-card{background:#fff;border-radius:1.2rem;padding:1.5rem 1.2rem;text-align:center;border:2px solid #e2e8f0;box-shadow:0 4px 12px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+        .compare-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.1);}
+        .compare-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;border-radius:1.2rem 1.2rem 0 0;}
+        .compare-card.avg::before{background:linear-gradient(90deg,#0ea5e9,#0284c7);}
+        .compare-card.med::before{background:linear-gradient(90deg,#10b981,#059669);}
+        .compare-card.mode::before{background:linear-gradient(90deg,#f59e0b,#d97706);}
+        .compare-card .icon{font-size:2.5rem;margin-bottom:.6rem;}
+        .compare-card h5{font-size:1.2rem;margin-bottom:.6rem;font-weight:700;}
+        .compare-card.avg h5{color:#0284c7;}
+        .compare-card.med h5{color:#059669;}
+        .compare-card.mode h5{color:#b45309;}
+        .compare-card p{font-size:.95rem;line-height:1.8;color:#334155;}
+        .compare-card .badge{display:inline-block;padding:.3rem 1rem;border-radius:2rem;font-size:.85rem;font-weight:700;color:#fff;margin-top:.6rem;}
+        .compare-card.avg .badge{background:linear-gradient(135deg,#0ea5e9,#0284c7);}
+        .compare-card.med .badge{background:linear-gradient(135deg,#10b981,#059669);}
+        .compare-card.mode .badge{background:linear-gradient(135deg,#f59e0b,#d97706);}
+
+        /* ===== 答案展开 ===== */
+        .answer-box{display:none;background:#f8faff;border:2px dashed #bae6fd;border-radius:.8rem;padding:1.2rem 1.5rem;margin-top:.6rem;overflow:hidden;}
+        .answer-box.show{display:block;}
+
+        /* ===== 判断题 ===== */
+        .judge-item{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:.8rem 1.2rem;background:#f8fafc;border-radius:.8rem;border:1.5px solid #e2e8f0;margin:.6rem 0;transition:all .2s;font-size:1.05rem;}
+        .judge-item:hover{background:#f0f9ff;border-color:#93c5fd;}
+        .judge-ans{display:none;font-weight:700;margin-left:auto;white-space:nowrap;font-size:1.2rem;padding:.2rem .6rem;border-radius:.4rem;}
+        .judge-ans.show{display:inline-block;animation:bounceIn .3s ease;}
+
+        /* ===== 寄语 ===== */
+        .message-card{background:linear-gradient(135deg,#fefce8,#fef9c3);border:2px solid #fcd34d;border-radius:1.2rem;padding:1.2rem 1.6rem;margin:1.5rem 0;text-align:center;font-size:1.15rem;font-weight:700;color:#92400e;box-shadow:0 3px 10px rgba(245,158,11,.15);}
+
+        /* ===== 按钮行 ===== */
+        .btn-row{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0;}
+
+        @media (max-width:768px){
+            .compare-grid{grid-template-columns:1fr;}
+            .sort-demo .num{width:2.2rem;height:2.2rem;font-size:.9rem;}
+            .big-table{font-size:.8rem;}
+            .big-table th,.big-table td{padding:.4rem .2rem;}
+            .freq-table{font-size:.75rem;}
+            .freq-table th,.freq-table td{padding:.35rem .15rem;}
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华东师范大学出版社·数学 八年级下册</span>
+        <span>第19章 · 数据的分析</span>
+    </div>
+    <h1>第19章 数据的分析</h1>
+    <div class="lesson-title">19.1.3 中位数和众数</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>理解中位数的概念，掌握中位数的求法</div>
+            <div class="target-item"><span>2</span>理解众数的概念，掌握众数的求法</div>
+            <div class="target-item"><span>3</span>了解平均数、中位数、众数的特点和适用场景</div>
+            <div class="target-item"><span>4</span>能根据实际问题选择合适的代表值</div>
+        </div>
+    </div>
+
+    <!-- 问题情境 -->
+    <div class="intro-card">
+        <p>日常生活中，我们面对一组数据，常常需要寻找一个能代表这组数据总体面貌的特殊数据，比如有下面一些问题：</p>
+    </div>
+
+    <div class="explore-card">
+        <ol class="question-list">
+            <li>同学问小明："你知道你妈妈的鞋号是多少吗？"小明在家里找到了9双妈妈的鞋，鞋号分别是：<span class="data-inline">23, 23, 23, 23.5, 23, 24, 23, 23, 24</span>。对此，小明的回答应该是<span class="blank" id="ans1"></span>。</li>
+            <li>同学问小红："你每个月花多少时间进行体育锻炼？"小红查看了一下自己的运动记录，发现去年每月体育锻炼的时间（单位：h）分别是：<span class="data-inline">35, 10, 10, 10, 10, 15, 10, 20, 10, 10, 10, 10</span>。对此，小红的回答可以是<span class="blank" id="ans2"></span>。</li>
+            <li>老师要评定每位学生的中文打字速度。小兵的三次中文打字速度检测结果（单位：字/min）分别是：<span class="data-inline">38, 31, 36</span>。对此，小兵的中文打字速度可评定为<span class="blank" id="ans3"></span>。</li>
+            <li>一家小店有5名员工，他们的月收入（单位：元）分别是：<span class="data-inline">8000, 3200, 2100, 2000, 2000</span>。对此，该店员工的月收入可以认为是<span class="blank" id="ans4"></span>。</li>
+        </ol>
+        <button class="btn" onclick="toggleAnswer('introAns')">思考提示</button>
+        <div id="introAns" class="answer-box">
+            <p><strong>问题(1)：</strong>23号出现7次，次数最多。可以回答 <strong>23号</strong>。</p>
+            <p><strong>问题(2)：</strong>10 h出现8次，次数最多。可以回答 <strong>10 h</strong>。</p>
+            <p><strong>问题(3)：</strong>按大小顺序排列为 31, 36, 38，中间值是 <strong>36 字/min</strong>。</p>
+            <p><strong>问题(4)：</strong>按大小顺序排列为 2000, 2000, 2100, 3200, 8000，中间值是 <strong>2100 元</strong>。</p>
+        </div>
+        <p style="margin-top:1.2rem;">回答上述问题时，你认为哪些问题不适合用平均数作代表，需要引入新的指标来刻画数据的集中趋势？</p>
+    </div>
+
+    <!-- ===== 问题3 完整区块 ===== -->
+    <div class="section-title">问题3</div>
+    <div class="explore-card">
+        <p>查询天气网站可以了解到，我国各直辖市和省会城市（不包含港澳台地区）2022年8月28日的最高气温如表19.1.2所示。我们很容易得到这些城市当日最高气温的平均数约为 $26.5^\circ\text{C}$。你还能从其他角度找到这组数据的代表吗？</p>
+    </div>
+
+    <!-- 表19.1.2 -->
+    <div class="card card--blue">
+        <p style="text-align:center;font-weight:700;margin-bottom:.6rem;font-size:1.1rem;">表19.1.2　31个城市2022年8月28日的最高气温　单位：$^\circ\text{C}$</p>
+        <table class="big-table">
+            <tr>
+                <th>北京</th><th>天津</th><th>石家庄</th><th>太原</th><th>呼和浩特</th><th>沈阳</th><th>长春</th><th>哈尔滨</th>
+            </tr>
+            <tr>
+                <td>22</td><td>25</td><td>19</td><td>16</td><td>18</td><td>26</td><td>24</td><td>25</td>
+            </tr>
+            <tr>
+                <th>上海</th><th>南京</th><th>杭州</th><th>合肥</th><th>福州</th><th>南昌</th><th>济南</th><th>郑州</th>
+            </tr>
+            <tr>
+                <td>29</td><td>27</td><td>31</td><td>28</td><td>35</td><td>36</td><td>21</td><td>19</td>
+            </tr>
+            <tr>
+                <th>武汉</th><th>长沙</th><th>广州</th><th>海口</th><th>南宁</th><th>成都</th><th>重庆</th><th>贵阳</th>
+            </tr>
+            <tr>
+                <td>32</td><td>35</td><td>35</td><td>33</td><td>35</td><td>27</td><td>40</td><td>31</td>
+            </tr>
+            <tr>
+                <th>昆明</th><th>拉萨</th><th>西安</th><th>兰州</th><th>银川</th><th>西宁</th><th>乌鲁木齐</th><th></th>
+            </tr>
+            <tr>
+                <td>25</td><td>26</td><td>17</td><td>21</td><td>22</td><td>16</td><td>26</td><td></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 中位数 -->
+    <div class="fact-card">
+        <h4>核心概念一：中位数</h4>
+        <p>我们还可以用<strong>中位数</strong>或<strong>众数</strong>作为这组数据的代表。</p>
+        <p>将31个城市8月28日的最高气温数据按由低到高的顺序重新排列，用去掉两端逐步接近正中心的办法可以找出处在正中间位置的那个值，即<strong>中位数</strong>（median）。</p>
+
+        <div class="sort-demo">
+            <p class="step-info" id="sortStep">点击下方"排序"按钮，观察数据排列过程</p>
+            <div class="sort-row" id="sortRow">
+                <span class="num">22</span><span class="num">25</span><span class="num">19</span><span class="num">16</span>
+                <span class="num">18</span><span class="num">26</span><span class="num">24</span><span class="num">25</span>
+                <span class="num">29</span><span class="num">27</span><span class="num">31</span><span class="num">28</span>
+                <span class="num">35</span><span class="num">36</span><span class="num">21</span><span class="num">19</span>
+                <span class="num">32</span><span class="num">35</span><span class="num">35</span><span class="num">33</span>
+                <span class="num">35</span><span class="num">27</span><span class="num">40</span><span class="num">31</span>
+                <span class="num">25</span><span class="num">26</span><span class="num">17</span><span class="num">21</span>
+                <span class="num">22</span><span class="num">16</span><span class="num">26</span>
+            </div>
+            <div class="btn-row" style="justify-content:center;">
+                <button class="btn btn-primary" onclick="startSort()">排序</button>
+                <button class="btn" onclick="resetSort()">重置</button>
+            </div>
+        </div>
+        <p style="text-align:center;font-size:1rem;color:var(--text-secondary);margin-top:.5rem;">图19.1.7</p>
+        <p>由此可以得到这31个城市8月28日最高气温的中位数是 <strong style="color:#059669;">$26^\circ\text{C}$</strong>。</p>
+    </div>
+
+    <div class="think-card">
+        <p><strong>思考</strong>　如果是偶数个城市，那么用去掉两端逐步接近正中心的办法，最后也只剩下唯一一个没被划去的数据吗？</p>
+        <button class="btn" onclick="toggleAnswer('think1')" style="margin-top:.8rem;">解答</button>
+        <div id="think1" class="answer-box">
+            <p>如果是偶数个城市，那么最后就将剩下两个处在正中间的数。这时，为了公正起见，我们取这两个数的平均数作为中位数。</p>
+        </div>
+    </div>
+
+    <!-- 众数 -->
+    <div class="fact-card">
+        <h4>核心概念二：众数</h4>
+        <p>此外，如表19.1.3，统计每一个气温在这组数据中出现的频数，可以找出频数最多的那个气温值，它就是<strong>众数</strong>（mode）。</p>
+        <p style="text-align:center;font-weight:700;margin:.6rem 0;font-size:1.1rem;">表19.1.3</p>
+        <table class="freq-table">
+            <tr>
+                <th>气温/$^\circ\text{C}$</th>
+                <td>16</td><td>17</td><td>18</td><td>19</td><td>21</td><td>22</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>31</td><td>32</td><td>33</td><td>35</td><td>36</td><td>40</td>
+            </tr>
+            <tr>
+                <th>频数</th>
+                <td>2</td><td>1</td><td>1</td><td>2</td><td>2</td><td>2</td><td>1</td><td>3</td><td>3</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1</td><td>1</td><td>4</td><td>1</td><td>1</td>
+            </tr>
+        </table>
+        <p>由表19.1.3可知，这31个城市该日最高气温的众数是 <strong style="color:#b45309;">$35^\circ\text{C}$</strong>。</p>
+    </div>
+
+    <div class="think-card">
+        <p><strong>思考</strong>　若有两个气温值（如 $25^\circ\text{C}$ 和 $35^\circ\text{C}$）的频数并列最多，那么怎样确定众数呢？</p>
+        <button class="btn" onclick="toggleAnswer('think2')" style="margin-top:.8rem;">解答</button>
+        <div id="think2" class="answer-box">
+            <p>这时，我们不是取 $25^\circ\text{C}$ 和 $35^\circ\text{C}$ 这两个气温值的平均数作为众数，而是说这两个气温值都是众数。</p>
+            <p style="margin-top:.8rem;color:#991b1b;"><strong>注意：</strong>一组数据，即使有相同的数字，也可能<strong>没有众数</strong>。例如：<span class="data-inline">1, 1, 2, 2, 3, 3</span>，每个数出现次数相同（都是 2 次），不存在"出现次数<strong>最多</strong>的值"，所以没有众数。</p>
+        </div>
+    </div>
+
+    <!-- 图19.1.8 -->
+    <div class="intro-card">
+        <p>我们可以把问题3中的平均数、中位数和众数在统计图中表示出来，如图19.1.8所示。</p>
+        <div class="highlight-box" style="text-align:center;padding:1.5rem;">
+            <p style="font-size:1.15rem;"><span style="display:inline-block;margin:.4rem 1rem;"><strong style="color:#0284c7;">平均数</strong>：$26.5^\circ\text{C}$</span>
+            <span style="display:inline-block;margin:.4rem 1rem;"><strong style="color:#059669;">中位数</strong>：$26^\circ\text{C}$</span>
+            <span style="display:inline-block;margin:.4rem 1rem;"><strong style="color:#b45309;">众数</strong>：$35^\circ\text{C}$</span></p>
+            <p style="font-size:1rem;color:var(--text-secondary);margin-top:.5rem;">图19.1.8（频数分布条形统计图）</p>
+        </div>
+    </div>
+
+    <!-- 三种代表值的特点 -->
+    <div class="section-title">三种代表值的特点</div>
+    <div class="compare-grid">
+        <div class="compare-card avg">
+            
+            <h5>平均数</h5>
+            <p>反映每个数据的<strong>平均大小</strong>。当每个数据的<strong>权重</strong>相同时，<strong>加权平均数</strong>就是平均数。</p>
+            <span class="badge">常用指标</span>
+        </div>
+        <div class="compare-card med">
+            
+            <h5>中位数</h5>
+            <p>将数据按由小到大排列后，<strong>左边和右边</strong>恰有一样多的数据。不受极端值影响。</p>
+            <span class="badge">稳健指标</span>
+        </div>
+        <div class="compare-card mode">
+            
+            <h5>众数</h5>
+            <p>出现次数<strong>最多</strong>的值。一组数据可以有不止一个众数，也可以没有众数。</p>
+            <span class="badge">最频指标</span>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="read-card">
+        <h4>读一读</h4>
+        <p>面对收集得到的大量数据，我们可以根据问题的背景选择合适的统计图表，用数据说话，显示其隐含的某些有用信息。为了更好地了解数据，需要作更深入的数据分析。平均数、中位数和众数从不同的侧面描述了数据的集中趋势，概括了一组数据。正因为如此，这三种指标常被用来作为一组数据的代表。</p>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">练习</div>
+
+    <div class="example-card">
+        <p><strong>1.</strong> 某商场进了一批苹果，每箱苹果的质量约为 5 kg。进入仓库前，从中随机抽出 10 箱称重，得到 10 箱苹果的质量（单位：kg）如下：</p>
+        <p style="text-align:center;font-weight:700;color:#0e7490;margin:.6rem 0;font-size:1.1rem;">4.8, 5.0, 5.1, 4.8, 4.9, 4.8, 5.1, 4.9, 4.7, 4.7</p>
+        <p>请指出这 10 箱苹果质量的平均数、中位数和众数。</p>
+        <button class="btn" onclick="toggleAnswer('ex1')">解答</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>平均数：</strong></p>
+            <p>$$\bar{x}=\frac{4.8+5.0+5.1+4.8+4.9+4.8+5.1+4.9+4.7+4.7}{10}=4.88\text{（kg）}$$</p>
+            <p><strong>中位数：</strong></p>
+            <p>将数据从小到大排列：4.7, 4.7, 4.8, 4.8, 4.8, 4.9, 4.9, 5.0, 5.1, 5.1</p>
+            <p>共 10 个数据（偶数个），中位数为中间两个数的平均数：</p>
+            <p>$$\text{中位数}=\frac{4.8+4.9}{2}=4.85\text{（kg）}$$</p>
+            <p><strong>众数：</strong></p>
+            <p>4.8 出现 3 次，出现次数最多，所以众数为 <strong>4.8 kg</strong>。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <p><strong>2.</strong> 判断题（对的在括号内填"√"，错的在括号内填"×"）</p>
+        <div class="judge-item">
+            <span>(1) 给定一组数据，那么这组数据的平均数一定只有一个。</span>
+            <span class="judge-ans" id="j1" style="color:var(--success);background:#ecfdf5;border:2px solid #6ee7b7;">√</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j1',this)">查看答案</button>
+        </div>
+        <div class="judge-item">
+            <span>(2) 给定一组数据，那么这组数据的中位数一定只有一个。</span>
+            <span class="judge-ans" id="j2" style="color:var(--success);background:#ecfdf5;border:2px solid #6ee7b7;">√</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j2',this)">查看答案</button>
+        </div>
+        <div class="judge-item">
+            <span>(3) 给定一组数据，那么这组数据的众数一定只有一个。</span>
+            <span class="judge-ans" id="j3" style="color:var(--error);background:#fef2f2;border:2px solid #fca5a5;">×</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j3',this)">查看答案</button>
+        </div>
+        <div class="judge-item">
+            <span>(4) 给定一组数据，那么这组数据的平均数一定不会大于最大值，也不会小于最小值。</span>
+            <span class="judge-ans" id="j4" style="color:var(--success);background:#ecfdf5;border:2px solid #6ee7b7;">√</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j4',this)">查看答案</button>
+        </div>
+        <div class="judge-item">
+            <span>(5) 给定一组数据，那么这组数据的中位数一定等于最小值和最大值的平均数。</span>
+            <span class="judge-ans" id="j5" style="color:var(--error);background:#fef2f2;border:2px solid #fca5a5;">×</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j5',this)">查看答案</button>
+        </div>
+        <div class="judge-item">
+            <span>(6) 给定一组数据，如果找不到众数，那么众数一定就是 0。</span>
+            <span class="judge-ans" id="j6" style="color:var(--error);background:#fef2f2;border:2px solid #fca5a5;">×</span>
+            <button class="btn" style="margin-left:auto;" onclick="showJudge('j6',this)">查看答案</button>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-box">
+        <h4>课堂小结</h4>
+        <ul>
+            <li><strong>中位数：</strong>将一组数据按大小顺序排列后，处在正中间位置的值（奇数个取中间，偶数个取中间两数的平均数）</li>
+            <li><strong>众数：</strong>一组数据中出现次数最多的值（可以有多个，也可以没有）</li>
+            <li><strong>平均数、中位数、众数</strong>从不同的侧面描述了数据的集中趋势，常被用来作为一组数据的代表</li>
+            <li>当数据中有极端值时，<strong>中位数</strong>比平均数更能反映数据的集中趋势</li>
+        </ul>
+    </div>
+
+    <div class="message-card">
+        中位数看居中，众数显最频；三种代表各千秋，选择使用显智慧！
+    </div>
+
+    <div class="footer-note">八年级下册 · 第19章 19.1.3 中位数和众数</div>
+</div>
+
+<script>
+// ===== 答案展开 =====
+function toggleAnswer(id){
+    var el=document.getElementById(id);
+    if(!el)return;
+    el.classList.toggle('show');
+}
+function showJudge(id,btn){
+    var el=document.getElementById(id);
+    if(el){
+        el.classList.add('show');
+        btn.style.display='none';
+    }
+}
+
+// ===== 排序演示 =====
+const origData=[22,25,19,16,18,26,24,25,29,27,31,28,35,36,21,19,32,35,35,33,35,27,40,31,25,26,17,21,22,16,26];
+const sortedData=[16,16,17,18,19,19,21,21,22,22,24,25,25,25,26,26,26,26,27,27,28,29,31,31,32,33,35,35,35,36,40];
+let sortTimer=null;
+let sortStep=0;
+
+function renderSortRow(data, classes){
+    var row=document.getElementById('sortRow');
+    var html='';
+    for(var i=0;i<data.length;i++){
+        var cls='num';
+        if(classes && classes[i]) cls+=' '+classes[i];
+        html+='<span class="'+cls+'">'+data[i]+'</span>';
+    }
+    row.innerHTML=html;
+}
+
+function resetSort(){
+    if(sortTimer){clearInterval(sortTimer);sortTimer=null;}
+    sortStep=0;
+    document.getElementById('sortStep').textContent='点击下方"排序"按钮，观察数据排列过程';
+    renderSortRow(origData, null);
+}
+
+function startSort(){
+    if(sortTimer)return;
+    resetSort();
+    var current=[...origData];
+    var steps=[];
+    // 冒泡排序记录每一步
+    for(var i=0;i<current.length-1;i++){
+        for(var j=0;j<current.length-1-i;j++){
+            if(current[j]>current[j+1]){
+                var tmp=current[j];current[j]=current[j+1];current[j+1]=tmp;
+            }
+        }
+        steps.push([...current]);
+    }
+    // 确保最后一步是完整排序
+    if(steps.length===0 || steps[steps.length-1].join(',')!==sortedData.join(',')){
+        steps.push([...sortedData]);
+    }
+
+    var stepIdx=0;
+    var info=document.getElementById('sortStep');
+    info.textContent='正在排序...';
+
+    sortTimer=setInterval(function(){
+        if(stepIdx<steps.length){
+            var arr=steps[stepIdx];
+            var classes=[];
+            for(var k=0;k<arr.length;k++){
+                if(arr[k]===sortedData[k] && (stepIdx===steps.length-1 || k<stepIdx+1)){
+                    classes.push('sorted');
+                }else{
+                    classes.push('');
+                }
+            }
+            renderSortRow(arr, classes);
+            info.textContent='第 '+(stepIdx+1)+' 步排序';
+            stepIdx++;
+        }else{
+            clearInterval(sortTimer);sortTimer=null;
+            // 最终高亮中位数
+            var finalClasses=[];
+            for(var m=0;m<sortedData.length;m++){
+                if(m===15) finalClasses.push('mid');
+                else finalClasses.push('sorted');
+            }
+            renderSortRow(sortedData, finalClasses);
+            info.textContent='排序完成！第 16 个数据 26 是中位数';
+        }
+    }, 350);
+}
+
+// 初始化
+resetSort();
+</script>
+</body>
+</html>

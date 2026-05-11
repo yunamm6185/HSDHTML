@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.1 平行线 | 华师版·七上 第4章</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号，并配置为使用斜线平行符号 -->
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {
+                packages: {'[+]': ['ams']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .example-box h4 { font-size: 1.5rem; color: #1d6130; margin-bottom: 0.8rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第4章 相交线与平行线 · 4.2.1</span>
+    </div>
+    <h1>第4章 相交线与平行线</h1>
+    <div class="chapter-intro">★ 理解平行线的概念，掌握平行线的基本事实，为后续学习判定与性质打基础。</div>
+    <h2>4.2 平行线</h2>
+    <div class="lesson-title">第1课时 平行线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解平行线的定义</div>
+            <div class="target-item"><span>✔</span>掌握平行线的基本事实：过直线外一点有且只有一条直线与已知直线平行</div>
+            <div class="target-item"><span>✔</span>了解平行线的传递性</div>
+            <div class="target-item"><span>✔</span>能借助三角板画平行线</div>
+        </div>
+    </div>
+
+    <!-- 定义 -->
+    <div class="intro-block">
+        <p>我们已经知道，在同一平面内不相交的两条直线叫做<strong>平行线</strong>（parallel lines）。如图4.2.1，直线 \(a\) 与直线 \(b\) 互相平行，记作“\(a \mathrel{/\mkern-5mu/} b\)”。</p>
+    </div>
+    <div class="figure-box">
+        <img src="4.2.1.png" alt="图4.2.1 平行线示意">
+        <div class="figcaption">图4.2.1 平行线\(a \mathrel{/\mkern-5mu/} b\)</div>
+    </div>
+    <p>在同一平面内，两条不重合的直线的位置关系只有两种：相交或平行。</p>
+
+    <!-- 画法 -->
+    <p>你能按照图4.2.2所示的方法，画一条直线 \(b\) 与已知直线 \(a\) 平行吗？</p>
+    <div class="figure-box">
+        <img src="4.2.2.png" alt="图4.2.2 画平行线的方法">
+        <div class="figcaption">图4.2.2 利用三角板画平行线</div>
+    </div>
+
+    <!-- 生活中的平行线 -->
+    <p>平行线在生活中很常见，如图4.2.3是上海国家会展中心的局部，它包含许多平行线。</p>
+    <div class="figure-box">
+        <img src="4.2.3.png" alt="图4.2.3 上海国家会展中心">
+        <div class="figcaption">图4.2.3 建筑中的平行线</div>
+    </div>
+
+    <!-- 做一做：过直线外一点画平行线 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>如果在直线 \(a\) 外有一个已知点 \(P\)，那么经过点 \(P\) 可以画多少条直线与已知直线 \(a\) 平行？请动手画一画。</p>
+        <p>动手操作的结果表明，经过直线外一点 \(P\) 只能画一条直线与已知直线 \(a\) 平行。于是我们得到关于平行线的一个基本事实：</p>
+        <!-- 结论单独底色 -->
+        <div class="highlight">
+            <p style="margin:0;">过直线外一点有且只有一条直线与这条直线平行。</p>
+        </div>
+    </div>
+
+    <!-- 试一试：平行线的传递性 -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>画一条直线 \(a\)，按图4.2.4所示的方法，画一条直线 \(b\) 与直线 \(a\) 平行，再向上推三角板，画另一条直线 \(c\)，也与直线 \(a\) 平行。</p>
+        <p>你发现直线 \(b\) 与直线 \(c\) 有什么关系？你的同伴是否也有类似的发现？</p>
+        <div class="figure-box">
+            <img src="4.2.4.png" alt="图4.2.4 画平行线并观察">
+            <div class="figcaption">图4.2.4 画平行线</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ansTry')">💡 显示结论</button>
+        <div id="ansTry" class="answer-box">
+            <p>你会发现直线 \(b\) 与直线 \(c\) 也是平行的。这就是说：<strong>如果两条直线都和第三条直线平行，那么这两条直线也互相平行</strong>（平行线的传递性）。</p>
+        </div>
+    </div>
+
+    <!-- 练习区（只保留第2题和第3题，且第2题无答案） -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+
+        <!-- 第2题（无答案按钮） -->
+        <div class="exercise-item">
+            <p><strong>2.</strong> 根据下列语句，利用所给三角形ABC画出图形：</p>
+            <p>（1）过三角形ABC的顶点 \(C\)，画出平行于 \(AB\) 的直线 \(MN\)；<br>
+            （2）过三角形ABC的边 \(AB\) 的中点 \(D\)，画出平行于 \(AC\) 的直线，交 \(BC\) 于点 \(E\)。</p>
+            <div class="figure-box">
+                <img src="第2题.png" alt="第2题图">
+                <div class="figcaption">（第2题）</div>
+            </div>
+            <!-- 答案按钮已移除 -->
+        </div>
+
+        <!-- 第3题（保留答案） -->
+        <div class="exercise-item">
+            <p><strong>3.</strong> 如图，两条直线 \(a, b\) 相交于点 \(O\)。如果直线 \(a \mathrel{/\mkern-5mu/}\) 直线 \(c\)，那么直线 \(b\) 能与直线 \(c\) 平行吗？为什么？</p>
+            <div class="figure-box">
+                <img src="第3题.png" alt="第3题图">
+                <div class="figcaption">（第3题）</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('ansP3')">🔍 参考答案</button>
+            <div id="ansP3" class="answer-box">
+                <p>不能。因为如果 \(b \mathrel{/\mkern-5mu/} c\)，又已知 \(a \mathrel{/\mkern-5mu/} c\)，那么根据平行线的传递性，\(a \mathrel{/\mkern-5mu/} b\)，这与 \(a\) 与 \(b\) 相交矛盾。所以 \(b\) 与 \(c\) 不可能平行。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">平行线定义：在同一平面内不相交的两条直线</div>
+            <div class="summary-item">基本事实：过直线外一点有且只有一条直线与这条直线平行</div>
+            <div class="summary-item">平行线的传递性：如果 \(a \mathrel{/\mkern-5mu/} c\)，\(b \mathrel{/\mkern-5mu/} c\)，那么 \(a \mathrel{/\mkern-5mu/} b\)</div>
+            <div class="summary-item">平面内两条直线的位置关系：相交或平行</div>
+        </div>
+    </div>
+
+    <!-- 数学思想模块 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>抽象思想：</strong> 从实际物体中抽象出平行线的概念。<br>
+        <strong>模型思想：</strong> 用三角板画平行线，建立几何直观。<br>
+        <strong>推理思想：</strong> 通过传递性进行简单的演绎推理。</p>
+    </div>
+
+    <!-- 读一读：生活中的平行线 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 平行线无处不在</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>在建筑中，平行线保证了结构的稳定与美观。铁路的两条铁轨是平行的，确保列车平稳行驶；教室里的黑板边缘、桌椅的排列也常出现平行线。在艺术创作中，平行线常被用来营造透视效果或秩序感。数学中的平行线不仅是一种几何关系，更是我们理解空间的基础。</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 完成课本习题4.2 A组第1、2、3题；用折纸的方法折出一组平行线，并说明理由。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 平行线永不相交，却在几何世界中紧密相连 ✨</p>
+    <div class="footer-note">数学 七年级上册 · 第54课时</div>
+</div>
+
+<script>
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

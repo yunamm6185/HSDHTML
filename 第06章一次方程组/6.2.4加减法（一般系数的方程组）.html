@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.2 二元一次方程组的解法（第四课时） | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .chapter-intro {
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-height: 280px;
+            object-fit: contain;
+        }
+        .figcaption {
+            font-size: 0.95rem;
+            color: #4e6b82;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 600px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.8rem 1.2rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+            font-weight: 600;
+        }
+        td {
+            background: #f9fcff;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .symbol-note {
+            background: #e6f2fa;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: #014682;
+            border-left: 4px solid #2675a8;
+        }
+        .solve-step {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第6章 一次方程组 · 6.2 二元一次方程组的解法</span>
+    </div>
+    <h1>第6章 一次方程组</h1>
+    <div class="chapter-intro">★ 掌握加减消元法在一般系数方程组中的应用，灵活选择变形策略。</div>
+    <div class="lesson-title">6.2 二元一次方程组的解法</div>
+    <div class="lesson-title" style="font-size:1.8rem;">第四课时 加减法（一般系数的方程组）</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>能通过将方程两边乘以适当的数，使某个未知数的系数相同或相反</div>
+            <div class="target-item"><span>✔</span>掌握一般系数方程组的加减消元法</div>
+            <div class="target-item"><span>✔</span>体会化归思想在解方程中的重要作用</div>
+        </div>
+    </div>
+
+    <!-- 引入：思考如何消元 -->
+    <div class="explore-box">
+        <h4>思考</h4>
+        <p>前面我们学习了当未知数的系数相同或相反时，可以直接用加减法消元。但如果两个方程中未知数的系数既不相同也不相反，例如方程组：</p>
+        <p>\[\begin{cases} 3x - 4y = 10 \\ 5x + 6y = 42 \end{cases}\]</p>
+        <p>我们能否通过变形，使某个未知数的系数变得相同或相反呢？</p>
+    </div>
+
+    <!-- 例5（课本例5） -->
+    <div class="example-box">
+        <h4>例5 解方程组</h4>
+        <p>\[\begin{cases} 3x - 4y = 10 & (1) \\ 5x + 6y = 42 & (2) \end{cases}\]</p>
+        <button class="interact-btn" onclick="toggleAnswer('ans5')">📌 显示解答</button>
+        <div id="ans5" class="answer-box">
+            <p>分析：若要使 \(y\) 的系数互为相反数，可以将 (1) 两边乘以3，(2) 两边乘以2，得到 \(y\) 的系数分别为 \(-12\) 和 \(12\)。</p>
+            <p>解：(1) \(\times 3\) 得：\(9x - 12y = 30\) (3)</p>
+            <p>(2) \(\times 2\) 得：\(10x + 12y = 84\) (4)</p>
+            <p>(3) + (4) 得：</p>
+            \[
+            \begin{aligned}
+            (9x - 12y) + (10x + 12y) &= 30 + 84 \\
+            19x &= 114 \\
+            x &= 6
+            \end{aligned}
+            \]
+            <p>把 \(x = 6\) 代入 (2)：</p>
+            \[
+            \begin{aligned}
+            5\times6 + 6y &= 42 \\
+            30 + 6y &= 42 \\
+            6y &= 12 \\
+            y &= 2
+            \end{aligned}
+            \]
+            <p>所以原方程组的解是 \(\begin{cases} x = 6 \\ y = 2 \end{cases}\)。</p>
+            <p>（也可以先消去 \(x\)，试一试！）</p>
+        </div>
+    </div>
+
+    <!-- 试一试：用加减法解例2方程组 -->
+    <div class="example-box">
+        <h4>试一试</h4>
+        <p>在解本节例2的方程组 \(\begin{cases} 2x - 7y = 8 \\ 3x - 8y = 10 \end{cases}\) 时，用了代入法。现在请你用加减法试一试，看哪种方法比较简便。</p>
+        <button class="interact-btn" onclick="toggleAnswer('try')">📌 显示加减法解答</button>
+        <div id="try" class="answer-box">
+            <p>解：为了消去 \(x\)，将第一个方程乘以3，第二个方程乘以2，使 \(x\) 的系数相同：</p>
+            <p>\(① \times 3\) 得：\(6x - 21y = 24\) (3)</p>
+            <p>\(② \times 2\) 得：\(6x - 16y = 20\) (4)</p>
+            <p>(3) - (4) 得：</p>
+            \[
+            \begin{aligned}
+            (6x - 21y) - (6x - 16y) &= 24 - 20 \\
+            -5y &= 4 \\
+            y &= -\frac{4}{5} = -0.8
+            \end{aligned}
+            \]
+            <p>把 \(y = -0.8\) 代入第一个方程：</p>
+            \[
+            \begin{aligned}
+            2x - 7\times(-0.8) &= 8 \\
+            2x + 5.6 &= 8 \\
+            2x &= 2.4 \\
+            x &= 1.2
+            \end{aligned}
+            \]
+            <p>所以解为 \(\begin{cases} x = 1.2 \\ y = -0.8 \end{cases}\)，与代入法结果一致。</p>
+        </div>
+    </div>
+
+    <!-- 练习：替换为用户提供的四个方程组 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p>解下列方程组：</p>
+            <p>(1) \(\begin{cases} 3x - 2y = 6 \\ 2x + 3y = 17 \end{cases}\)</p>
+            <p>(2) \(\begin{cases} 4x - 2y = 14 \\ 5x + y = 7 \end{cases}\)</p>
+            <p>(3) \(\begin{cases} x - 3y = -20 \\ 3x + 7y = 100 \end{cases}\)</p>
+            <p>(4) \(\begin{cases} 2x - 3y = 8 \\ 5y - 7x = 5 \end{cases}\)</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 显示参考答案</button>
+            <div id="prac1" class="answer-box">
+                <p><strong>(1)</strong> 为了消去 \(y\)，将第一个方程乘以3，第二个方程乘以2：</p>
+                \[
+                \begin{cases}
+                9x - 6y = 18 \\
+                4x + 6y = 34
+                \end{cases}
+                \]
+                <p>相加得 \(13x = 52\)，所以 \(x = 4\)。</p>
+                <p>代入第一个方程：\(3\times4 - 2y = 6\)，\(12 - 2y = 6\)，\(-2y = -6\)，\(y = 3\)。</p>
+                <p>解为 \(\begin{cases} x=4 \\ y=3 \end{cases}\)。</p>
+
+                <p><strong>(2)</strong> 将第二个方程乘以2，使 \(y\) 的系数相反：</p>
+                \[
+                \begin{cases}
+                4x - 2y = 14 \\
+                10x + 2y = 14
+                \end{cases}
+                \]
+                <p>相加得 \(14x = 28\)，\(x = 2\)。</p>
+                <p>代入第二个方程：\(5\times2 + y = 7\)，\(10 + y = 7\)，\(y = -3\)。</p>
+                <p>解为 \(\begin{cases} x=2 \\ y=-3 \end{cases}\)。</p>
+
+                <p><strong>(3)</strong> 将第一个方程乘以3，然后与第二个方程相减消去 \(x\)：</p>
+                \[
+                \begin{cases}
+                3x - 9y = -60 \\
+                3x + 7y = 100
+                \end{cases}
+                \]
+                <p>相减得：\((3x-9y) - (3x+7y) = -60 - 100\)，即 \(-16y = -160\)，\(y = 10\)。</p>
+                <p>代入第一个方程：\(x - 3\times10 = -20\)，\(x - 30 = -20\)，\(x = 10\)。</p>
+                <p>解为 \(\begin{cases} x=10 \\ y=10 \end{cases}\)。</p>
+
+                <p><strong>(4)</strong> 先将第二个方程整理为 \(-7x + 5y = 5\)。为了消去 \(x\)，将第一个方程乘以7，第二个方程乘以2：</p>
+                \[
+                \begin{cases}
+                14x - 21y = 56 \\
+                -14x + 10y = 10
+                \end{cases}
+                \]
+                <p>相加得：\(-11y = 66\)，\(y = -6\)。</p>
+                <p>代入第一个方程：\(2x - 3\times(-6) = 8\)，\(2x + 18 = 8\)，\(2x = -10\)，\(x = -5\)。</p>
+                <p>解为 \(\begin{cases} x=-5 \\ y=-6 \end{cases}\)。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代的“方程术” -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 方程术中的齐同思想</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》中的“方程术”在解线性方程组时，常常通过将方程两边乘以适当的数来使某些项的系数相同，从而进行加减消元。这种方法与现代的加减消元法完全一致。例如，对于方程组：</p>
+            <p>\[\begin{cases} 2x + 3y = 8 \\ 3x + 2y = 7 \end{cases}\]</p>
+            <p>古人可能会将第一个方程乘以3，第二个方程乘以2，得到 \(6x+9y=24\) 和 \(6x+4y=14\)，然后相减消去 \(x\)。这正是我们今天学习的“将系数化为相同”的加减消元法。古代数学家虽然没有现代符号，但他们的算法思想已经非常先进。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>化归思想：</strong> 通过乘以适当的数将一般系数转化为特殊系数，再用加减法消元。<br>
+        <strong>算法思想：</strong> 加减法提供了一套通用的求解步骤，适用于所有二元一次方程组。<br>
+        <strong>数感与运算能力：</strong> 灵活选择乘数，简化计算，培养运算技巧。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">加减消元法的一般步骤：变形（乘数）、加减消元、回代</div>
+            <div class="summary-item">选择乘数的原则：使某个未知数的系数变为相同或相反</div>
+            <div class="summary-item">通常选择两个系数的最小公倍数作为目标系数</div>
+            <div class="summary-item">加减消元法与代入消元法都是化归思想的具体应用</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题6.2 A组第2题，并用加减法验证。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 加减乘除巧搭配，一般系数也能消 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第6章 6.2 第四课时</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>12.2.1 全等三角形的判定条件 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* ========== 全局样式：清晰粗体，适合教学 ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.7;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+
+        /* 头部 */
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            color: #2e5b7c;
+            font-weight: 600;
+            font-size: 1rem;
+            flex-wrap: wrap;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* 学习目标卡片 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem 0;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem 0;
+            color: #0b3b59;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 导入卡片（只放导入语，浅蓝色） */
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+            color: #144d6e;
+            box-shadow: 0 4px 0 #9fbedb;
+        }
+        .intro-card p {
+            margin-bottom: 0.8rem;
+        }
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 探索卡片（绿色，包含小标题和探索内容） */
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #b2cfb5;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .section-subtitle {
+            font-size: 1.4rem;
+            color: #1d6130;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .explore-heading {
+            font-size: 1.4rem;
+            color: #1d6130;
+            font-weight: 700;
+            margin: 1.2rem 0 0.5rem 0;
+        }
+        .explore-heading::before {
+            content: "🔍 ";
+            font-size: 1.6rem;
+        }
+
+        /* 思考卡片 */
+        .think-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            box-shadow: 0 4px 0 #b2cfb5;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .think-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1d6130;
+            font-weight: 700;
+        }
+        .think-card h4::before {
+            content: "💭 ";
+            font-size: 1.6rem;
+        }
+
+        /* 例子背景框 */
+        .example-box {
+            background: #c5e0d4;
+            border-radius: 1.2rem;
+            padding: 0.5rem 1.2rem;
+            margin: 0.8rem 0;
+            font-weight: 600;
+        }
+
+        /* 按钮和答案框 */
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0 0;
+            transition: 0.05s;
+        }
+        .interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+        }
+        .show-answer { display: block; }
+
+        /* 表格容器 */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 0 #b0cddb;
+            font-weight: 600;
+        }
+        th, td {
+            border: 1px solid #b0cde0;
+            padding: 0.6rem;
+            text-align: center;
+        }
+        th {
+            background: #d4e6f5;
+            color: #0f4a6f;
+        }
+        td {
+            background: #f9fcff;
+        }
+
+        /* 图形容器 */
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 练习区域 */
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #c0d2e8;
+            padding-bottom: 1.5rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .sub-question { display: block; margin-left: 1.5rem; margin-top: 0.2rem; }
+
+        /* 数学思想 */
+        .math-idea {
+            background: #deedf7;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.4rem; color: #0f4a6f; font-weight: 700; }
+
+        /* 小结折叠 */
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s;
+            max-height: 600px;
+        }
+        #summaryContent.collapsed { max-height: 0; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c5ddec;
+            font-weight: 600;
+        }
+
+        /* 作业 */
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 · 12.2.1</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.2.1 全等三角形的判定条件</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解平移、旋转、翻折前后的图形全等</div>
+            <div class="target-item"><span>✔</span>探索只有一组或两组对应相等时能否判定全等</div>
+            <div class="target-item"><span>✔</span>知道三个角对应相等不能判定全等</div>
+        </div>
+    </div>
+
+    <!-- 导入语卡片（只含导入语） -->
+    <div class="intro-card">
+        <p>在第9章中，我们知道，通过轴对称、平移和旋转这些变换，能够完全重合的两个三角形是全等三角形，并且全等三角形的对应边、对应角分别相等。我们还知道：若两个三角形的三条边和三个角都分别相等，那么这两个三角形一定可以互相重合，即全等。</p>
+        <p>本节中我们要探索的是，能否减少一些条件，找到更为简便的判定三角形全等的方法。</p>
+    </div>
+
+    <!-- 探索卡片（包含“1. 全等三角形的判定条件”和“探索”两部分） -->
+    <div class="explore-card">
+        <!-- 小标题：1. 全等三角形的判定条件 -->
+        <div class="section-subtitle">1. 全等三角形的判定条件</div>
+        <p>显然，由于三角形的内角和等于$180^\circ$，如果两个三角形的两个角分别相等，那么第三个角必然也相等。这样，若两个三角形的三条边、两个角分别相等，则这两个三角形仍然全等。</p>
+        <p>能否再减少一些条件？对两个三角形来说，六个元素（三条边、三个角）中至少要有几个元素分别相等，这两个三角形才全等呢？</p>
+
+        <!-- 探索小标题（带图标） -->
+        <div class="explore-heading">探索</div>
+        <p>如果两个三角形只有一组对应相等的元素（边或角），那么这两个三角形一定全等吗？</p>
+        <p>动手试一试：画一个三角形，使它的三个内角分别为40°、60°、80°。把你画的三角形与同伴画的比较，它们全等吗？</p>
+        <button class="interact-btn" onclick="toggleAnswer('exp1')">💡 结论</button>
+        <div id="exp1" class="answer-box">
+            <p>不一定全等。例如，两个大小不同的三角板都有30°、60°、90°角，但边不相等，所以不全等。因此，三个角对应相等的两个三角形不一定全等。</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <tr><th>相等的元素</th><th>三角形是否全等</th></tr>
+                <tr><td>一条边相等</td><td>不一定</td></tr>
+                <tr><td>一个角相等</td><td>不一定</td></tr>
+            </table>
+        </div>
+
+        <p>如果两个三角形有两组分别相等的元素，那么会出现几种可能的情况？分别按照下面的条件画三角形，并比较是否全等。</p>
+        <ul style="margin-left:1.8rem;">
+            <li>(1) 三角形的两个内角分别为30°和70°；</li>
+            <li>(2) 三角形的两条边分别为3cm和5cm；</li>
+            <li>(3) 三角形的一个内角为60°，一条边为3cm：①这条边是60°角的邻边；②这条边是60°角的对边。</li>
+        </ul>
+        <button class="interact-btn" onclick="toggleAnswer('exp2')">📌 发现</button>
+        <div id="exp2" class="answer-box">
+            <p>通过画图可以发现，只知道两个三角形有两组分别相等的元素，这两个三角形不一定全等。具体情况如下：</p>
+            <table>
+                <tr><th>分别相等的元素</th><th>三角形是否全等</th></tr>
+                <tr><td>两角(30°,70°)</td><td>不一定（形状相同，大小不同）</td></tr>
+                <tr><td>两边(3cm,5cm)</td><td>不一定（夹角不确定）</td></tr>
+                <tr><td>一边一角(邻边)</td><td>不一定（另一边不确定）</td></tr>
+                <tr><td>一边一角(对边)</td><td>不一定（可能有两种）</td></tr>
+            </table>
+        </div>
+        <div class="example-box">
+            💡 由以上探索可知：两个三角形只有一组或两组分别相等的元素（边或角）时，无法判定这两个三角形全等。
+        </div>
+    </div>
+
+    <!-- 思考卡片（三组相等的情况） -->
+    <div class="think-card">
+        <h4>思考</h4>
+        <p>如果两个三角形有三组分别相等的元素（边或角），又会如何呢？</p>
+        <p>将三角形的六个元素（三条边、三个角）分类组合，可能出现：</p>
+        <ul style="margin-left:1.8rem;">
+            <li>两边一角分别相等；</li>
+            <li>两角一边分别相等；</li>
+            <li>三角分别相等；</li>
+            <li>三边分别相等。</li>
+        </ul>
+        <p>在这些情况下，两个三角形会全等吗？接下来的几节我们将逐一探索。</p>
+    </div>
+
+    <!-- 练习1 (教材第1题) -->
+    <div class="explore-card" style="border-left-color: #3a8b4f;">
+        <h4 style="font-size:1.4rem; color:#1d6130; font-weight:700; margin-bottom:0.5rem;">✏️ 试一试</h4>
+        <p>1. 如图，将△AOB绕点O旋转180°，得到△COD，这时△AOB ≌ △______。这两个三角形的对应边是：AO与____，OB与____，BA与____；对应角是：∠AOB与____，∠OBA与____，∠BAO与____。</p>
+        <div class="figure-container">
+            <svg width="200" height="150" viewBox="0 0 200 150">
+                <circle cx="100" cy="75" r="2" fill="black"/>
+                <text x="105" y="70" font-size="12">O</text>
+                <line x1="100" y1="75" x2="40" y2="40" stroke="black" stroke-width="2"/>
+                <text x="30" y="30" font-size="12">A</text>
+                <line x1="100" y1="75" x2="70" y2="120" stroke="black" stroke-width="2"/>
+                <text x="60" y="130" font-size="12">B</text>
+                <line x1="40" y1="40" x2="70" y2="120" stroke="black" stroke-width="2"/>
+                <!-- 旋转后 -->
+                <line x1="100" y1="75" x2="160" y2="110" stroke="black" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="170" y="110" font-size="12">C</text>
+                <line x1="100" y1="75" x2="130" y2="30" stroke="black" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="140" y="20" font-size="12">D</text>
+                <line x1="160" y1="110" x2="130" y2="30" stroke="black" stroke-width="2" stroke-dasharray="4 2"/>
+            </svg>
+            <div class="figure-caption">旋转180°</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+        <div id="prac1" class="answer-box">
+            <p>△AOB ≌ △<strong>COD</strong>。对应边：AO与<strong>CO</strong>，OB与<strong>OD</strong>，BA与<strong>DC</strong>。对应角：∠AOB与<strong>∠COD</strong>，∠OBA与<strong>∠ODC</strong>，∠BAO与<strong>∠DCO</strong>。</p>
+        </div>
+
+        <!-- 练习2：用户提供的精确平行四边形图 -->
+        <p>2. 如图，AD∥BC，AD＝BC，AE⊥BC，将△ABE沿AD方向平移，使点A与点D重合，此时点E平移至点F处，则△ABE ≌ △______，∠F = ∠______。</p>
+        <div class="figure-container">
+            <svg width="500" height="300" viewBox="0 0 500 300" style="max-width:100%; height:auto;">
+                <!-- 底边 B-E-C-F -->
+                <line x1="50" y1="200" x2="400" y2="200" stroke="#000" stroke-width="2"/>
+                <!-- 上边 A-D -->
+                <line x1="100" y1="60" x2="400" y2="60" stroke="#000" stroke-width="2"/>
+                <!-- 左侧斜边 A-B -->
+                <line x1="100" y1="60" x2="50" y2="200" stroke="#000" stroke-width="2"/>
+                <!-- 右侧斜边 D-C -->
+                <line x1="400" y1="60" x2="350" y2="200" stroke="#000" stroke-width="2"/>
+                <!-- 高 A-E -->
+                <line x1="100" y1="60" x2="100" y2="200" stroke="#000" stroke-width="2"/>
+                <!-- 高 D-F -->
+                <line x1="400" y1="60" x2="400" y2="200" stroke="#000" stroke-width="2"/>
+
+                <!-- 字母标注 -->
+                <text x="95" y="50" font-size="16" font-family="Arial">A</text>
+                <text x="395" y="50" font-size="16" font-family="Arial">D</text>
+                <text x="40" y="215" font-size="16" font-family="Arial">B</text>
+                <text x="95" y="215" font-size="16" font-family="Arial">E</text>
+                <text x="345" y="215" font-size="16" font-family="Arial">C</text>
+                <text x="395" y="215" font-size="16" font-family="Arial">F</text>
+            </svg>
+            <div class="figure-caption">平移</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+        <div id="prac2" class="answer-box">
+            <p>△ABE ≌ △<strong>DCF</strong>，∠F = ∠<strong>AEB</strong>。</p>
+        </div>
+
+        <!-- 练习3：用户提供的最终版SVG（等腰直角三角形旋转） -->
+        <p>3. 如图，点D是△ABC内一点，∠BAC＝90°，AB＝AC，将△ABD绕点A逆时针旋转90°，点D旋转至点E处，则△ABD ≌ △______，AD＝______，BD＝______。</p>
+        <div class="figure-container">
+            <svg width="480" height="350" viewBox="0 0 480 350" style="max-width:100%; height:auto;">
+                <!-- 1. 底边 BC -->
+                <line x1="40" y1="300" x2="440" y2="300" stroke="#000" stroke-width="2"/>
+                <!-- 2. AB 边 -->
+                <line x1="240" y1="80" x2="40" y2="300" stroke="#000" stroke-width="2"/>
+                <!-- 3. AC 边 -->
+                <line x1="240" y1="80" x2="440" y2="300" stroke="#000" stroke-width="2"/>
+                <!-- 4. BD 段 -->
+                <line x1="40" y1="300" x2="140" y2="250" stroke="#000" stroke-width="2"/>
+                <!-- 5. AD 段 -->
+                <line x1="140" y1="250" x2="240" y2="80" stroke="#000" stroke-width="2"/>
+                <!-- 6. AE 段 -->
+                <line x1="240" y1="80" x2="400" y2="190" stroke="#000" stroke-width="2"/>
+                <!-- 7. CE 段 -->
+                <line x1="400" y1="190" x2="440" y2="300" stroke="#000" stroke-width="2"/>
+
+                <!-- 字母标注 -->
+                <text x="235" y="70" font-size="18" font-family="Arial">A</text>
+                <text x="30" y="320" font-size="18" font-family="Arial">B</text>
+                <text x="430" y="320" font-size="18" font-family="Arial">C</text>
+                <text x="140" y="270" font-size="18" font-family="Arial">D</text>
+                <text x="415" y="200" font-size="18" font-family="Arial">E</text>
+            </svg>
+            <div class="figure-caption">旋转90°</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+        <div id="prac3" class="answer-box">
+            <p>△ABD ≌ △<strong>ACE</strong>，AD＝<strong>AE</strong>，BD＝<strong>CE</strong>。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong> 按相等元素个数分类探索全等条件。<br>
+        <strong>举反例：</strong> 一组或两组相等不能判定全等，通过反例说明。<br>
+        <strong>变换思想：</strong> 平移、旋转、翻折保持全等。</p>
+    </div>
+
+    <!-- 课堂小结 折叠 -->
+    <div style="background:#d6e9f5; border-radius:1.8rem; padding:1rem 2rem; margin:1.5rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; font-size:1.5rem; font-weight:700;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">图形变换（平移、旋转、翻折）前后的图形全等。</div>
+            <div class="summary-item">只有一组或两组对应相等不能判定三角形全等。</div>
+            <div class="summary-item">三个角对应相等的两个三角形不一定全等（反例：大小不同的三角板）。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong> 习题12.2 A组第1、2、3题；整理探索表格。</span>
+    </div>
+
+    <p style="text-align: center; color:#336d9a; margin:1rem 0 0.3rem; font-weight:700;">✨ 全等条件需探索，分类思考不遗漏 ✨</p>
+    <div class="footer-note">八年级上册 · 第12章 12.2.1</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const c = document.getElementById('summaryContent');
+        const t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    window.addEventListener('load', function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

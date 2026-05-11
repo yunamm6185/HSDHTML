@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.5 图形的全等 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f5fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #fff3cd;
+            border: 2px solid #f4b84b;
+            border-radius: 16px;
+            padding: 1rem;
+            min-width: 160px;
+            text-align: center;
+            color: #8a6d3b;
+            font-weight: 600;
+            box-shadow: 0 4px 0 #dbb068;
+            margin: 0.5rem auto;
+        }
+        .img-placeholder::before {
+            content: "🖼️ 缺失图片: ";
+            font-size: 0.9rem;
+            color: #a5762e;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        .break-line { display: block; margin-top: 0.5rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header {
+            display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0; color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; font-size: 1.5rem;
+        }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content {
+            overflow: hidden; transition: max-height 0.4s ease; max-height: 0; margin-top: 0;
+        }
+        .reading-content.expanded { max-height: 600px; margin-top: 1rem; }
+        .answer-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+            color: #0a4a6f;
+        }
+        .answer-box.show-answer {
+            max-height: 200px;
+            padding: 0.5rem 1rem;
+            background: #e8f4fc;
+            border-radius: 12px;
+        }
+        .fill-inline {
+            display: inline-block;
+            min-width: 60px;
+            border-bottom: 2px dashed #1e7e9f;
+            margin: 0 4px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.5</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.5 图形的全等</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解全等图形的概念</div>
+            <div class="target-item"><span>✔</span>掌握全等多边形的性质与判定</div>
+            <div class="target-item"><span>✔</span>能运用全等三角形的性质进行计算</div>
+        </div>
+    </div>
+
+    <!-- 导入：三种变换 -->
+    <div class="guide-text">
+        <p>我们已经认识了图形的轴对称、平移与旋转，这是图形的三种基本变换，图形经过这样的变换，位置发生了改变，但变换前后两个图形的对应线段相等，对应角相等，图形的形状和大小并没有改变。</p>
+        <p>要想知道两个图形的形状和大小是否完全相同，可以通过轴对称、平移与旋转这些图形的变换，把两个图形叠合在一起，观察它们是否完全重合，能够完全重合的两个图形叫做<strong>全等图形</strong> <em>(congruent figures)</em>。</p>
+    </div>
+
+    <!-- 读一读：动态变换与全等 -->
+    <div class="reading-block">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 全等与变换</h4>
+            <span class="toggle-icon" id="readingToggle">▼</span>
+        </div>
+        <div class="reading-content" id="readingContent">
+            <p>轴对称、平移与旋转都是从实际生活中抽象得到的一些基本变换，它们保证了变换过程中，任意两点之间的距离不变，从而保证了图形的形状和大小都不发生变化，反映了图形之间的全等关系。</p>
+            <p>这种运用动态变换研究图形之间关系的方法，是一种重要而且有效的方法。</p>
+        </div>
+    </div>
+
+    <!-- 做一做：找全等图形 图9.5.1 -->
+    <div class="do-section">
+        <p class="bold">做一做</p>
+        <p>图9.5.1中给出了8个图形，你能发现哪两个图形是全等图形吗？动手试试看。</p>
+        <div class="image-container">
+            <img src="9.5.1.png" alt="图9.5.1 找全等图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">9.5.1.png (8个图形)</div>
+            <div class="image-caption">图9.5.1</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('doAnswer')">🔍 显示答案</button>
+        <div id="doAnswer" class="answer-box">
+            <p>②和④、③和⑥。</p>
+        </div>
+    </div>
+
+    <!-- 思考：如何通过变换重合 图9.5.2 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>观察图9.5.2中的两对多边形，每对中的其中一个图形可以经过怎样的变换和另一个图形重合？</p>
+        <div class="img-row">
+            <div class="image-container">
+                <img src="9.5.2.png" alt="图9.5.2 两对多边形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">9.5.2.png (两对多边形)</div>
+                <div class="image-caption">图9.5.2</div>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('thinkAnswer')">💡 答案</button>
+        <div id="thinkAnswer" class="answer-box">
+            <p>左边一对可以通过平移重合；右边一对可以通过旋转（或轴对称）重合。</p>
+        </div>
+    </div>
+
+    <!-- 全等多边形概念 图9.5.3 -->
+    <div class="concept-box">
+        <strong>全等多边形</strong>：两个全等的多边形，经过变换而重合，相互重合的顶点叫做对应顶点，相互重合的边叫做对应边，相互重合的角叫做对应角。<br>
+        如图9.5.3中的两个五边形是全等的，记作五边形ABCDE ≌ 五边形 \(A'B'C'D'E'\)。点 \(A\) 与点 \(A'\) 、点 \(B\) 与点 \(B'\) 、点 \(C\) 与点 \(C'\) 、点 \(D\) 与点 \(D'\) 、点 \(E\) 与点 \(E'\) 分别是对应顶点。
+    </div>
+    <div class="image-container">
+        <img src="9.5.3.png" alt="图9.5.3 全等五边形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">9.5.3.png (全等五边形)</div>
+        <div class="image-caption">图9.5.3</div>
+    </div>
+
+    <!-- 全等多边形性质 -->
+    <div class="concept-box">
+        <strong>全等多边形的性质</strong>：全等多边形的对应边、对应角分别相等。<br>
+        <strong>判定多边形全等的方法</strong>：如果两个多边形的边、角分别对应相等，那么这两个多边形全等。
+    </div>
+
+    <!-- 全等三角形性质 图9.5.4 -->
+    <div class="concept-box">
+        <strong>全等三角形的性质</strong>：全等三角形的对应边、对应角分别相等。<br>
+        同样，我们也可以得到判定三角形全等的方法，即如果两个三角形的边、角分别相等，那么这两个三角形全等。
+    </div>
+    <div class="image-container">
+        <img src="9.5.4.png" alt="图9.5.4 全等三角形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">9.5.4.png (△ABC≌△DEF)</div>
+        <div class="image-caption">图9.5.4</div>
+    </div>
+    <p>如图9.5.4 所示，△ABC ≌ △DEF, 且∠A = ∠D, ∠B = ∠E. 你能指出它们之间的对应顶点、对应边和其他的对应角吗?</p>
+    <button class="interact-btn" onclick="toggleAnswer('triangleAns')">🔍 指出</button>
+    <div id="triangleAns" class="answer-box">
+        <p>对应顶点：A与D，B与E，C与F；对应边：AB与DE，BC与EF，AC与DF；对应角：∠A与∠D，∠B与∠E，∠C与∠F。</p>
+    </div>
+
+    <!-- 例题 图9.5.5 -->
+    <div class="example-box">
+        <h4>例</h4>
+        <p>如图9.5.5, △ABC 沿着BC 的方向平移至 △DEF, ∠A = 80°, ∠B = 60°, 求∠F 的度数。</p>
+        <div class="image-container">
+            <img src="9.5.5.png" alt="图9.5.5 平移全等" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">9.5.5.png (平移全等)</div>
+            <div class="image-caption">图9.5.5</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('exampleSol')">🔍 解答</button>
+        <div id="exampleSol" class="answer-box">
+            <p>解：由图形平移的特征，可知△DEF 与△ABC 的形状和大小相同，即△DEF ≌△ABC，∴ ∠D = ∠A = 80°(全等三角形的对应角相等)。同理∠DEF = ∠B = 60°。又∵ ∠D + ∠DEF + ∠F = 180°(三角形的内角和等于180°)，∴ ∠F = 180° - ∠D - ∠DEF = 180° - 80° - 60° = 40°。</p>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 在日常生活中，处处可以看到全等的图形。例如同一张底片印出的同样尺寸的照片、我们使用的数学教科书的封面、我们班的课桌面等。试尽可能多地举出生活中全等图形的例子，和同学比一比，看谁举出的例子多。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">💡 举例</button>
+            <div id="prac1" class="answer-box">
+                <p>例如：同一批次生产的硬币、同一型号的手机、复印出来的文件、同款瓷砖、双胞胎的指纹等。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 如图，△ABD 绕着点A 逆时针旋转60°到△ACE 位置，则△ <span class="fill-inline"></span> ≌ △ <span class="fill-inline"></span> ，这两个三角形的对应点是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ；对应边是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ；对应角是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ；∠BAC = ∠ <span class="fill-inline"></span> = <span class="fill-inline"></span> °。</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 旋转全等" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习2.png</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 答案</button>
+            <div id="prac2" class="answer-box">
+                <p>△ABD ≌ △ACE；对应点：A与A，B与C，D与E；对应边：AB与AC，AD与AE，BD与CE；对应角：∠BAD与∠CAE，∠B与∠C，∠D与∠E；∠BAC = ∠DAE = 60°。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 如图，点 \(E\) 是正方形 \(ABCD\) 的边 \(AB\) 上的一点， \(\triangle ADE\) 绕着点 \(D\) 逆时针旋转到 \(\triangle CDF\) 位置，则△ <span class="fill-inline"></span> ≌ △ <span class="fill-inline"></span> ，这两个三角形的对应边是与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ；对应角是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> 由于∠ <span class="fill-inline"></span> ，因此上述旋转的旋转角度等于 <span class="fill-inline"></span> 。</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 正方形旋转" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习3.png</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 答案</button>
+            <div id="prac3" class="answer-box">
+                <p>△ADE ≌ △CDF；对应边：AD与CD，DE与DF，AE与CF；对应角：∠A与∠C，∠ADE与∠CDF，∠AED与∠CFD；由于∠ADC = 90°，因此旋转角度为90°。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>4.</strong> 如图，已知 \(\angle ABD = 110^{\circ}\) ， \(\angle C = 45^{\circ}\) ， \(\triangle ABC\) 与 \(\triangle BAD\) 关于直线 \(l\) 成轴对称，则 \(\triangle ABC \cong \triangle\) <span class="fill-inline"></span> ， \(\angle BAD =\) <span class="fill-inline"></span> ， \(\angle AEC =\) <span class="fill-inline"></span> 。</p>
+            <div class="image-container">
+                <img src="练习4.png" alt="练习4 轴对称全等" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习4.png</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac4')">🔍 答案</button>
+            <div id="prac4" class="answer-box">
+                <p>△ABC ≌ △BAD；∠BAD = 25°，∠AEC = 50°。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>5.</strong> 如图，已知点 \(C\) 是线段 \(AB\) 上的一点， \(\triangle ABD\) 与 \(\triangle FED\) 关于直线 \(CD\) 成轴对称，则 \(\triangle ABD\) <span class="fill-inline"></span> \(\triangle FED\) ，这两个三角形的对应边是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ；对应角是 <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> ， <span class="fill-inline"></span> 与 <span class="fill-inline"></span> 。</p>
+            <div class="image-container">
+                <img src="练习5.png" alt="练习5 轴对称全等" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">练习5.png</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac5')">🔍 答案</button>
+            <div id="prac5" class="answer-box">
+                <p>△ABD ≌ △FED；对应边：AB与FE，BD与ED，AD与FD；对应角：∠A与∠F，∠B与∠E，∠ADB与∠FDE。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 通过变换研究全等关系。<br>
+        <strong>模型观念：</strong> 全等是几何中重要的基本关系。<br>
+        <strong>几何直观：</strong> 利用图形变换理解全等的本质。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">全等图形：能够完全重合的两个图形。</div>
+            <div class="summary-item">全等多边形的对应边、对应角相等。</div>
+            <div class="summary-item">全等三角形的对应边、对应角相等。</div>
+            <div class="summary-item">轴对称、平移、旋转都是全等变换。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.5 A组第1、2、3题，B组第6、7题。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.5</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const toggle = document.getElementById('readingToggle');
+        content.classList.toggle('expanded');
+        toggle.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+    }
+    window.onload = function() {
+        // 默认展开读一读
+        document.getElementById('readingContent').classList.add('expanded');
+        document.getElementById('readingToggle').textContent = '▲';
+
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

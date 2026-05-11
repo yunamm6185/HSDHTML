@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.1.1.1 矩形的性质（一）| 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'none' || el.style.display === '') {
+                el.style.display = 'block'; el.classList.add('show-answer');
+            } else {
+                el.style.display = 'none'; el.classList.remove('show-answer');
+            }
+        }
+        function initCanvases() {
+            drawParallelogramToRect();
+            drawRectSymmetry();
+            drawTheorem2();
+            drawTheorem2Proof();
+            drawPropertyTable();
+            drawTheorem01();
+            drawExample1();
+            drawEx2();
+            drawEx3Fold();
+        }
+        function drawParallelogramToRect() {
+            const c = document.getElementById('cParallelogramToRect');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // 平行四边形
+            const A1 = {x:50,y:140}, B1 = {x:200,y:140}, C1 = {x:260,y:40}, D1 = {x:110,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A1.x,A1.y); ctx.lineTo(B1.x,B1.y); ctx.lineTo(C1.x,C1.y); ctx.lineTo(D1.x,D1.y); ctx.closePath(); ctx.stroke();
+            ctx.font = 'bold 20px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('平行四边形', 120, 180);
+            // 箭头
+            ctx.fillStyle = '#a82035'; ctx.font = 'bold 30px Arial';
+            ctx.fillText('→', 330, 100);
+            // 矩形
+            const A2 = {x:440,y:140}, B2 = {x:600,y:140}, C2 = {x:600,y:40}, D2 = {x:440,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A2.x,A2.y); ctx.lineTo(B2.x,B2.y); ctx.lineTo(C2.x,C2.y); ctx.lineTo(D2.x,D2.y); ctx.closePath(); ctx.stroke();
+            ctx.fillStyle = '#a82035';
+            ctx.fillText('矩形', 490, 180);
+            ctx.font = 'bold 20px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('一个内角变为直角', 270, 120);
+            // 直角标记
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A2.x+20,A2.y); ctx.lineTo(A2.x+20,A2.y-20); ctx.lineTo(A2.x,A2.y-20); ctx.stroke();
+        }
+        function drawRectSymmetry() {
+            const c = document.getElementById('cRectSymmetry');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:100,y:140}, B = {x:340,y:140}, C = {x:340,y:40}, D = {x:100,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 对称轴（竖线 + 横线，共2条）
+            ctx.setLineDash([5,5]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(220,170); ctx.lineTo(220,20); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(90,90); ctx.lineTo(350,90); ctx.stroke();
+            ctx.setLineDash([]);
+            // 中心点
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(220,90,6,0,Math.PI*2); ctx.fill();
+            ctx.font = 'bold 20px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('O', 228, 85);
+            ctx.fillText('A', 80, 152); ctx.fillText('B', 348, 152);
+            ctx.fillText('D', 80, 48); ctx.fillText('C', 348, 48);
+            ctx.font = 'bold 16px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('轴对称(2条)', 320, 178);
+            ctx.fillText('中心对称', 150, 178);
+        }
+        function drawTheorem2() {
+            const c = document.getElementById('cTheorem2');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:140}, B = {x:340,y:140}, C = {x:340,y:40}, D = {x:80,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); 
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 155); ctx.fillText('B', 348, 155);
+            ctx.fillText('D', 58, 48); ctx.fillText('C', 348, 48);
+            // 等号标记
+            ctx.font = 'bold 18px'; ctx.fillStyle = '#a82035';
+            
+        }
+        function drawTheorem2Proof() {
+            const c = document.getElementById('cTheorem2Proof');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:130}, B = {x:340,y:130}, C = {x:340,y:40}, D = {x:80,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 145); ctx.fillText('B', 348, 145);
+            ctx.fillText('D', 58, 50); ctx.fillText('C', 348, 50);ctx.fillText('O', 200, 75);
+        }
+
+         function drawTheorem01() {
+            const c = document.getElementById('cTheorem01');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:130}, B = {x:340,y:130}, C = {x:340,y:40}, D = {x:80,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 145); ctx.fillText('B', 348, 145);
+            ctx.fillText('D', 58, 50); ctx.fillText('C', 348, 50);ctx.fillText('O', 200, 75);
+        }
+
+        function drawPropertyTable() {
+            const c = document.getElementById('cPropertyTable');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // 矩形
+            const A = {x:120,y:130}, B = {x:360,y:130}, C = {x:360,y:30}, D = {x:120,y:30};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 直角标记
+            [A,B,C,D].forEach(pt => {
+                ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.5;
+                const dx = (pt===A||pt===D) ? 15 : -15;
+                const dy = (pt===A||pt===B) ? -15 : 15;
+                ctx.beginPath(); ctx.moveTo(pt.x+dx,pt.y); ctx.lineTo(pt.x+dx,pt.y+dy); ctx.lineTo(pt.x,pt.y+dy); ctx.stroke();
+            });
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 98, 145); ctx.fillText('B', 368, 145);
+            ctx.fillText('D', 98, 38); ctx.fillText('C', 368, 38);
+            ctx.font = '20px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('∠A=∠B=∠C=∠D=90°', 30, 190);
+            ctx.fillText('对角线AC=BD', 320, 190);
+        }
+        function drawExample1() {
+            const c = document.getElementById('cExample1');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:80,y:140}, B = {x:340,y:140}, C = {x:340,y:40}, D = {x:80,y:40};
+            const O = {x:210,y:90};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,6,0,Math.PI*2); ctx.fill();
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 155); ctx.fillText('B', 348, 155);
+            ctx.fillText('D', 58, 48); ctx.fillText('C', 348, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('O', 218, 85);
+            ctx.font = '16px'; ctx.fillStyle = '#666';
+            ctx.fillText('四个小三角形周长和为86cm', 80, 185);
+            ctx.fillText('对角线长AC=BD=13cm', 80, 202);
+        }
+        function drawEx3Fold() {
+            const c = document.getElementById('cEx3Fold');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // 矩形ABCD：A左上，B左下，C右下，D右上
+            const A = {x:60,y:40}, B = {x:60,y:160}, C = {x:320,y:160}, D = {x:320,y:40};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // F在BC上（靠近C）
+            const F = {x:290,y:160};
+            // E在CD上（靠近D）
+            const E = {x:320,y:105};
+            // AE实线（折痕）
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(E.x,E.y); ctx.stroke();
+            // AF实线（折叠后AD与AF重合，AD是矩形边，AF是折叠后的位置）
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(F.x,F.y); ctx.stroke();
+            // EF实线（折叠后DE与FE重合）
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(E.x,E.y); ctx.lineTo(F.x,F.y); ctx.stroke();
+            // 原AD位置用虚线表示（被折叠走了）
+            ctx.setLineDash([4,3]); ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 38, 48); ctx.fillText('B', 38, 170);
+            ctx.fillText('C', 328, 170); ctx.fillText('D', 328, 48);
+            ctx.fillStyle = '#1a3a5c'; ctx.fillText('F', F.x-8, 192);
+            ctx.fillStyle = '#1a3a5c'; ctx.fillText('E', 328, 110);
+            ctx.font = '16px'; ctx.fillStyle = '#666';
+            
+        }
+        function drawEx2() {
+            const c = document.getElementById('cEx2');
+            if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // 矩形ABCD：A左上，B左下，C右下，D右上
+            const A = {x:80,y:40}, B = {x:80,y:160}, C = {x:340,y:160}, D = {x:340,y:40};
+            const O = {x:210,y:100};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 对角线
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            // O点
+            ctx.fillStyle = '#a82035'; ctx.beginPath(); ctx.arc(O.x,O.y,6,0,Math.PI*2); ctx.fill();
+            // ∠AOD=120° 标注（在左上方）
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(O.x,O.y,22,Math.PI*1.15,Math.PI*1.85); ctx.stroke();
+            ctx.font = 'bold 20px STKaiti,KaiTi'; ctx.fillStyle = '#a82035';
+            ctx.fillText('120°', O.x-10, O.y-28);
+            ctx.font = 'bold 24px STKaiti,KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', 58, 48); ctx.fillText('B', 58, 170);
+            ctx.fillText('C', 348, 170); ctx.fillText('D', 348, 48);
+            ctx.fillStyle = '#a82035'; ctx.fillText('O', O.x-5, O.y+25);
+            ctx.font = '16px'; ctx.fillStyle = '#666';
+            
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.7rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .theorem-text { font-weight: 800; color: #0a4d32; border-bottom: 2px solid #0a4d32; display: inline-block; margin: 0.5rem 0; font-size: 1.3rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .layout-flex { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 320px; }
+        .layout-visual { max-width: 100%; width: 420px; margin-bottom: 0.5rem; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; }
+        th, td { border: 2px solid #d0d7e0; padding: 1rem; text-align: left; }
+        th { background: #e8ecf2; color: var(--color-primary); font-weight: 700; font-size: 1.1rem; }
+        td { font-size: 1.05rem; }
+        .bubble { background: #fff1f2; border: 2px solid #fda4af; border-radius: 2rem; padding: 1rem 1.5rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(225,29,72,0.08); }
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; }
+        .objective-card { background: #f0f9ff; border: 2px solid #bae6fd; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .objective-card h4 { color: #0369a1; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.1 矩形</span>
+    </div>
+    <h1>18.1.1 矩形的性质</h1>
+    <div class="lesson-title">第 1 课时：矩形的定义与对称性、性质定理</div>
+
+    <!-- 学习目标 -->
+    <div class="section-title">学习目标</div>
+    <div class="objective-card">
+        <h4>本节课的学习目标：</h4>
+        <p>1. 理解矩形的定义，知道矩形是特殊的平行四边形。</p>
+        <p>2. 探索并掌握矩形的对称性（中心对称 + 轴对称）。</p>
+        <p>3. 掌握矩形的两个性质定理：四个角都是直角；对角线相等。</p>
+        <p>4. 能运用矩形性质进行简单的计算和推理。</p>
+    </div>
+
+    <!-- 情景导入 -->
+    <div class="section-title">情景导入</div>
+    <p>在日常生活中，我们随处可见矩形的身影——黑板、门窗、课桌、书本……它们都是我们早已熟悉的长方形，即<strong>矩形</strong>。矩形具有哪些独特的性质？它与平行四边形有什么关系？让我们一起来探索吧！</p>
+
+    <!-- 知识铺垫 -->
+    <div class="section-title">知识铺垫 / 复习回顾</div>
+    <div class="think-box">
+        <h4>回顾平行四边形的性质</h4>
+        <table>
+            <tr><th>性质方面</th><th>具体内容</th></tr>
+            <tr><td>边</td><td>对边平行且相等：$AB \parallel CD,\; AD \parallel BC$；$AB = CD,\; AD = BC$</td></tr>
+            <tr><td>角</td><td>对角相等：$\angle A = \angle C,\; \angle B = \angle D$；邻角互补</td></tr>
+            <tr><td>对角线</td><td>对角线互相平分：$AO = OC,\; BO = OD$</td></tr>
+            <tr><td>对称性</td><td>中心对称图形（对称中心为对角线的交点）</td></tr>
+        </table>
+    </div>
+
+    <!-- 新知探索 -->
+    <div class="section-title">新知探索</div>
+    <div class="theorem-card" style="background: #fff; border: 2px solid var(--color-primary); border-left-width: 12px; padding: 2rem;">
+        <h4 style="color: var(--color-primary); font-size: 1.8rem; margin-bottom: 1rem;">试一试</h4>
+        <p style="margin-bottom: 1rem;">给你一个平行四边形相邻两边的长，你能利用尺规作图作出这个平行四边形吗？现在将你与同伴所作的图形放在一起，发现它们都是平行四边形，相邻两边的长也一样，但两邻边之间的<strong>夹角有大有小</strong>。</p>
+        <div style="display: flex; justify-content: center; margin: 0.8rem 0;">
+            <canvas id="cParallelogramToRect" width="760" height="200" style="max-width:100%;"></canvas>
+        </div>
+        <p>我们若改变平行四边形的内角，使其<strong>一个内角恰好为直角</strong>，就得到一种特殊的平行四边形——也就是我们早已熟悉的长方形，即<strong>矩形</strong>。</p>
+        <div class="bubble" style="width:100%; max-width:none;">
+            <strong>矩形的定义：</strong>有一个角是直角的平行四边形叫做矩形。<br>
+            $\because$ 四边形 $ABCD$ 是平行四边形，且 $\angle A = 90^\circ$，$\therefore$ 四边形 $ABCD$ 是矩形。
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="section-title">做一做</div>
+    <div class="theorem-card" style="background:#fff;border:2px solid var(--color-primary);border-left-width:12px;padding:2rem;">
+        <h4 style="color:var(--color-primary);font-size:1.8rem;margin-bottom:1rem;">动手操作</h4>
+        <p>用一张长方形纸片，通过对折观察：</p>
+        <p>(1) 矩形有几条对称轴？分别在哪里？</p>
+        <p>(2) 对称轴的交点在哪里？</p>
+        <div class="bubble" style="width:100%;max-width:none;">
+            <strong>发现：</strong>矩形有<strong>2条对称轴</strong>，分别是通过两组对边中点的直线；对称轴的交点就是对角线的交点——矩形的<strong>对称中心</strong>。
+        </div>
+    </div>
+
+    <!-- 思考：对称性与性质 -->
+    <div class="section-title">思考：探索矩形的性质</div>
+    <div class="think-box">
+        <h4>观察与发现</h4>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p>作为一种特殊的平行四边形，矩形具有平行四边形的一般性质，同时也具有一些<strong>特殊性质</strong>。观察下面的矩形，将你的发现填入下表：</p>
+                <table>
+                    <tr><th></th><th>对称性</th><th>边</th><th>角</th><th>对角线</th></tr>
+                    <tr><td><strong>平行四边形一般性质</strong></td><td>中心对称</td><td>对边平行且相等</td><td>对角相等</td><td>互相平分</td></tr>
+                    <tr><td><strong>矩形的特殊性质</strong></td><td style="color:#a82035;font-weight:700;">轴对称（2条）</td><td>—</td><td style="color:#a82035;font-weight:700;">四个角都是直角</td><td style="color:#a82035;font-weight:700;">相等</td></tr>
+                </table>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cRectSymmetry" width="420" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- 性质定理1 -->
+    <div class="section-title">矩形的性质定理 1</div>
+    <div class="theorem-card">
+        <h4>性质定理 1</h4>
+        <p class="theorem-text">矩形的四个角都是直角。</p>
+        <p style="margin-top:0.5rem;"><strong>已知：</strong>如图，四边形 $ABCD$ 是矩形，$\angle A = 90^\circ$。</p>
+        <p><strong>求证：</strong>$\angle A = \angle B = \angle C = \angle D = 90^\circ$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('proofAngle')">查看证明</button>
+        <div id="proofAngle" class="answer-box">
+            <p><strong>证明：</strong>$\because$ 四边形 $ABCD$ 是矩形，</p>
+            <p>$\therefore$ 四边形 $ABCD$ 是平行四边形（矩形定义）。</p>
+            <p>$\therefore AD \parallel BC$，$\therefore \angle A + \angle B = 180^\circ$（两直线平行，同旁内角互补）。</p>
+            <p>又 $\because \angle A = 90^\circ$，$\therefore \angle B = 90^\circ$。</p>
+            <p>同理，$\angle C = \angle A = 90^\circ$，$\angle D = \angle B = 90^\circ$（平行四边形对角相等）。</p>
+            <p>$\therefore \angle A = \angle B = \angle C = \angle D = 90^\circ$。</p>
+        </div>
+    </div>
+
+    <!-- 性质定理2 -->
+    <div class="section-title">矩形的性质定理 2</div>
+    <div class="theorem-card">
+        <h4>性质定理 2</h4>
+        <p class="theorem-text">矩形的对角线相等。</p>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p><strong>已知：</strong>如图，在矩形 $ABCD$ 中，对角线 $AC$ 和 $BD$ 交于点 $O$。</p>
+                <p><strong>求证：</strong>$AC = BD$。</p>
+                <button class="interact-btn" onclick="toggleAnswer('proofDiagonal')">查看完整证明</button>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cTheorem2Proof" width="420" height="200"></canvas>
+            </div>
+        </div>
+        <div id="proofDiagonal" class="answer-box">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <canvas id="cTheorem2" width="420" height="200" style="margin-bottom:0.5rem;"></canvas>
+                <div style="width:100%;text-align:left;">
+                    <p><strong>证明：</strong>在矩形 $ABCD$ 中，</p>
+                    <p>$\because \angle ABC = \angle DCB = 90^\circ$（性质定理1），</p>
+                    <p>$AB = DC$（平行四边形对边相等），</p>
+                    <p>$BC = CB$（公共边），</p>
+                    <p>$\therefore \triangle ABC \cong \triangle DCB$（SAS）。</p>
+                    <p>$\therefore AC = DB$（全等三角形对应边相等）。</p>
+                    <p><strong>推论：矩形的对角线相等且互相平分。</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 例题 -->
+    <div class="section-title">例题</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-purple);">
+        <p><strong>例1</strong> 如图，矩形 $ABCD$ 被两条对角线分成四个小三角形，如果这四个小三角形周长的和是 $86\text{ cm}$，矩形的对角线长是 $13\text{ cm}$，那么该矩形的周长是多少？</p>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p><strong>分析：</strong>四个小三角形分别是 $\triangle AOB$、$\triangle BOC$、$\triangle COD$、$\triangle DOA$。</p>
+                <p>它们的周长之和可表示为矩形四边与对角线部分的和。</p>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cExample1" width="420" height="220" style="max-width:100%;"></canvas>
+            </div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('solEx1')">查看解答</button>
+        <div id="solEx1" class="answer-box">
+            <p><strong>解：</strong>$\because \triangle AOB$、$\triangle BOC$、$\triangle COD$ 和 $\triangle DOA$ 这四个小三角形周长的和为 $86\text{ cm}$，</p>
+            <p>$\therefore AB + BC + CD + DA + 2(OA + OB + OC + OD) = 86$。</p>
+            <p>$\therefore AB + BC + CD + DA + 2(AC + BD) = 86$。</p>
+            <p>又 $\because AC = BD = 13$（矩形的对角线相等），</p>
+            <p>$\therefore AB + BC + CD + DA = 86 - 2(AC + BD)$</p>
+            <p>$= 86 - 4 \times 13 = 34\text{ cm}$。</p>
+            <p><strong>答：</strong>该矩形的周长是 $34\text{ cm}$。</p>
+        </div>
+    </div>
+
+    <!-- 方法归纳 -->
+    <div class="section-title">方法归纳</div>
+    <div class="method-summary">
+        <h4>矩形的性质总结</h4>
+        <p>矩形是<strong>特殊</strong>的平行四边形，它具有：</p>
+        <p><strong>一般性质：</strong>对边平行且相等、对角相等、对角线互相平分、中心对称。</p>
+        <p><strong>特殊性质：</strong></p>
+        <p>① 四个角都是直角（性质定理1）</p>
+        <p>② 对角线相等（性质定理2）</p>
+        <p>③ 是轴对称图形，有2条对称轴（通过对边中点的直线）</p>
+        <div style="display:flex;justify-content:center;margin-top:1rem;">
+            <canvas id="cPropertyTable" width="560" height="200" style="max-width:100%;"></canvas>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">练一练</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>1.</strong> 在矩形 $ABCD$ 中，对角线 $AC$ 与 $BD$ 相交于点 $O$，试找出图中相等的线段和相等的角。</p>
+         <div class="layout-visual">
+               <canvas id="cTheorem01" width="420" height="200"></canvas>
+            </div>
+                <button class="interact-btn" onclick="toggleAnswer('ans1')">查看答案</button>
+        <div id="ans1" class="answer-box">
+            <p><strong>相等的线段：</strong>$AB = CD$，$AD = BC$；$AC = BD$；$OA = OC = OB = OD$。</p>
+            <p><strong>相等的角：</strong>$\angle A = \angle B = \angle C = \angle D = 90^\circ$；对顶角相等；内错角相等等。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>2.</strong> 矩形 $ABCD$ 的两条对角线相交于点 $O$，$\angle AOD = 120^\circ$。求证：$AC = 2AB$。</p>
+        <div class="layout-visual">
+            <canvas id="cEx2" width="420" height="220" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ans2')">查看证明</button>
+        <div id="ans2" class="answer-box">
+            <p><strong>证明：</strong>$\because$ 矩形的对角线相等且互相平分，$\therefore OA = OB = OC = OD$。</p>
+            <p>$\because \angle AOD = 120^\circ$，$\therefore \angle AOB = 60^\circ$（邻补角）。</p>
+            <p>$\therefore \triangle AOB$ 是等边三角形，$\therefore OA = OB = AB$。</p>
+            <p>$\because AC = 2OA$，$\therefore AC = 2AB$。</p>
+        </div>
+    </div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <p><strong>3.</strong> 如图，在矩形 $ABCD$ 中，点 $E$ 在边 $CD$ 上。将该矩形沿 $AE$ 折叠，恰好使点 $D$ 落在边 $BC$ 上的点 $F$ 处。如果 $\angle BAF = 60^\circ$，求 $\angle DAE$ 的大小。</p>
+        <div class="layout-visual">
+            <canvas id="cEx3Fold" width="460" height="210" style="max-width:100%;"></canvas>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('ans3')">查看解答</button>
+        <div id="ans3" class="answer-box">
+            <p><strong>解：</strong>$\because$ 四边形 $ABCD$ 是矩形，$\therefore \angle DAB = 90^\circ$。</p>
+            <p>$\because \angle BAF = 60^\circ$，$\therefore \angle DAF = \angle DAB - \angle BAF = 30^\circ$。</p>
+            <p>$\because$ 将矩形沿 $AE$ 折叠，点 $D$ 落在点 $F$ 处，</p>
+            <p>$\therefore AE$ 是 $\angle DAF$ 的平分线（折叠对称性）。</p>
+            <p>$\therefore \angle DAE = \dfrac{1}{2} \angle DAF = \dfrac{1}{2} \times 30^\circ = 15^\circ$。</p>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">课堂小结</div>
+    <div class="think-box">
+        <ul>
+            <li><strong>矩形定义：</strong>有一个角是直角的平行四边形叫做矩形。</li>
+            <li><strong>对称性：</strong>矩形既是中心对称图形，也是轴对称图形（2条对称轴）。</li>
+            <li><strong>性质定理1：</strong>矩形的四个角都是直角。</li>
+            <li><strong>性质定理2：</strong>矩形的对角线相等。</li>
+        </ul>
+    </div>
+
+    <!-- 核心素养 -->
+    <div class="section-title">核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>直观想象：</strong>通过观察矩形，发现其对称性和特殊性质，发展几何直观能力。</p>
+        <p><strong>逻辑推理：</strong>从一般到特殊，利用已学的平行四边形性质推导矩形性质，体会演绎推理的方法。</p>
+        <p><strong>数学抽象：</strong>从具体图形中抽象出矩形的一般性质定理。</p>
+    </div>
+
+    <!-- 教师寄语 -->
+    <div class="teacher-msg">
+        从一般到特殊，是发现数学规律的重要途径。矩形的世界很精彩，继续探索吧！
+    </div>
+
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

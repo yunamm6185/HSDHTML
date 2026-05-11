@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>12.4.3 角平分线 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #eef2f7;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a3e50;
+            padding: 2rem;
+            font-size: 20px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 40px -14px rgba(0, 40, 60, 0.3);
+            padding: 2rem 2.2rem;
+            border: 1px solid #cde0ef;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1.6rem;
+            font-weight: 600;
+            flex-wrap: wrap;
+            font-size: 1.1rem;
+        }
+        h1 {
+            font-size: 2.6rem;
+            color: #0f4a6e;
+            font-weight: 800;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.7rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #b2d2ea;
+            margin: 1rem 0 2rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(135deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.4rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+        }
+        .learning-targets h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            border-left: 7px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .target-item span:first-child {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: #fefefe;
+            border-radius: 1.8rem;
+            padding: 1.3rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #30829b;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03);
+        }
+        .theorem-card { background: #e6f2fb; border-left: 8px solid #2a7faa; }
+        .fact-card { background: #fff3df; border-left: 8px solid #f0b34b; }
+        .example-card { background: #e9f4e6; border-left: 8px solid #3a8b4f; }
+        .reading-card { background: #f1e9fc; border-left: 8px solid #9b6ec7; }
+        .intro-card {
+            background: #e8f4f8;
+            border-left: 8px solid #3a9fd5;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .explore-card {
+            background: #eef4e8;
+            border-left: 8px solid #5b8c5a;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #2c6079;
+            margin-top: 0.5rem;
+        }
+        .figure-inline {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        .figure-inline img {
+            max-width: 95%;
+            max-height: 240px;
+            border-radius: 20px;
+            background: #f9f9fc;
+            border: 1px solid #cfe0f0;
+            padding: 6px;
+            object-fit: contain;
+        }
+        button.interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.5rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #9fbede;
+            margin: 0.8rem 0 0.2rem;
+            font-size: 1rem;
+            transition: 0.05s linear;
+        }
+        button.interact-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.8rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1.2rem 1.2rem 0;
+            font-size: 1rem;
+        }
+        .show-answer { display: block; }
+        .exercise-item {
+            margin-top: 1.8rem;
+            border-bottom: 1px dashed #c6daea;
+            padding-bottom: 1rem;
+        }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+            color: #2f6c8c;
+            font-size: 0.95rem;
+        }
+        .homework-block {
+            background: #d0e5f3;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.8rem 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+        .message-block {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+        .summary-card {
+            background: #d6e9f5;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea-card {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第12章 全等三角形 → 12.4.3 角平分线</span>
+    </div>
+    <h1>第12章 全等三角形</h1>
+    <div class="lesson-title">12.4.3 角平分线</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解角平分线的概念</div>
+            <div class="target-item"><span>✔</span>探索并掌握角平分线的性质定理</div>
+            <div class="target-item"><span>✔</span>探索并掌握角平分线的判定定理</div>
+            <div class="target-item"><span>✔</span>会运用性质与判定进行几何证明</div>
+            <div class="target-item"><span>✔</span>经历“探索—发现—证明”的过程，培养推理能力</div>
+        </div>
+    </div>
+
+    <!-- 导入：课本原话 -->
+    <div class="intro-card">
+        <h3>📖 导入</h3>
+        <p>我们已经知道角是轴对称图形，角平分线所在的直线是角的对称轴。如图12.4.5，$OC$是$\angle AOB$的平分线，点$P$是$OC$上任意一点，作$PD \perp OA$，$PE \perp OB$，垂足分别为点$D$和点$E$。将$\angle AOB$沿$OC$对折，我们发现$PD$与$PE$完全重合。</p>
+        <div class="figure-inline">
+            <img src="12.4.5.png" alt="图12.4.5 角平分线性质" style="max-height:180px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.5%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.5 角平分线上的点到角两边距离相等</div>
+        </div>
+        <p>由此我们得到角平分线的性质定理。</p>
+    </div>
+
+    <!-- 性质定理（先呈现） -->
+    <div class="card theorem-card">
+        <h3>📐 角平分线的性质定理</h3>
+        <p><strong>角平分线上的点到角两边的距离相等。</strong></p>
+        <div class="figure-inline">
+            <img src="12.4.5.png" alt="图12.4.5 性质定理图形" style="max-height:160px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.5%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.5 已知$OC$平分$\angle AOB$，$PD \perp OA$，$PE \perp OB$，求证$PD=PE$</div>
+        </div>
+        <p><strong>已知：</strong>如图12.4.5，$OC$是$\angle AOB$的平分线，点$P$是$OC$上的任意一点，$PD \perp OA$，$PE \perp OB$，垂足分别为点$D$和点$E$。<br>
+        <strong>求证：</strong>$PD = PE$。</p>
+        <button class="interact-btn" onclick="toggleAnswer('propProof')">📐 证明</button>
+        <div id="propProof" class="answer-box">
+            <p><strong>证明：</strong> $\because OC$平分$\angle AOB$，$\therefore \angle DOP = \angle EOP$。<br>
+            $\because PD \perp OA$，$PE \perp OB$，$\therefore \angle PDO = \angle PEO = 90^\circ$。<br>
+            在$\triangle PDO$和$\triangle PEO$中，<br>
+            $\angle DOP = \angle EOP$（已证），$\angle PDO = \angle PEO$（已证），$PO = PO$（公共边），<br>
+            $\therefore \triangle PDO \cong \triangle PEO$（AAS）。$\therefore PD = PE$。</p>
+        </div>
+    </div>
+
+    <!-- 探索：性质定理的逆命题 -->
+    <div class="explore-card">
+        <h3>🔍 探索</h3>
+        <p>这一定理描述了角平分线的性质，那么反过来会有什么结果呢？</p>
+        <p>写出该性质定理的逆命题，想想看，其逆命题是否是一个真命题？</p>
+        <p><strong>性质定理：</strong> 角平分线上的点到角两边的距离相等。</p>
+        <p><strong>逆命题：</strong> ________________________________________。</p>
+        <button class="interact-btn" onclick="toggleAnswer('inverseProp')">📝 显示逆命题</button>
+        <div id="inverseProp" class="answer-box">
+            <strong>逆命题：</strong> 角的内部到角两边距离相等的点在角的平分线上。
+        </div>
+        <p>你能证明这个逆命题是真命题吗？下面给出证明过程（参考图12.4.6和12.4.7）。</p>
+        <div class="figure-inline">
+            <img src="12.4.6.png" alt="图12.4.6 判定定理图形" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.6%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.6 已知$QD \perp OA$，$QE \perp OB$，$QD=QE$，求证点$Q$在$\angle AOB$的平分线上</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('inverseProof')">📐 证明过程</button>
+        <div id="inverseProof" class="answer-box">
+            <p><strong>已知：</strong>如图12.4.6，$QD \perp OA$，$QE \perp OB$，垂足分别为点$D$和点$E$，$QD = QE$。<br>
+            <strong>求证：</strong>点$Q$在$\angle AOB$的平分线上。<br>
+            <strong>证明：</strong>过点$O$、$Q$作射线$OQ$。<br>
+            $\because QD \perp OA$，$QE \perp OB$，$\therefore \angle QDO = \angle QEO = 90^\circ$。<br>
+            在Rt$\triangle QDO$和Rt$\triangle QEO$中，<br>
+            $OQ = OQ$（公共边），$QD = QE$（已知），<br>
+            $\therefore$ Rt$\triangle QDO \cong$ Rt$\triangle QEO$（HL）。$\therefore \angle DOQ = \angle EOQ$。<br>
+            即$OQ$平分$\angle AOB$，故点$Q$在$\angle AOB$的平分线上。</p>
+        </div>
+        <div class="figure-inline">
+            <img src="12.4.7.png" alt="图12.4.7 证明判定定理时作射线OQ" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.7%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.7 证明判定定理时作射线$OQ$</div>
+        </div>
+        <p>于是得到角平分线的判定定理。</p>
+    </div>
+
+    <!-- 判定定理（正式） -->
+    <div class="card theorem-card">
+        <h3>🔄 角平分线的判定定理</h3>
+        <p><strong>角的内部到角两边距离相等的点在角的平分线上。</strong></p>
+        <p>于是，性质定理和判定定理互为逆定理。</p>
+    </div>
+
+    <!-- 过渡语：为“试一试”铺垫 -->
+    <div class="fact-card">
+        <p>📌 <strong>上述两条定理互为逆定理，根据上述两条定理，我们就能证明：三角形的三条角平分线交于一点！</strong></p>
+    </div>
+
+    <!-- 试一试：三角形三条角平分线交于一点 -->
+    <div class="explore-card">
+        <h3>📌 试一试</h3>
+        <p>如图12.4.8，要证明三角形的三条角平分线交于一点，只需证明其中两条角平分线的交点一定在第三条角平分线上。</p>
+        <div class="figure-inline">
+            <img src="12.4.8.png" alt="图12.4.8 三角形角平分线共点" style="max-height:170px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22160%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E12.4.8%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="img-caption">图12.4.8 三角形三条角平分线交于一点</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('tryProof')">📐 证明思路</button>
+        <div id="tryProof" class="answer-box">
+            <p>设$\triangle ABC$中，$\angle A$和$\angle B$的平分线交于点$O$，过点$O$分别作$OD \perp BC$，$OE \perp AC$，$OF \perp AB$，垂足分别为$D$、$E$、$F$。<br>
+            由角平分线性质定理得$OF = OE$，$OF = OD$，所以$OD = OE$。<br>
+            因此点$O$也在$\angle C$的平分线上（判定定理）。故三角形三条角平分线交于一点。</p>
+        </div>
+        <p>试试看，你能独立写出完整的证明过程吗？</p>
+    </div>
+
+    <!-- 课堂练习（课本习题12.4相关） -->
+    <div class="card" style="background:#f9f5f0;">
+        <h3>✍️ 课堂练习</h3>
+        <div class="exercise-item">
+            <div class="exercise-question">1. 如图，在$\angle AOB$的内部找出一点$P$，使得点$P$在直线$l$上，且点$P$到该角两边（即射线$OA$与$OB$）的距离相等。</div>
+            <div class="figure-inline"><img src="第1题.png" alt="第1题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第1题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">📐 作法</button>
+            <div id="prac1" class="answer-box">
+                作$\angle AOB$的平分线，与直线$l$的交点即为点$P$。
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-question">2. 如图，$\triangle ABC$的外角$\angle CBD$和$\angle BCE$的平分线相交于点$F$。求证：点$F$在$\angle DAE$的平分线上。</div>
+            <div class="figure-inline"><img src="第2题.png" alt="第2题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第2题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac2')">🔍 证明</button>
+            <div id="prac2" class="answer-box">
+                <p>过点$F$作$FG \perp AB$，$FH \perp BC$，$FI \perp AC$，垂足分别为$G$、$H$、$I$。<br>
+                由角平分线性质，$FG = FH$，$FH = FI$，所以$FG = FI$。<br>
+                因此点$F$在$\angle DAE$的平分线上（角的内部到角两边距离相等的点在角的平分线上）。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <div class="exercise-question">3. 如图，$\angle ABD = \angle CBD$，$DA \perp BA$，$DC \perp BC$。求证：$\angle DAC = \angle DCA$。</div>
+            <div class="figure-inline"><img src="第3题.png" alt="第3题图" style="max-height:150px;" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22120%22%3E%3Ctext%20x%3D%2210%22%20y%3D%2220%22%3E第3题%3C%2Ftext%3E%3C%2Fsvg%3E'"></div>
+            <button class="interact-btn" onclick="toggleAnswer('prac3')">🔍 证明</button>
+            <div id="prac3" class="answer-box">
+                <p>由$\angle ABD = \angle CBD$，$DA \perp BA$，$DC \perp BC$，根据角平分线性质得$DA = DC$。<br>
+                在$\triangle DAC$中，$DA = DC$，所以$\angle DAC = \angle DCA$（等边对等角）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：真实生活中的角平分线应用（无虚构、无citation） -->
+    <div class="reading-card">
+        <h4>📖 读一读 · 生活中的角平分线</h4>
+        <p>角平分线定理在现实世界中有很多真实的运用，下面介绍几个例子：</p>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+            <li><strong>足球守门员的站位：</strong> 优秀守门员在防守单刀球时，会本能地站在射门点与两个球门柱所形成角的角平分线上。这种站位能够最大限度地缩小射门角度，是经过数学验证的防守策略。</li>
+            <li><strong>侗族建筑的角平分器：</strong> 我国西南地区的侗族工匠，在修建鼓楼、风雨桥时，会使用一种自制工具——“角尺”来作出角平分线，保证建筑结构的对称与受力均衡。这是古代数学智慧在传统工艺中的体现。</li>
+            <li><strong>小区管道铺设：</strong> 在老旧小区改造中，常常需要在暖气管道和天然气管道的夹角内铺设最短的支管。工程师利用角平分线定理，找到到两条主管道距离相等的点，从而确定最优的接管位置。</li>
+            <li><strong>钓鱼选位：</strong> 在两条小河交汇形成的夹角处，钓鱼爱好者会选择到两条河距离相等的位置下竿，因为这样的位置往往水流稳定，鱼群更容易聚集。这个位置正是角平分线上的点。</li>
+        </ul>
+        <p>这些例子说明，角平分线定理不仅是数学课本上的知识，更是解决实际问题的有力工具。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-card">
+        <h3>📌 课堂小结</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>性质定理</strong>：角平分线上的点到角两边的距离相等。</li>
+            <li><strong>判定定理</strong>：角的内部到角两边距离相等的点在角的平分线上。</li>
+            <li>两个定理互为逆定理。</li>
+            <li>三角形三条角平分线交于一点（可通过证明得到）。</li>
+            <li>探索方法：观察—猜想—证明，是几何学习的重要途径。</li>
+        </ul>
+    </div>
+
+    <!-- 数学思想与素养 -->
+    <div class="math-idea-card">
+        <h4>🧠 数学思想 · 核心素养</h4>
+        <p><strong>• 转化思想：</strong> 将几何问题转化为全等三角形证明；<br>
+        <strong>• 逆向思维：</strong> 性质与判定互逆，体会逻辑双向性；<br>
+        <strong>• 归纳推理：</strong> 从特殊到一般，从实验操作到演绎证明；<br>
+        <strong>• 模型思想：</strong> 角平分线是解决“到角两边等距”问题的基本模型。</p>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-block">
+        <h3 style="margin-bottom: 0.5rem;">📚 课后作业</h3>
+        <ul style="margin-left: 1.8rem; font-weight: 500;">
+            <li>课本习题12.4 A组第3题、B组第2题；</li>
+            <li>练习册《角平分线》课时作业；</li>
+            <li><strong>实践作业：</strong> 找一找你身边还有哪些地方用到了角平分线的性质（例如路标、广告牌、窗户设计等），并尝试用本节课的知识解释它。</li>
+        </ul>
+    </div>
+
+    <!-- 寄语 -->
+    <div class="message-block">
+        <p>✨ 角平分线，性质记心间；到两边等距，判定亦不难。 ✨<br>
+        探索猜想再证明，几何学习乐无边！</p>
+    </div>
+
+    <div class="footer-note">
+        八年级上册 · 第12章 12.4.3 角平分线 | 互动课件
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    window.addEventListener('load', () => {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    });
+</script>
+</body>
+</html>

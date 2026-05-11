@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>17.2.1 平行四边形的判定（一）| 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false,
+                strict: false,
+                macros: { 
+                    "\\parallelogram": "\\mathord{\\square}",
+                    "\\parallelEqual": "\\mathrel{\\style{transform: rotate(90deg); display: inline-block;}{\\text{=}}}"
+                }
+            });
+            initCanvases();
+        });
+
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'none' || el.style.display === '') {
+                el.style.display = 'block';
+                el.classList.add('show-answer');
+            } else {
+                el.style.display = 'none';
+                el.classList.remove('show-answer');
+            }
+        }
+
+        function initCanvases() {
+            drawTryIt1_Construction();
+            drawTheorem1_Init();
+            drawTheorem1_Proof();
+            drawTryIt2_Construction();
+            drawTheorem2_Init();
+            drawTheorem2_Proof();
+            drawExample1();
+            drawGridPractice();
+            drawExercise2();
+            drawExercise3();
+        }
+
+        function drawTryIt1_Construction() {
+            const canvas = document.getElementById('canvasTryIt1_Const');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const A = { x: 60, y: 140 }, B = { x: 260, y: 140 }, C = { x: 300, y: 50 }, D = { x: 100, y: 50 };
+            
+            // Arcs from B and D to find A
+            const rBA = 200; // B to A
+            const rDA = Math.sqrt(Math.pow(A.x-D.x, 2) + Math.pow(A.y-D.y, 2)); // D to A
+            // Arcs from D and B to find C
+            const rDC = 200; // D to C
+            const rBC = Math.sqrt(Math.pow(C.x-B.x, 2) + Math.pow(C.y-B.y, 2)); // B to C
+
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            // Draw BD line
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(D.x, D.y); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Draw arcs
+            ctx.strokeStyle = '#aaa'; ctx.lineWidth = 1;
+            // Arc from B for A
+            ctx.beginPath(); ctx.arc(B.x, B.y, rBA, Math.PI * 0.95, Math.PI * 1.05); ctx.stroke();
+            // Arc from D for A
+            ctx.beginPath(); ctx.arc(D.x, D.y, rDA, Math.PI * 0.55, Math.PI * 0.75); ctx.stroke();
+            // Arc from D for C
+            ctx.beginPath(); ctx.arc(D.x, D.y, rDC, -Math.PI * 0.05, Math.PI * 0.05); ctx.stroke();
+            // Arc from B for C
+            ctx.beginPath(); ctx.arc(B.x, B.y, rBC, -Math.PI * 0.45, -Math.PI * 0.25); ctx.stroke();
+
+            // Draw Quadrilateral
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+
+            // Hash marks for equal sides
+            ctx.lineWidth = 2;
+            // AB = CD
+            const mAB = {x: (A.x+B.x)/2, y: A.y};
+            ctx.beginPath(); ctx.moveTo(mAB.x-5, mAB.y-10); ctx.lineTo(mAB.x+5, mAB.y+10); ctx.stroke();
+            const mCD = {x: (C.x+D.x)/2, y: D.y};
+            ctx.beginPath(); ctx.moveTo(mCD.x-5, mCD.y-10); ctx.lineTo(mCD.x+5, mCD.y+10); ctx.stroke();
+            // AD = BC
+            const mAD = {x: (A.x+D.x)/2, y:(A.y+D.y)/2};
+            ctx.beginPath(); ctx.moveTo(mAD.x-12, mAD.y-4); ctx.lineTo(mAD.x+8, mAD.y+6); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(mAD.x-8, mAD.y-8); ctx.lineTo(mAD.x+12, mAD.y+2); ctx.stroke();
+            const mBC = {x: (B.x+C.x)/2, y:(B.y+C.y)/2};
+            ctx.beginPath(); ctx.moveTo(mBC.x-12, mBC.y-4); ctx.lineTo(mBC.x+8, mBC.y+6); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(mBC.x-8, mBC.y-8); ctx.lineTo(mBC.x+12, mBC.y+2); ctx.stroke();
+
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 10); ctx.fillText('B', B.x + 10, B.y + 10);
+            ctx.fillText('C', C.x + 10, C.y); ctx.fillText('D', D.x - 25, D.y);
+            ctx.fillText('图 17.2.1', w/2 - 50, h - 10);
+        }
+
+        function drawTheorem1_Init() {
+            const canvas = document.getElementById('canvasTheorem1_Init');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 80, y: 140 }, B = { x: 280, y: 140 }, C = { x: 330, y: 40 }, D = { x: 130, y: 40 };
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 10); ctx.fillText('B', B.x + 10, B.y + 10);
+            ctx.fillText('C', C.x + 10, C.y); ctx.fillText('D', D.x - 25, D.y);
+            ctx.fillText('图 17.2.2', w/2 - 50, h - 10);
+        }
+
+        function drawTheorem1_Proof() {
+            const canvas = document.getElementById('canvasTheorem1_Proof');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 80, y: 140 }, B = { x: 280, y: 140 }, C = { x: 330, y: 40 }, D = { x: 130, y: 40 };
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(D.x, D.y);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 10); ctx.fillText('B', B.x + 10, B.y + 10);
+            ctx.fillText('C', C.x + 10, C.y); ctx.fillText('D', D.x - 25, D.y);
+            ctx.fillText('1', D.x + 15, D.y + 35); ctx.fillText('2', B.x - 45, B.y - 10);
+            ctx.fillText('3', B.x - 25, B.y - 35); ctx.fillText('4', D.x + 35, D.y + 15);
+            ctx.fillText('图 17.2.3', w/2 - 50, h - 10);
+        }
+
+        function drawTryIt2_Construction() {
+            const canvas = document.getElementById('canvasTryIt2_Const');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const A = { x: 80, y: 140 }, B = { x: 250, y: 140 }, C = { x: 300, y: 50 }, D = { x: 130, y: 50 };
+            const rAB = 170;
+            
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 1;
+            // Draw lines m and n
+            ctx.beginPath(); ctx.moveTo(20, A.y); ctx.lineTo(380, A.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(20, D.y); ctx.lineTo(380, D.y); ctx.stroke();
+            ctx.font = 'italic 20px Times New Roman'; ctx.fillText('m', 385, A.y + 5); ctx.fillText('n', 385, D.y + 5);
+
+            // Draw segments AB and CD
+            ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            
+            // Draw construction arcs for AB and CD (cutting arcs)
+            ctx.lineWidth = 1; ctx.strokeStyle = '#aaa';
+            // Arc at B centered at A
+            ctx.beginPath(); ctx.arc(A.x, A.y, rAB, -Math.PI*0.1, Math.PI*0.1); ctx.stroke();
+            // Arc at C centered at D
+            ctx.beginPath(); ctx.arc(D.x, D.y, rAB, -Math.PI*0.1, Math.PI*0.1); ctx.stroke();
+
+            // Draw AD and BC
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(D.x, D.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+
+            // Hash marks
+            ctx.lineWidth = 2;
+            const mAB = {x: (A.x+B.x)/2, y: A.y};
+            ctx.beginPath(); ctx.moveTo(mAB.x-5, mAB.y-10); ctx.lineTo(mAB.x+5, mAB.y+10); ctx.stroke();
+            const mCD = {x: (D.x+C.x)/2, y: D.y};
+            ctx.beginPath(); ctx.moveTo(mCD.x-5, mCD.y-10); ctx.lineTo(mCD.x+5, mCD.y+10); ctx.stroke();
+
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 25); ctx.fillText('B', B.x + 5, B.y + 25);
+            ctx.fillText('C', C.x + 5, C.y - 10); ctx.fillText('D', D.x - 25, D.y - 10);
+            ctx.fillText('图 17.2.4', w/2 - 50, h - 10);
+        }
+
+        function drawTheorem2_Init() {
+            const canvas = document.getElementById('canvasTheorem2_Init');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 80, y: 140 }, B = { x: 280, y: 140 }, C = { x: 330, y: 40 }, D = { x: 130, y: 40 };
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 10); ctx.fillText('B', B.x + 10, B.y + 10);
+            ctx.fillText('C', C.x + 10, C.y); ctx.fillText('D', D.x - 25, D.y);
+            ctx.fillText('图 17.2.5', w/2 - 50, h - 10);
+        }
+
+        function drawTheorem2_Proof() {
+            const canvas = document.getElementById('canvasTheorem2_Proof');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = { x: 80, y: 140 }, B = { x: 280, y: 140 }, C = { x: 330, y: 40 }, D = { x: 130, y: 40 };
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.lineTo(C.x, C.y); ctx.lineTo(D.x, D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Draw angle arcs for clarification
+            ctx.lineWidth = 1.5; ctx.strokeStyle = '#a82035';
+            // Angle 1 at A (between AB and AC)
+            ctx.beginPath(); ctx.arc(A.x, A.y, 40, 0, Math.atan2(-100, 250), true); ctx.stroke();
+            // Angle 2 at C (between CD and CA)
+            ctx.beginPath(); ctx.arc(C.x, C.y, 40, Math.PI, Math.atan2(100, -250), true); ctx.stroke();
+
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y + 10); ctx.fillText('B', B.x + 10, B.y + 10);
+            ctx.fillText('C', C.x + 10, C.y); ctx.fillText('D', D.x - 25, D.y);
+            
+            ctx.fillStyle = '#a82035';
+            ctx.fillText('1', A.x + 50, A.y - 15); ctx.fillText('2', C.x - 80, C.y + 25);
+            ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('图 17.2.6', w/2 - 50, h - 10);
+        }
+
+        function drawExample1() {
+            const canvas = document.getElementById('canvasEx1');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const A = { x: 80, y: 40 }, D = { x: 320, y: 40 };
+            const B = { x: 30, y: 140 }, C = { x: 270, y: 140 };
+            const offset = 80;
+            const F = { x: A.x + offset, y: A.y };
+            const E = { x: C.x - offset, y: C.y };
+            
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(D.x, D.y); ctx.lineTo(C.x, C.y); ctx.lineTo(B.x, B.y); ctx.closePath(); ctx.stroke();
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(E.x, E.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(F.x, F.y); ctx.lineTo(C.x, C.y); ctx.stroke();
+            
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x - 25, A.y - 5); ctx.fillText('D', D.x + 10, D.y - 5);
+            ctx.fillText('B', B.x - 25, B.y + 25); ctx.fillText('C', C.x + 10, C.y + 25);
+            ctx.fillText('F', F.x, F.y - 10); ctx.fillText('E', E.x, E.y + 30);
+            ctx.fillText('图 17.2.7', w/2 - 50, h - 10);
+        }
+
+        function drawGridPractice() {
+            const canvas = document.getElementById('canvasGrid');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const size = 50;
+            const startX = 100, startY = 40;
+            const points = [
+                {x: startX + size, y: startY},
+                {x: startX, y: startY + size * 0.866 * 1.5},
+                {x: startX + size * 2, y: startY + size * 0.866 * 1.5},
+                {x: startX - size, y: startY + size * 0.866 * 3},
+                {x: startX + size, y: startY + size * 0.866 * 3},
+                {x: startX + size * 3, y: startY + size * 0.866 * 3}
+            ];
+            
+            points.forEach(p => {
+                ctx.beginPath(); ctx.arc(p.x, p.y, 6, 0, Math.PI*2); ctx.fillStyle = '#1a3a5c'; ctx.fill();
+            });
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('(第 1 题)', w/2 - 50, h - 10);
+        }
+
+        function drawExercise2() {
+            const canvas = document.getElementById('canvasEx2');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const A = { x: 80, y: 40 }, D = { x: 320, y: 40 }, B = { x: 30, y: 140 }, C = { x: 270, y: 140 };
+            const E = { x: (A.x + B.x)/2, y: (A.y + B.y)/2 };
+            const F = { x: (D.x + C.x)/2, y: (D.y + C.y)/2 };
+            
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(D.x, D.y); ctx.lineTo(C.x, C.y); ctx.lineTo(B.x, B.y); ctx.closePath(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(E.x, E.y); ctx.lineTo(F.x, F.y); ctx.stroke();
+            
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x-10, A.y-10); ctx.fillText('D', D.x+5, D.y-10);
+            ctx.fillText('B', B.x-15, B.y+25); ctx.fillText('C', C.x+5, C.y+25);
+            ctx.fillText('E', E.x-25, E.y+5); ctx.fillText('F', F.x+10, F.y+5);
+            ctx.fillText('(第 2 题)', w/2 - 50, h - 10);
+        }
+
+        function drawExercise3() {
+            const canvas = document.getElementById('canvasEx3');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const A = { x: 80, y: 40 }, D = { x: 320, y: 40 }, B = { x: 30, y: 140 }, C = { x: 270, y: 140 };
+            const M = { x: (A.x + B.x)/2, y: (A.y + B.y)/2 };
+            const N = { x: (D.x + C.x)/2, y: (D.y + C.y)/2 };
+            
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 3; ctx.lineJoin = 'round';
+            ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(D.x, D.y); ctx.lineTo(C.x, C.y); ctx.lineTo(B.x, B.y); ctx.closePath(); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x, B.y); ctx.lineTo(N.x, N.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(D.x, D.y); ctx.lineTo(M.x, M.y); ctx.stroke();
+            
+            ctx.font = 'bold 24px STKaiti, KaiTi'; ctx.fillStyle = '#1a3a5c';
+            ctx.fillText('A', A.x-10, A.y-10); ctx.fillText('D', D.x+5, D.y-10);
+            ctx.fillText('B', B.x-15, B.y+25); ctx.fillText('C', C.x+5, C.y+25);
+            ctx.fillText('M', M.x-25, M.y+5); ctx.fillText('N', N.x+10, N.y+5);
+            ctx.fillText('(第 3 题)', w/2 - 50, h - 10);
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee;
+            --bg-card: #ffffff;
+            --text-body: #1a1a22;
+            --text-heading: #1a3550;
+            --color-primary: #1a3a5c;
+            --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0;
+            --color-accent-green: #0d6b4a;
+            --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035;
+            --color-accent-purple: #5c1db8;
+            --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem;
+            --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.7rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .theorem-text { font-weight: 800; color: #0a4d32; border-bottom: 2px solid #0a4d32; display: inline-block; margin: 0.5rem 0; }
+
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .layout-flex { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 320px; }
+        .layout-visual { max-width: 100%; width: 400px; margin-bottom: 0.5rem; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; }
+        th, td { border: 2px solid #e0c7d0; padding: 1rem; text-align: left; }
+        th { background: #fdf2f5; color: #a82035; font-weight: 700; }
+        .bubble { background: #fff1f2; border: 2px solid #fda4af; border-radius: 2rem; padding: 1rem 1.5rem; position: relative; display: inline-block; margin: 1rem 0; box-shadow: 0 4px 12px rgba(225,29,72,0.08); }
+        .bubble::after { content: ''; position: absolute; left: 2rem; bottom: -20px; border-width: 10px; border-style: solid; border-color: #fda4af transparent transparent transparent; }
+        
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        
+        .homework-card { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .homework-card h4 { color: #166534; margin-bottom: 0.8rem; }
+        .homework-level { display: inline-block; padding: 0.2rem 0.8rem; border-radius: 4px; font-size: 0.9rem; font-weight: 700; margin-right: 0.5rem; }
+        .level-basic { background: #dcfce7; color: #166534; }
+        .level-adv { background: #fef9c3; color: #854d0e; }
+
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="textbook">
+        <div class="header-meta">
+            <span>第十七章 平行四边形</span>
+            <span>17.2 平行四边形的判定</span>
+        </div>
+
+        <h1>17.2 平行四边形的判定</h1>
+        <div class="lesson-title">第 1 课时：判定定理 1 与判定定理 2</div>
+
+        <div class="section-title">课题导入</div>
+        <p>我们已经掌握了平行四边形的性质。在实际生活中，我们有时需要根据现有的测量结果来判定一个零件是否为平行四边形。那么，除了定义外，还有哪些更简便的方法呢？</p>
+
+        <div class="section-title">知识铺垫 / 复习回顾</div>
+        <div class="think-box">
+            <p>1. 平行四边形的定义：两组对边分别平行的四边形是平行四边形。</p>
+            <p>2. 平行四边形的性质：</p>
+            <ul>
+                <li>两组对边分别相等；</li>
+                <li>两组对角分别相等；</li>
+                <li>两条对角线互相平分。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">新知探索</div>
+        <div class="theorem-card" style="background: #fff; border: 2px solid var(--color-primary); border-left-width: 12px; padding: 2rem;">
+            <h4 style="color: var(--color-primary); font-size: 1.8rem; margin-bottom: 1rem;">试一试</h4>
+            <p style="margin-bottom: 0.8rem;">如图 17.2.1，作一个两组对边分别相等的四边形。</p>
+            <div style="display: flex; justify-content: center; margin: 0.8rem 0;">
+                <canvas id="canvasTryIt1_Const" width="400" height="200" style="max-width: 100%;"></canvas>
+            </div>
+            <p style="margin-bottom: 0.5rem;"><strong>作法：</strong></p>
+            <p style="margin-bottom: 0.3rem;">(1) 任取两点 $B、D$;</p>
+            <p style="margin-bottom: 0.3rem;">(2) 分别以点 $B$ 和点 $D$ 为圆心、任意长为半径，分别在线段 $BD$ 的两侧作弧;</p>
+            <p style="margin-bottom: 0.3rem;">(3) 再分别以点 $D$ 和点 $B$ 为圆心、适当长为半径作弧，与前面所作的弧分别交于点 $A$ 和点 $C$;</p>
+            <p style="margin-bottom: 0.3rem;">(4) 顺次连结各点。</p>
+            <p style="margin-top: 0.8rem; margin-bottom: 0.3rem;">四边形 $ABCD$ 即为所要求作的四边形。</p>
+            <p style="margin-bottom: 0.8rem;">把你作的四边形和其他同学作的进行比较，看看是否都是平行四边形。</p>
+            <div class="bubble" style="width: 100%; max-width: none;">
+                可以发现，尽管每个人取的边长不一样，但只要对边分别相等，所作的就都是平行四边形。
+            </div>
+        </div>
+
+        <div class="section-title">判定定理 1</div>
+        <div class="theorem-card">
+            <h4>判定定理 1</h4>
+            <p class="theorem-text">两组对边分别相等的四边形是平行四边形。</p>
+            <div class="layout-flex">
+                <div class="layout-content" style="flex: 1.2;">
+                    <p><strong>已知：</strong> 如图 17.2.2，在四边形 $ABCD$ 中，$AB = CD, BC = DA$。</p>
+                    <p><strong>求证：</strong> 四边形 $ABCD$ 是平行四边形。</p>
+                    <button class="interact-btn" onclick="toggleAnswer('proof1')">查看证明过程</button>
+                </div>
+                <div class="layout-visual" style="flex: 1; min-width: 300px;">
+                    <canvas id="canvasTheorem1_Init" width="400" height="180"></canvas>
+                </div>
+            </div>
+            <div id="proof1" class="answer-box">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <canvas id="canvasTheorem1_Proof" width="400" height="180" style="margin-bottom: 0.5rem;"></canvas>
+                    <div class="layout-content" style="width: 100%; text-align: left;">
+                        <p style="margin-bottom: 0.2rem;"><strong>证明：</strong> 如图 17.2.3，连接 $BD$。</p>
+                        <p>在 $\triangle ABD$ 和 $\triangle CDB$ 中，</p>
+                        <p>$\because AB = CD$，$AD = CB$，$BD = DB$（公共边），</p>
+                        <p>$\therefore \triangle ABD \cong \triangle CDB \text{ (SSS)}$。</p>
+                        <p>$\therefore \angle 1 = \angle 3$，$ \angle 2 = \angle 4$。</p>
+                        <p>$\therefore AD \parallel CB$，$AB \parallel CD$。</p>
+                        <p>$\therefore$ 四边形 $ABCD$ 是平行四边形（两组对边分别平行的四边形是平行四边形）。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">进一步探索</div>
+        <div class="theorem-card" style="background: #fff; border: 2px solid var(--color-primary); border-left-width: 12px; padding: 2rem;">
+            <h4 style="color: var(--color-primary); font-size: 1.8rem; margin-bottom: 1rem;">试一试</h4>
+            <p style="margin-bottom: 0.8rem;">如图 17.2.4，作一个有一组对边平行且相等的四边形。</p>
+            <div style="display: flex; justify-content: center; margin: 0.8rem 0;">
+                <canvas id="canvasTryIt2_Const" width="400" height="200" style="max-width: 100%;"></canvas>
+            </div>
+            <p style="margin-bottom: 0.5rem;"><strong>作法：</strong></p>
+            <p style="margin-bottom: 0.3rem;">(1) 任意作两条平行线 $m、n$;</p>
+            <p style="margin-bottom: 0.3rem;">(2) 在直线 $m、n$ 上分别截取 $AB、CD$，使 $AB = CD$;</p>
+            <p style="margin-bottom: 0.3rem;">(3) 分别连结点 $B、C$ 和点 $A、D$。</p>
+            <p style="margin-top: 0.8rem; margin-bottom: 0.3rem;">四边形 $ABCD$ 即为所要求作的四边形。</p>
+            <p><strong>观察你所作的图形，它是平行四边形吗？</strong></p>
+        </div>
+
+        <div class="section-title">判定定理 2</div>
+        <div class="theorem-card">
+            <h4>判定定理 2</h4>
+            <p class="theorem-text">一组对边平行且相等的四边形是平行四边形。</p>
+            <div class="layout-flex">
+                <div class="layout-content" style="flex: 1.2;">
+                    <p><strong>已知：</strong> 如图 17.2.5，在四边形 $ABCD$ 中，$AB \parallel CD$ 且 $AB = CD$。</p>
+                    <p><strong>求证：</strong> 四边形 $ABCD$ 是平行四边形。</p>
+                    <button class="interact-btn" onclick="toggleAnswer('proof2')">查看证明过程</button>
+                </div>
+                <div class="layout-visual" style="flex: 1; min-width: 300px;">
+                    <canvas id="canvasTheorem2_Init" width="400" height="180"></canvas>
+                </div>
+            </div>
+            <div id="proof2" class="answer-box">
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <canvas id="canvasTheorem2_Proof" width="400" height="180" style="margin-bottom: 0.5rem;"></canvas>
+                    <div class="layout-content" style="width: 100%; text-align: left;">
+                        <p style="margin-bottom: 0.2rem;"><strong>证明：</strong> 如图 17.2.6，连接 $AC$。</p>
+                        <p>$\because AB \parallel CD$，$\therefore \angle 1 = \angle 2$。</p>
+                        <p>在 $\triangle ABC$ 和 $\triangle CDA$ 中，</p>
+                        <p>$\because AB = CD$，$ \angle 1 = \angle 2$，$AC = CA$（公共边），</p>
+                        <p>$\therefore \triangle ABC \cong \triangle CDA \text{ (SAS)}$。</p>
+                        <p>$\therefore BC = DA$。</p>
+                        <p>$\therefore$ 四边形 $ABCD$ 是平行四边形（两组对边分别相等的四边形是平行四边形）。</p>
+                        <p><strong>注：</strong> “平行且相等”常用符号 “$\xlongequal{/\!/}$” 来表示，如 $AB \xlongequal{/\!/ } CD$。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">方法归纳 / 概括</div>
+        <div class="method-summary">
+            <h4>平行四边形的判定方法（一）：</h4>
+            <p>1. <strong>定义法：</strong> 两组对边分别平行的四边形是平行四边形。</p>
+            <p>2. <strong>两组对边法：</strong> 两组对边分别相等的四边形是平行四边形。</p>
+            <p>3. <strong>一组对边法：</strong> 一组对边平行且相等的四边形是平行四边形。</p>
+        </div>
+
+        <div class="section-title">例题解析</div>
+        <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+            <h4>例 1</h4>
+            <div class="layout-flex">
+                <div class="layout-content">
+                    <p>如图 17.2.7，在 $\parallelogram ABCD$ 中，点 $E, F$ 分别在对边 $BC$ 和 $DA$ 上，且 $AF = CE$。求证：四边形 $AECF$ 是平行四边形。</p>
+                    <button class="interact-btn" onclick="toggleAnswer('solEx1')">查看解析</button>
+                </div>
+                <div class="layout-visual">
+                     <canvas id="canvasEx1" width="400" height="200"></canvas>
+                 </div>
+            </div>
+            <div id="solEx1" class="answer-box">
+                <p style="margin-bottom: 0.2rem;"><strong>证明：</strong> $\because$ 四边形 $ABCD$ 是平行四边形，</p>
+                <p>$\therefore AD \parallel BC$（平行四边形的对边平行），即 $AF \parallel CE$。</p>
+                <p>又 $\because AF = CE$，</p>
+                <p>$\therefore$ 四边形 $AECF$ 是平行四边形（一组对边平行且相等的四边形是平行四边形）。</p>
+            </div>
+        </div>
+
+        <div class="section-title">巩固练习</div>
+        <div class="practice-box">
+            <div class="exercise-item">
+                <p><strong>1.</strong> 在如图的格点图中，每一格点与它周围各个格点的距离相等。以格点为顶点，你能画出多少个平行四边形？</p>
+                <div class="layout-flex" style="margin-top: 0;">
+                    <div class="layout-content">
+                        <button class="interact-btn" onclick="toggleAnswer('ans1')">查看分析</button>
+                    </div>
+                    <div class="layout-visual">
+                        <canvas id="canvasGrid" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                <div id="ans1" class="answer-box">
+                    <p><strong>分析：</strong> 这是一个等边三角形格点阵。要构成平行四边形，只需选取两组对边分别平行且相等即可。</p>
+                    <p>在这个 6 点阵中，可以画出：</p>
+                    <ul>
+                        <li>以 4 个相邻点构成的“菱形”状平行四边形（共 3 个）；</li>
+                        <li>其他可能的组合。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="exercise-item" style="margin-top: 2rem;">
+                <p><strong>2.</strong> 如图，在 $\parallelogram ABCD$ 中，$E$、$F$ 分别是边 $AB$ 和 $CD$ 的中点。求证：$EF = BC$。</p>
+                <div class="layout-flex" style="margin-top: 0;">
+                    <div class="layout-content">
+                        <button class="interact-btn" onclick="toggleAnswer('ans2')">查看证明</button>
+                    </div>
+                    <div class="layout-visual">
+                        <canvas id="canvasEx2" width="400" height="180"></canvas>
+                    </div>
+                </div>
+                <div id="ans2" class="answer-box">
+                    <p><strong>证明：</strong> $\because$ 四边形 $ABCD$ 是平行四边形，</p>
+                    <p>$\therefore AB \parallel CD$，$AB = CD$，$AD = BC$。</p>
+                    <p>$\because E, F$ 分别是 $AB, CD$ 的中点，</p>
+                    <p>$\therefore AE = \frac{1}{2}AB$，$DF = \frac{1}{2}CD$。</p>
+                    <p>$\therefore AE = DF$。又 $\because AE \parallel DF$，</p>
+                    <p>$\therefore$ 四边形 $AEFD$ 是平行四边形（一组对边平行且相等的四边形是平行四边形）。</p>
+                    <p>$\therefore EF = AD$。又 $\because AD = BC$，</p>
+                    <p>$\therefore EF = BC$。</p>
+                </div>
+            </div>
+
+            <div class="exercise-item" style="margin-top: 2rem;">
+                <p><strong>3.</strong> 如图，在 $\parallelogram ABCD$ 中，已知 $M$、$N$ 分别是边 $AB$ 和 $DC$ 的中点，那么四边形 $BNDM$ 也是平行四边形吗？试用多种方法证明你的猜想。</p>
+                <div class="layout-flex" style="margin-top: 0;">
+                    <div class="layout-content">
+                        <button class="interact-btn" onclick="toggleAnswer('ans3')">查看证明</button>
+                    </div>
+                    <div class="layout-visual">
+                        <canvas id="canvasEx3" width="400" height="180"></canvas>
+                    </div>
+                </div>
+                <div id="ans3" class="answer-box">
+                    <p><strong>猜想：</strong> 四边形 $BNDM$ 是平行四边形。</p>
+                    <p><strong>方法一（一组对边平行且相等）：</strong></p>
+                    <p>$\because$ 四边形 $ABCD$ 是平行四边形，$\therefore AB \parallel CD$，$AB = CD$。</p>
+                    <p>$\because M, N$ 分别是 $AB, CD$ 的中点，$\therefore BM = \frac{1}{2}AB$，$DN = \frac{1}{2}CD$。</p>
+                    <p>$\therefore BM = DN$。又 $\because BM \parallel DN$，</p>
+                    <p>$\therefore$ 四边形 $BNDM$ 是平行四边形。</p>
+                    <p><strong>方法二（两组对边分别相等）：</strong></p>
+                    <p>可以先证 $\triangle ADM \cong \triangle CBN \text{ (SAS)}$，得出 $DM = BN$。再结合 $BM = DN$，利用判定定理 1 证明。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">课堂小结</div>
+        <div class="think-box">
+            <ul>
+                <li>掌握了平行四边形的两个判定定理。</li>
+                <li>学会了从性质出发，通过逆命题探索判定方法。</li>
+                <li>能够灵活运用“一组对边平行且相等”解决简单的证明题。</li>
+            </ul>
+        </div>
+
+        <div class="section-title">核心素养</div>
+        <div class="core-competence">
+            <h4><span style="font-size: 1.5rem;">📐</span> 数学素养提升点</h4>
+            <p><strong>逻辑推理：</strong> 通过性质命题的逆命题探索，体会“性质”与“判定”之间的互逆逻辑关系。</p>
+            <p><strong>数学抽象：</strong> 从具体的图形测量抽象出几何判定定理，提升对几何规律的提炼能力。</p>
+        </div>
+
+        <div class="teacher-msg">
+            几何的学习就是不断发现规律、证明规律并运用规律的过程。加油！
+        </div>
+
+        <div style="text-align: right; color: #888; font-size: 0.9rem; margin-top: 2rem;">
+            &copy; 2026 华师大版初中数学课件制作组
+        </div>
+    </div>
+</body>
+</html>

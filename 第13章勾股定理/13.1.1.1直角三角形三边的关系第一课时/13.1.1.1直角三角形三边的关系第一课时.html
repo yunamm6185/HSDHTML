@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.1.1 直角三角形三边的关系（第一课时）| 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #ecf5fa;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #1e3b5a;
+            padding: 1.5rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 30px -10px rgba(0, 45, 70, 0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #cde0f0;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #b8d2e9;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.3rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0f405e;
+            font-weight: 700;
+        }
+        h1::after {
+            content: '';
+            display: block;
+            width: 75px;
+            height: 5px;
+            background: #3a9fd5;
+            border-radius: 5px;
+            margin-top: 8px;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e2effa;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 3px solid #b2d2ea;
+            margin: 1.2rem 0 1.8rem;
+            font-weight: 700;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d2e6f8);
+            border-radius: 2rem;
+            padding: 1.3rem 2rem;
+            margin: 1rem 0 2rem;
+            border: 1px solid #b4d1ec;
+            box-shadow: 0 5px 0 #92b9da;
+        }
+        .learning-targets h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.5rem;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem 0.4rem 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 3px 0 #b4cde2;
+            border: 1px solid #c3daef;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .intro-card {
+            background: #e6f2fb;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #2a7faa;
+            font-weight: 600;
+        }
+        .explore-card {
+            background: #e5f3e2;
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            margin: 1.4rem 0;
+            border-left: 8px solid #3a8b4f;
+            font-weight: 600;
+        }
+        .explore-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: #1d6130;
+        }
+        .explore-card h4::before { content: "🔍 "; }
+        .fact-card {
+            background: #fff8e1;
+            border-left: 8px solid #f0b34b;
+            border-radius: 1.8rem;
+            padding: 1.4rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .fact-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #b85c1a;
+        }
+        .theorem-box {
+            background: #fff3cd;
+            border: 3px solid #f0b34b;
+            border-radius: 1.5rem;
+            padding: 1.2rem 2rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #7a3d00;
+        }
+        .example-card {
+            background: #e5f3e2;
+            border-left: 8px solid #3a8b4f;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 600;
+        }
+        .example-card h4 { font-size: 1.4rem; color: #1d6130; }
+        .reading-section {
+            background: #fef9e6;
+            border-left: 8px solid #e6b422;
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 1.4rem 0;
+            font-weight: 500;
+        }
+        .figure-container {
+            background: #f9fcff;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #c0d6e8;
+            text-align: center;
+        }
+        .figure-caption {
+            color: #1e5670;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .interact-btn {
+            background: #ecf3f9;
+            border: none;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            margin: 0.5rem 0 0;
+            font-size: 0.9rem;
+        }
+        .interact-btn:active { transform: translateY(2px); }
+        .answer-box {
+            background: #f6fbfe;
+            border-left: 6px solid #f0b34b;
+            padding: 0.7rem 1.3rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 0.95rem;
+        }
+        .show-answer { display: block; }
+        .exercise-section {
+            background: #f5f0fc;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+        .exercise-item { margin-bottom: 1.5rem; }
+        .exercise-question {
+            font-weight: 700;
+            color: #0a3e5f;
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+        }
+        .summary-section {
+            background: #d6e9f5;
+            border-left: 6px solid #30829b;
+            border-radius: 1.8rem;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .math-idea {
+            background: #deedf7;
+            border-left: 8px solid #2a7faa;
+            border-radius: 1.8rem;
+            padding: 1rem 1.8rem;
+            margin: 1rem 0;
+        }
+        .homework-box {
+            background: #d0e5f3;
+            border-radius: 60px;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        .message-box {
+            background: #eef2fa;
+            text-align: center;
+            font-style: italic;
+            border-left: 8px solid #3a9fd5;
+            padding: 1rem 1.8rem;
+            border-radius: 2rem;
+            margin: 1.5rem 0;
+        }
+        .footer-note {
+            text-align: right;
+            color: #33658a;
+            border-top: 2px solid #c0d8ec;
+            padding-top: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .highlight {
+            background: #c5e0d4;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            margin: 0.5rem 0;
+        }
+        /* 动态实验样式 */
+        .experiment-wrap {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            margin-top: 1rem;
+        }
+        .exp-canvas-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px;
+            background: #f8fbff;
+        }
+        .exp-panel {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 1.5rem;
+            border: 1px solid #e2edf5;
+            overflow: hidden;
+        }
+        .exp-panel-title {
+            background: #e8f2fb;
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-bottom: 1px solid #dae9f7;
+            color: #0f4a6e;
+        }
+        canvas.exp-canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #fafcff;
+        }
+        .exp-result {
+            text-align: center;
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            background: #e0f2e9;
+            color: #0b5e2e;
+            margin: 0 16px 16px;
+            border-radius: 30px;
+        }
+        .exp-controls {
+            padding: 12px 16px;
+            background: #fafcff;
+            border-top: 1px solid #e8f0f8;
+        }
+        .ctrl-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .ctrl-row input[type=range] { flex: 1; height: 6px; }
+        .val-badge {
+            background: #eef2ff;
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            min-width: 60px;
+            text-align: center;
+        }
+        @media (max-width: 700px) {
+            .exp-canvas-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>华师版·八年级上册</span>
+        <span>第13章 勾股定理 · 13.1.1（第一课时）</span>
+    </div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">13.1.1 直角三角形三边的关系（第一课时）</div>
+
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>通过观察瓷砖图案，探索直角三角形三边关系</div>
+            <div class="target-item"><span>✔</span>理解勾股定理的内容，能用符号语言表达</div>
+            <div class="target-item"><span>✔</span>能利用勾股定理由已知两边求第三边</div>
+            <div class="target-item"><span>✔</span>了解勾股定理的历史文化背景</div>
+        </div>
+    </div>
+
+    <!-- 引入：正方形瓷砖铺地 -->
+    <div class="intro-card">
+        <p>我们知道直角三角形的内角之间存在一些特殊的关系——一个角为直角，另外两个锐角互余。那么，<strong>直角三角形的三条边之间是否也存在某种特殊关系呢？</strong></p>
+        <p>让我们首先观察正方形瓷砖铺成的地面。</p>
+    </div>
+
+    <!-- 试一试：等腰直角三角形的正方形面积 -->
+    <div class="explore-card">
+        <h4>观察与发现</h4>
+        <p>如图13.1.1，是正方形瓷砖铺成的地面。观察图中着色的三个正方形，<strong>两个小正方形（面积分别为$S_1$、$S_2$）的面积之和等于大正方形（面积为$S_3$）的面积</strong>，即：</p>
+        
+        <!-- 图13.1.1：正方形瓷砖铺地（等腰直角三角形，大正方形在右侧） -->
+        <div class="figure-container" style="margin: 1rem 0;">
+            <svg width="520" height="400" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- 网格背景 (每格50px = 瓷砖) -->
+                <defs>
+                    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                        <path d="M 50 0 L 0 0 0 50" fill="none" stroke="#d0d8e0" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="520" height="400" fill="url(#grid)"/>
+                
+                <!-- 等腰直角三角形ABC：直角在C，AC=BC=100px(2格)
+                     C=(100,250)直角顶点
+                     A=(100,150)向上100px
+                     B=(200,250)向右100px
+                -->
+                
+                <!-- S1正方形（以AC为边，向左外侧画） -->
+                <rect x="0" y="150" width="100" height="100" fill="rgba(230,80,50,0.25)" stroke="#d84315" stroke-width="2.5"/>
+                <text x="50" y="205" fill="#bf360c" font-weight="bold" font-size="18" text-anchor="middle">S₁</text>
+                
+                <!-- S2正方形（以BC为边，向下外侧画） -->
+                <rect x="100" y="250" width="100" height="100" fill="rgba(200,160,0,0.25)" stroke="#e65100" stroke-width="2.5"/>
+                <text x="150" y="310" fill="#e65100" font-weight="bold" font-size="18" text-anchor="middle">S₂</text>
+                
+                <!-- 等腰直角三角形ABC -->
+                <polygon points="100,250 200,250 100,150" fill="rgba(42,127,170,0.18)" stroke="#1565c0" stroke-width="3" stroke-linejoin="round"/>
+                
+                <!-- S3正方形（以斜边AB为边向右侧画，避免与S1、S2重叠）
+                     A=(100,150), B=(200,250), 向量AB=(100,100), |AB|=141.4
+                     右侧外法向量=(100,-100)
+                     四顶点: A(100,150), B(200,250), B+(100,-100)=(300,150), A+(100,-100)=(200,50)
+                -->
+                <polygon points="100,150 200,250 300,150 200,50" fill="rgba(56,142,60,0.22)" stroke="#2e7d32" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="200" y="155" fill="#1b5e20" font-weight="bold" font-size="18" text-anchor="middle">S₃</text>
+                
+                <!-- 顶点标注 -->
+                <circle cx="100" cy="250" r="6" fill="#1565c0"/>
+                <text x="110" y="272" fill="#0d47a1" font-weight="bold" font-size="16">C</text>
+                <circle cx="200" cy="250" r="6" fill="#1565c0"/>
+                <text x="215" y="260" fill="#0d47a1" font-weight="bold" font-size="16">B</text>
+                <circle cx="100" cy="150" r="6" fill="#1565c0"/>
+                <text x="85" y="142" fill="#0d47a1" font-weight="bold" font-size="16">A</text>
+                
+                <!-- 直角符号（在C点） -->
+                <polyline points="100,230 120,230 120,250" fill="none" stroke="#1565c0" stroke-width="2"/>
+            </svg>
+            <div class="figure-caption">图13.1.1 正方形瓷砖铺成的地面</div>
+        </div>
+        
+        <div class="theorem-box" style="font-size:1.1rem; margin: 0.8rem 0;">
+            $$S_1 + S_2 = S_3 \quad \text{即} \quad a^2 + b^2 = c^2$$
+        </div>
+        <p>这说明在等腰直角三角形中，两直角边的平方和等于斜边的平方。</p>
+        <p style="margin-top: 0.5rem;">那么在一般的直角三角形中，两直角边的平方和是否等于斜边的平方呢？</p>
+    </div>
+
+    <!-- 试一试：非等腰直角三角形 -->
+    <div class="explore-card">
+        <h4>试一试</h4>
+        <p>观察图13.1.2，如果每一小方格表示$1\ \text{cm}^2$，那么可以得到：</p>
+        
+        <!-- 图13.1.2：3-4-5直角三角形及三边正方形（大正方形在右侧） -->
+        <div class="figure-container" style="margin: 1rem 0;">
+            <svg width="600" height="450" viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                <!-- 网格背景 (每格40px = 1cm) -->
+                <defs>
+                    <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d8e0e8" stroke-width="0.8"/>
+                    </pattern>
+                </defs>
+                <rect width="600" height="450" fill="url(#grid2)"/>
+                
+                <!-- 3-4-5直角三角形：直角在C
+                     设每格=40px, a=3格=120px(竖直), b=4格=160px(水平)
+                     C=(120,280)直角顶点
+                     A=(120,160)向上a=120px (3cm)
+                     B=(280,280)向右b=160px (4cm)
+                     斜边c = √(120²+160²) = 200px (5cm)
+                -->
+                
+                <!-- S1正方形（以AC=a=3为边，向左外侧画） -->
+                <rect x="0" y="160" width="120" height="120" fill="rgba(230,80,50,0.22)" stroke="#d84315" stroke-width="2.5"/>
+                <text x="60" y="225" fill="#bf360c" font-weight="bold" font-size="18" text-anchor="middle">S₁</text>
+                <text x="60" y="248" fill="#d84315" font-size="13" text-anchor="middle">=9格</text>
+                
+                <!-- S2正方形（以BC=b=4为边，向下外侧画） -->
+                <rect x="120" y="280" width="160" height="160" fill="rgba(200,160,0,0.20)" stroke="#e65100" stroke-width="2.5"/>
+                <text x="200" y="365" fill="#e65100" font-weight="bold" font-size="18" text-anchor="middle">S₂</text>
+                <text x="200" y="388" fill="#e65100" font-size="13" text-anchor="middle">=16格</text>
+                
+                <!-- 直角三角形ABC本身 -->
+                <polygon points="120,280 280,280 120,160" fill="rgba(42,127,170,0.15)" stroke="#1565c0" stroke-width="3" stroke-linejoin="round"/>
+                
+                <!-- S3正方形（以斜边AB=c=5为边向右侧画，避免与S1、S2重叠）
+                     A=(120,160), B=(280,280), 向量AB=(160,120), |AB|=200
+                     右侧外法向量=(120,-160)
+                     四顶点: A(120,160), B(280,280), B+(120,-160)=(400,120), A+(120,-160)=(240,0)
+                -->
+                <polygon points="120,160 280,280 400,120 240,0" fill="rgba(56,142,60,0.20)" stroke="#2e7d32" stroke-width="2.5" stroke-linejoin="round"/>
+                <text x="260" y="145" fill="#1b5e20" font-weight="bold" font-size="18" text-anchor="middle">S₃</text>
+                <text x="260" y="168" fill="#2e7d32" font-size="13" text-anchor="middle">=25格</text>
+                
+                <!-- 顶点标注 -->
+                <circle cx="120" cy="280" r="6" fill="#1565c0"/>
+                <text x="102" y="300" fill="#0d47a1" font-weight="bold" font-size="15">C</text>
+                <circle cx="280" cy="280" r="6" fill="#1565c0"/>
+                <text x="295" y="298" fill="#0d47a1" font-weight="bold" font-size="15">B</text>
+                <circle cx="120" cy="160" r="6" fill="#1565c0"/>
+                <text x="98" y="158" fill="#0d47a1" font-weight="bold" font-size="15">A</text>
+                
+                <!-- 直角符号（在C点） -->
+                <polyline points="120,258 142,258 142,280" fill="none" stroke="#1565c0" stroke-width="2"/>
+                
+                <!-- 边长标注 -->
+                <text x="85" y="225" fill="#d84315" font-weight="bold" font-size="14">3 cm</text>
+                <text x="195" y="272" fill="#e65100" font-weight="bold" font-size="14">4 cm</text>
+                <text x="215" y="205" fill="#2e7d32" font-weight="bold" font-size="14">5 cm</text>
+            </svg>
+            <div class="figure-caption">图13.1.2 直角三角形三边上的正方形</div>
+        </div>
+        
+        <p>正方形 $S_1$ 的面积 = <strong>$9\ \text{cm}^2$</strong></p>
+        <p>正方形 $S_2$ 的面积 = <strong>$16\ \text{cm}^2$</strong></p>
+        <p>正方形 $S_3$ 的面积 = <strong>$25\ \text{cm}^2$</strong></p>
+        <p>我们发现正方形面积之间的关系是：$S_1 + S_2 = S_3$，即 $9 + 16 = 25$。</p>
+        <p>由此，我们得出直角三角形三边长之间存在的关系是：<strong>$3^2 + 4^2 = 5^2$</strong>。</p>
+
+        <!-- 动态交互实验 -->
+        <div style="margin-top: 1rem;">
+            <p style="font-size: 0.95rem; margin-bottom: 0.5rem;">⬇ 拖动滑块调整直角三角形的两直角边，观察三边的面积关系：</p>
+            <div class="experiment-wrap">
+                <div class="exp-canvas-row">
+                    <div class="exp-panel" style="min-width:360px; flex:2;">
+                        <div class="exp-panel-title">📐 直角三角形与三边图形（拓展演示）</div>
+                        <!-- 图形类型选择按钮 -->
+                        <div style="padding: 12px 16px; background: #f0f7ff; border-bottom: 1px solid #dae9f7; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                            <span style="font-weight:700; color:#0f4a6e; font-size:0.9rem; margin-right:5px;">图形类型：</span>
+                            <button onclick="setShapeType('square')" id="btnSquare" class="interact-btn" style="background:#2675a8; color:white; box-shadow:none; border-radius:20px; padding: 6px 16px; font-size:0.85rem;">⬛ 正方形</button>
+                            <button onclick="setShapeType('triangle')" id="btnTriangle" class="interact-btn" style="background:#ecf3f9; color:#014682; box-shadow:0 3px 0 #9fbede; border-radius:20px; padding: 6px 16px; font-size:0.85rem;">🔺 正三角形</button>
+                            <button onclick="setShapeType('semicircle')" id="btnSemicircle" class="interact-btn" style="background:#ecf3f9; color:#014682; box-shadow:0 3px 0 #9fbede; border-radius:20px; padding: 6px 16px; font-size:0.85rem;">🌙 半圆</button>
+                        </div>
+                        <canvas class="exp-canvas" id="pyCanvas" width="680" height="520"></canvas>
+                    </div>
+                    <div class="exp-panel" style="min-width:200px; flex:1;">
+                        <div class="exp-panel-title">📊 数据验证</div>
+                        <div style="padding: 16px; font-size: 1.1rem;">
+                            <div style="margin-bottom:10px;">直角边 $a$ = <span id="aVal" style="font-weight:700; color:#2a7faa;">3</span></div>
+                            <div style="margin-bottom:10px;">直角边 $b$ = <span id="bVal" style="font-weight:700; color:#e67e22;">4</span></div>
+                            <div style="margin-bottom:10px;">斜边 $c$ = <span id="cVal" style="font-weight:700; color:#3a8b4f;">5.00</span></div>
+                            <hr style="border: 1px solid #e0eaf3; margin: 10px 0;">
+                            <div style="margin-bottom:8px;"><span id="labelA">$a^2$</span> = <span id="a2Val">9.00</span></div>
+                            <div style="margin-bottom:8px;"><span id="labelB">$b^2$</span> = <span id="b2Val">16.00</span></div>
+                            <div style="margin-bottom:8px;"><span id="labelC">$c^2$</span> = <span id="c2Val">25.00</span></div>
+                            <hr style="border: 1px solid #e0eaf3; margin: 10px 0;">
+                            <div id="verifyResult" style="background:#d9f0e3; border-radius:1rem; padding:10px 14px; font-weight:700; color:#0b5e2e; font-size:1.05rem;">
+                                ✅ $S_a + S_b = S_c$
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exp-controls">
+                    <div class="ctrl-row">
+                        <span style="min-width:80px;">直角边 $a$</span>
+                        <input type="range" id="sliderA" min="1" max="10" step="0.5" value="3">
+                        <span class="val-badge" id="dispA">3.0</span>
+                    </div>
+                    <div class="ctrl-row">
+                        <span style="min-width:80px;">直角边 $b$</span>
+                        <input type="range" id="sliderB" min="1" max="10" step="0.5" value="4">
+                        <span class="val-badge" id="dispB">4.0</span>
+                    </div>
+                </div>
+                <div class="exp-result" id="expResultBar" style="font-size: 0.9rem;">
+                    勾股定理：以三边为边长的正方形面积满足 a² + b² = c²
+                </div>
+                <div id="shapeInfo" style="text-align:center; padding: 8px 16px; background:#fff8e1; border-top:1px solid #f0d875; font-size:0.85rem; color:#7a3d00; display:none;">
+                    💡 拓展：在任意直角三角形的三边上分别作等边三角形/半圆，两个小图形的面积之和等于大图形的面积！
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 做一做 -->
+    <div class="explore-card">
+        <h4>做一做</h4>
+        <p>作出两条直角边分别为 $3\ \text{cm}$ 和 $4\ \text{cm}$ 的直角三角形，然后用刻度尺量出斜边的长，并验证上述关系式对于这个直角三角形是否成立。</p>
+        <p style="margin-top: 0.5rem;">对于任意一个直角三角形，它的三边长之间是否都有这样的关系呢？</p>
+    </div>
+
+    <!-- 赵爽弦图引入 -->
+    <div class="intro-card">
+        <p>让我们回到导入语中所提到的2002年国际数学家大会的会标——那个像旋转风车的会徽（图13.1.3→图13.1.4）。</p>
+        <p>它是由<strong>4个全等的直角三角形</strong>和<strong>1个小正方形</strong>组成的图案（图13.1.4）。记直角三角形的两条直角边长分别为 $a$、$b$，斜边长为 $c$。</p>
+        
+        <!-- 图13.1.3和13.1.4：赵爽弦图 -->
+        <div class="figure-container" style="margin: 1rem 0;">
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; align-items: center;">
+                <!-- 图13.1.3：ICM 2002 会徽 -->
+                <div style="text-align: center;">
+                    <img src="13.1.3.png" alt="图13.1.3 ICM 2002会徽" style="max-width: 280px; height: auto; border: 2px solid #cde0f0; border-radius: 8px;">
+                    <div style="margin-top: 0.5rem; color: #1e5670; font-size: 0.9rem;">图13.1.3</div>
+                </div>
+                
+                <span style="font-size: 2rem; color: #bbb;">→</span>
+                
+                <!-- 图13.1.4：赵爽弦图标注版 -->
+                <div style="text-align: center;">
+                    <img src="13.1.4.png" alt="图13.1.4 弦图各部分标注" style="max-width: 320px; height: auto; border: 2px solid #cde0f0; border-radius: 8px;">
+                    <div style="margin-top: 0.5rem; color: #1e5670; font-size: 0.9rem;">图13.1.4</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 赵爽弦图推导 -->
+    <div class="explore-card">
+        <h4>概括推导（赵爽弦图）</h4>
+        <p>于是图13.1.4中各个部分的面积之间有如下的等式：</p>
+        <div class="theorem-box" style="font-size: 1rem; text-align: left; margin: 0.8rem 0;">
+            <p>大正方形面积 = 4个直角三角形面积 + 小正方形面积</p>
+            $$c^2 = 4 \times \frac{1}{2}ab + (b-a)^2 = 2ab + b^2 - 2ab + a^2$$
+            <p>化简得：</p>
+            $$\boxed{a^2 + b^2 = c^2}$$
+        </div>
+        <p>由上面的探索与验证，可以发现：<strong>对于任意的直角三角形，如果它的两条直角边分别为 $a$、$b$，斜边为 $c$，那么一定有 $a^2 + b^2 = c^2$。</strong></p>
+        <p>这种关系，我们称之为<strong>勾股定理</strong>，这就是我国古代所发现的勾股定理。</p>
+    </div>
+
+    <!-- 勾股定理 -->
+    <div class="fact-card">
+        <h4>勾股定理</h4>
+        <div class="highlight">
+            <strong>直角三角形两直角边的平方和等于斜边的平方。</strong>
+        </div>
+        <p style="margin-top: 0.8rem;">即：如果直角三角形的两条直角边长分别为 $a$、$b$，斜边长为 $c$，那么</p>
+        <div class="theorem-box">$$a^2 + b^2 = c^2$$</div>
+        <p>几何语言：在 $\triangle ABC$ 中，$\angle C = 90°$，则 $AC^2 + BC^2 = AB^2$。</p>
+    </div>
+
+    <!-- 读一读：勾股定理历史文化 -->
+    <div class="reading-section">
+        <h4>📖 读一读——勾股定理的文化背景</h4>
+        <p>勾股定理揭示了直角三角形三边之间的关系。我国古代，人们把直角三角形中较短的直角边称为"勾"，较长的直角边称为"股"，斜边称为"弦"。</p>
+        <p><strong>弦图</strong>最早是由三国时期的数学家<strong>赵爽</strong>在为《周髀算经》作注时给出的，它标志着中国古代伟大的数学成就。2002年在北京召开的国际数学家大会（ICM 2002）的会徽，其图案正是由"弦图"演变而来。</p>
+        <p>在西方，这一定理被称为<strong>毕达哥拉斯定理</strong>（Pythagorean Theorem），早在几千年前，我国古代劳动人民就已经发现并开始应用勾股定理了。勾股定理有几百种证明方法，体现了数学思想方法的多样性。</p>
+    </div>
+
+    <!-- 例1：基本应用 -->
+    <div class="example-card">
+        <h4>例1</h4>
+        <p>在 Rt$\triangle ABC$ 中，$\angle B = 90°$，$AB = 6$，$BC = 8$。求 $AC$ 的长。</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解题过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong> 根据勾股定理，可得</p>
+            <p style="text-align: center; margin: 0.5rem 0;">$$AB^2 + BC^2 = AC^2$$</p>
+            <p style="margin: 0.3rem 0;">所以 $$AC = \sqrt{AB^2 + BC^2} = \sqrt{6^2 + 8^2} = \sqrt{36 + 64} = \sqrt{100} = 10$$。</p>
+        </div>
+    </div>
+
+    <!-- 课堂练习 -->
+    <div class="exercise-section">
+        <h3 style="color:#0a3e5f; margin-bottom:1.2rem;">✏️ 练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 在 Rt$\triangle ABC$ 中，$AB = c$，$BC = a$，$AC = b$，$\angle C = 90°$。<br>
+            (1) 若 $a = 6$，$c = 10$，求 $b$；<br>
+            (2) 若 $a = 24$，$c = 25$，求 $b$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>(1) 根据勾股定理：$b^2 = c^2 - a^2 = 10^2 - 6^2 = 100 - 36 = 64$<br>
+                所以 $b = \sqrt{64} = 8$。</p>
+                <p>(2) 根据勾股定理：$b^2 = c^2 - a^2 = 25^2 - 24^2 = 625 - 576 = 49$<br>
+                所以 $b = \sqrt{49} = 7$。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如果一个直角三角形的两条边长分别是 $3\ \text{cm}$ 和 $4\ \text{cm}$，那么这个三角形的周长是多少厘米？（精确到 $0.1\ \text{cm}$）</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p><strong>解：</strong><br>
+                分两种情况讨论：</p>
+                <p>情况一：如果 3 cm 和 4 cm 都是直角边<br>
+                斜边 $c = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$ (cm)<br>
+                周长 $= 3 + 4 + 5 = 12$ (cm)</p>
+                <p>情况二：如果 4 cm 是斜边，3 cm 是直角边<br>
+                另一直角边 $b = \sqrt{4^2 - 3^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2.65$ (cm)<br>
+                周长 $\approx 3 + 4 + 2.65 = 9.65 \approx 9.7$ (cm)</p>
+                <p><strong>答：</strong>这个三角形的周长是 12 cm 或 9.7 cm（精确到 0.1 cm）。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="summary-section">
+        <h3 style="color:#0f5669; border-left:6px solid #30829b; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>探索过程：</strong>从等腰直角三角形的正方形面积关系出发，推广到一般直角三角形。</div>
+        <div>• <strong>勾股定理：</strong>直角三角形两直角边的平方和等于斜边的平方，即 $a^2 + b^2 = c^2$。</div>
+        <div>• <strong>弦图证明：</strong>利用大正方形面积 = 4个直角三角形面积 + 中心小正方形面积，严格证明了勾股定理。</div>
+        <div>• <strong>应用：</strong>已知直角三角形任意两边，可用勾股定理求第三边。</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数形结合：</strong>用正方形面积关系直观理解代数等式 $a^2+b^2=c^2$。<br>
+        <strong>归纳推理：</strong>从特殊（等腰直角三角形）到一般（任意直角三角形）。<br>
+        <strong>文化传承：</strong>勾股定理体现了中国古代数学的辉煌成就。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本习题13.1 A组第1、2题；用勾股定理验证一组勾股数，写出验证过程。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 勾三股四弦必五，两平方和等弦方；千年定理证万代，数学智慧耀华章。✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第13章 13.1.1 直角三角形三边的关系（第一课时）</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        const box = document.getElementById(id);
+        if (box) box.classList.toggle('show-answer');
+    }
+
+    // 动态实验：直角三角形与三边图形（拓展版）
+    (function() {
+        const canvas = document.getElementById('pyCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const W = 680, H = 520;
+        canvas.width = W; canvas.height = H;
+
+        let a = 3, b = 4;
+        let shapeType = 'square';  // 'square' | 'triangle' | 'semicircle'
+
+        // 切换图形类型
+        window.setShapeType = function(type) {
+            shapeType = type;
+
+            // 更新按钮样式
+            var btns = ['btnSquare','btnTriangle','btnSemicircle'];
+            var types = ['square','triangle','semicircle'];
+            btns.forEach(function(id,i){
+                var el=document.getElementById(id);
+                if(type===types[i]){
+                    el.style.background='#2675a8'; el.style.color='white'; el.style.boxShadow='none';
+                } else {
+                    el.style.background='#ecf3f9'; el.style.color='#014682'; el.style.boxShadow='0 3px 0 #9fbede';
+                }
+            });
+
+            // 更新标签和提示信息
+            var la=document.getElementById('labelA'), lb=document.getElementById('labelB'), lc=document.getElementById('labelC');
+            var bar=document.getElementById('expResultBar'), info=document.getElementById('shapeInfo');
+
+            if(type==='square'){
+                la.innerHTML='$a^2$'; lb.innerHTML='$b^2$'; lc.innerHTML='$c^2$';
+                bar.textContent='勾股定理：以三边为边长的正方形面积满足 a² + b² = c²';
+                info.style.display='none';
+            }else if(type==='triangle'){
+                la.innerHTML='$S_a$'; lb.innerHTML='$S_b$'; lc.innerHTML='$S_c$';
+                bar.textContent='拓展：以三边为边长的等边三角形，Sa + Sb = Sc';
+                info.style.display='block';
+            }else{
+                la.innerHTML='$S_a$'; lb.innerHTML='$S_b$'; lc.innerHTML='$S_c$';
+                bar.textContent='拓展：以三边为直径的半圆，Sa + Sb = Sc（希波克拉底定理）';
+                info.style.display='block';
+            }
+
+            draw();
+            if(window.MathJax) MathJax.typesetPromise?.([la,lb,lc]);
+        };
+
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+            var c_len = Math.sqrt(a * a + b * b);
+
+            // 缩放比例
+            var baseMax=10, curMax=Math.max(a,b,c_len);
+            var smMax=curMax*0.55+baseMax*0.45;
+            var scale=Math.min(32,(W-200)/smMax,(H-180)/smMax);
+
+            // 直角顶点
+            var ox=W*0.42, oy=H*0.58;
+
+            // 三角形顶点（C=直角,A=a端,B=b端）
+            var PtC={x:ox,y:oy};
+            var PtB={x:ox+b*scale,y:oy};
+            var PtA={x:ox,y:oy+a*scale};
+
+            // 计算各图形面积
+            var Sa,Sb,Sc;
+            if(shapeType==='square'){
+                Sa=a*a; Sb=b*b; Sc=c_len*c_len;
+            }else if(shapeType==='triangle'){
+                Sa=(Math.sqrt(3)/4)*a*a;
+                Sb=(Math.sqrt(3)/4)*b*b;
+                Sc=(Math.sqrt(3)/4)*c_len*c_len;
+            }else{
+                Sa=Math.PI*a*a/8;
+                Sb=Math.PI*b*b/8;
+                Sc=Math.PI*c_len*c_len/8;
+            }
+
+            // ====== 画直角三角形 ======
+            ctx.beginPath();
+            ctx.moveTo(PtC.x,PtC.y); ctx.lineTo(PtB.x,PtB.y); ctx.lineTo(PtA.x,PtA.y);
+            ctx.closePath();
+            ctx.fillStyle='rgba(42,127,170,0.18)'; ctx.fill();
+            ctx.strokeStyle='#2a7faa'; ctx.lineWidth=2.5; ctx.stroke();
+
+            // 直角符号
+            ctx.strokeStyle='#2a7faa'; ctx.lineWidth=1.5;
+            ctx.beginPath(); ctx.moveTo(PtC.x+12,PtC.y); ctx.lineTo(PtC.x+12,PtC.y+12); ctx.lineTo(PtC.x,PtC.y+12); ctx.stroke();
+
+            // 顶点标签
+            ctx.font='bold 18px Segoe UI'; ctx.fillStyle='#0f4a6e';
+            ctx.fillText('C',PtC.x-20,PtC.y+5);
+            ctx.fillText('B',PtB.x+8,PtB.y-6);
+            ctx.fillText('A',PtA.x-20,PtA.y+6);
+
+            // ====== 根据类型绘制图形 ======
+            if(shapeType==='square'){
+                // a边正方形(向左)
+                ctx.fillStyle='rgba(230,100,50,0.22)'; ctx.fillRect(PtC.x-a*scale,PtC.y,a*scale,a*scale);
+                ctx.strokeStyle='#e05020'; ctx.lineWidth=2; ctx.strokeRect(PtC.x-a*scale,PtC.y,a*scale,a*scale);
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#b03010';
+                ctx.fillText(Sa.toFixed(1),PtC.x-a*scale+4,PtC.y+a*scale/2+6);
+
+                // b边正方形(向上)
+                ctx.fillStyle='rgba(230,180,0,0.22)'; ctx.fillRect(PtC.x,PtC.y-b*scale,b*scale,b*scale);
+                ctx.strokeStyle='#c89000'; ctx.lineWidth=2; ctx.strokeRect(PtC.x,PtC.y-b*scale,b*scale,b*scale);
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#8a6000';
+                ctx.fillText(Sb.toFixed(1),PtC.x+b*scale/4,PtC.y-b*scale/2+6);
+
+                // c边正方形(向外)
+                var dx=PtB.x-PtA.x, dy=PtB.y-PtA.y, ln=Math.sqrt(dx*dx+dy*dy);
+                var ux=dx/ln, uy=dy/ln, px=-uy, py=ux;
+                ctx.beginPath();
+                ctx.moveTo(PtA.x,PtA.y); ctx.lineTo(PtB.x,PtB.y);
+                ctx.lineTo(PtB.x+px*c_len*scale,PtB.y+py*c_len*scale);
+                ctx.lineTo(PtA.x+px*c_len*scale,PtA.y+py*c_len*scale);
+                ctx.closePath();
+                ctx.fillStyle='rgba(30,160,80,0.22)'; ctx.fill();
+                ctx.strokeStyle='#1a8040'; ctx.lineWidth=2; ctx.stroke();
+                var mid={x:(PtA.x+PtB.x+px*c_len*scale)/2, y:(PtA.y+PtB.y+py*c_len*scale)/2};
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#0b5e2e';
+                ctx.fillText(Sc.toFixed(1),mid.x+6,mid.y+5);
+
+            } else if(shapeType==='triangle'){
+                // a边等边三角形：以AC为边，向左侧画
+                // AC竖直向上，外法向=(-1,0)，第三个顶点 = AC中点 + (-h, 0)
+                var ha=(Math.sqrt(3)/2)*a*scale;
+                var aMidX = PtC.x, aMidY = (PtC.y + PtA.y) / 2;
+                ctx.beginPath();
+                ctx.moveTo(PtC.x, PtC.y);           // C点
+                ctx.lineTo(PtA.x, PtA.y);           // A点
+                ctx.lineTo(aMidX - ha, aMidY);      // 左侧顶点
+                ctx.closePath();
+                ctx.fillStyle='rgba(220,60,60,0.25)'; ctx.fill(); ctx.strokeStyle='#d32f2f'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#b71c1c';
+                ctx.fillText(Sa.toFixed(2), aMidX - ha - 5, aMidY + 6);
+
+                // b边等边三角形：以BC为边，向上侧画（与正方形模式方向一致）
+                // BC从PtC到PtB水平向右，向上法向=(0,-1)，第三个顶点 = BC中点 + (0, -h)
+                var hb=(Math.sqrt(3)/2)*b*scale;
+                var bMidX = (PtC.x + PtB.x) / 2, bMidY = PtC.y;
+                ctx.beginPath();
+                ctx.moveTo(PtC.x, PtC.y);             // C点
+                ctx.lineTo(PtB.x, PtB.y);             // B点
+                ctx.lineTo(bMidX, bMidY - hb);        // 上方顶点
+                ctx.closePath();
+                ctx.fillStyle='rgba(76,175,80,0.25)'; ctx.fill(); ctx.strokeStyle='#388e3c'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#1b5e20';
+                ctx.fillText(Sb.toFixed(2), bMidX - 12, bMidY - hb - 8);
+
+                // c边等边三角形：以AB斜边为边，向外画
+                var dx2=PtB.x-PtA.x, dy2=PtB.y-PtA.y, ln2=Math.sqrt(dx2*dx2+dy2*dy2);
+                var ux2=dx2/ln2, uy2=dy2/ln2;
+                var px2=-uy2, py2=ux2;  // 外法向
+                var hc=(Math.sqrt(3)/2)*c_len*scale;
+                var midAB={x:(PtA.x+PtB.x)/2, y:(PtA.y+PtB.y)/2};
+                var topC={x:midAB.x+px2*hc, y:midAB.y+py2*hc};
+                ctx.beginPath();
+                ctx.moveTo(PtA.x,PtA.y); ctx.lineTo(PtB.x,PtB.y); ctx.lineTo(topC.x,topC.y);
+                ctx.closePath();
+                ctx.fillStyle='rgba(33,150,243,0.25)'; ctx.fill(); ctx.strokeStyle='#1976d2'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#0d47a1';
+                ctx.fillText(Sc.toFixed(2), topC.x-8, topC.y-8);
+
+            } else { // semicircle
+                // a边半圆：以AC(竖直)为直径，向左外侧画
+                var ra=a*scale/2;
+                var cxa=PtC.x, cya=PtC.y + a*scale/2;
+                ctx.beginPath();
+                ctx.arc(cxa, cya, ra, Math.PI/2, -Math.PI/2, false);
+                ctx.closePath();
+                ctx.fillStyle='rgba(233,30,99,0.25)'; ctx.fill(); ctx.strokeStyle='#c2185b'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#880e4f';
+                ctx.fillText(Sa.toFixed(2), cxa - ra - 8, cya + 4);
+
+                // b边半圆：以BC(水平)为直径，向下外侧画
+                var rb=b*scale/2;
+                var cxb=PtC.x + b*scale/2, cyb=PtC.y;
+                ctx.beginPath();
+                ctx.arc(cxb, cyb, rb, -Math.PI, 0, false);
+                ctx.closePath();
+                ctx.fillStyle='rgba(156,39,176,0.25)'; ctx.fill(); ctx.strokeStyle='#7b1fa2'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#4a148c';
+                ctx.fillText(Sb.toFixed(2), cxb - 10, cyb + rb + 18);
+
+                // c边半圆：以AB斜边为直径，向外侧画
+                var dx3=PtB.x-PtA.x, dy3=PtB.y-PtA.y, ln3=Math.sqrt(dx3*dx3+dy3*dy3);
+                var rc=c_len*scale/2;
+                var cxc=(PtA.x+PtB.x)/2, cyc=(PtA.y+PtB.y)/2;
+                var ba=Math.atan2(dy3,dx3);
+                ctx.beginPath();
+                ctx.arc(cxc, cyc, rc, ba, ba+Math.PI, false);
+                ctx.closePath();
+                ctx.fillStyle='rgba(0,188,212,0.25)'; ctx.fill(); ctx.strokeStyle='#00838f'; ctx.lineWidth=2; ctx.stroke();
+                ctx.font='bold 15px Segoe UI'; ctx.fillStyle='#006064';
+                var labAngle = ba + Math.PI/2;
+                ctx.fillText(Sc.toFixed(2), cxc + (rc+14)*Math.cos(labAngle) - 10, cyc + (rc+14)*Math.sin(labAngle) + 5);
+            }
+
+            // 边长标注
+            ctx.font='bold 16px Segoe UI';
+            ctx.fillStyle='#e05020'; ctx.fillText('a='+a.toFixed(1),PtC.x-35,PtC.y+a*scale/2+5);
+            ctx.fillStyle='#c89000'; ctx.fillText('b='+b.toFixed(1),PtC.x+b*scale/2-15,PtC.y-15);
+            ctx.fillStyle='#1a8040'; var mAB={x:(PtA.x+PtB.x)/2,y:(PtA.y+PtB.y)/2};
+            ctx.fillText('c≈'+c_len.toFixed(2),mAB.x+15,mAB.y+5);
+
+            // 更新数值面板
+            document.getElementById('aVal').textContent=a.toFixed(1);
+            document.getElementById('bVal').textContent=b.toFixed(1);
+            document.getElementById('cVal').textContent=c_len.toFixed(2);
+            document.getElementById('a2Val').textContent=Sa.toFixed(2);
+            document.getElementById('b2Val').textContent=Sb.toFixed(2);
+            document.getElementById('c2Val').textContent=Sc.toFixed(2);
+
+            var diff=Math.abs(Sa+Sb-Sc);
+            var vr=document.getElementById('verifyResult');
+            if(diff<0.05){
+                vr.innerHTML='\u2705 $S_a + S_b = S_c$';
+                vr.style.background='#d9f0e3'; vr.style.color='#0b5e2e';
+            } else {
+                vr.innerHTML='\u26A0\uFE0F \u5DEE\u5F02: '+diff.toFixed(4);
+                vr.style.background='#fff3cd'; vr.style.color='#7a3d00';
+            }
+            if(window.MathJax) MathJax.typesetPromise?.([vr]);
+        }
+
+        // 滑块事件
+        document.getElementById('sliderA').addEventListener('input',function(){
+            a=parseFloat(this.value);
+            document.getElementById('dispA').textContent=a.toFixed(1);
+            draw();
+        });
+        document.getElementById('sliderB').addEventListener('input',function(){
+            b=parseFloat(this.value);
+            document.getElementById('dispB').textContent=b.toFixed(1);
+            draw();
+        });
+
+        // 初始化
+        setShapeType('square');
+    })();
+</script>
+</body>
+</html>

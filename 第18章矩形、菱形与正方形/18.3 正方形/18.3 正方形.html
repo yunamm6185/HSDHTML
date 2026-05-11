@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+    <title>18.3 正方形 | 华师版·八年级下册</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.body, {
+                delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+                throwOnError: false, strict: false
+            });
+            initCanvases();
+        });
+        function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+            if (el.style.display === 'block') el.classList.add('show-answer'); else el.classList.remove('show-answer');
+        }
+        function initCanvases() {
+            drawSquare(); drawFig1831(); drawRelation(); drawPrac1(); drawPrac3a(); drawPrac3b();
+        }
+        /* 正方形性质图 */
+        function drawSquare() {
+            const c = document.getElementById('cSquare'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:120,y:30}, B = {x:120,y:160}, C = {x:250,y:160}, D = {x:250,y:30};
+            const O = {x:185,y:95};
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            ctx.setLineDash([5,4]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#1a3a5c'; ctx.font = 'bold 18px STKaiti,KaiTi';
+            ctx.fillText('A', A.x-22, A.y+6); ctx.fillText('B', B.x-22, B.y+6);
+            ctx.fillText('C', C.x+6, C.y+6); ctx.fillText('D', D.x+6, D.y-6);
+            ctx.fillStyle = '#555'; ctx.font = '15px sans-serif';
+            ctx.fillText('O', O.x-6, O.y+20);
+            ctx.fillStyle = '#a82035';
+            ctx.beginPath(); ctx.arc(O.x, O.y, 4, 0, Math.PI*2); ctx.fill();
+        }
+        /* 图18.3.1 例1 */
+        function drawFig1831() {
+            const c = document.getElementById('cFig1831'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const A = {x:120,y:30}, B = {x:120,y:160}, C = {x:250,y:160}, D = {x:250,y:30};
+            const O = {x:185,y:95};
+            // 正方形
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 对角线
+            ctx.setLineDash([5,4]); ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.8;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(C.x,C.y); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(B.x,B.y); ctx.lineTo(D.x,D.y); ctx.stroke();
+            ctx.setLineDash([]);
+            // 直角符号（∠DOC=90°）
+            //ctx.strokeStyle = '#a82035'; ctx.lineWidth = 1.8;
+            //ctx.beginPath(); ctx.moveTo(O.x+10, O.y+10); ctx.lineTo(O.x+20, O.y); ctx.lineTo(O.x+10, O.y-10); ctx.stroke();
+            // 标注
+            ctx.fillStyle = '#1a3a5c'; ctx.font = 'bold 24px STKaiti,KaiTi';
+            ctx.fillText('A', A.x-22, A.y+6); ctx.fillText('B', B.x-22, B.y+6);
+            ctx.fillText('C', C.x+6, C.y+6); ctx.fillText('D', D.x+6, D.y-6);
+            ctx.fillStyle = '#555'; ctx.font = '20px sans-serif';
+            ctx.fillText('O', O.x-6, O.y+25);
+            ctx.fillStyle = '#a82035';
+            ctx.beginPath(); ctx.arc(O.x, O.y, 4, 0, Math.PI*2); ctx.fill();
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('图18.3.1', w/2-30, h-8);
+        }
+        /* 图18.3.2 文氏图 */
+        function drawRelation() {
+            const c = document.getElementById('cRelation'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const cx = w/2, cy = h/2 + 10;
+            // 四边形（最外层椭圆）
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.ellipse(cx, cy, 220, 130, 0, 0, Math.PI*2); ctx.stroke();
+            ctx.fillStyle = '#1a3a5c'; ctx.font = 'bold 18px STKaiti,KaiTi';
+            ctx.fillText('四边形', cx-30, cy-105);
+            // 平行四边形（第二层椭圆）
+            ctx.strokeStyle = '#2563a0'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.ellipse(cx, cy, 160, 95, 0, 0, Math.PI*2); ctx.stroke();
+            ctx.fillStyle = '#2563a0'; ctx.fillText('平行四边形', cx-45, cy-70);
+            // 矩形（左圆）
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(cx-55, cy+10, 65, 0, Math.PI*2); ctx.stroke();
+            ctx.fillStyle = '#a82035'; ctx.fillText('矩形', cx-75, cy+10);
+            // 菱形（右圆）
+            ctx.strokeStyle = '#0d6b4a'; ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(cx+55, cy+10, 65, 0, Math.PI*2); ctx.stroke();
+            ctx.fillStyle = '#0d6b4a'; ctx.fillText('菱形', cx+45, cy+10);
+            // 正方形（交集）
+            ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 16px STKaiti,KaiTi';
+            ctx.fillText('正', cx-10, cy-2);
+            ctx.fillText('方', cx-10, cy+14);
+            ctx.fillText('形', cx-10, cy+30);
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('图18.3.2', w/2-30, h-8);
+        }
+        /* 练习1 折纸图 */
+        function drawPrac1() {
+            const c = document.getElementById('cPrac1'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            // 矩形纸片 ABCD（宽>高）
+            const A = {x:40,y:30}, B = {x:40,y:130}, C = {x:280,y:130}, D = {x:280,y:30};
+            // 折叠：将D折到AB边上某点E，折痕为对角线方向
+            // 简化：画一个矩形，左侧阴影三角形表示折叠后的重叠部分
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.lineTo(D.x,D.y); ctx.closePath(); ctx.stroke();
+            // 折叠线（从A到BC上某点）
+            const F = {x:280,y:30}; // 原D点
+            const E = {x:40,y:30};  // 折到A？不，课本是左上角折到对边
+            // 重新理解：矩形ABCD，将角A折到边CD上（或角D折到边AB上），形成折痕
+            // 课本图中显示：左上角折下，折痕从左到右下，阴影在左侧
+            const P = {x:40,y:30}, Q = {x:160,y:130}; // 折痕PQ
+            ctx.strokeStyle = '#a82035'; ctx.lineWidth = 2;
+            ctx.setLineDash([5,4]);
+            ctx.beginPath(); ctx.moveTo(P.x,P.y); ctx.lineTo(Q.x,Q.y); ctx.stroke();
+            ctx.setLineDash([]);
+            // 阴影三角形（左侧折叠部分）
+            ctx.fillStyle = 'rgba(26,58,92,0.15)';
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(Q.x,Q.y); ctx.closePath(); ctx.fill();
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(Q.x,Q.y); ctx.stroke();
+            // 标注
+            ctx.fillStyle = '#1a3a5c'; ctx.font = 'bold 16px STKaiti,KaiTi';
+            ctx.fillText('A', A.x-18, A.y+6); ctx.fillText('B', B.x-18, B.y+6);
+            ctx.fillText('C', C.x+6, C.y+6); ctx.fillText('D', D.x+6, D.y-6);
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('（第1题）', 110, h-8);
+        }
+        /* 练习3 图① 2×2方格 */
+        function drawPrac3a() {
+            const c = document.getElementById('cPrac3a'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const s = 55, ox = 50, oy = 20;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            for (let i = 0; i <= 2; i++) {
+                ctx.beginPath(); ctx.moveTo(ox, oy+i*s); ctx.lineTo(ox+2*s, oy+i*s); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(ox+i*s, oy); ctx.lineTo(ox+i*s, oy+2*s); ctx.stroke();
+            }
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('①', ox+s-6, oy+2*s+20);
+        }
+        /* 练习3 图② 3×3方格 */
+        function drawPrac3b() {
+            const c = document.getElementById('cPrac3b'); if (!c) return;
+            const ctx = c.getContext('2d'), w = c.width, h = c.height;
+            ctx.clearRect(0, 0, w, h);
+            const s = 40, ox = 30, oy = 15;
+            ctx.strokeStyle = '#1a3a5c'; ctx.lineWidth = 2;
+            for (let i = 0; i <= 3; i++) {
+                ctx.beginPath(); ctx.moveTo(ox, oy+i*s); ctx.lineTo(ox+3*s, oy+i*s); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(ox+i*s, oy); ctx.lineTo(ox+i*s, oy+3*s); ctx.stroke();
+            }
+            ctx.font = '14px sans-serif'; ctx.fillStyle = '#999';
+            ctx.fillText('②', ox+3*s/2-6, oy+3*s+20);
+        }
+    </script>
+    <style>
+        :root {
+            --bg-page: #f7f3ee; --bg-card: #ffffff; --text-body: #1a1a22;
+            --text-heading: #1a3550; --color-primary: #1a3a5c; --color-primary-light: #2c5980;
+            --color-accent-blue: #2563a0; --color-accent-green: #0d6b4a; --color-accent-amber: #9a4d00;
+            --color-accent-red: #a82035; --color-accent-purple: #5c1db8; --color-border-light: #d8dde3;
+            --radius-lg: 1.6rem; --radius-md: 1rem;
+            --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg-page); font-family: var(--font-body); font-weight: 500; line-height: 1.7; color: var(--text-body); padding: 1.5rem; font-size: 24px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: var(--bg-card); border-radius: 2.2rem; box-shadow: 0 18px 36px -8px rgba(26,58,92,0.13); padding: 2rem 2.5rem; border: 1px solid var(--color-border-light); }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--color-primary); padding-bottom: .7rem; margin-bottom: 1.4rem; font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+        h1 { font-size: 2.2rem; color: var(--color-primary); font-weight: 800; }
+        h1::after { content: ''; display: block; width: 72px; height: 6px; background: var(--color-primary); border-radius: 6px; margin-top: 7px; }
+        .lesson-title { text-align: center; font-size: 2rem; color: #fff; background: var(--color-primary); padding: .6rem 1.4rem; border-radius: 50px; margin: 1rem 0 1.6rem; font-weight: 700; }
+        .section-title { font-size: 1.6rem; color: var(--color-primary); font-weight: 700; margin: 1.6rem 0 .8rem; padding-bottom: .35rem; border-bottom: 4px solid var(--color-primary-light); }
+        .think-box { background: #f6f1fb; border-left: 10px solid var(--color-accent-purple); border-radius: var(--radius-lg); padding: 1.5rem 2rem; margin: 1.5rem 0; font-weight: 600; }
+        .think-box h4 { color: #4a1d9e; font-size: 1.5rem; margin-bottom: .5rem; }
+        .theorem-card { background: #f3f8f5; border-left: 8px solid var(--color-accent-green); border-radius: var(--radius-lg); padding: 1.4rem 2rem; margin: 1.4rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+        .theorem-card h4 { font-size: 1.7rem; color: #0a4d32; font-weight: 700; margin-bottom: 0.5rem; }
+        .theorem-text { font-weight: 800; color: #0a4d32; border-bottom: 2px solid #0a4d32; display: inline-block; margin: 0.5rem 0; font-size: 1.3rem; }
+        .interact-btn { background: #fff; border: 2px solid var(--color-primary); color: var(--color-primary); padding: .55rem 1.8rem; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 0 #3a6080; margin: .5rem 1rem .5rem 0; font-size: 1.2rem; transition: all .15s; }
+        .interact-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #3a6080; }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #3a6080; }
+        .answer-box { background: #fafdfc; border: 2px dashed #8aafcc; border-radius: var(--radius-md); padding: 1.5rem 2rem; margin-top: .6rem; display: none; animation: fadeIn .4s ease; width: 100%; }
+        .answer-box.show-answer { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+        .layout-flex { display: flex; gap: 1rem; align-items: flex-start; margin-top: 1rem; flex-wrap: wrap; }
+        .layout-content { flex: 1; min-width: 320px; }
+        .layout-visual { max-width: 100%; width: 420px; margin-bottom: 0.5rem; }
+        canvas { background: #fff; border: 1px solid #eee; border-radius: 8px; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .bubble { background: #fff1f2; border: 2px solid #fda4af; border-radius: 2rem; padding: 1rem 1.5rem; margin: 1rem 0; box-shadow: 0 4px 12px rgba(225,29,72,0.08); }
+        .core-competence { background: #fffbeb; border: 2px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .core-competence h4 { color: #92400e; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .teacher-msg { text-align: center; font-style: italic; color: var(--color-primary); margin-top: 2rem; padding: 1rem; border-top: 1px solid var(--color-border-light); font-size: 1.2rem; }
+        .method-summary { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .method-summary h4 { color: #1e40af; margin-bottom: 0.8rem; }
+        .objective-card { background: #f0f9ff; border: 2px solid #bae6fd; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .objective-card h4 { color: #0369a1; margin-bottom: 0.5rem; }
+        .reading-box { background: #fdf8f3; border: 2px solid #f5c6a0; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .reading-box h4 { color: #92400e; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+        .discussion-box { background: #fef2f2; border: 2px solid #fca5a5; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .discussion-box h4 { color: #b91c1c; margin-bottom: 0.8rem; }
+        .exercise-box { background: #fdf2f8; border: 2px solid #f9a8d4; border-radius: var(--radius-lg); padding: 1.5rem; margin: 1.5rem 0; }
+        .exercise-box h4 { color: #be185d; margin-bottom: 0.8rem; font-size: 1.4rem; }
+        .exercise-item { margin: 1rem 0; padding-left: 0.5rem; }
+        .exercise-item p { margin: 0.4rem 0; }
+        .fig-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+        .analysis-text { color: #a82035; font-weight: 700; margin-right: 0.5rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span>第十八章 矩形、菱形与正方形</span>
+        <span>18.3 正方形</span>
+    </div>
+    <h1>18.3 正方形</h1>
+    <div class="lesson-title">正方形的性质与判定</div>
+
+    <div class="section-title">学习目标</div>
+    <div class="objective-card">
+        <h4>本节课的学习目标：</h4>
+        <p>1. 掌握正方形的性质：四边相等、四角为直角、对角线相等且互相垂直平分。</p>
+        <p>2. 理解正方形是特殊的矩形和菱形，能用性质进行计算和证明。</p>
+        <p>3. 了解正方形的判定方法，能正确检验一个四边形是否为正方形。</p>
+    </div>
+
+    <!-- 正方形性质 -->
+    <div class="section-title">正方形的性质</div>
+    <div class="think-box">
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p>正方形（square）是我们早已熟悉的平面图形，它既是中心对称图形，也是轴对称图形，具有如下性质：</p>
+                <p>1. <strong>四条边都相等</strong>；</p>
+                <p>2. <strong>四个角都是直角</strong>；</p>
+                <p>3. <strong>对角线相等且互相垂直平分</strong>。</p>
+                <p>因此，正方形可以看成：</p>
+                <p>有一个角是直角的<strong>菱形</strong>；</p>
+                <p>有一组邻边相等的<strong>矩形</strong>。</p>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cSquare" width="420" height="200"></canvas>
+            </div>
+        </div>
+        <div class="bubble" style="max-width:420px;margin:1rem auto;text-align:center;">
+            正方形有几条对称轴？它的对称中心在哪里？
+        </div>
+    </div>
+
+    <!-- 例1 -->
+    <div class="section-title">例题解析</div>
+    <div class="theorem-card" style="border-left-color: var(--color-accent-blue);">
+        <h4>例 1</h4>
+        <div class="layout-flex">
+            <div class="layout-content">
+                <p>如图18.3.1，已知正方形 $ABCD$。求 $\angle ABD$、$\angle DAC$、$\angle DOC$ 的大小。</p>
+                <button class="interact-btn" onclick="toggleAnswer('solEx1')">查看解析</button>
+            </div>
+            <div class="layout-visual">
+                <canvas id="cFig1831" width="420" height="200"></canvas>
+            </div>
+        </div>
+        <div id="solEx1" class="answer-box">
+            <p><span class="analysis-text">分析</span> 由正方形的特殊性质，可知 $\angle DOC = 90^{\circ}$。</p>
+            <p>易证 $\triangle ABO \cong \triangle CBO$，从而可得</p>
+            <p style="text-align:center;font-size:1.2rem;margin:0.8rem 0;">$\angle ABD = \dfrac{1}{2} \times 90^{\circ} = 45^{\circ}$，</p>
+            <p>同理可得 $\angle DAC = 45^{\circ}$。</p>
+            <p><strong>答：</strong>$\angle ABD = 45^{\circ}$，$\angle DAC = 45^{\circ}$，$\angle DOC = 90^{\circ}$。</p>
+        </div>
+        <div class="bubble" style="max-width:420px;margin:1rem auto;text-align:center;">
+            请写出完整的解答过程。
+        </div>
+    </div>
+
+    <!-- 讨论 -->
+    <div class="section-title">讨论</div>
+    <div class="discussion-box">
+        <h4>如何检验正方形？</h4>
+        <p>老师给学生布置了一项任务：从一张彩色纸中剪出一个正方形。</p>
+        <p><strong>小明</strong>剪完后，这样检验它：比较边长，发现四条边是相等的，于是就判定自己完成了这项任务。这种检验可信吗？</p>
+        <p><strong>小兵</strong>用另一种方法检验：他量的不是边，而是对角线，他发现对角线是相等的，于是就认为自己正确地剪出了正方形。这种检验对吗？</p>
+        <p><strong>小英</strong>剪完后，比较了由对角线相互分成的 4 条线段，发现它们是相等的。按照小英的意见，这说明剪出的四边形是正方形。你的意见怎样？</p>
+        <p><strong>你认为应该如何检验，才能又快又准确呢？</strong></p>
+        <button class="interact-btn" onclick="toggleAnswer('discussion')">查看分析</button>
+        <div id="discussion" class="answer-box">
+            <p><strong>小明的检验不可信。</strong>四条边相等的四边形只是菱形，不一定是正方形（例如菱形的角不一定是直角）。</p>
+            <p><strong>小兵的检验不对。</strong>对角线相等的平行四边形是矩形，但不一定是正方形（例如长方形的邻边不一定相等）。</p>
+            <p><strong>小英的检验也不完全正确。</strong>对角线互相平分且分成的 4 条线段相等，说明对角线相等且互相平分，这只能判定是矩形，不能判定是正方形。</p>
+            <p><strong>又快又准确的检验方法：</strong></p>
+            <p>方法一：先检验四边相等（判定为菱形），再检验有一个角是直角（判定为正方形）。</p>
+            <p>方法二：先检验对角线相等（判定为矩形），再检验对角线互相垂直（判定为正方形）。</p>
+            <p>方法三：用三角板检验四边相等且对角线相等（或垂直）。</p>
+        </div>
+    </div>
+
+    <!-- 读一读 -->
+    <div class="section-title">读一读</div>
+    <div class="reading-box">
+        <h4><span style="font-size:1.5rem;">📖</span> 平行四边形、矩形、菱形与正方形的关系</h4>
+        <p>我们在平行四边形的学习基础上，又探索研究了矩形、菱形、正方形的一些特点。这些几何图形之间的相互关系如图18.3.2所示。</p>
+        <div style="text-align:center;margin:1rem 0;">
+            <canvas id="cRelation" width="500" height="350" style="max-width:100%;"></canvas>
+        </div>
+        <p>矩形、菱形都是<strong>特殊的平行四边形</strong>，因而既具有平行四边形的一般性质，又具有它们自己的特殊性质。</p>
+        <p>正方形是<strong>特殊的矩形</strong>，也是<strong>特殊的菱形</strong>，它具有更多的性质。</p>
+        <p>我们在研究几何图形时，必须关注这种<strong>一般与特殊的关系</strong>，从而更好地认识各种几何图形，顺利解决各类问题。</p>
+    </div>
+
+    <!-- 练习 -->
+    <div class="section-title">练习</div>
+    <div class="exercise-box">
+        <h4>练一练</h4>
+
+        <div class="exercise-item">
+            <p><strong>1.</strong> 把一张矩形纸片如图那样折一下，就可以裁出正方形纸片。为什么？</p>
+            <div style="text-align:center;margin:0.8rem 0;">
+                <canvas id="cPrac1" width="320" height="160" style="max-width:100%;"></canvas>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('solP1')">查看答案</button>
+            <div id="solP1" class="answer-box">
+                <p>折叠后，折痕与矩形的两边构成一个等腰直角三角形，展开后裁下的四边形有一组邻边相等（由折叠对称性得到），且四个角都是直角（原矩形性质），因此这个四边形是正方形。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p><strong>2.</strong> 判断下列命题是否正确：</p>
+            <p>（1）正方形有四条对称轴；</p>
+            <p>（2）正方形的两条对角线将其分成 4 个全等的等腰直角三角形；</p>
+            <p>（3）对角线互相垂直的矩形是正方形；</p>
+            <p>（4）对角线相等的菱形是正方形。</p>
+            <button class="interact-btn" onclick="toggleAnswer('solP2')">查看答案</button>
+            <div id="solP2" class="answer-box">
+                <p>（1）<strong>正确。</strong>正方形的 4 条对称轴为：2 条对角线所在直线 + 2 条对边中点连线。</p>
+                <p>（2）<strong>正确。</strong>正方形对角线相等且互相垂直平分，分成的 4 个三角形都是等腰直角三角形，且全等。</p>
+                <p>（3）<strong>正确。</strong>矩形的对角线本来相等且互相平分，若再互相垂直，则该矩形也是菱形，故为正方形。</p>
+                <p>（4）<strong>正确。</strong>菱形的对角线本来互相垂直平分，若再相等，则该菱形也是矩形，故为正方形。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p><strong>3.</strong> 在下列各方格图中，有多少个正方形？有多少个矩形？</p>
+            <div class="fig-row">
+                <canvas id="cPrac3a" width="200" height="170"></canvas>
+                <canvas id="cPrac3b" width="200" height="170"></canvas>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('solP3')">查看答案</button>
+            <div id="solP3" class="answer-box">
+                <p><strong>图①（$2 \times 2$ 方格）：</strong></p>
+                <p>正方形：边长为 1 的有 4 个，边长为 2 的有 1 个，共 <strong>5</strong> 个。</p>
+                <p>矩形：共 <strong>9</strong> 个（包括 5 个正方形和 4 个非正方形矩形）。</p>
+                <p><strong>图②（$3 \times 3$ 方格）：</strong></p>
+                <p>正方形：边长为 1 的有 9 个，边长为 2 的有 4 个，边长为 3 的有 1 个，共 <strong>14</strong> 个。</p>
+                <p>矩形：共 <strong>36</strong> 个。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p><strong>4.</strong> 已知正方形纸片 $ABCD$ 的边 $AB$ 长 $2\,\text{cm}$。求这个正方形的周长、对角线长和面积。（长度精确到 $0.1\,\text{cm}$）</p>
+            <button class="interact-btn" onclick="toggleAnswer('solP4')">查看答案</button>
+            <div id="solP4" class="answer-box">
+                <p>周长：$4 \times 2 = 8.0\,\text{cm}$。</p>
+                <p>对角线长：$\sqrt{2^2 + 2^2} = \sqrt{8} = 2\sqrt{2} \approx 2.8\,\text{cm}$。</p>
+                <p>面积：$2^2 = 4.0\,\text{cm}^2$。</p>
+                <p><strong>答：</strong>周长为 $8.0\,\text{cm}$，对角线长约 $2.8\,\text{cm}$，面积为 $4.0\,\text{cm}^2$。</p>
+            </div>
+        </div>
+
+         <div class="exercise-item">
+            <p><strong>5.</strong>（变式）已知正方形纸片 $ABCD$ 的对角线 $AC$ 长 $2\,\text{cm}$。求这个正方形的周长、对角线长和面积。（长度精确到 $0.1\,\text{cm}$）</p>
+            <button class="interact-btn" onclick="toggleAnswer('solP5')">查看答案</button>
+            <div id="solP5" class="answer-box">
+                <p>解：设正方形边长为 $a$，由对角线与边长关系 $\sqrt{2}a=2$，得边长 $a=\sqrt{2}\approx1.4\,\text{cm}$。</p>
+             <p>周长：$4 \times \sqrt{2} \approx 5.7\,\text{cm}$。</p>
+             <p>对角线长：题目已知为 $2.0\,\text{cm}$。</p>
+             <p>面积：$\dfrac{2 \times 2}{2} = 2.0\,\text{cm}^2$。</p>
+             <p><strong>答：</strong>周长约为 $5.7\,\text{cm}$，对角线长为 $2.0\,\text{cm}$，面积为 $2.0\,\text{cm}^2$。</p>
+         </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div class="section-title">课堂小结</div>
+    <div class="think-box">
+        <ul>
+            <li>正方形的性质：四边相等、四角为直角、对角线相等且互相垂直平分、每条对角线平分一组对角。</li>
+
+            <li>正方形具有 4 条对称轴（2 条对角线 + 2 条对边中点连线），对称中心是对角线交点。</li>
+            <li>判定正方形：需同时满足矩形和菱形的判定条件。</li>
+        </ul>
+    </div>
+
+    <div class="section-title">核心素养</div>
+    <div class="core-competence">
+        <h4><span style="font-size:1.5rem;">📐</span> 数学素养提升点</h4>
+        <p><strong>数学抽象：</strong>理解正方形既是矩形又是菱形，掌握一般与特殊的辩证关系。</p>
+        <p><strong>逻辑推理：</strong>在判定正方形时需同时满足矩形和菱形条件，培养严密的逻辑思维。</p>
+        <p><strong>直观想象：</strong>从不同角度（边、角、对角线）刻画正方形的特征，理解图形间的包含关系。</p>
+    </div>
+
+    <div class="teacher-msg">
+        正方形——最完美的四边形！它集矩形和菱形的所有优点于一身。正如做人，内外兼修，方得圆满。
+    </div>
+
+    <div style="text-align:right;color:#888;font-size:0.9rem;margin-top:2rem;">
+        &copy; 2026 华师大版初中数学课件制作组
+    </div>
+</div>
+</body>
+</html>

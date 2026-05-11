@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8.1.3 三角形的三边关系 | 华师版·七下</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        /* 与8.1.1相同样式，省略以节省篇幅 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box { margin: 2rem 0; text-align: center; }
+        .figcaption { font-size: 1rem; color: #144a6f; margin-top: 0.3rem; text-align: center; }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+            word-break: break-word;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 2000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+            word-wrap: break-word;
+            overflow: visible;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第8章 三角形 · 8.1.3</span>
+    </div>
+    <h1>第8章 三角形</h1>
+    <h2>8.1 与三角形有关的边和角</h2>
+    <div class="chapter-intro">★ 掌握三角形的三边关系，理解三角形的稳定性。</div>
+    <div class="lesson-title">8.1.3 三角形的三边关系</div>
+
+    <!-- 问题导入 -->
+    <div class="intro-block">
+        <p>小明想用一根木条钉一个三角形支架，他找到了两根长度分别为40cm和60cm的木条，那么第三根木条应该取多长呢？这个问题与三角形的三边关系有关。今天我们就来探索三角形的边满足什么条件才能构成三角形。</p>
+    </div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>掌握三角形三边关系：任意两边之和大于第三边</div>
+            <div class="target-item"><span>✔</span>能利用三边关系判断三条线段能否组成三角形</div>
+            <div class="target-item"><span>✔</span>了解三角形的稳定性及应用</div>
+        </div>
+    </div>
+
+    <!-- 做一做：作图 -->
+    <div class="explore-box">
+        <h4>做一做</h4>
+        <p>作一个三角形，使它的三条边长分别为 $4\,\text{cm}$，$3\,\text{cm}$，$2.5\,\text{cm}$。</p>
+        <p>步骤：先作线段 $AB = 4\,\text{cm}$，然后以 $A$ 为圆心、$3\,\text{cm}$ 为半径画弧，以 $B$ 为圆心、$2.5\,\text{cm}$ 为半径画弧，两弧交于点 $C$，连接 $AC$、$BC$，则 $\triangle ABC$ 即为所求。</p>
+        <div class="img-container">
+            <img src="8.1.16.png" alt="图8.1.16 作三角形">
+            <div class="figcaption">图8.1.16</div>
+        </div>
+    </div>
+
+    <!-- 试一试 -->
+    <div class="think-box">
+        <h4>试一试</h4>
+        <p>现有12条线段：三条长 $2\,\text{cm}$，三条长 $3\,\text{cm}$，两条长 $4\,\text{cm}$，两条长 $5\,\text{cm}$，两条长 $6\,\text{cm}$。任意选择三条线段作三角形，你能发现什么？</p>
+        <button class="interact-btn" onclick="toggleAnswer('try')">💡 显示发现</button>
+        <div id="try" class="answer-box">
+            <p>并不是任意三条线段都能组成三角形。如果两条较短线段的和不大于第三条线段，就不能组成三角形。</p>
+        </div>
+    </div>
+
+    <!-- 结论 -->
+    <div class="highlight">
+        <p><strong>三角形的任意两边之和大于第三边。</strong></p>
+    </div>
+
+    <!-- 思考：为什么有些不能构成三角形 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>如图8.1.17，为什么有些三条线段不能构成三角形？</p>
+        <div class="img-container">
+            <img src="8.1.17.png" alt="图8.1.17 三种情形">
+            <div class="figcaption">图8.1.17</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('think')">💡 解释</button>
+        <div id="think" class="answer-box">
+            <p>当两条较短线段的和小于或等于第三条线段时，无法首尾相连构成三角形。</p>
+        </div>
+    </div>
+
+    <!-- 三角形的稳定性 -->
+    <div class="highlight">
+        <p><strong>三角形的稳定性：</strong> 如果三角形的三条边固定，那么三角形的形状和大小就完全确定了。四边形不具有稳定性。</p>
+    </div>
+
+    <!-- 应用举例 -->
+    <div class="example-box">
+        <h4>生活中的稳定性</h4>
+        <p>如图8.1.18，大桥的拉索、钢架桥、起重机等都利用了三角形的稳定性。</p>
+        <div class="img-container">
+            <img src="8.1.18.png" alt="图8.1.18 桥梁中的三角形结构">
+            <div class="figcaption">图8.1.18</div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1. （口答）</strong> 下列长度的各组线段能否组成一个三角形？</p>
+            <p>(1) $15\,\text{cm}$，$10\,\text{cm}$，$7\,\text{cm}$； (2) $4\,\text{cm}$，$5\,\text{cm}$，$10\,\text{cm}$； (3) $3\,\text{cm}$，$8\,\text{cm}$，$5\,\text{cm}$； (4) $4\,\text{cm}$，$5\,\text{cm}$，$6\,\text{cm}$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p>(1)能，10+7>15； (2)不能，4+5<10； (3)不能，3+5=8； (4)能，4+5>6。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 一木工有两根长分别为 $40\,\text{cm}$ 和 $60\,\text{cm}$ 的木条，要另找一根木条，钉成一个三角木架。问：第三根木条的长度应在什么范围内？</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p>根据三角形三边关系，第三边应满足 $60-40 < x < 60+40$，即 $20 < x < 100$（单位：cm）。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 举两个三角形的稳定性在实际生活中应用的例子。</p>
+            <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案</button>
+            <div id="p3" class="answer-box">
+                <p>例如：自行车的车架、起重机的吊臂、屋顶的桁架等。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：三角形的稳定性历史 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 三角形的稳定性</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>三角形是最稳定的几何图形，这一性质早在古代就被人们应用于建筑中。埃及金字塔、古罗马的桥梁都巧妙地利用了三角形结构。现代建筑中，钢架结构、高压电线塔也离不开三角形。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>分类讨论：</strong> 判断三条线段能否构成三角形时，只需检查两条较短的边之和是否大于最长边。<br>
+        <strong>数形结合：</strong> 通过作图直观感受三边关系。<br>
+        <strong>应用意识：</strong> 将数学原理应用于实际生活。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">三角形的任意两边之和大于第三边</div>
+            <div class="summary-item">判断三条线段能否构成三角形：较短两边之和 > 最长边</div>
+            <div class="summary-item">三角形具有稳定性，四边形不具有</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题8.1 A组第1(1)题，B组第7、8题。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 三角形三边关系，稳中求变 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第8章 8.1.3</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

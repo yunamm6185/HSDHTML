@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学活动 探寻纸张规格的秘密 | 华师版·八年级上册</title>
+    <!-- MathJax 配置 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .explore-box, .example-box, .think-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .explore-box h4, .example-box h4, .think-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+        }
+        .concept-box strong { color: #0b4b6b; font-size: 1.3rem; }
+        .concept-box em { background-color: #e1f0fa; padding: 0.1rem 0.4rem; border-radius: 12px; }
+
+        /* 云图提示框 */
+        .cloud-note {
+            background: #fff3cd;
+            border-radius: 30px 30px 30px 0;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border: 2px solid #f4b84b;
+            box-shadow: 5px 5px 0 #f0ddb4;
+            font-style: italic;
+            color: #8a6d3b;
+            position: relative;
+        }
+        .cloud-note::before {
+            content: "💡";
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid #b0d4ee;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        th { background: #d4e6f5; color: #0f4a6f; }
+
+        .exercise-item {
+            margin-bottom: 1.8rem;
+        }
+        .exercise-item p {
+            margin: 0.3rem 0;
+        }
+        .exercise-item .exercise-question {
+            font-weight: 600;
+            color: #0a3e5f;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent { overflow: hidden; transition: max-height 0.3s ease; max-height: 1000px; }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+        }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+        }
+        .reading-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        .reading-header h4 { color: #8a6d3b; border-left: 8px solid #f4b84b; padding-left: 1rem; }
+        .toggle-icon { font-size: 1.8rem; color: #8a6d3b; }
+        .reading-content { overflow: hidden; transition: max-height 0.3s ease; max-height: 0; }
+        .reading-content:not(.collapsed) { max-height: 600px; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·八年级上册</span>
+        <span class="chapter-tag">第10章 数的开方 · 数学活动</span>
+    </div>
+    <h1>第10章 数的开方</h1>
+    <div class="lesson-title">数学活动 · 探寻纸张规格的秘密</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>了解ISO纸张尺寸的规格与分类</div>
+            <div class="target-item"><span>✔</span>探索A、B、C系列纸张的长宽关系与面积规律</div>
+            <div class="target-item"><span>✔</span>体会数学在生活中的应用，培养归纳与数感</div>
+        </div>
+    </div>
+
+    <!-- 问题引入（无图片） -->
+    <div class="explore-box">
+        <h4>问题引入</h4>
+        <p>我们经常会用到各种纸张，如A4、B5打印纸。你知道它们的尺寸是多大吗？它们之间又蕴含着怎样的数学秘密？</p>
+        <p>根据国际标准化组织（ISO）制定的ISO216标准，纸张尺寸分为A、B、C三个系列。下表列出了各系列的详细尺寸，让我们一起来探寻其中的规律。</p>
+    </div>
+
+    <!-- ISO纸张尺寸表格（直接显示，无按钮） -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3 style="text-align:center;">📏 ISO纸张尺寸 (单位：mm)</h3>
+        <table>
+            <thead>
+                <tr><th>型号</th><th>A系列</th><th>B系列</th><th>C系列</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>841×1189</td><td>1000×1414</td><td>917×1297</td></tr>
+                <tr><td>1</td><td>594×841</td><td>707×1000</td><td>648×917</td></tr>
+                <tr><td>2</td><td>420×594</td><td>500×707</td><td>458×648</td></tr>
+                <tr><td>3</td><td>297×420</td><td>353×500</td><td>324×458</td></tr>
+                <tr><td>4</td><td>210×297</td><td>250×353</td><td>229×324</td></tr>
+                <tr><td>5</td><td>148×210</td><td>176×250</td><td>162×229</td></tr>
+                <tr><td>6</td><td>105×148</td><td>125×176</td><td>114×162</td></tr>
+                <tr><td>7</td><td>74×105</td><td>88×125</td><td>81×114</td></tr>
+                <tr><td>8</td><td>52×74</td><td>62×88</td><td>57×81</td></tr>
+                <tr><td>9</td><td>37×52</td><td>44×62</td><td>40×57</td></tr>
+                <tr><td>10</td><td>26×37</td><td>31×44</td><td>28×40</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 探索问题 -->
+    <div class="think-box">
+        <h4>🔎 探索问题</h4>
+        <p><strong>(1)</strong> 你知道A、B、C三个系列同一型号纸张的大小关系吗？</p>
+        <p><strong>(2)</strong> 你知道A、B、C系列后面表示型号的数字 $0\sim 10$ 有什么含义吗？观察每个系列不同型号纸张的长与宽，你能发现它们之间的关系吗？它们的面积之间是否也存在某种关系呢？</p>
+        <p><strong>(3)</strong> 三个系列的全张纸，即A0、B0、C0，算算它们各自的面积，相互比一比，看看有什么样的数量关系？三个系列其他同一型号的纸张呢？</p>
+        <button class="interact-btn" onclick="toggleAnswer('exploreAns')">🔍 显示提示</button>
+        <div id="exploreAns" class="answer-box">
+            <p><strong>(1)</strong> 同一型号下，面积关系：A系列最小，C系列居中，B系列最大。例如A0≈1m²，C0≈1.189m²，B0≈1.414m²。</p>
+            <p><strong>(2)</strong> 数字表示对全张纸（0号）对折的次数。例如A1是A0沿长边对折一半，A2是A1对折，以此类推。因此长宽比保持恒定（约为$\sqrt{2}:1$），且后一型号面积是前一型号的一半。</p>
+            <p><strong>(3)</strong> A0的面积定义为$1\mathrm{m}^2$（精确值841×1189=999949mm²≈1m²），B0的面积约为$\sqrt{2}\,\mathrm{m}^2$，C0的面积约为A0和B0的几何平均数。其他同一型号的纸张也有类似的比例关系。</p>
+        </div>
+    </div>
+
+    <!-- 概括发现的规律 -->
+    <div class="concept-box">
+        <strong>发现的规律</strong><br>
+        • <strong>长宽比</strong>：A、B、C系列纸张的长宽比均为 $\sqrt{2}:1$（约1.414:1）。这是为了使纸张对折后保持相同的比例。<br>
+        • <strong>面积关系</strong>：$A_n$ 的面积是 $A_{n-1}$ 的一半，$B_n$ 的面积是 $B_{n-1}$ 的一半，$C_n$ 的面积是 $C_{n-1}$ 的一半。<br>
+        • <strong>系列间关系</strong>：$B_n$ 的面积是 $A_n$ 的 $\sqrt{2}$ 倍，$C_n$ 的面积是 $A_n$ 和 $B_n$ 的几何平均数（即 $\sqrt{A_n \times B_n}$）。<br>
+        • $A0$ 的面积定义为 $1\mathrm{m}^2$（精确到约 $1\mathrm{m}^2$），所以 $A_n$ 的面积约为 $\frac{1}{2^n}\,\mathrm{m}^2$。
+    </div>
+
+    <!-- 算一算：练习 -->
+    <div style="background:#f5f0fc; border-radius:28px; padding:2rem; margin:2rem 0;">
+        <h3>✏️ 算一算</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 已知 $A4$ 纸的尺寸是 $210\mathrm{mm} \times 297\mathrm{mm}$，请计算 $A4$ 纸的面积（精确到 $0.001\mathrm{m}^2$），并验证它是否约为 $\frac{1}{16}\mathrm{m}^2$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('calc1')">🔍 答案</button>
+            <div id="calc1" class="answer-box">
+                <p>$210\times297 = 62370\,\mathrm{mm}^2 = 0.06237\,\mathrm{m}^2$，$\frac{1}{16}=0.0625$，相差很小，符合定义。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 如果 $A0$ 的面积为 $1\mathrm{m}^2$，那么 $A5$ 的面积大约是多少平方米？</p>
+            <button class="interact-btn" onclick="toggleAnswer('calc2')">🔍 答案</button>
+            <div id="calc2" class="answer-box">
+                <p>每对折一次面积减半，$A0 \to A1 \to A2 \to A3 \to A4 \to A5$ 共5次，所以 $A5$ 面积 = $1 \times (\frac{1}{2})^5 = \frac{1}{32} \mathrm{m}^2 \approx 0.03125\,\mathrm{m}^2$。</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 观察 $A$ 系列和 $B$ 系列的尺寸，猜想 $B4$ 纸的尺寸大约是多少？</p>
+            <button class="interact-btn" onclick="toggleAnswer('calc3')">🔍 答案</button>
+            <div id="calc3" class="answer-box">
+                <p>$B4$ 的标准尺寸是 $250\mathrm{mm} \times 353\mathrm{mm}$。可以发现 $B4$ 的长宽约为 $A4$ 的 $\sqrt{2}$ 倍：$210\times\sqrt{2}\approx 297$，$297\times\sqrt{2}\approx 420$，但 $B4$ 是 $250\times353$，实际上是 $A4$ 的中间尺寸。具体关系：$B_n$ 是 $A_n$ 和 $A_{n-1}$ 的几何平均。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：纸张规格的历史 -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 纸张规格的由来</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>ISO 216 国际标准纸张尺寸源于德国工业标准 DIN 476，最早由德国数学家奥斯特瓦尔德（Wilhelm Ostwald）和工程师波尔兹曼（Ludwig Boltzmann）等人在20世纪初提出。该标准巧妙利用了 $\sqrt{2}$ 的比例，使得纸张对折后长宽比保持不变，极大地方便了印刷和文档处理。A系列用于一般印刷品，B系列用于海报、信封等，C系列则用于信封（与A系列匹配）。中国在1977年采用此标准，现在常用的A4、B5等即源于此。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数感与量感：</strong> 通过实际尺寸感受数字的大小与比例。<br>
+        <strong>归纳思想：</strong> 从具体数据中抽象出一般规律（长宽比、面积递推）。<br>
+        <strong>模型思想：</strong> 用数学比例 $\sqrt{2}$ 构建纸张模型，体现数学的应用价值。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">A、B、C系列纸张的长宽比均为 $\sqrt{2}:1$，对折后比例不变。</div>
+            <div class="summary-item">后一型号的面积是前一型号的一半。</div>
+            <div class="summary-item">$B_n$ 的面积是 $A_n$ 的 $\sqrt{2}$ 倍，$C_n$ 的面积是 $A_n$ 与 $B_n$ 的几何平均。</div>
+            <div class="summary-item">数学源于生活，又服务于生活。</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 测量家中A4纸的尺寸，计算其面积并与理论值比较；尝试用纸张对折验证长宽比。</span>
+    </div>
+
+    <!-- 寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 一张普通的纸，也藏着奇妙的数学密码 ✨</p>
+    <div class="footer-note">八年级上册 · 第10章 数学活动</div>
+</div>
+
+<script>
+    // 切换答案框
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+
+    // 折叠函数
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+
+    window.onload = function() {
+        if (window.MathJax) MathJax.typesetPromise?.();
+    };
+</script>
+</body>
+</html>

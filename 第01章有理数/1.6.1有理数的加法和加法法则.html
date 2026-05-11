@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8课时 有理数的加法法则 | 华师版·七上 第1章 有理数</title>
+    <!-- MathJax 渲染分数 -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0, 40, 60, 0.25);
+            overflow: hidden;
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #2c5778;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .header-meta .version {
+            background-color: #e1eff9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+        }
+
+        .header-meta .chapter-tag {
+            color: #1d506e;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #0a3144;
+            margin-top: 0.2rem;
+            margin-bottom: 0.25rem;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: #58a9d4;
+            border-radius: 4px;
+            margin-top: 6px;
+        }
+
+        .chapter-intro {
+            font-size: 1.05rem;
+            background: #e7f2fa;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px 12px 12px 40px;
+            margin: 1.2rem 0 1.8rem 0;
+            border-left: 6px solid #2675a8;
+            color: #16445f;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            color: #144a6f;
+            margin: 1.8rem 0 0.8rem 0;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+        }
+
+        .lesson-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0b4b78;
+            margin: 1rem 0 1.5rem 0;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            box-shadow: 0 5px 0 #99bfd9;
+        }
+
+        /* 学习目标卡片 - 柔和的蓝色 */
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.05rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* 导入块 - 极浅蓝 */
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 1rem 0;
+            border: 1px solid #cbe0f0;
+            box-shadow: 0 6px 0 #b1cbd9;
+        }
+
+        /* 探究模块 - 暖白 */
+        .axis-showcase {
+            background: #faf9f7;
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            border: 2px solid #aac9e5;
+            box-shadow: 0 6px 0 #8fb9d6;
+        }
+
+        /* 垂直排列数轴图 */
+        .figure-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin: 1rem 0;
+        }
+        .figure-item {
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 0 #cbdbe9;
+            border: 1px solid #cbdbe9;
+        }
+        .figure-item p {
+            margin: 0.8rem 0 0 0;
+            font-weight: 600;
+            color: #0b4b78;
+            font-size: 1.1rem;
+            text-align: left; /* 左对齐 */
+        }
+        svg {
+            display: block;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .axis-label {
+            font-size: 0.9rem;
+            fill: #023b60;
+            font-weight: 500;
+            text-anchor: middle;
+        }
+
+        /* 高亮语句 */
+        .highlight-statement {
+            background-color: #fff9c4;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 50px;
+            border: 2px solid #f5c542;
+            box-shadow: 0 5px 0 #e0a800;
+            color: #0b4b78;
+            margin: 2rem 0;
+        }
+
+        /* 法则列表（统一底色，带序号） */
+        .rule-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            background-color: #ffe599;
+            border-radius: 40px;
+            padding: 1.2rem 2rem;
+            border: 1px solid #f5c542;
+            box-shadow: 0 3px 0 #e0a800;
+        }
+        .rule-list li {
+            font-size: 1.2rem;
+            color: #0b4b78;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            counter-increment: rule-counter;
+        }
+        .rule-list {
+            counter-reset: rule-counter;
+        }
+        .rule-list li::before {
+            content: counter(rule-counter) ". ";
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        /* 相反数特征卡片 */
+        .opposite-note {
+            background: #d6f0e6;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border: 2px solid #2e8b6c;
+            box-shadow: 0 4px 0 #1d6b50;
+            color: #0a3b2e;
+            font-size: 1.1rem;
+        }
+        .opposite-note p {
+            margin: 0.3rem 0;
+        }
+
+        /* 例题框 - 加深蓝灰色 */
+        .example-box {
+            background: #dcebf5;
+            border-radius: 30px;
+            padding: 1.5rem 2.5rem;
+            margin: 1.8rem 0;
+            border-left: 12px solid #2a7faa;
+            font-size: 1.3rem;
+        }
+
+        .exercise-item {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .exercise-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .interact-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #9fbede;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-radius: 20px;
+            padding: 0.4rem 1.5rem;
+            margin: 0.5rem 0 0.3rem 1.5rem;
+            border-left: 6px solid #f4b84b;
+            display: none;
+            font-size: 1rem;
+            word-break: break-word;
+            white-space: pre-wrap;
+            line-height: 1.3;
+        }
+        .show-answer {
+            display: block;
+        }
+
+        /* 练习区 - 浅紫灰 */
+        .exercises {
+            background-color: #f5f0fc;
+            border-radius: 28px;
+            padding: 1.8rem 2.2rem;
+            margin: 2rem 0 1rem;
+            border: 2px solid #b6cde3;
+        }
+
+        .exercises h3 {
+            margin-top: 0;
+            color: #1e4660;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .exercises h3:before {
+            content: '✎';
+            font-size: 2rem;
+            color: #2f6d9c;
+        }
+
+        /* 表格样式 */
+        .exercise-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 1rem;
+        }
+        .exercise-table th, .exercise-table td {
+            border: 1px solid #b6cde3;
+            padding: 0.5rem;
+            text-align: center;
+            background-color: white;
+        }
+        .exercise-table th {
+            background-color: #d9eaf5;
+            font-weight: 600;
+        }
+        .answer-cell {
+            color: #e63946;
+            font-weight: 600;
+        }
+
+        /* 练习2 每行四列布局 */
+        .grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem 1rem;
+            margin: 0.5rem 0;
+        }
+        .grid-4col div {
+            text-align: left;
+        }
+
+        /* 填空括号 */
+        .fill-blank {
+            display: inline-block;
+            width: 4rem;
+            border-bottom: 2px solid #3677b5;
+            margin: 0 0.2rem;
+            vertical-align: middle;
+            height: 1.2rem;
+        }
+
+        /* 读一读 - 浅绿（用于数学文化） */
+        .reading-block {
+            background-color: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #b8d9b2;
+            box-shadow: inset 0 1px 5px #cbdcc5;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h3 {
+            margin: 0;
+            color: #1d6130;
+            border-left: 8px solid #47945b;
+            padding-left: 1rem;
+            font-size: 1.6rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #2d7a4b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .reading-content.collapsed {
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content p {
+            margin-bottom: 0.5rem;
+        }
+        .reading-content ul {
+            margin-left: 2rem;
+        }
+
+        .summary-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0.5rem 0;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 3px 0 #b0cddb;
+            font-size: 1.2rem;
+            border: 1px solid #c0ddec;
+        }
+
+        .footer-note {
+            margin-top: 2.5rem;
+            text-align: right;
+            font-size: 1.1rem;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            font-style: italic;
+            font-weight: 450;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #accee5;
+            margin: 1.5rem 0;
+        }
+        .emph-red { color: #b13e3e; font-weight: 600; }
+        .emph-green { color: #1c7842; font-weight: 600; }
+        .emph-orange { color: #a13e00; font-weight: 600; }
+
+        /* 作业布置 */
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级上册</span>
+        <span class="chapter-tag">第1章 有理数</span>
+    </div>
+
+    <h1>第1章 有理数</h1>
+    <div class="chapter-intro">
+        ★ 本章将通过引入负数，把数的范围扩充到有理数，研究有理数及其大小比较和运算。
+    </div>
+
+    <h2>1.6 有理数的加法</h2>
+    <div class="lesson-title">第一课时 有理数的加法法则</div>
+
+    <div class="learning-targets">
+        <h3>🎯 本课时学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解有理数加法法则</div>
+            <div class="target-item"><span>✔</span>掌握同号、异号两数相加的符号与绝对值规律</div>
+            <div class="target-item"><span>✔</span>能熟练进行有理数加法运算</div>
+            <div class="target-item"><span>✔</span>理解相反数相加得0，一个数加0仍得这个数</div>
+        </div>
+    </div>
+
+    <!-- 导入：小明走路问题 -->
+    <div class="intro-block">
+        <p style="font-size:1.2rem;">🚶 小明在一条东西向的跑道上，先走了2m，又走了3m。能否确定他现在位于原来位置的哪个方向？与原来位置相距多少米？</p>
+        <p>规定向东为正，向西为负。两次行走的方向有不同可能，我们通过数轴来探究。</p>
+    </div>
+
+    <!-- 新知探究：四种情况数轴图（垂直排列，最终修正版） -->
+    <h3>🔍 探究：有理数的加法法则</h3>
+    <div class="axis-showcase">
+        <div class="figure-vertical">
+            <!-- 图1：两次向东 -->
+            <div class="figure-item">
+                <svg width="540" height="180" viewBox="0 0 540 180">
+                    <line x1="50" y1="120" x2="490" y2="120" stroke="#1c5682" stroke-width="2" />
+                    <polygon points="490,120 480,115 480,125" fill="#1c5682" />
+                    <!-- 刻度 -3 到 5 -->
+                    <line x1="130" y1="120" x2="130" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="130" y="145" font-size="12" text-anchor="middle">-3</text>
+                    <line x1="170" y1="120" x2="170" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="170" y="145" font-size="12" text-anchor="middle">-2</text>
+                    <line x1="210" y1="120" x2="210" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="210" y="145" font-size="12" text-anchor="middle">-1</text>
+                    <line x1="250" y1="120" x2="250" y2="100" stroke="#1c5682" stroke-width="2" />
+                    <text x="250" y="145" font-size="12" text-anchor="middle">0</text>
+                    <line x1="290" y1="120" x2="290" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="290" y="145" font-size="12" text-anchor="middle">1</text>
+                    <line x1="330" y1="120" x2="330" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="330" y="145" font-size="12" text-anchor="middle">2</text>
+                    <line x1="370" y1="120" x2="370" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="370" y="145" font-size="12" text-anchor="middle">3</text>
+                    <line x1="410" y1="120" x2="410" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="410" y="145" font-size="12" text-anchor="middle">4</text>
+                    <line x1="450" y1="120" x2="450" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="450" y="145" font-size="12" text-anchor="middle">5</text>
+                    <!-- 圆点 -->
+                    <circle cx="250" cy="120" r="6" fill="black" />
+                    <circle cx="330" cy="120" r="6" fill="#1e88e5" />
+                    <circle cx="450" cy="120" r="6" fill="#1e88e5" />
+                    <!-- 第一次 +2 蓝色箭头（y=90） -->
+                    <line x1="250" y1="90" x2="330" y2="90" stroke="#1e88e5" stroke-width="3" />
+                    <polygon points="330,90 320,85 320,95" fill="#1e88e5" />
+                    <text x="290" y="80" font-size="14" fill="#1e88e5" text-anchor="middle">+2</text>
+                    <!-- 第二次 +3 蓝色箭头（y=60） -->
+                    <line x1="330" y1="60" x2="450" y2="60" stroke="#1e88e5" stroke-width="3" />
+                    <polygon points="450,60 440,55 440,65" fill="#1e88e5" />
+                    <text x="390" y="50" font-size="14" fill="#1e88e5" text-anchor="middle">+3</text>
+                </svg>
+                <p>(1) 两次都向东 \((+2)+(+3)=+5\)</p>
+            </div>
+
+            <!-- 图2：两次向西 -->
+            <div class="figure-item">
+                <svg width="500" height="180" viewBox="0 0 500 180">
+                    <line x1="50" y1="120" x2="450" y2="120" stroke="#1c5682" stroke-width="2" />
+                    <polygon points="450,120 440,115 440,125" fill="#1c5682" />
+                    <!-- 刻度 -5 到 3 -->
+                    <line x1="50" y1="120" x2="50" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="50" y="145" font-size="12" text-anchor="middle">-5</text>
+                    <line x1="90" y1="120" x2="90" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="90" y="145" font-size="12" text-anchor="middle">-4</text>
+                    <line x1="130" y1="120" x2="130" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="130" y="145" font-size="12" text-anchor="middle">-3</text>
+                    <line x1="170" y1="120" x2="170" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="170" y="145" font-size="12" text-anchor="middle">-2</text>
+                    <line x1="210" y1="120" x2="210" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="210" y="145" font-size="12" text-anchor="middle">-1</text>
+                    <line x1="250" y1="120" x2="250" y2="100" stroke="#1c5682" stroke-width="2" />
+                    <text x="250" y="145" font-size="12" text-anchor="middle">0</text>
+                    <line x1="290" y1="120" x2="290" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="290" y="145" font-size="12" text-anchor="middle">1</text>
+                    <line x1="330" y1="120" x2="330" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="330" y="145" font-size="12" text-anchor="middle">2</text>
+                    <line x1="370" y1="120" x2="370" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="370" y="145" font-size="12" text-anchor="middle">3</text>
+                    <!-- 圆点 -->
+                    <circle cx="250" cy="120" r="6" fill="black" />
+                    <circle cx="170" cy="120" r="6" fill="#e63946" />
+                    <circle cx="50" cy="120" r="6" fill="#e63946" />
+                    <!-- 第一次 -2 红色箭头（y=90） -->
+                    <line x1="250" y1="90" x2="170" y2="90" stroke="#e63946" stroke-width="3" />
+                    <polygon points="170,90 180,85 180,95" fill="#e63946" />
+                    <text x="210" y="80" font-size="14" fill="#e63946" text-anchor="middle">-2</text>
+                    <!-- 第二次 -3 红色箭头（y=60） -->
+                    <line x1="170" y1="60" x2="50" y2="60" stroke="#e63946" stroke-width="3" />
+                    <polygon points="50,60 60,55 60,65" fill="#e63946" />
+                    <text x="110" y="50" font-size="14" fill="#e63946" text-anchor="middle">-3</text>
+                </svg>
+                <p>(2) 两次都向西 \((-2)+(-3)=-5\)</p>
+            </div>
+
+            <!-- 图3：先向东2，再向西3 -->
+            <div class="figure-item">
+                <svg width="500" height="180" viewBox="0 0 500 180">
+                    <line x1="50" y1="120" x2="450" y2="120" stroke="#1c5682" stroke-width="2" />
+                    <polygon points="450,120 440,115 440,125" fill="#1c5682" />
+                    <!-- 刻度 -3 到 3 -->
+                    <line x1="130" y1="120" x2="130" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="130" y="145" font-size="12" text-anchor="middle">-3</text>
+                    <line x1="170" y1="120" x2="170" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="170" y="145" font-size="12" text-anchor="middle">-2</text>
+                    <line x1="210" y1="120" x2="210" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="210" y="145" font-size="12" text-anchor="middle">-1</text>
+                    <line x1="250" y1="120" x2="250" y2="100" stroke="#1c5682" stroke-width="2" />
+                    <text x="250" y="145" font-size="12" text-anchor="middle">0</text>
+                    <line x1="290" y1="120" x2="290" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="290" y="145" font-size="12" text-anchor="middle">1</text>
+                    <line x1="330" y1="120" x2="330" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="330" y="145" font-size="12" text-anchor="middle">2</text>
+                    <line x1="370" y1="120" x2="370" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="370" y="145" font-size="12" text-anchor="middle">3</text>
+                    <!-- 圆点 -->
+                    <circle cx="250" cy="120" r="6" fill="black" />
+                    <circle cx="330" cy="120" r="6" fill="#1e88e5" />
+                    <circle cx="210" cy="120" r="6" fill="#e63946" />
+                    <!-- 第一次 +2 蓝色箭头（y=90） -->
+                    <line x1="250" y1="90" x2="330" y2="90" stroke="#1e88e5" stroke-width="3" />
+                    <polygon points="330,90 320,85 320,95" fill="#1e88e5" />
+                    <text x="290" y="80" font-size="14" fill="#1e88e5" text-anchor="middle">+2</text>
+                    <!-- 第二次 -3 红色箭头（y=60） -->
+                    <line x1="330" y1="60" x2="210" y2="60" stroke="#e63946" stroke-width="3" />
+                    <polygon points="210,60 220,55 220,65" fill="#e63946" />
+                    <text x="270" y="50" font-size="14" fill="#e63946" text-anchor="middle">-3</text>
+                </svg>
+                <p>(3) 先向东2，再向西3 \((+2)+(-3)=-1\)</p>
+            </div>
+
+            <!-- 图4：先向西2，再向东3 -->
+            <div class="figure-item">
+                <svg width="500" height="180" viewBox="0 0 500 180">
+                    <line x1="50" y1="120" x2="450" y2="120" stroke="#1c5682" stroke-width="2" />
+                    <polygon points="450,120 440,115 440,125" fill="#1c5682" />
+                    <!-- 刻度 -3 到 3 -->
+                    <line x1="130" y1="120" x2="130" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="130" y="145" font-size="12" text-anchor="middle">-3</text>
+                    <line x1="170" y1="120" x2="170" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="170" y="145" font-size="12" text-anchor="middle">-2</text>
+                    <line x1="210" y1="120" x2="210" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="210" y="145" font-size="12" text-anchor="middle">-1</text>
+                    <line x1="250" y1="120" x2="250" y2="100" stroke="#1c5682" stroke-width="2" />
+                    <text x="250" y="145" font-size="12" text-anchor="middle">0</text>
+                    <line x1="290" y1="120" x2="290" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="290" y="145" font-size="12" text-anchor="middle">1</text>
+                    <line x1="330" y1="120" x2="330" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="330" y="145" font-size="12" text-anchor="middle">2</text>
+                    <line x1="370" y1="120" x2="370" y2="105" stroke="#1c5682" stroke-width="1" />
+                    <text x="370" y="145" font-size="12" text-anchor="middle">3</text>
+                    <!-- 圆点 -->
+                    <circle cx="250" cy="120" r="6" fill="black" />
+                    <circle cx="170" cy="120" r="6" fill="#e63946" />
+                    <circle cx="290" cy="120" r="6" fill="#1e88e5" />
+                    <!-- 第一次 -2 红色箭头（y=90） -->
+                    <line x1="250" y1="90" x2="170" y2="90" stroke="#e63946" stroke-width="3" />
+                    <polygon points="170,90 180,85 180,95" fill="#e63946" />
+                    <text x="210" y="80" font-size="14" fill="#e63946" text-anchor="middle">-2</text>
+                    <!-- 第二次 +3 蓝色箭头（y=60） -->
+                    <line x1="170" y1="60" x2="290" y2="60" stroke="#1e88e5" stroke-width="3" />
+                    <polygon points="290,60 280,55 280,65" fill="#1e88e5" />
+                    <text x="230" y="50" font-size="14" fill="#1e88e5" text-anchor="middle">+3</text>
+                </svg>
+                <p>(4) 先向西2，再向东3 \((-2)+(+3)=+1\)</p>
+            </div>
+        </div>
+
+        <!-- 归纳法则（标题左对齐） -->
+        <div style="font-size:1.5rem; font-weight:600; margin:1rem 0;">📏 有理数的加法法则</div>
+        <ul class="rule-list">
+            <li>同号两数相加，取相同的正负号，并把绝对值相加；</li>
+            <li>绝对值不相等的异号两数相加，取绝对值较大的加数的正负号，并用较大的绝对值减去较小的绝对值；</li>
+            <li>互为相反数的两个数相加得0；</li>
+            <li>一个数与0相加，仍得这个数。</li>
+        </ul>
+        <div class="highlight-statement">
+            ⚡ 先定符号，再算绝对值 ⚡
+        </div>
+    </div>
+
+    <!-- 例题解析（课本例1） -->
+    <h3>✏️ 例题</h3>
+    <div class="example-box" id="example1">
+        <p><strong>例1</strong> 计算：<br>
+        (1) \((+2)+(-11)\)； (2) \((-12)+(+12)\)；<br>
+        (3) \(\left(-\dfrac{1}{2}\right)+\left(-\dfrac{2}{3}\right)\)； (4) \((-3.4)+4.3\)。</p>
+        <button class="interact-btn" onclick="toggleExampleAnswer()">显示答案</button>
+        <div id="exampleAnswer" class="answer-box" style="margin-left:0; margin-top:0.5rem;">
+            <strong>(1)</strong> \((+2)+(-11) = -(11-2) = -9\)；<br>
+            <strong>(2)</strong> \((-12)+(+12) = 0\)；<br>
+            <strong>(3)</strong> \(\left(-\frac{1}{2}\right)+\left(-\frac{2}{3}\right) = -\left(\frac{1}{2}+\frac{2}{3}\right) = -\frac{7}{6} = -1\frac{1}{6}\)；<br>
+            <strong>(4)</strong> \((-3.4)+4.3 = +(4.3-3.4) = 0.9\)。
+        </div>
+    </div>
+
+    <!-- 相反数特征（课本补充） -->
+    <div class="opposite-note">
+        <p><strong>两个数互为相反数的特征是这两个数的和为0。</strong></p>
+        <p>一方面，由法则3，如果两个数 \(a, b\) 互为相反数，那么 \(a+b=0\)；另一方面，如果 \(a+b=0\)，那么 \(a, b\) 互为相反数。这是因为，如果 \(a, b\) 不互为相反数，那么无论它们是同号、异号（这时绝对值不相等）还是只有一个数为0，由法则1、2、4知，它们的和都不可能为0。</p>
+    </div>
+
+    <!-- 巩固练习（课本P26练习） -->
+    <div class="exercises">
+        <h3>练习</h3>
+
+        <!-- 练习1 填表 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">1. 填表：</span>
+                <button class="interact-btn" onclick="fillTableAnswers()">显示答案</button>
+            </div>
+            <table class="exercise-table" id="table1">
+                <thead>
+                    <tr>
+                        <th rowspan="2">加数</th>
+                        <th rowspan="2">加数</th>
+                        <th colspan="2">和的组成</th>
+                        <th rowspan="2">和</th>
+                    </tr>
+                    <tr>
+                        <th>正负号</th>
+                        <th>绝对值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>-12</td><td>3</td><td class="sign1"></td><td class="abs1"></td><td class="sum1"></td></tr>
+                    <tr><td>-12</td><td>-3</td><td class="sign2"></td><td class="abs2"></td><td class="sum2"></td></tr>
+                    <tr><td>-9</td><td>18</td><td class="sign3"></td><td class="abs3"></td><td class="sum3"></td></tr>
+                    <tr><td>8</td><td>-9</td><td class="sign4"></td><td class="abs4"></td><td class="sum4"></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 练习2 计算 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">2. 计算：</span>
+                <button class="interact-btn" onclick="toggleAnswer(1)">显示答案</button>
+            </div>
+            <div class="grid-4col">
+                <div>(1) \(10 + (-4)\)</div>
+                <div>(2) \((+9) + 7\)</div>
+                <div>(3) \((-15) + (-32)\)</div>
+                <div>(4) \((-9) + 0\)</div>
+                <div>(5) \(100 + (-100)\)</div>
+                <div>(6) \((-0.5) + 4.4\)</div>
+                <div>(7) \((-1.5) + (1.25)\)</div>
+                <div>(8) \(\left(-\dfrac{1}{2}\right) + \left(-\dfrac{1}{6}\right)\)</div>
+            </div>
+            <div id="answer1" class="answer-box" style="margin-left:0;">
+                (1) \(10+(-4)=6\)；<br>
+                (2) \((+9)+7=16\)；<br>
+                (3) \((-15)+(-32)=-(15+32)=-47\)；<br>
+                (4) \((-9)+0=-9\)；<br>
+                (5) \(100+(-100)=0\)；<br>
+                (6) \((-0.5)+4.4=4.4-0.5=3.9\)；<br>
+                (7) \((-1.5)+1.25=-(1.5-1.25)=-0.25\)；<br>
+                (8) \(\left(-\frac{1}{2}\right)+\left(-\frac{1}{6}\right)=-\left(\frac{3}{6}+\frac{1}{6}\right)=-\frac{4}{6}=-\frac{2}{3}\)。
+            </div>
+        </div>
+
+        <!-- 练习3 填空 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">3. 填空：</span>
+                <button class="interact-btn" onclick="toggleAnswer(2)">显示答案</button>
+            </div>
+            <div style="margin-left: 1rem;">
+                (1) <span class="fill-blank"></span> \(+ (-3) = -8\)；<br>
+                (2) <span class="fill-blank"></span> \(+ (-3) = 8\)；<br>
+                (3) \((-3) +\) <span class="fill-blank"></span> \(= -1\)；<br>
+                (4) \((-3) +\) <span class="fill-blank"></span> \(= 0\)。
+            </div>
+            <div id="answer2" class="answer-box" style="margin-left:0;">
+                (1) \(-5\)；(2) \(11\)；(3) \(2\)；(4) \(3\)。
+            </div>
+        </div>
+
+        <!-- 练习4 回答问题 -->
+        <div class="exercise-item">
+            <div class="exercise-header">
+                <span class="exercise-text">4. 回答下列问题：<br>
+                (1) 两个正数相加，和是否一定大于每个加数？<br>
+                (2) 两个有理数相加，和是否一定大于每个加数？</span>
+                <button class="interact-btn" onclick="toggleAnswer(3)">显示答案</button>
+            </div>
+            <div id="answer3" class="answer-box" style="margin-left:0;">
+                (1) 是，因为正数加正数结果更大。<br>
+                (2) 不一定，例如负数加负数结果更小，或者正数加负数结果可能小于其中一个加数。
+            </div>
+        </div>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▶</span>
+        </div>
+        <div style="overflow:hidden; transition:max-height 0.3s ease; max-height:300px; margin-top:1rem;" id="summaryContent">
+            <div class="summary-vertical">
+                <div class="summary-item">同号相加，符号不变，绝对值相加</div>
+                <div class="summary-item">异号相加，取绝对值大的符号，绝对值相减</div>
+                <div class="summary-item">互为相反数的两数和为0</div>
+                <div class="summary-item">任何数加0仍得它本身</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：《九章算术》与“正负术”（修改后，仅含加法法则） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h3>📖 读一读 · 《九章算术》与“正负术”</h3>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>《九章算术》是中国古代数学最重要的经典著作之一，成书最迟在公元1世纪。书中第八章《方程》篇提出了“正负术”——世界上最早的负数加减运算法则：</p>
+            <p style="font-style:italic; margin-left:1rem;">“同名相益，异名相除，正无入正之，负无入负之。”<br>
+            “同名相除，异名相益，正无入负之，负无入正之。”</p>
+            <p>魏晋时期数学家刘徽注释说：“今两算得失相反，要令正负以名之。”意思是，对于得失相反的量，要用正负数来表示。他还主张用红筹代表正数、黑筹代表负数。</p>
+            <p>将古文中的加法法则翻译成现代语言就是：</p>
+            <ul>
+                <li><strong>同号两数相加，取相同的符号，并把绝对值相加；</strong></li>
+                <li><strong>异号两数相加，取绝对值较大的符号，并用较大的绝对值减去较小的绝对值。</strong></li>
+            </ul>
+            <p>这不正是我们今天学习的加法法则吗？我国对负数的认识比西方早数百年，我们的祖先在两千多年前就已经总结出了如此精妙的运算法则，这是中国古代数学的伟大成就！</p>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本P26 练习第2、3题；习题1.6 A组第1、2题。</span>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #316a8c; font-size: 1.2rem; margin: 1.5rem 0;">✨ 同号相加不变号，异号相减符号随 ✨</p>
+
+    <div class="footer-note">
+        数学 七年级上册 · 第8课时
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(index) {
+        const answerDiv = document.getElementById('answer' + index);
+        if (answerDiv) answerDiv.classList.toggle('show-answer');
+    }
+
+    function toggleExampleAnswer() {
+        const answerDiv = document.getElementById('exampleAnswer');
+        answerDiv.classList.toggle('show-answer');
+    }
+
+    function fillTableAnswers() {
+        document.querySelector('.sign1').innerHTML = '<span class="answer-cell">-</span>';
+        document.querySelector('.abs1').innerHTML = '<span class="answer-cell">9</span>';
+        document.querySelector('.sum1').innerHTML = '<span class="answer-cell">-9</span>';
+        document.querySelector('.sign2').innerHTML = '<span class="answer-cell">-</span>';
+        document.querySelector('.abs2').innerHTML = '<span class="answer-cell">15</span>';
+        document.querySelector('.sum2').innerHTML = '<span class="answer-cell">-15</span>';
+        document.querySelector('.sign3').innerHTML = '<span class="answer-cell">+</span>';
+        document.querySelector('.abs3').innerHTML = '<span class="answer-cell">9</span>';
+        document.querySelector('.sum3').innerHTML = '<span class="answer-cell">9</span>';
+        document.querySelector('.sign4').innerHTML = '<span class="answer-cell">-</span>';
+        document.querySelector('.abs4').innerHTML = '<span class="answer-cell">1</span>';
+        document.querySelector('.sum4').innerHTML = '<span class="answer-cell">-1</span>';
+    }
+
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        if (content.style.maxHeight === '0px' || content.style.maxHeight === '0') {
+            content.style.maxHeight = '300px';
+            toggle.textContent = '▼';
+        } else {
+            content.style.maxHeight = '0';
+            toggle.textContent = '▶';
+        }
+    }
+
+    // 读一读折叠函数
+    function toggleReading() {
+        const content = document.getElementById('readingContent');
+        const icon = document.getElementById('toggleIcon');
+        content.classList.toggle('collapsed');
+        icon.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

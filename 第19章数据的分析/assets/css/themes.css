@@ -1,0 +1,75 @@
+/* ============================================
+   themes.css — 暗色模式 & 特殊主题
+   ============================================ */
+
+@media (prefers-color-scheme: dark){
+    body{background:#0f172a;}
+    .textbook{background:#1e293b;color:#e2e8f0;border-color:#334155;box-shadow:0 4px 24px rgba(0,0,0,.3);}
+
+    /* 头部 */
+    .header-meta{color:#5eead4;border-color:#14b8a6;}
+    h1{color:#5eead4;}
+    .lesson-title{color:#5eead4;background:#0d3b3b;border-color:#14b8a6;}
+    .section-title{color:#5eead4;border-color:#14b8a6;}
+
+    /* 学习目标 */
+    .learning-targets{background:#0d3b3b;border-color:#14b8a6;box-shadow:0 3px 0 #115e59;}
+    .target-item{background:#1e293b;border-color:#334155;box-shadow:0 2px 0 #334155;}
+
+    /* 卡片 */
+    .card{background:#1e293b;border-color:#334155;}
+    .intro-card,.card--blue{background:#0c1929;border-color:#0ea5e9;color:#d1d5db;}
+    .explore-card,.example-card,.card--green{background:#0d2b24;border-color:#14b8a6;color:#d1d5db;}
+    .fact-card,.card--yellow{background:#2a1a0a;border-color:#f59e0b;color:#d1d5db;}
+
+    /* 高亮盒 */
+    .highlight-box{background:#0c1929;border-color:#2563eb;}
+    .warn-box{background:#2a0a0a;border-color:#dc2626;color:#fca5a5;}
+    .success-box{background:#0a2a1a;border-color:#10b981;color:#6ee7b7;}
+
+    /* 按钮 */
+    .btn{color:#5eead4;background:#1e293b;border-color:#14b8a6;box-shadow:0 3px 0 #115e59;}
+    .btn-primary{background:#0ea5e9;color:#fff;border-color:#0ea5e9;}
+
+    /* 答案盒 */
+    .answer-box{background:#1e293b;border-color:#334155;}
+
+    /* Canvas容器 */
+    .canvas-container{background:#1e293b;border-color:#334155;}
+
+    /* 表格 */
+    td{border-color:#334155;}
+    tr:nth-child(even) td{background:#1e293b;}
+    tr:hover td{background:#0c1929;}
+
+    /* 各种盒 */
+    .result-display{background:#0c1929;color:#93c5fd;}
+    .summary-box{background:#0a2a1a;border-color:#10b981;}
+    .homework-box{background:#0c1929;border-color:#2563eb;}
+    .message-box{background:#2a1a0a;border-color:#d97706;color:#fbbf24;}
+    .formula-box{background:#2a1a0a;border-color:#d97706;color:#fbbf24;}
+    .theorem-box{background:#2a1a0a;border-color:#d97706;color:#fbbf24;}
+    .key-point{background:#2a1a0a;color:#fbbf24;}
+    .recommendation-box{background:#0c1929;border-color:#2563eb;}
+
+    /* 交互组件 */
+    .data-input-area{background:#1e293b;border-color:#334155;}
+    .stat-item{background:#1e293b;border-color:#334155;}
+    .quiz-card,.quiz-mini{background:#1e293b;border-color:#334155;}
+    .quiz-option{background:#1e293b;border-color:#334155;}
+    .step-btn{background:#1e293b;}
+    .tab-btn{background:#1e293b;color:#e2e8f0;}
+    .scenario-btn{background:#1e293b;border-color:#14b8a6;color:#5eead4;}
+    .practice-group{background:#1e293b;border-color:#334155;}
+
+    /* 图例 */
+    .compare-item{background:#1e293b;}
+    .map-item{background:#1e293b;border-color:#334155;}
+
+    /* 输入框 */
+    input,textarea,select{background:#1e293b!important;color:#e2e8f0!important;border-color:#334155!important;}
+    input:focus,textarea:focus{border-color:var(--primary)!important;}
+
+    /* 页脚 */
+    .footer-note{color:#94a3b8;border-color:#334155;}
+}

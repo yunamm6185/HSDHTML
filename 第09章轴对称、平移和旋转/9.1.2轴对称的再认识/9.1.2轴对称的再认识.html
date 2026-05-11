@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>线段对折演示（轴对称） | 9.1.2 轴对称的再认识</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                macros: { lt: '<', gt: '>' }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f0f5fb;
+            padding: 20px;
+        }
+        .textbook {
+            max-width: 1000px;
+            width: 100%;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+            margin-bottom: 20px;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            background: #e6f2fc;
+            border-radius: 50px;
+            padding: 0.4rem 1.8rem;
+            display: inline-block;
+            margin: 1rem 0 1.5rem 0;
+            border: 2px solid #b1d1e8;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f9fcff;
+            padding: 1rem;
+            border-radius: 28px;
+            border: 1px solid #c9ddef;
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+        }
+        .img-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .img-placeholder {
+            background: #e3eef9;
+            border-radius: 24px;
+            padding: 0.8rem 1rem;
+            min-width: 150px;
+            text-align: center;
+            border: 2px dashed #3f8ab3;
+            color: #0f4a6f;
+            font-weight: 500;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .interact-btn.reset-btn {
+            background: #fff3cd;
+            border: 2px solid #f4b84b;
+            color: #8a6d3b;
+            box-shadow: 0 4px 0 #dbb068;
+        }
+        .interact-btn.reset-btn:hover {
+            background: #ffe8a8;
+        }
+        .interact-btn.reset-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #dbb068;
+        }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+
+        /* 带底色和英文的概念框 */
+        .concept-box {
+            background-color: #dbf0f7;
+            border-left: 8px solid #1e7e9f;
+            border-radius: 20px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 8px rgba(0,60,80,0.1);
+            font-size: 1.2rem;
+            word-break: break-word;
+        }
+        .concept-box strong {
+            color: #0b4b6b;
+            font-size: 1.3rem;
+        }
+        .concept-box em {
+            color: #2c5977;
+            font-style: italic;
+            background-color: #e1f0fa;
+            padding: 0.1rem 0.4rem;
+            border-radius: 12px;
+            margin-left: 0.3rem;
+            font-weight: 500;
+        }
+
+        .guide-text {
+            background: #f0f7fe;
+            border-radius: 20px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border-left: 6px solid #3a7ca5;
+            font-style: italic;
+            color: #024d72;
+        }
+        
+        .construction-box {
+            background: #e8f0f7;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #7fa9c7;
+        }
+        .construction-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #135b8d;
+            margin-bottom: 0.8rem;
+        }
+        .step-list {
+            list-style-type: decimal;
+            padding-left: 1.8rem;
+            margin: 0.5rem 0;
+        }
+        .step-list li {
+            margin: 0.3rem 0;
+        }
+
+        .do-section {
+            background: #e9f2fa;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid #9bc2db;
+        }
+        .do-section .bold {
+            font-weight: 700;
+            color: #0b4b6b;
+        }
+
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+
+        .exercise-item {
+            background: #f2f8ff;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.2rem 0;
+            border: 1px solid #bacee5;
+        }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: #e2eff9;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #b6d2e9;
+        }
+        #summaryToggle { cursor: pointer; }
+        #summaryContent.collapsed { display: none; }
+        
+        /* 图片样式 */
+        .actual-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: 2px solid white;
+        }
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .image-caption {
+            margin-top: 0.5rem;
+            color: #144a6f;
+            font-weight: 500;
+        }
+        
+        .break-line {
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* 画布容器 */
+        .canvas-container {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,40,60,0.1);
+            margin: 20px 0;
+            border: 2px solid #b9d6ef;
+        }
+        #canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: white;
+            border-radius: 16px;
+        }
+        .control {
+            margin: 15px 0 5px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #e6f2fc;
+            padding: 15px 25px;
+            border-radius: 60px;
+            border: 1px solid #b1d1e8;
+        }
+        .control label {
+            font-weight: 600;
+            color: #014682;
+            min-width: 80px;
+        }
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 10px;
+            background: #d0e2f2;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: #2675a8;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        #angleValue {
+            min-width: 80px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #135b8d;
+            background: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: 1px solid #7fa9c7;
+        }
+        .note {
+            margin-top: 10px;
+            color: #305d81;
+            font-size: 0.95rem;
+            background: #fff3cd;
+            padding: 8px 20px;
+            border-radius: 40px;
+            border: 1px solid #f0ddb4;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        /* 数学公式样式 */
+        .math-text {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第9章 轴对称、平移与旋转 · 9.1.2</span>
+    </div>
+    <h1>第9章 轴对称、平移与旋转</h1>
+    <div class="section-title">9.1 轴对称 —— 2. 轴对称的再认识</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解线段、角是轴对称图形</div>
+            <div class="target-item"><span>✔</span>掌握垂直平分线的概念和尺规作图</div>
+            <div class="target-item"><span>✔</span>掌握角平分线的尺规作图</div>
+            <div class="target-item"><span>✔</span>能找出复杂图形的对称轴</div>
+        </div>
+    </div>
+
+    <!-- 观察线段和角 -->
+    <div class="think-box">
+        <h4>观察</h4>
+        <p>线段和角，它们都是轴对称图形吗？</p>
+        <div class="img-row">
+            <div class="image-container">
+                <img src="线段AB.png" alt="线段AB" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">线段 AB</div>
+            </div>
+            <div class="image-container">
+                <img src="角AOB.png" alt="角AOB" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">∠AOB</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 试一试：线段对折 图9.1.4.png + 互动按钮 -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>如图9.1.4，在半透明纸上画出线段 \(AB\)，对折线段 \(AB\)，使点 \(A\) 与点 \(B\) 重合，在折痕上任取两点 \(P\)、\(Q\)，然后用直尺画出折痕 \(PQ\)，直线 \(PQ\) 与线段 \(AB\) 相交于点 \(O\)。对折后，线段 \(OA\) 与 \(OB\) 是否重合？\(\angle POA\) 与 \(\angle POB\) 是否重合？你能说明直线 \(PQ\) 与线段 \(AB\) 的关系吗？</p>
+        <div class="image-container">
+            <img src="9.1.4.png" alt="图9.1.4 线段对折" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📏 图9.1.4 线段对折</div>
+            <div class="image-caption">图9.1.4</div>
+        </div>
+        
+        <!-- 画布区域 - 嵌入动画 -->
+        <div class="canvas-container">
+            <canvas id="canvas" width="800" height="550"></canvas>
+            <div class="control">
+                <label>翻折角度：</label>
+                <input type="range" id="foldSlider" min="1" max="179" value="1" step="1">
+                <span id="angleValue">0° (展开)</span>
+            </div>
+            <div class="button-group">
+                <button class="interact-btn" onclick="toggleAnswer('segmentFold')">🔍 显示结论</button>
+                <button class="interact-btn reset-btn" id="resetAnimationBtn">🔄 重置动画</button>
+            </div>
+            <div id="segmentFold" class="answer-box">
+                <p>\(OA = OB\)，\(\angle POA = \angle POB = 90^\circ\)。直线 \(PQ\) 是线段 \(AB\) 的垂直平分线。</p>
+            </div>
+            <div class="note">
+                ✨ 紫色虚线：\(PA = PB\)，粉色虚线：\(QA = QB\)。点 \(A'\) 随翻折角度移动。
+            </div>
+        </div>
+    </div>
+
+    <!-- 概念：垂直平分线 -->
+    <div class="concept-box">
+        <strong>垂直平分线</strong> <em>(perpendicular bisector)</em>：垂直于一条线段并且平分这条线段的直线，叫做这条线段的垂直平分线。<br>
+        <strong>线段是轴对称图形</strong>，其对称轴就是该线段的垂直平分线。
+    </div>
+
+    <!-- 思考：如何作垂直平分线 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>我们已经能利用尺规作图，作一条线段等于已知线段，作一个角等于已知角，那么如何作出已知线段的垂直平分线，即对称轴呢？</p>
+    </div>
+
+    <!-- 引导性文字 -->
+    <div class="guide-text">
+        <p>在上页的“试一试”中，我们发现，将线段 \(AB\) 对折，左、右两半完全重合，此时线段 \(PA\) 与 \(PB\) 重合，\(QA\) 与 \(QB\) 重合，即 \(PA = PB\)，\(QA = QB\)。</p>
+        <p>于是我们想到，分别以点 \(A\)、\(B\) 为圆心，以同样长为半径作弧，两弧的交点即为垂直平分线上的两点 \(P\) 与 \(Q\)。</p>
+        <p>由此，你能发现利用尺规作图作线段垂直平分线的方法吗？</p>
+    </div>
+
+    <!-- 做一做：尺规作垂直平分线 图9.1.5.png -->
+    <div class="construction-box">
+        <div class="construction-title">📐 做一做 —— 作线段的垂直平分线</div>
+        <p>如图9.1.5，已知线段 \(AB\)，试利用尺规作图，按下列作法准确地作出线段 \(AB\) 的垂直平分线。</p>
+        <div class="image-container">
+            <img src="9.1.5.png" alt="图9.1.5 作垂直平分线" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图9.1.5 作垂直平分线</div>
+            <div class="image-caption">图9.1.5</div>
+        </div>
+        <ol class="step-list">
+            <li>分别以点 \(A\) 和 \(B\) 为圆心、相同长（大于线段 \(AB\) 长的一半）为半径作弧，两弧分别相交于点 \(P\) 和点 \(Q\)；</li>
+            <li>作直线 \(PQ\)。</li>
+        </ol>
+        <p>直线 \(PQ\) 就是所要求作的线段 \(AB\) 的垂直平分线。</p>
+        <button class="interact-btn" onclick="toggleAnswer('whyPerp')">❓ 为什么这样作</button>
+        <div id="whyPerp" class="answer-box">
+            <p>由作图可知 \(PA = PB\)，\(QA = QB\)，所以 \(P\)、\(Q\) 都在线段 \(AB\) 的垂直平分线上，两点确定一条直线。</p>
+        </div>
+    </div>
+
+    <!-- 试一试：角 图9.1.6.png -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>如图9.1.6，在半透明纸上画出 \(\angle AOB\)，对折 \(\angle AOB\)，使角的两边完全重合，然后在折痕（角的内部）上任取一点 \(P\)，用直尺画出折痕 \(OP\)，显然射线 \(OP\) 是该角的平分线，看看直线 \(OP\) 与 \(\angle AOB\) 是什么关系。</p>
+        <div class="image-container">
+            <img src="9.1.6.png" alt="图9.1.6 角对折" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图9.1.6 角对折</div>
+            <div class="image-caption">图9.1.6</div>
+        </div>
+        <button class="interact-btn" onclick="toggleAnswer('angleFold')">🔍 显示结论</button>
+        <div id="angleFold" class="answer-box">
+            <p>角是轴对称图形，其对称轴是这个角的平分线所在的直线。</p>
+        </div>
+    </div>
+
+    <!-- 概念：角平分线 -->
+    <div class="concept-box">
+        <strong>角平分线</strong> <em>(angle bisector)</em>：从一个角的顶点引出一条射线，把这个角分成两个相等的角，这条射线叫做这个角的平分线。<br>
+        <strong>角是轴对称图形</strong>，其对称轴是这个角的平分线所在的直线。
+    </div>
+
+    <!-- 思考：如何作角平分线 -->
+    <div class="think-box">
+        <h4>思考</h4>
+        <p>我们已经能利用尺规作图作出已知线段的垂直平分线，那么如何作出已知角的平分线，从而得到已知角的对称轴呢？</p>
+    </div>
+
+    <!-- 做一做：尺规作角平分线 图9.1.7.png -->
+    <div class="construction-box">
+        <div class="construction-title">📐 做一做 —— 作角的平分线</div>
+        <p>如图9.1.7，已知 \(\angle AOB\)，试利用尺规作图，按下列作法准确地作出 \(\angle AOB\) 的平分线。</p>
+        <div class="image-container">
+            <img src="9.1.7.png" alt="图9.1.7 作角平分线" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📐 图9.1.7 作角平分线</div>
+            <div class="image-caption">图9.1.7</div>
+        </div>
+        <ol class="step-list">
+            <li>以点 \(O\) 为圆心、任意长为半径作弧，与角的两边分别交于 \(M\)、\(N\) 两点；</li>
+            <li>分别以点 \(M\) 和 \(N\) 为圆心、相同长（大于线段 \(MN\) 长的一半）为半径作弧，在 \(\angle AOB\) 内，两弧相交于点 \(P\)；</li>
+            <li>作射线 \(OP\)。</li>
+        </ol>
+        <p>射线 \(OP\) 就是所要求作的 \(\angle AOB\) 的平分线。</p>
+        <button class="interact-btn" onclick="toggleAnswer('whyAngle')">❓ 为什么这样作</button>
+        <div id="whyAngle" class="answer-box">
+            <p>由作图可知 \(OM = ON\)，\(PM = PN\)，所以 \(OP\) 是线段 \(MN\) 的垂直平分线，从而 \(OP\) 平分 \(\angle AOB\)。</p>
+        </div>
+    </div>
+
+    <!-- 试一试：作对称轴 图9.1.8.png -->
+    <div class="explore-box">
+        <h4>试一试</h4>
+        <p>如图9.1.8，两个方格图内的图形都是轴对称图形，请作出它们的对称轴。</p>
+        <div class="image-container">
+            <img src="9.1.8.png" alt="图9.1.8 方格中的轴对称图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔲 图9.1.8 方格中的轴对称图形</div>
+            <div class="image-caption">图9.1.8</div>
+        </div>
+    </div>
+
+    <!-- 做一做：找对称点连线 图9.1.9.png 9.1.10.png -->
+    <div class="do-section">
+        <p class="bold">做一做</p>
+        <p>如图9.1.9，点 \(A\) 和点 \(A'\) 关于某条直线成轴对称，你能作出这条直线吗？</p>
+        <div class="image-container">
+            <img src="9.1.9.png" alt="图9.1.9 点和对称点" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">🔘 图9.1.9 点和对称点</div>
+            <div class="image-caption">图9.1.9</div>
+        </div>
+        <p>如图9.1.10，我们只要连结点 \(A\) 和点 \(A'\)，作出线段 \(AA'\) 的垂直平分线 \(l\)，直线 \(l\) 就是点 \(A\) 和点 \(A'\) 的对称轴。</p>
+        <div class="image-container">
+            <img src="9.1.10.png" alt="图9.1.10 作对称轴" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="img-placeholder" style="display:none;">📏 图9.1.10 作对称轴</div>
+            <div class="image-caption">图9.1.10</div>
+        </div>
+    </div>
+
+    <!-- 结论 -->
+    <div class="concept-box">
+        <strong>结论</strong>：如果一个图形是轴对称图形，那么连结对称点的线段的垂直平分线就是该图形的对称轴。
+    </div>
+
+    <!-- 练习 (使用练习2.png, 练习3.png, 练习4.png, 练习5.png) -->
+    <div style="margin:2rem 0;">
+        <h3 style="color:#0b4b78;">📐 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 平面上的两条相交直线是轴对称图形吗？如果是，它有几条对称轴？作图试试看。</p>
+            <button class="interact-btn" onclick="toggleAnswer('prac1')">🔍 答案</button>
+            <div id="prac1" class="answer-box">
+                <p>是轴对称图形，有2条对称轴（两条角平分线所在的直线）。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 把一张正方形纸对折两次，然后分别剪出下列图形。</p>
+            <div class="image-container">
+                <img src="练习2.png" alt="练习2 剪纸图形" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">✂️ 练习2 剪纸图形</div>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 图中的一些虚线，哪些是图形的对称轴，哪些不是？</p>
+            <div class="image-container">
+                <img src="练习3.png" alt="练习3 虚线判断" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">📐 练习3 虚线判断</div>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>4.</strong> 如图，已知△ABC，利用尺规作图作出△ABC的边BC上的中线。</p>
+            <div class="image-container">
+                <img src="练习4.png" alt="练习4 三角形ABC" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">△ABC 练习4</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac4')">🔍 提示</button>
+            <div id="prac4" class="answer-box">
+                <p>先作BC的垂直平分线，找到BC中点，再连接A与中点。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>5.</strong> 如图，已知△ABC，利用尺规作图作出△ABC的平分线。（应为∠A的平分线）</p>
+            <div class="image-container">
+                <img src="练习5.png" alt="练习5 三角形ABC" class="actual-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="img-placeholder" style="display:none;">△ABC 练习5</div>
+            </div>
+            <button class="interact-btn" onclick="toggleAnswer('prac5')">🔍 提示</button>
+            <div id="prac5" class="answer-box">
+                <p>以A为圆心作弧交两边于两点，再分别以这两点为圆心作弧交于一点，连接A与该点。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数学思想 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>转化思想：</strong> 将对称轴的寻找转化为作垂直平分线。<br>
+        <strong>操作验证：</strong> 通过折叠、尺规作图验证图形的对称性。<br>
+        <strong>模型观念：</strong> 垂直平分线和角平分线是重要的几何模型。</p>
+    </div>
+
+    <!-- 课堂小结 -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">线段是轴对称图形，对称轴是它的垂直平分线。</div>
+            <div class="summary-item">角是轴对称图形，对称轴是它的角平分线所在的直线。</div>
+            <div class="summary-item">尺规作图：作线段的垂直平分线、作角的平分线。</div>
+            <div class="summary-item">对称轴的作法：连结对称点，作所得线段的垂直平分线。</div>
+        </div>
+    </div>
+
+    <!-- 作业 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 习题9.1 A组第4、5题，B组第6、7题。</span>
+    </div>
+    <div class="footer-note">数学 七年级下册 · 第9章 9.1.2</div>
+</div>
+
+<script>
+    // ==================== 动画相关代码 ====================
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const slider = document.getElementById('foldSlider');
+    const angleValue = document.getElementById('angleValue');
+    const resetBtn = document.getElementById('resetAnimationBtn');
+
+    // 固定参数：线段AB水平放置，中点在画布中央
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const segmentLength = 380;        // AB 总长度
+    const halfLength = segmentLength / 2;
+    
+    // 固定点（对称轴上的点 P 和 Q）- 上下延长
+    const P = { x: centerX, y: centerY - 150 };   // 上方点
+    const Q = { x: centerX, y: centerY + 150 };   // 下方点
+    
+    // 线段端点 A (左) 和 B (右) 的原始位置
+    const A_original = { x: centerX - halfLength, y: centerY };
+    const B_original = { x: centerX + halfLength, y: centerY };
+    
+    // 中点 O
+    const O = { x: centerX, y: centerY };
+
+    // 计算翻折后的 A' 点坐标
+    function getFoldedAPrime(angleDeg) {
+        let t;
+        if (angleDeg === 1) t = 0;
+        else if (angleDeg === 179) t = 180;
+        else t = angleDeg;
+        
+        const rad = (t * Math.PI) / 180;
+        const foldedX = centerX - halfLength * Math.cos(rad);
+        const maxLift = 35;
+        const lift = Math.sin(rad) * maxLift;
+        const foldedY = centerY - lift;
+        
+        return { x: foldedX, y: foldedY };
+    }
+
+    // 绘制整个场景
+    function draw(foldAngle) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // 显示角度文本
+        let displayAngle;
+        if (foldAngle === 1) displayAngle = 0;
+        else if (foldAngle === 179) displayAngle = 180;
+        else displayAngle = foldAngle;
+        angleValue.textContent = `${displayAngle}° (${displayAngle === 0 ? '展开' : (displayAngle === 180 ? '完全重合' : '翻折中')})`;
+
+        const foldedAPrime = getFoldedAPrime(foldAngle);
+        
+        // 1. 绘制对称轴 PQ (红色实线，上下延长)
+        ctx.beginPath();
+        ctx.moveTo(P.x, P.y - 40);
+        ctx.lineTo(Q.x, Q.y + 40);
+        ctx.strokeStyle = '#e74c3c';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([]);
+        ctx.stroke();
+        
+        // 标记 P、Q 点
+        ctx.fillStyle = '#e74c3c';
+        ctx.beginPath();
+        ctx.arc(P.x, P.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(Q.x, Q.y, 7, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.font = 'bold 18px "Segoe UI"';
+        ctx.fillStyle = '#c0392b';
+        ctx.fillText('P', P.x - 25, P.y - 15);
+        ctx.fillText('Q', Q.x - 25, Q.y + 30);
+        
+        // 2. 原始线段AB的参考位置（灰色虚线）
+        ctx.beginPath();
+        ctx.moveTo(A_original.x, A_original.y);
+        ctx.lineTo(B_original.x, B_original.y);
+        ctx.strokeStyle = '#bdc3c7';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // 3. 蓝色线段 A'→O 和 O→B
+        ctx.beginPath();
+        ctx.moveTo(foldedAPrime.x, foldedAPrime.y);
+        ctx.lineTo(O.x, O.y);
+        ctx.strokeStyle = '#2980b9';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(O.x, O.y);
+        ctx.lineTo(B_original.x, B_original.y);
+        ctx.strokeStyle = '#2980b9';
+        ctx.lineWidth = 4;
+        ctx.stroke();
+        
+        // 4. 紫色虚线线段 (PA' 和 PB)
+        ctx.beginPath();
+        ctx.moveTo(P.x, P.y);
+        ctx.lineTo(foldedAPrime.x, foldedAPrime.y);
+        ctx.strokeStyle = '#9b59b6';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(P.x, P.y);
+        ctx.lineTo(B_original.x, B_original.y);
+        ctx.strokeStyle = '#9b59b6';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        
+        // 5. 粉色虚线线段 (QA' 和 QB)
+        ctx.beginPath();
+        ctx.moveTo(Q.x, Q.y);
+        ctx.lineTo(foldedAPrime.x, foldedAPrime.y);
+        ctx.strokeStyle = '#ff69b4';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(Q.x, Q.y);
+        ctx.lineTo(B_original.x, B_original.y);
+        ctx.strokeStyle = '#ff69b4';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([6, 4]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // 6. 标记中点 O
+        ctx.fillStyle = '#2c3e50';
+        ctx.beginPath();
+        ctx.arc(O.x, O.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 18px "Segoe UI"';
+        ctx.fillText('O', O.x + 22, O.y - 12);
+        
+        // 7. 标记点
+        // 原始点 A (灰色)
+        ctx.fillStyle = '#95a5a6';
+        ctx.beginPath();
+        ctx.arc(A_original.x, A_original.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#2c3e50';
+        ctx.font = 'bold 18px "Segoe UI"';
+        ctx.fillText('A', A_original.x - 28, A_original.y - 18);
+        
+        // 翻折中的点 A' (橙色)
+        ctx.fillStyle = '#e67e22';
+        ctx.beginPath();
+        ctx.arc(foldedAPrime.x, foldedAPrime.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#d35400';
+        let aprimeTextX = foldedAPrime.x - 30;
+        let aprimeTextY = foldedAPrime.y - 20;
+        if (foldedAPrime.x < 150) aprimeTextX = foldedAPrime.x + 15;
+        ctx.fillText("A'", aprimeTextX, aprimeTextY);
+        
+        // 点 B (绿色)
+        ctx.fillStyle = '#27ae60';
+        ctx.beginPath();
+        ctx.arc(B_original.x, B_original.y, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#2c3e50';
+        ctx.fillText('B', B_original.x + 20, B_original.y - 18);
+        
+        // 8. 文本标注
+        ctx.font = 'bold 24px "Segoe UI"';
+        ctx.fillStyle = '#9b59b6';
+        ctx.fillText('PA = PB', centerX - 75, centerY - 230);
+        ctx.fillStyle = '#ff69b4';
+        ctx.fillText('QA = QB', centerX - 75, centerY + 220);
+        
+        // 直角符号
+        if (foldAngle > 5 && foldAngle < 175) {
+            ctx.beginPath();
+            ctx.strokeStyle = '#e74c3c';
+            ctx.lineWidth = 2.5;
+            const size = 22;
+            ctx.moveTo(O.x + size/2, O.y);
+            ctx.lineTo(O.x + size/2, O.y + size/2);
+            ctx.lineTo(O.x, O.y + size/2);
+            ctx.stroke();
+        }
+        
+        // 重合提示
+        if (foldAngle > 175) {
+            ctx.font = 'bold 20px "Segoe UI"';
+            ctx.fillStyle = '#27ae60';
+            ctx.fillText('✓ A 与 B 完全重合', centerX - 120, centerY - 120);
+        }
+    }
+
+    // 滑动条交互
+    slider.addEventListener('input', (e) => {
+        const val = parseInt(e.target.value);
+        draw(val);
+    });
+
+    // 重置动画按钮
+    resetBtn.addEventListener('click', () => {
+        slider.value = 1;
+        draw(1);
+    });
+
+    // 初始化绘制
+    draw(1);
+
+    // ==================== 通用函数 ====================
+    function toggleAnswer(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        const content = document.getElementById('summaryContent');
+        const toggle = document.getElementById('summaryToggle');
+        content.classList.toggle('collapsed');
+        toggle.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    
+    // 图片加载失败处理
+    window.onload = function() {
+        const imgs = document.querySelectorAll('img.actual-image');
+        imgs.forEach(img => {
+            img.onerror = function() {
+                this.style.display = 'none';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('img-placeholder')) {
+                    this.nextElementSibling.style.display = 'block';
+                }
+            };
+        });
+        
+        // 重新渲染MathJax
+        if (window.MathJax) {
+            MathJax.typesetPromise?.();
+        }
+    };
+</script>
+</body>
+</html>

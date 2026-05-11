@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正多边形密铺模拟器 · 手动与自动放置</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            background: #f0f2f5;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,20,40,0.2);
+            overflow: hidden;
+            max-width: 1100px;
+            width: 100%;
+        }
+        .canvas-area {
+            flex: 3;
+            background: #fafbfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            border-right: 2px solid #d0ddee;
+        }
+        canvas {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: crosshair;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .sidebar {
+            flex: 1.2;
+            background: #f5f9ff;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            overflow-y: auto;
+            max-height: 800px;
+        }
+        .sidebar h3 {
+            margin: 0 0 16px 0;
+            color: #1e4b6e;
+            font-weight: 500;
+            font-size: 1.3rem;
+            text-align: center;
+            border-bottom: 2px solid #b8d2f0;
+            padding-bottom: 10px;
+        }
+        .btn {
+            background: white;
+            border: 2px solid #2b7a9c;
+            border-radius: 40px;
+            padding: 12px 0;
+            margin: 5px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1b5370;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 4px 0 #9bb7d4;
+            text-align: center;
+            outline: none;
+        }
+        .btn:hover {
+            background: #e3f0fd;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #9bb7d4;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #9bb7d4;
+        }
+        .btn.selected {
+            background: #ffd966;
+            border-color: #b37b2e;
+            color: #5d3f1a;
+            box-shadow: 0 4px 0 #b37b2e;
+        }
+        .btn.auto {
+            background: #cfe2f3;
+            border-color: #2b6f9c;
+            color: #1b3f5a;
+            margin-top: 15px;
+        }
+        .btn.undo {
+            background: #e0d5f5;
+            border-color: #6b4f8f;
+            color: #3d2b5a;
+        }
+        .btn.clear {
+            background: #fff3cd;
+            border-color: #c49b3f;
+            color: #7a5a1a;
+        }
+        .btn.undo:hover {
+            background: #d2c2f0;
+        }
+        .btn.clear:hover {
+            background: #ffe8a8;
+        }
+        .info {
+            margin-top: 20px;
+            background: #e2eaf3;
+            border-radius: 20px;
+            padding: 15px;
+            color: #113750;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .info p {
+            margin: 8px 0;
+        }
+        .info .angle {
+            font-weight: 700;
+            color: #1f6d9b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="canvas-area">
+        <canvas id="tileCanvas" width="600" height="500"></canvas>
+    </div>
+    <div class="sidebar">
+        <h3>点击按钮选中多边形</h3>
+        <button class="btn" data-type="triangle">🔺 正三角形</button>
+        <button class="btn" data-type="square">⬛ 正方形</button>
+        <button class="btn" data-type="pentagon">⬟ 正五边形</button>
+        <button class="btn" data-type="hexagon">⬢ 正六边形</button>
+        <button class="btn" data-type="heptagon">⏣ 正七边形</button>
+        <button class="btn" data-type="octagon">⬡ 正八边形</button>
+        <button class="btn" data-type="nonagon">🔟 正九边形</button>
+        <button class="btn" data-type="decagon">🔯 正十边形</button>
+        <button class="btn" data-type="dodecagon">🕛 正十二边形</button>
+        <button class="btn" data-type="octodecagon">🔄 正十八边形</button>
+        <button class="btn auto" id="autoPlaceBtn">⚡ 自动放置 (当前选中)</button>
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <button class="btn undo" id="undoBtn" style="flex: 1;">↩️ 撤销</button>
+            <button class="btn clear" id="clearBtn" style="flex: 1;">🗑️ 清空</button>
+        </div>
+        <div class="info">
+            <p>⚫ 边长 50px<br>
+            ⚫ 点击按钮选中（变黄），然后点击画布手动放置<br>
+            ⚫ 点击“自动放置”可随机寻找位置<br>
+            ⚫ 撤销：移除最后放置的一个多边形</p>
+            <p><span class="angle">内角参考：</span><br>
+            60° | 90° | 108° | 120° | ≈128.6°<br>
+            135° | 140° | 144° | 150° | 160°</p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    const canvas = document.getElementById('tileCanvas');
+    const ctx = canvas.getContext('2d');
+    const SIDE_LENGTH = 50; // 边长
+
+    // 存储所有已放置的多边形
+    let polygons = [];
+
+    // 当前选中的正多边形边数（默认为6，即正六边形）
+    let selectedSides = 6;
+
+    // 所有按钮元素
+    const sideButtons = document.querySelectorAll('.btn[data-type]');
+    const autoBtn = document.getElementById('autoPlaceBtn');
+    const undoBtn = document.getElementById('undoBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    // 根据边数获取几何参数
+    function getPolygonParams(sides) {
+        const n = sides;
+        const angleStep = (2 * Math.PI) / n;
+        const R = SIDE_LENGTH / (2 * Math.sin(Math.PI / n));
+        const apothem = R * Math.cos(Math.PI / n);
+        return { n, angleStep, R, apothem };
+    }
+
+    // 根据中心、起始角度、边数计算所有顶点坐标
+    function computeVertices(cx, cy, startAngle, sides) {
+        const { n, angleStep, R } = getPolygonParams(sides);
+        const vertices = [];
+        for (let i = 0; i < n; i++) {
+            const angle = startAngle + i * angleStep;
+            vertices.push({ x: cx + R * Math.cos(angle), y: cy + R * Math.sin(angle) });
+        }
+        return vertices;
+    }
+
+    // 检查新多边形是否与已有图形重叠（忽略指定索引）
+    function isOverlapping(newCx, newCy, newSides, ignoreIndex = -1) {
+        const { apothem: newApothem } = getPolygonParams(newSides);
+        for (let i = 0; i < polygons.length; i++) {
+            if (i === ignoreIndex) continue;
+            const p = polygons[i];
+            const { apothem: oldApothem } = getPolygonParams(p.sides);
+            const dx = newCx - p.cx;
+            const dy = newCy - p.cy;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            // 中心距小于两多边形边心距之和，则视为重叠（允许微小误差）
+            if (dist < oldApothem + newApothem - 1) return true;
+        }
+        return false;
+    }
+
+    // 在指定边上放置新多边形（返回新多边形的中心、起始角度，或null）
+    function placeOnEdge(poly, edgeIndex, newSides) {
+        const verts = computeVertices(poly.cx, poly.cy, poly.startAngle, poly.sides);
+        const v1 = verts[edgeIndex];
+        const v2 = verts[(edgeIndex + 1) % poly.sides];
+
+        const mx = (v1.x + v2.x) / 2;
+        const my = (v1.y + v2.y) / 2;
+
+        const dx = v2.x - v1.x;
+        const dy = v2.y - v1.y;
+        const len = Math.sqrt(dx*dx + dy*dy);
+        if (len < 1e-6) return null;
+
+        // 向外法线方向
+        const cxToMidX = mx - poly.cx;
+        const cxToMidY = my - poly.cy;
+        const perp1 = { x: -dy, y: dx };
+        const perp2 = { x: dy, y: -dx };
+        const dot1 = perp1.x * cxToMidX + perp1.y * cxToMidY;
+        const dot2 = perp2.x * cxToMidX + perp2.y * cxToMidY;
+        const normal = (dot1 > dot2) ? perp1 : perp2;
+        const normLen = Math.sqrt(normal.x*normal.x + normal.y*normal.y);
+        if (normLen < 1e-6) return null;
+        const nx = normal.x / normLen;
+        const ny = normal.y / normLen;
+
+        const { apothem: newApothem } = getPolygonParams(newSides);
+        const newCx = mx + nx * newApothem;
+        const newCy = my + ny * newApothem;
+
+        // 新多边形的起始角度（使得v2成为第一个顶点）
+        const dxV = v2.x - newCx;
+        const dyV = v2.y - newCy;
+        const startAngle = Math.atan2(dyV, dxV);
+
+        return { cx: newCx, cy: newCy, startAngle };
+    }
+
+    // 自动放置：遍历所有边，找到第一个可放置的位置
+    function autoPlace(sides) {
+        if (polygons.length === 0) {
+            // 第一个多边形放在画布中心
+            const cx = canvas.width / 2, cy = canvas.height / 2;
+            if (!isOverlapping(cx, cy, sides)) {
+                polygons.push({ cx, cy, startAngle: 0, sides });
+                return true;
+            }
+            return false;
+        }
+
+        for (let pIdx = 0; pIdx < polygons.length; pIdx++) {
+            const poly = polygons[pIdx];
+            for (let eIdx = 0; eIdx < poly.sides; eIdx++) {
+                const result = placeOnEdge(poly, eIdx, sides);
+                if (!result) continue;
+                if (!isOverlapping(result.cx, result.cy, sides, pIdx)) {
+                    polygons.push({ cx: result.cx, cy: result.cy, startAngle: result.startAngle, sides });
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // 手动放置：根据鼠标坐标，寻找最近的边，尝试放置
+    function manualPlaceAt(mx, my, sides) {
+        if (polygons.length === 0) {
+            // 如果画布为空，直接放置在鼠标点击位置（以鼠标为中心）
+            if (!isOverlapping(mx, my, sides)) {
+                polygons.push({ cx: mx, cy: my, startAngle: 0, sides });
+                return true;
+            }
+            return false;
+        }
+
+        // 计算所有边的中点，并找出离鼠标最近的一条边
+        let bestDist = Infinity;
+        let bestPolyIdx = -1;
+        let bestEdgeIdx = -1;
+        for (let pIdx = 0; pIdx < polygons.length; pIdx++) {
+            const poly = polygons[pIdx];
+            const verts = computeVertices(poly.cx, poly.cy, poly.startAngle, poly.sides);
+            for (let eIdx = 0; eIdx < poly.sides; eIdx++) {
+                const v1 = verts[eIdx];
+                const v2 = verts[(eIdx + 1) % poly.sides];
+                const midX = (v1.x + v2.x) / 2;
+                const midY = (v1.y + v2.y) / 2;
+                const dist = Math.hypot(midX - mx, midY - my);
+                if (dist < bestDist) {
+                    bestDist = dist;
+                    bestPolyIdx = pIdx;
+                    bestEdgeIdx = eIdx;
+                }
+            }
+        }
+
+        if (bestPolyIdx === -1) return false;
+
+        // 尝试在这条边上放置
+        const result = placeOnEdge(polygons[bestPolyIdx], bestEdgeIdx, sides);
+        if (result && !isOverlapping(result.cx, result.cy, sides, bestPolyIdx)) {
+            polygons.push({ cx: result.cx, cy: result.cy, startAngle: result.startAngle, sides });
+            return true;
+        }
+        return false;
+    }
+
+    // 撤销：移除最后一个多边形
+    function undo() {
+        if (polygons.length > 0) {
+            polygons.pop();
+            draw();
+        } else {
+            alert('没有可撤销的多边形');
+        }
+    }
+
+    // 绘制所有多边形
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // 绘制浅色网格
+        ctx.strokeStyle = "#eaeef5";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= canvas.width; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+            ctx.stroke();
+        }
+        for (let i = 0; i <= canvas.height; i += 20) {
+            ctx.beginPath();
+            ctx.moveTo(0, i);
+            ctx.lineTo(canvas.width, i);
+            ctx.stroke();
+        }
+
+        polygons.forEach(poly => {
+            const verts = computeVertices(poly.cx, poly.cy, poly.startAngle, poly.sides);
+            ctx.beginPath();
+            ctx.moveTo(verts[0].x, verts[0].y);
+            for (let i = 1; i < verts.length; i++) ctx.lineTo(verts[i].x, verts[i].y);
+            ctx.closePath();
+            ctx.fillStyle = getColor(poly.sides);
+            ctx.fill();
+            ctx.strokeStyle = "#1e3a5f";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        });
+    }
+
+    function getColor(sides) {
+        const colors = {
+            3: "#f9d5a3", 4: "#b8d9f0", 5: "#c5e0b4", 6: "#f4b8a4",
+            7: "#d3b5e8", 8: "#f9e0a0", 9: "#b0d9b1", 10: "#f1b6c1",
+            12: "#b2c8e8", 18: "#d6c8b0"
+        };
+        return colors[sides] || "#cccccc";
+    }
+
+    function getChineseName(sides) {
+        const names = {3:"三角形",4:"正方形",5:"五边形",6:"六边形",7:"七边形",8:"八边形",9:"九边形",10:"十边形",12:"十二边形",18:"十八边形"};
+        return names[sides] || sides+"边形";
+    }
+
+    // 处理按钮选中样式
+    function updateSelectedButton(sides) {
+        sideButtons.forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        // 根据sides找到对应按钮并添加selected类
+        const typeMap = {
+            3: 'triangle', 4: 'square', 5: 'pentagon', 6: 'hexagon',
+            7: 'heptagon', 8: 'octagon', 9: 'nonagon', 10: 'decagon',
+            12: 'dodecagon', 18: 'octodecagon'
+        };
+        const targetType = typeMap[sides];
+        if (targetType) {
+            const targetBtn = document.querySelector(`.btn[data-type="${targetType}"]`);
+            if (targetBtn) targetBtn.classList.add('selected');
+        }
+    }
+
+    // 按钮点击：选中多边形
+    sideButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const type = btn.dataset.type;
+            let sides = 0;
+            switch (type) {
+                case 'triangle': sides = 3; break;
+                case 'square': sides = 4; break;
+                case 'pentagon': sides = 5; break;
+                case 'hexagon': sides = 6; break;
+                case 'heptagon': sides = 7; break;
+                case 'octagon': sides = 8; break;
+                case 'nonagon': sides = 9; break;
+                case 'decagon': sides = 10; break;
+                case 'dodecagon': sides = 12; break;
+                case 'octodecagon': sides = 18; break;
+            }
+            selectedSides = sides;
+            updateSelectedButton(sides);
+        });
+    });
+
+    // 自动放置按钮
+    autoBtn.addEventListener('click', () => {
+        if (autoPlace(selectedSides)) {
+            draw();
+        } else {
+            alert(`无法自动放置正${getChineseName(selectedSides)}，可能已无合适位置。`);
+        }
+    });
+
+    // 撤销按钮
+    undoBtn.addEventListener('click', undo);
+
+    // 清空按钮
+    clearBtn.addEventListener('click', () => {
+        polygons = [];
+        draw();
+    });
+
+    // 画布点击：手动放置
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const mouseX = (e.clientX - rect.left) * scaleX;
+        const mouseY = (e.clientY - rect.top) * scaleY;
+
+        if (manualPlaceAt(mouseX, mouseY, selectedSides)) {
+            draw();
+        } else {
+            alert(`无法在点击位置放置正${getChineseName(selectedSides)}。`);
+        }
+    });
+
+    // 初始化：放置一个正六边形，选中正六边形按钮
+    (function init() {
+        polygons.push({ cx: canvas.width/2, cy: canvas.height/2, startAngle: 0, sides: 6 });
+        selectedSides = 6;
+        updateSelectedButton(6);
+        draw();
+    })();
+})();
+</script>
+</body>
+</html>

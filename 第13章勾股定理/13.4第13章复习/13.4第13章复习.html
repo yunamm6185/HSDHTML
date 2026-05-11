@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>13.4 第13章复习 | 华师版·八年级上册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background-color:#f8f4e8;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',Roboto,sans-serif;font-weight:500;line-height:1.6;color:#3e2723;padding:1.5rem;font-size:17px;}
+        .textbook{max-width:1200px;margin:0 auto;background:white;border-radius:2.5rem;box-shadow:0 20px 30px -10px rgba(62,39,35,0.15);padding:2rem 2.5rem;border:1px solid #d7ccc8;}
+        .header-meta{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #bcaaa4;padding-bottom:.6rem;margin-bottom:1.3rem;font-weight:600;font-size:1rem;color:#5d4037;}
+        h1{font-size:2.4rem;color:#4e342e;font-weight:700;}
+        h1::after{content:'';display:block;width:75px;height:5px;background:#6d4c41;border-radius:5px;margin-top:8px;}
+        .lesson-title{text-align:center;font-size:2.2rem;color:#4e342e;background:linear-gradient(135deg,#efebe9,#d7ccc8);padding:.8rem 1.5rem;border-radius:60px;border:3px solid #a1887f;margin:1.2rem 0 1.8rem;font-weight:700;}
+        .section-card{border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .knowledge-card{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-left:8px solid #43a047;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .formula-card{background:linear-gradient(135deg,#fff8e1,#ffecb3);border-left:8px solid #ffa000;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .method-card{background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-left:8px solid #1976d2;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .error-card{background:linear-gradient(255deg,#ffebee,#ffcdd2);border-left:8px solid #e53935;border-radius:1.8rem;padding:1.3rem 1.8rem;margin:1.2rem 0;}
+        .exercise-section{background:#fafafa;border:2px dashed #bcaaa4;border-radius:2rem;padding:1.5rem 2rem;margin:2rem 0;}
+        .interact-btn{background:#ecf3f9;border:none;color:#014682;padding:.3rem 1.2rem;border-radius:40px;font-weight:700;cursor:pointer;box-shadow:0 4px 0 #9fbede;margin:.5rem 0 0;font-size:.9rem;}
+        .interact-btn:active{transform:translateY(2px);}
+        .answer-box{background:#f5f5f5;border-left:5px solid #8d6e63;padding:.7rem 1.3rem;margin:.8rem 0;display:none;border-radius:0 1rem 1rem 0;font-size:.95rem;}
+        .show-answer{display:block;}
+        .summary-box{background:linear-gradient(135deg,#ede7f6,#d1c4e9);border-radius:1.8rem;padding:1.3rem 2rem;margin:1.5rem 0;}
+        .mindmap-container{background:white;border:2px solid #e0e0e0;border-radius:1.5rem;padding:1.5rem;margin:1rem 0;text-align:center;}
+        .homework-box{background:#d7ccc8;border-radius:60px;padding:1rem 2rem;display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;margin:1.5rem 0;}
+        .message-box{background:#eef2fa;text-align:center;font-style:italic;border-left:8px solid #6d4c41;padding:1rem 1.8rem;border-radius:2rem;margin:1.5rem 0;}
+        .footer-note{text-align:right;color:#8d6e63;border-top:2px solid #d7ccc8;padding-top:.8rem;margin-top:1.5rem;}
+
+        /* 思维导图样式 */
+        .mind-node{display:inline-block;background:linear-gradient(135deg,#8d6e63,#6d4c41);color:white;padding:12px 24px;border-radius:30px;font-weight:700;font-size:1.1rem;margin:6px;box-shadow:0 3px 0 #5d4037;}
+        .mind-branch{display:inline-block;background:#efefef;color:#333;padding:8px 18px;border-radius:20px;margin:5px;font-weight:600;font-size:.95rem;border:1px solid #ddd;}
+        .mind-leaf{display:inline-block;background:#fffde7;color:#555;padding:6px 14px;border-radius:15px;margin:4px;font-size:.88rem;border:1px dashed #ffc107;}
+
+        /* 知识点表格 */
+        .kw-table{width:100%;border-collapse:collapse;margin:1rem 0;background:white;border-radius:.8rem;overflow:hidden;}
+        .kw-table th{background:#efebe9;padding:12px;color:#4e342e;font-weight:700;border:1px solid #d7ccc8;text-align:left;}
+        .kw-table td{padding:10px 14px;border:1px solid #eee;line-height:1.6;}
+        .kw-table tr:nth-child(even){background:#fdfbf7;}
+
+        .highlight-box{background:#fff9c4;padding:10px 16px;border-radius:10px;margin:.6rem 0;border-left:4px solid #fbc02d;}
+        .tag{display:inline-block;background:#a1887f;color:white;padding:3px 10px;border-radius:12px;font-size:.82rem;margin:2px;font-weight:600;}
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级上册</span><span>第13章 勾股定理 · 单元复习</span></div>
+    <h1>第13章 勾股定理</h1>
+    <div class="lesson-title">📚 13.4 第13章 复习与总结</div>
+
+    <!-- 本章知识结构 -->
+    <div class="mindmap-container">
+        <h3 style="color:#4e342e; margin-bottom:12px;">🧠 本章知识结构</h3>
+        <div style="margin:10px 0;">
+            <div class="mind-node">勾股定理</div>
+        </div>
+        <div style="margin:10px 20px;">
+            <span class="mind-branch">定理内容</span>
+            <span class="mind-branch">逆定理</span>
+            <span class="mind-branch">应用</span>
+            <span class="mind-branch">证明方法</span>
+            <span class="mind-branch">反证法</span>
+        </div>
+        <div style="margin:10px 40px;">
+            <span class="mind-leaf">$a^2+b^2=c^2$</span><span class="mind-leaf">直角三角形判定</span>
+            <span class="mind-leaf">距离计算</span><span class="mind-leaf">最短路径</span>
+            <span class="mind-leaf">赵爽弦图</span><span class="mind-leaf">反设→归谬→结论</span>
+        </div>
+    </div>
+
+    <!-- 核心知识点 -->
+    <h3 style="color:#4e342e; margin:1.5rem 0 .8rem;">📖 一、核心知识点回顾</h3>
+
+    <div class="knowledge-card">
+        <h4 style="color:#2e7d32; font-size:1.3rem; margin-bottom:.6rem;">1️⃣ 勾股定理（Pythagorean Theorem）</h4>
+        <div class="highlight-box">
+            <strong>内容：</strong>直角三角形两直角边的平方和等于斜边的平方。
+            <p style="margin-top:.5rem;"><strong>符号语言：</strong>在 Rt$\triangle ABC$ 中，$\angle C=90°$，则 $$\boxed{a^2 + b^2 = c^2}$$
+            其中 $a$、$b$ 为两直角边，$c$ 为斜边。</p>
+        </div>
+        <p style="margin-top:.8rem;"><strong>适用条件：</strong></p>
+        <ul style="margin-left:1.5rem;">
+            <li>必须是<strong>直角三角形</strong>（或构造出直角三角形）</li>
+            <li>$c$ 必须是<strong>斜边</strong>（即直角所对的边）</li>
+        </ul>
+    </div>
+
+    <div class="formula-card">
+        <h4 style="color:#ef6c00; font-size:1.3rem; margin-bottom:.6rem;">2️⃣ 勾股定理的逆定理</h4>
+        <div class="highlight-box" style="background:#fff3e0; border-left-color:#ff9800;">
+            <strong>内容：</strong>若 $\triangle ABC$ 的三边 $a,b,c$ 满足 $a^2+b^2=c^2$，则 $\triangle ABC$ 是直角三角形，且 $c$ 边所对的角为直角。
+        </div>
+        <p style="margin-top:.8rem;"><strong>用途：</strong>判定一个三角形是否为直角三角形。</p>
+        <p><strong>常见勾股数：</strong>$(3,4,5)$、$(5,12,13)$、$(6,8,10)$、$(7,24,25)$、$(8,15,17)$、$(9,40,41)$</p>
+    </div>
+
+    <div class="method-card">
+        <h4 style="color:#1565c0; font-size:1.3rem; margin-bottom:.6rem;">3️⃣ 勾股定理的应用方法</h4>
+        <table class="kw-table">
+            <thead>
+                <tr><th>问题类型</th><th>解题思路</th><th>关键步骤</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>求线段长度</strong></td><td>识别/构造直角三角形</td><td>找已知两边 → 用公式求第三边</td></tr>
+                <tr><td><strong>判定直角三角形</strong></td><td>检验最长边的平方是否等于其他两边平方和</td><td>确定$c$ → 验证$a^2+b^2=c^2$</td></tr>
+                <tr><td><strong>最短路径（立体展开）</strong></td><td>将立体图形表面展平成平面图形</td><td>展开 → 构造直角三角形 → 计算</td></tr>
+                <tr><td><strong>列方程求解</strong></td><td>设未知数，利用勾股定理建立方程</td><td>设元 → 列式 → 解方程 → 检验</td></tr>
+                <tr><td><strong>方格图法（数方格）</strong></td><td>利用网格纸，直接数格子算面积</td><td>画方格 → 数勾方、股方格子数 → 开方求弦</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="formula-card">
+        <h4 style="color:#6a1b9a; font-size:1.3rem; margin-bottom:.6rem;">4️⃣ 反证法</h4>
+        <div class="highlight-box" style="background:#f3e5f5; border-left-color:#9c27b0;">
+            <strong>定义：</strong>先假设命题的反面成立，然后通过逻辑推理导出矛盾，从而证明原命题成立。<br>
+            <strong>核心思想：</strong>正难则反，从结论的反面出发。
+        </div>
+        <p style="margin-top:.8rem;"><strong>三个步骤：</strong></p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin:.5rem 0;">
+            <div style="background:#e1bee7; padding:.5rem 1rem; border-radius:20px; font-weight:700;">① 反设</div>
+            <div style="background:#ce93d8; padding:.5rem 1rem; border-radius:20px; font-weight:700;">② 归谬</div>
+            <div style="background:#ba68c8; color:white; padding:.5rem 1rem; border-radius:20px; font-weight:700;">③ 结论</div>
+        </div>
+        <p style="margin-top:.8rem;"><strong>适用场景：</strong></p>
+        <ul style="margin-left:1.5rem;">
+            <li>证明"不存在"类命题</li>
+            <li>证明"至少/至多"类命题</li>
+            <li>证明"唯一性"命题</li>
+            <li>直接证明困难的反面命题</li>
+        </ul>
+        <div class="highlight-box" style="background:#fce4ec; border-left-color:#e91e63; margin-top:.8rem;">
+            <strong>【经典例题】</strong>用反证法证明：$\sqrt{2}$ 是无理数。<br>
+            <p style="margin-top:.5rem;"><strong>证明：</strong>假设 $\sqrt{2}$ 是有理数，则 $\sqrt{2} = \frac{p}{q}$（$p$、$q$ 为互质整数，$q\neq 0$）。<br>
+            两边平方得 $2 = \frac{p^2}{q^2}$，即 $p^2 = 2q^2$。<br>
+            所以 $p^2$ 是偶数，$p$ 也是偶数，设 $p=2k$。<br>
+            代入得 $(2k)^2 = 2q^2$，即 $4k^2 = 2q^2$，$q^2 = 2k^2$。<br>
+            所以 $q^2$ 也是偶数，$q$ 也是偶数。<br>
+            这与 $p$、$q$ 互质矛盾！故假设不成立，$\sqrt{2}$ 是无理数。 ∎</p>
+        </div>
+    </div>
+
+    <div class="error-card">
+        <h4 style="color:#c62828; font-size:1.3rem; margin-bottom:.6rem;">⚠️ 5️⃣ 易错点提醒</h4>
+        <ol style="margin-left:1.5rem; line-height:1.8;">
+            <li><strong>混淆斜边和直角边：</strong>使用公式时必须确认 $c$ 是最大边（斜边）。</li>
+            <li><strong>忘记分类讨论：</strong>已知两边求第三边时，需判断已知两边是"两直角边"还是"一直角边一斜边"。</li>
+            <li><strong>单位不统一：</strong>计算前确保所有长度单位一致。</li>
+            <li><strong>结果未化简：</strong>如 $\sqrt{50}$ 应化简为 $5\sqrt{2}$；$\sqrt{\frac{2}{3}}$ 应化为 $\frac{\sqrt{6}}{3}$。</li>
+            <li><strong>忽略实际意义：</strong>长度必须为正数，负值要舍去。</li>
+        </ol>
+    </div>
+
+    <!-- 无字证明 -->
+    <div class="method-card">
+        <h4 style="color:#1565c0; font-size:1.3rem; margin-bottom:.6rem;">6️⃣ 勾股定理的无字证明（数形结合的经典）</h4>
+        <p style="margin-bottom:.8rem;"><strong>含义：</strong>不依赖文字语言，只通过图形面积关系证明勾股定理——"以形说数"的典范。</p>
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:1rem 0;">
+            <!-- 赵爽弦图 -->
+            <div style="background:white; border-radius:1rem; padding:.8rem; text-align:center; border:2px solid #a5d6a7;">
+                <h5 style="color:#2e7d32; margin-bottom:.4rem;">🌟 赵爽弦图（中国·公元3世纪）</h5>
+                <div style="background:#fafbfc; border-radius:.6rem; padding:.4rem; display:flex; justify-content:center;">
+                    <canvas id="xiantu_review" width="340" height="300"></canvas>
+                </div>
+                <p style="font-size:.88rem; color:#2e7d32; margin-top:.5rem;">$$c^2 = 4\times\frac{1}{2}ab + (b-a)^2$$</p>
+                <p style="font-size:.82rem; color:#666; margin-top:.2rem;">展开即得 $a^2+b^2=c^2$</p>
+            </div>
+            
+            <!-- 青朱出入图 -->
+            <div style="background:white; border-radius:1rem; padding:.8rem; text-align:center; border:2px solid #90caf9;">
+                <h5 style="color:#1565c0; margin-bottom:.4rem;">🔷 青朱出入图（中国·三国时期）</h5>
+                <div style="background:#fafbfc; border-radius:.6rem; padding:.4rem; display:flex; justify-content:center;">
+                    <canvas id="qingzhu_review" width="340" height="300"></canvas>
+                </div>
+                <p style="font-size:.88rem; color:#1565c0; margin-top:.5rem;">$$(a+b)^2 = 4\times\frac{1}{2}ab + c^2$$</p>
+                <p style="font-size:.82rem; color:#666; margin-top:.2rem;">展开即得 $a^2+b^2=c^2$</p>
+            </div>
+        </div>
+        <div class="highlight-box" style="background:#e8f5e9; border-left-color:#43a047; margin-top:.5rem;">
+            <strong>核心思想：</strong>用<strong>面积相等</strong>证明勾股定理。大正方形面积 = 四个直角三角形 + 中间正方形，分别用两种方式表示，化简即得 $a^2+b^2=c^2$。
+        </div>
+    </div>
+
+    <!-- 综合练习 -->
+    <h3 style="color:#4e342e; margin:1.5rem 0 .8rem;">✏️ 二、综合练习</h3>
+    <div class="exercise-section">
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-weight:700; color:#4e342e; font-size:1.05rem;"><strong>【基础巩固】</strong></p>
+
+            <p style="font-weight:700; color:#1565c0;">1. 在 Rt$\triangle ABC$ 中，$\angle C=90°$，$AC=5$，$BC=12$。求：(1) 斜边 $AB$；(2) 斜边上的高 $CD$。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 解答</button>
+            <div id="ex1" class="answer-box">
+                <p><strong>解：</strong>(1) 由勾股定理：$$AB=\sqrt{AC^2+BC^2}=\sqrt{25+144}=13$$</p>
+                <p>(2) 利用面积法：$\frac{1}{2} \cdot AC \cdot BC = \frac{1}{2} \cdot AB \cdot CD$</p>
+                <p>所以 $CD = \frac{AC \cdot BC}{AB} = \frac{5\times 12}{13} = \frac{60}{13}$</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-weight:700; color:#1565c0;">2. 已知直角三角形的两直角边分别为下列各组数值，求斜边长：<br>
+            (1) $6$ 和 $8$ &nbsp;&nbsp; (2) $5$ 和 $12$ &nbsp;&nbsp; (3) $8$ 和 $15$ &nbsp;&nbsp; (4) $9$ 和 $40$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 解答</button>
+            <div id="ex2" class="answer-box">
+                <p>(1) $c = \sqrt{6^2+8^2} = \sqrt{36+64} = \sqrt{100} = 10$</p>
+                <p>(2) $c = \sqrt{5^2+12^2} = \sqrt{25+144} = \sqrt{169} = 13$</p>
+                <p>(3) $c = \sqrt{8^2+15^2} = \sqrt{64+225} = \sqrt{289} = 17$</p>
+                <p>(4) $c = \sqrt{9^2+40^2} = \sqrt{81+1600} = \sqrt{1681} = 41$</p>
+                <p style="color:#2e7d32; font-weight:600; margin-top:.5rem;">💡 这些都是常见的勾股数：$(6,8,10)$、$(5,12,13)$、$(8,15,17)$、$(9,40,41)$</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-weight:700; color:#1565c0;">3. 已知三角形的三边分别为下列各组数值，判断哪些是直角三角形？<br>
+            (1) $9$, $12$, $15$ &nbsp;&nbsp; (2) $\sqrt{3}$, $\sqrt{4}$, $\sqrt{7}$ &nbsp;&nbsp; (3) $1$, $1$, $\sqrt{2}$ &nbsp;&nbsp; (4) $2$, $3$, $4$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 解答</button>
+            <div id="ex3" class="answer-box">
+                <p>(1) $9^2+12^2=81+144=225=15^2$ ✓ 是直角三角形</p>
+                <p>(2) $(\sqrt{3})^2+(\sqrt{4})^2=3+4=7=(\sqrt{7})^2$ ✓ 是直角三角形</p>
+                <p>(3) $1^2+1^2=2=(\sqrt{2})^2$ ✓ 是等腰直角三角形</p>
+                <p>(4) $2^2+3^2=13\neq 16=4^2$ ✗ 不是直角三角形</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-weight:700; color:#1565c0;">4. <strong>【方格图法】</strong>如图，每个小方格的边长为 1，试在方格纸上求线段 $AB$ 的长度。</p>
+            
+            <!-- 练习3配图：方格图求线段长 -->
+            <div class="mindmap-container" style="margin: 0.8rem 0; background: #fff;">
+                <svg width="320" height="300" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 
+                        方格图：A(1,1) 到 B(6,5)
+                        水平格子数 = 5, 垂直格子数 = 4
+                        AB = √(5²+4²) = √41
+                    -->
+                    <!-- 背景格子：每个格子20×20px -->
+                    <!-- 横线 -->
+                    <line x1="40" y1="40" x2="280" y2="40" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="60" x2="280" y2="60" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="80" x2="280" y2="80" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="100" x2="280" y2="100" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="120" x2="280" y2="120" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="140" x2="280" y2="140" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="160" x2="280" y2="160" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="180" x2="280" y2="180" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="200" x2="280" y2="200" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="220" x2="280" y2="220" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="240" x2="280" y2="240" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="40" y1="260" x2="280" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <!-- 竖线 -->
+                    <line x1="60" y1="40" x2="60" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="80" y1="40" x2="80" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="100" y1="40" x2="100" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="120" y1="40" x2="120" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="140" y1="40" x2="140" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="160" y1="40" x2="160" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="180" y1="40" x2="180" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="200" y1="40" x2="200" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="220" y1="40" x2="220" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="240" y1="40" x2="240" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="260" y1="40" x2="260" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <line x1="280" y1="40" x2="280" y2="260" stroke="#e0e0e0" stroke-width="1"/>
+                    <!-- 边框加粗 -->
+                    <line x1="40" y1="40" x2="280" y2="40" stroke="#bbb" stroke-width="2"/>
+                    <line x1="40" y1="40" x2="40" y2="260" stroke="#bbb" stroke-width="2"/>
+                    <line x1="40" y1="260" x2="280" y2="260" stroke="#bbb" stroke-width="2"/>
+                    <line x1="280" y1="40" x2="280" y2="260" stroke="#bbb" stroke-width="2"/>
+                    <!-- 端点A(1,1) -->
+                    <circle cx="60" cy="220" r="5" fill="#1565c0"/>
+                    <text x="50" y="240" fill="#1565c0" font-weight="bold" font-size="16" font-family="serif">A</text>
+                    <!-- 端点B(6,5) -->
+                    <circle cx="220" cy="100" r="5" fill="#e53935"/>
+                    <text x="230" y="105" fill="#e53935" font-weight="bold" font-size="16" font-family="serif">B</text>
+                    <!-- 线段AB -->
+                    <line x1="60" y1="220" x2="220" y2="100" stroke="#1565c0" stroke-width="2.5"/>
+                    <!-- 水平投影线（虚线） -->
+                    <line x1="60" y1="220" x2="220" y2="220" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+                    <!-- 垂直投影线（虚线） -->
+                    <line x1="220" y1="220" x2="220" y2="100" stroke="#888" stroke-width="1" stroke-dasharray="5,3"/>
+                    <!-- 直角符号 -->
+                    <polyline points="220,210 230,210 230,220" fill="none" stroke="#888" stroke-width="1.5"/>
+                    <!-- 格子数标注 -->
+                    <text x="140" y="238" fill="#888" font-size="13" text-anchor="middle">5</text>
+                    <text x="233" y="165" fill="#888" font-size="13" text-anchor="middle">4</text>
+                    <!-- 勾股数说明 -->
+                    <text x="160" y="290" fill="#888" font-size="12" text-anchor="middle">每个小方格边长 = 1，A(1,1)，B(6,5)</text>
+                </svg>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex4_grid')">🔍 解答</button>
+            <div id="ex4_grid" class="answer-box">
+                <p><strong>解：</strong>在方格纸上，过点 $A$、$B$ 分别向 $x$ 轴、$y$ 轴作垂线，构造直角三角形：</p>
+                <p>$$AB = \sqrt{AC^2 + BC^2} = \sqrt{5^2 + 4^2} = \sqrt{25 + 16} = \sqrt{41}$$</p>
+                <p><strong>方法总结：</strong>方格图中两点间距离 = 水平格子数的平方 + 垂直格子数的平方，然后开方。</p>
+                <p style="color:#2e7d32; font-weight:600;">答：$AB = \sqrt{41}$。</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem;">
+            <p style="font-weight:700; color:#2e7d32;"><strong>【能力提升】</strong></p>
+            <p style="font-weight:700; color:#1565c0;">5. 如图，在等腰 $\triangle ABC$ 中，$AB=AC=13$，$BC=10$。求底边上的高 $AD$ 和三角形的面积。</p>
+            
+            <!-- 练习3配图：等腰三角形ABC（简洁线框风格） -->
+            <div class="mindmap-container" style="margin: 0.8rem 0; background: #fff;">
+                <svg width="400" height="280" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 
+                        等腰三角形ABC, AB=AC=13, BC=10
+                        简洁线框风格，类似第4题
+                        BC为底边水平放置
+                        比例: 1单位 = 8px
+                        BC=10 → 80px, AD=12 → 96px
+                    -->
+                    
+                    <!-- 三角形ABC（空心，无填充） -->
+                    <polygon points="200,60 80,200 320,200" fill="none" stroke="#333" stroke-width="2.5" stroke-linejoin="round"/>
+                    
+                    <!-- 高AD（虚线） -->
+                    <line x1="200" y1="60" x2="200" y2="200" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4"/>
+                    
+                    <!-- 直角符号（D点） -->
+                    <polyline points="200,185 215,185 215,200" fill="none" stroke="#333" stroke-width="1.5"/>
+                    
+                    <!-- 顶点A标注（上方居中） -->
+                    <text x="200" y="45" fill="#333" font-weight="bold" font-size="20" font-family="serif" text-anchor="middle">A</text>
+                    
+                    <!-- 顶点B标注（左下） -->
+                    <text x="65" y="210" fill="#333" font-weight="bold" font-size="20" font-family="serif">B</text>
+                    
+                    <!-- 顶点C标注（右下） -->
+                    <text x="330" y="210" fill="#333" font-weight="bold" font-size="20" font-family="serif">C</text>
+                    
+                    <!-- D点标注（底部） -->
+                    <text x="208" y="225" fill="#333" font-size="16" font-weight="bold" font-family="serif">D</text>
+                    
+                    <!-- 底边BC标注：10（居中下方） -->
+                    <text x="200" y="235" fill="#333" font-size="15" font-family="serif" text-anchor="middle">10</text>
+                    
+                    <!-- 腰AB标注：13（左侧） -->
+                    <text x="125" y="120" fill="#333" font-size="15" font-family="serif">13</text>
+                    
+                    <!-- 腰AC标注：13（右侧） -->
+                    <text x="275" y="120" fill="#333" font-size="15" font-family="serif">13</text>
+                </svg>
+                <div style="color:#666; font-size:.9rem;">图：等腰三角形 ABC（AB=AC=13，BC=10）</div>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex5_triangle')">🔍 解答</button>
+            <div id="ex5_triangle" class="answer-box">
+                <p><strong>解：</strong>因为 $\triangle ABC$ 是等腰三角形，$AB = AC$，$AD$ 是底边 $BC$ 上的高，所以 $D$ 是 $BC$ 的<strong>中点</strong>。</p>
+                <p>$BD = DC = \frac{BC}{2} = \frac{10}{2} = 5$</p>
+                <p>在 Rt$\triangle ABD$ 中，由勾股定理：</p>
+                <p>$$AD = \sqrt{AB^2 - BD^2} = \sqrt{13^2 - 5^2} = \sqrt{169 - 25} = \sqrt{144} = 12$$</p>
+                <p>三角形的面积：</p>
+                <p>$$S_{\triangle ABC} = \frac{1}{2} \times BC \times AD = \frac{1}{2} \times 10 \times 12 = 60$$</p>
+                <p style="color:#2e7d32; font-weight:600;">答：底边上的高 $AD = \mathbf{12}$，面积 $\mathbf{= 60}$。</p>
+            </div>
+        </div>
+
+        <div>
+            <p style="font-weight:700; color:#6a1b9a;"><strong>【拓展挑战】</strong></p>
+            <p style="font-weight:700; color:#1565c0;">6. 蚂蚁爬长方体（拓展挑战）：如图，在长 $30\ \text{cm}$、宽 $50\ \text{cm}$、高 $40\ \text{cm}$ 的长方体上，有一只蚂蚁准备顺着长方体的表面从顶点 $A$ 处爬到相对的顶点 $G$ 处。试帮这只蚂蚁设计一条最佳路线，使其爬行的路程最短。</p>
+            
+            <!-- 练习4配图：长方体示意图（长30cm、宽50cm、高40cm） -->
+            <div class="mindmap-container" style="margin: 0.8rem 0; background: #fff;">
+                <svg width="360" height="280" viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 
+                        按课本图片样式绘制：简洁线框图，无填充色
+                        A在左前下角，G在右后上角（对角）
+                        30cm：前面底边（A到右下）
+                        50cm：右侧面底边（向右后方）
+                        40cm：右侧面高
+                        内部3条虚线表示被遮挡的棱
+                        
+                        坐标设定：
+                        A(左前下)=(70,230)
+                        B(右前下)=(200,230) - 前面底边右端
+                        C(右后下)=(240,200) - 右侧面底边后端
+                        D(左后下)=(110,200) - 底面左后端
+                        E(左前上)=(70,110) - 前面左上
+                        F(右前上)=(200,110) - 右面上前
+                        G(右后上)=(240,80) - 右后上（终点）
+                        H(左后上)=(110,80) - 后面左上
+                    -->
+                    
+                    <!-- 内部虚线（被遮挡的棱） -->
+                    <!-- 左后竖棱 DH -->
+                    <line x1="110" y1="200" x2="110" y2="80" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4"/>
+                    <!-- 底面后横棱 DC -->
+                    <line x1="110" y1="200" x2="240" y2="200" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4"/>
+                    <!-- A向里的底边 AD（被遮挡，应为虚线） -->
+                    <line x1="70" y1="230" x2="110" y2="200" stroke="#333" stroke-width="1.5" stroke-dasharray="6,4"/>
+                    
+                    <!-- 可见的实线棱 -->
+                    <!-- 前面 -->
+                    <line x1="70" y1="230" x2="200" y2="230" stroke="#333" stroke-width="2"/> <!-- AB底边 -->
+                    <line x1="200" y1="230" x2="200" y2="110" stroke="#333" stroke-width="2"/> <!-- BF右前竖棱 -->
+                    <line x1="200" y1="110" x2="70" y2="110" stroke="#333" stroke-width="2"/> <!-- FE顶边 -->
+                    <line x1="70" y1="110" x2="70" y2="230" stroke="#333" stroke-width="2"/> <!-- EA左前竖棱 -->
+                    
+                    <!-- 右侧面 -->
+                    <line x1="200" y1="230" x2="240" y2="200" stroke="#333" stroke-width="2"/> <!-- BC底边（向右后） -->
+                    <line x1="240" y1="200" x2="240" y2="80" stroke="#333" stroke-width="2"/> <!-- CG右后竖棱 -->
+                    <line x1="240" y1="80" x2="200" y2="110" stroke="#333" stroke-width="2"/> <!-- GF顶边（向右后） -->
+                    
+                    <!-- 顶面 -->
+                    <!-- G向左的顶边 GH（可见，应为实线） -->
+                    <line x1="240" y1="80" x2="110" y2="80" stroke="#333" stroke-width="2"/>
+                    <!-- 顶面向左前的边 HE -->
+                    <line x1="110" y1="80" x2="70" y2="110" stroke="#333" stroke-width="2"/>
+                    
+                    <!-- 点A标注（左前下） -->
+                    <text x="45" y="240" fill="#333" font-weight="bold" font-size="18" font-family="serif">A</text>
+                    
+                    <!-- 点G标注（右后上） -->
+                    <text x="250" y="75" fill="#333" font-weight="bold" font-size="18" font-family="serif">G</text>
+                    
+                    <!-- 尺寸标注 -->
+                    <!-- 30cm（前面底边 AB） -->
+                    <text x="135" y="255" fill="#333" font-size="14" text-anchor="middle" font-family="serif">30 cm</text>
+                    
+                    <!-- 50cm（右侧面底边 BC） -->
+                    <text x="230" y="225" fill="#333" font-size="13" font-family="serif">50 cm</text>
+                    
+                    <!-- 40cm（右侧面高 CG） -->
+                    <text x="255" y="145" fill="#333" font-size="14" font-family="serif">40 cm</text>
+                </svg>
+                <div style="color:#666; font-size:.85rem;">图：长方体（长30cm、宽50cm、高40cm，蚂蚁从A沿表面爬到G）</div>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex6')">🔍 解答</button>
+            <div id="ex6" class="answer-box">
+                <p><strong>解：</strong>将长方体表面沿棱剪开展平，有三种展开方式。设长$a=30$, 宽$b=50$, 高$c=40$：</p>
+                <table style="width:100%; border-collapse:collapse; margin:0.8rem 0;">
+                    <tr style="background:#e3f2fd;">
+                        <th style="padding:8px;border:1px solid #bbdefb;">展开方式</th>
+                        <th style="padding:8px;border:1px solid #bbdefb;">矩形尺寸</th>
+                        <th style="padding:8px;border:1px solid #bbdefb;">最短距离</th>
+                    </tr>
+                        <tr><td style="padding:8px;border:1px solid #eee;">① 经前面+右面</td><td style="padding:8px;border:1px solid #eee;">$(a+b)\times c = 80\times 40$</td><td style="padding:8px;border:1px solid #eee;">$\sqrt{(30+50)^2+40^2}=\sqrt{6400+1600}=\sqrt{8000}\approx 89.44$</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #eee;">② 经上面+前面</td><td style="padding:8px;border:1px solid #eee;">$(c+a)\times b = 70\times 50$</td><td style="padding:8px;border:1px solid #eee;">$\sqrt{(40+30)^2+50^2}=\sqrt{4900+2500}=\sqrt{7400}\approx 86.02$</td></tr>
+                        <tr><td style="padding:8px;border:1px solid #eee;">③ 经左面+上面</td><td style="padding:8px;border:1px solid #eee;">$(c+b)\times a = 90\times 30$</td><td style="padding:8px;border:1px solid #eee;">$\sqrt{(40+50)^2+30^2}=\sqrt{8100+900}=\sqrt{9000}\approx 94.87$</td></tr>
+                </table>
+                <p style="margin-top:0.8rem; color:#2e7d32; font-weight:600;">比较三种方式，<strong>最短路径约为 $\mathbf{86.02\ \text{cm}}$</strong>（取方式②：经上面+前面）。</p>
+                <p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">💡 最佳路线：蚂蚁从A点出发，先沿前面（或后面）爬到上表面，再沿上表面爬到G点。</p>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex6_summary')">📐 查看通解规律</button>
+            <div id="ex6_summary" class="answer-box" style="background:linear-gradient(135deg,#fff8e1,#ffecb3); border-left-color:#ff9800;">
+                <h4 style="color:#e65100;font-size:1.1rem;margin-bottom:.6rem;">📐 长方体表面最短路径通解</h4>
+                <p style="margin-bottom:.5rem;">设长方体的长、宽、高分别为 <strong>$a$、$b$、$c$</strong>（假设 $a \leq b \leq c$），从一个顶点爬到对角顶点，有三种展开方式：</p>
+                <table style="width:100%;border-collapse:collapse;margin:.6rem 0;background:white;border-radius:.5rem;overflow:hidden;">
+                    <tr style="background:#ffe0b2;">
+                        <th style="padding:6px 8px;border:1px solid #ffcc80;text-align:center;">展开面</th>
+                        <th style="padding:6px 8px;border:1px solid #ffcc80;text-align:center;">矩形边长</th>
+                        <th style="padding:6px 8px;border:1px solid #ffcc80;text-align:center;">路径平方</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">前面+右面</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$(a+b) \times c$</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$d_1^2 = (a+b)^2 + c^2$</td>
+                    </tr>
+                    <tr style="background:#fff8e1;">
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">上面+前面</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$(c+a) \times b$</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$d_2^2 = (c+a)^2 + b^2$</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">左面+上面</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$(c+b) \times a$</td>
+                        <td style="padding:6px 8px;border:1px solid #eee;text-align:center;">$d_3^2 = (c+b)^2 + a^2$</td>
+                    </tr>
+                </table>
+                <div style="background:#fff;border-radius:.5rem;padding:.6rem 1rem;margin-top:.5rem;border:1px dashed #ff9800;">
+                    <p style="color:#e65100;font-weight:600;margin-bottom:.3rem;">✨ 通解规律（不需要每次都计算比较）：</p>
+                    <p style="line-height:1.8;">最短路径对应的是<strong>"两个较小边之和"作为矩形的一边</strong>，<strong>"最大边"作为另一边</strong>。</p>
+                    <p style="line-height:1.8;margin-top:.3rem;">即：最短距离 $= \sqrt{(\text{最小边}+\text{中间边})^2 + \text{最大边}^2}$</p>
+                    <p style="color:#2e7d32;font-weight:600;margin-top:.4rem;">📝 本题：$a=30, b=50, c=40$，排序后最小30、中间40、最大50 → 最短 $= \sqrt{7400} \approx 86.02$ cm ✓</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+            <p style="font-weight:700; color:#1565c0;">7. <strong>【数学文化】</strong>折竹抵地（源自《九章算术》）：</p>
+            <p style="margin:0.5rem 0 0.3rem 1.5rem; color:#4e342e; font-style:italic;">"今有竹高一丈，末折抵地，去本三尺。问折者高几何？"</p>
+            <p style="margin-left:1.5rem; color:#666; font-size:0.95rem;">意即：一根竹子原高一丈（10尺），被风吹折后，竹梢恰好抵地，抵地处离竹子底部3尺远。求折断后竹子离地面的高度。</p>
+            
+            <!-- 练习5配图：折竹抵地示意图 -->
+            <div class="mindmap-container" style="margin: 0.8rem 0; background: #fff;">
+                <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 
+                        折竹抵地图示
+                        竹子直立部分（折断后高度）：设为x
+                        竹子折断部分（斜边）：10-x
+                        地面距离：3尺
+                        形成直角三角形
+                    -->
+                    
+                    <!-- 地面线 -->
+                    <line x1="50" y1="250" x2="350" y2="250" stroke="#8d6e63" stroke-width="2"/>
+                    
+                    <!-- 竹子直立部分（实线） -->
+                    <line x1="100" y1="250" x2="100" y2="100" stroke="#2e7d32" stroke-width="3"/>
+                    
+                    <!-- 竹子折断部分（斜边，虚线表示折断） -->
+                    <line x1="100" y1="100" x2="280" y2="250" stroke="#2e7d32" stroke-width="2.5" stroke-dasharray="8,4"/>
+                    
+                    <!-- 地面距离标注线 -->
+                    <line x1="100" y1="265" x2="280" y2="265" stroke="#666" stroke-width="1"/>
+                    <line x1="100" y1="260" x2="100" y2="270" stroke="#666" stroke-width="1"/>
+                    <line x1="280" y1="260" x2="280" y2="270" stroke="#666" stroke-width="1"/>
+                    
+                    <!-- 高度标注线 -->
+                    <line x1="85" y1="100" x2="85" y2="250" stroke="#666" stroke-width="1"/>
+                    <line x1="80" y1="100" x2="90" y2="100" stroke="#666" stroke-width="1"/>
+                    <line x1="80" y1="250" x2="90" y2="250" stroke="#666" stroke-width="1"/>
+                    
+                    <!-- 折断处标记 -->
+                    <circle cx="100" cy="100" r="4" fill="#e53935"/>
+                    
+                    <!-- 顶点标注 -->
+                    <text x="100" y="80" fill="#333" font-weight="bold" font-size="18" font-family="serif" text-anchor="middle">B（折断处）</text>
+                    <text x="100" y="275" fill="#333" font-weight="bold" font-size="18" font-family="serif" text-anchor="middle">A（根部）</text>
+                    <text x="295" y="265" fill="#333" font-weight="bold" font-size="18" font-family="serif">C（竹梢）</text>
+                    
+                    <!-- 尺寸标注 -->
+                    <text x="60" y="180" fill="#1565c0" font-size="15" font-family="serif">x</text>
+                    <text x="185" y="160" fill="#1565c0" font-size="15" font-family="serif">10-x</text>
+                    <text x="185" y="285" fill="#1565c0" font-size="15" font-family="serif" text-anchor="middle">3尺</text>
+                    
+                    <!-- 直角符号 -->
+                    <polyline points="100,235 115,235 115,250" fill="none" stroke="#333" stroke-width="1.5"/>
+                </svg>
+                <div style="color:#666; font-size:.85rem;">图：折竹抵地示意图（原高一丈=10尺，去本三尺）</div>
+            </div>
+
+            <button class="interact-btn" onclick="toggleAnswer('ex7')">🔍 解答</button>
+            <div id="ex7" class="answer-box">
+                <p><strong>解：</strong>设折断后竹子离地面的高度为 $x$ 尺，则：</p>
+                <ul style="margin-left:1.5rem; line-height:1.8;">
+                    <li>竹子直立部分（直角边）：$AB = x$ 尺</li>
+                    <li>竹子折断部分（斜边）：$BC = (10-x)$ 尺</li>
+                    <li>地面距离（另一直角边）：$AC = 3$ 尺</li>
+                </ul>
+                <p>在 Rt$\triangle ABC$ 中，由勾股定理：</p>
+                <p>$$AB^2 + AC^2 = BC^2$$</p>
+                <p>$$x^2 + 3^2 = (10-x)^2$$</p>
+                <p>$$x^2 + 9 = 100 - 20x + x^2$$</p>
+                <p>$$9 = 100 - 20x$$</p>
+                <p>$$20x = 91$$</p>
+                <p>$$x = 4.55$$</p>
+                <p style="color:#2e7d32; font-weight:600;">答：折断后竹子离地面的高度为 $\mathbf{4.55}$ 尺（即 4尺5寸5分）。</p>
+                <p style="margin-top:0.5rem; color:#666; font-size:0.9rem;">📜 <strong>历史背景：</strong>此题出自中国古代数学名著《九章算术》勾股章，是我国最早记载的应用勾股定理解决实际问题的经典案例之一，距今已有两千多年历史。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 方法总结 -->
+    <div class="summary-box">
+        <h3 style="color:#4a148c; margin-bottom:10px;">💡 三、本章核心思想方法总结</h3>
+        <div style="line-height:2;">
+            <span class="tag">数形结合</span>
+            <span class="tag">建模思想</span>
+            <span class="tag">方程思想</span>
+            <span class="tag">分类讨论</span>
+            <span class="tag">转化思想</span>
+            <span class="tag">逆向思维</span>
+            <span class="tag">空间观念</span>
+            <span class="tag">优化意识</span>
+        </div>
+        <ul style="margin-left:1.5rem; margin-top:10px; line-height:1.8;">
+            <li><strong>数形结合：</strong>用正方形面积关系理解代数式 $a^2+b^2=c^2$</li>
+            <li><strong>建模思想：</strong>将实际问题抽象为直角三角形模型</li>
+            <li><strong>方程思想：</strong>利用勾股定理建立方程解决含未知量的问题</li>
+            <li><strong>分类讨论：</strong>已知两边求第三边时考虑多种情况</li>
+            <li><strong>转化思想：</strong>立体问题转化为平面问题（曲面展开）</li>
+            <li><strong>逆向思维：</strong>逆定理的运用、反证法的思想</li>
+        </ul>
+    </div>
+
+    <!-- 读一读 -->
+    <div style="background:#fef9e6; border-left:8px solid #ffb300; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0;">
+        <h4>📖 数学文化——勾股定理的全球之旅</h4>
+        <p><strong>中国（约公元前1100年）：</strong>《周髀算经》记载了"勾三股四弦五"，赵爽（公元3世纪）用弦图给出了优美的证明。</p>
+        <p><strong>古巴比伦（约公元前1800年）：</strong>泥板文书 Plimpton 322 上记录了大量勾股数组，说明巴比伦人早已掌握了这一规律。</p>
+        <p><strong>古希腊（约公元前550年）：</strong>毕达哥拉斯学派发现了这一定理，传说毕达哥拉斯发现此定理后宰牛庆祝！</p>
+        <p><strong>印度（约公元前800年）：</strong>《绳法经》（Śulba Sūtras）中记录了勾股定理及其在祭坛建筑中的应用。</p>
+        <p style="margin-top:.6rem; font-style:italic; color:#666;">勾股定理是人类文明史上被独立发现次数最多的数学定理之一，它跨越时空、连接古今，是人类智慧的共同结晶。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>复习建议：</strong>(1) 整理本章错题本；(2) 完成本章复习题A组全部和B组选做；(3) 制作本章思维导图；(4) 探究更多勾股定理的证明方法并分享。</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 勾股之理贯古今，数形相融显神韵；温故知新积底蕴，数学之美永常新。✨</p>
+    </div>
+    <div class="footer-note">八年级上册 · 第13章 13.4 第13章 复习与总结</div>
+</div>
+
+<script>
+    function toggleAnswer(id){
+        const box=document.getElementById(id);
+        if(box) box.classList.toggle('show-answer');
+    }
+
+    // ════════════════════════════════════════
+    //  无字证明绘图（移植自数学活动 13.3）
+    //  几何算法完全正确，与教材保持一致
+    // ════════════════════════════════════════
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function drawReviewXianTu(canvasId) {
+        var cvs = document.getElementById(canvasId);
+        if (!cvs) return;
+        var ctx = cvs.getContext('2d');
+        var W = cvs.width, H = cvs.height;
+        ctx.clearRect(0, 0, W, H);
+
+        // 固定 ra=72, rb=96（对应 a:b = 3:4 的经典比例）
+        var ra = 72, rb = 96, rc = Math.sqrt(ra*ra + rb*rb);
+        var sa = Math.min(ra, rb), sb = Math.max(ra, rb);
+
+        var cx = W/2, cy = H/2 + 10;
+        var xl = cx - rc/2, xt = cy - rc/2, xr = xl + rc, xb = xt + rc;
+
+        // 向量法精确计算4个直角顶点
+        var av = (sb*sb)/(rc*rc), bv_val = (sa*sb)/(rc*rc);
+        var P1x = xl + av*rc, P1y = xt + bv_val*rc;
+        var dx1 = P1x - cx, dy1 = P1y - cy;
+
+        var rts = [
+            {x:P1x, y:P1y},
+            {x:cx-dy1, y:cy+dx1},
+            {x:cx-dx1, y:cy-dy1},
+            {x:cx+dy1, y:cy-dx1}
+        ];
+        var hps = [
+            [{x:xl,y:xt},{x:xr,y:xt}],
+            [{x:xr,y:xt},{x:xr,y:xb}],
+            [{x:xr,y:xb},{x:xl,y:xb}],
+            [{x:xl,y:xb},{x:xl,y:xt}]
+        ];
+
+        // 背景网格
+        ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 0.5;
+        for(var gx=10; gx<W; gx+=16){
+            ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+        }
+        for(var gy=10; gy<H; gy+=16){
+            ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+        }
+
+        // 大正方形虚线框（边长=c）
+        ctx.setLineDash([6,4]);
+        ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+        ctx.strokeRect(xl, xt, rc, rc);
+        ctx.setLineDash([]);
+
+        // 4个直角三角形
+        var tc = [
+            'rgba(96,165,250,0.55)',
+            'rgba(74,222,128,0.55)',
+            'rgba(239,68,68,0.50)',
+            'rgba(251,191,36,0.65)'
+        ];
+        var ts = ['#2563eb','#16a34a','#dc2626','#d97706'];
+
+        for(var i=0; i<4; i++){
+            var rt = rts[i], hp = hps[i];
+            ctx.beginPath();
+            ctx.moveTo(hp[0].x, hp[0].y);
+            ctx.lineTo(hp[1].x, hp[1].y);
+            ctx.lineTo(rt.x, rt.y);
+            ctx.closePath();
+            ctx.fillStyle = tc[i]; ctx.fill();
+            ctx.strokeStyle = ts[i]; ctx.lineWidth = 2; ctx.stroke();
+
+            // 直角标记
+            var vA = {x:hp[0].x-rt.x, y:hp[0].y-rt.y};
+            var vB = {x:hp[1].x-rt.x, y:hp[1].y-rt.y};
+            var lA = Math.sqrt(vA.x*vA.x+vA.y*vA.y);
+            var lB = Math.sqrt(vB.x*vB.x+vB.y*vB.y);
+            if(lA>0 && lB>0){
+                var ua={x:vA.x/lA,y:vA.y/lA};
+                var ub={x:vB.x/lB,y:vB.y/lB};
+                var ms = Math.min(lA,lB)*0.16;
+                ctx.beginPath();
+                ctx.moveTo(rt.x+ua.x*ms, rt.y+ua.y*ms);
+                ctx.lineTo(rt.x+ua.x*ms+ub.x*ms, rt.y+ua.y*ms+ub.y*ms);
+                ctx.lineTo(rt.x+ub.x*ms, rt.y+ub.y*ms);
+                ctx.strokeStyle=ts[i]; ctx.lineWidth=1.2; ctx.stroke();
+            }
+        }
+
+        // 标注 c
+        ctx.fillStyle = '#475569'; ctx.font = 'bold 18px Segoe UI';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('c', cx, xt-20);
+        ctx.fillText('c', xr+20, cy);
+        ctx.fillText('c', cx, xb+20);
+        ctx.fillText('c', xl-20, cy);
+
+        // a, b 标注在直角边上
+        ctx.font = 'bold 14px Segoe UI';
+        // 找最短直角边标注 a
+        var midA_x = (rts[0].x + hps[0][0].x)/2;
+        var midA_y = (rts[0].y + hps[0][0].y)/2;
+        ctx.fillText('a', midA_x-16, midA_y);
+
+        // b 标注在另一条直角边
+        var midB_x = (rts[0].x + hps[0][1].x)/2;
+        var midB_y = (rts[0].y + hps[0][1].y)/2;
+        ctx.fillText('b', midB_x+14, midB_y+14);
+    }
+
+    function drawReviewQingZhu(canvasId) {
+        var cvs = document.getElementById(canvasId);
+        if (!cvs) return;
+        var ctx = cvs.getContext('2d');
+        var W = cvs.width, H = cvs.height;
+        ctx.clearRect(0, 0, W, H);
+
+        var qa = 72, qb = 96, qcc = Math.sqrt(qa*qa + qb*qb);
+        var qbl = qa + qb, qhf = qbl/2;
+        var qcx = W/2, qcy = H/2 + 10;
+        var ql = qcx - qhf, qt = qcy - qhf, qr = ql+qbl, qbtt = qt+qbl;
+
+        // 背景网格
+        ctx.strokeStyle = '#f0f0f0'; ctx.lineWidth = 0.5;
+        for(var gx=10; gx<W; gx+=16){
+            ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+        }
+        for(var gy=10; gy<H; gy+=16){
+            ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+        }
+
+        // 4个三角形的三个顶点（直角在大正方形四角）
+        var qtV = [
+            {rt:{x:ql,y:qt},      legA:{x:ql,y:qt+qa},      legB:{x:ql+qb,y:qt}},
+            {rt:{x:qr,y:qt},      legA:{x:qr-qa,y:qt},      legB:{x:qr,y:qt+qb}},
+            {rt:{x:qr,y:qbtt},    legA:{x:qr,y:qbtt-qa},    legB:{x:qr-qb,y:qbtt}},
+            {rt:{x:ql,y:qbtt},    legA:{x:ql+qa,y:qbtt},    legB:{x:ql,y:qbtt-qb}}
+        ];
+
+        // 大正方形实线框（边长=a+b）
+        ctx.strokeStyle = '#64748b'; ctx.lineWidth = 2.5;
+        ctx.strokeRect(ql, qt, qbl, qbl);
+
+        // 4个三角形
+        var qtc = ['rgba(239,68,68,0.5)','rgba(251,191,36,0.6)','rgba(74,222,128,0.5)','rgba(96,165,250,0.55)'];
+        var qts = ['#dc2626','#d97706','#16a34a','#2563eb'];
+
+        for(var i=0; i<4; i++){
+            var tv = qtV[i];
+            ctx.beginPath();
+            ctx.moveTo(tv.rt.x, tv.rt.y);
+            ctx.lineTo(tv.legA.x, tv.legA.y);
+            ctx.lineTo(tv.legB.x, tv.legB.y);
+            ctx.closePath();
+            ctx.fillStyle = qtc[i]; ctx.fill();
+            ctx.strokeStyle = qts[i]; ctx.lineWidth = 2.2; ctx.stroke();
+
+            // 直角标记
+            var va2={x:tv.legA.x-tv.rt.x,y:tv.legA.y-tv.rt.y};
+            var vb2={x:tv.legB.x-tv.rt.x,y:tv.legB.y-tv.rt.y};
+            var la2=Math.sqrt(va2.x*va2.x+va2.y*va2.y);
+            var lb2=Math.sqrt(vb2.x*vb2.x+vb2.y*vb2.y);
+            if(la2>0&&lb2>0){
+                var uax=va2.x/la2,uay=va2.y/la2,ubx=vb2.x/lb2,uby=vb2.y/lb2;
+                var qms=Math.min(la2,lb2)*0.16;
+                ctx.beginPath();
+                ctx.moveTo(tv.rt.x+uax*qms,tv.rt.y+uay*qms);
+                ctx.lineTo(tv.rt.x+uax*qms+ubx*qms,tv.rt.y+uay*qms+uby*qms);
+                ctx.lineTo(tv.rt.x+ubx*qms,tv.rt.y+uby*qms);
+                ctx.strokeStyle=qts[i]; ctx.lineWidth=1.4; ctx.stroke();
+            }
+        }
+
+        // 边段标注 a, b
+        ctx.fillStyle = '#475569'; ctx.font = 'bold 18px Segoe UI';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('b', ql+qb/2, qt-20);   ctx.fillText('a', qr-qa/2, qt-20);
+        ctx.fillText('b', qr+22, qt+qb/2);   ctx.fillText('a', qr+22, qbtt-qa/2);
+        ctx.fillText('b', qr-qb/2, qbtt+20); ctx.fillText('a', ql+qa/2, qbtt+20);
+        ctx.fillText('b', ql-22, qbtt-qb/2); ctx.fillText('a', ql-22, qt+qa/2);
+
+        // 中间 c² 标注
+        ctx.fillStyle = '#7c3aed'; ctx.font = 'bold 22px Segoe UI';
+        ctx.fillText('c²', qcx, qcy);
+    }
+
+    window.addEventListener('load', function(){
+        drawReviewXianTu('xiantu_review');
+        drawReviewQingZhu('qingzhu_review');
+    });
+</script>
+</body>
+</html>

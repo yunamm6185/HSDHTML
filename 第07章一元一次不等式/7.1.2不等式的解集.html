@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.1.2 不等式的解集 | 华师版·七下</title>
+    <!-- 引入 MathJax 渲染 LaTeX 数学符号 -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                // 确保 \lt 和 \gt 被正确识别
+                macros: {
+                    lt: '<',
+                    gt: '>'
+                }
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f0f7fb;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+            font-size: 18px;
+        }
+        .textbook {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,60,0.25);
+            padding: 2rem 2.5rem;
+            border: 1px solid #d9e8f5;
+        }
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #b0d4ee;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #2c5778;
+        }
+        h1 { font-size: 2.5rem; color: #0a3144; }
+        h1::after { content: ''; display: block; width: 70px; height: 4px; background: #58a9d4; border-radius: 4px; margin-top: 6px; }
+        h2 {
+            font-size: 2rem;
+            color: #144a6f;
+            border-left: 8px solid #3f8ab3;
+            padding-left: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .lesson-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0b4b78;
+            background: #e6f2fc;
+            padding: 0.6rem 1rem;
+            border-radius: 60px;
+            border: 2px solid #b1d1e8;
+            margin: 1rem 0 1.5rem 0;
+        }
+        .learning-targets {
+            background: linear-gradient(145deg, #e3f0fd, #d4e9fa);
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0 2rem 0;
+            border: 1px solid #b9d6ef;
+            box-shadow: 0 6px 0 #9bbbd8;
+        }
+        .learning-targets h3 {
+            margin: 0 0 1rem 0;
+            color: #0a3e5f;
+            border-left: 6px solid #2675a8;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .target-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .target-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.5rem 1.5rem 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 0 #b3cde0;
+            border: 1px solid #c6def5;
+            font-size: 1.1rem;
+        }
+        .target-item span {
+            background: #2675a8;
+            color: white;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+        .figure-box {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .figure-box img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .figcaption {
+            font-size: 1rem;
+            color: #144a6f;
+            margin-top: 0.3rem;
+            text-align: center;
+        }
+        .intro-block {
+            background: #f0f7fe;
+            border-radius: 32px;
+            padding: 1.4rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .think-box, .explore-box, .example-box {
+            background: #e1f0de;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 1.5rem 0;
+            border-left: 8px solid #47945b;
+        }
+        .think-box h4, .explore-box h4, .example-box h4 {
+            font-size: 1.5rem;
+            color: #1d6130;
+            margin-bottom: 0.8rem;
+        }
+        .think-box h4::before { content: "💭"; margin-right: 0.5rem; }
+        .explore-box h4::before { content: "🔍"; margin-right: 0.5rem; }
+        .example-box h4::before { content: "📐"; margin-right: 0.5rem; }
+        .interact-btn {
+            background: #eef4fa;
+            border: 2px solid #3677b5;
+            color: #014682;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #9fbede;
+            transition: 0.1s;
+            border: none;
+            outline: none;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        .interact-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #9fbede; }
+        .answer-box {
+            background: #f5fafe;
+            border-left: 6px solid #f4b84b;
+            padding: 0.8rem 1.5rem;
+            margin: 0.8rem 0;
+            display: none;
+            border-radius: 0 8px 8px 0;
+        }
+        .show-answer { display: block; }
+        .homework-box {
+            background: #b3d6ed;
+            border-radius: 60px;
+            padding: 1rem 2.5rem;
+            margin:2rem 0 1rem;
+            display:flex;
+            align-items:center;
+            gap:1.5rem;
+            font-size: 1.2rem;
+        }
+        .footer-note {
+            text-align: right;
+            color: #305d81;
+            border-top: 2px solid #b0d4ee;
+            padding-top: 1rem;
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+        .summary-item {
+            background: white;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            margin: 0.5rem 0;
+            box-shadow: 0 3px 0 #b0cddb;
+            border: 1px solid #c0ddec;
+        }
+        #summaryContent {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 1000px;
+        }
+        #summaryContent.collapsed { max-height: 0; margin-top: 0; }
+        .math-idea {
+            background: #e1f0fa;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.5rem;
+            border-left: 8px solid #2a7faa;
+        }
+        .math-idea h4 { font-size: 1.5rem; color: #0f4a6f; margin-bottom: 0.8rem; }
+        .math-idea p { font-size: 1.1rem; }
+        .reading-block {
+            background-color: #fff3cd;
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #f0ddb4;
+            box-shadow: inset 0 1px 5px #f0e0c0;
+        }
+        .reading-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .reading-header h4 {
+            margin: 0;
+            color: #8a6d3b;
+            border-left: 8px solid #f4b84b;
+            padding-left: 1rem;
+            font-size: 1.5rem;
+        }
+        .toggle-icon {
+            font-size: 1.8rem;
+            color: #8a6d3b;
+        }
+        .reading-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            margin-top: 0;
+        }
+        .reading-content:not(.collapsed) {
+            max-height: 500px;
+            margin-top: 1rem;
+        }
+        .exercise-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed #accee5;
+            padding-bottom: 1.5rem;
+        }
+        .quote-box {
+            background: #f0f7fe;
+            border-left: 6px solid #2675a8;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: italic;
+            color: #144a6f;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #fff3cd;
+            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            border-left: 6px solid #f4b84b;
+            font-weight: bold;
+            color: #1d6130;
+        }
+        .rule-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        .rule-list li {
+            margin: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .rule-list li::before {
+            content: "✔️";
+            color: #2675a8;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .image-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .image-item {
+            text-align: center;
+        }
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            margin: 0.5rem 0;
+            width: 100%;
+            overflow-x: auto;
+        }
+        svg {
+            max-width: none;
+            height: auto;
+            background-color: #fff;
+        }
+        .sub-example {
+            margin-top: 1.5rem;
+            border-top: 1px dashed #b0d4ee;
+            padding-top: 1rem;
+        }
+        .sub-example p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta">
+        <span class="version">华师版·七年级下册</span>
+        <span class="chapter-tag">第7章 一元一次不等式 · 7.1.2</span>
+    </div>
+    <h1>第7章 一元一次不等式</h1>
+    <h2>7.1 认识不等式</h2>
+    <div class="chapter-intro">★ 理解不等式的解集，会在数轴上表示解集。</div>
+    <div class="lesson-title">7.1.2 不等式的解集</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>✔</span>理解不等式的解和解集的概念</div>
+            <div class="target-item"><span>✔</span>会在数轴上表示不等式的解集</div>
+            <div class="target-item"><span>✔</span>能区分空心圆圈和实心圆点</div>
+        </div>
+    </div>
+
+    <!-- 引入：从解到解集 -->
+    <div class="intro-block">
+        <p>在上一节中，我们发现不等式 $50x>1200$ 有许多解，如 $x=25,26,27,\dots$。实际上，大于24的每一个数都是它的解。这样的解的全体称为解集。</p>
+    </div>
+
+    <!-- 概括：解和解集 -->
+    <div class="highlight">
+        <p><strong>不等式的解：</strong> 能使不等式成立的未知数的值叫做不等式的解。</p>
+        <p><strong>不等式的解集：</strong> 一个不等式的所有解组成这个不等式的解的集合，简称为这个不等式的解集。</p>
+        <p><strong>解不等式：</strong> 求不等式解集的过程叫做解不等式。</p>
+    </div>
+
+    <!-- 课本图7.1.1和图7.1.2，SVG加长，确保7在内部 -->
+    <div class="image-row">
+        <div class="image-item">
+            <div class="svg-container">
+                <svg width="600" height="100" viewBox="-50 0 600 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 加长数轴主线：从-40到500，右侧箭头在500 -->
+                    <line x1="-40" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                    <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+                    <!-- 刻度：从-5到7，原点200px，每单位40px，确保7在500内（480） -->
+                    <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                        <line x1="0" y1="47" x2="0" y2="53" stroke-width="2"/><text x="0" y="70" fill="#333">-5</text>
+                        <line x1="40" y1="47" x2="40" y2="53" stroke-width="2"/><text x="40" y="70" fill="#333">-4</text>
+                        <line x1="80" y1="47" x2="80" y2="53" stroke-width="2"/><text x="80" y="70" fill="#333">-3</text>
+                        <line x1="120" y1="47" x2="120" y2="53" stroke-width="2"/><text x="120" y="70" fill="#333">-2</text>
+                        <line x1="160" y1="47" x2="160" y2="53" stroke-width="2"/><text x="160" y="70" fill="#333">-1</text>
+                        <line x1="200" y1="45" x2="200" y2="55" stroke-width="3"/><text x="200" y="70" fill="#333">0</text>
+                        <line x1="240" y1="47" x2="240" y2="53" stroke-width="2"/><text x="240" y="70" fill="#333">1</text>
+                        <line x1="280" y1="47" x2="280" y2="53" stroke-width="2"/><text x="280" y="70" fill="#333">2</text>
+                        <line x1="320" y1="47" x2="320" y2="53" stroke-width="2"/><text x="320" y="70" fill="#333">3</text>
+                        <line x1="360" y1="47" x2="360" y2="53" stroke-width="2"/><text x="360" y="70" fill="#333">4</text>
+                        <line x1="400" y1="47" x2="400" y2="53" stroke-width="2"/><text x="400" y="70" fill="#333">5</text>
+                        <line x1="440" y1="47" x2="440" y2="53" stroke-width="2"/><text x="440" y="70" fill="#333">6</text>
+                        <line x1="480" y1="47" x2="480" y2="53" stroke-width="2"/><text x="480" y="70" fill="#333">7</text>
+                    </g>
+                    <!-- 解集 x < -2 (空心圆在-2，向左画线) -->
+                    <circle cx="120" cy="50" r="4" fill="white" stroke="#333" stroke-width="2"/>
+                    <line x1="-40" y1="35" x2="120" y2="35" stroke="#333" stroke-width="2"/>
+                    <line x1="120" y1="35" x2="120" y2="50" stroke="#333" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="figcaption">图7.1.1 不等式 $\frac12 x \lt -1$ 的解集 $x\lt -2$（空心圆圈）</div>
+        </div>
+        <div class="image-item">
+            <div class="svg-container">
+                <svg width="600" height="100" viewBox="-50 0 600 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 加长数轴主线 -->
+                    <line x1="-40" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                    <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+                    <!-- 刻度：从-2到8，原点200px，每单位40px -->
+                    <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                        <line x1="80" y1="47" x2="80" y2="53" stroke-width="2"/><text x="80" y="70" fill="#333">-1</text>
+                        <line x1="120" y1="47" x2="120" y2="53" stroke-width="2"/><text x="120" y="70" fill="#333">0</text>
+                        <line x1="160" y1="47" x2="160" y2="53" stroke-width="2"/><text x="160" y="70" fill="#333">1</text>
+                        <line x1="200" y1="45" x2="200" y2="55" stroke-width="3"/><text x="200" y="70" fill="#333">2</text>
+                        <line x1="240" y1="47" x2="240" y2="53" stroke-width="2"/><text x="240" y="70" fill="#333">3</text>
+                        <line x1="280" y1="47" x2="280" y2="53" stroke-width="2"/><text x="280" y="70" fill="#333">4</text>
+                        <line x1="320" y1="47" x2="320" y2="53" stroke-width="2"/><text x="320" y="70" fill="#333">5</text>
+                        <line x1="360" y1="47" x2="360" y2="53" stroke-width="2"/><text x="360" y="70" fill="#333">6</text>
+                        <line x1="400" y1="47" x2="400" y2="53" stroke-width="2"/><text x="400" y="70" fill="#333">7</text>
+                        <line x1="440" y1="47" x2="440" y2="53" stroke-width="2"/><text x="440" y="70" fill="#333">8</text>
+                    </g>
+                    <!-- 解集 x ≥ 3 (实心圆在3，向右画线) -->
+                    <circle cx="240" cy="50" r="4" fill="#333"/>
+                    <line x1="240" y1="35" x2="500" y2="35" stroke="#333" stroke-width="2"/>
+                    <line x1="240" y1="35" x2="240" y2="50" stroke="#333" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="figcaption">图7.1.2 不等式 $x+2\ge5$ 的解集 $x\ge3$（实心圆点）</div>
+        </div>
+    </div>
+    <!-- 关键段落：使用 \lt 和 \gt 避免HTML标签冲突 -->
+    <p>在数轴上，解集 $x\le a$ 表示数 $a$ 的点左边的部分，包括表示数 $a$ 的点在内，这一点画成实心圆点；而解集 $x\lt a$ 表示数 $a$ 的点左边的部分，但不包括表示数 $a$ 的点，这一点画成空心圆圈。对于 $x\ge a$ 和 $x\gt a$ 的表示与此相仿。</p>
+
+    <!-- 例题 -->
+    <div class="example-box">
+        <h4>例 将下列不等式的解集在数轴上表示：</h4>
+
+        <!-- 小题 (1) -->
+        <div class="sub-example">
+            <p><strong>(1) $x\gt 3$</strong></p>
+            <button class="interact-btn" onclick="toggleAnswer('ans1')">📌 显示解答 (1)</button>
+            <div id="ans1" class="answer-box">
+                <p>解集为 $x\gt 3$，数轴上在3处画空心圆圈，向右画线。</p>
+                <div class="image-item">
+                    <div class="svg-container">
+                        <svg width="600" height="100" viewBox="-50 0 600 100" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="-40" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                            <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+                            <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                                <line x1="0" y1="47" x2="0" y2="53" stroke-width="2"/><text x="0" y="70" fill="#333">-3</text>
+                                <line x1="40" y1="47" x2="40" y2="53" stroke-width="2"/><text x="40" y="70" fill="#333">-2</text>
+                                <line x1="80" y1="47" x2="80" y2="53" stroke-width="2"/><text x="80" y="70" fill="#333">-1</text>
+                                <line x1="120" y1="47" x2="120" y2="53" stroke-width="2"/><text x="120" y="70" fill="#333">0</text>
+                                <line x1="160" y1="47" x2="160" y2="53" stroke-width="2"/><text x="160" y="70" fill="#333">1</text>
+                                <line x1="200" y1="47" x2="200" y2="53" stroke-width="2"/><text x="200" y="70" fill="#333">2</text>
+                                <line x1="240" y1="47" x2="240" y2="53" stroke-width="2"/><text x="240" y="70" fill="#333">3</text>
+                                <line x1="280" y1="47" x2="280" y2="53" stroke-width="2"/><text x="280" y="70" fill="#333">4</text>
+                                <line x1="320" y1="47" x2="320" y2="53" stroke-width="2"/><text x="320" y="70" fill="#333">5</text>
+                                <line x1="360" y1="47" x2="360" y2="53" stroke-width="2"/><text x="360" y="70" fill="#333">6</text>
+                                <line x1="400" y1="47" x2="400" y2="53" stroke-width="2"/><text x="400" y="70" fill="#333">7</text>
+                            </g>
+                            <circle cx="240" cy="50" r="4" fill="white" stroke="#333" stroke-width="2"/>
+                            <line x1="240" y1="35" x2="500" y2="35" stroke="#333" stroke-width="2"/>
+                            <line x1="240" y1="35" x2="240" y2="50" stroke="#333" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="figcaption">(1) $x\gt 3$</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 小题 (2) -->
+        <div class="sub-example">
+            <p><strong>(2) $x\le -2$</strong></p>
+            <button class="interact-btn" onclick="toggleAnswer('ans2')">📌 显示解答 (2)</button>
+            <div id="ans2" class="answer-box">
+                <p>解集为 $x\le -2$，数轴上在-2处画实心圆点，向左画线。</p>
+                <div class="image-item">
+                    <div class="svg-container">
+                        <svg width="600" height="100" viewBox="-50 0 600 100" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="-40" y1="50" x2="500" y2="50" stroke="#333" stroke-width="2"/>
+                            <polygon points="500 50, 490 45, 490 55" fill="#333"/>
+                            <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                                <line x1="0" y1="47" x2="0" y2="53" stroke-width="2"/><text x="0" y="70" fill="#333">-6</text>
+                                <line x1="40" y1="47" x2="40" y2="53" stroke-width="2"/><text x="40" y="70" fill="#333">-5</text>
+                                <line x1="80" y1="47" x2="80" y2="53" stroke-width="2"/><text x="80" y="70" fill="#333">-4</text>
+                                <line x1="120" y1="47" x2="120" y2="53" stroke-width="2"/><text x="120" y="70" fill="#333">-3</text>
+                                <line x1="160" y1="47" x2="160" y2="53" stroke-width="2"/><text x="160" y="70" fill="#333">-2</text>
+                                <line x1="200" y1="47" x2="200" y2="53" stroke-width="2"/><text x="200" y="70" fill="#333">-1</text>
+                                <line x1="240" y1="45" x2="240" y2="55" stroke-width="3"/><text x="240" y="70" fill="#333">0</text>
+                                <line x1="280" y1="47" x2="280" y2="53" stroke-width="2"/><text x="280" y="70" fill="#333">1</text>
+                                <line x1="320" y1="47" x2="320" y2="53" stroke-width="2"/><text x="320" y="70" fill="#333">2</text>
+                                <line x1="360" y1="47" x2="360" y2="53" stroke-width="2"/><text x="360" y="70" fill="#333">3</text>
+                            </g>
+                            <circle cx="160" cy="50" r="4" fill="#333"/>
+                            <line x1="-40" y1="35" x2="160" y2="35" stroke="#333" stroke-width="2"/>
+                            <line x1="160" y1="35" x2="160" y2="50" stroke="#333" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="figcaption">(2) $x\le -2$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 练习 -->
+    <div class="exercises" style="background-color: #f5f0fc; border-radius:28px; padding:2rem 2.5rem; margin:2rem 0 1rem; border:2px solid #b6cde3;">
+        <h3>✏️ 练习</h3>
+        <div class="exercise-item">
+            <p><strong>1.</strong> 下列各数中，哪些是不等式 $x+2>5$ 的解？哪些不是？</p>
+            <p>$-3,-2,-1,0,1.5,2.5,3,3.5,5,7$</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex1')">🔍 参考答案</button>
+            <div id="ex1" class="answer-box">
+                <p>解：$x+2>5 \Rightarrow x>3$，所以 $3.5,5,7$ 是解，其余不是。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>2.</strong> 根据“当 $x$ 为任何正数时，都能使不等式 $x+3>2$ 成立”，能不能说“不等式 $x+3>2$ 的解集是 $x>0$”？为什么？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex2')">🔍 参考答案</button>
+            <div id="ex2" class="answer-box">
+                <p>不能。因为不等式 $x+3>2$ 可化为 $x>-1$，其解集是 $x>-1$，而 $x>0$ 只是其中的一部分。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>3.</strong> 两个不等式的解集分别为 $x<2$ 和 $x\le2$，它们有什么不同？在数轴上怎样表示它们的区别？</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex3')">🔍 参考答案</button>
+            <div id="ex3" class="answer-box">
+                <p>$x<2$ 不包括2，数轴上在2处画空心圆圈，向左画线；$x\le2$ 包括2，数轴上在2处画实心圆点，向左画线。</p>
+            </div>
+        </div>
+        <div class="exercise-item">
+            <p><strong>4.</strong> 写出下列各图所表示的不等式的解集：</p>
+            <div class="image-row">
+                <div class="image-item">
+                    <div class="svg-container">
+                        <svg width="500" height="100" viewBox="-40 0 500 100" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="-30" y1="50" x2="400" y2="50" stroke="#333" stroke-width="2"/>
+                            <polygon points="400 50, 390 45, 390 55" fill="#333"/>
+                            <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                                <line x1="50" y1="47" x2="50" y2="53" stroke-width="2"/><text x="50" y="70" fill="#333">-2</text>
+                                <line x1="90" y1="47" x2="90" y2="53" stroke-width="2"/><text x="90" y="70" fill="#333">-1</text>
+                                <line x1="130" y1="45" x2="130" y2="55" stroke-width="3"/><text x="130" y="70" fill="#333">0</text>
+                                <line x1="170" y1="47" x2="170" y2="53" stroke-width="2"/><text x="170" y="70" fill="#333">1</text>
+                                <line x1="210" y1="47" x2="210" y2="53" stroke-width="2"/><text x="210" y="70" fill="#333">2</text>
+                                <line x1="250" y1="47" x2="250" y2="53" stroke-width="2"/><text x="250" y="70" fill="#333">3</text>
+                                <line x1="290" y1="47" x2="290" y2="53" stroke-width="2"/><text x="290" y="70" fill="#333">4</text>
+                            </g>
+                            <circle cx="210" cy="50" r="4" fill="white" stroke="#333" stroke-width="2"/>
+                            <line x1="210" y1="35" x2="400" y2="35" stroke="#333" stroke-width="2"/>
+                            <line x1="210" y1="35" x2="210" y2="50" stroke="#333" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="figcaption">图①</div>
+                </div>
+                <div class="image-item">
+                    <div class="svg-container">
+                        <svg width="500" height="100" viewBox="-40 0 500 100" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="-30" y1="50" x2="400" y2="50" stroke="#333" stroke-width="2"/>
+                            <polygon points="400 50, 390 45, 390 55" fill="#333"/>
+                            <g stroke="#333" font-family="Arial" font-size="12" text-anchor="middle">
+                                <line x1="10" y1="47" x2="10" y2="53" stroke-width="2"/><text x="10" y="70" fill="#333">-4</text>
+                                <line x1="50" y1="47" x2="50" y2="53" stroke-width="2"/><text x="50" y="70" fill="#333">-3</text>
+                                <line x1="90" y1="47" x2="90" y2="53" stroke-width="2"/><text x="90" y="70" fill="#333">-2</text>
+                                <line x1="130" y1="47" x2="130" y2="53" stroke-width="2"/><text x="130" y="70" fill="#333">-1</text>
+                                <line x1="170" y1="45" x2="170" y2="55" stroke-width="3"/><text x="170" y="70" fill="#333">0</text>
+                                <line x1="210" y1="47" x2="210" y2="53" stroke-width="2"/><text x="210" y="70" fill="#333">1</text>
+                                <line x1="250" y1="47" x2="250" y2="53" stroke-width="2"/><text x="250" y="70" fill="#333">2</text>
+                            </g>
+                            <circle cx="90" cy="50" r="4" fill="#333"/>
+                            <line x1="-30" y1="35" x2="90" y2="35" stroke="#333" stroke-width="2"/>
+                            <line x1="90" y1="35" x2="90" y2="50" stroke="#333" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="figcaption">图②</div>
+                </div>
+            </div>
+            <p>(1) 图①的解集是______，图②的解集是______。</p>
+            <button class="interact-btn" onclick="toggleAnswer('ex4')">🔍 参考答案</button>
+            <div id="ex4" class="answer-box">
+                <p>图①：$x\gt 2$；图②：$x\le -1$。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：中国古代的“比较”思想（不含解不等式） -->
+    <div class="reading-block" id="readingBlock">
+        <div class="reading-header" onclick="toggleReading()">
+            <h4>📖 读一读 · 中国古代的“比较”思想</h4>
+            <span class="toggle-icon" id="toggleIcon">▶</span>
+        </div>
+        <div class="reading-content collapsed" id="readingContent">
+            <p>虽然中国古代数学中没有现代意义上的“不等式”符号，但古人很早就懂得比较大小。成书于公元一世纪的《九章算术》第七章“盈不足”，就是专门研究盈亏问题的。例如：“今有人共买物，人出八，盈三；人出七，不足四。问人数、物价各几何？”这种问题需要比较两种分配方案的盈亏情况，本质上就是在寻找一个合适的数值，使“不足”与“有余”达到平衡。</p>
+            <p>古人通过比较发现：当每人出的钱太少时，总钱数不够（不足）；当每人出的钱太多时，总钱数有余（盈）。这种“不足”与“有余”的对比，正是不等关系的朴素体现。后来，“盈不足术”传入阿拉伯和欧洲，被称为“契丹算法”（契丹即指中国），成为中世纪数学的重要成果。</p>
+            <p>可见，不等式的思想在古代中国早已萌芽，只是古人用“盈”“不足”这样的语言来描述而已。</p>
+        </div>
+    </div>
+
+    <!-- 数学思想·核心素养 -->
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>数形结合：</strong> 用数轴直观表示不等式的解集。<br>
+        <strong>抽象思想：</strong> 将解集抽象为点集。<br>
+        <strong>分类思想：</strong> 区分空心与实心，体现“等与不等”的界限。</p>
+    </div>
+
+    <!-- 课堂小结（折叠） -->
+    <div style="background:#cfe2ec; border-radius:28px; padding:1.2rem 2rem; margin:2rem 0;">
+        <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" onclick="toggleSummary()">
+            <h3 style="margin:0; color:#0f5669; border-left:8px solid #30829b; padding-left:1rem; font-size:1.8rem;">📌 课堂小结</h3>
+            <span style="font-size:1.8rem; color:#1e6f82;" id="summaryToggle">▼</span>
+        </div>
+        <div id="summaryContent">
+            <div class="summary-item">不等式的解集是所有解的集合</div>
+            <div class="summary-item">在数轴上表示解集时，注意区分空心（不含端点）和实心（含端点）</div>
+            <div class="summary-item">解不等式就是求出解集的过程</div>
+        </div>
+    </div>
+
+    <!-- 作业布置 -->
+    <div class="homework-box">
+        <span style="font-size:2.5rem;">📚</span>
+        <span style="font-size:1.2rem;"><strong>作业：</strong> 课本习题7.1 A组第4、5题，B组第6题（选做）。</span>
+    </div>
+
+    <!-- 尾部寄语 -->
+    <p style="text-align: center; color: #316a8c; font-size: 1.3rem; margin: 1.5rem 0;">✨ 数轴上的点，画出不等式的解集，让不等式一目了然 ✨</p>
+    <div class="footer-note">数学 七年级下册 · 第7章 7.1.2</div>
+</div>
+
+<script>
+    function toggleAnswer(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('show-answer');
+    }
+    function toggleSummary() {
+        var c = document.getElementById('summaryContent');
+        var t = document.getElementById('summaryToggle');
+        c.classList.toggle('collapsed');
+        t.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+    function toggleReading() {
+        var c = document.getElementById('readingContent');
+        var icon = document.getElementById('toggleIcon');
+        c.classList.toggle('collapsed');
+        icon.textContent = c.classList.contains('collapsed') ? '▶' : '▼';
+    }
+</script>
+</body>
+</html>

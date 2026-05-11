@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>15.4.2 科学记数法 | 华师版·八年级下册</title>
+    <script>
+        MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #f3e8fd; font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, sans-serif; font-weight: 500; line-height: 1.6; color: #2d1867; padding: 1.5rem; font-size: 18px; }
+        .textbook { max-width: 1200px; margin: 0 auto; background: white; border-radius: 2.5rem; box-shadow: 0 20px 30px -10px rgba(102,126,234,0.35); padding: 2rem 2.5rem; border: 1px solid #d4c4f8; }
+        .header-meta { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #b8a5e9; padding-bottom: 0.6rem; margin-bottom: 1.3rem; font-weight: 600; font-size: 1rem; }
+        h1 { font-size: 2.4rem; color: #5a3d9a; font-weight: 700; }
+        h1::after { content:''; display:block; width:75px; height:5px; background:linear-gradient(135deg,#667eea,#764ba2); border-radius:5px; margin-top:8px; }
+        .lesson-title { text-align:center; font-size:2.2rem; color:#5a3d9a; background:linear-gradient(145deg,#ede6fc,#ddd0f5); padding:.6rem 1.2rem; border-radius:60px; border:3px solid #c9b8ea; margin:1.2rem 0 1.8rem; font-weight:700; }
+
+        .learning-targets { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-radius:2rem; padding:1.3rem 2rem; margin:1rem 0 2rem; border:1px solid #c9b8ea; box-shadow:0 5px 0 #b8a0e0; }
+        .learning-targets h3 { margin:0 0 0.8rem; font-size:1.5rem; border-left:6px solid #667eea; padding-left:1rem; }
+        .target-grid { display:flex; flex-wrap:wrap; gap:0.8rem; }
+        .target-item { background:white; border-radius:40px; padding:.4rem 1.5rem .4rem .9rem; display:flex; align-items:center; gap:.5rem; font-weight:600; font-size:1rem; box-shadow:0 3px 0 #c4b5e8; border:1px solid #d4c4f8; }
+        .target-item span { background:linear-gradient(135deg,#667eea,#764ba2); color:white; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-weight:bold; }
+
+        .intro-card { background:#ede6fc; border-radius:2rem; padding:1.5rem 2rem; margin:1.2rem 0; border-left:8px solid #667eea; font-weight:600; }
+        .explore-card { background:#e8fdf4; border-radius:1.8rem; padding:1.5rem 1.8rem; margin:1.4rem 0; border-left:8px solid #34c77b; font-weight:600; }
+        .explore-card h4 { font-size:1.4rem; margin-bottom:0.7rem; color:#1a8a4a; } .explore-card h4::before { content:"🔍 "; }
+        .fact-card { background:#fff8e1; border-left:8px solid #f0b34b; border-radius:1.8rem; padding:1.4rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .fact-card h4 { font-size:1.5rem; margin-bottom:0.6rem; color:#b85c1a; }
+        .theorem-box { background:#fff3cd; border:3px solid #f0b34b; border-radius:1.5rem; padding:1.2rem 2rem; margin:1rem 0; text-align:center; font-size:1.25rem; font-weight:700; color:#7a3d00; }
+        .example-card { background:#e8fdf4; border-left:8px solid #34c77b; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:600; }
+        .example-card h4 { font-size:1.4rem; color:#1a8a4a; }
+        .reading-section { background:#fef9e6; border-left:8px solid #e6b422; border-radius:1.8rem; padding:1.2rem 1.8rem; margin:1.4rem 0; font-weight:500; }
+
+        .interact-btn { background:#ede6fc; border:none; color:#5a3d9a; padding:.3rem 1.2rem; border-radius:40px; font-weight:700; cursor:pointer; box-shadow:0 4px 0 #c4b5e8; margin:.5rem 0 0; font-size:.9rem; }
+        .interact-btn:active { transform:translateY(2px); }
+        .answer-box { background:#faf8ff; border-left:6px solid #f0b34b; padding:.7rem 1.3rem; margin:.8rem 0; display:none; border-radius:0 1rem 1rem 0; font-size:.95rem; }
+        .show-answer { display:block; }
+
+        .exercise-section { background:#f5efff; border-radius:2rem; padding:1.5rem 2rem; margin:2rem 0; }
+        .exercise-item { margin-bottom:1.5rem; }
+        .exercise-question { font-weight:700; color:#5a3d9a; font-size:1.05rem; margin-bottom:0.4rem; }
+
+        .summary-section { background:linear-gradient(145deg,#ede6fc,#ddd0f5); border-left:6px solid #667eea; border-radius:1.8rem; padding:1.2rem 2rem; margin:1.5rem 0; }
+        .math-idea { background:#ede6fc; border-left:8px solid #667eea; border-radius:1.8rem; padding:1rem 1.8rem; margin:1rem 0; }
+        .homework-box { background:linear-gradient(145deg,#ddd0f5,#ede6fc); border-radius:60px; padding:1rem 2rem; display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap; margin:1.5rem 0; }
+        .message-box { background:#f0ebff; text-align:center; font-style:italic; border-left:8px solid #764ba2; padding:1rem 1.8rem; border-radius:2rem; margin:1.5rem 0; }
+        .footer-note { text-align:right; color:#5a3d9a; border-top:2px solid #c9b8ea; padding-top:.8rem; margin-top:1.5rem; }
+        .highlight { background:#d4f4dd; padding:.5rem 1rem; border-radius:1rem; margin:.5rem 0; }
+
+        table { width:100%; border-collapse:collapse; margin:1rem 0; background:white; border-radius:10px; overflow:hidden; }
+        th,td { padding:12px 16px; text-align:center; border:2px solid #ddd0f5; }
+        th { background:linear-gradient(135deg,#667eea,#764ba2); color:white; font-weight:700; }
+        tr:nth-child(even) { background:#faf8ff; } tr:hover { background:#ede6fc; }
+
+        .formula-compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:1rem 0; }
+        @media(max-width:700px){ .formula-compare{grid-template-columns:1fr;} }
+        .sci-notation { background: linear-gradient(135deg, #faf8ff, #f0ebff); border: 2px solid #ddd0f5; border-radius: 1.2rem; padding: 1.2rem 1.5rem; margin: 1rem 0; text-align: center; }
+        
+        /* MathJax 公式字体大小 */
+        mjx-container { font-size: 1.75em !important; }
+        .example-card mjx-container { font-size: 1.8em !important; }
+        .theorem-box mjx-container { font-size: 1.7em !important; }
+        .exercise-item mjx-container { font-size: 1.75em !important; }
+    </style>
+</head>
+<body>
+<div class="textbook">
+    <div class="header-meta"><span>华师版·八年级下册</span><span>第15章 分式 · 15.4.2</span></div>
+    <h1>第15章 分式</h1>
+    <div class="lesson-title">15.4.2 科学记数法</div>
+
+    <!-- 学习目标 -->
+    <div class="learning-targets">
+        <h3>🎯 学习目标</h3>
+        <div class="target-grid">
+            <div class="target-item"><span>1</span>掌握用科学记数法表示小于1的正数</div>
+            <div class="target-item"><span>2</span>理解负整数指数幂在科学记数法中的应用</div>
+            <div class="target-item"><span>3</span>能进行科学记数法的互化与计算</div>
+            <div class="target-item"><span>4</span>了解科学记数法在实际中的应用</div>
+        </div>
+    </div>
+
+    <!-- 引入 -->
+    <div class="intro-card">
+        <p>我们已经学过用科学记数法表示较大的数：</p>
+        <p style="margin-top:0.5rem;">例如：光速约为 $3 \times 10^8$ m/s，地球到太阳的距离约为 $1.5 \times 10^8$ km。</p>
+        <p style="margin-top:0.5rem;"><strong>思考：</strong>如何用科学记数法表示很小的数呢？</p>
+        <p style="margin-top:0.5rem;">例如：电子质量约 $0.00000000000000000000000000000091$ kg</p>
+        <button class="interact-btn" onclick="toggleAnswer('think')">💡 探究思路</button>
+        <div id="think" class="answer-box">
+            <p>利用上节课学的<strong>负整数指数幂</strong>：$10^{-n} = \frac{1}{10^n} = 0.\underbrace{00\cdots0}_{n\text{个零}}1$</p>
+            <p>电子质量 $= 9.1 \times 10^{-31}$ kg，这样表示就简洁多了！</p>
+        </div>
+    </div>
+
+    <!-- 科学记数法（小于1的正数） -->
+    <div class="fact-card">
+        <h4>📌 科学记数法（小于1的正数）</h4>
+        <div class="highlight">
+            <p><strong>规则：</strong>任何一个大于0且小于1的数都可以写成 $a \times 10^{-n}$ 的形式，其中 $1 \leq a < 10$，$n$ 是正整数。</p>
+        </div>
+        <div class="theorem-box" style="font-size:1.05rem;">
+            $$0.\underbrace{00\cdots0}_{n\text{个零}}a\cdots = a \times 10^{-(n+1)}$$
+        </div>
+        <p style="margin-top:0.8rem; font-size:0.95rem;"><strong>规律：</strong>$n$ 等于原数中第一个非零数字前面所有零的个数（包括小数点前的那个零）。</p>
+    </div>
+
+    <!-- 例题讲解 -->
+    <div class="example-card">
+        <h4>例1 用科学记数法表示下列各数：</h4>
+        <p>(1) $0.0032$ &nbsp;&nbsp; (2) $0.000075$ &nbsp;&nbsp; (3) $-0.000406$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex1')">✍️ 解答过程</button>
+        <div id="ex1" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> $0.0032 = 3.2 \times 10^{-3}$</p>
+            <p style="margin-left:2rem;">分析：第一个非零数字3前面有3个零（0.00），所以指数是 $-3$。</p>
+            <p style="margin-top:0.5rem;"><strong>(2)</strong> $0.000075 = 7.5 \times 10^{-5}$</p>
+            <p style="margin-left:2rem;">分析：第一个非零数字7前面有5个零，所以指数是 $-5$。</p>
+            <p style="margin-top:0.5rem;"><strong>(3)</strong> $-0.000406 = -4.06 \times 10^{-4}$</p>
+            <p style="margin-left:2rem;">分析：符号保留，第一个非零数字4前面有4个零，所以指数是 $-4$。</p>
+        </div>
+    </div>
+
+    <div class="example-card">
+        <h4>例2 将科学记数法还原为普通小数：</h4>
+        <p>(1) $5.2 \times 10^{-4}$ &nbsp;&nbsp; (2) $-3.08 \times 10^{-6}$ &nbsp;&nbsp; (3) $1.25 \times 10^{-2}$</p>
+        <button class="interact-btn" onclick="toggleAnswer('ex2')">✍️ 解答过程</button>
+        <div id="ex2" class="answer-box">
+            <p><strong>解：</strong></p>
+            <p><strong>(1)</strong> $5.2 \times 10^{-4} = 5.2 \times 0.0001 = 0.00052$</p>
+            <p style="margin-left:2rem;">方法：指数是 $-4$，小数点向左移动4位。</p>
+            <p style="margin-top:0.5rem;"><strong>(2)</strong> $-3.08 \times 10^{-6} = -0.00000308$</p>
+            <p style="margin-left:2rem;">方法：指数是 $-6$，小数点向左移动6位。</p>
+            <p style="margin-top:0.5rem;"><strong>(3)</strong> $1.25 \times 10^{-2} = 0.0125$</p>
+            <p style="margin-left:2rem;">方法：指数是 $-2$，小数点向左移动2位。</p>
+        </div>
+    </div>
+
+    <!-- 科学应用实例 -->
+    <div class="explore-card">
+        <h4>科学应用实例</h4>
+        <table>
+            <tr><th>物理量</th><th>数值</th><th>科学记数法</th></tr>
+            <tr><td>电子质量</td><td>约 0.00000000000000000000000000000091 kg</td><td>$9.1 \times 10^{-31}$ kg</td></tr>
+            <tr><td>氢原子半径</td><td>约 0.000000000053 m</td><td>$5.3 \times 10^{-11}$ m</td></tr>
+            <tr><td>纳米</td><td>0.000000001 m</td><td>$1 \times 10^{-9}$ m</td></tr>
+            <tr><td>皮秒</td><td>0.000000000001 s</td><td>$1 \times 10^{-12}$ s</td></tr>
+            <tr><td>一根头发直径</td><td>约 0.00007 m</td><td>$7 \times 10^{-5}$ m</td></tr>
+        </table>
+    </div>
+
+    <!-- 练习题 -->
+    <div class="exercise-section">
+        <h3 style="color:#5a3d9a; margin-bottom:1.2rem;">✏️ 课堂练习</h3>
+
+        <div class="exercise-item">
+            <p class="exercise-question">1. 用科学记数法表示：</p>
+            <p>$0.00000804$ &nbsp;&nbsp; $-0.000203$ &nbsp;&nbsp; $0.000000009$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p1')">🔍 答案</button>
+            <div id="p1" class="answer-box">
+                <p>$0.00000804 = 8.04 \times 10^{-6}$</p>
+                <p>$-0.000203 = -2.03 \times 10^{-4}$</p>
+                <p>$0.000000009 = 9 \times 10^{-9}$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">2. 将下列科学记数法还原为普通小数：</p>
+            <p>$6.5 \times 10^{-3}$ &nbsp;&nbsp; $-2.1 \times 10^{-5}$ &nbsp;&nbsp; $4 \times 10^{-7}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p2')">🔍 答案</button>
+            <div id="p2" class="answer-box">
+                <p>$6.5 \times 10^{-3} = 0.0065$</p>
+                <p>$-2.1 \times 10^{-5} = -0.000021$</p>
+                <p>$4 \times 10^{-7} = 0.0000004$</p>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <p class="exercise-question">3. 计算：</p>
+            <p>$(3 \times 10^{-5}) \times (4 \times 10^{-3})$ &nbsp;&nbsp; $\frac{6 \times 10^{-4}}{2 \times 10^{-6}}$</p>
+            <button class="interact-btn" onclick="toggleAnswer('p3')">🔍 答案与解析</button>
+            <div id="p3" class="answer-box">
+                <p><strong>解：</strong></p>
+                <p>$(3 \times 10^{-5}) \times (4 \times 10^{-3}) = (3 \times 4) \times 10^{-5+(-3)} = 12 \times 10^{-8} = 1.2 \times 10^{-7}$</p>
+                <p style="margin-top:0.5rem;">$\frac{6 \times 10^{-4}}{2 \times 10^{-6}} = \frac{6}{2} \times 10^{-4-(-6)} = 3 \times 10^{2} = 300$</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 读一读：光年与纳米 -->
+    <div class="reading-section">
+        <h4>📖 读一读——光年与纳米</h4>
+        <p><strong>光年（light year, ly）：</strong>光在真空中一年所走的距离。光速约为 $3 \times 10^8$ m/s，一年约 $3.154 \times 10^7$ 秒。</p>
+        <p>1 光年 $\approx 9.46 \times 10^{12}$ km ≈ <strong>9.46万亿公里</strong>！最近的恒星——比邻星距离地球约 4.22 光年。</p>
+        <p style="margin-top:0.5rem;"><strong>纳米（nanometer, nm）：</strong>$1\ \text{nm} = 10^{-9}$ m。纳米技术是在纳米尺度（1~100 nm）上研究物质性质和应用的技术。一个 DNA 分子的直径大约是 2~3 nm。</p>
+    </div>
+
+    <!-- 小结 -->
+    <div class="summary-section">
+        <h3 style="color:#5a3d9a; border-left:6px solid #667eea; padding-left:1rem; margin-bottom:1rem;">📌 课堂小结</h3>
+        <div>• <strong>科学记数法（小数）：</strong>$a \times 10^{-n}$，用于表示很小的正数，其中 $1 \leq a < 10$</div>
+        <div style="margin-top:0.5rem;">• <strong>确定指数的方法：</strong>小数点后第一个非零数字前有多少个零，指数就是负几</div>
+        <div style="margin-top:0.5rem;">• <strong>还原方法：</strong>指数是 $-n$，小数点就向左移动 $n$ 位</div>
+        <div style="margin-top:0.5rem;">• <strong>实际应用：</strong>在物理、化学、生物等科学领域广泛使用</div>
+    </div>
+
+    <div class="math-idea">
+        <h4>🧠 数学思想·核心素养</h4>
+        <p><strong>符号意识：</strong>科学记数法是表示极大或极小数的简洁符号。<br>
+        <strong>实际应用：</strong>科学记数法在天文、物理、化学、生物等领域有广泛应用。<br>
+        <strong>模型思想：</strong>用 $a \times 10^n$ 统一表示大数和小数，体现了数学的简洁美。</p>
+    </div>
+
+    <div class="homework-box">
+        <span style="font-size:2rem;">📚</span>
+        <span><strong>作业：</strong>课本练习第3题；查阅：生活中还有哪些地方用到科学记数法？</span>
+    </div>
+
+    <div class="message-box">
+        <p>✨ 科学计数表微细，负指对应零的位；左移还原记心中，天文物理都用它。✨</p>
+    </div>
+    <div class="footer-note">八年级下册 · 第15章 15.4.2 科学记数法</div>
+</div>
+
+<script>
+function toggleAnswer(id){
+    const b=document.getElementById(id);
+    if(b)b.classList.toggle('show-answer');
+}
+</script>
+</body>
+</html>
